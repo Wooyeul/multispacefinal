@@ -183,6 +183,7 @@ public class CtrlSpace {
 	public String find_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO) throws Exception{
 		Space_qna_repleVO space_qna_reple = space_QnA_RepleDAO.find_space_QnA_Reple(space_QnA_RepleVO);
 		System.out.println(space_qna_reple.getSpace_qna_reple_content());
+		
 		String qna_reple = "'qna_reple' : { 'qna_reple_content' : +'"+ space_qna_reple.getSpace_qna_reple_content()+"',"
 				+ "'qna_reple_title' :'"+space_qna_reple.getSpace_qna_reple_title()+"'}";
 		return qna_reple;
