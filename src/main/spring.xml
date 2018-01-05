@@ -15,7 +15,7 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="1111"></property>
 		<property name="url" 
-			value="jdbc:mysql://127.0.0.1:3306/school"></property>
+			value="jdbc:mysql://127.0.0.1:3306/multi"></property>
 	</bean>
 	
 	<bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
