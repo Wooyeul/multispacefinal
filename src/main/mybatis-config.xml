@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	
+	
+	<!--
+	 여기에 자기꺼 추가해주세요 이런식으로!!
+	 <mappers>
+		<mapper resource="multi/temp/mapper/mapper.xml" />
+	</mappers>
+	 -->
+	 
+	 <mappers>
+	 	<mapper resource="multi/space/mapper/space_mapper.xml"/>
+	 	<mapper resource="multi/space/mapper/booking_mapper.xml"/>
+	 	<mapper resource="multi/space/mapper/space_QnA_mapper.xml"/>
+	 	<mapper resource="multi/space/mapper/space_QnA_Reple_mapper.xml"/>
+	 </mappers>
+	 
+	
+</configuration>

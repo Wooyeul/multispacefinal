@@ -1,0 +1,11 @@
+package multi.space.dao;
+
+import java.util.List;
+
+import main.vo.Space_qnaVO;
+
+public interface Space_QnADAO {
+	public Integer add_spaceQnA(Space_qnaVO vo) throws Exception;
+	public List<Space_qnaVO> find_space_QnA(Space_qnaVO vo) throws Exception;
+	public Integer delete_spaceQnA_by_spane_qna_no(Space_qnaVO vo) throws Exception;
+}

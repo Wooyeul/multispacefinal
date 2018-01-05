@@ -1,0 +1,114 @@
+//space sample 데이터
+INSERT INTO SpaceT(space_no,CRN,space_title,space_thumb_img) VALUES (default,'no1','sample','sample.jpg');
+INSERT INTO SpaceT(space_no,CRN,space_title,space_thumb_img) VALUES (default,'no2','sample2','sample.jpg');
+
+//USER 데이터
+INSERT INTO UserT(user_id) VALUES ('kmk4204');
+
+
+//CLUB 데이터
+INSERT INTO ClubT(club_no,user_id,club_name,club_content) VALUES (default,'kmk4204','club1','sample_club');
+INSERT INTO ClubT(club_no,user_id,club_name,club_content) VALUES (default,'kmk1234','club2','sample_club2');
+
+//CLUB
+INSERT INTO User_ClubT VALUES (1,'kmk4204');
+INSERT INTO User_ClubT VALUES (2,'kmk4204');
+
+//HOST
+INSERT INTO HostT (CRN, user_id, host_name, host_account, zipcode) VALUES ('CRN 1', 'user_id 1', 'host_name 1', 'host_account 1', 'zipcode 1');
+INSERT INTO HostT (CRN, user_id, host_name, host_account, zipcode) VALUES ('CRN 2', 'user_id 2', 'host_name 2', 'host_account 2', 'zipcode 2');
+INSERT INTO HostT (CRN, user_id, host_name, host_account, zipcode) VALUES ('CRN 3', 'user_id 3', 'host_name 3', 'host_account 3', 'zipcode 3');
+INSERT INTO HostT (CRN, user_id, host_name, host_account, zipcode) VALUES ('kmk4204', 'user_id 4', 'host_name 4', 'host_account 4', 'zipcode 4');
+
+//l_category 데이터
+INSERT INTO L_CategoryT VALUES (1,'서울');
+INSERT INTO L_CategoryT VALUES (2,'경기');
+INSERT INTO L_CategoryT VALUES (3,'강원');
+
+//C_Category 데이터
+INSERT INTO C_CategoryT VALUES (1,'스포츠',1);
+INSERT INTO C_CategoryT VALUES (2,'공부',1);
+INSERT INTO C_CategoryT VALUES (3,'파티',1);
+INSERT INTO C_CategoryT VALUES (4,'취미생활',1);
+
+
+
+//내가 쓰는 테이블
+CREATE TABLE User_ClubT
+(
+    `club_no`  INT            NOT NULL, 
+    `user_id`  VARCHAR(20)    NULL, 
+    PRIMARY KEY (club_no, user_id)
+);
+
+CREATE TABLE UserT
+(
+    `user_id`    VARCHAR(20)     NOT NULL, 
+    `SSN1`       CHAR(6)         NULL, 
+    `SSN2`       CHAR(7)         NULL, 
+    `passwd`     VARCHAR(20)     NULL, 
+    `user_name`  VARCHAR(10)     NULL, 
+    `gender`     CHAR(1)         NULL, 
+    `phone`      VARCHAR(11)     NULL, 
+    `nickname`   VARCHAR(20)     NULL, 
+    `zipcode`    VARCHAR(200)    NULL, 
+    `email`      VARCHAR(50)     NULL, 
+    `grade`      INT             NULL, 
+    PRIMARY KEY (user_id)
+);
+
+CREATE TABLE ClubT
+(
+    `club_no`          INT             NOT NULL    AUTO_INCREMENT, 
+    `user_id`          VARCHAR(20)     NULL, 
+    `club_name`        VARCHAR(50)     NULL, 
+    `club_title`       VARCHAR(100)    NULL, 
+    `club_content`     VARCHAR(500)    NULL, 
+    `club_thunmb_img`  VARCHAR(100)    NULL, 
+    `max_member`       INT             NULL, 
+    `create_time`      DATETIME        NULL, 
+    `l_category_no`    INT             NULL, 
+    `c_category_no`    INT             NULL, 
+    PRIMARY KEY (club_no)
+);
+
+CREATE TABLE SpaceT
+(
+    `space_no`         INT             NULL    AUTO_INCREMENT, 
+    `CRN`              VARCHAR(13)     NULL, 
+    `space_title`      VARCHAR(50)     NULL, 
+    `space_content`    VARCHAR(500)    NULL, 
+    `space_thumb_img`  VARCHAR(100)    NULL, 
+    `open_time`        CHAR(2)         NULL, 
+    `close_time`       CHAR(2)         NULL, 
+    `price`            INT             NULL, 
+    `max_people`       INT             NULL, 
+    `min_people`       INT             NULL, 
+    `space_call`       VARCHAR(20)     NULL, 
+    `zipcode`          VARCHAR(200)    NULL, 
+    `s_category_no`    INT             NULL, 
+    `l_category_no`    INT             NULL, 
+    PRIMARY KEY (space_no)
+);
+
+CREATE TABLE BookingT
+(
+    `booking_no`    INT            NULL    AUTO_INCREMENT, 
+    `space_no`      INT            NULL, 
+    `user_id`       VARCHAR(20)    NULL, 
+    `du_time`       DATETIME       NULL, 
+    `booking_time`  DATETIME       NULL, 
+    `club_no`       INT            NULL, 
+    PRIMARY KEY (booking_no)
+);
+
+CREATE TABLE HostT
+(
+    `crn`           VARCHAR(13)     NOT NULL, 
+    `user_id`       VARCHAR(20)      NULL, 
+    `host_name`     VARCHAR(20)      NULL, 
+    `host_account`  VARCHAR(20)      NULL, 
+    `zipcode`       VARCHAR(200)     NULL, 
+    PRIMARY KEY (crn)
+);
+

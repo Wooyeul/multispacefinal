@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="space_qna">
+	
+	<select id="sysdate" resultType="java.lang.String">
+		SELECT NOW()
+	</select>
+	
+	<insert id="add_spaceQnA" parameterType="main.vo.Space_qnaVO">
+		INSERT INTO Space_QnAT VALUES (default,#{space_no},#{user_id},#{space_qna_content}
+		,#{space_qna_title},NOW())
+	</insert>
+	
+	<select id="find_spaceQnA_by_space_no" parameterType="main.vo.Space_qnaVO" resultType="main.vo.Space_qnaVO">
+		SELECT * FROM Space_QnAT WHERE space_no=#{space_no}
+	</select>
+	
+	<delete id="delete_spaceQnA_by_spane_qna_no" parameterType="main.vo.Space_qnaVO">
+		DELETE FROM Space_QnAT WHERE space_qna_no=#{space_qna_no}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
