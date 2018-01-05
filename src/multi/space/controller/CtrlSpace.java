@@ -11,9 +11,12 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
+import main.RequestParam;
+import main.ResponseBody;
 import main.vo.BookingVO;
 import main.vo.ClubVO;
 import main.vo.HostVO;
@@ -111,9 +114,7 @@ public class CtrlSpace {
 	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,@ModelAttribute Space_qna_repleVO Space_QnA_RepleVO) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA(space_QnAVO);
-		List<Space_qna_repleVO> list_space_qna_reple = space_QnA_RepleDAO.find_space_QnA_Reple(Space_QnA_RepleVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
-		mnv.addObject("list_space_qna_reple", list_space_qna_reple);
 		mnv.addObject("space", space);
 		mnv.addObject("list_space_qna", list_space_qna);
 		return mnv;
@@ -170,9 +171,37 @@ public class CtrlSpace {
 		return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
 	}
 	
+	//space reple µî·Ï
 	@RequestMapping("/add_space_qna_reple.do")
 	public String add_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO) throws Exception{
 		space_QnA_RepleDAO.add_space_QnA_Reple_by_space_qna_no(space_QnA_RepleVO);
 		return "redirect:/space_detail.do?space_no="+space_QnA_RepleVO.getSpace_no();
 	}
+	
+	@RequestMapping("/find_space_qna_reple.do")
+	@ResponseBody
+	public String find_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO) throws Exception{
+		Space_qna_repleVO space_qna_reple = space_QnA_RepleDAO.find_space_QnA_Reple(space_QnA_RepleVO);
+		System.out.println(space_qna_reple.getSpace_qna_reple_content());
+		String qna_reple = "'qna_reple' : { 'qna_reple_content' : +'"+ space_qna_reple.getSpace_qna_reple_content()+"',"
+				+ "'qna_reple_title' :'"+space_qna_reple.getSpace_qna_reple_title()+"'}";
+		return qna_reple;
+	}
+	
+	
+   /*@RequestMapping("/mypage_getMypageQnAReple.do")
+   @ResponseBody
+   public String getMypageQnAReple(@CookieValue("user_id") String user_id,
+         @RequestParam("space_qna_no")String space_qna_no) throws Exception {
+
+      
+      UserVO userInfo = UserDAO.find_userInfo(user_id);
+      Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(space_qna_no);
+      
+      System.out.println("qna_repleInfo : " + qna_repleInfo);
+
+
+      return qna_repleInfo.getSpace_qna_reple_content();
+
+   }*/
 }

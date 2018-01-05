@@ -1,6 +1,6 @@
 package main.vo;
 
-public class O2o_qnaVO {
+public class O2OQnAVO {
 	   private Integer o2o_no=null;
 	   private String o2o_title = null;
 	   private String o2o_content=null;

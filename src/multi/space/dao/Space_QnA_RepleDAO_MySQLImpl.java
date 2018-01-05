@@ -19,9 +19,9 @@ public class Space_QnA_RepleDAO_MySQLImpl implements Space_QnA_RepleDAO{
 	}
 
 	@Override
-	public List<Space_qna_repleVO> find_space_QnA_Reple(Space_qna_repleVO vo) throws Exception {
+	public Space_qna_repleVO find_space_QnA_Reple(Space_qna_repleVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("space_qna_reple.find_space_QnA_Reple",vo);
+		return sqlSession.selectOne("space_qna_reple.find_space_QnA_Reple_by_space_qna_no",vo);
 	}
 
 }

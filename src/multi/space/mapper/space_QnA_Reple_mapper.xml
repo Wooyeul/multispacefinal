@@ -13,8 +13,8 @@
 		,#{space_qna_reple_content},NOW(),#{user_id})
 	</insert>
 	
-	<select id="find_space_QnA_Reple" parameterType="main.vo.Space_qna_repleVO" resultType="main.vo.Space_qna_repleVO">
-		SELECT * FROM Space_QnA_RepleT WHERE space_no=#{space_no}
+	<select id="find_space_QnA_Reple_by_space_qna_no" parameterType="main.vo.Space_qna_repleVO" resultType="main.vo.Space_qna_repleVO">
+		SELECT * FROM Space_QnA_RepleT WHERE space_qna_no=#{space_qna_no}
 	</select>
 	
 </mapper>

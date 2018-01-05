@@ -8,10 +8,20 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="common.js" type="text/javascript"></script>
  	<script>
  		$(document).ready(function(){
  			$("#call").on("click",function(){
  				alert("${space.space_call } 모달로 바꿀 예정");
+ 			});
+ 			$(".collapsed").on("click",function(){
+ 				var space_qna_no = $(this).attr("no");
+ 				ajaxGet("find_space_qna_reple.do?space_qna_no="+space_qna_no,function(rt){
+ 					alert(rt);
+ 				},
+ 				function(){alert(2);},
+ 				function(){alert(3);}
+ 				);
  			});
  		});
  	</script>
@@ -75,7 +85,7 @@
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								제목 :
-								<a data-toggle="collapse" data-parent="#accordion${space_qna.space_qna_no }" href="#collapse${space_qna.space_qna_no }">
+								<a data-toggle="collapse" data-parent="#accordion${space_qna.space_qna_no }" href="#collapse${space_qna.space_qna_no }" no="${space_qna.space_qna_no }" class="collapsed">
 									 ${space_qna.space_qna_title } <br/>
 								</a>
 								작성자: ${space_qna.user_id }
@@ -96,13 +106,6 @@
 							</tr>
 						</table>
 							<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}">삭제</a>
-							
-							<jl:forEach var="space_qna_reple" items="${list_space_qna_reple }">
-							
-								리플번호 ${space_qna_reple.space_no }<br/>
-								리플제목 ${space_qna_reple.space_qna_reple_title }<br/>
-								리플내용 ${space_qna_reple.space_qna_reple_content }
-							</jl:forEach>
 								<form method="POST" action="add_space_qna_reple.do">
 									<input type="hidden" name="space_qna_no" value="${space_qna.space_qna_no }">
 									<input type="hidden" name="space_no" value="${space_qna.space_no }">
