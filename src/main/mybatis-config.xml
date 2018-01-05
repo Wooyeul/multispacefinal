@@ -18,6 +18,7 @@
 	 	<mapper resource="multi/space/mapper/booking_mapper.xml"/>
 	 	<mapper resource="multi/space/mapper/space_QnA_mapper.xml"/>
 	 	<mapper resource="multi/space/mapper/space_QnA_Reple_mapper.xml"/>
+	 	<mapper resource="multi/space/mapper/review_mapper.xml"/>
 	 </mappers>
 	 
 	

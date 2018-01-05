@@ -11,13 +11,27 @@
  <script src="common.js" type="text/javascript"></script>
  	<script>
  		$(document).ready(function(){
+ 			
  			$("#call").on("click",function(){
  				alert("${space.space_call } 모달로 바꿀 예정");
  			});
  			$(".collapsed").on("click",function(){
+ 				
+ 				//후기가 있으면 작성 못하게 하는거 & 후기 없으면 안불러 오게 해야함
  				var space_qna_no = $(this).attr("no");
  				ajaxGet("find_space_qna_reple.do?space_qna_no="+space_qna_no,function(rt){
- 					alert(rt);
+ 					var qna_reple = window.eval("("+rt+")");
+ 					var html = "<table>";
+ 					html += "<tr>";
+ 					html += "<td>제목</td>";
+ 					html += "<td>" + qna_reple.qna_reple_title +"</td>";
+ 					html +="</tr>";
+ 					html += "<tr>";
+ 					html += "<td>내용</td>";
+ 					html += "<td>" + qna_reple.qna_reple_content+"</td>";
+ 					html += "</tr>";
+ 					html+="</table>"
+					$("#qna_reple"+space_qna_no).html(html);
  				},
  				function(){alert(2);},
  				function(){alert(3);}
@@ -74,11 +88,12 @@
 				</tr>
 			</table>
 		</div>
-		
-		<hr/>
-		//space q&a 뿌려주는 곳
-		
 		<div>
+		<hr/>
+		
+		<!-- space q&a 부분 -->
+		<div class="col-xs-6">
+			<h1>QnA</h1>
 			<jl:forEach var="space_qna" items="${list_space_qna }">
 				<div class="panel-group" id="accordion${space_qna.space_qna_no }">
 					<div class="panel panel-default">
@@ -105,7 +120,8 @@
 								<td>${space_qna.the_time }</td>
 							</tr>
 						</table>
-							<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}">삭제</a>
+							<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}">질문 삭제</a>
+								<div id="qna_reple${space_qna.space_qna_no }"></div>
 								<form method="POST" action="add_space_qna_reple.do">
 									<input type="hidden" name="space_qna_no" value="${space_qna.space_qna_no }">
 									<input type="hidden" name="space_no" value="${space_qna.space_no }">
@@ -130,7 +146,7 @@
 			</jl:forEach>
 
 			<hr/>
-			//space q&a 쓰는 곳
+			<!-- space q&a 쓰는 곳 -->
 			
 			<form method="POST" action="add_space_qna.do">
 			<table>
@@ -153,6 +169,50 @@
 			<input type="submit">
 			</form>
 		</div>
+		
+		<!-- 후기 -->
+		<div class="col-xs-6">
+			<h1>후기</h1>
+			<jl:forEach var="review" items="${list_review }">
+				<div class="panel-group" id="accordion${review.review_no }">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								제목 :
+								<a data-toggle="collapse" data-parent="#accordion${review.review_no }" href="#collapse${review.review_no }" class="collapsed">
+									 ${review.review_title } <br/>
+								</a>
+								작성자: ${review.user_id }
+							</h4>
+						</div>
+					</div>
+				
+				<div id="collapse${review.review_no }" Class="panel-collpase collapse">
+					<div class="panel-body">
+						<table>
+							<tr> 
+								<td>내용</td>
+								<td>${review.review_content }</td>
+							</tr>
+							<tr>
+								<td>작성 시간</td>
+								<td>${review.the_time }</td>
+							</tr>
+						</table>
+							<a href="">후기 삭제</a>
+					</div>
+				</div>
+				</div>
+			</jl:forEach>>
+			
+			<form method="POST" action="review_add.do">
+				<input type="hidden" name="user_id" value="kmk4204">
+				<input type="hidden" name="space_no" value="${space.space_no }">
+				<input type="submit" value="후기 작성">
+			</form>
+		</div>
+		
+	</div>
 	</div>
 	
 </body>

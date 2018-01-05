@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="review">
+
+	<select id="sysdate" resultType="java.lang.String">
+		SELECT NOW()
+	</select>
+	
+	<insert id="add_review" parameterType="main.vo.ReviewVO">
+		INSERT INTO ReviewT VALUES (default,#{space_no},#{user_id},#{review_title},
+		#{review_content},NOW(),#{review_score},#{review_img})
+	</insert>
+	
+	<select id="find_review_by_space_no" parameterType="main.vo.ReviewVO" resultType="main.vo.ReviewVO">
+		SELECT * FROM ReviewT WHERE space_no=#{space_no}
+	</select>
+	
+
+</mapper>
+
+
+
+
+
+

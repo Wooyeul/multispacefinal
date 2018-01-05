@@ -20,7 +20,7 @@ public class Space_QnADAO_MySQLImpl implements Space_QnADAO{
 	}
 
 	@Override
-	public List<Space_qnaVO> find_space_QnA(Space_qnaVO vo) throws Exception {
+	public List<Space_qnaVO> find_space_QnA_by_space_no(Space_qnaVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space_qna.find_spaceQnA_by_space_no",vo);
 	}

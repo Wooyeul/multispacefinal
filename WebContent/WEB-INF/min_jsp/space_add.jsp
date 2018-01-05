@@ -3,8 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link type="text/css" rel="stylesheet" href="boot.css">
-	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -55,7 +53,7 @@
 			<div class="form-group">
 				<label for="close_time">종료 시간</label>
 				<input id="close_time_range" type="range" min="0" max="24" onchange="closeTimeChange();"/>
-				<input id="close_time" name="close_time" type="number" min="0" max="24" value="0"/>시
+				<input id="close_time" name="close_time" type="number" min="0" max="24" value="24"/>시
 			</div>
 			
 			<div class="form-group">

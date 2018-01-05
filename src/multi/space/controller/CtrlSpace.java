@@ -11,19 +11,19 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import main.Controller;
-import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
-import main.RequestParam;
 import main.ResponseBody;
 import main.vo.BookingVO;
 import main.vo.ClubVO;
 import main.vo.HostVO;
+import main.vo.ReviewVO;
 import main.vo.SpaceVO;
 import main.vo.Space_qnaVO;
 import main.vo.Space_qna_repleVO;
 import multi.space.dao.BookingDAO;
+import multi.space.dao.ReviewDAO;
 import multi.space.dao.SpaceDAO;
 import multi.space.dao.Space_QnADAO;
 import multi.space.dao.Space_QnA_RepleDAO;
@@ -47,6 +47,9 @@ public class CtrlSpace {
 	@Autowired @Qualifier("space_QnA_RepleDAO")
 	public Space_QnA_RepleDAO space_QnA_RepleDAO = null;
 	
+	@Autowired @Qualifier("reviewDAO")
+	public ReviewDAO reviewDAO = null;
+	
 	//공간 첫화면
 	@RequestMapping("/space_home.do")
 	public ModelAndView space_home() throws Exception {
@@ -68,7 +71,7 @@ public class CtrlSpace {
 	public ModelAndView space_add2(HttpServletRequest request) throws Exception{
 		ModelAndView mnv = new ModelAndView("redirect:/space_add_clear.jsp");
 		//String savePath = request.getServletContext().getRealPath("images");
-		String savePath = "C:\\Users\\student\\git\\mspace_01\\WebContent\\thumbnail";
+		String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\thumbnail";
 		int sizeLimit = 1024*1024*15;
 		MultipartRequest mpr = new MultipartRequest(request, savePath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
 		
@@ -80,7 +83,6 @@ public class CtrlSpace {
 		String space_thumb_img = mpr.getFilesystemName("space_thumb_img");
 		
 		String open_time = mpr.getParameter("open_time");
-		System.out.println(open_time);
 		
 		String close_time= mpr.getParameter("close_time");
 		
@@ -111,12 +113,15 @@ public class CtrlSpace {
 	
 	//공간 상세
 	@RequestMapping("/space_detail.do")
-	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,@ModelAttribute Space_qna_repleVO Space_QnA_RepleVO) throws Exception{
+	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
+			@ModelAttribute ReviewVO reviewVO) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
-		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA(space_QnAVO);
+		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
+		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(reviewVO);
 		mnv.addObject("space", space);
 		mnv.addObject("list_space_qna", list_space_qna);
+		mnv.addObject("list_review", list_review);
 		return mnv;
 	}
 	
@@ -178,31 +183,63 @@ public class CtrlSpace {
 		return "redirect:/space_detail.do?space_no="+space_QnA_RepleVO.getSpace_no();
 	}
 	
+	//qna_replw 뿌려주는 ajax
 	@RequestMapping("/find_space_qna_reple.do")
 	@ResponseBody
 	public String find_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO) throws Exception{
 		Space_qna_repleVO space_qna_reple = space_QnA_RepleDAO.find_space_QnA_Reple(space_QnA_RepleVO);
-		System.out.println(space_qna_reple.getSpace_qna_reple_content());
-		
-		String qna_reple = "'qna_reple' : { 'qna_reple_content' : +'"+ space_qna_reple.getSpace_qna_reple_content()+"',"
+		try{
+		space_qna_reple.getSpace_qna_reple_content();
+		String qna_reple = 
+				" { 'qna_reple_content' :'"+ space_qna_reple.getSpace_qna_reple_content()+"',"
 				+ "'qna_reple_title' :'"+space_qna_reple.getSpace_qna_reple_title()+"'}";
-		return qna_reple;
+			return qna_reple;
+		} catch( Exception e ) {return null;}	
 	}
 	
 	
-   /*@RequestMapping("/mypage_getMypageQnAReple.do")
-   @ResponseBody
-   public String getMypageQnAReple(@CookieValue("user_id") String user_id,
-         @RequestParam("space_qna_no")String space_qna_no) throws Exception {
-
-      
-      UserVO userInfo = UserDAO.find_userInfo(user_id);
-      Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(space_qna_no);
-      
-      System.out.println("qna_repleInfo : " + qna_repleInfo);
-
-
-      return qna_repleInfo.getSpace_qna_reple_content();
-
-   }*/
+	//후기 작성
+		@RequestMapping("/review_add.do")
+		public ModelAndView add_review(@ModelAttribute ReviewVO reviewVO) throws Exception{
+			ModelAndView mnv = new ModelAndView("review_add");
+			mnv.addObject("review", reviewVO);
+			return mnv;
+		}
+		
+		
+	//후기 추가
+	@RequestMapping("/review_add2.do")
+	public String add_review2(HttpServletRequest request) throws Exception{
+		System.out.println("hi");
+		String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\review_img";
+		int sizeLimit = 1024*1024*15;
+		MultipartRequest mpr = new MultipartRequest(request, savePath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
+		
+		String review_title = mpr.getParameter("review_title");
+		
+		String review_content = mpr.getParameter("review_content");
+		
+		String user_id = mpr.getParameter("user_id");
+		
+		String space_no_str = mpr.getParameter("space_no");
+		Integer space_no = Integer.parseInt(space_no_str);
+		
+		String review_score_str = mpr.getParameter("review_score");
+		Double review_score = Double.parseDouble(review_score_str);
+		
+		String review_img = mpr.getFilesystemName("review_img");
+		
+		ReviewVO reviewVO = new ReviewVO();
+		reviewVO.setReview_title(review_title);
+		reviewVO.setReview_content(review_content);
+		reviewVO.setUser_id(user_id);
+		reviewVO.setSpace_no(space_no);
+		reviewVO.setReview_img(review_img);
+		reviewVO.setReview_score(review_score);
+		
+		reviewDAO.add_review(reviewVO);
+		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no();
+	}
+	
+	
 }

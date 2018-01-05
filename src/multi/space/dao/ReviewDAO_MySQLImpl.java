@@ -1,0 +1,26 @@
+package multi.space.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import main.vo.ReviewVO;
+
+public class ReviewDAO_MySQLImpl implements ReviewDAO{
+	
+	@Autowired @Qualifier("sqlSession")
+	SqlSession sqlSession = null;
+
+	@Override
+	public Integer add_review(ReviewVO vo) throws Exception {
+		return sqlSession.insert("review.add_review",vo);
+	}
+
+	@Override
+	public List<ReviewVO> find_review_by_space_no(ReviewVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("review.find_review_by_space_no",vo);
+	}
+}

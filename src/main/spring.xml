@@ -55,6 +55,9 @@
 	<!--space_Qna_RepleDAO-->
 	<bean id="space_QnA_RepleDAO" class="multi.space.dao.Space_QnA_RepleDAO_MySQLImpl"/>
 	
+	<!--reviewDAO-->
+	<bean id="reviewDAO" class="multi.space.dao.ReviewDAO_MySQLImpl"/>
+	
 </beans>
 
 

@@ -14,7 +14,6 @@
 		var dc = "?_dc=" + new Date().getTime();
 		ajaxGet("json2.jsp"+dc+"&no=10101",function(rt){
 			var jo = window.eval("("+rt+")");
-			
 			var html = "<table border='1' cellspacing='0' cellpadding='20'>";
 			for( var i = 0 ; i < jo.data.length ; i++ ){
 				html += "<tr>";
