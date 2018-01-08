@@ -19,7 +19,7 @@
       <result property="max_people" column="max_people" jdbcType="INTEGER"/>
       <result property="space_call" column="space_call" jdbcType="VARCHAR"/>
       <result property="zipcode" column="zipcode" jdbcType="VARCHAR"/>
-      <result property="c_category_no" column="c_category_no" jdbcType="INTEGER"/>
+      <result property="s_category_no" column="s_category_no" jdbcType="INTEGER"/>
       <result property="l_category_no" column="l_category_no" jdbcType="INTEGER"/>
 	</resultMap>
 	
@@ -30,7 +30,7 @@
 	
 	<insert id="add_space" parameterType="main.vo.SpaceVO">
 		INSERT INTO SpaceT VALUES (default,'${crn}','${space_title}','${space_content}','${space_thumb_img}', '${open_time}',
-		'${close_time}',${price},${max_people},${min_people},'${space_call}','null',${c_category_no},${l_category_no},NOW())
+		'${close_time}',${price},${max_people},${min_people},'${space_call}','null',${s_category_no},${l_category_no},NOW())
 	</insert>
 
 	<select id="find_space_by_pk" parameterType="main.vo.SpaceVO" resultType="main.vo.SpaceVO">
@@ -45,7 +45,6 @@
 	<select id="find_host_by_space_no" parameterType="main.vo.SpaceVO" resultType="main.vo.HostVO">
 		SELECT * FROM HostT WHERE crn = (SELECT crn FROM SpaceT WHERE space_no=${space_no})
 	</select>
-	
 
 </mapper>
 

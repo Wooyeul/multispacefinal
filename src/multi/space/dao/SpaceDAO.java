@@ -1,6 +1,7 @@
 package multi.space.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import main.vo.ClubVO;
 import main.vo.HostVO;
@@ -23,6 +24,7 @@ public interface SpaceDAO {
 	//유저 검색하고 유저가 가진 클럽 불러오기
 	public List<ClubVO> find_user_club(String user_id) throws Exception;
 	
+	//공간 판매자 정보 불러오기
 	public HostVO find_host_by_space_no(SpaceVO vo) throws Exception;
 }
 

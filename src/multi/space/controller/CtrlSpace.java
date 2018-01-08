@@ -1,6 +1,7 @@
 package multi.space.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -62,8 +63,9 @@ public class CtrlSpace {
 	
 	//공간 등록 페이지
 	@RequestMapping("/space_add.do")
-	public String space_add() throws Exception{
-		return "space_add";
+	public ModelAndView space_add() throws Exception{
+		ModelAndView mnv = new ModelAndView("space_add");
+		return mnv;
 	}
 	
 	//공간 등록 작업

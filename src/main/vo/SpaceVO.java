@@ -92,12 +92,6 @@ public class SpaceVO {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	public Integer gets_category_no() {
-		return s_category_no;
-	}
-	public void sets_category_no(Integer s_category_no) {
-		this.s_category_no = s_category_no;
-	}
 	public Integer getL_category_no() {
 		return l_category_no;
 	}

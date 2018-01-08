@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -85,8 +85,6 @@
 			<div class="form-group">
 				<label for="l_category_no">지역</label>
 				<label class="radio-inline"><input type="radio" name="l_category_no" value="1">서울</label>
-				<label class="radio-inline"><input type="radio" name="l_category_no" value="2">경기</label>
-				<label class="radio-inline"><input type="radio" name="l_category_no" value="3">강원</label>
 			</div>
 			
 			<div class="form-group">

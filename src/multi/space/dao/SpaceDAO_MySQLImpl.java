@@ -1,5 +1,6 @@
 package multi.space.dao;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,7 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("space.find_host_by_space_no",vo);
 	}
+
 	
 	
 
