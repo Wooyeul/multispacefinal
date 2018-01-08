@@ -25,7 +25,7 @@ table {
 		<td>유저 ID</td>
 		<td>호스트 이름</td>
 		<td>신청 정보 확인하기</td>
-		<td>참고사항</td>
+		<td>참고사항(거절 사항)</td>
 	</tr>
 	
 	<jl:forEach var="vo" items="${ls}">

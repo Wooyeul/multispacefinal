@@ -27,7 +27,7 @@ table {
 		<td>판매자 이름</td>
 		<td>판매자 계좌</td>
 		<td>주소</td>
-		<td>참고사항</td>
+		<td>참고사항(거절 사항)</td>
 	</tr>
 	<tr>
 		<td>${vo.crn}</td>

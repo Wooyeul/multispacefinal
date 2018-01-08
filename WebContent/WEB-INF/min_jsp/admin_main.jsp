@@ -56,11 +56,9 @@ aside#left {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     color: #464646;
-    overflow: hidden;
+    overflow: scroll;
     float: left;
     width: 800px;
-    height: 1500px;
-    scrolling: yes;
 }
 
 #user_manage {
@@ -108,6 +106,16 @@ aside#left {
 #one_one_reple_done {
 	background: #FF7000 !important;
 }
+#sending_message {
+	background: #FF7000 !important;
+}
+#have_messages {
+	background: #FF7000 !important;
+}
+#to_messages {
+	background: #FF7000 !important;
+}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -127,9 +135,14 @@ aside#left {
 	$("#admin_announcement").hide();
 	$("#admin_event").hide();
 	$("#admin_faq").hide();
+	
 	$("#one_one_request").hide();
 	$("#one_one_un_reple").hide();
 	$("#one_one_reple_done").hide();
+	
+	$("#sending_message").hide();
+	$("#have_messages").hide();
+	$("#to_messages").hide();
 	
 	$("#user").on("click",function(){
 		$("#user_manage").show();
@@ -146,6 +159,9 @@ aside#left {
 		$("#one_one_request").hide();
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
+		$("#sending_message").hide();
+		$("#have_messages").hide();
+		$("#to_messages").hide();
 	});
 	
 	$("#host").on("click",function(){
@@ -163,6 +179,9 @@ aside#left {
 		$("#one_one_request").hide();
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
+		$("#sending_message").hide();
+		$("#have_messages").hide();
+		$("#to_messages").hide();
 	});
 	
 	$("#community").on("click",function(){
@@ -180,6 +199,9 @@ aside#left {
 		$("#one_one_request").hide();
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
+		$("#sending_message").hide();
+		$("#have_messages").hide();
+		$("#to_messages").hide();
 	});
 	
 	$("#admin_user").on("click",function(){
@@ -197,6 +219,9 @@ aside#left {
 		$("#one_one_request").hide();
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
+		$("#sending_message").hide();
+		$("#have_messages").hide();
+		$("#to_messages").hide();
 	});
 	
 	$("#one_one").on("click",function(){
@@ -214,6 +239,29 @@ aside#left {
 		$("#admin_announcement").hide();
 		$("#admin_event").hide();
 		$("#admin_faq").hide();
+		$("#sending_message").hide();
+		$("#have_messages").hide();
+		$("#to_messages").hide();
+	});
+	
+	$("#message").on("click",function(){
+		$("#sending_message").show();
+		$("#have_messages").show();
+		$("#to_messages").show();
+		
+		$("#user_manage").hide();
+		$("#user_stastic").hide();
+		$("#host_manage").hide();
+		$("#host_requests").hide();
+		$("#community_free").hide();
+		$("#community_review").hide();
+		$("#community_question").hide();
+		$("#admin_announcement").hide();
+		$("#admin_event").hide();
+		$("#admin_faq").hide();
+		$("#one_one_request").hide();
+		$("#one_one_un_reple").hide();
+		$("#one_one_reple_done").hide();
 	});
  });
 </script>
@@ -282,13 +330,18 @@ aside#left {
 			<li id="one_one_request"><a target="iframe1" href="admin_o2oQnA.do">1:1 문의 하기(테스트 용)</a></li>
 			<li id="one_one_un_reple"><a target="iframe1" href="admin_o2oQnA_list.do">문의 미 답변 관리</a></li>
 			<li id="one_one_reple_done"><a target="iframe1" href="admin_o2oQnA_list_reply.do">문의 답변 완료 보기</a></li>
+			
+			<li id="message">쪽지 관리</li>
+			<li id="sending_message"><a target="iframe1" href="admin_message_write.do">쪽지 보내기</a></li>
+			<li id="have_messages"><a target="iframe1" href="admin_message_read_get.do">받은 쪽지함</a></li>
+			<li id="to_messages"><a target="iframe1" href="admin_o2oQnA.do">보낸 쪽지함</a></li>
 		</ul>
 	</aside>
 	
 	
 	<section id="main">
 		<article id="article1">
-			<iframe name="iframe1" src="admin_users.do" width="800" height="1000"  seamless></iframe>	
+			<iframe name="iframe1" src="admin_users.do" width="800px" height="700px" seamless></iframe>	
 		</article>
 	</section>
 	</div>

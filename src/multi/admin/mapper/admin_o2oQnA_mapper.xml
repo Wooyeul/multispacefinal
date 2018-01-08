@@ -114,5 +114,29 @@
 		parameterMap="PM_p_admin_o2oQnA_checkOne">
 		{call p_admin_o2oQnA_checkOne(?)}
 	</select>
+	
+	
+	<!-- 
+	DROP PROCEDURE IF EXISTS p_admin_writeConsult;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_writeConsult(
+		IN v_o2o_no INT,
+		IN v_re_o2o_content TEXT
+	)
+	BEGIN
+		UPDATE o2oQnAT SET re_o2o_content = v_re_o2o_content WHERE o2o_no = v_o2o_no;
+	END$$
+	DELIMITER ;
+	-->
+	<parameterMap id="PM_p_admin_writeConsult" type="main.vo.O2OQnAVO" >
+		<parameter property="o2o_no" mode="IN" jdbcType="INTEGER" />
+		<parameter property="re_o2o_content" mode="IN" jdbcType="VARCHAR"/>
+	</parameterMap>
+	<update id="p_admin_writeConsult" statementType="CALLABLE"
+		parameterType = "main.vo.O2OQnAVO"
+		parameterMap = "PM_p_admin_writeConsult">
+		{call p_admin_writeConsult(?,?)}
+	</update>
+	
 </mapper>
 

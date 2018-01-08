@@ -93,10 +93,12 @@ public class Ctrl_Admin_o2oQnA {
         
         String result_message = null;
         try {
+        	
             EmailUtility.sendEmail(host, port, mailFrom, password, customer_email, subject,
             		message);
             result_message = "The e-mail was sent successfully";
             ovo.setRe_o2o_content(message);
+            admin_o2oQnADAO.writeConsult(ovo);
         } catch (Exception e) {
             e.printStackTrace();
             result_message = "There were an error: " + e.getMessage();
