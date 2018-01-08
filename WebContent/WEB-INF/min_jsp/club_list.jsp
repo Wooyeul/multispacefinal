@@ -12,13 +12,7 @@
 			border: 1px solid;
 		}
 	</style>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#btn").on("click",function(){
-				location.href="club_add_page.do";
-			});
-		});
-	</script>
+	<script type="text/javascript" src="/js/club/club_list.js"></script>
 </head>
 <body>
 	<div class="container">
