@@ -89,24 +89,11 @@ public class CtrlQna {
 			community_qna_repleDAO.delReple(pvo);
 			return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 	}
+	
 	@RequestMapping("/community_qna_reple_mod.do")
-	public ModelAndView community_qna_reple_mod(@ModelAttribute Community_qnaVO pvo,
-			@ModelAttribute Community_qna_repleVO rpl) throws Exception{
-			community_qnaDAO.modView(pvo);
-			
-			Community_qnaVO vo=community_qnaDAO.findByPK(pvo);
-			List<Community_qna_repleVO> rp=community_qna_repleDAO.findAllReple(rpl);
-			ModelAndView mnv = new ModelAndView("community_qna_reple_mod");
-			
-			mnv.addObject("vo", vo);
-			mnv.addObject("rp1", rpl);
-			mnv.addObject("rp", rp);
-			return mnv;
-	}
-	@RequestMapping("/community_qna_reple_mod2.do")
-	public String community_qna_reple_mod2(@ModelAttribute Community_qna_repleVO pvo) throws Exception{
+	public String community_board_replemod(@ModelAttribute  Community_qna_repleVO  pvo) throws Exception {
 			community_qna_repleDAO.modReple(pvo);
-			return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
+		return  "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 	}
 	
 	@RequestMapping("/community_qna_reple_recom.do")

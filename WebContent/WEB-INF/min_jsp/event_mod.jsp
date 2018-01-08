@@ -9,7 +9,6 @@
 	
 </head>
 <body>
-	${text.eve_title}
 	<form method="POST" action="event_mod2.do" enctype="multipart/form-data">
 	제목: <input type="text" name="eve_title" value="${text.eve_title}"/> <br/>
 	내용: <textarea name="eve_content" rows="7" cols="40"> ${text.eve_content}</textarea> <br/>
