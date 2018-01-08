@@ -40,7 +40,7 @@
 		<!-- 허빛찬샘 -->
 
 
-		<!-- 양재신 -->
+		<!-- 이양재 -->
 		<mapper resource="multi/admin/mapper/admin_user_mapper.xml" />
 		<mapper resource="multi/admin/mapper/admin_host_mapper.xml" />
 		<mapper resource="multi/admin/mapper/admin_notice_mapper.xml" />
@@ -48,7 +48,8 @@
 		<mapper resource="multi/admin/mapper/admin_o2oQnA_mapper.xml" />
 		<mapper resource="multi/admin/mapper/admin_space_mapper.xml" />
 		<mapper resource="multi/admin/mapper/admin_clubs_mapper.xml" />
-		<!-- 양재신 -->
+		<mapper resource="multi/admin/mapper/admin_message_mapper.xml" />
+		<!-- 이양재 -->
 
 		<!-- 안수진 -->
 		<mapper resource="multi/home/login/mapper/mapper.xml" />
