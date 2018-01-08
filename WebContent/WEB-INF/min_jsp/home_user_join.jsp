@@ -183,8 +183,8 @@
 	<tr>
 		<th align="right">ÁÖ¹Î¹øÈ£</th>
 		<td>
-		<input type="text" name="ssn1" id="ssn1" size="6"/> - 
-		<input type="password" name="ssn2" id="ssn2" size="7"/>
+		<input type="text" name="ssn1" id="ssn1" size="6" maxlength="6"/> - 
+		<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7"/>
 		</td>
 		<td></td>
 	</tr>

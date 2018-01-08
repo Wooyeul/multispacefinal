@@ -39,6 +39,7 @@ public class CtrlLogin {
 		return mnv;
 
 	}
+	
 
 	@RequestMapping("/home_moveLoginPage.do")
 	public ModelAndView moveLoginPage(@CookieValue("code") String code, HttpServletRequest request) throws Exception {
@@ -65,8 +66,6 @@ public class CtrlLogin {
 
 		UserVO userInfo = UserDAO.find_user(uvo);
 
-		System.out.println("*********" + userInfo);
-
 		if (userInfo != null && uvo.getUser_id().equals(userInfo.getUser_id())
 				&& uvo.getPasswd().equals(userInfo.getPasswd())) {
 			Cookie ck = new Cookie("user_id", userInfo.getUser_id());
@@ -78,8 +77,16 @@ public class CtrlLogin {
 			response.addCookie(ck);
 			return "redirect:/home_moveLoginPage.do";
 		}
-
 	}
+	
+	@RequestMapping("/home_logout.do")
+	public String logout() throws Exception{
+		Cookie ck = new Cookie("user_id","");
+		
+		return "redirect:/main.html";
+	}
+	
+	
 	
 	@RequestMapping("/home_moveFindIdPage.do")
 	public ModelAndView moveFindIdPage() throws Exception {
@@ -113,12 +120,10 @@ public class CtrlLogin {
 
 		
 		UserVO userInfo = UserDAO.find_userPasswd(uvo);
-
 		
 		ModelAndView mnv = new ModelAndView("home_findPasswd");
 		mnv.addObject("passwd",userInfo.getPasswd());		
 		return mnv;
-
 
 	}
 	

@@ -59,7 +59,7 @@ h1 {
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">${user_name}님이 로그인 하셨습니다.</a></li>
 					<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-					<li><a href="#">로그아웃</a></li>					
+					<li><a href="home_logout.do">로그아웃</a></li>					
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

@@ -8,5 +8,6 @@
 </head>
 <body>
 	${user_id}님 환영합니다.
+	<a href="main.html" >main으로 돌아가기</a>
 </body>
 </html>
