@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
@@ -21,20 +22,12 @@ public class CtrlMypageBookmark {
 	@Autowired @Qualifier("bookmarkDAO")
 	private BookmarkDAO bookmakrDAO;
 	
-	@RequestMapping("/temp.do")
-	public ModelAndView Temp() throws Exception{
-		ModelAndView mnv = new ModelAndView("bookmark_findAll");
-		
-		return mnv;
-	}
-	
 	@RequestMapping("/bookmark_findAll.do")
-	public ModelAndView findBookmark(@ModelAttribute BookmarkVO bvo) throws Exception{
+	public ModelAndView findBookmark(@CookieValue("user_id") String user_id) throws Exception{
 		
 		ModelAndView mnv = new ModelAndView("bookmark_findAll2");
-		List<SpaceVO> rl = bookmakrDAO.bookmarkFindAll(bvo);
+		List<SpaceVO> rl = bookmakrDAO.bookmarkFindAll(user_id);
 		mnv.addObject("rl", rl);
-		
 		return mnv;
 	}
 	

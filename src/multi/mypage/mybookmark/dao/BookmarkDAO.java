@@ -7,6 +7,6 @@ import main.vo.SpaceVO;
 
 public interface BookmarkDAO {
 	
-	public List<SpaceVO> bookmarkFindAll(BookmarkVO bvo);
+	public List<SpaceVO> bookmarkFindAll(String user_id);
 	public int bookmarkDel(int space_no);
 }
