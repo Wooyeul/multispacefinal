@@ -71,7 +71,7 @@ public class BeanUtil
 	        pn.equals("com_board_title") ||
 	        pn.equals("com_board_content") ||
 	        pn.equals("user_id") ||
-	        pn.equals("user_name") ||
+	        pn.equals("user_name") || 
 	        pn.equals("nickname") ||
 	        pn.equals("com_board_reple_content")||
 	        pn.equals("eve_title") ||
