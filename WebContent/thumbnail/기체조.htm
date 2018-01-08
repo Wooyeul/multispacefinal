@@ -1,0 +1,88 @@
+<html>
+<head>
+<script language="javascript" src="/multi/right.js"></script>
+<TITLE>기체조 동영상 보기</title>
+<script language="javascript">
+<!--
+        function cnts_select(cnts) {
+	   var vod = 'mms://211.45.23.180/multi/' + cnts.value + '.wmv';
+	   NSPlay.FileName = vod;
+	   NSPlay.play();
+           return true;
+        }
+	function onFullScreen(){
+		NSPlay.DisplaySize = 3;
+		return true;
+	}
+//-->
+</script>
+</head>
+<body>
+<center>
+<table border="0">
+ <tr>
+  <td>
+   <form name="myForm">
+    <select name=cnts style="font-size:15px;width:320px;" onchange="javascript:return cnts_select(this);">
+     <option value="">동영상을 선택하세요.</option>
+     <option value="camp1">[ 1. 눈의 피로를 나의 손길로 ]</option>
+     <option value="camp2">[ 2. 뻐근한 뒷목을 부드럽게 ]</option>
+     <option value="camp3">[ 3. 지친 어깨를 가뿐하게 ]</option>
+     <option value="camp4">[ 4. 손저림과 손목 통증 ]</option>
+     <option value="camp5">[ 5. 답답한 가슴 활짝 펴주기 ]</option>
+     <option value="camp6">[ 6. 머리를 맑고 개운하게 ]</option>
+     <option value="camp7">[ 7. 더부룩한 속을 편안하게 ]</option>
+     <option value="camp8">[ 8. 허리와 척추를 유연하게 ]</option>
+     <option value="camp9">[ 9. 나른한 다리에 활력을 ]</option>
+     <option value="camp10">[ 10. 서서 온몸 풀기 ]</option>
+    </select>
+   </form>
+  </td>
+  <td style='font-size:15px'><input type=button value="전체화면보기" OnClick="onFullScreen()">
+ </tr>
+ <tr>
+  <td colspan=2 background="http://www.sdscampus.co.kr/images/campus/bg_body.jpg">
+<OBJECT ID="NSPlay" WIDTH=640 HEIGHT=480 classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" standby=""Microsoft Windows Media Player 구성 요소를 읽어들이는 중..." type="application/x-oleobject">
+       <param name="Filename" value="">
+       <PARAM NAME="transparentAtStart" VALUE="True">
+       <PARAM NAME="transparentAtStop" VALUE="True">
+       <PARAM NAME="AnimationAtStart" VALUE="False">
+       <PARAM NAME="AutoStart" VALUE="True">
+       <PARAM NAME="AutoRewind" VALUE="False">
+       <PARAM NAME="SendMouseClickEvents" VALUE="False	">
+       <PARAM NAME="DisplaySize" VALUE="2">
+       <PARAM NAME="AutoSize" VALUE="2">
+       <PARAM NAME="AutoResize" VALUE="2">
+       <PARAM NAME="ShowDisplay" VALUE="False">
+       <PARAM NAME="ShowStatusBar" VALUE="False">
+       <PARAM NAME="ShowControls" VALUE="False">
+       <PARAM NAME="ShowTracker" VALUE="True">
+       <PARAM NAME="Enabled" VALUE="1">
+       <PARAM NAME="EnableContextMenu" VALUE="0">
+       <PARAM NAME="EnablePositionControls" VALUE="1">
+       <PARAM NAME="EnableFullScreenControls" VALUE="1">
+       <PARAM NAME="ShowPositionControls" VALUE="1">
+       <PARAM NAME="StartPosition" VALUE="0">
+       <PARAM NAME="Mute" VALUE="0">
+       <PARAM NAME="Rate" VALUE="1">
+       <PARAM NAME="SAMILang" VALUE="">
+       <PARAM NAME="SAMIStyle" VALUE="">
+       <PARAM NAME="SAMIFileName" VALUE="">
+       <param NAME="ClickToPlay" VALUE="0">
+       <param NAME="CursorType" value="1">
+    <Embed type="application/x-mplayer2"
+        pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/"
+        filename=""
+        Name=NSPlay
+        ShowControls=0
+        ShowDisplay=1
+        ShowStatusBar=1
+        width=640
+        height=480>
+    </embed>
+  </td>
+ </tr>
+</table>
+</center>
+</body>
+</html>

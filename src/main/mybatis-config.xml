@@ -56,6 +56,10 @@
 		<mapper resource="multi/mypage/qna/mapper/mapper.xml" />
 		<mapper resource="multi/mypage/message/mapper/mapper.xml" />
 		<!-- 안수진 -->
+		
+		<!-- 배승현 -->
+		<mapper resource="multi/event/mapper/event_mapper.xml"/>
+		<!-- 배승현 -->
 	</mappers>
 
 
