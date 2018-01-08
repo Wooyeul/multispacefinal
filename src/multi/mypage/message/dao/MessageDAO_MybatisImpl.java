@@ -33,4 +33,12 @@ public class MessageDAO_MybatisImpl implements MessageDAO{
 		return sqlSession.selectOne("apple.mypage_message_readSendMessage",msg_no);
 	}
 
+	@Override
+	public int send_Message(MessageVO pvo) {
+		return sqlSession.insert("apple.mypage_message_SendMessage",pvo);
+	}
+	
+
+	
+
 }

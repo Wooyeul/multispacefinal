@@ -121,7 +121,7 @@ public class CtrlMessage {
 		for (User_clubVO vo : user_club_MemberInfo) {
 
 			if (sb == null) {
-				sb = new StringBuffer();
+				sb = new StringBuffer();		
 				sb.append("{data:[");
 			} else {
 				sb.append(",");
@@ -132,8 +132,19 @@ public class CtrlMessage {
 
 		}
 		sb.append("]}");
-		System.out.println(sb.toString());
 		return sb.toString();
+
+	}
+	
+	@RequestMapping("/mypage_sendMessage.do")
+	public ModelAndView sendMessage(@CookieValue("user_id") String user_id,@ModelAttribute MessageVO pvo) throws Exception {
+
+		UserVO userInfo = UserDAO.find_userInfo(user_id);
+		pvo.setSend_user_id(user_id);
+		MessageDAO.send_Message(pvo);
+		
+		ModelAndView mnv = new ModelAndView("mypage_finish_send_message");
+		return mnv;
 
 	}
 	
