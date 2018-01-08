@@ -15,7 +15,7 @@ public class MPReviewDAO_MybatisProcImpl implements MPReviewDAO{
 	
 	
 	@Override
-	public List<ReviewVO> review_findAll(ReviewVO rvo) {
-		return sqlSession.selectList("mypage_review.p_MPreview_find",rvo);
+	public List<ReviewVO> review_findAll(String user_id) {
+		return sqlSession.selectList("mypage_review.p_MPreview_find",user_id);
 	}
 }

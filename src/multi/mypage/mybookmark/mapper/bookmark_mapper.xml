@@ -15,12 +15,8 @@
 		<result property="space_thumb_img" column="space_thumb_img"/>
 	</resultMap>
 	
-	<parameterMap type="main.vo.BookmarkVO" id="PM_bookmark_findall">
-		<parameter property="user_id" mode="IN"/>
-	</parameterMap>
-	
-	<select id="p_bookmark_findall" resultMap="RM_bookmark_findall" parameterMap="PM_bookmark_findall" statementType="CALLABLE">
-		{call p_bookmark_findall(?)}
+	<select id="p_bookmark_findall" resultMap="RM_bookmark_findall" parameterType="java.lang.String" statementType="CALLABLE">
+		{call p_bookmark_findall(#{user_id})}
 	</select>
 	
 	<!-- 즐겨찾기 DELETE  -->

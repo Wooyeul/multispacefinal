@@ -19,12 +19,9 @@
 		<result property="review_img" column="review_img"/>
 	</resultMap>
 	
-	<parameterMap type="main.vo.ReviewVO" id="PM_p_review_find">
-		<parameter property="user_id" mode="IN"/>
-	</parameterMap>
 	
-	<select id="p_MPreview_find" parameterMap="PM_p_review_find" resultMap="RM_p_review_find" statementType="CALLABLE">
-		{call p_MPreview_find(?)}
+	<select id="p_MPreview_find" parameterType="java.lang.String" resultMap="RM_p_review_find" statementType="CALLABLE">
+		{call p_MPreview_find(#{user_id})}
 	</select>
 	
 	

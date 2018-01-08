@@ -95,13 +95,13 @@ li a:hover {
 			<iframe src="mypage_moveMypageBookingPage.do"  align="center"></iframe>
 		</div>
 		<div id="myBookmark"   class="tab-pane fade">
-			<iframe src=""  align="center"></iframe>
+			<iframe src="bookmark_findAll.do"  align="center"></iframe>
 		</div>
 		<div id="myQna"   class="tab-pane fade">
 			<iframe src="mypage_moveMypageQnAPage.do"  align="center"></iframe>
 		</div>
 		<div id="myReview"   class="tab-pane fade">
-			<iframe src=""  align="center"></iframe>
+			<iframe src="PMreview_findAll.do"  align="center"></iframe>
 		</div>
 		<div id="myClub"   class="tab-pane fade">
 			<iframe src="mypage_moveMypageWriteMessagePage.do"  align="center"></iframe>

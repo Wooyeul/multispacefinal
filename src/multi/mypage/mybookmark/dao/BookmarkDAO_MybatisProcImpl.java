@@ -15,9 +15,9 @@ public class BookmarkDAO_MybatisProcImpl implements BookmarkDAO {
 	private SqlSession sqlSession = null;
 	
 	@Override
-	public List<SpaceVO> bookmarkFindAll(BookmarkVO bvo) {
+	public List<SpaceVO> bookmarkFindAll(String user_id) {
 		
-		return sqlSession.selectList("bookmark.p_bookmark_findall",bvo);
+		return sqlSession.selectList("bookmark.p_bookmark_findall",user_id);
 	}
 
 	@Override
