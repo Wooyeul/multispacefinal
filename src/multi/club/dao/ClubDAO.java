@@ -1,6 +1,8 @@
 package multi.club.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import main.vo.ClubVO;
 import main.vo.MessageVO;
@@ -12,6 +14,7 @@ import multi.club.vo.Club_boardVO;
 import multi.club.vo.Club_board_repleVO;
 import multi.club.vo.Club_noticeVO;
 import multi.club.vo.Club_notice_repleVO;
+import multi.club.vo.Club_searchVO;
 
 
 public interface ClubDAO {
@@ -45,4 +48,7 @@ public interface ClubDAO {
 	public int club_apply_disagree(User_clubVO pvo) throws Exception;
 	public int club_add_message(MessageVO pvo) throws Exception;
 	public Club_applyVO club_find_apply_detail(Club_applyVO pvo) throws Exception;
+	public List<Map<Integer, Object>> club_find_l_category()throws Exception;
+	public List<Map<Integer, Object>> club_find_c_category()throws Exception;
+	public List<ClubVO> club_search(Club_searchVO pvo)throws Exception;
 }
