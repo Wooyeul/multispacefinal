@@ -63,7 +63,48 @@ public class BeanUtil
 		return (  pn.equals("title") || 
 			pn.equals("content") || 
 			pn.equals("repleBody") || 
-			pn.equals("nickName") ); 		
+			pn.equals("nickName") ||
+			pn.equals("o2o_title") || 
+	        pn.equals("o2o_content") || 
+	        pn.equals("o2o_type") || 
+	        pn.equals("com_board_no") ||
+	        pn.equals("com_board_title") ||
+	        pn.equals("com_board_content") ||
+	        pn.equals("user_id") ||
+	        pn.equals("com_board_reple_content")||
+	        pn.equals("eve_title") ||
+            pn.equals("eve_content")||
+            pn.equals("com_qna_title")||
+            pn.equals("com_qna_content")||
+            pn.equals("com_qna_reple_content")||
+            pn.equals("faq_title") ||
+            pn.equals("faq_content") ||
+            pn.equals("notice_title") ||
+            pn.equals("notice_content") ||
+            pn.equals("o2o_title") ||
+            pn.equals("o2o_content") || 
+            pn.equals("o2o_type") || 
+            pn.equals("re_o2o_content") || 
+            pn.equals("msg_content") ||
+            pn.equals("crn") ||
+            pn.equals("user_id") ||
+            pn.equals("host_name") ||
+            pn.equals("host_account") ||
+            pn.equals("zipcode") ||
+            pn.equals("etc")||
+            pn.equals("club_name")||
+			pn.equals("club_title")||
+			pn.equals("club_content")||
+			pn.equals("apply_content")||
+			pn.equals("c_notice_title")||
+			pn.equals("c_notice_content")|| 		
+			pn.equals("c_notice_reple_content")||
+			pn.equals("c_board_title")||
+			pn.equals("c_board_content")||
+			pn.equals("c_board_reple_content")||
+			pn.equals("c_board_subject")||
+			pn.equals("msg_content")); 
+		
 	}
 	
 	//	String l2 = BeanUtil.toPropName( l );
