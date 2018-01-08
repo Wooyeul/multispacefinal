@@ -3,12 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!-- bootstrap_test17.html
-
-	-->
 	<style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
@@ -69,6 +66,32 @@ li a:hover {
 </style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="common.js"></script>
+	
+	<script>
+	$(document).ready(function(){
+
+		
+		$("#receiveMessageBox").hide();
+		$("#sendMessageBox").hide();
+		$("#sendMessage").hide();
+		
+		$("#message_nav").on("click",function(e){
+			if($("#receiveMessageBox").css("display") == "none"){
+				$("#receiveMessageBox").show();
+				$("#sendMessageBox").show();
+				$("#sendMessage").show();
+			} else {
+				$("#receiveMessageBox").hide();
+				$("#sendMessageBox").hide();
+				$("#sendMessage").hide();
+			}
+		});
+		
+		
+	});
+
+	</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -81,11 +104,17 @@ li a:hover {
 		      <li><a data-toggle="tab" href="#myBooking">구매 정보</a></li>
 		      <li><a data-toggle="tab" href="#myBookmark">즐겨찾기</a></li>
 		      <li><a data-toggle="tab" href="#myQna">Q&A</a></li>
+		      <li><a data-toggle="tab" href="#myClub">내 모임</a></li>
 		      <li><a data-toggle="tab" href="#myReview">내 후기</a></li>
-		      <li><a data-toggle="tab" href="#myClub">쪽지 보내기</a></li>
-		      <li><a data-toggle="tab" href="#myMessage">쪽지함</a></li>
+		      <li><a data-toggle="tab" id="message_nav" href="#myClub">쪽지 함</a></li>
+				   <ul class="sub_message_nav" >
+				      <li id="receiveMessageBox" class="active"><a data-toggle="tab" href="#myReceiveMessageBox">받은 쪽지함</a></li>
+				      <li id="sendMessageBox"><a data-toggle="tab" href="#mySendMessageBox">보낸 쪽지함</a></li>
+				      <li id="sendMessage"><a data-toggle="tab" href="#mySendMessage">쪽지 보내기</a></li>
+				   </ul>
 		   </ul>
 	</div>
+	
 	
 	<div class="tab-content col-sm-10" >
 		<div id="myInfo"  class="tab-pane active fade in">	
@@ -100,14 +129,23 @@ li a:hover {
 		<div id="myQna"   class="tab-pane fade">
 			<iframe src="mypage_moveMypageQnAPage.do"  align="center"></iframe>
 		</div>
+		<div id="myClub"   class="tab-pane fade">
+			<iframe src=""  align="center"></iframe>
+		</div>
 		<div id="myReview"   class="tab-pane fade">
 			<iframe src="PMreview_findAll.do"  align="center"></iframe>
 		</div>
 		<div id="myClub"   class="tab-pane fade">
 			<iframe src="mypage_moveMypageWriteMessagePage.do"  align="center"></iframe>
 		</div>
-		<div id="myMessage"   class="tab-pane fade">
+		<div id="myReceiveMessageBox"   class="tab-pane fade">
 			<iframe src="mypage_moveMypageReceiveMessagePage.do"  align="center"></iframe>
+		</div>
+		<div id="mySendMessageBox"   class="tab-pane fade">
+			<iframe src="mypage_moveMypageSendMessagePage.do"  align="center"></iframe>
+		</div>
+		<div id="mySendMessage"   class="tab-pane fade">
+			<iframe src="mypage_moveMypageWriteMessagePage.do"  align="center"></iframe>
 		</div>
 	</div>
 	
