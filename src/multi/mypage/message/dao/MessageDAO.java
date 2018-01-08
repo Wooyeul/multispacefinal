@@ -10,5 +10,6 @@ public interface MessageDAO {
 	public MessageVO read_receiveMessage(String msg_no);
 	public List<MessageVO> find_sendMessage(String user_id);
 	public MessageVO read_sendMessage(String msg_no);
+	public int send_Message(MessageVO pvo);
 
 }
