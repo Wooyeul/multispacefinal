@@ -3,7 +3,7 @@ package main.vo;
 public class SpaceVO {
 	public SpaceVO(Integer space_no, String crn, String space_title, String space_content, String space_thumb_img,
 			String open_time, String close_time, Integer price, Integer max_people, Integer min_people,
-			String space_call, String zipcode, Integer c_category_no, Integer l_category_no, String the_time) {
+			String space_call, String zipcode, Integer s_category_no, Integer l_category_no, String the_time) {
 		this.space_no = space_no;
 		this.crn = crn;
 		this.space_title = space_title;
@@ -16,7 +16,7 @@ public class SpaceVO {
 		this.min_people = min_people;
 		this.space_call = space_call;
 		this.zipcode = zipcode;
-		this.c_category_no = c_category_no;
+		this.s_category_no = s_category_no;
 		this.l_category_no = l_category_no;
 		this.the_time = the_time;
 	}
@@ -92,11 +92,11 @@ public class SpaceVO {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	public Integer getC_category_no() {
-		return c_category_no;
+	public Integer gets_category_no() {
+		return s_category_no;
 	}
-	public void setC_category_no(Integer c_category_no) {
-		this.c_category_no = c_category_no;
+	public void sets_category_no(Integer s_category_no) {
+		this.s_category_no = s_category_no;
 	}
 	public Integer getL_category_no() {
 		return l_category_no;
@@ -122,7 +122,7 @@ public class SpaceVO {
 	public Integer min_people;
 	public String space_call;
 	public String zipcode;
-	public Integer c_category_no;
+	public Integer s_category_no;
 	public Integer l_category_no;
 	public String the_time;
 	public SpaceVO(){}
