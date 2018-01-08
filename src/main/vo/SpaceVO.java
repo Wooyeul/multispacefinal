@@ -1,28 +1,9 @@
 package main.vo;
 
 public class SpaceVO {
-	public Integer space_no;
-	public String crn;
-	public String space_title;
-	public String space_content;
-	public String space_thumb_img;
-	public String open_time;
-	public String close_time;
-	public Integer price;
-	public Integer max_people;
-	public Integer min_people;
-	public String space_call;
-	public String zipcode;
-	public Integer c_category_no;
-	public Integer l_category_no;
-	public SpaceVO(){}
-	
-	
-
 	public SpaceVO(Integer space_no, String crn, String space_title, String space_content, String space_thumb_img,
 			String open_time, String close_time, Integer price, Integer max_people, Integer min_people,
-			String space_call, String zipcode, Integer c_category_no, Integer l_category_no) {
-		super();
+			String space_call, String zipcode, Integer c_category_no, Integer l_category_no, String the_time) {
 		this.space_no = space_no;
 		this.crn = crn;
 		this.space_title = space_title;
@@ -37,38 +18,30 @@ public class SpaceVO {
 		this.zipcode = zipcode;
 		this.c_category_no = c_category_no;
 		this.l_category_no = l_category_no;
+		this.the_time = the_time;
 	}
-
-
-	
-	public String getSpace_title() {
-		return space_title;
-	}
-
-
-
-	public void setSpace_title(String space_title) {
-		this.space_title = space_title;
-	}
-
-
-
 	public Integer getSpace_no() {
 		return space_no;
 	}
 	public void setSpace_no(Integer space_no) {
 		this.space_no = space_no;
 	}
-	public String getcrn() {
+	public String getCrn() {
 		return crn;
 	}
-	public void setcrn(String crn) {
+	public void setCrn(String crn) {
 		this.crn = crn;
 	}
-	public String getspace_content() {
+	public String getSpace_title() {
+		return space_title;
+	}
+	public void setSpace_title(String space_title) {
+		this.space_title = space_title;
+	}
+	public String getSpace_content() {
 		return space_content;
 	}
-	public void setspace_content(String space_content) {
+	public void setSpace_content(String space_content) {
 		this.space_content = space_content;
 	}
 	public String getSpace_thumb_img() {
@@ -131,4 +104,27 @@ public class SpaceVO {
 	public void setL_category_no(Integer l_category_no) {
 		this.l_category_no = l_category_no;
 	}
+	public String getThe_time() {
+		return the_time;
+	}
+	public void setThe_time(String the_time) {
+		this.the_time = the_time;
+	}
+	public Integer space_no;
+	public String crn;
+	public String space_title;
+	public String space_content;
+	public String space_thumb_img;
+	public String open_time;
+	public String close_time;
+	public Integer price;
+	public Integer max_people;
+	public Integer min_people;
+	public String space_call;
+	public String zipcode;
+	public Integer c_category_no;
+	public Integer l_category_no;
+	public String the_time;
+	public SpaceVO(){}
+	
 }
