@@ -1,5 +1,6 @@
 package multi.event.controller;
 
+import java.awt.Event;
 import java.io.File;
 import java.util.List;
 
@@ -12,11 +13,13 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
 import main.RequestParam;
 import main.vo.EventVO;
+import main.vo.UserVO;
 import multi.event.dao.EventDAO;
 
 @Controller
@@ -125,7 +128,6 @@ public class CtrlEvent {
 	// 클라이언트 화면 리스트 페이지
 	@RequestMapping("/event_user_list.do") 
 	public ModelAndView event_listll() throws Exception {
-		System.out.println("배승현");
 		List<EventVO> rl = EventDAO.findAll();
 		ModelAndView mnv = new ModelAndView("event_user_list");
 		mnv.addObject("rl",rl);
@@ -139,15 +141,11 @@ public class CtrlEvent {
 	public ModelAndView event_read2(@RequestParam("eve_no") int pk) throws Exception {
 		ModelAndView mnv = new ModelAndView("event_user_read"); 
 		 EventVO text = EventDAO.getByPK(pk);
-		 System.out.println("asdasd");
 		mnv.addObject("text", text );
 		return mnv;	
 	}
-
-		
-		
-		
-		
+	
+				
 		//return "redirect:/event_read.do?eve_no="+pvo.getEve_no();
 		//@RequestParam("textNo") text_list.do?textNo=1 여기에 넘어오는 정보를
 		//"redirect:/text_list.do";	

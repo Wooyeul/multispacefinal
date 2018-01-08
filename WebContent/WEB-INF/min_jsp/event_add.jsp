@@ -7,7 +7,6 @@
 <html>
 <head></head>
 <body>	
-
 		
 			
 		<form method="POST" action="event_add2.do"  enctype="multipart/form-data">

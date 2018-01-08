@@ -23,7 +23,6 @@ public interface EventDAO {
 	public int mod(EventVO pvo) throws Exception;
 	
 	
-	
 }
 
 
