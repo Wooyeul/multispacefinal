@@ -179,6 +179,13 @@
 		id="mypage_message_User_clubDAO" />
 	<bean id="mypage_myinfo_UserDAO" class="multi.mypage.myinfo.dao.UserDAO_MybatisImpl"></bean>
 	<!-- 안수진 -->
+	
+	<!-- 배승현 -->
+	<!-- event 컨트롤러-->
+	<bean class="multi.event.controller.CtrlEvent"/>
+	<!--event DAO-->
+	<bean class="multi.event.dao.EventDAO_MysqlImpl" id="eventDAO"/>
+	<!-- 배승현 -->
 </beans>
 
 
