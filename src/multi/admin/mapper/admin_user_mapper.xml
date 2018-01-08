@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin_user">
+
+	<select id="sysdate" resultType="java.lang.String">
+		SELECT NOW()
+	</select>
+	
+	<!-- 유저 부분 -->
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_user_findAll;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_user_findAll()
+	BEGIN
+		SELECT * FROM UserT WHERE grade = 1;
+	END$$
+	DELIMITER ;
+	CALL p_admin_user_findAll();
+	-->
+	<resultMap id="RM_p_admin_user_findAll" type="main.vo.UserVO" >
+		<result property="user_id" column="user_id" jdbcType="VARCHAR" />
+		<result property="ssn1" column="ssn1" jdbcType="VARCHAR" />
+		<result property="ssn2" column="ssn2" jdbcType="VARCHAR" />
+		<result property="passwd" column="passwd" jdbcType="VARCHAR" />
+		<result property="user_name" column="user_name" jdbcType="VARCHAR" />
+		<result property="gender" column="gender" jdbcType="VARCHAR" />
+		<result property="phone" column="phone" jdbcType="VARCHAR" />
+		<result property="nickname" column="nickname" jdbcType="VARCHAR" />
+		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="email" column="email" jdbcType="VARCHAR" />
+		<result property="grade" column="grade" jdbcType="INTEGER" />
+	</resultMap>
+	<select id="p_admin_user_findAll" statementType="CALLABLE" resultMap="RM_p_admin_user_findAll">
+		{call p_admin_user_findAll()}
+	</select>
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_user_findUser;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_user_findUser(
+		IN v_user_id VARCHAR(50)
+	)
+	BEGIN
+		SELECT * FROM UserT WHERE user_id = v_user_id;
+	END$$
+	DELIMITER ;
+	-->
+	<parameterMap id="PM_p_admin_user_findUser" type="main.vo.UserVO" >
+		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
+	</parameterMap>
+	<resultMap id="RM_p_admin_user_findUser" type="main.vo.UserVO" >
+		<result property="user_id" column="user_id" jdbcType="VARCHAR" />
+		<result property="ssn1" column="ssn1" jdbcType="VARCHAR" />
+		<result property="ssn2" column="ssn2" jdbcType="VARCHAR" />
+		<result property="passwd" column="passwd" jdbcType="VARCHAR" />
+		<result property="user_name" column="user_name" jdbcType="VARCHAR" />
+		<result property="gender" column="gender" jdbcType="VARCHAR" />
+		<result property="phone" column="phone" jdbcType="VARCHAR" />
+		<result property="nickname" column="nickname" jdbcType="VARCHAR" />
+		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="email" column="email" jdbcType="VARCHAR" />
+		<result property="grade" column="grade" jdbcType="INTEGER" />
+	</resultMap>
+	<select id="p_admin_user_findUser" statementType="CALLABLE" 
+		resultMap="RM_p_admin_user_findUser"
+		parameterMap="PM_p_admin_user_findUser">
+		{call p_admin_user_findUser(?)}
+	</select>
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_user_DelUser;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_user_DelUser(
+		IN v_user_id VARCHAR(50)
+	)
+	BEGIN
+		DELETE FROM UserT WHERE user_id = v_user_id;
+	END$$
+	DELIMITER ;
+	CALL p_admin_user_DelUser('yang2');
+	-->
+	<parameterMap id="PM_p_admin_user_DelUser" type="main.vo.UserVO" >
+		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
+	</parameterMap>
+	<delete id="p_admin_user_DelUser" statementType="CALLABLE"
+		parameterType = "main.vo.UserVO"
+		parameterMap = "PM_p_admin_user_DelUser">
+		{call p_admin_user_DelUser(?)}
+	</delete>
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_user_modifyUser;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_user_modifyUser(
+		IN v_user_id VARCHAR(50),
+		IN v_user_name VARCHAR(50),
+		IN v_phone VARCHAR(50),
+		IN v_nickname VARCHAR(50),
+		IN v_zipcode VARCHAR(50),
+		IN v_email VARCHAR(50)
+	)
+	BEGIN
+		UPDATE UserT SET user_name = v_user_name, phone=v_phone, 
+		nickname=v_nickname, zipcode = v_zipcode, email = v_email WHERE user_id = v_user_id;
+	END$$
+	DELIMITER ;
+	CALL p_admin_user_modifyUser('user','일양재', '01012345678', 'gentleGuy', '442-471', 'remd@naver.com');
+	-->
+	<parameterMap id="PM_p_admin_user_modifyUser" type="main.vo.UserVO" >
+		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="user_name" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="phone" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="nickname" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="zipcode" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="email" mode="IN" jdbcType="VARCHAR"/>
+	</parameterMap>
+	<update id="p_admin_user_modifyUser" statementType="CALLABLE"
+		parameterType = "main.vo.UserVO"
+		parameterMap = "PM_p_admin_user_modifyUser">
+		{call p_admin_user_modifyUser(?,?,?,?,?,?)}
+	</update>
+	
+</mapper>
+<!--
+
+-->
+
+
+
+
+
+

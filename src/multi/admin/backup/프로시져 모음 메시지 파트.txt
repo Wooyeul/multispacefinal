@@ -1,0 +1,12 @@
+	DROP PROCEDURE IF EXISTS p_admin_messageT_sendAll;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_messageT_sendAll(
+		OUT v_count INT
+	)
+	BEGIN
+		SELECT count(*) INTO v_count FROM UserT;
+	END$$
+	DELIMITER ;
+	
+	CALL p_admin_messageT_sendAll(@R);
+################################################################

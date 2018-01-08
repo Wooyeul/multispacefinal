@@ -1,0 +1,48 @@
+package multi.club.dao;
+
+import java.util.List;
+
+import main.vo.ClubVO;
+import main.vo.MessageVO;
+import main.vo.SpaceVO;
+import main.vo.UserVO;
+import main.vo.User_clubVO;
+import multi.club.vo.Club_applyVO;
+import multi.club.vo.Club_boardVO;
+import multi.club.vo.Club_board_repleVO;
+import multi.club.vo.Club_noticeVO;
+import multi.club.vo.Club_notice_repleVO;
+
+
+public interface ClubDAO {
+	public List<ClubVO> club_findAll() throws Exception;
+	public int club_add_page_submit(ClubVO pvo) throws Exception;
+	public ClubVO club_find_detail(ClubVO pvo) throws Exception;
+	public int club_add_apply(Club_applyVO pvo) throws Exception;
+	public List<Club_applyVO> club_find_apply(ClubVO pvo) throws Exception;
+	public String club_find_master(ClubVO pvo) throws Exception;
+	public List<Club_noticeVO> club_findAll_notice(ClubVO pvo) throws Exception;
+	public int club_add_community_notice_submit(Club_noticeVO pvo) throws Exception;
+	public List<Club_boardVO> club_findAll_board(ClubVO pvo) throws Exception;
+	public Club_noticeVO club_find_notice_detail(Club_noticeVO pvo) throws Exception;
+	public int club_mod_notice_detail(Club_noticeVO pvo) throws Exception;
+	public int club_del_notice_detail(Club_noticeVO pvo) throws Exception;
+	public int club_add_notice_reple(Club_notice_repleVO pvo) throws Exception;
+	public List<Club_notice_repleVO> club_find_notice_reple(Club_noticeVO pvo) throws Exception;
+	public int club_del_notice_reple(Club_notice_repleVO pvo) throws Exception;
+	public int club_mod_notice_reple(Club_notice_repleVO pvo) throws Exception;
+	public Club_boardVO club_find_board_detail(Club_boardVO pvo) throws Exception;
+	public int club_mod_board_detail(Club_boardVO pvo) throws Exception;
+	public int club_del_board(Club_boardVO pvo) throws Exception;
+	public List<Club_board_repleVO> club_find_board_reple(Club_boardVO pvo) throws Exception;
+	public int club_add_board_reple(Club_board_repleVO pvo) throws Exception;
+	public int club_del_board_reple(Club_board_repleVO pvo) throws Exception;
+	public int club_mod_board_reple(Club_board_repleVO pvo) throws Exception;
+	public int club_add_community_board_submit(Club_boardVO pvo) throws Exception;
+	public List<SpaceVO> club_find_detail_space(ClubVO pvo)throws Exception;
+	public List<UserVO> club_find_community_user(ClubVO pvo) throws Exception;
+	public int club_apply_agree(User_clubVO pvo) throws Exception;
+	public int club_apply_disagree(User_clubVO pvo) throws Exception;
+	public int club_add_message(MessageVO pvo) throws Exception;
+	public Club_applyVO club_find_apply_detail(Club_applyVO pvo) throws Exception;
+}

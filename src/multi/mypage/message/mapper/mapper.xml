@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="apple">
+
+
+<!-- **************** multi.mypage.message **************** -->
+
+   <resultMap id="RM_message" type="main.vo.MessageVO">
+      <result property="msg_no" column="msg_no" jdbcType="INTEGER"/>    
+      <result property="send_user_id" column="send_user_id" jdbcType="VARCHAR"/>     
+      <result property="receive_user_id" column="receive_user_id" jdbcType="VARCHAR"/>     
+	  <result property="msg_content" column="msg_content" jdbcType="VARCHAR"/>
+	  <result property="the_time" column="the_time" jdbcType="VARCHAR" />
+	  <result property="view_count" column="view_count" jdbcType="INTEGER"/>          
+   </resultMap>
+
+   <select id="mypage_message_findReceiveMessage" resultMap="RM_message">
+		SELECT * from MessageT where receive_user_id = #{user_id};
+	</select>
+
+   <select id="mypage_message_readReceiveMessage" resultMap="RM_message">
+		SELECT * from MessageT where msg_no = #{msg_no};
+	</select>
+
+   <select id="mypage_message_findSendMessage" resultMap="RM_message">
+		SELECT * from MessageT where send_user_id = #{user_id};
+	</select>
+	
+   <select id="mypage_message_readSendMessage" resultMap="RM_message">
+		SELECT * from MessageT where msg_no = #{msg_no};
+	</select>
+
+
+<!-- **************** multi.mypage.message.find_userclubInfo **************** -->
+   <resultMap id="RM_userclub" type="main.vo.User_clubVO">
+      <result property="club_no" column="club_no" jdbcType="INTEGER"/>    
+      <result property="user_id" column="user_id" jdbcType="VARCHAR"/>          
+   </resultMap>
+
+   <select id="mypage_message_findUserClub" resultMap="RM_userclub">
+		SELECT * from User_clubT where user_id = #{user_id};
+	</select>
+	
+   <select id="mypage_message_findUserClubMember" resultMap="RM_userclub">
+		SELECT * from User_clubT where club_no = #{club_no};
+	</select>
+   
+</mapper>
+<!--
+
+-->

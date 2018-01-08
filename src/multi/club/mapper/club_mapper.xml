@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club">
+
+	<select id="sysdate" resultType="java.lang.String">
+		SELECT NOW()
+	</select>
+
+	<!-- club 리스트 찾기 시작 -->
+	<select id="club_findAll" resultMap="RM_club_findAll" statementType="CALLABLE">
+		{call p_club_findAll()}	
+	</select>
+	<resultMap id="RM_club_findAll" type="main.vo.ClubVO">
+		<result property="club_no"	  	 	column="club_no"			jdbcType="INTEGER"/>
+		<result property="user_id" 	 	 	column="user_id" 			jdbcType="VARCHAR"/>
+		<result property="club_name" 	 	column="club_name"			jdbcType="VARCHAR"/>
+		<result property="club_content"	 	column="club_content"		jdbcType="VARCHAR"/>
+		<result property="club_thumb_img"	column="club_thumb_img"		jdbcType="VARCHAR"/>
+		<result property="max_member"    	column="max_member"			jdbcType="INTEGER"/>
+		<result property="create_time"   	column="create_time"		jdbcType="VARCHAR"/>
+		<result property="l_category_no"   	column="l_category_no"		jdbcType="INTEGER"/>
+		<result property="c_category_no"   	column="c_category_no"		jdbcType="INTEGER"/>
+		<result property="user_count"   	column="user_count"			jdbcType="INTEGER"/>
+	</resultMap>
+	<!-- club 리스트 찾기 끝 -->
+	
+	<!-- club 디테일 찾기 시작 -->
+	<select id="club_find_detail" parameterMap="PM_club_find_detail" resultMap="RM_club_findAll" statementType="CALLABLE" >
+		{call p_club_find_detail(?,?)}
+	</select>
+	<parameterMap id="PM_club_find_detail" type="main.vo.ClubVO">
+		<parameter property="club_no"	 mode="IN" 	jdbcType="INTEGER"/>
+		<parameter property="user_count" mode="OUT" jdbcType="INTEGER"/>
+	</parameterMap>
+	<!-- club 디테일 찾기 끝 -->
+	
+	<!-- club 디테일에 추천 장소 조회 시작 -->
+	<select id="club_find_detail_space" parameterType="main.vo.ClubVO" resultMap="RM_find_space_all" statementType="CALLABLE" >
+		{call p_club_find_detail_space(#{club_no})}
+	</select>
+	<resultMap id="RM_find_space_all" type="main.vo.SpaceVO">
+		<result property="space_no" 		column="space_no" 			jdbcType="INTEGER"/>
+		<result property="crn" 				column="crn" 				jdbcType="VARCHAR"/>
+		<result property="space_content"	column="space_content" 		jdbcType="VARCHAR"/>
+		<result property="space_thumb_img" 	column="space_thumb_img"	jdbcType="VARCHAR"/>
+		<result property="open_time" 		column="open_time" 			jdbcType="VARCHAR"/>
+		<result property="close_time" 		column="close_time" 		jdbcType="VARCHAR"/>
+		<result property="price" 			column="price" 				jdbcType="INTEGER"/>
+		<result property="max_people" 		column="max_people" 		jdbcType="INTEGER"/>
+		<result property="space_call" 		column="space_call" 		jdbcType="VARCHAR"/>
+		<result property="zipcode" 			column="zipcode" 			jdbcType="VARCHAR"/>
+		<result property="s_category_no" 	column="s_category_no" 		jdbcType="INTEGER"/>
+		<result property="l_category_no" 	column="l_category_no" 		jdbcType="INTEGER"/>
+   	</resultMap>
+	<!-- club 디테일에 추천 장소 조회 끝 -->
+	
+	<!-- club_user 찾기 시작 -->
+	<select id="club_find_master" parameterMap="PM_club_find_user" resultType="java.lang.String" statementType="CALLABLE" >
+		{call p_club_find_master(?)}
+	</select>
+	<parameterMap id="PM_club_find_user" type="main.vo.ClubVO">
+		<parameter property="club_no"	 mode="IN" 	jdbcType="VARCHAR"/>
+	</parameterMap>
+	<!-- club_user 찾기 끝 -->
+	
+	<!-- club 등록 시작 -->
+	<update id="club_add_page_submit" parameterType="main.vo.ClubVO" statementType="CALLABLE">
+		{call p_club_addClub(#{user_id},#{club_name},#{club_title},#{club_content},#{club_thumb_img},#{max_member},#{l_category_no},#{c_category_no})}
+	</update>
+	<!-- club 등록 끝 -->
+
+	<!-- 모임 신청 시작 -->
+	<update id="club_add_apply" parameterMap="PM_club_add_apply" statementType="CALLABLE">
+		{call p_club_add_apply(?,?,?,?)}
+	</update>
+	<parameterMap id="PM_club_add_apply" type="multi.club.vo.Club_applyVO">
+		<parameter property="user_id"		 mode="IN" 	jdbcType="VARCHAR"/>
+		<parameter property="club_no"	 	 mode="IN" 	jdbcType="INTEGER"/>
+		<parameter property="apply_content"	 mode="IN" 	jdbcType="VARCHAR"/>
+		<parameter property="flag"			 mode="OUT" jdbcType="INTEGER"/>
+	</parameterMap>
+	<!-- 모임 신청 끝 -->
+	
+	<!-- 모임 회원 조회 시작-->
+	<select id="club_find_user" parameterType="main.vo.ClubVO" resultMap="RM_find_user" statementType="CALLABLE">
+		{call p_club_find_user(#{club_no})}
+	</select>
+	<resultMap id="RM_find_user" type="main.vo.UserVO">
+      	<result property="user_id" 		column="user_id" 	jdbcType="VARCHAR"/>
+      	<result property="ssn1" 		column="ssn1" 		jdbcType="VARCHAR"/>
+      	<result property="ssn2" 		column="ssn2" 		jdbcType="VARCHAR"/>     
+      	<result property="passwd" 		column="passwd"		jdbcType="VARCHAR"/>
+      	<result property="user_name"	column="user_name"	jdbcType="VARCHAR"/>
+      	<result property="gender" 		column="gender" 	jdbcType="VARCHAR"/>      
+      	<result property="phone" 		column="phone" 		jdbcType="VARCHAR"/>      
+      	<result property="nickname" 	column="nickname" 	jdbcType="VARCHAR"/>      
+      	<result property="zipcode" 		column="zipcode" 	jdbcType="VARCHAR"/>            
+      	<result property="email" 		column="email" 		jdbcType="VARCHAR"/>     
+      	<result property="grade" 		column="grade" 		jdbcType="INTEGER"/>          
+   </resultMap>
+	<!-- 모임 회원 조회 끝 -->
+	
+	<!-- 모임 신청자 리스트 조회 시작-->
+	<select id="club_find_apply" parameterType="main.vo.ClubVO" resultMap="RM_club_find_apply" statementType="CALLABLE">
+		{call p_club_find_apply(#{club_no})}
+	</select>
+	<resultMap id="RM_club_find_apply" type="multi.club.vo.Club_applyVO">
+      	<result property="apply_no" 		column="apply_no" 		jdbcType="INTEGER"/>          
+      	<result property="user_id" 			column="user_id" 		jdbcType="VARCHAR"/>
+      	<result property="club_no" 			column="club_no" 		jdbcType="INTEGER"/>          
+      	<result property="apply_content"	column="apply_content"	jdbcType="VARCHAR"/>
+      	<result property="user_name"		column="user_name"		jdbcType="VARCHAR"/>
+      	<result property="etc"				column="etc"			jdbcType="VARCHAR"/>
+   </resultMap>
+	<!-- 모임 신청자 리스트 조회 끝 -->
+	
+	<!-- 모임 신청자 신청내역 조회 시작-->
+	<select id="club_find_apply_detail" parameterType="multi.club.vo.Club_applyVO" resultMap="RM_club_find_apply" statementType="CALLABLE">
+		{call p_club_find_apply_detail(#{club_no},#{user_id})}
+	</select>
+	<!-- 모임 신청자 신청내역 조회 끝-->
+	
+	<!-- 모임 신청 수락 시작-->
+	<update id="club_apply_agree" parameterType="main.vo.User_clubVO" statementType="CALLABLE">
+		{call p_club_apply_agree(#{user_id},#{club_no})}
+	</update>
+	<!-- 모임 신청 수락 끝-->
+	
+	<!-- 모임 신청 거절 시작-->
+	<update id="club_apply_disagree" parameterType="main.vo.User_clubVO" statementType="CALLABLE">
+		{call p_club_apply_disagree(#{user_id},#{club_no})}
+	</update>
+	<!-- 모임 신청 거절 끝-->
+	<!-- 쪽지 보내기 시작-->
+	<update id="club_add_message" parameterType="main.vo.MessageVO" statementType="CALLABLE">
+		{call p_club_add_message(#{send_user_id},#{receive_user_id},#{msg_content})}
+	</update>
+	<!-- 쪽지 보내기 끝-->
+	
+</mapper>
+
+
+<!--프로시저-->
+
+<!--findall 프로시저
+DROP PROCEDURE IF EXISTS p_club_findAll;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_findAll()
+BEGIN
+	SELECT *
+	FROM ClubT
+	ORDER BY club_no DESC;
+END$$
+DELIMITER ;
+findall 프로시저 끝 -->
+
+<!--p_club_find_detail_space 프로시저
+DROP PROCEDURE IF EXISTS p_club_find_detail_space;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_detail_space(
+	IN v_club_no INT
+)
+BEGIN
+	SELECT *
+ 	  FROM SpaceT
+  	 WHERE l_category_no = ( SELECT l_category_no
+	    					   FROM ClubT
+	   					      WHERE club_no=v_club_no)
+	 ORDER BY space_no DESC
+ 	 LIMIT 5;
+END$$
+DELIMITER ;
+p_club_find_detail_space 프로시저 끝 -->
+
+<!--p_club_addClub 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_addClub;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_addClub(
+	IN v_user_id VARCHAR(20),
+	IN v_club_name VARCHAR(50),
+	IN v_club_title VARCHAR(100),
+	IN v_club_content VARCHAR(500),
+	IN v_club_thumb_img VARCHAR(100),
+	IN v_max_member INT,
+	IN v_l_category_no INT,
+	IN v_c_category_no INT
+)
+BEGIN
+	INSERT INTO ClubT VALUES(default, v_user_id, v_club_name, v_club_title, v_club_content, v_club_thumb_img, v_max_member, now(), v_l_category_no, v_c_category_no);
+END$$
+DELIMITER ;
+p_club_addClub 프로시저 끝-->
+
+<!--p_club_find_detail 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_find_detail;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_detail(
+	IN v_club_no INT,
+	OUT v_user_count INT
+)
+BEGIN
+	DECLARE v_count INT;
+	SELECT COUNT(*) INTO v_count FROM User_ClubT WHERE club_no=v_club_no;
+	SET v_user_count = v_count;
+	
+	SELECT *
+	FROM ClubT
+	WHERE club_no = v_club_no;
+END$$
+DELIMITER ;
+p_club_find_detail 프로시저 끝-->
+
+<!--p_club_find_apply_detail 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_find_apply_detail;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_apply_detail(
+	IN v_club_no INT,
+	IN v_user_id VARCHAR(20)
+)
+BEGIN
+	SELECT *
+	FROM Club_applyT
+	WHERE club_no = v_club_no
+	  AND user_id = v_user_id;
+END$$
+DELIMITER ;
+p_club_find_apply_detail 프로시저 끝-->
+
+<!--p_club_find_master 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_find_master;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_master(
+	IN v_club_no VARCHAR(20)
+)
+BEGIN
+	SELECT user_name
+	  FROM UserT AS A, ClubT AS B
+ 	 WHERE A.user_id = B.user_id
+	   AND B.club_no = v_club_no;
+END$$
+DELIMITER ;
+p_club_find_master 프로시저 끝-->
+
+<!--p_club_find_user 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_find_user;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_user(
+	IN v_club_no INT
+)
+BEGIN
+	SELECT *
+      FROM UserT, User_ClubT
+	 WHERE User_ClubT.club_no=v_club_no
+	   AND UserT.user_id = User_ClubT.user_id
+	 ORDER BY user_name;
+END$$
+DELIMITER ;
+p_club_find_user 프로시저 끝-->
+
+<!--p_club_find_apply 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_find_apply;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_apply(
+	IN v_club_no INT
+)
+BEGIN
+	SELECT A.apply_no, A.user_id, A.club_no, A.apply_content, B.user_name
+      FROM Club_applyT AS A, UserT B
+	 WHERE A.club_no = v_club_no
+	   AND A.user_id = B.user_id
+	 ORDER BY A.club_no;
+END$$
+DELIMITER ;
+p_club_find_apply 프로시저 끝-->
+
+<!--p_club_add_apply 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_add_apply;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_add_apply(
+	IN v_user_id VARCHAR(20),
+	IN v_club_no INT,
+	IN v_club_content TEXT,
+	OUT v_flag INT
+)
+BEGIN
+	DECLARE count INT;
+	SELECT COUNT(*) INTO count FROM Club_applyT WHERE user_id=v_user_id;
+	IF count=0 THEN
+		INSERT INTO Club_applyT VALUES(default,v_user_id,v_club_no,v_club_content,'ing');
+		SET v_flag = 1;
+	ELSE
+		SET v_flag = -1;
+	END IF;
+END$$
+DELIMITER ;
+p_club_add_apply 프로시저 끝-->
+
+<!--p_club_apply_agree 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_apply_agree;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_apply_agree(
+	IN v_user_id VARCHAR(20),
+	IN v_club_no INT
+)
+BEGIN
+	DECLARE exit handler FOR SQLEXCEPTION
+	BEGIN
+		ROLLBACK;
+		SIGNAL SQLSTATE '45000';
+	END;
+
+	START TRANSACTION;
+	DELETE
+	  FROM Club_applyT
+	 WHERE user_id=v_user_id
+	   AND club_no=v_club_no;
+	INSERT INTO User_ClubT VALUES(v_club_no,v_user_id);
+	COMMIT;
+END$$
+DELIMITER ;
+p_club_apply_agree 프로시저 끝-->
+
+<!--p_club_apply_disagree 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_apply_disagree;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_apply_disagree(
+	IN v_user_id VARCHAR(20),
+	IN v_club_no INT
+)
+BEGIN
+	DELETE
+	  FROM Club_applyT
+	 WHERE user_id=v_user_id
+	   AND club_no=v_club_no;
+END$$
+DELIMITER ;
+p_club_apply_disagree 프로시저 끝-->
+
+<!--p_club_add_message 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_add_message;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_add_message(
+	IN v_send_user_id VARCHAR(20),
+	IN v_receive_user_id VARCHAR(20),
+	IN v_msg_content TEXT
+)
+BEGIN
+	INSERT INTO MessageT VALUES(default,v_send_user_id,v_receive_user_id,v_msg_content,now(),0);
+END$$
+DELIMITER ;
+p_club_add_message 프로시저 끝-->
+

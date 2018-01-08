@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myinfo">
+
+	<select id="sysdate" resultType="java.lang.String">
+		SELECT NOW()
+	</select>
+	
+	<parameterMap type="main.vo.UserVO" id="PM_ckpass">
+		<parameter property="user_id" mode="IN"/>
+		<parameter property="passwd" mode="IN"/>
+	</parameterMap>
+	
+	
+	<select id="p_mypage_ckpass" parameterMap="PM_ckpass" resultType="java.lang.Integer" statementType="CALLABLE">
+		{call p_mypage_ckpass(?,?)}
+	</select>
+	
+	
+	<parameterMap type="main.vo.UserVO" id="PM_find_user">
+		<parameter property="user_id" mode="IN"/>
+	</parameterMap>
+	
+	<resultMap type="main.vo.UserVO" id="RM_find_user">
+		<result property="user_id" column="user_id"/>
+		<result property="ssn1" column="ssn1"/>
+		<result property="ssn2" column="ssn2"/>
+		<result property="passwd" column="passwd"/>
+		<result property="user_name" column="user_name"/>
+		<result property="gender" column="gender"/>
+		<result property="phone" column="phone"/>
+		<result property="nickname" column="nickname"/>
+		<result property="email" column="email"/>
+	</resultMap>
+	
+	
+	<select id="p_mypage_find_user" parameterMap="PM_find_user" resultMap="RM_find_user"  statementType="CALLABLE">
+		{call p_mypage_find_user(?)}
+	</select>
+	
+	<parameterMap type="main.vo.UserVO" id="PM_mypage_mod_user">
+		<parameter property="user_id" mode="IN"/>
+		<parameter property="passwd" mode="IN"/>
+		<parameter property="phone" mode="IN"/>
+		<parameter property="nickname" mode="IN"/>
+		<parameter property="email" mode="IN"/>
+	</parameterMap>
+	
+	<update id="p_mypage_mod_user" parameterMap="PM_mypage_mod_user">
+		{call p_mypage_mod_user(?,?,?,?,?)}
+	</update>
+	
+	
+	<parameterMap type="main.vo.UserVO" id="PM_del_user">
+		<parameter property="user_id" mode="IN"/>
+	</parameterMap>
+	
+	<delete id="p_mypage_del_user" parameterMap="PM_del_user" statementType="CALLABLE">
+		{call p_mypage_del_user(?)}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myhost">
+
+	<select id="sysdate" resultType="java.lang.String">
+		SELECT NOW()
+	</select>
+	
+	<parameterMap type="main.vo.HostVO" id="PM_p_ckhost">
+		<parameter property="user_id" mode="IN"/>
+	</parameterMap>
+	
+	<select id="p_ckhost" parameterMap="PM_p_ckhost" resultType="java.lang.Integer">
+		{call p_ckhost(?)}
+	</select>
+	
+	<parameterMap type="main.vo.HostApplyVO" id="PM_p_addhost">
+		<parameter property="user_id" mode="IN"/>
+		<parameter property="crn" mode="IN"/>
+		<parameter property="host_name" mode="IN"/>
+		<parameter property="host_account" mode="IN"/>
+		<parameter property="zipcode" mode="IN"/>
+	</parameterMap>
+	
+	<insert id="p_addhost" parameterMap="PM_p_addhost">
+		{call p_addhostapply(?,?,?,?,?)}
+	</insert>
+	
+	<parameterMap type="main.vo.HostVO" id="PM_p_findspaceBycrn">
+		<parameter property="user_id" mode="IN"/>
+	</parameterMap>
+	
+	<resultMap type="main.vo.SpaceVO" id="RM_myspace_findall">
+		<result property="space_no" column="space_no"/>
+		<result property="space_title" column="space_title"/>
+		<result property="space_thumb_img" column="space_thumb_img"/>
+	</resultMap>
+	
+	<select id="p_findspaceBycrn"  parameterMap="PM_p_findspaceBycrn" resultMap="RM_myspace_findall">
+		{call p_findspaceBycrn(?)}
+	</select>
+	
+	
+
+</mapper>
+
+
+
+
+

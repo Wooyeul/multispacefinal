@@ -3,23 +3,60 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	
-	
-	
-	<!--
-	 여기에 자기꺼 추가해주세요 이런식으로!!
-	 <mappers>
-		<mapper resource="multi/temp/mapper/mapper.xml" />
+
+
+
+	<!-- 여기에 자기꺼 추가해주세요 이런식으로!! <mappers> <mapper resource="multi/temp/mapper/mapper.xml" 
+		/> </mappers> -->
+
+	<mappers>
+		<mapper resource="multi/space/mapper/space_mapper.xml" />
+		<mapper resource="multi/space/mapper/booking_mapper.xml" />
+		<mapper resource="multi/space/mapper/space_QnA_mapper.xml" />
+		<mapper resource="multi/space/mapper/space_QnA_Reple_mapper.xml" />
+		<mapper resource="multi/space/mapper/review_mapper.xml" />
+		<mapper resource="multi/home/userjoin/mapper/userjoin_mapper.xml" />
+		<mapper resource="multi/mypage/myinfo/mapper/myinfo_mapper.xml" />
+		<mapper resource="multi/mypage/mybookmark/mapper/bookmark_mapper.xml" />
+		<mapper resource="multi/mypage/myreview/mapper/mp_review_mapper.xml" />
+		<mapper resource="multi/mypage/myclub/mapper/myclub_mapper.xml" />
+		<mapper resource="multi/mypage/myhost/mapper/myhost_mapper.xml" />
+
+		<!-- 김소영 -->
+		<mapper resource="multi/faq/mapper/faq_mapper.xml" />
+		<mapper resource="multi/o2oQnA/mapper/o2oQnA_mapper.xml" />
+		<mapper resource="multi/community/board/mapper/community_board_mapper.xml" />
+		<!-- 김소영 -->
+
+		<!-- 조우열 -->
+		<mapper resource="multi/notice/mapper/notice_mapper.xml" />
+		<mapper resource="multi/community/qna/mapper/community_mapper.xml" />
+		<!-- 조우열 -->
+
+		<!-- 허빛찬샘 -->
+		<mapper resource="multi/club/mapper/club_mapper.xml" />
+		<mapper resource="multi/club/mapper/club_mapper_board.xml" />
+		<mapper resource="multi/club/mapper/club_mapper_notice.xml" />
+		<!-- 허빛찬샘 -->
+
+
+		<!-- 양재신 -->
+		<mapper resource="multi/admin/mapper/admin_user_mapper.xml" />
+		<mapper resource="multi/admin/mapper/admin_host_mapper.xml" />
+		<mapper resource="multi/admin/mapper/admin_notice_mapper.xml" />
+		<mapper resource="multi/admin/mapper/admin_faq_mapper.xml" />
+		<mapper resource="multi/admin/mapper/admin_o2oQnA_mapper.xml" />
+		<mapper resource="multi/admin/mapper/admin_space_mapper.xml" />
+		<mapper resource="multi/admin/mapper/admin_clubs_mapper.xml" />
+		<!-- 양재신 -->
+
+		<!-- 안수진 -->
+		<mapper resource="multi/home/login/mapper/mapper.xml" />
+		<mapper resource="multi/mypage/booking/mapper/mapper.xml" />
+		<mapper resource="multi/mypage/qna/mapper/mapper.xml" />
+		<mapper resource="multi/mypage/message/mapper/mapper.xml" />
+		<!-- 안수진 -->
 	</mappers>
-	 -->
-	 
-	 <mappers>
-	 	<mapper resource="multi/space/mapper/space_mapper.xml"/>
-	 	<mapper resource="multi/space/mapper/booking_mapper.xml"/>
-	 	<mapper resource="multi/space/mapper/space_QnA_mapper.xml"/>
-	 	<mapper resource="multi/space/mapper/space_QnA_Reple_mapper.xml"/>
-	 	<mapper resource="multi/space/mapper/review_mapper.xml"/>
-	 </mappers>
-	 
-	
+
+
 </configuration>

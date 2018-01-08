@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userjoin">
+
+	<select id="sysdate" resultType="java.lang.String">
+		SELECT NOW()
+	</select>
+	
+	<parameterMap type="main.vo.UserVO" id="PM_userJoin">
+		<parameter property="user_id" mode="IN"/>
+		<parameter property="ssn1" mode="IN"/>
+		<parameter property="ssn2" mode="IN"/>
+		<parameter property="passwd" mode="IN"/>
+		<parameter property="user_name" mode="IN"/>
+		<parameter property="gender" mode="IN"/>
+		<parameter property="phone" mode="IN"/>
+		<parameter property="nickname" mode="IN"/>
+		<parameter property="zipcode" mode="IN"/>
+		<parameter property="email" mode="IN"/>
+		<parameter property="grade" mode="IN"/>
+	</parameterMap>
+	
+	
+	<insert id="p_userJoin_add" parameterMap="PM_userJoin" statementType="CALLABLE">
+		{call p_userJoin_add(?,?,?,?,?,?,?,?,?,?,?)}
+	</insert>
+	
+	<parameterMap type="main.vo.UserVO" id="PM_ckId">
+		<parameter property="user_id" mode="IN"/>
+	</parameterMap>
+	
+	<select id="p_ckId" parameterMap="PM_ckId" resultType="java.lang.Integer" statementType="CALLABLE">
+		{call p_overlap(?)};
+	</select>
+	
+</mapper>
+
+
+
+
+

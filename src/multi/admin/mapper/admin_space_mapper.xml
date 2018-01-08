@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin_space">
+	
+	<!-- 공간 부분 -->
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_host_space_check;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_space_check(
+		IN v_crn VARCHAR(50)
+	)
+	BEGIN
+		SELECT * FROM SpaceT WHERE crn = v_crn;
+	END$$
+	DELIMITER ;
+	-->
+	<parameterMap id="PM_p_admin_host_space_check" type="main.vo.SpaceVO" >
+		<parameter property="crn" mode="IN" jdbcType="INTEGER"/>
+	</parameterMap>
+	<resultMap id="RM_p_admin_host_space_check" type="main.vo.SpaceVO" >
+		<result property="space_no" column="space_no" jdbcType="INTEGER" />
+		<result property="crn" column="crn" jdbcType="VARCHAR" />
+		<result property="space_title" column="space_title" jdbcType="VARCHAR" />
+		<result property="space_content" column="space_content" jdbcType="VARCHAR" />
+		<result property="space_thumb_img" column="space_thumb_img" jdbcType="VARCHAR" />
+		<result property="open_time" column="open_time" jdbcType="VARCHAR" />
+		<result property="close_time" column="close_time" jdbcType="VARCHAR" />
+		<result property="price" column="price" jdbcType="INTEGER" />
+		<result property="max_people" column="max_people" jdbcType="INTEGER" />
+		<result property="min_people" column="min_people" jdbcType="INTEGER" />
+		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
+		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
+		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="p_admin_host_space_check" statementType="CALLABLE" 
+		resultMap="RM_p_admin_host_space_check"
+		parameterMap="PM_p_admin_host_space_check">
+		{call p_admin_host_space_check(?)}
+	</select>
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_space_created_desc;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_created_desc()
+	BEGIN
+		SELECT * FROM SpaceT ORDER BY the_time DESC;
+	END$$
+	DELIMITER ;
+	-->
+	<resultMap id="RM_p_admin_space_created_desc" type="main.vo.SpaceVO" >
+		<result property="space_no" column="space_no" jdbcType="INTEGER" />
+		<result property="crn" column="crn" jdbcType="VARCHAR" />
+		<result property="space_title" column="space_title" jdbcType="VARCHAR" />
+		<result property="space_content" column="space_content" jdbcType="VARCHAR" />
+		<result property="space_thumb_img" column="space_thumb_img" jdbcType="VARCHAR" />
+		<result property="open_time" column="open_time" jdbcType="VARCHAR" />
+		<result property="close_time" column="close_time" jdbcType="VARCHAR" />
+		<result property="price" column="price" jdbcType="INTEGER" />
+		<result property="max_people" column="max_people" jdbcType="INTEGER" />
+		<result property="min_people" column="min_people" jdbcType="INTEGER" />
+		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
+		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
+		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="p_admin_space_created_desc" statementType="CALLABLE" 
+		resultMap="RM_p_admin_space_created_desc">
+		{call p_admin_space_created_desc()}
+	</select>
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_space_created_asc;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_created_asc()
+	BEGIN
+		SELECT * FROM SpaceT ORDER BY the_time ASC;
+	END$$
+	DELIMITER ;
+	-->
+	<resultMap id="RM_p_admin_space_created_asc" type="main.vo.SpaceVO" >
+		<result property="space_no" column="space_no" jdbcType="INTEGER" />
+		<result property="crn" column="crn" jdbcType="VARCHAR" />
+		<result property="space_title" column="space_title" jdbcType="VARCHAR" />
+		<result property="space_content" column="space_content" jdbcType="VARCHAR" />
+		<result property="space_thumb_img" column="space_thumb_img" jdbcType="VARCHAR" />
+		<result property="open_time" column="open_time" jdbcType="VARCHAR" />
+		<result property="close_time" column="close_time" jdbcType="VARCHAR" />
+		<result property="price" column="price" jdbcType="INTEGER" />
+		<result property="max_people" column="max_people" jdbcType="INTEGER" />
+		<result property="min_people" column="min_people" jdbcType="INTEGER" />
+		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
+		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
+		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="p_admin_space_created_asc" statementType="CALLABLE" 
+		resultMap="RM_p_admin_space_created_asc">
+		{call p_admin_space_created_asc()}
+	</select>
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_space_price_desc;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_price_desc(
+	)
+	BEGIN
+		SELECT * FROM SpaceT ORDER BY price DESC;
+	END$$
+	DELIMITER ;
+	-->
+	<resultMap id="RM_p_admin_space_price_desc" type="main.vo.SpaceVO" >
+		<result property="space_no" column="space_no" jdbcType="INTEGER" />
+		<result property="crn" column="crn" jdbcType="VARCHAR" />
+		<result property="space_title" column="space_title" jdbcType="VARCHAR" />
+		<result property="space_content" column="space_content" jdbcType="VARCHAR" />
+		<result property="space_thumb_img" column="space_thumb_img" jdbcType="VARCHAR" />
+		<result property="open_time" column="open_time" jdbcType="VARCHAR" />
+		<result property="close_time" column="close_time" jdbcType="VARCHAR" />
+		<result property="price" column="price" jdbcType="INTEGER" />
+		<result property="max_people" column="max_people" jdbcType="INTEGER" />
+		<result property="min_people" column="min_people" jdbcType="INTEGER" />
+		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
+		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
+		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="p_admin_space_price_desc" statementType="CALLABLE" 
+		resultMap="RM_p_admin_space_price_desc">
+		{call p_admin_space_price_desc()}
+	</select>
+	
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_space_price_asc;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_price_asc(
+	)
+	BEGIN
+		SELECT * FROM SpaceT ORDER BY price ASC;
+	END$$
+	DELIMITER ;
+	-->
+	<resultMap id="RM_p_admin_space_price_asc" type="main.vo.SpaceVO" >
+		<result property="space_no" column="space_no" jdbcType="INTEGER" />
+		<result property="crn" column="crn" jdbcType="VARCHAR" />
+		<result property="space_title" column="space_title" jdbcType="VARCHAR" />
+		<result property="space_content" column="space_content" jdbcType="VARCHAR" />
+		<result property="space_thumb_img" column="space_thumb_img" jdbcType="VARCHAR" />
+		<result property="open_time" column="open_time" jdbcType="VARCHAR" />
+		<result property="close_time" column="close_time" jdbcType="VARCHAR" />
+		<result property="price" column="price" jdbcType="INTEGER" />
+		<result property="max_people" column="max_people" jdbcType="INTEGER" />
+		<result property="min_people" column="min_people" jdbcType="INTEGER" />
+		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
+		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
+		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="p_admin_space_price_asc" statementType="CALLABLE" 
+		resultMap="RM_p_admin_space_price_asc">
+		{call p_admin_space_price_asc()}
+	</select>
+	
+</mapper>
+
+
+
+
+
+

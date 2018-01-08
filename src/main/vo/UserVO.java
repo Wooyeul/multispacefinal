@@ -7,18 +7,6 @@ public class UserVO {
 	   public void setUser_id(String user_id) {
 	      this.user_id = user_id;
 	   }
-	   public String getSSN1() {
-	      return SSN1;
-	   }
-	   public void setSSN1(String SSN1) {
-	      this.SSN1 = SSN1;
-	   }
-	   public String getSSN2() {
-	      return SSN2;
-	   }
-	   public void setSSN2(String SSN2) {
-	      this.SSN2 = SSN2;
-	   }
 	   public String getPasswd() {
 	      return passwd;
 	   }
@@ -68,33 +56,27 @@ public class UserVO {
 	      this.grade = grade;
 	   }
 	   
-
-	   
-	   
-	   public UserVO(String user_id, String SSN1, String SSN2, String passwd, String user_name, String gender,
-	         String phone, String nickname, String zipcode, String email, Integer grade) {
-	      this.user_id = user_id;
-	      this.SSN1 = SSN1;
-	      this.SSN2 = SSN2;
-	      this.passwd = passwd;
-	      this.user_name = user_name;
-	      this.gender = gender;
-	      this.phone = phone;
-	      this.nickname = nickname;
-	      this.zipcode = zipcode;
-	      this.email = email;
-	      this.grade = grade;
-	   }
-
-
 	   
 	   public UserVO() {
 	      
 	   }
 
 	   private String user_id = null;
-	   private String SSN1 = null;
-	   private String SSN2 = null;
+	   public String getSsn1() {
+		return ssn1;
+	}
+	public void setSsn1(String ssn1) {
+		this.ssn1 = ssn1;
+	}
+	public String getSsn2() {
+		return ssn2;
+	}
+	public void setSsn2(String ssn2) {
+		this.ssn2 = ssn2;
+	}
+
+	private String ssn1 = null;
+	   private String ssn2 = null;
 	   private String passwd = null;
 	   private String user_name = null;
 	   private String gender = null;

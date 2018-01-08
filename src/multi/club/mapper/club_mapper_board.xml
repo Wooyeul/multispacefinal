@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club_board">
+
+	<select id="sysdate" resultType="java.lang.String">
+		SELECT NOW()
+	</select>
+
+	<!-- club 커뮤니티 글 등록 시작 -->
+	<update id="club_add_community_board" parameterType="multi.club.vo.Club_boardVO" statementType="CALLABLE">
+		{call p_club_add_community_board(#{c_board_title},#{c_board_content},#{c_board_subject},#{club_no},#{user_id})}
+	</update>
+	<!-- club 커뮤니티 글 등록 끝 -->
+
+	<!-- club 커뮤니티 글 찾기 시작 -->
+	<select id="club_findAll_board" parameterType="main.vo.ClubVO" resultMap="RM_club_findAll_board" statementType="CALLABLE">
+		{call p_club_findAll_board(#{club_no})}	
+	</select>
+	<resultMap id="RM_club_findAll_board" type="multi.club.vo.Club_boardVO">
+		<result property="c_board_no"	  	column="c_board_no"			jdbcType="INTEGER"/>
+		<result property="c_board_title"	column="c_board_title"		jdbcType="VARCHAR"/>
+		<result property="c_board_content"	column="c_board_content"	jdbcType="VARCHAR"/>
+		<result property="c_board_subject"	column="c_board_subject"	jdbcType="VARCHAR"/>
+		<result property="the_time"			column="the_time"			jdbcType="VARCHAR"/>
+		<result property="club_no"	  		column="club_no"			jdbcType="INTEGER"/>
+		<result property="user_id"	  		column="user_id"			jdbcType="VARCHAR"/>
+		<result property="view_count"	  	column="view_count"			jdbcType="INTEGER"/>
+	</resultMap>
+	<!-- club 커뮤니티 글 찾기 끝 -->
+	
+	<!-- club 커뮤니티 글 detail 찾기 시작 -->
+	<select id="club_find_board" parameterType="multi.club.vo.Club_boardVO" resultMap="RM_club_findAll_board" statementType="CALLABLE">
+		{call p_club_find_board(#{c_board_no})}	
+	</select>
+	<!-- club 커뮤니티 글 detail 찾기 끝 -->
+	
+	<!-- club 커뮤니티 글 수정 시작 -->
+	<update id="club_mod_board_detail" parameterType="multi.club.vo.Club_boardVO" statementType="CALLABLE">
+		{call p_club_mod_board_detail(#{c_board_no},#{c_board_title},#{c_board_content})}
+	</update>
+	<!-- club 커뮤니티 글 수정 끝 -->
+	
+	<!-- club 커뮤니티 글 삭제 시작 -->
+	<update id="club_del_board_detail" parameterType="multi.club.vo.Club_boardVO" statementType="CALLABLE">
+		{call p_club_del_board_detail(#{c_board_no})}
+	</update>
+	<!-- club 커뮤니티 글 삭제 끝 -->
+	
+	<!-- club 커뮤니티 글의 리플 리스트 시작 -->
+	<select id="club_board_reple" parameterType="multi.club.vo.Club_boardVO" resultMap="RM_club_board_reple" statementType="CALLABLE">
+		{call p_club_board_reple(#{c_board_no})}	
+	</select>
+	
+	<resultMap id="RM_club_board_reple" type="multi.club.vo.Club_board_repleVO">
+		<result property="c_board_reple_no"			column="c_board_reple_no"		jdbcType="INTEGER"/>
+		<result property="c_board_reple_content"	column="c_board_reple_content"	jdbcType="VARCHAR"/>
+		<result property="the_time"					column="the_time"				jdbcType="VARCHAR"/>
+		<result property="user_id"					column="user_id"				jdbcType="VARCHAR"/>
+		<result property="c_board_no"				column="c_board_no"				jdbcType="INTEGER"/>
+	</resultMap>
+	<!-- club 커뮤니티 글의 리플 리스트 끝 -->
+
+	<!-- club 커뮤니티 댓글 추가 시작 -->
+	<update id="club_add_board_reple" parameterType="multi.club.vo.Club_board_repleVO" statementType="CALLABLE">
+		{call p_club_add_board_reple(#{c_board_reple_content},#{user_id},#{c_board_no})}
+	</update>
+	<!-- club 커뮤니티 댓글 추가 끝 -->
+	
+	<!-- club 커뮤니티 댓글 삭제 시작 -->
+	<update id="club_del_board_reple" parameterType="multi.club.vo.Club_board_repleVO" statementType="CALLABLE">
+		{call p_club_del_board_reple(#{c_board_reple_no})}
+	</update>
+	<!-- club 커뮤니티 댓글 삭제 끝 -->
+	
+	<!-- club 커뮤니티 댓글 수정 시작 -->
+	<update id="club_mod_board_reple" parameterType="multi.club.vo.Club_board_repleVO" statementType="CALLABLE">
+		{call p_club_mod_board_reple(#{c_board_reple_no},#{c_board_reple_content})}
+	</update>
+	<!-- club 커뮤니티 댓글 수정 끝 -->
+	
+</mapper>
+
+<!--p_club_findAll_board 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_findAll_board;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_findAll_board(
+	IN v_club_no INT
+)
+BEGIN
+	SELECT *
+	  FROM Club_BoardT
+ 	 WHERE club_no=v_club_no;
+END$$
+DELIMITER ;
+p_club_findAll_board 프로시저 끝-->
+
+<!--p_club_find_board 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_find_board;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_board(
+	IN v_c_board_no INT
+)
+BEGIN
+	UPDATE Club_BoardT
+	   SET view_count = view_count+1
+	 WHERE c_board_no = v_c_board_no;
+	  
+	SELECT *
+	  FROM Club_BoardT
+ 	 WHERE c_board_no = v_c_board_no;
+END$$
+DELIMITER ;
+p_club_find_board 프로시저 끝-->
+
+<!--p_club_mod_board_detail 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_mod_board_detail;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_mod_board_detail(
+	IN v_c_board_no INT,
+	IN v_c_board_title VARCHAR(200),
+	IN v_c_board_content TEXT
+)
+BEGIN
+	UPDATE Club_BoardT
+	   SET c_board_title = v_c_board_title,
+	       c_board_content = v_c_board_content
+	 WHERE c_board_no = v_c_board_no;
+END$$
+DELIMITER ;
+p_club_mod_board_detail 프로시저 끝-->
+
+<!--p_club_del_board_detail 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_del_board_detail;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_del_board_detail(
+	IN v_c_board_no INT
+)
+BEGIN
+	DELETE 
+	  FROM Club_BoardT
+     WHERE c_board_no = v_c_board_no;
+END$$
+DELIMITER ;
+p_club_del_board_detail 프로시저 끝-->
+
+<!--p_club_board_reple 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_board_reple;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_board_reple(
+	IN v_c_board_no INT
+)
+BEGIN
+	SELECT *
+	  FROM Club_Board_RepleT
+ 	 WHERE c_board_no = v_c_board_no
+ 	 ORDER BY c_board_reple_no DESC;
+END$$
+DELIMITER ;
+p_club_board_reple 프로시저 끝-->
+
+<!--p_club_add_board_reple 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_add_board_reple;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_add_board_reple(
+	IN v_c_board_reple_content TEXT,
+	IN v_user_id VARCHAR(20),
+	IN v_c_board_no INT
+)
+BEGIN
+	INSERT INTO Club_Board_RepleT VALUES(default, v_c_board_reple_content, now(), v_user_id, v_c_board_no);
+END$$
+DELIMITER ;
+p_club_add_board_reple 프로시저 끝-->
+
+<!--p_club_del_board_reple 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_del_board_reple;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_del_board_reple(
+	IN v_c_board_reple_no INT
+)
+BEGIN
+	DELETE
+	  FROM Club_Board_RepleT
+	 WHERE c_board_reple_no=v_c_board_reple_no;
+END$$
+DELIMITER ;
+p_club_del_board_reple 프로시저 끝-->
+
+<!--p_club_mod_board_reple 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_mod_board_reple;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_mod_board_reple(
+	IN v_c_board_reple_no INT,
+	IN v_c_board_reple_content TEXT
+)
+BEGIN
+	UPDATE Club_Board_RepleT
+	   SET c_board_reple_content = v_c_board_reple_content
+	 WHERE c_board_reple_no=v_c_board_reple_no;
+END$$
+DELIMITER ;
+p_club_mod_board_reple 프로시저 끝-->
+
+<!--p_club_add_community_board 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_add_community_board;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_add_community_board(
+	IN v_c_board_title VARCHAR(200),
+	IN v_c_board_content TEXT,
+	IN v_c_board_subject VARCHAR(15),
+	IN v_culb_no INT,
+	IN v_user_id VARCHAR(20)
+)
+BEGIN
+	INSERT INTO Club_BoardT VALUES(default,v_c_board_title,v_c_board_content,v_c_board_subject,now(),v_culb_no,v_user_id,0);
+END$$
+DELIMITER ;
+p_club_add_community_board 프로시저 끝-->

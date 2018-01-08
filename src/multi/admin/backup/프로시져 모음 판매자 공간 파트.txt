@@ -1,0 +1,53 @@
+DELETE FROM SpaceT;
+SELECT * FROM SpaceT;
+INSERT INTO SpaceT Values(default, '222-22-22222', '첫번째 공간', '넓어요', 
+'place1.png', '10', '22', 6000, 10, 15, '01055246469', '442-470', 1, 3, NOW() );
+INSERT INTO SpaceT Values(default, '222-22-22222', '두번째  공간', '적당하고 아늑해요', 
+'place2.png', '10', '22', 5000, 6, 10, '01055246469', '442-470', 2, 4, NOW() );
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_host_space_check;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_space_check(
+		IN v_crn VARCHAR(50)
+	)
+	BEGIN
+		SELECT * FROM SpaceT WHERE crn = v_crn;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_space_created_desc;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_created_desc(
+	)
+	BEGIN
+		SELECT * FROM SpaceT ORDER BY the_time DESC;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_space_created_asc;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_created_asc(
+	)
+	BEGIN
+		SELECT * FROM SpaceT ORDER BY the_time ASC;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_space_price_desc;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_price_desc(
+	)
+	BEGIN
+		SELECT * FROM SpaceT ORDER BY price DESC;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_space_price_asc;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_price_asc(
+	)
+	BEGIN
+		SELECT * FROM SpaceT ORDER BY price ASC;
+	END$$
+	DELIMITER ;
+################################################################
