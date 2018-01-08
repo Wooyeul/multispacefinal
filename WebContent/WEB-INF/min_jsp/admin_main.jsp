@@ -58,7 +58,9 @@ aside#left {
     color: #464646;
     overflow: hidden;
     float: left;
-    width: 1300px;
+    width: 800px;
+    height: 1500px;
+    scrolling: yes;
 }
 
 #user_manage {
@@ -217,7 +219,40 @@ aside#left {
 </script>
 </head>
 <body>
-	
+		<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"	aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+			</div>
+		
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="space_home.do">공간</a></li>
+					<li><a href="club_list.do">모임</a></li>
+					<li><a href="community_list.do">커뮤니티</a></li>
+					<li><a href="event_list.do">이벤트</a></li>	
+					<li><a href="notice_list.do">공지사항</a></li>
+					<li><a href="faq_list.do">FAQ</a></li>			
+					<li><a href="admin_main.do">관리자</a></li>			
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><a herf="#">${user_name}님이 로그인 하셨습니다.</a></li>
+					<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+					<li><a href="#">로그아웃</a></li>					
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+			
 	<aside id="left">
 		<h4>관리 항목들</h4>
 		<ul>
@@ -253,8 +288,9 @@ aside#left {
 	
 	<section id="main">
 		<article id="article1">
-			<iframe name="iframe1" src="admin_users.do" width="1300" height="1000" seamless></iframe>	
+			<iframe name="iframe1" src="admin_users.do" width="800" height="1000"  seamless></iframe>	
 		</article>
 	</section>
+	</div>
 </body>
 </html>

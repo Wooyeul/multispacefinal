@@ -42,7 +42,7 @@ CREATE TABLE Club_BoardT
 	`c_board_content`  TEXT   		  NULL, 
 	`c_board_subject`  VARCHAR(15)	  NULL,
     `the_time`         DATETIME 	  NULL, 
-    `culb_no`          INT            NULL, 
+    `club_no`          INT            NULL, 
     `user_id`          VARCHAR(20)    NULL, 
     `view_count`       INT            NULL, 
     PRIMARY KEY (c_board_no)

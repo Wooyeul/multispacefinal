@@ -25,6 +25,7 @@
 		<td>유저 ID</td>
 		<td>주민등록번호 앞자리</td>
 		<td>주민등록번호 뒷자리</td>
+		<td>성별</td>
 		<td>전화번호</td>
 		<td>닉네임</td>
 		<td>주소</td>
@@ -35,6 +36,14 @@
 		<td>${vo.user_id}</td>
 		<td>${vo.ssn1}</td>
 		<td>${vo.ssn2}</td>
+		<jl:choose>
+			<jl:when test="${vo.gender == 'M'}">
+				<td>남자</td>
+			</jl:when>
+			<jl:when test="${vo.gender == 'F'}">
+				<td>여자</td>
+			</jl:when>
+		</jl:choose>
 		<td>${vo.phone}</td>
 		<td>${vo.nickname}</td>
 		<td>${vo.zipcode}</td>
