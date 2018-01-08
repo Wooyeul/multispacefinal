@@ -18,5 +18,6 @@ public class UserDAO_MybatisImpl implements UserDAO{
 	public UserVO find_userInfo(String user_id) throws Exception {
 		return sqlSession.selectOne("apple.mypage_myinfoFindUserInfo",user_id);
 	}
-
+	
+	
 }

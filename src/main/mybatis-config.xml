@@ -55,6 +55,7 @@
 		<mapper resource="multi/mypage/booking/mapper/mapper.xml" />
 		<mapper resource="multi/mypage/qna/mapper/mapper.xml" />
 		<mapper resource="multi/mypage/message/mapper/mapper.xml" />
+		<mapper resource="multi/mypage/myinfo/mapper/mapper.xml" />
 		<!-- 안수진 -->
 	</mappers>
 

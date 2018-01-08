@@ -103,7 +103,7 @@ public class CtrlSpace {
 		String l_category_no_str = mpr.getParameter("l_category_no");
 		Integer l_category_no = StringToInteger(l_category_no_str);
 		
-		vo.setcrn(crn); vo.setSpace_title(space_title); vo.setspace_content(space_content); vo.setSpace_thumb_img(space_thumb_img); vo.setOpen_time(open_time);
+		vo.setCrn(crn); vo.setSpace_title(space_title); vo.setSpace_content(space_content); vo.setSpace_thumb_img(space_thumb_img); vo.setOpen_time(open_time);
 		vo.setClose_time(close_time); vo.setPrice(price); vo.setMin_people(min_people); vo.setMax_people(max_people); vo.setSpace_call(space_call);
 		vo.setC_category_no(c_category_no); vo.setL_category_no(l_category_no);
 		

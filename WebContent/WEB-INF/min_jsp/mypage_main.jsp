@@ -89,7 +89,7 @@ li a:hover {
 	
 	<div class="tab-content col-sm-10" >
 		<div id="myInfo"  class="tab-pane active fade in">	
-			<iframe src="mypage_moveMypageBookingPage.do"  align="center"></iframe>
+			<iframe src="myinfo_ckpass.do"  align="center"></iframe>
 		</div>
 		<div id="#myBooking" class="tab-pane fade">
 			<iframe src="mypage_moveMypageBookingPage.do"  align="center"></iframe>

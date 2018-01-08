@@ -19,6 +19,22 @@ public class CtrlMypageInfo {
 	@Autowired @Qualifier("myInfoDAO")
 	private MyInfoDAO myInfoDAO = null;
 	
+	@Autowired	@Qualifier("mypage_myinfo_UserDAO")
+	private UserDAO UserDAO = null;
+	
+
+	@RequestMapping("/mypage_moveMypageMainPage.do")
+	public ModelAndView moveMypageMainPage(@CookieValue("user_id") String user_id) throws Exception {
+
+		UserVO userInfo = UserDAO.find_userInfo(user_id);
+		
+		ModelAndView mnv = new ModelAndView("mypage_main");
+		mnv.addObject("userInfo", userInfo);
+		return mnv;
+
+	}
+	
+	
 	@RequestMapping("/myinfo_ckpass.do")
 	public ModelAndView ckpasswd() throws Exception{
 		ModelAndView mnv = new ModelAndView("myinfo_ckpass");

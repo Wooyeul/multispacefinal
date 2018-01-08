@@ -177,6 +177,7 @@
 	<bean class="multi.mypage.message.dao.MessageDAO_MybatisImpl" id="mypage_message_MessageDAO" />
 	<bean class="multi.mypage.message.dao.User_clubDAO_MybatisImpl"
 		id="mypage_message_User_clubDAO" />
+	<bean id="mypage_myinfo_UserDAO" class="multi.mypage.myinfo.dao.UserDAO_MybatisImpl"></bean>
 	<!-- ¾È¼öÁø -->
 </beans>
 
