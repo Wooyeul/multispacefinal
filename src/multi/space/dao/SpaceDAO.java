@@ -21,7 +21,7 @@ public interface SpaceDAO {
 	public SpaceVO find_space_by_pk(SpaceVO vo) throws Exception;
 	
 	//유저 검색하고 유저가 가진 클럽 불러오기
-	public List<ClubVO> find_user_club() throws Exception;
+	public List<ClubVO> find_user_club(String user_id) throws Exception;
 	
 	public HostVO find_host_by_space_no(SpaceVO vo) throws Exception;
 }

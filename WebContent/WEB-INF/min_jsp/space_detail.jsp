@@ -88,6 +88,7 @@
 				</tr>
 			</table>
 		</div>
+		
 		<div>
 		<hr/>
 		
@@ -125,7 +126,7 @@
 								<form method="POST" action="add_space_qna_reple.do">
 									<input type="hidden" name="space_qna_no" value="${space_qna.space_qna_no }">
 									<input type="hidden" name="space_no" value="${space_qna.space_no }">
-									<input type="hidden" name="user_id" value="kmk4204">
+									<input type="hidden" name="user_id" value="${user_id }">
 									<table>
 									<tr>
 										<td>제목</td>
@@ -144,8 +145,6 @@
 				</div>
 				</div>
 			</jl:forEach>
-
-			<hr/>
 			<!-- space q&a 쓰는 곳 -->
 			
 			<form method="POST" action="add_space_qna.do">
@@ -164,11 +163,12 @@
 			</table>
 			
 			<!-- user_id 보내는거 수정해야됨 -->
-			<input type="hidden" name="user_id" value="kmk4204">
+			<input type="hidden" name="user_id" value="${user_id }">
 			<input type="hidden" name="space_no" value="${space.space_no }">
 			<input type="submit">
 			</form>
 		</div>
+			
 		
 		<!-- 후기 -->
 		<div class="col-xs-6">
@@ -179,7 +179,7 @@
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								제목 :
-								<a data-toggle="collapse" data-parent="#accordion${review.review_no }" href="#collapse${review.review_no }" class="collapsed">
+								<a data-toggle="collapse" data-parent="#accordion${review.review_no }" href="#collapse_review${review.review_no }" class="collapsed">
 									 ${review.review_title } <br/>
 								</a>
 								작성자: ${review.user_id }
@@ -187,26 +187,32 @@
 						</div>
 					</div>
 				
-				<div id="collapse${review.review_no }" Class="panel-collpase collapse">
+				<div id="collapse_review${review.review_no }" Class="panel-collpase collapse">
 					<div class="panel-body">
-						<table>
-							<tr> 
-								<td>내용</td>
-								<td>${review.review_content }</td>
-							</tr>
-							<tr>
-								<td>작성 시간</td>
-								<td>${review.the_time }</td>
-							</tr>
-						</table>
-							<a href="">후기 삭제</a>
+						<div class="col-xs-4"><img src="review_img/${review.review_img }" width="200" height="60" alt="썸네일"></div>
+						<div class="col-xs-8">
+							<table>
+								<tr> 
+									<td>내용</td>
+									<td>${review.review_content }</td>
+									<td>평점</td>
+									<td>${review.review_score }</td>
+								</tr>
+								<tr>
+									<td>작성 시간</td>
+									<td>${review.the_time }</td>
+								</tr>
+								
+							</table>
+							<a href="del_review.do?review_no=${review.review_no }&space_no=${review.space_no}">후기 삭제</a>
+						</div>
 					</div>
 				</div>
 				</div>
-			</jl:forEach>>
+			</jl:forEach>
 			
 			<form method="POST" action="review_add.do">
-				<input type="hidden" name="user_id" value="kmk4204">
+				<input type="hidden" name="user_id" value="${user_id }">
 				<input type="hidden" name="space_no" value="${space.space_no }">
 				<input type="submit" value="후기 작성">
 			</form>

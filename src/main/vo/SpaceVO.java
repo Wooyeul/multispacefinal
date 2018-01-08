@@ -123,6 +123,12 @@ public class SpaceVO {
 	public String space_call;
 	public String zipcode;
 	public Integer s_category_no;
+	public Integer getS_category_no() {
+		return s_category_no;
+	}
+	public void setS_category_no(Integer s_category_no) {
+		this.s_category_no = s_category_no;
+	}
 	public Integer l_category_no;
 	public String the_time;
 	public SpaceVO(){}

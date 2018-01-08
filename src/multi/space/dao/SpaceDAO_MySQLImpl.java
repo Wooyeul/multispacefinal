@@ -39,9 +39,9 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 	}
 
 	@Override
-	public List<ClubVO> find_user_club() throws Exception {
+	public List<ClubVO> find_user_club(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("space.find_user_club");
+		return sqlSession.selectList("space.find_user_club",user_id);
 	}
 
 	@Override

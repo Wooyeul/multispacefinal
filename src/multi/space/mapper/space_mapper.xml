@@ -39,7 +39,7 @@
 	
 	<select id="find_user_club" parameterType="java.lang.String" resultType="main.vo.ClubVO">
 		SELECT club_name FROM ClubT WHERE club_no IN (
-		SELECT club_no FROM user_clubt WHERE user_id='kmk4204')
+		SELECT club_no FROM user_clubt WHERE user_id='(?)')
 	</select>
 	
 	<select id="find_host_by_space_no" parameterType="main.vo.SpaceVO" resultType="main.vo.HostVO">

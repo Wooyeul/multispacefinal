@@ -11,6 +11,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
@@ -62,13 +63,12 @@ public class CtrlSpace {
 	//공간 등록 페이지
 	@RequestMapping("/space_add.do")
 	public String space_add() throws Exception{
-		System.out.println("hi");
 		return "space_add";
 	}
 	
 	//공간 등록 작업
 	@RequestMapping("/space_add2.do")
-	public ModelAndView space_add2(HttpServletRequest request) throws Exception{
+	public ModelAndView space_add2(HttpServletRequest request,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("redirect:/space_add_clear.jsp");
 		//String savePath = request.getServletContext().getRealPath("images");
 		String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\thumbnail";
@@ -96,16 +96,15 @@ public class CtrlSpace {
 		Integer max_people = StringToInteger(max_people_str);
 		
 		String space_call = mpr.getParameter("space_call");
-		String c_category_no_str = mpr.getParameter("c_category_no");
-		Integer c_category_no = StringToInteger(c_category_no_str);
-		System.out.println(c_category_no);
+		String s_category_no_str = mpr.getParameter("s_category_no");
+		Integer s_category_no = StringToInteger(s_category_no_str);
 		
 		String l_category_no_str = mpr.getParameter("l_category_no");
 		Integer l_category_no = StringToInteger(l_category_no_str);
 		
 		vo.setCrn(crn); vo.setSpace_title(space_title); vo.setSpace_content(space_content); vo.setSpace_thumb_img(space_thumb_img); vo.setOpen_time(open_time);
 		vo.setClose_time(close_time); vo.setPrice(price); vo.setMin_people(min_people); vo.setMax_people(max_people); vo.setSpace_call(space_call);
-		vo.setC_category_no(c_category_no); vo.setL_category_no(l_category_no);
+		vo.setS_category_no(s_category_no); vo.setL_category_no(l_category_no);
 		
 		spaceDAO.add_space(vo);
 		return mnv;
@@ -114,7 +113,7 @@ public class CtrlSpace {
 	//공간 상세
 	@RequestMapping("/space_detail.do")
 	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
-			@ModelAttribute ReviewVO reviewVO) throws Exception{
+			@ModelAttribute ReviewVO reviewVO,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
@@ -122,21 +121,24 @@ public class CtrlSpace {
 		mnv.addObject("space", space);
 		mnv.addObject("list_space_qna", list_space_qna);
 		mnv.addObject("list_review", list_review);
+		mnv.addObject("user_id", user_id);
 		return mnv;
 	}
 	
 	//공간 예약
 	@RequestMapping("/space_reservation.do")
-	public ModelAndView space_reseravtion_find_by_pk(@ModelAttribute SpaceVO spaceVO) throws Exception{
+	public ModelAndView space_reseravtion_find_by_pk(@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_reservation");
+		
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		/*
 		 나중에 수정해야함. 지금은 kmk4204로만 찾아옴. 로그인, 유저 연동하면 로그인 된 유저가
 		가입된 클럽을 찾아올 수 있도록 수정*/
-		List<ClubVO> club_list = spaceDAO.find_user_club();
+		List<ClubVO> club_list = spaceDAO.find_user_club(user_id);
 		
 		mnv.addObject("club_list", club_list);			
 		mnv.addObject("space", space);
+		mnv.addObject("user_id", user_id);
 		return mnv;
 	}
 	
@@ -238,6 +240,13 @@ public class CtrlSpace {
 		reviewVO.setReview_score(review_score);
 		
 		reviewDAO.add_review(reviewVO);
+		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no();
+	}
+	
+	//후기 삭제
+	@RequestMapping("/del_review.do")
+	public String del_review(@ModelAttribute ReviewVO reviewVO) throws Exception{
+		reviewDAO.del_review(reviewVO);
 		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no();
 	}
 	

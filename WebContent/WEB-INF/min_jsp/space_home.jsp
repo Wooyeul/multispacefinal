@@ -20,7 +20,7 @@
 		<table border="1">
 		<jl:forEach var="vo" items="${list }">
 			<tr>
-				<td><a href="space_detail.do?space_no=${vo.space_no }"><img src="thumbnail/${vo.space_thumb_img }"/></a></td>
+				<td><a href="space_detail.do?space_no=${vo.space_no }"><img src="thumbnail/${vo.space_thumb_img }" alt="공간 사진 없음"/></a></td>
 				<td>${vo.space_no }</td>
 				<td>${vo.crn }</td>
 			</tr>

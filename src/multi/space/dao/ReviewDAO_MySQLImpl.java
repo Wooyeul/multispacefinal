@@ -23,4 +23,10 @@ public class ReviewDAO_MySQLImpl implements ReviewDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("review.find_review_by_space_no",vo);
 	}
+
+	@Override
+	public Integer del_review(ReviewVO reviewVO) throws Exception {
+		return sqlSession.delete("review.del_review_by_review_no",reviewVO);
+		
+	}
 }

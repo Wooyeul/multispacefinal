@@ -21,6 +21,13 @@
  	 		b.value=a.value;
  	 	}
  	 	
+ 	 	$("document").ready(function(){
+ 	 		$("#sub").on("click",function(){
+ 	 			$("#open_time").removeAttr("disabled");
+ 	 			$("#close_time").removeAttr("disabled");
+ 	 			$("#sub").attr("type","submit");
+ 	 		});
+ 	 	});
  	 </script>
 </head>
 <body>
@@ -29,10 +36,9 @@
 		ADD
 		</h1>
 		<form method="POST" action="space_add2.do" enctype="multipart/form-data">
-			<div class="form-group">
-				<label for="crn">사업자번호(나중에는 db에서 뽑아올 예정)</label>
-				<input type="text" id="crn" name="crn" class="form-control"/>
-			</div>
+			<!-- crn 수정해야함. 현재는 crn만 들어감. hostT에서 뽑아와서 들어가게 해야함. -->
+			<input type="hidden" id="crn" name="crn" value="crn" class="form-control"/>
+			
 			<div class="form-group">
 				<label for="space_title">공간 이름</label>
 				<input type="text" id="space_title" name="space_title" class="form-control"/>
@@ -47,13 +53,13 @@
 			</div>
 			<div class="form-group">
 				<label for="open_time">시작 시간</label>
-				<input id="open_time_range" type="range" min="0" max="24" onchange="openTimeChange();"/>
-				<input id="open_time" name="open_time" type="number" min="0" max="24" value="0"/>시
+				<input id="open_time_range" type="range" value="0" min="0" max="24" onchange="openTimeChange();"/>
+				<input id="open_time" name="open_time" type="number" min="0" max="24" value="0" disabled="disabled"/>시
 			</div>
 			<div class="form-group">
 				<label for="close_time">종료 시간</label>
-				<input id="close_time_range" type="range" min="0" max="24" onchange="closeTimeChange();"/>
-				<input id="close_time" name="close_time" type="number" min="0" max="24" value="24"/>시
+				<input id="close_time_range" type="range" value="24" min="0" max="24" onchange="closeTimeChange();"/>
+				<input id="close_time" name="close_time" type="number" min="0" max="24" value="24" disabled="disabled"/>시
 			</div>
 			
 			<div class="form-group">
@@ -84,14 +90,14 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="c_category_no">카테고리</label>
-				<label class="checkbox-inline"><input type="checkbox" name="c_category_no" value="1">스포츠</label>
-				<label class="checkbox-inline"><input type="checkbox" name="c_category_no" value="2">공부</label>
-				<label class="checkbox-inline"><input type="checkbox" name="c_category_no" value="3">파티</label>
-				<label class="checkbox-inline"><input type="checkbox" name="c_category_no" value="4">취미생활</label>
+				<label for="s_category_no">카테고리</label>
+				<label class="checkbox-inline"><input type="checkbox" name="s_category_no" value="1">스포츠</label>
+				<label class="checkbox-inline"><input type="checkbox" name="s_category_no" value="2">공부</label>
+				<label class="checkbox-inline"><input type="checkbox" name="s_category_no" value="3">파티</label>
+				<label class="checkbox-inline"><input type="checkbox" name="s_category_no" value="4">취미생활</label>
 			</div>
 			
-			<input type="submit" class="submit"/>
+			<input type="button" id="sub" value="등록"/>
 		</form>
 	</div>
 </body>

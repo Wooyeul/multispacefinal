@@ -212,7 +212,7 @@
 						</tr>
 					</table>
 					
-					<input type="hidden" value="kmk4204" id="user_id" name="user_id"/>
+					<input type="hidden" value="${user_id }" id="user_id" name="user_id"/>
 					<input type="hidden" value="${space.space_no }" name="space_no"/>
 				
 					<input id="pay" type="button" value="결제하기"/>

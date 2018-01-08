@@ -17,6 +17,10 @@
 		SELECT * FROM ReviewT WHERE space_no=#{space_no}
 	</select>
 	
+	<delete id="del_review_by_review_no" parameterType="main.vo.ReviewVO">
+		DELETE FROM ReviewT WHERE review_no=#{review_no}
+	</delete>
+	
 
 </mapper>
 
