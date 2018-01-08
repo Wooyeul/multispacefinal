@@ -43,16 +43,36 @@ taglib
 </head>
 <body>
 	<div class="jumbotron" style="background-color: orange">
-		<h1>관리자 1:1 쪽지 보내기</h1>
+		<h1>관리자 1:1 보낸 쪽지 보관함</h1>
 	</div>
-	<form action="admin_writing_message.do" class="form-group" method="POST" name="frm">
-		<input type="hidden" name="send_user_id" value="admin" />
-		받는 사람 : <input type="text" name="receive_user_id" size="30" /> <br>
-		<br> 쪽지 내용:
-		<textarea name="msg_content" rows="10" cols="60"></textarea>
-		<br> <input class="btn btn-success" type="submit" value="메시지 보내기" />
-		<input type="button"class="btn btn-success" id="cancel" value="취소하기"/>
-	</form>
+	
+	<table border="1">
+		<tr>
+			<td>쪽지 번호</td>
+			<td>보낸 유저 ID</td>
+			<td>받는 유저 ID</td>
+			<td>쪽지 내용</td>
+			<td>작성 시간</td>
+			<td>수신 확인</td>
+		</tr>
+		<jl:forEach var="vo" items="${ls}">
+		<tr>
+			<td>${vo.msg_no}</td>
+			<td>${vo.send_user_id }</td>
+			<td>${vo.receive_user_id}</td>
+			<td>${vo.msg_content}</td>
+			<td>${vo.the_time }</td>
+			<jl:choose>
+				<jl:when test="${vo.view_count == 0}">
+					<td>읽지 않음</td>
+				</jl:when>
+				<jl:when test="${vo.view_count >= 1}">
+					<<td>읽음</td>
+			</jl:when>
+			</jl:choose>
+		</tr>
+		</jl:forEach>
+	</table>
 
 </body>
 </html>

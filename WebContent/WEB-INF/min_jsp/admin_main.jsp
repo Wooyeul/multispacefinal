@@ -334,7 +334,7 @@ aside#left {
 			<li id="message">쪽지 관리</li>
 			<li id="sending_message"><a target="iframe1" href="admin_message_write.do">쪽지 보내기</a></li>
 			<li id="have_messages"><a target="iframe1" href="admin_message_read_get.do">받은 쪽지함</a></li>
-			<li id="to_messages"><a target="iframe1" href="admin_o2oQnA.do">보낸 쪽지함</a></li>
+			<li id="to_messages"><a target="iframe1" href="admin_message_read_to.do">보낸 쪽지함</a></li>
 		</ul>
 	</aside>
 	

@@ -43,7 +43,7 @@ taglib
 </head>
 <body>
 	<div class="jumbotron" style="background-color: orange">
-		<h1>관리자 1:1 쪽지 보관함</h1>
+		<h1>관리자 1:1 받은 쪽지 보관함</h1>
 	</div>
 	
 	<table border="1">
@@ -55,9 +55,23 @@ taglib
 			<td>작성 시간</td>
 			<td>수신 확인</td>
 		</tr>
+		<jl:forEach var="vo" items="${ls}">
 		<tr>
-			
+			<td>${vo.msg_no}</td>
+			<td>${vo.send_user_id }</td>
+			<td>${vo.receive_user_id}</td>
+			<td>${vo.msg_content}</td>
+			<td>${vo.the_time }</td>
+			<jl:choose>
+				<jl:when test="${vo.view_count == 0}">
+					<td>읽지 않음</td>
+				</jl:when>
+				<jl:when test="${vo.view_count >= 1}">
+					<<td>읽음</td>
+			</jl:when>
+			</jl:choose>
 		</tr>
+		</jl:forEach>
 	</table>
 
 </body>

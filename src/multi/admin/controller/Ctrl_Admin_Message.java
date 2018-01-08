@@ -47,7 +47,16 @@ public class Ctrl_Admin_Message {
 	@RequestMapping("/admin_message_read_get.do")
 	public ModelAndView admin_message_read_get( @ModelAttribute MessageVO mvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_message_read_get");
-		
+		List<MessageVO> ls = admin_MessageDAO.findAllGetMessages();
+		mnv.addObject("ls", ls);
+		return mnv;
+	}
+	
+	@RequestMapping("/admin_message_read_to.do")
+	public ModelAndView admin_message_read_to( @ModelAttribute MessageVO mvo ) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_message_read_to");
+		List<MessageVO> ls = admin_MessageDAO.findToGetMessages();
+		mnv.addObject("ls", ls);
 		return mnv;
 	}
 }

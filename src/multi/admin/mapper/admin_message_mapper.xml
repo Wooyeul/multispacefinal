@@ -47,7 +47,7 @@
 		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
 		<result property="view_count" column="view_count" jdbcType="INTEGER" />
 	</resultMap>
-	<select id="p_p_admin_get_Allmessage" statementType="CALLABLE" resultMap="RM_p_admin_get_Allmessage">
+	<select id="p_admin_get_Allmessage" statementType="CALLABLE" resultMap="RM_p_admin_get_Allmessage">
 		{call p_admin_get_Allmessage()}
 	</select>
 	
