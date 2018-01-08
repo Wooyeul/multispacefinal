@@ -100,7 +100,7 @@ li a:hover {
 	<div class="row">
 		<div class="col-sm-2">
 		 <ul class="nav" >
-		      <li class="active"><a data-toggle="tab" href="#myInfo">내 정보</a></li>
+		      <li class="active"><a data-toggle="tab" href="#myInfo">[내 정보]</a></li>
 		      <li><a data-toggle="tab" href="#myBooking">구매 정보</a></li>
 		      <li><a data-toggle="tab" href="#myBookmark">즐겨찾기</a></li>
 		      <li><a data-toggle="tab" href="#myQna">Q&A</a></li>
@@ -112,8 +112,15 @@ li a:hover {
 				      <li id="sendMessageBox"><a data-toggle="tab" href="#mySendMessageBox">보낸 쪽지함</a></li>
 				      <li id="sendMessage"><a data-toggle="tab" href="#mySendMessage">쪽지 보내기</a></li>
 				   </ul>
+
+<li><a data-toggle="tab" href="#sellerWrite">[판매자]</a></li>
+			<li><a data-toggle="tab" href="#sellerWrite">내 글</a></li>	
+			<li><a data-toggle="tab" href="#sellerAllChart">전체 통계</a></li>
+
 		   </ul>
 	</div>
+	
+
 	
 	
 	<div class="tab-content col-sm-10" >
@@ -146,6 +153,16 @@ li a:hover {
 		</div>
 		<div id="mySendMessage"   class="tab-pane fade">
 			<iframe src="mypage_moveMypageWriteMessagePage.do"  align="center"></iframe>
+		</div>
+		
+		<!-- **************** 마이페이지-판매자 *************** -->
+		
+		<div id="sellerWrite"   class="tab-pane fade">
+			<iframe src=""  align="center"></iframe>
+		</div>
+		
+		<div id="sellerAllChart"   class="tab-pane fade">
+			<iframe src=""  align="center"></iframe>
 		</div>
 	</div>
 	
