@@ -122,6 +122,28 @@ DROP PROCEDURE IF EXISTS p_comm_boardAdd;
 		{call p_comm_boardFindText(?)}
 	</select>
 
+<!-- 프로시져 p_comm_boardFindMyText 
+	
+	DROP PROCEDURE IF EXISTS p_comm_boardFindMyText;
+	DELIMITER $$
+	CREATE PROCEDURE p_comm_boardFindMyText(
+	IN v_user_id  VARCHAR(20)
+	)
+	BEGIN
+		SELECT * FROM Community_BoardT where user_id =  v_user_id;
+	END$$
+	DELIMITER ;
+
+
+-->
+
+	<select id="p_comm_boardFindMyText" statementType="CALLABLE"
+		resultMap="RM_Community_board" parameterType="java.lang.String">
+		{call p_comm_boardFindMyText(#{user_id})}
+	</select>
+
+
+
 
 <!-- 프로시져 p_comm_boardMod
 	DROP PROCEDURE IF EXISTS p_comm_boardMod;
@@ -368,6 +390,6 @@ parameterMap ="PM_p_comm_boradrepleFindAllTexts">
 	{call p_comm_boradrepleFindAllTexts(?)}
 </select>
 
-   
+
 </mapper>
 
