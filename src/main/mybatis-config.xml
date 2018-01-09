@@ -52,6 +52,7 @@
 		<mapper resource="multi/admin/mapper/admin_space_mapper.xml" />
 		<mapper resource="multi/admin/mapper/admin_clubs_mapper.xml" />
 		<mapper resource="multi/admin/mapper/admin_message_mapper.xml" /> 
+		<mapper resource="multi/admin/mapper/admin_event_mapper.xml" /> 
 		<!-- 이양재 -->
 
 		<!-- 안수진 -->

@@ -19,12 +19,6 @@ public class CtrlMypageMyHost {
 	@Autowired @Qualifier("myhostDAO")
 	private MyHostDAO myhostDAO;
 	
-	@RequestMapping("/temp3.do")
-	public ModelAndView temp(){
-		ModelAndView mnv = new ModelAndView("myhost_findAll");
-		
-		return mnv;
-	}
 	
 	@RequestMapping("/myhost_findAll.do")
 	public ModelAndView findHost(@ModelAttribute HostVO hvo) throws Exception{

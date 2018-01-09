@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
-taglib
-	prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +60,11 @@ taglib
 			<td>${vo.msg_no}</td>
 			<td>${vo.send_user_id }</td>
 			<td>${vo.receive_user_id}</td>
-			<td>${vo.msg_content}</td>
+			
+			<jl:set var = "string1" value = "${vo.msg_content}"/>
+      		<jl:set var = "string2" value = "${fn:substring(string1, 1, 15)}" />
+			<td>${string2}&nbsp;<a href="#">쪽지 자세히 보기</a></td>
+			
 			<td>${vo.the_time }</td>
 			<jl:choose>
 				<jl:when test="${vo.view_count == 0}">

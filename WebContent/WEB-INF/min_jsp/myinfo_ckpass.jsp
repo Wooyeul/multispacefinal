@@ -8,8 +8,6 @@
 </head>
 <body>
 	<form action="mypage_mod_user.do" method="POST">
-		아이디를 입력하세요 : 
-		<input type="text" name="user_id"/>
 		패스워드를 입력하세요 : 
 		<input type="password" name="passwd" size="20"/>
 		<input type="submit" value="확인"/>

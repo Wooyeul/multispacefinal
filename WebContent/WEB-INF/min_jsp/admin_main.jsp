@@ -323,7 +323,7 @@ aside#left {
 			
 			<li id="admin_user">공지 항목 관리</li>
 			<li id="admin_announcement"><a target="iframe1" href="admin_notice_list.do">공지 관리</a></li>
-			<li id="admin_event"><a target="iframe1" href="admin_event.do">이벤트 관리</a></li>
+			<li id="admin_event"><a target="iframe1" href="admin_event_list.do">이벤트 관리</a></li>
 			<li id="admin_faq"><a target="iframe1" href="admin_faq.do">FAQ 관리</a></li>
 			
 			<li id="one_one">1:1 관리</li>
