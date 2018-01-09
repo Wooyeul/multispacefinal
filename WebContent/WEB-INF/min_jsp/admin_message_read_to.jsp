@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
@@ -25,18 +24,23 @@
 
 </style>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
 	$(document).ready(function(){
+		alert();
+		$("#repleModal").modal("show");
+		
+		
+		
 		$("#cancel").on("click",function(){
 			document.frm.method="POST";
 			document.frm.action="admin_message_write.do";
 			document.frm.submit();
 		});
+		
+		
 	});
 
 </script>
@@ -66,6 +70,7 @@
 			<td>${string2}&nbsp;<a href="#">쪽지 자세히 보기</a></td>
 			
 			<td>${vo.the_time }</td>
+			
 			<jl:choose>
 				<jl:when test="${vo.view_count == 0}">
 					<td>읽지 않음</td>
@@ -77,6 +82,16 @@
 		</tr>
 		</jl:forEach>
 	</table>
+	
+	<div id="repleModal" class="modal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					HelloWorld
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
