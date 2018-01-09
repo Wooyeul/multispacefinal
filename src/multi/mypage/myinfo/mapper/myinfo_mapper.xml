@@ -19,10 +19,6 @@
 	</select>
 	
 	
-	<parameterMap type="main.vo.UserVO" id="PM_find_user">
-		<parameter property="user_id" mode="IN"/>
-	</parameterMap>
-	
 	<resultMap type="main.vo.UserVO" id="RM_find_user">
 		<result property="user_id" column="user_id"/>
 		<result property="ssn1" column="ssn1"/>
@@ -36,8 +32,8 @@
 	</resultMap>
 	
 	
-	<select id="p_mypage_find_user" parameterMap="PM_find_user" resultMap="RM_find_user"  statementType="CALLABLE">
-		{call p_mypage_find_user(?)}
+	<select id="p_mypage_find_user" parameterType="java.lang.String" resultMap="RM_find_user"  statementType="CALLABLE">
+		{call p_mypage_find_user(#{user_id})}
 	</select>
 	
 	<parameterMap type="main.vo.UserVO" id="PM_mypage_mod_user">
@@ -53,12 +49,9 @@
 	</update>
 	
 	
-	<parameterMap type="main.vo.UserVO" id="PM_del_user">
-		<parameter property="user_id" mode="IN"/>
-	</parameterMap>
 	
-	<delete id="p_mypage_del_user" parameterMap="PM_del_user" statementType="CALLABLE">
-		{call p_mypage_del_user(?)}
+	<delete id="p_mypage_del_user" parameterType="java.lang.String" statementType="CALLABLE">
+		{call p_mypage_del_user(#{user_id})}
 	</delete>
 	
 	

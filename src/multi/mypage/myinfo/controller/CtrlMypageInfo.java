@@ -43,17 +43,18 @@ public class CtrlMypageInfo {
 	}
 	
 	@RequestMapping("/mypage_mod_user.do")
-	public ModelAndView modUser(@ModelAttribute UserVO uvo) throws Exception{
+	public ModelAndView modUser(@CookieValue("user_id")String user_id,@ModelAttribute UserVO uvo) throws Exception{
 		
 		ModelAndView mnv = new ModelAndView();
 		
+		uvo.setUser_id(user_id);
 		int r = myInfoDAO.ckpass(uvo);
 		
 		if(r==0){
 			mnv.setViewName("myinfo_fail");
 		} else if( r==1){
 			mnv.setViewName("myinfo_mod_form");
-			UserVO rvo = myInfoDAO.find_user(uvo);
+			UserVO rvo = myInfoDAO.find_user(user_id);
 			String phone_cen = rvo.getPhone().substring(2,4);
 			String phone_end = rvo.getPhone().substring(4);
 			String email = rvo.getEmail().substring(0, rvo.getEmail().indexOf("@"));
@@ -91,10 +92,9 @@ public class CtrlMypageInfo {
 	}
 	
 	@RequestMapping("/myinfo_delete.do")
-	public String myinfo_delete(@ModelAttribute UserVO uvo) throws Exception{
-		System.out.println(uvo.getUser_id());
+	public String myinfo_delete(@CookieValue("user_id") String user_id) throws Exception{
 		
-		myInfoDAO.del_user(uvo);
+		myInfoDAO.del_user(user_id);
 		
 		return "redirect:/myinfo_del_complete.do";
 	}

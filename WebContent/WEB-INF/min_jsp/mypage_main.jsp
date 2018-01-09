@@ -127,7 +127,7 @@ li a:hover {
 		<div id="myInfo"  class="tab-pane active fade in">	
 			<iframe src="myinfo_ckpass.do"  align="center"></iframe>
 		</div>
-		<div id="#myBooking" class="tab-pane fade">
+		<div id="myBooking" class="tab-pane fade">
 			<iframe src="mypage_moveMypageBookingPage.do"  align="center"></iframe>
 		</div>
 		<div id="myBookmark"   class="tab-pane fade">
@@ -137,13 +137,10 @@ li a:hover {
 			<iframe src="mypage_moveMypageQnAPage.do"  align="center"></iframe>
 		</div>
 		<div id="myClub"   class="tab-pane fade">
-			<iframe src=""  align="center"></iframe>
+			<iframe src="myclub_findAll.do"  align="center"></iframe>
 		</div>
 		<div id="myReview"   class="tab-pane fade">
 			<iframe src="PMreview_findAll.do"  align="center"></iframe>
-		</div>
-		<div id="myClub"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageWriteMessagePage.do"  align="center"></iframe>
 		</div>
 		<div id="myReceiveMessageBox"   class="tab-pane fade">
 			<iframe src="mypage_moveMypageReceiveMessagePage.do"  align="center"></iframe>
@@ -158,7 +155,7 @@ li a:hover {
 		<!-- **************** 마이페이지-판매자 *************** -->
 		
 		<div id="sellerWrite"   class="tab-pane fade">
-			<iframe src=""  align="center"></iframe>
+			<iframe src="myhost_findAll.do"  align="center"></iframe>
 		</div>
 		
 		<div id="sellerAllChart"   class="tab-pane fade">

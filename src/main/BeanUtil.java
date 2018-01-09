@@ -105,7 +105,6 @@ public class BeanUtil
 			pn.equals("c_board_reple_content")||
 			pn.equals("c_board_subject")||
 			pn.equals("msg_content")); 
-		
 	}
 	
 	//	String l2 = BeanUtil.toPropName( l );

@@ -18,13 +18,6 @@ public class CtrlMypageMyclub {
 	@Autowired @Qualifier("myclubDAO")
 	private MyclubDAO myclubDAO;
 	
-	@RequestMapping("/temp2.do")
-	public ModelAndView temp(){
-		ModelAndView mnv = new ModelAndView("myclub_findAll");
-		
-		return mnv;
-	}
-	
 	@RequestMapping("/myclub_findAll.do") 
 	public ModelAndView findMyclub(@ModelAttribute ClubVO mvo){
 		
