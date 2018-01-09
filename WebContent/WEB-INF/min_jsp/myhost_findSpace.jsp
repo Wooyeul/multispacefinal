@@ -9,6 +9,11 @@ $(document).ready(function(){
 	$(".space_no").on("click",function(){
 		var temp = $(this).attr("abc");
 		alert(temp);
+		
+		document.frm.method="POST";
+		document.frm.action="space_detail.do?space_no="+temp;
+		document.frm.submit();
+		
 	});
 });
 </script>
@@ -17,7 +22,12 @@ $(document).ready(function(){
 <title>Insert title here</title>
 </head>
 <body>
-${user_id}
+	<form action="myhost_addForm.do" method="POST">
+		<input type="submit" value="공간추가등록"/>
+		<input type="hidden" name="user_id" value="${user_id}"/>
+	</form>
+
+	<form name="frm">
 	<table border="1">
 		<jl:forEach var="ab" items="${rl}" >
 			<tr>
@@ -27,11 +37,9 @@ ${user_id}
 			</tr>
 		</jl:forEach>
 	</table>
-	
-	<form action="myhost_addForm.do" method="POST">
-		<input type="submit" value="공간추가등록"/>
-		<input type="hidden" name="user_id" value="${user_id}"/>
 	</form>
+	
+
 	
 	
 </body>

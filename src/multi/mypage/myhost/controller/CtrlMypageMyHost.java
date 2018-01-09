@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
@@ -21,15 +22,15 @@ public class CtrlMypageMyHost {
 	
 	
 	@RequestMapping("/myhost_findAll.do")
-	public ModelAndView findHost(@ModelAttribute HostVO hvo) throws Exception{
+	public ModelAndView findHost(@CookieValue("user_id") String user_id,@ModelAttribute HostVO hvo) throws Exception{
 		
 		ModelAndView mnv = new ModelAndView();
-		int flag = myhostDAO.ckhost(hvo);
-		mnv.addObject("user_id", hvo.user_id);
+		int flag = myhostDAO.ckhost(user_id);
+		mnv.addObject("user_id", user_id);
 		if(flag >= 1){
 			//이미 판매자일때
 			mnv.setViewName("myhost_findSpace");
-			List<SpaceVO> rl = myhostDAO.findMySpace(hvo);
+			List<SpaceVO> rl = myhostDAO.findMySpace(user_id);
 			mnv.addObject("rl", rl);
 		} else if(flag == 0 ){	
 			//판매자 아닐때

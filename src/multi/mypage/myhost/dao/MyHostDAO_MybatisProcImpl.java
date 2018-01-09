@@ -15,8 +15,8 @@ public class MyHostDAO_MybatisProcImpl implements MyHostDAO {
 	private SqlSession  sqlSession = null; 
 	
 	@Override
-	public int ckhost(HostVO hvo) throws Exception {
-		return sqlSession.selectOne("myhost.p_ckhost",hvo);
+	public int ckhost(String user_id) throws Exception {
+		return sqlSession.selectOne("myhost.p_ckhost",user_id);
 	}
 
 	@Override
@@ -25,8 +25,8 @@ public class MyHostDAO_MybatisProcImpl implements MyHostDAO {
 	}
 
 	@Override
-	public List<SpaceVO> findMySpace(HostVO hvo) throws Exception {
-		return sqlSession.selectList("myhost.p_findspaceBycrn",hvo);
+	public List<SpaceVO> findMySpace(String user_id) throws Exception {
+		return sqlSession.selectList("myhost.p_findspaceBycrn",user_id);
 	}
 
 }
