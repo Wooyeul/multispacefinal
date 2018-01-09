@@ -19,7 +19,7 @@ public class ModelAndView {
 	private Map<String,Object> objMap = null;
 	
 	public ModelAndView() {
-
+ 
 	}
 	
 	public ModelAndView( String vn ) {
