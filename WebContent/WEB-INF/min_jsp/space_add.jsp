@@ -36,8 +36,9 @@
 		ADD
 		</h1>
 		<form method="POST" action="space_add2.do" enctype="multipart/form-data">
-			<!-- crn 수정해야함. 현재는 crn만 들어감. hostT에서 뽑아와서 들어가게 해야함. -->
-			<input type="hidden" id="crn" name="crn" value="crn" class="form-control"/>
+			<jl:forEach var="vo" items="${host }">
+				<input type="text" id="crn" name="crn" value="crn" class="form-control"/>
+			</jl:forEach>
 			
 			<div class="form-group">
 				<label for="space_title">공간 이름</label>

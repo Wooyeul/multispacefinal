@@ -20,6 +20,10 @@
 	<delete id="delete_spaceQnA_by_spane_qna_no" parameterType="main.vo.Space_qnaVO">
 		DELETE FROM Space_QnAT WHERE space_qna_no=#{space_qna_no}
 	</delete>
+	
+	<select id="find_spaceQnA_by_space_qna_no" parameterType="main.vo.Space_qnaVO" resultType="main.vo.Space_qnaVO">
+		SELECT * FROM Space_QnAT WHERE space_qna_no=#{space_qna_no}
+	</select>
 
 </mapper>
 

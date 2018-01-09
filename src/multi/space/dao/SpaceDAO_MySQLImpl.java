@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
+import multi.space.vo.Space_searchVO;
 
 public class SpaceDAO_MySQLImpl implements SpaceDAO {
 
@@ -67,6 +68,12 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 	public String find_s_category_by_space_no(SpaceVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("space.find_s_category_by_space_no",vo);
+	}
+
+	@Override
+	public List<SpaceVO> search_space(Space_searchVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("space.search_space",vo);
 	}
 
 	

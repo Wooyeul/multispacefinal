@@ -15,6 +15,9 @@
 		<mapper resource="multi/space/mapper/space_QnA_mapper.xml" />
 		<mapper resource="multi/space/mapper/space_QnA_Reple_mapper.xml" />
 		<mapper resource="multi/space/mapper/review_mapper.xml" />
+		<mapper resource="multi/space/mapper/user_mapper.xml"/>
+		<mapper resource="multi/space/mapper/host_mapper.xml"/>
+		
 		<mapper resource="multi/home/userjoin/mapper/userjoin_mapper.xml" />
 		<mapper resource="multi/mypage/myinfo/mapper/myinfo_mapper.xml" />
 		<mapper resource="multi/mypage/mybookmark/mapper/bookmark_mapper.xml" />

@@ -11,6 +11,9 @@
  <script src="common.js" type="text/javascript"></script>
  	<script>
  		$(document).ready(function(){
+ 			if("${code }"==10001){
+ 				alert("본인만 삭제가 가능합니다.");
+ 			}
  			
  			$("#call").on("click",function(){
  				alert("${space.space_call } 모달로 바꿀 예정");

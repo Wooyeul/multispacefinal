@@ -26,7 +26,7 @@
 		<a href="space_add.do">공간 등록</a>
 		<hr/>
 		<hr/>
-		<form>
+		<form target="boy" action="space_home_iframe_search.do">
 			<div class="form-group">
 				<label for="s_category_no">카테고리</label>
 				<jl:forEach var="category" items="${category_list }">
@@ -39,10 +39,17 @@
 					<label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
 				</jl:forEach>
 			</div>
+			<select name="search_option">
+				<option value="0"></option>
+				<option value="1">제목</option>
+				<option value="2">내용</option>
+				<option value="3">제목+내용</option>
+			</select>
+			<input type="text" name="search_content"/>
 			<input type="submit" value="제출">
 		</form>
 		<hr/>
-		<iframe id="boy" src="space_home_iframe.do" width="100%" frameborder="0"></iframe>
+		<iframe id="boy" name="boy" src="space_home_iframe.do" width="100%" frameborder="0"></iframe>
 	</div>
 	
 </body>

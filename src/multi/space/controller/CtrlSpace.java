@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.sound.sampled.AudioFormat.Encoding;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +16,7 @@ import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
+import main.RequestParam;
 import main.ResponseBody;
 import main.vo.BookingVO;
 import main.vo.ClubVO;
@@ -25,11 +25,15 @@ import main.vo.ReviewVO;
 import main.vo.SpaceVO;
 import main.vo.Space_qnaVO;
 import main.vo.Space_qna_repleVO;
+import main.vo.UserVO;
 import multi.space.dao.BookingDAO;
+import multi.space.dao.HostDAO;
 import multi.space.dao.ReviewDAO;
 import multi.space.dao.SpaceDAO;
 import multi.space.dao.Space_QnADAO;
 import multi.space.dao.Space_QnA_RepleDAO;
+import multi.space.dao.UserDAO;
+import multi.space.vo.Space_searchVO;
 
 @Controller
 public class CtrlSpace {
@@ -53,6 +57,12 @@ public class CtrlSpace {
 	@Autowired @Qualifier("reviewDAO")
 	public ReviewDAO reviewDAO = null;
 	
+	@Autowired @Qualifier("userDAO")
+	public UserDAO userDAO = null;
+	
+	@Autowired @Qualifier("hostDAO")
+	public HostDAO hostDAO = null;
+	
 	//공간 첫화면
 	@RequestMapping("/space_home.do")
 	public ModelAndView space_home() throws Exception {
@@ -74,15 +84,38 @@ public class CtrlSpace {
 		return mnv;
 	}
 	
+	//공간 검색
+	@RequestMapping("/space_home_iframe_search.do")
+	public ModelAndView space_home_iframe_search(@ModelAttribute Space_searchVO search) throws Exception {
+		ModelAndView mnv = new ModelAndView("space_home_iframe_search");
+		List<SpaceVO> list = spaceDAO.search_space(search);
+		mnv.addObject("list", list);
+		return mnv;
+	}
+	
 	//공간 등록 페이지
 	@RequestMapping("/space_add.do")
-	public ModelAndView space_add() throws Exception{
+	public ModelAndView space_add(@CookieValue("user_id") String user_id) throws Exception{
+		if(user_id==null || user_id.length()<=1){
+			ModelAndView mnv = new ModelAndView("redirect:/home_moveLoginPage.do");
+			return mnv;
+		}
+		UserVO user2 = userDAO.find_user_by_user_id(user_id);
+		List<HostVO> host = hostDAO.find_host_by_user_id(user_id);
+		
+		//등급이 판매자가 아니면 홈화면으로 돌려보냄
+		if(user2.getGrade()!=2){
+			ModelAndView mnv = new ModelAndView("redirect:/space_home.do");
+			return mnv;
+		}
+		
 		ModelAndView mnv = new ModelAndView("space_add");
 		List<Map<Integer,String>> local_list = spaceDAO.find_l_category();
 		List<Map<Integer,String>> category_list = spaceDAO.find_s_category();
 		
 		mnv.addObject("local_list", local_list);
 		mnv.addObject("category_list", category_list);
+		mnv.addObject("host", host);
 		return mnv;
 	}
 	
@@ -133,7 +166,7 @@ public class CtrlSpace {
 	//공간 상세
 	@RequestMapping("/space_detail.do")
 	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
-			@ModelAttribute ReviewVO reviewVO,@CookieValue("user_id") String user_id) throws Exception{
+			@ModelAttribute ReviewVO reviewVO,@CookieValue("user_id") String user_id,@RequestParam("code") String code) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
@@ -144,13 +177,17 @@ public class CtrlSpace {
 		mnv.addObject("list_review", list_review);
 		mnv.addObject("user_id", user_id);
 		mnv.addObject("s_category", s_category);
+		mnv.addObject("code", code);
 		return mnv;
 	}
 	
 	//공간 예약
 	@RequestMapping("/space_reservation.do")
 	public ModelAndView space_reseravtion_find_by_pk(@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id) throws Exception{
-		
+		if(user_id==null || user_id.length()<=1){
+			ModelAndView mnv = new ModelAndView("redirect:/home_moveLoginPage.do");
+			return mnv;
+		}
 		ModelAndView mnv = new ModelAndView("space_reservation");
 		
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
@@ -164,7 +201,12 @@ public class CtrlSpace {
 	
 	//공간 결제 페이지
 	@RequestMapping("/space_payment.do")
-	public ModelAndView space_payment(@ModelAttribute BookingVO bookingVO,@ModelAttribute SpaceVO spaceVO) throws Exception{
+	public ModelAndView space_payment(@ModelAttribute BookingVO bookingVO,@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id) throws Exception{
+		System.out.println(user_id);
+		if(user_id==null || user_id.length()<=1 ){
+			ModelAndView mnv = new ModelAndView("redirect:/home_moveLoginPage.do");
+			return mnv;
+		}
 		ModelAndView mnv = new ModelAndView("space_payment");
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		HostVO host = spaceDAO.find_host_by_space_no(spaceVO);
@@ -186,21 +228,35 @@ public class CtrlSpace {
 	
 	//space qna등록
 	@RequestMapping("/add_space_qna.do")
-	public String add_space_qna(@ModelAttribute Space_qnaVO space_QnAVO) throws Exception{
+	public String add_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id) throws Exception{
+		if(user_id==null || user_id.length()<=1 ){
+			return "redirect:/home_moveLoginPage.do";
+		}
 		space_QnADAO.add_spaceQnA(space_QnAVO);
 		return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
 	}
 	
 	//space qna삭제
 	@RequestMapping("/delete_space_qna.do")
-	public String delete_space_qna(@ModelAttribute Space_qnaVO space_QnAVO) throws Exception{
+	public String delete_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id) throws Exception{
+		if(user_id==null|| user_id.length()<=1){
+			return "redirect:/home_moveLoginPage.do";
+		}
+		UserVO user = userDAO.find_user_by_user_id(user_id);
+		Space_qnaVO qna = space_QnADAO.find_space_QnA_by_space_qna_no(space_QnAVO);
+		if(user.getUser_id()!=qna.getUser_id()) {
+			return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&code=10001";
+		}
 		space_QnADAO.delete_spaceQnA_by_spane_qna_no(space_QnAVO);
 		return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
 	}
 	
 	//space reple 등록
 	@RequestMapping("/add_space_qna_reple.do")
-	public String add_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO) throws Exception{
+	public String add_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO,@CookieValue("user_id") String user_id) throws Exception{
+		if(user_id==null|| user_id.length()<=1){
+			return "redirect:/home_moveLoginPage.do";
+		}
 		space_QnA_RepleDAO.add_space_QnA_Reple_by_space_qna_no(space_QnA_RepleVO);
 		return "redirect:/space_detail.do?space_no="+space_QnA_RepleVO.getSpace_no();
 	}
@@ -222,7 +278,11 @@ public class CtrlSpace {
 	
 	//후기 작성
 		@RequestMapping("/review_add.do")
-		public ModelAndView add_review(@ModelAttribute ReviewVO reviewVO) throws Exception{
+		public ModelAndView add_review(@ModelAttribute ReviewVO reviewVO,@CookieValue("user_id") String user_id) throws Exception{
+			if(user_id==null|| user_id.length()<=1){
+				ModelAndView mnv = new ModelAndView("redirect:/home_moveLoginPage.do");
+				return mnv;
+			}
 			ModelAndView mnv = new ModelAndView("review_add");
 			mnv.addObject("review", reviewVO);
 			return mnv;
@@ -232,7 +292,6 @@ public class CtrlSpace {
 	//후기 추가
 	@RequestMapping("/review_add2.do")
 	public String add_review2(HttpServletRequest request) throws Exception{
-		System.out.println("hi");
 		String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\review_img";
 		int sizeLimit = 1024*1024*15;
 		MultipartRequest mpr = new MultipartRequest(request, savePath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
@@ -265,7 +324,15 @@ public class CtrlSpace {
 	
 	//후기 삭제
 	@RequestMapping("/del_review.do")
-	public String del_review(@ModelAttribute ReviewVO reviewVO) throws Exception{
+	public String del_review(@ModelAttribute ReviewVO reviewVO,@CookieValue("user_id") String user_id) throws Exception{
+		if(user_id==null|| user_id.length()<=1){
+			return "redirect:/home_moveLoginPage.do";
+		}
+		UserVO user = userDAO.find_user_by_user_id(user_id);
+		ReviewVO review = reviewDAO.find_review_by_review_no(reviewVO);
+		if(user.getUser_id()!=review.getUser_id()) {
+			return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&code=10001";
+		}
 		reviewDAO.del_review(reviewVO);
 		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no();
 	}
