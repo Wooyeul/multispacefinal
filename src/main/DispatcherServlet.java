@@ -111,7 +111,6 @@ public class DispatcherServlet extends HttpServlet
 				ViewResolver vr = spring().getBean("viewResolver",
 					ViewResolver.class);
 				String l = vr.getPrefix() + "error_page" + vr.getSuffix();
-				
 
 				RequestDispatcher rd = request.getRequestDispatcher( l );
 				rd.forward(request, response);

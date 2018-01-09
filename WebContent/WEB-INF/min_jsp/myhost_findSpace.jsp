@@ -22,6 +22,7 @@ $(document).ready(function(){
 <title>Insert title here</title>
 </head>
 <body>
+${user_id}
 	<form action="myhost_addForm.do" method="POST">
 		<input type="submit" value="공간추가등록"/>
 		<input type="hidden" name="user_id" value="${user_id}"/>

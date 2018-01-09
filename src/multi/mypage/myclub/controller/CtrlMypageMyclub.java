@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
@@ -19,10 +20,10 @@ public class CtrlMypageMyclub {
 	private MyclubDAO myclubDAO;
 	
 	@RequestMapping("/myclub_findAll.do") 
-	public ModelAndView findMyclub(@ModelAttribute ClubVO mvo){
+	public ModelAndView findMyclub(@CookieValue("user_id") String user_id){
 		
 		ModelAndView mnv = new ModelAndView("myclub_findAll2");
-		List<ClubVO> rl = myclubDAO.find_myClub(mvo);
+		List<ClubVO> rl = myclubDAO.find_myClub(user_id);
 		mnv.addObject("rl", rl);
 		return mnv;
 	}

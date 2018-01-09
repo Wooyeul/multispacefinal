@@ -33,7 +33,6 @@ public class CtrlMypageMyHost {
 			mnv.setViewName("myhost_findSpace");
 			List<SpaceVO> rl = myhostDAO.findMySpace(user_id);
 			
-			
 			mnv.addObject("rl", rl);
 		} else if(flag == 0 ){	
 			//판매자 아닐때

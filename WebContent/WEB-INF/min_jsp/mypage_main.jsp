@@ -106,7 +106,7 @@ li a:hover {
 		      <li><a data-toggle="tab" href="#myQna">Q&A</a></li>
 		      <li><a data-toggle="tab" href="#myClub">내 모임</a></li>
 		      <li><a data-toggle="tab" href="#myReview">내 후기</a></li>
-		      <li><a data-toggle="tab" id="message_nav" href="#myClub">쪽지 함</a></li>
+		      <li><a data-toggle="tab" id="message_nav" href="#myReceiveMessageBox">쪽지 함</a></li>
 				   <ul class="sub_message_nav" >
 				      <li id="receiveMessageBox" class="active"><a data-toggle="tab" href="#myReceiveMessageBox">받은 쪽지함</a></li>
 				      <li id="sendMessageBox"><a data-toggle="tab" href="#mySendMessageBox">보낸 쪽지함</a></li>
