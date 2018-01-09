@@ -61,7 +61,7 @@ table {
 				<td>${vo.crn}</td>
 				<td>${vo.space_title}</td>
 				<td>${vo.space_content}</td>
-				<td><img src="places_thumb_images/${vo.space_thumb_img}"style="width:128px;height:128px;"></img></td>
+				<td><img src="thumbnail/${vo.space_thumb_img}" style="width:128px;height:128px;"></img></td>
 				<td>${vo.open_time}</td>
 				<td>${vo.close_time}</td>
 				<td>${vo.price}</td>
@@ -69,7 +69,7 @@ table {
 				<td>${vo.min_people}</td>
 				<td>${vo.space_call}</td>
 				<td>${vo.zipcode}</td>
-				<td>${vo.c_category_no}</td>
+				<td>${vo.s_category_no}</td>
 				<td>${vo.l_category_no}</td>
 				<td>${vo.the_time}</td>
 			</tr>

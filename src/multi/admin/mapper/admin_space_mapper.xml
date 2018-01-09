@@ -32,7 +32,7 @@
 		<result property="min_people" column="min_people" jdbcType="INTEGER" />
 		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
 		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
-		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="s_category_no" column="s_category_no" jdbcType="INTEGER" />
 		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
 		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
 	</resultMap>
@@ -64,7 +64,7 @@
 		<result property="min_people" column="min_people" jdbcType="INTEGER" />
 		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
 		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
-		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="s_category_no" column="s_category_no" jdbcType="INTEGER" />
 		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
 		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
 	</resultMap>
@@ -95,7 +95,7 @@
 		<result property="min_people" column="min_people" jdbcType="INTEGER" />
 		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
 		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
-		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="s_category_no" column="s_category_no" jdbcType="INTEGER" />
 		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
 		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
 	</resultMap>
@@ -127,7 +127,7 @@
 		<result property="min_people" column="min_people" jdbcType="INTEGER" />
 		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
 		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
-		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="s_category_no" column="s_category_no" jdbcType="INTEGER" />
 		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
 		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
 	</resultMap>
@@ -160,7 +160,7 @@
 		<result property="min_people" column="min_people" jdbcType="INTEGER" />
 		<result property="space_call" column="space_call" jdbcType="VARCHAR" />
 		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
-		<result property="c_category_no" column="c_category_no" jdbcType="INTEGER" />
+		<result property="s_category_no" column="s_category_no" jdbcType="INTEGER" />
 		<result property="l_category_no" column="l_category_no" jdbcType="INTEGER" />
 		<result property="the_time" column="the_time" jdbcType="VARCHAR" />
 	</resultMap>

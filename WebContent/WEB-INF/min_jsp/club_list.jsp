@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=euc-kr"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
@@ -16,20 +16,18 @@
 </head>
 <body>
 	<div class="container">
-		<h2>모임 페이지</h2>
-		<table>
+		<table style="width: 1000px">
 			<tr>
 				<td>번호</td>
 				<td>제목</td>
 			</tr>
-			<jl:forEach  var="vo" items="${pvo}" varStatus="vs">
+			<jl:forEach  var="pvo" items="${vo}" varStatus="vs">
 				<tr>
-					<td id="no" align="center">${vo.club_no}</td>
-					<td><a href="club_detail.do?club_no=${vo.club_no}">${vo.club_title}</a></td>
+					<td id="no" align="center">${pvo.club_no}</td>
+					<td><a href="club_detail.do?club_no=${pvo.club_no}">${pvo.club_title}</a></td>
 				</tr>
 			</jl:forEach>
 		</table>
-		<input id="btn" type="button" value="모임등록"/>
 	</div>
 </body>
 </html>

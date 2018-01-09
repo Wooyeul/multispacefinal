@@ -126,7 +126,7 @@
 	DROP PROCEDURE IF EXISTS p_admin_host_user_refuse;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_host_user_refuse(
-		IN v_host_apply_no VARCHAR(50),
+		IN v_host_apply_no INT,
 		IN v_etc VARCHAR(50)
 	)
 	BEGIN
@@ -135,7 +135,7 @@
 	DELIMITER ;
 	-->
 	<parameterMap id="PM_p_admin_host_user_refuse" type="main.vo.HostApplyVO" >
-		<parameter property="host_apply_no" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="host_apply_no" mode="IN" jdbcType="INTEGER"/>
 		<parameter property="etc" mode="IN" jdbcType="VARCHAR"/>
 	</parameterMap>
 	<update id="p_admin_host_user_refuse" statementType="CALLABLE"

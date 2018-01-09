@@ -7,9 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<style type="text/css">
+		<style type="text/css">
 		.jumbotron{
 			text-align:center;
 		}
@@ -20,6 +18,30 @@
 			text-align:center;
 		}
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+
+$(document).ready(function() {
+	$("#btnClose").on("click", function() {
+		$("#repleModal").modal("hide");
+
+	});
+
+	$("#btnreMod").on("click", function() {
+		$("#reple_form").submit();
+
+	});
+
+	$(".modReple").on("click", function() {
+		$("#com_qna_reple_no").val($(this).attr("xyz"));
+		$("#content").val($("#" + $(this).attr("abcd")).text());
+		$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
+		$("#repleModal").modal("show");
+	});
+});
+
+</script>
 	
 </head>
 <body>
@@ -47,7 +69,6 @@
 		<tr>
 			<th>유저</th>
 			<th width="200">댓글내용</th>
-			<th>수정하기</th>
 			<th>시간</th>
 			<th>추천수</th>
 			<th>추천하기</th>
@@ -56,14 +77,9 @@
 		<jl:forEach var="rpl" items="${rp}">
 			<tr>
 				<td>${rpl.user_id}</td>
-				<td>${rpl.com_qna_reple_content}</td>
 				<td>
-				<form action="community_qna_reple_mod.do" method="post">
-				<input type="hidden" name="com_qna_no" value="${rpl.com_qna_no}"/>
-					<input type="hidden" name="com_qna_reple_no" value="${rpl.com_qna_reple_no}"/>
-					<input type="hidden" name="com_qna_reple_content" value="${rpl.com_qna_reple_content}"/>
-					<input type="submit" value="댓글수정"/>
-				</form>
+				<span id="rb_${rpl.com_qna_reple_no}"> ${rpl.com_qna_reple_content} </span>
+				<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple" href="#">수정</a>
 				</td>
 				<td>${rpl.the_time}</td>
 				<td>
@@ -76,6 +92,26 @@
 			</tr>
 		</jl:forEach>
 	</table>
+	
+		<form method="POST" action="community_qna_reple_mod.do" id="reple_form">
+		<div id="repleModal" class="modal" role="dialog">
+			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}"
+				name="com_qna_no" /> <input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="form-group">
+							<label id="lblContent" for="content"></label>
+							<textarea name ="com_qna_reple_content" class="form-control" id="content" rows="7"></textarea>
+						</div>
+						<button class="btn btn-primary btn-sm" id="btnClose">닫기</button>
+						<button class="btn btn-primary btn-sm" id="btnreMod">수정</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
 		<form action="community_qna_reple_add.do" method="post">
 			<input type="text" name="com_qna_reple_content" />
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>

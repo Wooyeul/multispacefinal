@@ -59,7 +59,6 @@ public class BeanUtil
 	public static boolean isPropertyNeedUTF( String pn ){
 		if( pn == null )
 			return false;
-		
 		return (  pn.equals("title") || 
 			pn.equals("content") || 
 			pn.equals("repleBody") || 
