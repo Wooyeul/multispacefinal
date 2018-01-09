@@ -31,7 +31,6 @@ public class CtrlEvent {
 	// 이벤트 리스트 페이지
 	@RequestMapping("/event_list.do")
 	public ModelAndView textList() throws Exception {
-		System.out.println("내다");
 		List<EventVO> rl = EventDAO.findAll();
 		ModelAndView mnv = new ModelAndView("event_list");
 		mnv.addObject("rl",rl);
@@ -71,7 +70,6 @@ public class CtrlEvent {
 	// 이벤트 삭제 
 	@RequestMapping("/event_del2.do")
 	public String textdel2(@ModelAttribute EventVO pvo) throws Exception {
-		System.out.println("삭제되라");
 		EventDAO.delByPK(pvo);
 		return "redirect:/event_list.do";
 	}

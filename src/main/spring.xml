@@ -146,13 +146,15 @@
 	<bean class="multi.admin.controller.Ctrl_Admin_Hosts" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Spaces" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Clubs" />
-	<bean class="multi.admin.controller.Ctrl_Admin_Commnunities" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Notices" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Events" />
 	<bean class="multi.admin.controller.Ctrl_Admin_FAQ" />
 	<bean class="multi.admin.controller.Ctrl_Admin_o2oQnA" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Clubs" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Message" /> 
+	<bean class="multi.admin.controller.Ctrl_Admin_Freeboard" />
+	<bean class="multi.admin.controller.Ctrl_Admin_Qna" />
+	
 	<bean class="multi.admin.dao.Admin_UserDAO_MysqlImpl" id="admin_UserDAO" />
 	<bean class="multi.admin.dao.Admin_HostDAO_MysqlImpl" id="admin_HostDAO" />
 	<bean class="multi.admin.dao.Admin_NoticeDAO_MysqlImpl" id="admin_NoticeDAO" />
@@ -162,6 +164,8 @@
 	<bean class="multi.admin.dao.Admin_ClubDAO_MysqlImpl" id="admin_ClubDAO" />
 	<bean class="multi.admin.dao.Admin_MessageDAO_MysqlImpl" id="admin_MessageDAO" />
 	<bean class="multi.admin.dao.Admin_EventDAO_MysqlImpl" id="admin_EventDAO" />
+    <bean class="multi.admin.dao.Admin_FreeboardDAO_MysqlImpl" id="admin_FreeboardDAO" />
+    <bean class="multi.admin.dao.Admin_QnaDAO_MysqlImpl" id="admin_QnaDAO_MysqlImpl" />
 	<!-- 이양재 -->
 
 	<!-- 안수진 -->

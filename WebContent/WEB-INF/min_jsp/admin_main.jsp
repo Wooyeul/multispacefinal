@@ -287,7 +287,7 @@ aside#left {
 					<li><a href="space_home.do">공간</a></li>
 					<li><a href="club_list.do">모임</a></li>
 					<li><a href="community_list.do">커뮤니티</a></li>
-					<li><a href="event_list.do">이벤트</a></li>	
+					<li><a href="event_user_list.do">이벤트</a></li>	
 					<li><a href="notice_list.do">공지사항</a></li>
 					<li><a href="faq_list.do">FAQ</a></li>			
 					<li><a href="admin_main.do">관리자</a></li>			
@@ -296,7 +296,7 @@ aside#left {
 				<ul class="nav navbar-nav navbar-right">
 					<li><a herf="#">${user_name}님이 로그인 하셨습니다.</a></li>
 					<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-					<li><a href="#">로그아웃</a></li>					
+					<li><a href="home_logout.do">로그아웃</a></li>					
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -317,9 +317,9 @@ aside#left {
 			<li><a target="iframe1" href="admin_clubs.do">모임 관리</a></li>
 			
 			<li id="community">커뮤니티 관리</li>
-			<li id="community_free"><a target="iframe1" href="#">자유 게시판 관리</a></li>
+			<li id="community_free"><a target="iframe1" href="admin_community_board_list.do">자유 게시판 관리</a></li>
 			<li id="community_review"><a target="iframe1" href="#">후기 게시판 관리</a></li>
-			<li id="community_question"><a target="iframe1" href="#">Q&A 관리</a></li>
+			<li id="community_question"><a target="iframe1" href="admin_community_qna_list.do">Q&A 관리</a></li>
 			
 			<li id="admin_user">공지 항목 관리</li>
 			<li id="admin_announcement"><a target="iframe1" href="admin_notice_list.do">공지 관리</a></li>

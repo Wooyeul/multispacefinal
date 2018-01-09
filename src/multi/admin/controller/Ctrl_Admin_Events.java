@@ -41,7 +41,6 @@ public class Ctrl_Admin_Events {
 
 		String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\thumbnail";
 		int sizeLimit = 1024*1024*15;
-		System.out.println(savePath);
 		MultipartRequest mpr = new MultipartRequest(request, savePath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
 				
 		EventVO vo = new EventVO();
