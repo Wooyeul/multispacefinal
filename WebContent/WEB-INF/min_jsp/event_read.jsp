@@ -55,7 +55,7 @@
 			제목 :<input type="text" name="eve_title" value="${text.eve_title}" readonly /><br/>
 			내용 :<textarea name="eve_content" rows="7" cols="40" readonly >${text.eve_content}</textarea><br/>
 				<input type="hidden" name="eve_no" value="${text.eve_no}" />
-				<img src="img/${text.eve_thumb_img}"/><br/>
+				<img src="thumbnail/${text.eve_thumb_img}" height="100" width="100"/><br/>
 			<input type="submit" value="수정" />
 			<a href="event_del2.do?eve_no=${text.eve_no}">삭제</a>
 			<input type="button" value="취소" onclick= "window.location.href='event_list.do'">
