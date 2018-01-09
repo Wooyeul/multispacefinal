@@ -1,5 +1,6 @@
 package multi.mypage.myhost.controller;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class CtrlMypageMyHost {
 			//이미 판매자일때
 			mnv.setViewName("myhost_findSpace");
 			List<SpaceVO> rl = myhostDAO.findMySpace(user_id);
+			
+			
 			mnv.addObject("rl", rl);
 		} else if(flag == 0 ){	
 			//판매자 아닐때
