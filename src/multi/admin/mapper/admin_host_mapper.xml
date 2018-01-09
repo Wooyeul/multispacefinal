@@ -4,10 +4,6 @@
 
 <mapper namespace="admin_host">
 
-	<select id="sysdate" resultType="java.lang.String">
-		SELECT NOW()
-	</select>
-	
 	<!-- 판매자 부분 -->
 	<!--
 	DROP PROCEDURE IF EXISTS p_admin_host_findAll;

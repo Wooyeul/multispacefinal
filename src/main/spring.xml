@@ -164,7 +164,8 @@
 	<bean class="multi.admin.dao.Admin_o2oQnADAO_MysqlImpl" id="admin_o2oQnADAO" />
 	<bean class="multi.admin.dao.Admin_SpaceDAO_MysqlImpl" id="admin_SpaceDAO" />
 	<bean class="multi.admin.dao.Admin_ClubDAO_MysqlImpl" id="admin_ClubDAO" />
-	<bean class="multi.admin.dao.Admin_MessageDAO_MysqlImpl" id="admin_MessageDAO" /> 
+	<bean class="multi.admin.dao.Admin_MessageDAO_MysqlImpl" id="admin_MessageDAO" />
+	<bean class="multi.admin.dao.Admin_EventDAO_MysqlImpl" id="admin_EventDAO" />
 	<!-- 이양재 -->
 
 	<!-- 안수진 -->

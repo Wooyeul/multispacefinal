@@ -48,7 +48,7 @@
 			
 			제목 :<input type="text" name="eve_title" value="${text.eve_title}" readonly /><br/>
 			내용 :<textarea name="eve_content" rows="7" cols="40" readonly >${text.eve_content}</textarea><br/>
-				<img src="img/${text.eve_thumb_img}"/> <br/>
+				<img src="thumbnail/${text.eve_thumb_img}" height="100" width="100"/> <br/>
 			<input type="button" value="목록" onclick= "window.location.href='event_user_list.do'">
 </body>
 </html>
