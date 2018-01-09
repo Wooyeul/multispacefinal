@@ -159,7 +159,7 @@
 	<bean class="multi.admin.controller.Ctrl_Admin_Clubs" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Message" /> 
 	<bean class="multi.admin.controller.Ctrl_Admin_Freeboard" />
-	<bean class="multi.admin.controller.Ctrl_Admin_Qna" />
+	<bean class="multi.admin.controller.Ctrl_Admin_Qna" /> 
 	
 	<bean class="multi.admin.dao.Admin_UserDAO_MysqlImpl" id="admin_UserDAO" />
 	<bean class="multi.admin.dao.Admin_HostDAO_MysqlImpl" id="admin_HostDAO" />
