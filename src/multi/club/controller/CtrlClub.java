@@ -47,6 +47,7 @@ public class CtrlClub {
 		mnv.addObject("pvo", pvo);
 		return mnv;
 	}
+	
 	//모임 리스트 페이지 호출
 	@RequestMapping("/club_list.do")
 	public ModelAndView club_list(@ModelAttribute Club_searchVO svo, @CookieValue("user_id") String user_id) throws Exception {

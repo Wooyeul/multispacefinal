@@ -29,4 +29,10 @@ public class ReviewDAO_MySQLImpl implements ReviewDAO{
 		return sqlSession.delete("review.del_review_by_review_no",reviewVO);
 		
 	}
+
+	@Override
+	public ReviewVO find_review_by_review_no(ReviewVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("review.find_review_by_review_no",vo);
+	}
 }

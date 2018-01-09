@@ -49,6 +49,12 @@
 
 	<!--space_Qna_RepleDAO -->
 	<bean id="space_QnA_RepleDAO" class="multi.space.dao.Space_QnA_RepleDAO_MySQLImpl" />
+	
+	<!--userDAO -->
+	<bean id="userDAO" class="multi.space.dao.UserDAO_MySQLImpl" />
+	
+	<!--hostDAO -->
+	<bean id="hostDAO" class="multi.space.dao.HostDAO_MySQLImpl" />
 
 	<bean class="multi.home.userjoin.controller.CtrlUserJoin" />
 

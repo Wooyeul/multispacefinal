@@ -8,6 +8,14 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script>
+ 	$(document).ready(function(){
+ 		$('#boy').on("load",function(){
+ 			var h = this.contentWindow.document.body.offsetHeight;
+ 			$(this).height(h);
+ 		});
+ 	});
+ </script>
  
 </head>
 <body>
@@ -17,16 +25,31 @@
 		<hr/>
 		<a href="space_add.do">공간 등록</a>
 		<hr/>
-		<table border="1">
-		<jl:forEach var="vo" items="${list }">
-			<tr>
-				<td><a href="space_detail.do?space_no=${vo.space_no }"><img src="thumbnail/${vo.space_thumb_img }" alt="공간 사진 없음"/></a></td>
-				<td>${vo.space_no }</td>
-				<td>${vo.crn }</td>
-			</tr>
-			
-		</jl:forEach>
-		</table>
+		<hr/>
+		<form target="boy" action="space_home_iframe_search.do">
+			<div class="form-group">
+				<label for="s_category_no">카테고리</label>
+				<jl:forEach var="category" items="${category_list }">
+					<label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
+				</jl:forEach>
+			</div>
+			<div class="form-group">
+				<label for="l_category_no">지역</label>
+				<jl:forEach var="local" items="${local_list }">
+					<label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
+				</jl:forEach>
+			</div>
+			<select name="search_option">
+				<option value="0"></option>
+				<option value="1">제목</option>
+				<option value="2">내용</option>
+				<option value="3">제목+내용</option>
+			</select>
+			<input type="text" name="search_content"/>
+			<input type="submit" value="제출">
+		</form>
+		<hr/>
+		<iframe id="boy" name="boy" src="space_home_iframe.do" width="100%" frameborder="0"></iframe>
 	</div>
 	
 </body>

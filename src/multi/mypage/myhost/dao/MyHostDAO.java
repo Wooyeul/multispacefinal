@@ -7,7 +7,7 @@ import main.vo.SpaceVO;
 
 public interface MyHostDAO {
 	
-	public int ckhost(HostVO hvo) throws Exception;
+	public int ckhost(String user_id) throws Exception;
 	public int addhost(HostVO hvo) throws Exception;
-	public List<SpaceVO> findMySpace(HostVO hvo) throws Exception;
+	public List<SpaceVO> findMySpace(String user_id) throws Exception;
 }

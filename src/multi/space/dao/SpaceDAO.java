@@ -6,6 +6,7 @@ import java.util.Map;
 import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
+import multi.space.vo.Space_searchVO;
 
 public interface SpaceDAO {
 	
@@ -26,5 +27,17 @@ public interface SpaceDAO {
 	
 	//공간 판매자 정보 불러오기
 	public HostVO find_host_by_space_no(SpaceVO vo) throws Exception;
+	
+	//L_CATEGORY 전체 불러오기
+	public List<Map<Integer,String>> find_l_category() throws Exception;
+	
+	//S_CATEGORY 전체 불러오기
+	public List<Map<Integer,String>> find_s_category() throws Exception;
+	
+	//하나의 SPACE에서 S_CATEOGRY 불러오기
+	public String find_s_category_by_space_no(SpaceVO vo) throws Exception;
+	
+	//공간 search
+	public List<SpaceVO> search_space(Space_searchVO vo) throws Exception;
 }
 

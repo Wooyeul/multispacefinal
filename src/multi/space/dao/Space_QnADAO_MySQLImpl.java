@@ -30,5 +30,11 @@ public class Space_QnADAO_MySQLImpl implements Space_QnADAO{
 		// TODO Auto-generated method stub
 		return sqlSession.delete("space_qna.delete_spaceQnA_by_spane_qna_no",vo);
 	}
+
+	@Override
+	public Space_qnaVO find_space_QnA_by_space_qna_no(Space_qnaVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("space_qna.find_spaceQnA_by_space_qna_no",vo);
+	}
 	
 }

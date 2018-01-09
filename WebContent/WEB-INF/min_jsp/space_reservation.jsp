@@ -92,17 +92,17 @@
 			});
  	 		$("#date2").datepicker({
  	 			dateFormat:"yy-mm-dd"
-
 			});
  	 		
  	 		$("#date2").on("change",function(){
  	 			var currentDate = $( "#date2" ).datepicker("getDate","dateFormat" );
  	 			$("#booking_date").datepicker("setDate",currentDate);
+				var dat = $("#booking_date").val();
+ 	 			$("#reserve_day").html(dat);
  	 		});
- 	 		
  	 	});
  	 
- 	   
+
 
  	 </script>
 </head>
@@ -123,7 +123,7 @@
 
 			<div class="form-group">
 				<label for="booking_date">예약 날짜</label>
-				<input type="text"  id="booking_date" name="booking_date" >
+				<input type="text"  id="booking_date" name="booking_date" disabled="disabled">
 			</div>
 			
 			<div class="form-group">
@@ -175,7 +175,7 @@
 						</tr>
 						<tr>
 							<td>예약 날짜</td>
-							<td colspan="2">2017.11.23(토)</td> 
+							<td colspan="2" ><div id="reserve_day"></div></td> 
 						</tr>
 						<tr>
 							<td>예약 시간</td>
