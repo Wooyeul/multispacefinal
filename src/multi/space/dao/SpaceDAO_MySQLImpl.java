@@ -51,6 +51,24 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 		return sqlSession.selectOne("space.find_host_by_space_no",vo);
 	}
 
+	@Override
+	public List<Map<Integer, String>> find_l_category() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("space.find_l_category");
+	}
+
+	@Override
+	public List<Map<Integer, String>> find_s_category() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("space.find_s_category");
+	}
+
+	@Override
+	public String find_s_category_by_space_no(SpaceVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("space.find_s_category_by_space_no",vo);
+	}
+
 	
 	
 

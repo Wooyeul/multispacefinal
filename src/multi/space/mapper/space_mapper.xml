@@ -45,7 +45,18 @@
 	<select id="find_host_by_space_no" parameterType="main.vo.SpaceVO" resultType="main.vo.HostVO">
 		SELECT * FROM HostT WHERE crn = (SELECT crn FROM SpaceT WHERE space_no=${space_no})
 	</select>
-
+	
+	<select id="find_l_category" resultType="java.util.Map">
+		SELECT * FROM L_categoryT
+	</select>
+	
+	<select id="find_s_category" resultType="java.util.Map">
+		SELECT * FROM S_categoryT
+	</select>
+	
+	<select id="find_s_category_by_space_no" parameterType="main.vo.SpaceVO" resultType="java.lang.String">
+		SELECT s_category_name FROM S_categoryT WHERE s_category_no = ( SELECT s_category_no FROM SpaceT WHERE space_no=${space_no} )
+	</select>
 </mapper>
 
 

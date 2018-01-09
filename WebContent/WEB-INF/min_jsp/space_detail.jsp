@@ -20,18 +20,24 @@
  				//후기가 있으면 작성 못하게 하는거 & 후기 없으면 안불러 오게 해야함
  				var space_qna_no = $(this).attr("no");
  				ajaxGet("find_space_qna_reple.do?space_qna_no="+space_qna_no,function(rt){
- 					var qna_reple = window.eval("("+rt+")");
- 					var html = "<table>";
- 					html += "<tr>";
- 					html += "<td>제목</td>";
- 					html += "<td>" + qna_reple.qna_reple_title +"</td>";
- 					html +="</tr>";
- 					html += "<tr>";
- 					html += "<td>내용</td>";
- 					html += "<td>" + qna_reple.qna_reple_content+"</td>";
- 					html += "</tr>";
- 					html+="</table>"
-					$("#qna_reple"+space_qna_no).html(html);
+ 					if(rt.length>5) {
+ 						$("#qna_reple_add").hide();
+ 						var qna_reple = window.eval("("+rt+")");
+ 	 					var html = "<table>";
+ 	 					html += "<tr>";
+ 	 					html += "<td>제목</td>";
+ 	 					html += "<td>" + qna_reple.qna_reple_title +"</td>";
+ 	 					html +="</tr>";
+ 	 					html += "<tr>";
+ 	 					html += "<td>내용</td>";
+ 	 					html += "<td>" + qna_reple.qna_reple_content+"</td>";
+ 	 					html += "</tr>";
+ 	 					html+="</table>"
+ 						$("#qna_reple"+space_qna_no).html(html);
+ 					} else {
+ 						
+ 					}
+ 					
  				},
  				function(){alert(2);},
  				function(){alert(3);}
@@ -54,7 +60,7 @@
 				</tr>
 				<tr>
 					<td>공간 카테고리</td>
-					<td>${space.c_category_no } (공사중)</td>
+					<td>${s_category }</td>
 				</tr>
 				<tr>
 					<td><img src="thumbnail/${space.space_thumb_img }"/></td>
@@ -123,11 +129,13 @@
 						</table>
 							<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}">질문 삭제</a>
 								<div id="qna_reple${space_qna.space_qna_no }"></div>
+								<div id="qna_reple_add">
 								<form method="POST" action="add_space_qna_reple.do">
 									<input type="hidden" name="space_qna_no" value="${space_qna.space_qna_no }">
 									<input type="hidden" name="space_no" value="${space_qna.space_no }">
 									<input type="hidden" name="user_id" value="${user_id }">
 									<table>
+									
 									<tr>
 										<td>제목</td>
 										<td><input type="text" name="space_qna_reple_title"></td>
@@ -139,6 +147,7 @@
 									</table>
 									<input type="submit">
 								</form>
+							</div>
 						
 							
 					</div>
@@ -162,7 +171,6 @@
 				
 			</table>
 			
-			<!-- user_id 보내는거 수정해야됨 -->
 			<input type="hidden" name="user_id" value="${user_id }">
 			<input type="hidden" name="space_no" value="${space.space_no }">
 			<input type="submit">
@@ -189,7 +197,7 @@
 				
 				<div id="collapse_review${review.review_no }" Class="panel-collpase collapse">
 					<div class="panel-body">
-						<div class="col-xs-4"><img src="review_img/${review.review_img }" width="200" height="60" alt="썸네일"></div>
+						<div class="col-xs-4"><img src="review_img/${review.review_img }" width="150" height="60" alt="썸네일"></div>
 						<div class="col-xs-8">
 							<table>
 								<tr> 

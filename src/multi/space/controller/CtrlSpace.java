@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sound.sampled.AudioFormat.Encoding;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -56,6 +57,18 @@ public class CtrlSpace {
 	@RequestMapping("/space_home.do")
 	public ModelAndView space_home() throws Exception {
 		ModelAndView mnv = new ModelAndView("space_home");
+		List<Map<Integer,String>> local_list = spaceDAO.find_l_category();
+		List<Map<Integer,String>> category_list = spaceDAO.find_s_category();
+		
+		mnv.addObject("local_list", local_list);
+		mnv.addObject("category_list", category_list);
+		return mnv;
+	}
+	
+	//공간 첫화면 아이프레임
+	@RequestMapping("/space_home_iframe.do")
+	public ModelAndView space_home_iframe() throws Exception {
+		ModelAndView mnv = new ModelAndView("space_home_iframe");
 		List<SpaceVO> list = spaceDAO.find_space_all();
 		mnv.addObject("list", list);
 		return mnv;
@@ -65,6 +78,11 @@ public class CtrlSpace {
 	@RequestMapping("/space_add.do")
 	public ModelAndView space_add() throws Exception{
 		ModelAndView mnv = new ModelAndView("space_add");
+		List<Map<Integer,String>> local_list = spaceDAO.find_l_category();
+		List<Map<Integer,String>> category_list = spaceDAO.find_s_category();
+		
+		mnv.addObject("local_list", local_list);
+		mnv.addObject("category_list", category_list);
 		return mnv;
 	}
 	
@@ -120,22 +138,22 @@ public class CtrlSpace {
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(reviewVO);
+		String s_category = spaceDAO.find_s_category_by_space_no(spaceVO);
 		mnv.addObject("space", space);
 		mnv.addObject("list_space_qna", list_space_qna);
 		mnv.addObject("list_review", list_review);
 		mnv.addObject("user_id", user_id);
+		mnv.addObject("s_category", s_category);
 		return mnv;
 	}
 	
 	//공간 예약
 	@RequestMapping("/space_reservation.do")
 	public ModelAndView space_reseravtion_find_by_pk(@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id) throws Exception{
+		
 		ModelAndView mnv = new ModelAndView("space_reservation");
 		
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
-		/*
-		 나중에 수정해야함. 지금은 kmk4204로만 찾아옴. 로그인, 유저 연동하면 로그인 된 유저가
-		가입된 클럽을 찾아올 수 있도록 수정*/
 		List<ClubVO> club_list = spaceDAO.find_user_club(user_id);
 		
 		mnv.addObject("club_list", club_list);			

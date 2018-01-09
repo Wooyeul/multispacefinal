@@ -20,8 +20,9 @@
 	<delete id="delete_spaceQnA_by_spane_qna_no" parameterType="main.vo.Space_qnaVO">
 		DELETE FROM Space_QnAT WHERE space_qna_no=#{space_qna_no}
 	</delete>
-	
+
 </mapper>
+
 
 
 

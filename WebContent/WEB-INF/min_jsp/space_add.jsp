@@ -84,15 +84,15 @@
 			
 			<div class="form-group">
 				<label for="l_category_no">지역</label>
-				<label class="radio-inline"><input type="radio" name="l_category_no" value="1">서울</label>
+				<jl:forEach var="local" items="${local_list }">
+					<label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
+				</jl:forEach>
 			</div>
-			
 			<div class="form-group">
 				<label for="s_category_no">카테고리</label>
-				<label class="checkbox-inline"><input type="checkbox" name="s_category_no" value="1">스포츠</label>
-				<label class="checkbox-inline"><input type="checkbox" name="s_category_no" value="2">공부</label>
-				<label class="checkbox-inline"><input type="checkbox" name="s_category_no" value="3">파티</label>
-				<label class="checkbox-inline"><input type="checkbox" name="s_category_no" value="4">취미생활</label>
+				<jl:forEach var="category" items="${category_list }">
+					<label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
+				</jl:forEach>
 			</div>
 			
 			<input type="button" id="sub" value="등록"/>
