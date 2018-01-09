@@ -22,33 +22,15 @@
 		<label>사진등록</label><input name="club_thumb_img" type="file"><br/>
 		<select name="l_category_no">
 			<option>지역선택</option>
-			<option value="1">서울</option>
-			<option value="2">경기</option>
-			<option value="3">인천</option>
-			<option value="4">강원</option>
-			<option value="5">대전</option>
-			<option value="6">세종</option>
-			<option value="7">충남</option>
-			<option value="8">충북</option>
-			<option value="9">부산</option>
-			<option value="10">울산</option>
-			<option value="11">경남</option>
-			<option value="12">경북</option>
-			<option value="13">대구</option>
-			<option value="14">광주</option>
-			<option value="15">전남</option>
-			<option value="16">전북</option>
-			<option value="17">제주</option>
-			<option value="18">전국</option>
+			<jl:forEach items="${lmap}" var="m">
+				<option value="${m.l_category_no}">${m.l_category_name}</option>
+			</jl:forEach>
 		</select>
 		<select name="c_category_no">
 			<option>분야선택</option>
-			<option value="1">공부</option>
-			<option value="2">회의</option>
-			<option value="3">파티</option>
-			<option value="4">레저</option>
-			<option value="5">스포츠</option>
-			<option value="6">기타</option>
+			<jl:forEach items="${cmap}" var="c">
+				<option value="${c.c_category_no}">${c.c_category_name}</option>
+			</jl:forEach>
 		</select>
 		<input name="user_id" type="hidden" value="admin">
 		<input type="submit" value="등록하기"><input id="cancel" type="button" value="취소하기">

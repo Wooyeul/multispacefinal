@@ -144,7 +144,7 @@
 	<bean class="multi.club.controller.CtrlClub_notice" />
 	<!-- 허빛찬샘 -->
 
-	<!-- 양재신 -->
+	<!-- 이양재 -->
 	<bean class="multi.admin.controller.CtrlAdmin" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Users" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Hosts" />
@@ -156,6 +156,7 @@
 	<bean class="multi.admin.controller.Ctrl_Admin_FAQ" />
 	<bean class="multi.admin.controller.Ctrl_Admin_o2oQnA" />
 	<bean class="multi.admin.controller.Ctrl_Admin_Clubs" />
+	<bean class="multi.admin.controller.Ctrl_Admin_Message" /> 
 	<bean class="multi.admin.dao.Admin_UserDAO_MysqlImpl" id="admin_UserDAO" />
 	<bean class="multi.admin.dao.Admin_HostDAO_MysqlImpl" id="admin_HostDAO" />
 	<bean class="multi.admin.dao.Admin_NoticeDAO_MysqlImpl" id="admin_NoticeDAO" />
@@ -163,7 +164,8 @@
 	<bean class="multi.admin.dao.Admin_o2oQnADAO_MysqlImpl" id="admin_o2oQnADAO" />
 	<bean class="multi.admin.dao.Admin_SpaceDAO_MysqlImpl" id="admin_SpaceDAO" />
 	<bean class="multi.admin.dao.Admin_ClubDAO_MysqlImpl" id="admin_ClubDAO" />
-	<!-- 양재신 -->
+	<bean class="multi.admin.dao.Admin_MessageDAO_MysqlImpl" id="admin_MessageDAO" /> 
+	<!-- 이양재 -->
 
 	<!-- 안수진 -->
 	<bean class="multi.home.login.controller.CtrlLogin" />

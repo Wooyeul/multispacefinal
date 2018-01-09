@@ -33,6 +33,11 @@ public class Admin_o2oQnADAO_MysqlImpl implements Admin_o2oQnADAO{
 		return sqlSession.selectOne("admin_o2oQnA.p_admin_o2oQnA_checkOne",ovo);
 	}
 
+	@Override
+	public int writeConsult(O2OQnAVO ovo) throws Exception {
+		return sqlSession.update("admin_o2oQnA.p_admin_writeConsult",ovo);
+	}
+
 
 
 }

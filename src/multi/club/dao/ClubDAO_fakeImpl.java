@@ -1,6 +1,9 @@
 package multi.club.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import multi.club.vo.Club_boardVO;
 import multi.club.vo.Club_board_repleVO;
 import multi.club.vo.Club_noticeVO;
 import multi.club.vo.Club_notice_repleVO;
+import multi.club.vo.Club_searchVO;
 
 public class ClubDAO_fakeImpl implements ClubDAO{
 
@@ -202,6 +206,38 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 	@Override
 	public Club_applyVO club_find_apply_detail(Club_applyVO pvo) throws Exception {
 		return sqlSession.selectOne("club.club_find_apply_detail",pvo);
+	}
+
+	//지역 카테고리 검색
+	@Override
+	public List<Map<Integer, Object>> club_find_l_category() throws Exception {
+		return sqlSession.selectList("club.club_find_lcategory");
+	}
+
+	//분야별 카테고리 검색
+	@Override
+	public List<Map<Integer, Object>> club_find_c_category() throws Exception {
+		return sqlSession.selectList("club.club_find_ccategory");
+	}
+
+	//검색 기능
+	@Override
+	public List<ClubVO> club_search(Club_searchVO pvo) throws Exception {
+		
+		/*if(pvo.getL_category_no()==null&&pvo.getC_category_no()==null&&pvo.getSearchOption()==0){
+			System.out.println("전체검색");
+			return sqlSession.selectList("club.club_findAll");
+		}else if(pvo.getL_category_no()!=null&&pvo.getC_category_no()!=null&&pvo.getSearchOption()!=0){
+			
+		}else if(pvo.getL_category_no()!=null&&pvo.getC_category_no()!=null){
+			System.out.println("지역분야검색");
+		}else if(pvo.getL_category_no()!=null&&pvo.getSearchOption()!=0){
+			System.out.println("지역컨텐츠검색");
+			if(pvo.getSearchOption()==1){
+				System.out.println("제목검색");
+			}
+		}*/
+		return sqlSession.selectList("club.club_search",pvo);
 	}
 
 }

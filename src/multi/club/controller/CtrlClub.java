@@ -1,6 +1,8 @@
 package multi.club.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
@@ -24,6 +27,7 @@ import multi.club.dao.ClubDAO;
 import multi.club.vo.Club_applyVO;
 import multi.club.vo.Club_boardVO;
 import multi.club.vo.Club_noticeVO;
+import multi.club.vo.Club_searchVO;
 
 @Controller
 public class CtrlClub {
@@ -31,12 +35,26 @@ public class CtrlClub {
 	@Autowired @Qualifier("clubDAO")
 	private ClubDAO clubDAO = null;
 	
+	//모임 페이지 호출
+	@RequestMapping("/club_home.do")
+	public ModelAndView club_home(@CookieValue("user_id") String user_id) throws Exception {
+		ModelAndView mnv = new ModelAndView("club_home");
+		List<ClubVO> pvo = clubDAO.club_findAll();
+		List<Map<Integer, Object>> lmap = clubDAO.club_find_l_category();
+		List<Map<Integer, Object>> cmap = clubDAO.club_find_c_category();
+		mnv.addObject("lmap", lmap);
+		mnv.addObject("cmap", cmap);
+		mnv.addObject("pvo", pvo);
+		return mnv;
+	}
 	//모임 리스트 페이지 호출
 	@RequestMapping("/club_list.do")
-	public ModelAndView club_list() throws Exception {
+	public ModelAndView club_list(@ModelAttribute Club_searchVO svo, @CookieValue("user_id") String user_id) throws Exception {
 		ModelAndView mnv = new ModelAndView("club_list");
 		List<ClubVO> pvo = clubDAO.club_findAll();
+		List<ClubVO> vo = clubDAO.club_search(svo);
 		mnv.addObject("pvo", pvo);
+		mnv.addObject("vo", vo);
 		return mnv;
 	}
 	
@@ -44,6 +62,10 @@ public class CtrlClub {
 	@RequestMapping("/club_add_page.do")
 	public ModelAndView club_add_page() throws Exception {
 		ModelAndView mnv = new ModelAndView("club_add_page");
+		List<Map<Integer, Object>> lmap = clubDAO.club_find_l_category();
+		List<Map<Integer, Object>> cmap = clubDAO.club_find_c_category();
+		mnv.addObject("lmap", lmap);
+		mnv.addObject("cmap", cmap);
 		return mnv;
 	}
 	//모임 신청

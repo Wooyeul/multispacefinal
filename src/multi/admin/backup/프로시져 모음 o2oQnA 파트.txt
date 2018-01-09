@@ -43,3 +43,15 @@ INSERT INTO o2oQnAT ( o2o_title, o2o_content, o2o_email, o2o_type, o2o_phone, th
 		SELECT * FROM o2oQnAT WHERE o2o_no = v_o2o_no;
 	END$$
 	DELIMITER ;
+
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_writeConsult;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_writeConsult(
+		IN v_o2o_no INT,
+		IN v_re_o2o_content TEXT
+	)
+	BEGIN
+		UPDATE o2oQnAT SET re_o2o_content = v_re_o2o_content WHERE o2o_no = v_o2o_no;
+	END$$
+	DELIMITER ;

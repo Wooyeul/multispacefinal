@@ -1,12 +1,14 @@
-	DROP PROCEDURE IF EXISTS p_admin_messageT_sendAll;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_message_write;
 	DELIMITER $$
-	CREATE PROCEDURE p_admin_messageT_sendAll(
-		OUT v_count INT
+	CREATE PROCEDURE p_admin_message_write(
+		IN v_send_user_id VARCHAR(50),
+		IN v_receive_user_id VARCHAR(50),
+		IN v_msg_content VARCHAR(50)
 	)
 	BEGIN
-		SELECT count(*) INTO v_count FROM UserT;
+		INSERT INTO MessageT VALUES ( default, v_send_user_id, v_receive_user_id, 
+			v_msg_content, NOW(), 0 );
 	END$$
 	DELIMITER ;
-	
-	CALL p_admin_messageT_sendAll(@R);
 ################################################################
