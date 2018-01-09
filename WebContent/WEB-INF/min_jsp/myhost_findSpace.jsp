@@ -33,7 +33,7 @@ $(document).ready(function(){
 			<tr>
 				<td>${ab.space_no}</td>
 				<td>${ab.space_title}</td>
-				<td><img src="img/${ab.space_thumb_img}" width="100px" class="space_no" abc="${ab.space_no}"/></td>
+				<td><img src="thumbnail/${ab.space_thumb_img}" width="100px" class="space_no" abc="${ab.space_no}"/></td>
 			</tr>
 		</jl:forEach>
 	</table>
