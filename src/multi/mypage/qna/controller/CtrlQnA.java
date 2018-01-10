@@ -62,11 +62,13 @@ public class CtrlQnA {
 
 	@RequestMapping("/mypage_getMypageQnAReple.do")
 	@ResponseBody
-	public String getMypageQnAReple(@CookieValue("user_id") String user_id, @ModelAttribute Space_qnaVO sqvo)
+	public String getMypageQnAReple(@CookieValue("user_id") String user_id, @RequestParam("space_qna_no") String space_qna_no)
 			throws Exception {
-
+		
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(sqvo);
+
+		Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(space_qna_no);
+		
 		return qna_repleInfo.getSpace_qna_reple_content();
 
 	}

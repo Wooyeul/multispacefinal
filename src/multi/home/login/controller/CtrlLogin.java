@@ -56,7 +56,6 @@ public class CtrlLogin {
 	public Object main(@CookieValue("user_id") String user_id) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		System.out.println("user_id:"+user_id);
 		
 		if (user_id != null) {
 			ModelAndView mnv = new ModelAndView("main");
@@ -134,6 +133,8 @@ public class CtrlLogin {
 		
 
 		UserVO userInfo = UserDAO.find_userId(uvo);
+		System.out.println(uvo.getUser_name());
+		System.out.println(uvo.getSsn1());
 
 		ModelAndView mnv = new ModelAndView("home_findId");
 		mnv.addObject("user_id",userInfo.getUser_id());		
