@@ -1,18 +1,16 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
 taglib
 	prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-.commask{
-text-align: center;
-}
+
 
 </style>
 <script
@@ -20,25 +18,10 @@ text-align: center;
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
 </head>
 <body>
-<jl:if test="${user_id != null}" >
- <a href="community_board_mytext.do"><input type="button" value="내가쓴글보기"/></a> 
-</jl:if>
 
-<form id="textserch" action="community_board_serch.do">
-<select name="commserch_option"> 
-<option value="0" >선택해주세요</option>
-<option value="1" >제목</option>
-<option value="2" >내용</option>
-<option value="3" >제목+내용</option>
-<option value="4" >작성자</option>
-</select>
-검색 : <input type="text" name="commserch_content"> 
-<input type="submit" value="검색">
-</form>
-
+서치결과 페이지나와야함
 <table class="table table-hover">
 <tr>
 <th>NO</th>
@@ -47,7 +30,7 @@ text-align: center;
 <th>ID</th>
 <th>VIEW</th>
 <th>LIKE</th>
-<jl:forEach var="vo" items="${rl}">
+<jl:forEach var="vo" items="${srl}">
 <tr>
 <td>${vo.com_board_no}</td>
 <td><a href="community_board_read.do?com_board_no=${vo.com_board_no}">${vo.com_board_title}</a></td>
@@ -60,14 +43,5 @@ text-align: center;
 </jl:forEach>
 
 </table>
-
-	<div class="commask">
-			<a href="community_board_add.do">
-				<input class="btn btn-success" type="button" value="글쓰기">
-			</a>
-			
-		</div>
-
-
 </body>
 </html>

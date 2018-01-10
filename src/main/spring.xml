@@ -128,9 +128,14 @@
 	<bean class="multi.community.board.dao.Community_boardDAO_MybatisProcImpl"
 		id="community_boardDAO" />
 	<!--community_boardrepleDAO 컨트롤러 -->
-	<bean
-		class="multi.community.board.dao.Community_boardrepleDAO_MybatisProcImpl"
+	<bean class="multi.community.board.dao.Community_boardrepleDAO_MybatisProcImpl"
 		id="community_boardrepleDAO" />
+	<!--Community_boardmytextDAO 컨트롤러 -->	
+		<bean class="multi.community.board.dao.Community_boardmytextDAO_MybatisProcImpl"
+		id="community_boardmytextDAO" />
+	<!--Community_board_searchDAO 컨트롤러 -->	
+		<bean class="multi.community.board.dao.Community_board_searchDAO_MybatisProcImpl"
+		id="community_board_searchDAO" />
 	<!-- 김소영 -->
 
 	<!-- 조우열 -->

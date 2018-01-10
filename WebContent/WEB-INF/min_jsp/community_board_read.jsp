@@ -149,7 +149,7 @@ window.onload = function() {
 	<form action="community_board_addreple.do" method="POST">
 	´ñ±Û: <input type="text" name="com_board_reple_content" size="30"/> 
 	<input type="hidden" name="com_board_no" value="${vo.com_board_no}"/> 
-	<input type="hidden" name="user_id" value="sb"/> 
+	<input type="hidden" name="user_id" value="${vo.user_id}" /> 
 	<input type="submit" class="btn btn-primary" value="´ñ±Û´Þ±â!" />
 	</form>
 	

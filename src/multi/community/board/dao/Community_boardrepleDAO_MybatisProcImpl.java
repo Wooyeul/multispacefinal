@@ -32,7 +32,7 @@ public class Community_boardrepleDAO_MybatisProcImpl implements  Community_board
 	}
 
 	@Override
-	public List<Community_board_repleVO> findAllreple(Community_board_repleVO pvo) throws Exception {
+	public List<Community_board_repleVO> findAllreple( Community_board_repleVO pvo) throws Exception {
 		
 		return sqlSession.selectList("community_board.p_comm_boradrepleFindAllTexts",pvo);
 	}

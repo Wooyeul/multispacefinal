@@ -13,7 +13,7 @@
 
 
 <body>	
-			<!-- Fixed navbar -->
+				<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -33,7 +33,7 @@
 					<li><a href="space_home.do">공간</a></li>
 					<li><a href="club_list.do">모임</a></li>
 					<li><a href="community_list.do">커뮤니티</a></li>
-					<li><a href="event_list.do">이벤트</a></li>	
+					<li><a href="event_user_list.do">이벤트</a></li>	
 					<li><a href="notice_list.do">공지사항</a></li>
 					<li><a href="faq_list.do">FAQ</a></li>			
 					<li><a href="admin_main.do">관리자</a></li>			
@@ -46,7 +46,17 @@
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
-			
+	
+	<form action="event_user_list.do">
+		<select name="eve_option">
+			<option value="0"></option>
+			<option value="1">제목</option>
+			<option value="2">내용</option>
+			<option value="3">제목+내용</option>
+		</select>
+		<input type="text" name="eve_key"/>
+		<input type="submit" value="제출">	
+	</form>		
 			
 	<table border="1" cellspacing="0" cellpadding="8">
 		
@@ -60,7 +70,6 @@
 			</tr>
 		</jl:forEach>
 	</table>
-		
-	
+
 </body>
 </html>

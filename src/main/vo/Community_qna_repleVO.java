@@ -1,6 +1,7 @@
 package main.vo;
 
 public class Community_qna_repleVO {
+
 	public Integer getCom_qna_reple_no() {
 		return com_qna_reple_no;
 	}
@@ -35,6 +36,16 @@ public class Community_qna_repleVO {
 		return recom_count;
 	}
 	public void setRecom_count(Integer recom_count) {
+		this.recom_count = recom_count;
+	}
+	public Community_qna_repleVO(){}
+	public Community_qna_repleVO(Integer com_qna_reple_no, String user_id, Integer com_qna_no,
+			String com_qna_reple_content, String the_time, Integer recom_count) {
+		this.com_qna_reple_no = com_qna_reple_no;
+		this.user_id = user_id;
+		this.com_qna_no = com_qna_no;
+		this.com_qna_reple_content = com_qna_reple_content;
+		this.the_time = the_time;
 		this.recom_count = recom_count;
 	}
 	private Integer com_qna_reple_no=null;
