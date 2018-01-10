@@ -93,6 +93,9 @@ public class CtrlSpace {
 	@RequestMapping("/space_home_iframe_search.do")
 	public ModelAndView space_home_iframe_search(@ModelAttribute Space_searchVO search) throws Exception {
 		ModelAndView mnv = new ModelAndView("space_home_iframe_search");
+		System.out.println(search.getSearch_option());
+		System.out.println(search.getSearch_content());
+		
 		List<SpaceVO> list = spaceDAO.search_space(search);
 		mnv.addObject("list", list);
 		return mnv;
@@ -171,7 +174,7 @@ public class CtrlSpace {
 	//공간 상세
 	@RequestMapping("/space_detail.do")
 	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
-			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id) throws Exception{
+			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@CookieValue("code") String code) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
@@ -187,6 +190,7 @@ public class CtrlSpace {
 		mnv.addObject("list_space_qna", list_space_qna);
 		mnv.addObject("list_review", list_review);
 		mnv.addObject("user_id", user_id);
+		mnv.addObject("code", code);
 		mnv.addObject("s_category", s_category);
 		mnv.addObject("host", host);
 		return mnv;
@@ -221,7 +225,7 @@ public class CtrlSpace {
 		ModelAndView mnv = new ModelAndView("space_payment");
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		HostVO host = spaceDAO.find_host_by_space_no(spaceVO);
-		
+		System.out.println(bookingVO.getBooking_date());
 		mnv.addObject("host", host);
 		mnv.addObject("space", space);
 		mnv.addObject("booking", bookingVO);
@@ -254,10 +258,10 @@ public class CtrlSpace {
 			return "redirect:/home_moveLoginPage.do";
 		}
 		
-		
 		Space_qnaVO qna = space_QnADAO.find_space_QnA_by_space_qna_no(space_QnAVO);
 		if(user_id.equals(qna.getUser_id())) {
 			space_QnADAO.delete_spaceQnA_by_spane_qna_no(space_QnAVO);
+			space_QnA_RepleDAO.delete_spaceQnA_by_space_qna_no(space_QnAVO);
 			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
 			
 		}

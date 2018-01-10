@@ -82,6 +82,7 @@
  	 		$("#pay").on("click",function(){
  	 			$("#start_time").removeAttr("disabled");
  	 			$("#end_time").removeAttr("disabled");
+ 	 			$("#booking_date").removeAttr("disabled");
  	 			$("#booking_people").removeAttr("disabled");
  	 			$("#booking_price").removeAttr("disabled");
  	 			$("#pay").attr("type","submit");
