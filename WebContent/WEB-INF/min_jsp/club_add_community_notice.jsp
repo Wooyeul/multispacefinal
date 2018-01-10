@@ -18,7 +18,7 @@
 		<label>제목 : </label><input name="c_notice_title" type="text"/><br/>
 		<label>내용 : </label><textarea name="c_notice_content" rows="15" cols="25"></textarea><br/>
 		<input name="club_no" type="hidden" value="${club_no}"/>
-		<input name="user_id" type="hidden" value="admin"/>
+		<input name="user_id" type="hidden" value="${user_id}"/>
 		<input type="submit" value="등록"/><input id="cancel" type="button" value="취소"/>
 	</form>
 </body>

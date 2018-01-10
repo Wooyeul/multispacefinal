@@ -174,7 +174,7 @@ public class CtrlSpace {
 	//공간 상세
 	@RequestMapping("/space_detail.do")
 	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
-			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@CookieValue("code") String code) throws Exception{
+			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@RequestParam("space_code") String code) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
@@ -207,7 +207,6 @@ public class CtrlSpace {
 		
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		List<ClubVO> club_list = spaceDAO.find_user_club(user_id);
-		
 		mnv.addObject("club_list", club_list);			
 		mnv.addObject("space", space);
 		mnv.addObject("user_id", user_id);
@@ -265,7 +264,21 @@ public class CtrlSpace {
 			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
 			
 		}
-		return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&code=10001";
+		return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&code=20001";
+	}
+	
+	@RequestMapping("/mod_space_qna.do")
+	public String mod_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id) throws Exception{
+		if(user_id==null|| user_id.length()<=1){
+			return "redirect:/home_moveLoginPage.do";
+		}
+		Space_qnaVO qna = space_QnADAO.find_space_QnA_by_space_qna_no(space_QnAVO);
+		if(user_id.equals(qna.getUser_id())) {
+			space_QnADAO.mod_spaceQnA_by_spane_qna_no(space_QnAVO);
+			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
+			
+		}
+		return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&code=20001";
 	}
 	
 	//space reple 등록
@@ -350,27 +363,30 @@ public class CtrlSpace {
 			return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no();
 			
 		}
-		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&code=10001";
+		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&code=20001";
 		
 	}
 	
 	//북마크 등록
 	@RequestMapping("/add_bookmark.do")
+	@ResponseBody
 	public String add_bookmark(@ModelAttribute BookmarkVO bookmark,@CookieValue("user_id") String user_id) throws Exception{
 		if(user_id==null|| user_id.length()<=1){
 			return "redirect:/home_moveLoginPage.do";
 		}
 		bookmarkDAO.add_bookmark(bookmark);
-		return "redirect:/space_detail.do?space_no="+bookmark.getSpace_no();
+		return null;
 	}
 	
 	@RequestMapping("/del_bookmark.do")
+	@ResponseBody
 	public String del_bookmark(@ModelAttribute BookmarkVO bookmark,@CookieValue("user_id") String user_id) throws Exception{
 		if(user_id==null|| user_id.length()<=1){
 			return "redirect:/home_moveLoginPage.do";
 		}
 		bookmarkDAO.del_bookmark(bookmark);
-		return "redirect:/space_detail.do?space_no="+bookmark.getSpace_no();
+		return null;
 	}
+	
 	
 }

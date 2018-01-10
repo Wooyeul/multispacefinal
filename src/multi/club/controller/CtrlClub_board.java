@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
@@ -22,9 +23,10 @@ public class CtrlClub_board {
 	
 		//모임 커뮤니티 게시판 작성 페이지 호출
 		@RequestMapping("/club_add_community_board.do")
-		public ModelAndView club_add_community_board(@ModelAttribute ClubVO pvo) throws Exception {
+		public ModelAndView club_add_community_board(@CookieValue("user_id") String user_id, @ModelAttribute ClubVO pvo) throws Exception {
 			ModelAndView mnv = new ModelAndView("club_add_community_board");
 			mnv.addObject("club_no", pvo.getClub_no());
+			mnv.addObject("user_id", user_id);
 			return mnv;
 		}
 		//모임 커뮤니티 게시판 글 작성
@@ -36,12 +38,13 @@ public class CtrlClub_board {
 		
 		//모임 커뮤니티 게시판 디테일 페이지 호출
 		@RequestMapping("/club_board_detail.do")
-		public ModelAndView club_board_detail(@ModelAttribute Club_boardVO pvo) throws Exception {
+		public ModelAndView club_board_detail(@CookieValue("user_id") String user_id, @ModelAttribute Club_boardVO pvo) throws Exception {
 			ModelAndView mnv = new ModelAndView("club_board_detail");
 			Club_boardVO vo = clubDAO.club_find_board_detail(pvo);
 			List<Club_board_repleVO> reVO = clubDAO.club_find_board_reple(pvo);
 			mnv.addObject("vo", vo);
 			mnv.addObject("reVO", reVO);
+			mnv.addObject("user_id", user_id);
 			return mnv;
 		}
 		//모임 커뮤니티 게시판 수정 페이지 호출

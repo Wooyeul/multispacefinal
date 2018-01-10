@@ -79,11 +79,11 @@ public class CtrlLogin {
 			ModelAndView mnv = new ModelAndView("home_login");
 			mnv.addObject("code", "ID 가 없거나 암호가 틀립니다.");
 			return mnv;
-		} else if (code.equals("10002")) {
+		}/* else if (code.equals("10002")) {
 			ModelAndView mnv = new ModelAndView("home_login");
 			mnv.addObject("code", "로그인이 필요한 페이지 입니다.");
 			return mnv;
-		} else {
+		}*/ else {
 			return null;
 		}
 
@@ -111,7 +111,6 @@ public class CtrlLogin {
 			//user_id 와 passwd가 제대로 맞으면 로그인 성공 -> cookie에 code가 없다.
 			
 		} else {
-		
 			//user_id 와 passwd가 제대로 맞지 않으면 로그인 실패 -> code 값이 10001
 			Cookie ck = new Cookie("code", "10001");
 			response.addCookie(ck);

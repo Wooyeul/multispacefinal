@@ -37,7 +37,6 @@
 	</script>
 </head>
 <body>
-
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -74,19 +73,18 @@
 					<li><a href="#">·Î±×ÀÎ</a></li>				
 				</ul>
 				
-				
 			</div>
-			<!--/.nav-collapse -->
 		</div>
 	</nav>
+	<!--/.nav-collapse -->
 
 	<div class="container">
 
 		<!-- Main component for a primary marketing message or call to action -->
 		<div class="jumbotron">
 			<h1>Multi Space</h1>
-			<input type="text" id="i_top_nav_code" value="${top_nav_code}"/> 
- <!-- <input type="hidden" id="i_top_nav_code" value="${top_nav_code}"/>  -->
+		<!-- <input type="text" id="i_top_nav_code" value="${top_nav_code}"/>  -->	
+ <input type="hidden" id="i_top_nav_code" value="${top_nav_code}"/> 
 			
 		</div>
 
