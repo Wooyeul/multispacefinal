@@ -13,9 +13,8 @@
 
 	$(document).ready(function(){
 		var flag1 = 0;
-		var ssn1 = 0;
-		var ssn2 = 0;
-		
+		var ssn11 = 0;
+		var ssn22 = 0;
 	
 		$(function(){
 			$(".nameCk").on("focusout",function(){
@@ -65,8 +64,8 @@
 			    	return ;
 			    } else{
 			    	flag1 = 1;
-			    	ssn1 = $("#ssn1").val();
-					ssn2 = $("#ssn2").val();
+			    	ssn11 = $("#ssn1").val();
+					ssn22 = $("#ssn2").val();
 			    	$("#dv").html("주민번호는 유효합니다.");
 			    }
 			});
@@ -93,7 +92,6 @@
 		
 		
 		
-		
 		$("#member_join").on("click",function(){
 			var user_idck = $("#user_id").val();
 			var user_id1 = $("#user_id").val();
@@ -105,6 +103,7 @@
 			var ssn1ck = $("#ssn1").val();
 			var ssn2ck = $("#ssn2").val();
 			var nickname= $("#nickname").val();
+			
 			
 			if(user_id1==""){
 				alert("아이디를 입력하세요.");
@@ -132,7 +131,7 @@
 				alert("아이디 중복체크를 다시해주세요")
 			} else if(flag1==0){
 				alert("주민번호 확인눌러주세요");
-			} else if(ssn1 != ssn1ck || ssn2 != ssn2ck) {
+			} else if(ssn11 != ssn1ck || ssn22 != ssn2ck) {
 				alert("주민번호 다시 체크해주세요")
 			} else {
 				$("#member_join").attr('type','submit');
