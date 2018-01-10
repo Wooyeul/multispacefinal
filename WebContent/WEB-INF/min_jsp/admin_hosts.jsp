@@ -20,7 +20,7 @@ table {
 </script>
 </head>
 <body>
-<h1>판매자 리스트</h1>
+<h1>판매자 리스트</h1> 
 <table border="1">
 	<tr>
 		<td>사업자 번호</td>

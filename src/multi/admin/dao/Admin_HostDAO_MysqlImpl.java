@@ -17,7 +17,7 @@ public class Admin_HostDAO_MysqlImpl implements Admin_HostDAO {
 	
 	@Override
 	public List<HostVO> host_findAll() throws Exception {
-		return sqlSession.selectList("admin_host.p_admin_host_findAll"); 
+		return sqlSession.selectList("admin_host.p_admin_host_findAll");
 	}
 	
 	@Override

@@ -17,7 +17,7 @@ public interface Admin_HostDAO {
 	public int host_user_refuse ( HostApplyVO hvo ) throws Exception;
 	public int host_user_remove_request( HostApplyVO hvo) throws Exception;
 	
-	public int host_user_downgrade ( Admin_Host_DowngradeVO hvo ) throws Exception; 
+	public int host_user_downgrade ( Admin_Host_DowngradeVO hvo ) throws Exception;
 	public int host_user_remove ( HostVO hvo ) throws Exception;
 	
 	public UserVO host_user_check ( HostVO hvo ) throws Exception;
