@@ -60,7 +60,9 @@
 			<if test="search_option == 4">
 				AND user_id = ${search_content}
 			</if>
-			ORDER BY club_no DESC LIMIT #{start},#{end}
+			<if test="start!=null">
+				ORDER BY club_no DESC LIMIT #{start},10
+			</if>
     	</select>
 	<!-- search 해서 리스트 찾기 끝 -->
 	

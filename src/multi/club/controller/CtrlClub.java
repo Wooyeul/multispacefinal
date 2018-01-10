@@ -55,18 +55,19 @@ public class CtrlClub {
 	@RequestMapping("/club_list.do")
 	public ModelAndView club_list(@ModelAttribute Club_searchVO svo, @RequestParam("curPage") int curPage ,@CookieValue("user_id") String user_id) throws Exception {
 		ModelAndView mnv = new ModelAndView("club_list");
-		List<ClubVO> voall = clubDAO.club_findAll();
+		
+		// start, end이용해서 데이터 뽑아오기 
+		List<ClubVO> vo = clubDAO.club_search(svo);
 		// 페이지 레코드의 개수 계산
-		int count = voall.size();
+		int count = vo.size();
 		
 		// 페이지 나누기 관련 처리
 		BoardPager boardPager = new BoardPager(count, curPage);
 		svo.setStart(boardPager.getPageBegin());
-		//limit #{end} 값 설정
-		svo.setEnd(10);
+		/*//limit #{end} 값 설정
+		svo.setEnd(10);*/
+		vo = clubDAO.club_search(svo);
 		
-		// start, end이용해서 데이터 뽑아오기 
-		List<ClubVO> vo = clubDAO.club_search(svo);
 		
 		// 데이터 맵에 저장
 		Map<String,Object> map = new HashMap<String,Object>();
