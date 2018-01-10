@@ -14,8 +14,10 @@ import main.ResponseBody;
 import main.vo.Community_boardVO;
 import main.vo.Community_board_repleVO;
 import multi.community.board.dao.Community_boardDAO;
+import multi.community.board.dao.Community_board_searchDAO;
 import multi.community.board.dao.Community_boardmytextDAO;
 import multi.community.board.dao.Community_boardrepleDAO;
+import multi.community.board.vo.Community_board_searchVO;
 
 @Controller
 public class CtrlBoard {
@@ -28,6 +30,9 @@ public class CtrlBoard {
 	
 	@Autowired @Qualifier("community_boardmytextDAO")
 	private Community_boardmytextDAO community_boardmytextDAO =null;
+	
+	@Autowired @Qualifier("community_board_searchDAO")
+	private Community_board_searchDAO community_board_searchDAO =null;
 	
 	
 	//커뮤니티 보드 
@@ -113,12 +118,21 @@ public class CtrlBoard {
 	@RequestMapping("/community_board_recom.do")
 	@ResponseBody
 	 public String community_board_recom(@ModelAttribute Community_boardVO pvo)throws Exception {
-		System.out.println(pvo.getCom_board_no());
+
 		 community_boardDAO.incRecomLogic(pvo);
-		System.out.println(pvo.getRecom_count());
 		 return pvo.getRecom_count().toString();
 	 
 	 }
+	
+	@RequestMapping("/community_board_serch.do")
+	public  ModelAndView  community_board_serch(@ModelAttribute Community_board_searchVO pvo) throws Exception{
+		ModelAndView mnv = new ModelAndView("community_board_serch");
+		 List<Community_boardVO> srl = community_board_searchDAO.comm_board_search(pvo);
+	      mnv.addObject("srl", srl);
+	      return mnv;
+		
+	}
+	
 	 
 	
 	//커뮤니티 보드 글 리플
@@ -140,6 +154,8 @@ public class CtrlBoard {
 	community_boardrepleDAO.delReple(pvo);
 	return "redirect:/community_board_read.do?com_board_no="+pvo.getCom_board_no();
 	}
+	
+	
 
 
 }
