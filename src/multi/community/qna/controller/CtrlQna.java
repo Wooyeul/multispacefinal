@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
@@ -34,7 +35,10 @@ public class CtrlQna {
 	
 	@RequestMapping("/community_qna_read.do")
 	public ModelAndView community_qna_read(@ModelAttribute Community_qnaVO pvo,
-			@ModelAttribute Community_qna_repleVO rpl) throws Exception{
+			@ModelAttribute Community_qna_repleVO rpl, 
+			@CookieValue("user_id") String user_id) throws Exception{
+			
+			pvo.setUser_id(user_id);
 			community_qnaDAO.modView(pvo);
 			Community_qnaVO vo=community_qnaDAO.findByPK(pvo);
 			List<Community_qna_repleVO> rp=community_qna_repleDAO.findAllReple(rpl);
@@ -42,12 +46,14 @@ public class CtrlQna {
 			ModelAndView mnv = new ModelAndView("community_qna_read");
 			mnv.addObject("vo", vo);
 			mnv.addObject("rp", rp);
+			mnv.addObject("user_id", user_id);
 			return mnv;
 	}
 	
 	@RequestMapping("/community_qna_add.do")
-	public ModelAndView community_qna_add() throws Exception{
+	public ModelAndView community_qna_add(@CookieValue("user_id") String user_id) throws Exception{
 			ModelAndView mnv = new ModelAndView("community_qna_add");
+			mnv.addObject("user_id", user_id);
 			return mnv;
 	}
 	
@@ -79,7 +85,8 @@ public class CtrlQna {
 	// 아래부터는 리플
 	
 	@RequestMapping("/community_qna_reple_add.do")
-	public String community_qna_reple_add(@ModelAttribute Community_qna_repleVO pvo) throws Exception{
+	public String community_qna_reple_add(@CookieValue("user_id") String user_id,@ModelAttribute Community_qna_repleVO pvo) throws Exception{
+			pvo.setUser_id(user_id);	
 			community_qna_repleDAO.addReple(pvo);
 			return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 	}

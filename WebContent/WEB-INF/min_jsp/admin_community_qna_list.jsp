@@ -20,7 +20,7 @@
 	<div id="i" class="jumbotron panel-primary">
 		<h1>QnA</h1>
 	</div>
-	<table border="1" cellspacing="0" cellpadding="8">
+	<table border="1" cellspacing="0" cellpadding="8" class="table table-hover">
 		<tr>
 			<th width="40">QnA번호</th>
 			<th>유저</th>
@@ -39,7 +39,7 @@
 		</jl:forEach>
 	</table>
 		<form action="admin_community_qna_add.do" method="post">
-			<input type="submit" value="글쓰기"/>
+			<input type="submit" value="글쓰기" class="btn btn-success" type="button"/>
 		</form>
 </body>
 </html>

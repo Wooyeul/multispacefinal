@@ -86,7 +86,7 @@ $(document).ready(function() {
 					<div id="recom_count">${rpl.recom_count}</div>
 				</td>
 				<td>
-					[<a href="community_qna_reple_recom.do?user_id=woo&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
+					[<a href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
 				</td>
 				<td>[<a href="community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">삭제</a>]</td>
 			</tr>
@@ -114,6 +114,7 @@ $(document).ready(function() {
 	
 		<form action="community_qna_reple_add.do" method="post">
 			<input type="text" name="com_qna_reple_content" />
+			<input type="hidden" name="user_id" value="${user_id}"/>
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<input type="submit" value="댓글작성"/>
 		</form>

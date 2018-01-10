@@ -49,7 +49,6 @@ taglib
 			
 			<div role="tabpanel" class="tab-pane" id="qna2"
 				aria-labelledby="qna">
-				community_qna_list.do
 				<iframe src="community_qna_list.do" width='1024px' height='768px'></iframe>
 			
 			</div>
