@@ -163,6 +163,9 @@ public class CtrlLogin {
 	
 	 @RequestMapping("/home_logout.do")
 	   public String logout( HttpServletResponse response) throws Exception{
+		 
+		 System.out.println("***********");
+		 
 	      Cookie ck = new Cookie("user_id","");
 	      response.addCookie(ck);
 	      
