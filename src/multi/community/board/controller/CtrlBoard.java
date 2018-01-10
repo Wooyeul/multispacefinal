@@ -42,6 +42,7 @@ public class CtrlBoard {
 	      List<Community_boardVO> rl = community_boardDAO.findAll(user_id);
 	      mnv.addObject("rl",rl);
 	      
+	      
 	      mnv.addObject("user_id", user_id);
 
 	      return mnv;
