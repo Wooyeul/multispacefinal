@@ -37,7 +37,6 @@
 	</script>
 </head>
 <body>
-
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -73,7 +72,6 @@
 				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
 					<li><a href="#">·Î±×ÀÎ</a></li>				
 				</ul>
-				
 				
 			</div>
 		</div>

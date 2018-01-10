@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form >
+	<form name="frm">
 	<h3>Myclub</h3>
 	<table border="1">
 		<tr>
@@ -24,11 +24,12 @@
 		<jl:forEach items="${rl}" var="rl">
 			<tr>
 				<td>${rl.club_no}</td>
-				<td>${rl.user_id}</td>
+				
+				<td><a href="club_community.do?club_no=${rl.club_no}">${rl.user_id}</a></td>
 				<td>${rl.club_name}</td>
 				<td>${rl.club_title}</td>
 				<td>${rl.club_content}</td>
-				<td><img src="img/${rl.club_thumb_img}" width="100px"/></td>
+				<td><img src="img/${rl.club_thumb_img}" width="100px" /></td>
 				<td>${rl.max_member}</td>
 			</tr>
 		</jl:forEach>
