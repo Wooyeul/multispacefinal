@@ -13,14 +13,23 @@
  		$(document).ready(function(){
  			if("${bookmark}"!=""){
  				$("#btn_bookmark").html("북마크해제");
- 				$("#a_bookmark").attr("href","del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}");
  			}
- 			if("${code }"==10001){
+ 			if("${code }"==20001){
  				alert("본인만 삭제가 가능합니다.");
  			}
  			
- 			$("#call").on("click",function(){
- 				alert("${space.space_call } 모달로 바꿀 예정");
+ 			$("#btn_bookmark").on("click",function(){
+ 				if($(this).html()=="북마크등록"){
+ 					var url=$(this).attr("add");
+ 					ajaxGet(url,function(rt){
+ 						$("#btn_bookmark").html("북마크해제");
+ 					});
+ 				}else{
+ 					var url=$(this).attr("del");
+ 					ajaxGet(url,function(rt){
+ 						$("#btn_bookmark").html("북마크등록");
+ 					});
+ 				}
  			});
  			$(".collapsed").on("click",function(){
  				
@@ -94,15 +103,10 @@
 					<td>가격</td>
 					<td>${space.price } 원 /시간</td>
 				</tr>
-				<tr>
-					<td><button id="call">전화</button></td>
-					<td><button id="qna">문의하기</button></td>
-					<td><a href="space_reservation.do?space_no=${space.space_no }"><button>예약하기</button></a></td>
-					<td><a id="a_bookmark" href="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"><button id="btn_bookmark">북마크등록</button></a>
-					</td>
-					
-				</tr>
 			</table>
+			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#call">전화</button>
+			<a href="space_reservation.do?space_no=${space.space_no }"><button class="btn btn-default btn-sm">예약하기</button></a>
+			<button class="btn btn-default btn-sm" id="btn_bookmark" add="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}" del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">북마크등록</button>
 		</div>
 		
 		<div>
@@ -138,7 +142,70 @@
 							</tr>
 						</table>
 							<jl:if test="${user_id eq space_qna.user_id }">
-								<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}">질문 삭제</a>
+								<a href="#qna_mod" data-toggle="modal">질문 수정</a>
+								<a href="#qna_del" data-toggle="modal">질문 삭제</a>
+								
+								<!-- qna 삭제 모달 -->
+								<div class="modal fade" id="qna_del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">
+													<span aria-hidden="true">&times;</span>
+													<span class="sr-only">Close</span>
+												</button>
+												<h4 class="modal-title">주의</h4>
+											</div>
+											<div class="modal-body">
+												<h2>정말 삭제하시겠습니까?</h2>
+											</div>
+											<div class="modal-footer">
+												<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}" data-toggle="modal">
+													<button type="button" class="btn btn-default">질문 삭제</button>
+												</a>
+												<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- qna 삭제 모달 끝 -->
+								
+								<!-- qna 수정 모달 -->
+								<div class="modal fade" id="qna_mod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">
+													<span aria-hidden="true">&times;</span>
+													<span class="sr-only">Close</span>
+												</button>
+												<h4 class="modal-title">QnA 수정</h4>
+											</div>
+											<form method="POST" action="mod_space_qna.do">
+												<div class="modal-body">
+													<div class="form-group">
+														<label for="mod_space_qna_title">제목</label>
+														<input type="text" name="space_qna_title" id="mod_space_qna_title" class="form-control" value="${space_qna.space_qna_title }">
+													</div>
+													<div class="form-group">
+														<label for="mod_space_qna_content">내용</label>
+														<textarea name="space_qna_content" id="mod_space_qna_content" class="form-control">${space_qna.space_qna_content }</textarea>
+													</div>
+													<input type="hidden" name="user_id" value="${user_id }">
+													<input type="hidden" name="space_no" value="${space.space_no }">
+													<input type="hidden" name="space_qna_no" value="${space_qna.space_qna_no }">
+												</div>
+												<div class="modal-footer">
+													<input type="submit" class="btn btn-default" value="질문 수정">
+													<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- qna 수정 모달 끝 -->
+							
+								
 							</jl:if>
 								<div id="qna_reple${space_qna.space_qna_no }"></div>
 								<jl:forEach var="vo" items="${host }">
@@ -187,7 +254,7 @@
 			
 			<input type="hidden" name="user_id" value="${user_id }">
 			<input type="hidden" name="space_no" value="${space.space_no }">
-			<input type="submit">
+			<input type="submit"  class="btn btn-default" value="질문 제출">
 			</form>
 		</div>
 			
@@ -227,7 +294,33 @@
 								
 							</table>
 							<jl:if test="${user_id eq review.user_id }">
-								<a href="del_review.do?review_no=${review.review_no }&space_no=${review.space_no}">후기 삭제</a>
+								<a href="#review_del" data-toggle="modal">후기 삭제</a>
+								
+								<!-- 후기 삭제 모달 -->
+								<div class="modal fade" id="review_del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">
+													<span aria-hidden="true">&times;</span>
+													<span class="sr-only">Close</span>
+												</button>
+												<h4 class="modal-title">주의</h4>
+											</div>
+											<div class="modal-body">
+												<h2>정말 삭제하시겠습니까?</h2>
+											</div>
+											<div class="modal-footer">
+												<a href="del_review.do?review_no=${review.review_no }&space_no=${review.space_no}" data-toggle="modal">
+													<button type="button" class="btn btn-default">후기 삭제</button>
+												</a>
+												<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 모달 끝 -->
+								
 							</jl:if>
 						</div>
 					</div>
@@ -239,14 +332,44 @@
 				<form method="POST" action="review_add.do">
 					<input type="hidden" name="user_id" value="${user_id }">
 					<input type="hidden" name="space_no" value="${space.space_no }">
-					<input type="submit" value="후기 작성">
+					<input type="submit" value="후기 작성" class="btn btn-default">
 				</form>
-		
+
 			
 		</div>
 		
+		<!--  모달들 모음  -->
+		
+		<!-- 전화번호 모달 -->
+		<div class="modal fade" id="call" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+							<span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">전화번호</h4>
+					</div>
+					<div class="modal-body">
+						<h2>${space.space_call }</h2>
+						<p>전화 하실 때 MSSPACE보고 문의 드립니다. 라고 말하시면 더욱 친절하게 대해주실거에요~</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
 	</div>
 	</div>
+	
+
 	
 </body>
 </html>

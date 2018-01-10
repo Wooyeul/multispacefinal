@@ -24,6 +24,10 @@
 	<select id="find_spaceQnA_by_space_qna_no" parameterType="main.vo.Space_qnaVO" resultType="main.vo.Space_qnaVO">
 		SELECT * FROM Space_QnAT WHERE space_qna_no=#{space_qna_no}
 	</select>
+	
+	<update id="mod_spaceQnA_by_spane_qna_no" parameterType="main.vo.Space_qnaVO">
+		UPDATE Space_QnAT SET space_qna_title=#{space_qna_title}, space_qna_content=#{space_qna_content} WHERE space_qna_no=#{space_qna_no}
+	</update>
 
 </mapper>
 
