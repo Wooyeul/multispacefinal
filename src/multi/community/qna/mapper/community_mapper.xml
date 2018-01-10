@@ -332,6 +332,44 @@
       {call p_comm_qnaincRecom(?,?,?)}
    </update>
 	
+	<!--@@@@@@@검색@@@@@@@ -->
+	<select id="comm_qna_search" parameterType="multi.community.qna.vo.Community_qna_searchVO" resultType="multi.community.qna.vo.Community_qnaVO">
+
+	SELECT * FROM Community_qnaT WHERE 0 = 0
+	<if test="comm_search_option ==1">
+	AND com_qna_title like '%${comm_search_content}%'
+	</if>
+	<if test="comm_search_option == 2">
+	AND com_qna_content like'%${comm_search_content}%'
+	</if>
+	<if test="comm_search_option == 3">
+	AND com_qna_title like '%${comm_search_content}%'
+	OR com_qna_content like '%${comm_search_content}%'
+	</if>
+	<if test="comm_search_option == 4">
+	AND user_id = #{comm_search_content}
+	</if>
+	
+	</select>
+	
+	<!--@@@@@@@@@@@@내가쓴글 보기-@@@@@@@@@@@ -->
+	<!-- 프로시져 p_comm_qna_findmytext 
+	
+	DROP PROCEDURE IF EXISTS p_comm_qna_findmytext;
+	DELIMITER $$
+	CREATE PROCEDURE p_comm_qna_findmytext(
+	IN v_user_id  VARCHAR(20)
+	)
+	BEGIN
+		SELECT * FROM Community_qnaT where user_id =  v_user_id;
+	END$$
+	DELIMITER ;
+	-->
+
+	<select id="p_comm_qna_findmytext" statementType="CALLABLE"
+		resultMap="RM_qnaText" parameterType="java.lang.String">
+		{call p_comm_qna_findmytext(#{user_id})}
+	</select>
 </mapper>
 <!--
 

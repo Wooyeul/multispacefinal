@@ -145,6 +145,10 @@
 		id="community_qnaDAO" />
 	<bean class="multi.community.qna.dao.Community_qna_repleDAO_ProcImpl"
 		id="community_qna_repleDAO" />
+	<bean class="multi.community.qna.dao.Community_qna_mytextDAO_ProcImpl"
+		id="community_qna_mytextDAO" />
+	<bean class="multi.community.qna.dao.Community_qna_searchDAO_ProcImpl"
+		id="community_qna_searchDAO" />
 	<bean class="multi.community.controller.CtrlCommunity" />
 	<bean class="multi.community.qna.controller.CtrlQna" />
 	<!-- Á¶¿ì¿­ -->
