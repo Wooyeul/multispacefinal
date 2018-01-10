@@ -23,23 +23,23 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
 
-$(document).ready(function() {
-	$("#btnClose").on("click", function() {
-		$("#repleModal").modal("hide");
-	});
-
-	$("#btnreMod").on("click", function() {
-		$("#reple_form").submit();
-
-	});
+	$(document).ready(function() {
+		$("#btnClose").on("click", function() {
+			$("#repleModal").modal("hide");
+		});
 	
-	$(".modReple").on("click", function() {
-		$("#com_qna_reple_no").val($(this).attr("xyz"));
-		$("#content").val($("#" + $(this).attr("abcd")).text());
-		$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
-		$("#repleModal").modal("show");
+		$("#btnMod").on("click", function() {
+			$("#reple_form").submit();
+	
+		});
+		
+		$(".modReple").on("click", function() {
+			$("#com_qna_reple_no").val($(this).attr("xyz"));
+			$("#content").val($("#" + $(this).attr("abcd")).text());
+			$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
+			$("#repleModal").modal("show");
+		});
 	});
-});
 
 
 </script>
@@ -93,29 +93,26 @@ $(document).ready(function() {
 			</tr>
 		</jl:forEach>
 	</table>
-	<div class="container">
 	
+	<form method="POST" action="community_qna_reple_mod.do" id="reple_form" >
 		<div id="repleModal" class="modal" role="dialog">
-			
+			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}" name="com_qna_no" /> 
+			<input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
 						<div class="form-group">
-						<form method="POST" action="community_qna_reple_mod.do" id="reple_form" >
-						<label id="lblContent" for="content"></label>
+							<label id="lblContent" for="content"></label>
 							<textarea name ="com_qna_reple_content" class="form-control" id="content" rows="7"></textarea>
-						<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}" name="com_qna_no" /> 
-						<input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
-						<button class="btn btn-primary btn-sm" id="btnreMod">수정</button>
-						</form>
-						<button class="btn btn-primary btn-sm" id="btnClose" >닫기</button>
 						</div>
+						<input type="button" class="btn btn-primary btn-sm" id="btnMod" value="수정"/>
+                 		<input type="button" class="btn btn-primary btn-sm" id="btnClose" value="닫기"/>
 					</div>
 				</div>
 			</div>
 		</div>
+	</form>
 	
-	</div>
 		<form action="community_qna_reple_add.do" method="post">
 			<input type="text" name="com_qna_reple_content" />
 			<input type="hidden" name="user_id" value="${user_id}"/>
