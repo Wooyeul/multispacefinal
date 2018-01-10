@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +10,68 @@
 </head>
 <body>
 <script type="text/javascript">
+
 	$(document).ready(function(){
+		var flag1 = 0;
+		var ssn1 = 0;
+		var ssn2 = 0;
+		
+	
+		$(function(){
+			$(".nameCk").on("focusout",function(){
+				
+				var user_name = $("#user_name").val();
+				
+				if(user_name.replace(/[A-Za-z0-9!@#$%^&*()_+=|\ `~]/g, "")==""){
+					$("#user_name").val("");
+					alert("ì´ë¦„ì€ í•œê¸€ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”");
+					return;
+				}
+				
+			});
+			
+			$(".btn").on("click",function(){
+			 	var ssn1 = $("#ssn1").val();
+				if(ssn1.replace(/[A-Za-zã„±-í£!@#$%^&*()_+=|\ `~]/g, "")==""){
+					alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ëŠ” ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”");
+					return;
+				}
+				
+		 		var ssn2 = $("#ssn2").val();
+				if(ssn2.replace(/[A-Za-zã„±-í£!@#$%^&*()_+=|\ `~]/g, "")==""){
+					alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ëŠ” ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”");
+					return;
+				} 
+				
+			 	var sum=0;
+				sum += ssn1.charAt(0)*2;
+			    sum += ssn1.charAt(1)*3;
+			    sum += ssn1.charAt(2)*4;
+			    sum += ssn1.charAt(3)*5;
+			    sum += ssn1.charAt(4)*6;
+			    sum += ssn1.charAt(5)*7;
+		
+			    sum += ssn2.charAt(0)*8;
+			    sum += ssn2.charAt(1)*9;
+			    sum += ssn2.charAt(2)*2;
+			    sum += ssn2.charAt(3)*3;
+			    sum += ssn2.charAt(4)*4;
+			    sum += ssn2.charAt(5)*5;
+				
+			    var check = (11 - sum%11)%10;
+		
+			    if(ssn2.charAt(6) != check || (ssn1.length != 6 && ssn2.length !=7)){
+			    	$("#dv").html("ì£¼ë¯¼ë²ˆí˜¸ëŠ” ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			    	return ;
+			    } else{
+			    	flag1 = 1;
+			    	ssn1 = $("#ssn1").val();
+					ssn2 = $("#ssn2").val();
+			    	$("#dv").html("ì£¼ë¯¼ë²ˆí˜¸ëŠ” ìœ íš¨í•©ë‹ˆë‹¤.");
+			    }
+			});
+		});
+	
 		var flag = 0;
 		var user_id;
 		$("#primary_id").on("click",function(){
@@ -19,16 +80,19 @@
 			
 			ajaxGet(url,function(rt){
 				if(rt==1){
-					alert("Áßº¹µÇ¾ú½À´Ï´Ù.");
+					alert("ì¤‘ë³µë˜ì—ˆìŠµë‹ˆë‹¤.");
 					$("#user_id").val("");
 				} else if(user_id==""){
-					alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+					alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 				} else if( rt == 0){
-					alert("»ç¿ë°¡´ÉÇÕ´Ï´Ù.");
+					alert("ì‚¬ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 					flag = 1;
 				} 
 			});
 		});
+		
+		
+		
 		
 		$("#member_join").on("click",function(){
 			var user_idck = $("#user_id").val();
@@ -38,34 +102,38 @@
 			var user_name = $("#user_name").val();
 			var phone = $("#phone").val();
 			var email = $("#email").val();
-			var ssn1 = $("#ssn1").val();
-			var ssn2 = $("#ssn2").val();
+			var ssn1ck = $("#ssn1").val();
+			var ssn2ck = $("#ssn2").val();
 			var nickname= $("#nickname").val();
 			
 			if(user_id1==""){
-				alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			} else if(passwd==""){
-				alert("ºñ¹Ğ¹øÈ£ ÀÔ·ÂÇÏ¼¼¿ä");
+				alert("ë¹„ë°€ë²ˆí˜¸ ì…ë ¥í•˜ì„¸ìš”");
 			} else if(passwd2==""){
-				alert("ºñ¹Ğ¹øÈ£ ÀÔ·ÂÇÏ¼¼¿ä");
+				alert("ë¹„ë°€ë²ˆí˜¸ ì…ë ¥í•˜ì„¸ìš”");
 			} else if(passwd != passwd2){
-				alert("ºñ¹Ğ¹øÈ£ ´Ù¸§");
+				alert("ë¹„ë°€ë²ˆí˜¸ ë‹¤ë¦„");
 			} else if(user_name==""){
-				alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+				alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”");
 			} else if(nickname==""){
-				alert("´Ğ³×ÀÓÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+				alert("ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”");
 			} else if(phone==""){
-				alert("Æù¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+				alert("í°ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 			} else if(email==""){
-				alert("emailÀ» ÀÔ·ÂÇÏ¼¼¿ä");
-			} else if(ssn1==""){
-				alert("ÁÖ¹Î¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-			} else if(ssn2==""){
-				alert("ÁÖ¹Î¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+				alert("emailì„ ì…ë ¥í•˜ì„¸ìš”");
+			} else if(ssn1ck==""){
+				alert("ì£¼ë¯¼ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+			} else if(ssn2ck==""){
+				alert("ì£¼ë¯¼ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 			} else if(flag==0){
-				alert("¾ÆÀÌµğ Áßº¹Ã¼Å© ÇØÁÖ¼¼¿ä");
+				alert("ì•„ì´ë”” ì¤‘ë³µì²´í¬ í•´ì£¼ì„¸ìš”");
 			} else if(user_id != user_idck){
-				alert("¾ÆÀÌµğ Áßº¹Ã¼Å©¸¦ ´Ù½ÃÇØÁÖ¼¼¿ä")
+				alert("ì•„ì´ë”” ì¤‘ë³µì²´í¬ë¥¼ ë‹¤ì‹œí•´ì£¼ì„¸ìš”")
+			} else if(flag1==0){
+				alert("ì£¼ë¯¼ë²ˆí˜¸ í™•ì¸ëˆŒëŸ¬ì£¼ì„¸ìš”");
+			} else if(ssn1 != ssn1ck || ssn2 != ssn2ck) {
+				alert("ì£¼ë¯¼ë²ˆí˜¸ ë‹¤ì‹œ ì²´í¬í•´ì£¼ì„¸ìš”")
 			} else {
 				$("#member_join").attr('type','submit');
 			}
@@ -76,47 +144,47 @@
 <table border="0" cellpadding = "8" align="center">
 
 	<tr>
-		<th colspan="3" align="center"><h1>È¸¿ø°¡ÀÔ</h1></th>
+		<th colspan="3" align="center"><h1>íšŒì›ê°€ì…</h1></th>
 		<!-- <td></td>
 		<td></td> -->
 	</tr>
 	
 	<tr>
-		<th align="right">¾ÆÀÌµğ</th>
+		<th align="right">ì•„ì´ë””</th>
 		<td>
 		
 		<input type="text" name="user_id" id="user_id" size="10"/>   
-		<input type="button" id="primary_id" value="Áßº¹È®ÀÎ"/>
+		<input type="button" id="primary_id" value="ì¤‘ë³µí™•ì¸"/>
 		</td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">ºñ¹Ğ¹øÈ£</th>
-		<td><input type="password" name="passwd" id="passwd"size="20"/></td>
+		<th align="right">ë¹„ë°€ë²ˆí˜¸</th>
+		<td><input type="password" name="passwd" id="passwd"size="20" maxlength="20"/></td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">ºñ¹Ğ¹øÈ£ È®ÀÎ</th>
-		<td><input type="password" name="passwd2" id="passwd2" size="20"/></td>
+		<th align="right">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</th>
+		<td><input type="password" name="passwd2" id="passwd2" size="20" maxlength="20"/></td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">ÀÌ¸§</th>
-		<td><input type="text" name="user_name" id="user_name" size="10"/></td>
+		<th align="right">ì´ë¦„</th>
+		<td><input type="text" name="user_name" id="user_name" size="10" maxlength="8" class="nameCk"/></td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">´Ğ³×ÀÓ</th>
-		<td><input type="text" name="nickname" id="nickname" size="10"/></td>
+		<th align="right">ë‹‰ë„¤ì„</th>
+		<td><input type="text" name="nickname" id="nickname" size="10" maxlength="8"/></td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">ÀüÈ­¹øÈ£</th>
+		<th align="right">ì „í™”ë²ˆí˜¸</th>
 		<td>
 		     <select name="num">
 			<option value="010">010</option>		
@@ -126,46 +194,43 @@
 			<option value="019">019</option>		
 			</select>
 			 - 
-			 <input type="text" name="phone_cen" size="5"/> - 
-			 <input type="text" name="phone_end" size="5"/>
+			 <input type="text" name="phone_cen" size="5" maxlength="4"/> - 
+			 <input type="text" name="phone_end" size="5" maxlength="4"/>
 		</td>
 		<td></td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">ÀÌ¸ŞÀÏ</th>
+		<th align="right">ì´ë©”ì¼</th>
 		<td>
 			<input type="text" name="email" id="email" size="10"/>@  
 			<select name="home">
-			<option value="¸ŞÀÏ¼±ÅÃ">¸ŞÀÏ¼±ÅÃ</option>
 			<option value="daum.net">daum.net</option>
 			<option value="naver.com">naver.com</option>
 			<option value="gmail.com">gmail.com</option>
 			<option value="hotmail.com">hotmail.com</option>
 			<option value="hanmail.net">hanmail.net</option>
-			<option value="Á÷Á¢ÀÔ·Â">Á÷Á¢ÀÔ·Â</option>
 			</select>
-			<!-- <input type="text" name="msg" size="7"/> -->
 		</td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">¿ìÆí¹øÈ£</th>
+		<th align="right">ìš°í¸ë²ˆí˜¸</th>
 		<td>
 		<input type="hidden" name="zipcode" value="qwer"/>
 		<input type="text" name="zip1" size="6" readonly="readonly"/> 
 		&nbsp;
 		
-		<input type="button" name="findzip" value="Ã£±â" class="btn"
+		<input type="button" name="findzip" value="ì°¾ê¸°" class="btn"
 			onclick="zipSearch()"/>
 		</td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">ÁÖ¼Ò</th>
+		<th align="right">ì£¼ì†Œ</th>
 		<td>
 		<input type="text" name="addr1" size="40" readonly="readonly"/>
 		</td>
@@ -173,7 +238,7 @@
 	</tr>
 	
 	<tr>
-		<th align="right">»ó¼¼ÁÖ¼Ò</th>
+		<th align="right">ìƒì„¸ì£¼ì†Œ</th>
 		<td>
 		<input type="text" size="20"/>
 		</td>
@@ -181,20 +246,21 @@
 	</tr>
 	
 	<tr>
-		<th align="right">ÁÖ¹Î¹øÈ£</th>
+		<th align="right">ì£¼ë¯¼ë²ˆí˜¸</th>
 		<td>
-		<input type="text" name="ssn1" id="ssn1" size="6" maxlength="6"/> - 
-		<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7"/>
+		<input type="text" name="ssn1" id="ssn1" size="6" maxlength="6" /> - 
+		<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7" />
+		<input type="button" value="í™•ì¸" class="btn"/>
+		<div id="dv"></div>
 		</td>
 		<td></td>
 	</tr>
 	
 	<tr>
-		<th align="right">¼ºº°</th>
+		<th align="right">ì„±ë³„</th>
 		<td>
-		<input type="radio" name="gender" value="M" checked="checked"
-/> ³² 
-		<input type="radio" name="gender" value="F"/> ¿© 
+		<input type="radio" name="gender" value="M" checked="checked"/> ë‚¨ 
+		<input type="radio" name="gender" value="F"/> ì—¬ 
 		<input type="hidden" name="grade" value="1"/>
 		</td>
 		<td></td>
@@ -203,9 +269,9 @@
 	<tr>
 		<td></td>
 		<td>
-		 <input type="button" name="member_join" id="member_join" value="    È¸¿ø°¡ÀÔ    "/>
+		 <input type="button" name="member_join" id="member_join" value="    íšŒì›ê°€ì…    "/>
 		 &nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="reset" value="      Àç¼³Á¤      "/>
+		 <input type="reset" value="      ì¬ì„¤ì •      "/>
 		</td>
 		<td></td>
 	</tr>
