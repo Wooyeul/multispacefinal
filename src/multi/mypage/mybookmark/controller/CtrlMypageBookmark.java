@@ -12,6 +12,7 @@ import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
+import main.ResponseBody;
 import main.vo.BookmarkVO;
 import main.vo.SpaceVO;
 import multi.mypage.mybookmark.dao.BookmarkDAO;
@@ -32,14 +33,22 @@ public class CtrlMypageBookmark {
 	}
 	
 	@RequestMapping("/bookmark_del.do")
+	@ResponseBody
 	public String delBookmark(HttpServletRequest request){
 		String[] r = request.getParameterValues("check");
+		Integer m = 0;
+		Integer a = 0;
+		String[] temp = null;
 		if(r != null){
 			for(String t : r){
-				int m = Integer.parseInt(t);
-				bookmakrDAO.bookmarkDel(m);
+				temp = t.split(",");
+			}
+		
+			for(String ab : temp){
+				m = Integer.parseInt(ab);
+				a = bookmakrDAO.bookmarkDel(m);
 			}
 		}
-		return "redirect:/bookmark_findAll.do";
+		return a.toString();
 	}
 }
