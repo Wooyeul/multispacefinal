@@ -23,6 +23,7 @@ import main.RequestParam;
 import multi.mypage.booking.dao.BookingDAO;
 import multi.mypage.booking.dao.UserDAO;
 import multi.mypage.booking.vo.BookingVO;
+import main.vo.SpaceVO;
 import main.vo.UserVO;
 
 
@@ -38,26 +39,28 @@ public class CtrlBooking {
 	@RequestMapping("/mypage_moveMypageBookingPage.do")
 	public ModelAndView moveMypageBookingPage(@CookieValue("user_id") String user_id) throws Exception {
 
-		UserVO userInfo = UserDAO.find_userInfo(user_id);
+		UserVO userInfo = UserDAO.find_userInfo(user_id);		
 		List<BookingVO> bookingInfo = BookingDAO.find_bookingInfo(user_id);
 		
-		ModelAndView mnv = new ModelAndView("mypage_booking");
-		mnv.addObject("userInfo", userInfo);
-		mnv.addObject("bookingInfo", bookingInfo);
-		return mnv;
+		if(userInfo != null){			
+			ModelAndView mnv = new ModelAndView("mypage_booking");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("bookingInfo", bookingInfo);
+			return mnv;
+		}else{
+			return null;
+		}
+
 
 	}
 	@RequestMapping("/mypage_moveSpaceinfo.do")
-	public ModelAndView moveSpaceinfo(@CookieValue("user_id") String user_id,@RequestParam("space_no")String space_no) throws Exception {
-		
-
+	public ModelAndView moveSpaceinfo(@ModelAttribute SpaceVO svo) throws Exception {
 		
 		ModelAndView mnv = new ModelAndView("space_info");
-		mnv.addObject("space_no", space_no);
+		mnv.addObject("space_no", svo.getSpace_no());
 		return mnv;
 
 	}
 
-	
 
 }

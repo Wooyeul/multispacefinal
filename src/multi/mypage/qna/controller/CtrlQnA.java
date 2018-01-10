@@ -31,50 +31,44 @@ import multi.mypage.qna.dao.Space_qna_repleDAO;
 @Controller
 public class CtrlQnA {
 
-	@Autowired	@Qualifier("mypage_qna_UserDAO")
+	@Autowired
+	@Qualifier("mypage_qna_UserDAO")
 	private UserDAO UserDAO = null;
-	
-	@Autowired	@Qualifier("mypage_qna_Space_qnaDAO")
+
+	@Autowired
+	@Qualifier("mypage_qna_Space_qnaDAO")
 	private Space_qnaDAO Space_qnaDAO = null;
-	
-	@Autowired	@Qualifier("mypage_qna_Space_qna_repleDAO")
+
+	@Autowired
+	@Qualifier("mypage_qna_Space_qna_repleDAO")
 	private Space_qna_repleDAO Space_qna_repleDAO = null;
-	
-	
+
 	@RequestMapping("/mypage_moveMypageQnAPage.do")
 	public ModelAndView moveMypageQnAPage(@CookieValue("user_id") String user_id) throws Exception {
 
-		
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		List<Space_qnaVO> qnaInfo = Space_qnaDAO.find_qnaInfo(user_id);
-		
 
-		ModelAndView mnv = new ModelAndView("mypage_qna");
-		mnv.addObject("userInfo", userInfo);
-		mnv.addObject("qnaInfo", qnaInfo);
-		return mnv;
+		if (userInfo != null) {
+			ModelAndView mnv = new ModelAndView("mypage_qna");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("qnaInfo", qnaInfo);
+			return mnv;
+		} else {
+			return null;
+		}
 
 	}
-	
 
 	@RequestMapping("/mypage_getMypageQnAReple.do")
 	@ResponseBody
-	public String getMypageQnAReple(@CookieValue("user_id") String user_id,
-			@RequestParam("space_qna_no")String space_qna_no) throws Exception {
+	public String getMypageQnAReple(@CookieValue("user_id") String user_id, @ModelAttribute Space_qnaVO sqvo)
+			throws Exception {
 
-		
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(space_qna_no);
-		
-		System.out.println("qna_repleInfo : " + qna_repleInfo);
-
-
+		Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(sqvo);
 		return qna_repleInfo.getSpace_qna_reple_content();
 
 	}
-	
-	
-	
-	
 
 }

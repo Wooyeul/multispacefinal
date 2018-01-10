@@ -1,31 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- bootstrap_test17.html
-
-	-->
-<style type="text/css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-h1 {
-	font-weight: bold;
-}
 
-.jumbotron {
-	margin-top: 20px;
-	background-color: orange;
-}
+
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	<script>
+	function ajaxGet( url, a, b, c ){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if( xhr.readyState == 4 ){
+				if( xhr.status == 200 ){
+					a( xhr.responseText );
+				}
+				else if( xhr.status == 404 ){
+					alert("404");
+					if( b ){
+						b();
+					}
+				}
+				else if( xhr.status == 500 ){
+					if( c != undefined ){
+						c();
+					}
+				}
+			}
+		};
+		xhr.open("GET",url,true);
+		xhr.send(null);
+	}	
+	$(document).ready(function(){
+		var url = "main_html.do";
+ 		ajaxGet(url,function(rt){
+ 			
+ 				// 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+ 				if(rt =="10002"){ 
+					$("#login_nav").hide();
+					$("#non_login_nav").show();
+				}
+ 					
+ 				// 로그인 시 : rt값 -> user_name
+				else if(rt!=""){ 
+					$("#login_nav").show();
+					$("#non_login_nav").hide();
+					$("#user_name").text(rt+"님이 로그인하셨습니다.");
+				}
+ 			});	
+	});
+
+	</script>
+	
+
+	</script>
 </head>
 <body>
+
+<input type="hidden" id="i_top_nav_code" /> 
 
 
 	<!-- Fixed navbar -->
@@ -39,25 +77,28 @@ h1 {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Project name</a>
+				<a class="navbar-brand" href="#">Multi Space</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="space_home.do">����</a></li>
-					<li><a href="club_home.do">����</a></li>
-					<li><a href="community_list.do">Ŀ�´�Ƽ</a></li>
-					<li><a href="event_list.do">�̺�Ʈ</a></li>
-					<li><a href="notice_list.do">��������</a></li>
+					<li><a href="space_home.do">공간</a></li>
+					<li><a href="club_list.do">모임</a></li>
+					<li><a href="community_list.do">커뮤니티</a></li>
+					<li><a href="event_list.do">이벤트</a></li>
+					<li><a href="notice_list.do">공지사항</a></li>
 					<li><a href="faq_list.do">FAQ</a></li>
-					<li><a href="admin_main.do">������</a></li>
+					<li><a href="admin_main.do">관리자</a></li>
 				</ul>
 				
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="home_moveLoginPage.do">�α���</a></li>
-					<li><a href="#">Static top</a></li>
-					<li><a href="#">Fixed top <span>
-							class="sr-only">(current)</span></a></li>
+				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+					<li><a href="home_moveLoginPage.do">로그인</a></li>
+				</ul>
+				
+				<ul id="login_nav" class="nav navbar-nav navbar-right">
+					<li><a id="user_name"></a></li>
+					<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+					<li><a href="#">로그아웃</a></li>					
 				</ul>
 				
 			</div>
