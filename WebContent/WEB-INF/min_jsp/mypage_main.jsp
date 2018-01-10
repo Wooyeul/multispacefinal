@@ -9,16 +9,6 @@
 	<style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-h1 {
-	font-weight: bold;
-}
-
-.jumbotron {
-	margin-top: 20px;
-	background-color: green;
-	color: #FFFFFF;
-}
-
 iframe {
 	display: block;
 	border: none;
@@ -33,8 +23,6 @@ ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	width: 25%;
-	background-color: #f1f1f1;
 	height: 100%;
 	
 }
@@ -47,14 +35,6 @@ li a {
 	text-decoration: none;
 }
 
-li:hover{
-	background-color: green;
-}
-
-li a.active {
-	background-color: green;
-	color: green;
-}
 
 li a:hover {
 	background-color: green;
@@ -71,6 +51,14 @@ li a:hover {
 	<script>
 	$(document).ready(function(){
 
+		if($("#i_top_nav_code").val() == 20000){
+			$("#login_nav").show();
+			$("#non_login_nav").hide();
+		}
+		if($("#i_top_nav_code").val() == 20002){
+			$("#login_nav").hide();
+			$("#non-login").show();
+		}
 		
 		$("#receiveMessageBox").hide();
 		$("#sendMessageBox").hide();
@@ -94,35 +82,74 @@ li a:hover {
 	</script>
 </head>
 <body>
+	 <input type="hidden" id="i_top_nav_code" value="${top_nav_code}"/> 
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="main_html.do">multi space</a>
+			</div>
+			
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="space_home.do">공간</a></li>
+					<li><a href="club_home.do">모임</a></li>
+					<li><a href="community_list.do">커뮤니티</a></li>
+					<li><a href="event_list.do">이벤트</a></li>	
+					<li><a href="notice_list.do">공지사항</a></li>
+					<li><a href="faq_list.do">FAQ</a></li>			
+					<li><a href="admin_main.do">관리자</a></li>			
+				</ul>
+				
+				<ul id="login_nav" class="nav navbar-nav navbar-right">
+					<li><a href="#">${user_name}님이 로그인 하셨습니다.</a></li>
+					<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+					<li><a href="home_logout.do">로그아웃</a></li>					
+				</ul>
+				
+				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+					<li><a href="#">로그인</a></li>				
+				</ul>
+				
+				
+			</div>
+		</div>
+	</nav>
+	<!--/.nav-collapse -->
+
+
+
+
 <div class="container-fluid">
 
 	
 	<div class="row">
-		<div class="col-sm-2">
-		 <ul class="nav" >
-		      <li class="active"><a data-toggle="tab" href="#myInfo">[내 정보]</a></li>
-		      <li><a data-toggle="tab" href="#myBooking">구매 정보</a></li>
-		      <li><a data-toggle="tab" href="#myBookmark">즐겨찾기</a></li>
-		      <li><a data-toggle="tab" href="#myQna">Q&A</a></li>
-		      <li><a data-toggle="tab" href="#myClub">내 모임</a></li>
-		      <li><a data-toggle="tab" href="#myReview">내 후기</a></li>
-		      <li><a data-toggle="tab" id="message_nav" href="#myReceiveMessageBox">쪽지 함</a></li>
-				   <ul class="sub_message_nav" >
-				      <li id="receiveMessageBox" class="active"><a data-toggle="tab" href="#myReceiveMessageBox">받은 쪽지함</a></li>
-				      <li id="sendMessageBox"><a data-toggle="tab" href="#mySendMessageBox">보낸 쪽지함</a></li>
-				      <li id="sendMessage"><a data-toggle="tab" href="#mySendMessage">쪽지 보내기</a></li>
-				   </ul>
+			<div class="col-sm-2">
+				<ul class="nav">
+					<li class="active"><a data-toggle="tab" href="#myInfo">[내
+							정보]</a></li>
+					<li><a data-toggle="tab" href="#myBooking">구매 정보</a></li>
+					<li><a data-toggle="tab" href="#myBookmark">즐겨찾기</a></li>
+					<li><a data-toggle="tab" href="#myQna">Q&A</a></li>
+					<li><a data-toggle="tab" href="#myClub">내 모임</a></li>
+					<li><a data-toggle="tab" href="#myReview">내 후기</a></li>
+					<li><a data-toggle="tab" id="message_nav" href="#myReceiveMessageBox">쪽지 함</a></li>
+						
+					<ul class="sub_message_nav">
+						<li id="receiveMessageBox" class="active"><a
+							data-toggle="tab" href="#myReceiveMessageBox">받은 쪽지함</a></li>
+						<li id="sendMessageBox"><a data-toggle="tab" href="#mySendMessageBox">보낸 쪽지함</a></li>
+						<li id="sendMessage"><a data-toggle="tab" href="#mySendMessage">쪽지 보내기</a></li>
+					</ul>
 
-<li><a data-toggle="tab" href="#sellerWrite">[판매자]</a></li>
-			<li><a data-toggle="tab" href="#sellerWrite">내 글</a></li>	
-			<li><a data-toggle="tab" href="#sellerAllChart">전체 통계</a></li>
+					<li><a data-toggle="tab" href="#sellerWrite">[판매자]</a></li>
+					<li><a data-toggle="tab" href="#sellerWrite">내 글</a></li>
+					<li><a data-toggle="tab" href="#sellerAllChart">전체 통계</a></li>
 
-		   </ul>
-	</div>
-	
+				</ul>
+			</div>
 
-	
-	
+
 	<div class="tab-content col-sm-10" >
 		<div id="myInfo"  class="tab-pane active fade in">	
 			<iframe src="myinfo_ckpass.do"  align="center"></iframe>
@@ -164,7 +191,7 @@ li a:hover {
 	</div>
 	
 	</div>
-	
+
 </div>
 </body>
 </html>
