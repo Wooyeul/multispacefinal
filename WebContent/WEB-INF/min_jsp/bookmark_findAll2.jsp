@@ -6,20 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="common.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".space_no").on("click",function(){
-			/* var temp = $(this).attr("abc");
-			alert(temp); */
+		
+		$("#del").on("click",function(){
+			
 		});
 	});
-
 </script>
 <title>Insert title here</title>
 </head>
 <body>
 	<h3>즐겨찾기</h3>
-	<form action="bookmark_del.do" method="POST">
+	<form action="bookmark_del.do" method="POST" name="frm">
 		<table border="1">
 			<jl:forEach var="ab" items="${rl}" varStatus="i" begin="0">
 			<jl:if test="${(i.count-1) % 3 eq 0}">
@@ -28,12 +28,13 @@
 				<td>	
 				${ab.space_no}
 				<input type="checkbox" class="space_no" name="check" value="${ab.space_no}" abc="${ab.space_no}"/><br/>
-				<img src="img/${ab.space_thumb_img}" width="100px" /><br/>
-				${ab.space_title}<br/>
+				<img src="img/${ab.space_thumb_img}" width="100px"/><br/>
+				<a href="space_detail.do?space_no=${ab.space_no}">${ab.space_title}</a><br/>
 				</td>
 			</jl:forEach>
 		</table>
-		<input type="submit" value="삭제하기"/>
+		<input type="submit" value="삭제하기" id="del" />
 	</form>
+	
 </body>
 </html>

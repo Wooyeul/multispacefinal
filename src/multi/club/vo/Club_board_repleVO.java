@@ -6,11 +6,11 @@ public class Club_board_repleVO {
 	public Club_board_repleVO() {}
 	
 	//프로퍼티 선언
-	public Integer c_board_reple_no=null;
-	public String c_board_reple_content=null;
-	public String the_time=null;
-	public String user_id=null;
-	public Integer c_board_no=null;
+	private Integer c_board_reple_no=null;
+	private String c_board_reple_content=null;
+	private String the_time=null;
+	private String user_id=null;
+	private Integer c_board_no=null;
 	
 	//getter & setter
 	public Integer getC_board_reple_no() {

@@ -223,21 +223,25 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 	//검색 기능
 	@Override
 	public List<ClubVO> club_search(Club_searchVO pvo) throws Exception {
-		
-		/*if(pvo.getL_category_no()==null&&pvo.getC_category_no()==null&&pvo.getSearchOption()==0){
-			System.out.println("전체검색");
-			return sqlSession.selectList("club.club_findAll");
-		}else if(pvo.getL_category_no()!=null&&pvo.getC_category_no()!=null&&pvo.getSearchOption()!=0){
-			
-		}else if(pvo.getL_category_no()!=null&&pvo.getC_category_no()!=null){
-			System.out.println("지역분야검색");
-		}else if(pvo.getL_category_no()!=null&&pvo.getSearchOption()!=0){
-			System.out.println("지역컨텐츠검색");
-			if(pvo.getSearchOption()==1){
-				System.out.println("제목검색");
-			}
-		}*/
 		return sqlSession.selectList("club.club_search",pvo);
+	}
+
+	// 현재의 모임으로 들어가 있는지 조회.
+	@Override
+	public User_clubVO club_find_user_byId(User_clubVO pvo) throws Exception {
+		return sqlSession.selectOne("club.club_find_user_byId",pvo);
+	}
+
+	// 모임의 유저가 탈퇴를 할 때
+	@Override
+	public int club_del_user(User_clubVO pvo) throws Exception {
+		return sqlSession.update("club.club_del_user",pvo);
+	}
+
+	// 모임을 해체시킬때
+	@Override
+	public int club_del_club(User_clubVO pvo) throws Exception {
+		return sqlSession.update("club.club_del_club",pvo);
 	}
 
 }

@@ -11,6 +11,7 @@
 		table, tr, td{
 			border: 1px solid;
 		}
+		
 	</style>
 </head>
 <body>
@@ -38,6 +39,7 @@
 			</select>
 			<input type="text" name="search_content"/>
 			<br/><input type="button" id="submitBtn" value="검색">
+			<input id="curPage" name="curPage" type="hidden" value="1">
 		</form>
 		<br/><br/>
 		<div>
@@ -45,7 +47,23 @@
 		</div>
 		<input id="btn" type="button" value="모임등록"/>
 	</div>
+
+	<!-- 자바스크립트 -->	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#frm").submit();
+			$("#btn").on("click",function(){
+				location.href="club_add_page.do";
+			});
+			$("#submitBtn").on("click",function(){
+				$("#frm").submit();
+			});
+		});
 	
-	<script type="text/javascript" src="/js/club/club_home.js"></script>
+		function setCurpage(page){
+			$("#curPage").attr("value",page);
+			$("#frm").submit();
+		}
+	</script>
 </body>
 </html>

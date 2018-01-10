@@ -34,9 +34,11 @@ public class CtrlMypageBookmark {
 	@RequestMapping("/bookmark_del.do")
 	public String delBookmark(HttpServletRequest request){
 		String[] r = request.getParameterValues("check");
-		for(String t : r){
-			int m = Integer.parseInt(t);
-			bookmakrDAO.bookmarkDel(m);
+		if(r != null){
+			for(String t : r){
+				int m = Integer.parseInt(t);
+				bookmakrDAO.bookmarkDel(m);
+			}
 		}
 		return "redirect:/bookmark_findAll.do";
 	}

@@ -18,6 +18,7 @@
 			text-align:center;
 		}
 	</style>
+	<script src="common.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
@@ -25,14 +26,13 @@
 $(document).ready(function() {
 	$("#btnClose").on("click", function() {
 		$("#repleModal").modal("hide");
-
 	});
 
 	$("#btnreMod").on("click", function() {
 		$("#reple_form").submit();
 
 	});
-
+	
 	$(".modReple").on("click", function() {
 		$("#com_qna_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
@@ -40,6 +40,7 @@ $(document).ready(function() {
 		$("#repleModal").modal("show");
 	});
 });
+
 
 </script>
 	
@@ -86,34 +87,38 @@ $(document).ready(function() {
 					<div id="recom_count">${rpl.recom_count}</div>
 				</td>
 				<td>
-					[<a href="community_qna_reple_recom.do?user_id=woo&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
+					[<a href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
 				</td>
 				<td>[<a href="community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">삭제</a>]</td>
 			</tr>
 		</jl:forEach>
 	</table>
+	<div class="container">
 	
-		<form method="POST" action="community_qna_reple_mod.do" id="reple_form">
 		<div id="repleModal" class="modal" role="dialog">
-			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}"
-				name="com_qna_no" /> <input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
+			
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
 						<div class="form-group">
-							<label id="lblContent" for="content"></label>
+						<form method="POST" action="community_qna_reple_mod.do" id="reple_form" >
+						<label id="lblContent" for="content"></label>
 							<textarea name ="com_qna_reple_content" class="form-control" id="content" rows="7"></textarea>
-						</div>
-						<button class="btn btn-primary btn-sm" id="btnClose">닫기</button>
+						<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}" name="com_qna_no" /> 
+						<input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
 						<button class="btn btn-primary btn-sm" id="btnreMod">수정</button>
+						</form>
+						<button class="btn btn-primary btn-sm" id="btnClose" >닫기</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
 	
+	</div>
 		<form action="community_qna_reple_add.do" method="post">
 			<input type="text" name="com_qna_reple_content" />
+			<input type="hidden" name="user_id" value="${user_id}"/>
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<input type="submit" value="댓글작성"/>
 		</form>
@@ -129,9 +134,9 @@ $(document).ready(function() {
 			<input type="submit" value="QnA수정"/>
 		</form>
 		
-		<form action="community_qna_del.do" method="post">
+		<form action="community_qna_del.do" method="post" >
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-			<input type="submit" value="QnA삭제"/>
+			<input type="submit" value="QnA삭제" />
 		</form>
 		
 		

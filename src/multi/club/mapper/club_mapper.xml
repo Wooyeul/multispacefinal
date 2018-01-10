@@ -28,15 +28,13 @@
 	
 	<!-- l_Category 리스트 찾기 시작 -->
 	<select id="club_find_lcategory" resultType="java.util.HashMap" statementType="CALLABLE">
-		SELECT *
-	FROM L_categoryt;
+		{call p_club_find_lcategory()}
 	</select>
 	<!-- l_Category 리스트 찾기 끝 -->
 	
 	<!-- c_Category 리스트 찾기 시작 -->
 	<select id="club_find_ccategory" resultType="java.util.HashMap" statementType="CALLABLE">
-		SELECT *
-	FROM C_categoryt;
+		{call p_club_find_ccategory()}
 	</select>
 	<!-- c_Category 리스트 찾기 끝 -->
 	
@@ -57,11 +55,13 @@
 				AND club_content like'%${search_content}%'
 			</if>
 			<if test="search_option == 3">
-				AND club_title like '%${search_content}%'
-				OR club_content like '%${search_content}%'
+				AND ( club_title like '%${search_content}%' OR club_content like '%${search_content}%' )
 			</if>
 			<if test="search_option == 4">
-				AND user_id = #{search_content}
+				AND user_id = ${search_content}
+			</if>
+			<if test="start!=null">
+				ORDER BY club_no DESC LIMIT #{start},10
 			</if>
     	</select>
 	<!-- search 해서 리스트 찾기 끝 -->
@@ -142,6 +142,11 @@
       	<result property="grade" 		column="grade" 		jdbcType="INTEGER"/>          
    </resultMap>
 	<!-- 모임 회원 조회 끝 -->
+	<!-- 모임 회원 판단 시 사용 시작-->
+	<select id="club_find_user_byId" parameterType="main.vo.User_clubVO" resultType="main.vo.User_clubVO" statementType="CALLABLE">
+		SELECT * FROM User_clubT WHERE club_no = #{club_no} AND user_id = #{user_id}
+	</select>
+	<!-- 모임 회원 판단 시 사용 끝 -->
 	
 	<!-- 모임 신청자 리스트 조회 시작-->
 	<select id="club_find_apply" parameterType="main.vo.ClubVO" resultMap="RM_club_find_apply" statementType="CALLABLE">
@@ -179,6 +184,16 @@
 		{call p_club_add_message(#{send_user_id},#{receive_user_id},#{msg_content})}
 	</update>
 	<!-- 쪽지 보내기 끝-->
+	<!-- 모임의 유저 탈퇴 시작-->
+	<update id="club_del_user" parameterType="main.vo.User_clubVO" statementType="CALLABLE">
+		{call p_club_del_user(#{club_no},#{user_id})}
+	</update>
+	<!-- 모임의 유저 탈퇴 끝-->
+	<!-- 모임 해체 시작-->
+	<update id="club_del_club" parameterType="main.vo.User_clubVO" statementType="CALLABLE">
+		{call p_club_del_club(#{club_no})}
+	</update>
+	<!-- 모임 해체 끝-->
 	
 </mapper>
 
@@ -390,7 +405,7 @@ CREATE PROCEDURE p_club_add_apply(
 )
 BEGIN
 	DECLARE count INT;
-	SELECT COUNT(*) INTO count FROM Club_applyT WHERE user_id=v_user_id;
+	SELECT COUNT(*) INTO count FROM Club_applyT WHERE user_id=v_user_id AND club_no=v_club_no;
 	IF count=0 THEN
 		INSERT INTO Club_applyT VALUES(default,v_user_id,v_club_no,v_club_content,'ing');
 		SET v_flag = 1;
@@ -459,3 +474,71 @@ END$$
 DELIMITER ;
 p_club_add_message 프로시저 끝-->
 
+<!--p_club_find_lcategory 프로시저
+DROP PROCEDURE IF EXISTS p_club_find_lcategory;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_lcategory()
+BEGIN
+	SELECT *
+	FROM L_categoryt;
+END$$
+DELIMITER ;
+p_club_find_lcategory 프로시저 끝 -->
+
+<!--p_club_find_ccategory 프로시저
+DROP PROCEDURE IF EXISTS p_club_find_ccategory;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_find_ccategory()
+BEGIN
+	SELECT *
+	FROM C_categoryt;
+END$$
+DELIMITER ;
+p_club_find_ccategory 프로시저 끝 -->
+
+<!--p_club_del_user 프로시저
+DROP PROCEDURE IF EXISTS p_club_del_user;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_del_user(
+	IN v_club_no INT,
+	IN v_user_id VARCHAR(20)
+)
+BEGIN
+	DELETE
+	  FROM User_clubT
+	 WHERE club_no=v_club_no
+	   AND user_id=v_user_id;
+END$$
+DELIMITER ;
+p_club_del_user 프로시저 끝 -->
+
+<!--p_club_del_club 프로시저
+DROP PROCEDURE IF EXISTS p_club_del_club;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_del_club(
+	IN v_club_no INT
+)
+BEGIN
+	DECLARE exit handler FOR SQLEXCEPTION
+	BEGIN
+		ROLLBACK;
+		SIGNAL SQLSTATE '45000';
+	END;
+
+	START TRANSACTION;
+
+	DELETE
+	  FROM User_clubT
+	 WHERE club_no=v_club_no;
+	DELETE
+	  FROM ClubT
+	 WHERE club_no=v_club_no;
+	 
+	 COMMIT;
+END$$
+DELIMITER ;
+p_club_del_club 프로시저 끝 -->

@@ -9,7 +9,7 @@
 <body>
 	community_qna_add.jsp
 	<form action="admin_community_qna_add2.do" method="POST">
-		<input type="hidden" name="user_id" value="${user_id}"></input>
+		<input type="hidden" name="user_id" value="${user_id}"/>
 		제목 : <input type="text" name="com_qna_title"/><br/>
 		내용 : <textarea name="com_qna_content" rows="7" cols="63"></textarea>
 		<br/><input type="submit" value="작성"/>

@@ -9,4 +9,5 @@ public interface Space_QnADAO {
 	public List<Space_qnaVO> find_space_QnA_by_space_no(Space_qnaVO vo) throws Exception;
 	public Integer delete_spaceQnA_by_spane_qna_no(Space_qnaVO vo) throws Exception;
 	public Space_qnaVO find_space_QnA_by_space_qna_no(Space_qnaVO vo) throws Exception;
+	public Integer mod_spaceQnA_by_spane_qna_no(Space_qnaVO vo) throws Exception;
 }

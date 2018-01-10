@@ -8,21 +8,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
-	
+	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 	.jumbotron{
 		text-align:center;
 	}
 	th, td {
 		text-align: center;
 	}
-	
-	
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 </head>
 <body>
 	<div id="i" class="jumbotron panel-primary">
 		<h1>QnA</h1>
 	</div>
+	
+	<a href="community_qna_mytext.do"> <input type="button" value="My QnA"/></a>
+	
+	<form id="textserch" action="community_qna_serch.do">
+	<select name="comm_search_option"> 
+	<option value="0" >선택해주세요</option>
+	<option value="1" >제목</option>
+	<option value="2" >내용</option>
+	<option value="3" >제목+내용</option>
+	<option value="4" >작성자</option>
+	</select>
+	검색 : <input type="text" name="comm_search_content"> 
+	<input type="submit" value="검색">
+	</form>
+	
+	
 	<table border="1" cellspacing="0" cellpadding="8" class="table table-hover">
 		<tr>
 			<th width="40">QnA번호</th>

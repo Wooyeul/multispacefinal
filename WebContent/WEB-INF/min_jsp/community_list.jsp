@@ -13,13 +13,61 @@ taglib
 
 
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script>
+$(document).ready(function(){
+
+	var scOffset = $( '.navbar-Menu' ).offset();
+	$( window ).scroll( function() {
+	if ( $( document ).scrollTop() > scOffset.top ) {
+	$( '.navbar' ).addClass( 'navbar-fixed-top' );
+	}
+	else {
+	$( '.navbar' ).removeClass( 'navbar-fixed-top' );
+	}
+	});
+	});
+
+</script>
 </head>
 <body>
+<div class="jbTitle">
+	<h1>Multi Space</h1>
+</div>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default ">
+	<div class="container">
+	 <div class="navbar-header">
+	   <a class="navbar-brand" href="main.html">multi space</a>
+	 </div>
+
+ <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+	<ul class="nav navbar-nav ">
+ 	 <li><a href="space_home.do">공간</a></li>
+	 <li><a href="club_home.do">모임</a></li>
+	 <li><a href="community_list.do">커뮤니티</a></li>
+	 <li><a href="event_user_list.do">이벤트</a></li>	
+	 <li><a href="notice_list.do">공지사항</a></li>
+	 <li><a href="faq_list.do">FAQ</a></li>			
+	 <li><a href="admin_main.do">관리자</a></li>			
+	</ul>
+			
+<ul id="login_nav" class="nav navbar-nav navbar-right">
+	<li><a href="#">${user_name}님이 로그인 하셨습니다.</a></li>
+	<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+	<li><a href="home_logout.do">로그아웃</a></li>	
+</ul>
+	<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+	     <li><a href="#">로그인</a></li>		
+	</ul>
+
+	   </div>
+	</div>
+</nav>
+<!-- nav -->
 
 <div id="header">
 		<ul id="Navtab" class="nav nav-pills" role="tablist">
@@ -49,7 +97,6 @@ taglib
 			
 			<div role="tabpanel" class="tab-pane" id="qna2"
 				aria-labelledby="qna">
-				community_qna_list.do
 				<iframe src="community_qna_list.do" width='1024px' height='768px'></iframe>
 			
 			</div>

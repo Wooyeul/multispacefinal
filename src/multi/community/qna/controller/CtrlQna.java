@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.Controller;
+import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
-import main.ResponseBody;
 import multi.community.qna.dao.Community_qnaDAO;
+import multi.community.qna.dao.Community_qna_mytextDAO;
 import multi.community.qna.dao.Community_qna_repleDAO;
+import multi.community.qna.dao.Community_qna_searchDAO;
 import multi.community.qna.vo.Community_qnaVO;
 import multi.community.qna.vo.Community_qna_repleVO;
+import multi.community.qna.vo.Community_qna_searchVO;
 
 @Controller
 public class CtrlQna {
@@ -22,6 +25,12 @@ public class CtrlQna {
 	
 	@Autowired @Qualifier("community_qna_repleDAO")
 	private Community_qna_repleDAO community_qna_repleDAO=null;
+	
+	@Autowired @Qualifier("community_qna_mytextDAO")
+	private Community_qna_mytextDAO community_qna_mytextDAO =null;
+	
+	@Autowired @Qualifier("community_qna_searchDAO")
+	private Community_qna_searchDAO community_qna_searchDAO =null;
 	
 	//QnA 게시판
 	@RequestMapping("/community_qna_list.do")
@@ -34,7 +43,10 @@ public class CtrlQna {
 	
 	@RequestMapping("/community_qna_read.do")
 	public ModelAndView community_qna_read(@ModelAttribute Community_qnaVO pvo,
-			@ModelAttribute Community_qna_repleVO rpl) throws Exception{
+			@ModelAttribute Community_qna_repleVO rpl, 
+			@CookieValue("user_id") String user_id) throws Exception{
+			
+			pvo.setUser_id(user_id);
 			community_qnaDAO.modView(pvo);
 			Community_qnaVO vo=community_qnaDAO.findByPK(pvo);
 			List<Community_qna_repleVO> rp=community_qna_repleDAO.findAllReple(rpl);
@@ -42,12 +54,14 @@ public class CtrlQna {
 			ModelAndView mnv = new ModelAndView("community_qna_read");
 			mnv.addObject("vo", vo);
 			mnv.addObject("rp", rp);
+			mnv.addObject("user_id", user_id);
 			return mnv;
 	}
 	
 	@RequestMapping("/community_qna_add.do")
-	public ModelAndView community_qna_add() throws Exception{
+	public ModelAndView community_qna_add(@CookieValue("user_id") String user_id) throws Exception{
 			ModelAndView mnv = new ModelAndView("community_qna_add");
+			mnv.addObject("user_id", user_id);
 			return mnv;
 	}
 	
@@ -79,7 +93,8 @@ public class CtrlQna {
 	// 아래부터는 리플
 	
 	@RequestMapping("/community_qna_reple_add.do")
-	public String community_qna_reple_add(@ModelAttribute Community_qna_repleVO pvo) throws Exception{
+	public String community_qna_reple_add(@CookieValue("user_id") String user_id,@ModelAttribute Community_qna_repleVO pvo) throws Exception{
+			pvo.setUser_id(user_id);	
 			community_qna_repleDAO.addReple(pvo);
 			return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 	}
@@ -104,6 +119,28 @@ public class CtrlQna {
 		
 		return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
     }
+	
+	// search랑 내가쓴글보기
+	 @RequestMapping("/community_qna_mytext.do")
+	   public ModelAndView community_board_mytext(@CookieValue("user_id") String user_id) throws Exception{
+		 ModelAndView mnv = new ModelAndView("community_qna_mytext");
+		 List<Community_qnaVO> mrl = community_qna_mytextDAO.findAll(user_id);
+	      mnv.addObject("user_id", user_id);
+	      mnv.addObject("mrl", mrl);
+	      System.out.println(user_id);
+	      return mnv;
+	 }
+	 
+	 @RequestMapping("/community_qna_serch.do")
+		public  ModelAndView  community_board_serch(@ModelAttribute Community_qna_searchVO pvo) throws Exception{
+			ModelAndView mnv = new ModelAndView("community_qna_serch");
+			 List<Community_qnaVO> srl = community_qna_searchDAO.comm_qna_search(pvo);
+		      mnv.addObject("srl", srl);
+		      return mnv;
+			
+		}
+	 
+	
 }
 
 

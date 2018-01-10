@@ -5,11 +5,11 @@ public class Club_notice_repleVO {
 	public Club_notice_repleVO() {}
 	
 	//프로퍼티들
-	public Integer c_notice_reple_no = null;
-	public String user_id = null;
-	public Integer c_notice_no = null;
-	public String the_time = null;
-	public String c_notice_reple_content = null;
+	private Integer c_notice_reple_no = null;
+	private String user_id = null;
+	private Integer c_notice_no = null;
+	private String the_time = null;
+	private String c_notice_reple_content = null;
 	
 	//setter & getter
 	public Integer getC_notice_reple_no() {
