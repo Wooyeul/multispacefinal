@@ -11,7 +11,19 @@
 	$(document).ready(function(){
 		
 		$("#del").on("click",function(){
+			var arr = [];
 			
+			$("input[name=check]:checked").each(function(i){
+				arr.push($(this).val());
+			});
+			alert(arr);
+			
+			var url = "bookmark_del.do?check="+arr;
+			ajaxGet(url,function(rt){
+				alert(rt);
+			});
+			
+			location.reload();
 		});
 	});
 </script>
@@ -19,7 +31,7 @@
 </head>
 <body>
 	<h3>즐겨찾기</h3>
-	<form action="bookmark_del.do" method="POST" name="frm">
+	<form name="frm">
 		<table border="1">
 			<jl:forEach var="ab" items="${rl}" varStatus="i" begin="0">
 			<jl:if test="${(i.count-1) % 3 eq 0}">
@@ -33,7 +45,7 @@
 				</td>
 			</jl:forEach>
 		</table>
-		<input type="submit" value="삭제하기" id="del" />
+		<input type="button" value="삭제하기" id="del" />
 	</form>
 	
 </body>
