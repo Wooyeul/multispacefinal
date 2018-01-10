@@ -159,8 +159,6 @@ public class CtrlLogin {
 		ModelAndView mnv = new ModelAndView("home_findPasswd");
 		mnv.addObject("passwd",userInfo.getPasswd());		
 		return mnv;
-
-
 	}
 	
 	 @RequestMapping("/home_logout.do")

@@ -38,7 +38,6 @@ public class CtrlMypageBookmark {
 			int m = Integer.parseInt(t);
 			bookmakrDAO.bookmarkDel(m);
 		}
-		
-		return "redirect:/temp.do";
+		return "redirect:/bookmark_findAll.do";
 	}
 }
