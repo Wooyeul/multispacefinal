@@ -86,7 +86,8 @@ $(document).ready(function() {
 					<div id="recom_count">${rpl.recom_count}</div>
 				</td>
 				<td>
-					[<a href="admin_community_qna_reple_recom.do?user_id=woo&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
+					${user_id}
+					[<a href="admin_community_qna_reple_recom.do?user_id=${user_id}&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
 				</td>
 				<td>[<a href="admin_community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">삭제</a>]</td>
 			</tr>
