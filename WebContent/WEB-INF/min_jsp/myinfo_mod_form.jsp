@@ -39,14 +39,14 @@
 
 			<tr>
 				<th align="right">비밀번호</th>
-				<td><input type="password" name="passwd" id="passwd" size="20" /></td>
+				<td><input type="password" name="passwd" id="passwd" size="20"  maxlength="20"/></td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<th align="right">비밀번호 확인</th>
 				<td><input type="password" name="passwd2" id="passwd2"
-					size="20" /></td>
+					size="20" maxlength="20"/></td>
 				<td></td>
 			</tr>
 
@@ -58,7 +58,7 @@
 
 			<tr>
 				<th align="right">닉네임</th>
-				<td><input type="text" name="nickname" id="nickname" size="10" value="${rvo.nickname}"/></td>
+				<td><input type="text" name="nickname" id="nickname" size="10" value="${nickname}" maxlength="8"/></td>
 				<td></td>
 			</tr>
 
@@ -70,23 +70,21 @@
 						<option value="017">017</option>
 						<option value="018">018</option>
 						<option value="019">019</option>
-				</select> - <input type="text" name="phone_cen" size="5" value="${phone_cen}"/> - <input
-					type="text" name="phone_end" size="5"  value="${phone_end}"/></td>
+				</select> - <input type="text" name="phone_cen" size="5" value="${phone_cen}" maxlength="4"/> - <input
+					type="text" name="phone_end" size="5"  value="${phone_end}" maxlength="4"/></td>
 				<td></td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<th align="right">이메일</th>
-				<td><input type="text" name="email" id="email" size="10" value="${email }"/>@ 
+				<td><input type="text" name="email" id="email" size="10" value="${email}"/>@ 
 				<select name="home">
-						<option value="메일선택">메일선택</option>
 						<option value="daum.net">daum.net</option>
 						<option value="naver.com">naver.com</option>
 						<option value="gmail.com">gmail.com</option>
 						<option value="hotmail.com">hotmail.com</option>
 						<option value="hanmail.net">hanmail.net</option>
-						<option value="직접입력">직접입력</option>
 				</select> <!-- <input type="text" name="msg" size="7"/> --></td>
 				<td></td>
 			</tr>

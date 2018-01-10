@@ -39,8 +39,8 @@
 	<parameterMap type="main.vo.UserVO" id="PM_mypage_mod_user">
 		<parameter property="user_id" mode="IN"/>
 		<parameter property="passwd" mode="IN"/>
-		<parameter property="phone" mode="IN"/>
 		<parameter property="nickname" mode="IN"/>
+		<parameter property="phone" mode="IN"/>
 		<parameter property="email" mode="IN"/>
 	</parameterMap>
 	

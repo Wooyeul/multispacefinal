@@ -60,12 +60,13 @@ public class CtrlMypageInfo {
 		} else if( r==1){
 			mnv.setViewName("myinfo_mod_form");
 			UserVO rvo = myInfoDAO.find_user(user_id);
-			String phone_cen = rvo.getPhone().substring(2,4);
-			String phone_end = rvo.getPhone().substring(4);
+			String phone_cen = rvo.getPhone().substring(3,7);
+			String phone_end = rvo.getPhone().substring(7);
 			String email = rvo.getEmail().substring(0, rvo.getEmail().indexOf("@"));
 			mnv.addObject("phone_cen", phone_cen);
 			mnv.addObject("phone_end", phone_end);
 			mnv.addObject("email", email);
+			mnv.addObject("nickname", rvo.getNickname());
 			mnv.addObject("rvo", rvo);
 		}
 		
