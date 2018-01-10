@@ -13,6 +13,7 @@ import main.vo.HostApplyVO;
 import main.vo.HostVO;
 import main.vo.UserVO;
 import multi.admin.dao.Admin_HostDAO;
+import multi.admin.vo.Admin_Host_DowngradeVO;
 
 /* 
 판매자 관리
@@ -88,9 +89,16 @@ public class Ctrl_Admin_Hosts {
 		mnv.setViewName("redirect:/admin_host_request.do");
 		return mnv;
 	}
+	// 특정 판매자 요청을 거절 시 참고사항 작성 하는 페이지
+	@RequestMapping("/admin_host_user_downgrade_write.do")
+	public ModelAndView admin_host_user_downgrade_write( @ModelAttribute Admin_Host_DowngradeVO hvo ) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_host_user_downgrade_write");
+		mnv.addObject("vo", hvo);
+		return mnv;
+	}
 	// 판매자로 등록된 사람 유저로 강등할 시 이용. 리다이렉트 시 판매자 리스트 정보 확인 페이지
 	@RequestMapping("/admin_host_user_downgrade.do")
-	public ModelAndView admin_host_user_downgrade( @ModelAttribute HostVO hvo ) throws Exception {
+	public ModelAndView admin_host_user_downgrade( @ModelAttribute Admin_Host_DowngradeVO hvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView();
 		admin_HostDAO.host_user_downgrade(hvo);
 		mnv.setViewName("redirect:/admin_hosts.do");
