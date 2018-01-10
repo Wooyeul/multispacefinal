@@ -3,6 +3,7 @@ package multi.event.dao;
 import java.util.List;
 
 import main.vo.EventVO;
+import multi.event.vo.Event_searchVO;
 
 
 /*	DAO 는 인터페이스로 구현한다.
@@ -22,7 +23,7 @@ public interface EventDAO {
 	
 	public int mod(EventVO pvo) throws Exception;
 	
-	
+	public List<EventVO> search(Event_searchVO svo) throws Exception;
 }
 
 

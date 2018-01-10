@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.EventVO;
+import multi.event.vo.Event_searchVO;
 
 
 
@@ -36,6 +37,12 @@ public class EventDAO_MysqlImpl implements EventDAO {
 	@Override
 	public int mod(EventVO pvo) throws Exception {
 		return sqlSession.update("event.p_event_mod", pvo );
+	}
+
+	@Override
+	public List<EventVO> search(Event_searchVO svo) throws Exception {
+		
+		return sqlSession.selectList("search_event", svo);	
 	} 
 }
 
