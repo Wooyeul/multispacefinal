@@ -54,7 +54,7 @@
 	                    <a href="javascript:list('${map.boardPager.nextPage}')">[다음]</a>
 	                </jl:if>
 	                <!-- **끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 -->
-	                <jl:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
+	                <jl:if test="${map.boardPager.curPage < map.boardPager.totPage}">
 	                    <a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
 	                </jl:if>
 				</td>
