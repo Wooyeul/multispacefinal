@@ -43,27 +43,29 @@
 </head>
 <body>
 	<div class="jumbotron" style="background-color: orange">
-		<h1>관리자 1:1 받은 쪽지 보관함</h1>
+		<h1>받은 쪽지 보관함</h1>
 	</div>
 	
 	<table border="1">
 		<tr>
-			<td>쪽지 번호</td>
 			<td>보낸 유저 ID</td>
-			<td>받는 유저 ID</td>
 			<td>쪽지 내용</td>
 			<td>작성 시간</td>
 			<td>수신 확인</td>
 		</tr>
 		<jl:forEach var="vo" items="${ls}">
 		<tr>
-			<td>${vo.msg_no}</td>
 			<td>${vo.send_user_id }</td>
-			<td>${vo.receive_user_id}</td>
-			
 			<jl:set var = "string1" value = "${vo.msg_content}"/>
-      		<jl:set var = "string2" value = "${fn:substring(string1, 1, 15)}" />
-			<td>${string2}&nbsp;<a href="#">쪽지 자세히 보기</a></td>
+			<jl:choose>
+				<jl:when test="${fn:length(string1) > 10}">
+      				<jl:set var = "string2" value = "${fn:substring(string1, 1, 10)}" />
+					<td>${string2}&nbsp;<a href="#">자세히 보기</a></td>
+				</jl:when>
+				<jl:when test="${fn:length(string1) <= 10}">
+					<td>${vo.msg_content}</td>
+				</jl:when>
+			</jl:choose>
 			
 			<td>${vo.the_time }</td>
 			<jl:choose>
@@ -71,7 +73,7 @@
 					<td>읽지 않음</td>
 				</jl:when>
 				<jl:when test="${vo.view_count >= 1}">
-					<<td>읽음</td>
+					<td>읽음</td>
 			</jl:when>
 			</jl:choose>
 		</tr>

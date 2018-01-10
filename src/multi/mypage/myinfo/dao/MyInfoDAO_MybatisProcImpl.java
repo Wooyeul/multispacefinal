@@ -17,8 +17,8 @@ public class MyInfoDAO_MybatisProcImpl implements MyInfoDAO{
 	}
 
 	@Override
-	public UserVO find_user(UserVO uvo) throws Exception {
-		return sqlSession.selectOne("myinfo.p_mypage_find_user",uvo);
+	public UserVO find_user(String user_id) throws Exception {
+		return sqlSession.selectOne("myinfo.p_mypage_find_user",user_id);
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class MyInfoDAO_MybatisProcImpl implements MyInfoDAO{
 	}
 
 	@Override
-	public int del_user(UserVO uvo) throws Exception {
-		return sqlSession.delete("myinfo.p_mypage_del_user",uvo);
+	public int del_user(String user_id) throws Exception {
+		return sqlSession.delete("myinfo.p_mypage_del_user",user_id);
 	}
 }

@@ -21,6 +21,7 @@ import main.RequestParam;
 import main.vo.EventVO;
 import main.vo.UserVO;
 import multi.event.dao.EventDAO;
+import multi.event.vo.Event_searchVO;
 
 @Controller
 public class CtrlEvent {
@@ -31,7 +32,6 @@ public class CtrlEvent {
 	// 이벤트 리스트 페이지
 	@RequestMapping("/event_list.do")
 	public ModelAndView textList() throws Exception {
-		System.out.println("내다");
 		List<EventVO> rl = EventDAO.findAll();
 		ModelAndView mnv = new ModelAndView("event_list");
 		mnv.addObject("rl",rl);
@@ -71,7 +71,6 @@ public class CtrlEvent {
 	// 이벤트 삭제 
 	@RequestMapping("/event_del2.do")
 	public String textdel2(@ModelAttribute EventVO pvo) throws Exception {
-		System.out.println("삭제되라");
 		EventDAO.delByPK(pvo);
 		return "redirect:/event_list.do";
 	}
@@ -127,8 +126,26 @@ public class CtrlEvent {
 	
 	// 클라이언트 화면 리스트 페이지
 	@RequestMapping("/event_user_list.do") 
-	public ModelAndView event_listll() throws Exception {
-		List<EventVO> rl = EventDAO.findAll();
+	public ModelAndView event_listll(HttpServletRequest request) throws Exception {
+		
+		List<EventVO> rl = null;
+		Integer eve_option = null;
+		String eve_key = null;
+		
+		if (request.getParameter("eve_option") != null) {
+			eve_option = Integer.parseInt(request.getParameter("eve_option"));
+		}
+		if (request.getParameter("eve_key") != null) {
+			eve_key = request.getParameter("eve_key");
+		}
+			
+		if( eve_option == null && eve_key == null){
+			rl = EventDAO.findAll();
+		} else {
+			Event_searchVO svo = new Event_searchVO(eve_option, eve_key);
+			rl = EventDAO.search(svo);
+		}
+		
 		ModelAndView mnv = new ModelAndView("event_user_list");
 		mnv.addObject("rl",rl);
 		return mnv;

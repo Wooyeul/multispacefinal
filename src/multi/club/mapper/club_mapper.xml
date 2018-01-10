@@ -45,10 +45,10 @@
 		<select id="club_search" parameterType="multi.club.vo.Club_searchVO" resultType="main.vo.ClubVO">
 			SELECT * FROM ClubT WHERE 0 = 0
 			<if test="l_category_no != null">
-				AND l_category_no =#{l_category_no}
+				AND l_category_no =${l_category_no}
 			</if>
 			<if test="c_category_no != null">
-				AND c_category_no =#{c_category_no}
+				AND c_category_no =${c_category_no}
 			</if>
 			<if test="search_option == 1">
 				AND club_title like '%${search_content}%'

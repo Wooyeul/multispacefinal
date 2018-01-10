@@ -52,7 +52,6 @@ public class DispatcherServlet extends HttpServlet
 							responseText = new String(bs,"utf-8");
 						}
 						catch( Exception e ){}
-						
 						response.setContentType("text/plain;charset=utf-8");
 						PrintWriter out = response.getWriter();
 						out.print( responseText );
@@ -112,7 +111,6 @@ public class DispatcherServlet extends HttpServlet
 				ViewResolver vr = spring().getBean("viewResolver",
 					ViewResolver.class);
 				String l = vr.getPrefix() + "error_page" + vr.getSuffix();
-				
 
 				RequestDispatcher rd = request.getRequestDispatcher( l );
 				rd.forward(request, response);

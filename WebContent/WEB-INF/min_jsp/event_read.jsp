@@ -36,7 +36,7 @@
 					<li><a href="space_home.do">공간</a></li>
 					<li><a href="club_list.do">모임</a></li>
 					<li><a href="community_list.do">커뮤니티</a></li>
-					<li><a href="event_list.do">이벤트</a></li>	
+					<li><a href="event_user_list.do">이벤트</a></li>	
 					<li><a href="notice_list.do">공지사항</a></li>
 					<li><a href="faq_list.do">FAQ</a></li>			
 					<li><a href="admin_main.do">관리자</a></li>			
@@ -57,7 +57,7 @@
 				<input type="hidden" name="eve_no" value="${text.eve_no}" />
 				<img src="thumbnail/${text.eve_thumb_img}" height="100" width="100"/><br/>
 			<input type="submit" value="수정" />
-			<a href="event_del2.do?eve_no=${text.eve_no}">삭제</a>
+			<input type="button" value="삭제" onclick= "window.location.href='event_del2.do?eve_no=${text.eve_no}'">
 			<input type="button" value="취소" onclick= "window.location.href='event_list.do'">
 		</form>
 </body>

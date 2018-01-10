@@ -14,9 +14,7 @@ public class MyclubDAO_MybatisProcImpl implements MyclubDAO{
 	private SqlSession sqlSession = null; 
 	
 	@Override
-	public List<ClubVO> find_myClub(ClubVO mvo) {
-		return sqlSession.selectList("myclub.p_myclub_find",mvo);
+	public List<ClubVO> find_myClub(String user_id) {
+		return sqlSession.selectList("myclub.p_myclub_find",user_id);
 	}
-
-	
 }

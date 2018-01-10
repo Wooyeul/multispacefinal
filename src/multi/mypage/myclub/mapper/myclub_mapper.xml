@@ -20,12 +20,9 @@
       <result property="c_category_no"      column="c_category_no"      jdbcType="INTEGER"/>
    </resultMap>
 	
-	<parameterMap type="main.vo.ClubVO" id="PM_p_myclub_find">
-		<parameter property="user_id" mode="IN"/>
-	</parameterMap>
 	
-	<select id="p_myclub_find" resultMap="RM_p_myclub_find" parameterMap="PM_p_myclub_find">
-		{call p_myclub_find(?)}
+	<select id="p_myclub_find" resultMap="RM_p_myclub_find" parameterType="java.lang.String">
+		{call p_myclub_find(#{user_id})}
 	</select>
 	
 </mapper>

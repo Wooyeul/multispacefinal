@@ -60,7 +60,7 @@ table {
 				<td>${vo.min_people}</td>
 				<td>${vo.space_call}</td>
 				<td>${vo.zipcode}</td>
-				<td>${vo.c_category_no}</td>
+				<td>${vo.s_category_no}</td>
 				<td>${vo.l_category_no}</td>
 				<td>${vo.the_time}</td>
 			</tr>

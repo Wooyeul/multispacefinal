@@ -8,7 +8,7 @@ INSERT INTO UserT Values('seller', '881001', '8888888', '1234', '이양재', 'M', '
 'coolGuy', '442-470', 'remd@naver.com' , 2 );
 INSERT INTO UserT Values('imseller', '881001', '8888888', '1234', '사양재', 'M', '01055246469',
 'coolGuy', '442-470', 'remd@naver.com' , 2 );
-INSERT INTO UserT Values('admin', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
+INSERT INTO UserT Values('admin', '881001', '8888888', '12345678', '이양재', 'M', '01055246469',
 'coolGuy', '442-470', 'remd@naver.com' , 3 );
 ################################################################
 DROP PROCEDURE IF EXISTS p_admin_user_findAll;

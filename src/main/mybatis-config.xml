@@ -15,6 +15,9 @@
 		<mapper resource="multi/space/mapper/space_QnA_mapper.xml" />
 		<mapper resource="multi/space/mapper/space_QnA_Reple_mapper.xml" />
 		<mapper resource="multi/space/mapper/review_mapper.xml" />
+		<mapper resource="multi/space/mapper/user_mapper.xml"/>
+		<mapper resource="multi/space/mapper/host_mapper.xml"/>
+		
 		<mapper resource="multi/home/userjoin/mapper/userjoin_mapper.xml" />
 		<mapper resource="multi/mypage/myinfo/mapper/myinfo_mapper.xml" />
 		<mapper resource="multi/mypage/mybookmark/mapper/bookmark_mapper.xml" />
@@ -50,6 +53,8 @@
 		<mapper resource="multi/admin/mapper/admin_clubs_mapper.xml" />
 		<mapper resource="multi/admin/mapper/admin_message_mapper.xml" /> 
 		<mapper resource="multi/admin/mapper/admin_event_mapper.xml" /> 
+		<mapper resource="multi/admin/mapper/admin_community_freeboard_mapper.xml" />
+		<mapper resource="multi/admin/mapper/admin_community_qna_mapper.xml" /> 
 		<!-- 이양재 -->
 
 		<!-- 안수진 -->
