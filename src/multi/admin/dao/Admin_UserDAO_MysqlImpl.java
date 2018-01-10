@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.UserVO;
+import multi.admin.vo.Admin_User_Del_EmailVO;
 
 public class Admin_UserDAO_MysqlImpl implements Admin_UserDAO {
 	@Autowired @Qualifier("sqlSession")
@@ -23,7 +24,7 @@ public class Admin_UserDAO_MysqlImpl implements Admin_UserDAO {
 	}
 
 	@Override
-	public UserVO user_del(UserVO uvo) throws Exception {
+	public UserVO user_del(Admin_User_Del_EmailVO uvo) throws Exception {
 		return sqlSession.selectOne("admin_user.p_admin_user_DelUser",uvo);
 	}
 

@@ -121,10 +121,11 @@ CREATE TABLE Community_QnA_RepleT
 );
 
 #오후 5:44분 2018-01-04 댓글 추천 테이블 추가
+#PRIMARY KEY (user_id) 제거 1-10 오전 11시
 CREATE TABLE Community_QnA_Reple_RecomT
 (
     `user_id`       VARCHAR(20)    NOT NULL, 
-    `com_qna_reple_no`  INT        NOT NULL
+    `com_qna_reple_no`  INT        NOT NULL, 
 );
 
 #오후 2:39 2018-01-04 컬럼 명 변경
@@ -389,5 +390,19 @@ CREATE TABLE BookmarkT
 	`space_no`        INT   NULL
 );
 
+#오후 3:19 2018-01-10 User_del_emailT 테이블 추가
+#오후 4:30 2018-01-10 User_del_emailT 테이블 변경
+#오후 4:30 2018-01-10 User_del_emailT 테이블 기본키 삭제
+CREATE TABLE User_del_emailT
+(
+	`user_id`  VARCHAR(20)  	NULL,
+	`user_name`  VARCHAR(10)    NULL, 
+	`email`      VARCHAR(50)    NULL,
+	`subject`	TEXT  			NULL,
+	`mail_content`	TEXT     NULL,
+	`the_time`        DATETIME        NULL
+);
 
+###################################################
 
+###################################################

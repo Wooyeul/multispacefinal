@@ -41,7 +41,7 @@ table {
 			<td>${vo.zipcode}</td>
 			<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">판매자 공간 확인 하기</a></td>
 			<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">강등시키기</a></td>
-			<td><a href="admin_host_user_remove.do?crn=${vo.crn}&user_id=${vo.user_id}">탈퇴시키기</a></td>
+			<td><a href="admin_host_user_remove_write.do?crn=${vo.crn}&user_id=${vo.user_id}">탈퇴시키기</a></td>
 		</tr>
 	</jl:forEach>
 </table>

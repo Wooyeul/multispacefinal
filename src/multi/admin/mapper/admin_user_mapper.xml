@@ -73,21 +73,57 @@
 	DROP PROCEDURE IF EXISTS p_admin_user_DelUser;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_user_DelUser(
-		IN v_user_id VARCHAR(50)
+		IN v_user_id VARCHAR(50),
+		IN v_user_name VARCHAR(50),
+		IN v_email VARCHAR(50),
+		IN v_subject TEXT,
+		IN v_mail_content TEXT
 	)
 	BEGIN
-		DELETE FROM UserT WHERE user_id = v_user_id;
+		DECLARE exit handler FOR SQLEXCEPTION
+		BEGIN
+			ROLLBACK;
+			SIGNAL SQLSTATE '45000';
+		END;
+		START TRANSACTION;
+			INSERT INTO User_del_emailT VALUES ( v_user_id, v_user_name, v_email, v_subject, v_mail_content, NOW() );
+			DELETE FROM Club_BoardT WHERE user_id = v_user_id;
+			DELETE FROM BookingT WHERE user_id = v_user_id;
+			DELETE FROM Community_Board_RepleT WHERE user_id = v_user_id;
+			DELETE FROM Community_QnAT WHERE user_id = v_user_id;
+			DELETE FROM Club_Board_RepleT WHERE user_id = v_user_id;
+			DELETE FROM Community_Board_RecomtT WHERE user_id = v_user_id;
+			DELETE FROM Community_QnA_RepleT WHERE user_id = v_user_id;
+			DELETE FROM Community_QnA_Reple_RecomT WHERE user_id = v_user_id;
+			DELETE FROM User_ClubT WHERE user_id = v_user_id;
+			DELETE FROM Club_NoticeT WHERE user_id = v_user_id;
+			DELETE FROM Community_BoardT WHERE user_id = v_user_id;
+			DELETE FROM Club_Notice_RepleT WHERE user_id = v_user_id;
+			DELETE FROM ClubT WHERE user_id = v_user_id;
+			DELETE FROM Club_applyT WHERE user_id = v_user_id;
+			DELETE FROM HostT WHERE user_id = v_user_id;
+			DELETE FROM HostApplyT WHERE user_id = v_user_id;
+			DELETE FROM Space_QnAT WHERE user_id = v_user_id;
+			DELETE FROM Space_QnA_RepleT WHERE user_id = v_user_id;
+			DELETE FROM ReviewT WHERE user_id = v_user_id;
+			DELETE FROM Review_RepleT WHERE user_id = v_user_id;
+			DELETE FROM BookmarkT WHERE user_id = v_user_id;
+			DELETE FROM UserT WHERE user_id = v_user_id;
+		COMMIT;
 	END$$
 	DELIMITER ;
-	CALL p_admin_user_DelUser('yang2');
 	-->
-	<parameterMap id="PM_p_admin_user_DelUser" type="main.vo.UserVO" >
+	<parameterMap id="PM_p_admin_user_DelUser" type="multi.admin.vo.Admin_User_Del_EmailVO" >
 		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="user_name" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="email" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="subject" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="mail_content" mode="IN" jdbcType="VARCHAR"/>
 	</parameterMap>
 	<delete id="p_admin_user_DelUser" statementType="CALLABLE"
-		parameterType = "main.vo.UserVO"
+		parameterType = "multi.admin.vo.Admin_User_Del_EmailVO"
 		parameterMap = "PM_p_admin_user_DelUser">
-		{call p_admin_user_DelUser(?)}
+		{call p_admin_user_DelUser(?,?,?,?,?)}
 	</delete>
 	
 	<!--

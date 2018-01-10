@@ -31,7 +31,7 @@
 			<td>${vo.user_name}</td>
 			<td><a href="admin_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 			<td>${vo.email}</td>
-			<td><a href="admin_user_del.do?user_id=${vo.user_id}">탈퇴</a></td>
+			<td><a href="admin_user_del_write.do?user_id=${vo.user_id}&user_name=${vo.user_name}&email=${vo.email}">탈퇴 시키기</a></td>
 		</tr>
 	</jl:forEach>
 </table>
