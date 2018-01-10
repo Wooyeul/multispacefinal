@@ -12,14 +12,26 @@
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			if('${club_applyVO.etc}'=='ing'){
-				$("#clubApply").attr("value","신청 중");
-				$("#clubApply").attr("disabled","disabled");
+			//아이디 판별과 신청중인지, 답변이 온것인지 판별해서 설정
+			if('${user_id}'==''){
+				$("#clubApply").attr("style","display:none;");
+				$("#moveCommunity").attr("style","display:none;");
+			}else if('${user_id}'=='${vo.user_id}'||'${user_id}'=='admin'||'${user_id}'=='${uvo.user_id}'){
+				$("#clubApply").attr("style","display:none;");
 			}else{
-				$("#clubApply").attr("type","text");
-				$("#clubApply").attr("value",'${club_applyVO.etc}');
-				$("#clubApply").attr("disabled","disabled");
+				if('${club_applyVO.etc}'=='ing'){
+					$("#clubApply").attr("value","신청 중");
+					$("#clubApply").attr("disabled","disabled");
+					$("#moveCommunity").attr("style","display:none;");
+				}else if('${club_applyVO.user_id}'!=''){
+					$("#clubApply").attr("type","text");
+					$("#clubApply").attr("value",'${club_applyVO.etc}');
+					$("#clubApply").attr("disabled","disabled");
+				}else if('${uvo}'==''){
+					$("#moveCommunity").attr("style","display:none;");
+				}
 			}
+			
 			
 			if('${flag}'==-1){
 				alert("이미 신청하셨습니다.");
@@ -47,8 +59,8 @@
 	<div class="container">
 		<h2>모임장/모임신청자 페이지</h2>
 		<label>${vo.club_name}</label><br/>
-		<label>인원</label><input type="text" value="${vo.user_count}" /><br/>
-		<label>소개</label><textarea rows="15" cols="30">소개글 : ${vo.club_title}
+		<label>인원</label><input type="text" value="${vo.user_count}" disabled="disabled"/><br/>
+		<label>소개</label><textarea rows="15" cols="30" disabled="disabled">소개글 : ${vo.club_title}
 내용 : ${vo.club_content}</textarea><br/>
 		<input id="clubApply" type="button" value="신청하기"><input id="moveCommunity" type="button" value="모임커뮤니티 가기">
 		<br/><br/><br/>
@@ -72,7 +84,7 @@
 						</div>
 						<div class="modal-body" align="center"><h3 id="modalbody">
 							<textarea name="apply_content" id="apply_content" class='form-control' rows="7"></textarea>
-							<input name="user_id" type="hidden"value="admin2"/>
+							<input name="user_id" type="hidden"value="${user_id}"/>
 							<input name="club_no" type="hidden"value="${vo.club_no}"/>
 						</h3></div>
 						<div id="ft" class="modal-footer">

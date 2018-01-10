@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import main.vo.SpaceVO;
 import main.vo.UserVO;
 import main.vo.User_clubVO;
 import multi.club.dao.ClubDAO;
+import multi.club.service.BoardPager;
 import multi.club.vo.Club_applyVO;
 import multi.club.vo.Club_boardVO;
 import multi.club.vo.Club_noticeVO;
@@ -45,28 +47,47 @@ public class CtrlClub {
 		mnv.addObject("lmap", lmap);
 		mnv.addObject("cmap", cmap);
 		mnv.addObject("pvo", pvo);
+		mnv.addObject("user_id", user_id);
 		return mnv;
 	}
 	
 	//모임 리스트 페이지 호출
 	@RequestMapping("/club_list.do")
-	public ModelAndView club_list(@ModelAttribute Club_searchVO svo, @CookieValue("user_id") String user_id) throws Exception {
+	public ModelAndView club_list(@ModelAttribute Club_searchVO svo, @RequestParam("curPage") int curPage ,@CookieValue("user_id") String user_id) throws Exception {
 		ModelAndView mnv = new ModelAndView("club_list");
-		List<ClubVO> pvo = clubDAO.club_findAll();
+		List<ClubVO> voall = clubDAO.club_findAll();
+		// 페이지 레코드의 개수 계산
+		int count = voall.size();
+		
+		// 페이지 나누기 관련 처리
+		BoardPager boardPager = new BoardPager(count, curPage);
+		svo.setStart(boardPager.getPageBegin());
+		//limit #{end} 값 설정
+		svo.setEnd(10);
+		
+		// start, end이용해서 데이터 뽑아오기 
 		List<ClubVO> vo = clubDAO.club_search(svo);
-		mnv.addObject("pvo", pvo);
-		mnv.addObject("vo", vo);
+		
+		// 데이터 맵에 저장
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("vo", vo); // vo 저장
+		map.put("count", count); // 레코드 개수
+		map.put("boardPager", boardPager);
+		map.put("svo", svo);
+		mnv.addObject("map", map);
+		
 		return mnv;
 	}
 	
 	//모임 등록 페이지 호출
 	@RequestMapping("/club_add_page.do")
-	public ModelAndView club_add_page() throws Exception {
+	public ModelAndView club_add_page(@CookieValue("user_id") String user_id) throws Exception {
 		ModelAndView mnv = new ModelAndView("club_add_page");
 		List<Map<Integer, Object>> lmap = clubDAO.club_find_l_category();
 		List<Map<Integer, Object>> cmap = clubDAO.club_find_c_category();
 		mnv.addObject("lmap", lmap);
 		mnv.addObject("cmap", cmap);
+		mnv.addObject("user_id", user_id);
 		return mnv;
 	}
 	//모임 신청
@@ -95,34 +116,40 @@ public class CtrlClub {
 	    pvo.setC_category_no(Integer.parseInt(mpr.getParameter("c_category_no")));
 	    pvo.setUser_id(mpr.getParameter("user_id"));
 		
-	    System.out.println(pvo.getClub_thumb_img());
 		clubDAO.club_add_page_submit(pvo);
 		
-		return "redirect:/club_list.do";
+		return "redirect:/club_home.do";
 	}
 	
-	//모임 리스트 페이지 호출
+	//모임 디테일 페이지 호출
 	@RequestMapping("/club_detail.do")
-	public ModelAndView club_detail(@ModelAttribute ClubVO pvo, @RequestParam("flag") int flag ) throws Exception {
+	public ModelAndView club_detail(@CookieValue("user_id") String user_id, @ModelAttribute ClubVO pvo, @RequestParam("flag") int flag ) throws Exception {
 		ModelAndView mnv = new ModelAndView("club_detail");
+		
 		ClubVO vo = clubDAO.club_find_detail(pvo);
 		List<SpaceVO> sVO = clubDAO.club_find_detail_space(pvo);
+		Club_applyVO club_apply = new Club_applyVO();
+		club_apply.setClub_no(pvo.getClub_no());
+		club_apply.setUser_id(user_id);
+		Club_applyVO club_applyVO = clubDAO.club_find_apply_detail(club_apply);
 		
-		Club_applyVO club_applyVO = new Club_applyVO();
-		club_applyVO.setClub_no(pvo.getClub_no());
-		club_applyVO.setUser_id("admin2");
-		club_applyVO = clubDAO.club_find_apply_detail(club_applyVO);
-
+		User_clubVO uv = new User_clubVO();
+		uv.setUser_id(user_id);
+		uv.setClub_no(pvo.getClub_no());
+		User_clubVO uvo = clubDAO.club_find_user_byId(uv);
 		mnv.addObject("vo", vo);
 		mnv.addObject("sVO", sVO);
 		mnv.addObject("flag", flag);
 		mnv.addObject("club_applyVO", club_applyVO);
+		mnv.addObject("user_id", user_id);
+		mnv.addObject("uvo", uvo);
+		
 		return mnv;
 	}
 	
 	//모임 커뮤니티 페이지 호출
 	@RequestMapping("/club_community.do")
-	public ModelAndView club_community(@ModelAttribute ClubVO pvo, @RequestParam("flag") int flag) throws Exception {
+	public ModelAndView club_community(@CookieValue("user_id") String user_id, @ModelAttribute ClubVO pvo, @RequestParam("flag") int flag) throws Exception {
 		ModelAndView mnv = new ModelAndView("club_community");
 		ClubVO vo = clubDAO.club_find_detail(pvo);
 		String master = clubDAO.club_find_master(pvo);
@@ -138,6 +165,7 @@ public class CtrlClub {
 		mnv.addObject("userVO", userVO);
 		mnv.addObject("applyVO", applyVO);
 		mnv.addObject("flag", flag);
+		mnv.addObject("user_id", user_id);
 
 		return mnv;
 	}
@@ -157,6 +185,18 @@ public class CtrlClub {
 	public String club_apply_disagree(@ModelAttribute User_clubVO pvo) throws Exception {
 		clubDAO.club_apply_disagree(pvo);
 		return "redirect:/club_community.do?club_no="+pvo.getClub_no();
+	}
+	//모임 탈퇴_유저
+	@RequestMapping("/club_del_user.do")
+	public String club_del_user(@ModelAttribute User_clubVO pvo) throws Exception {
+		clubDAO.club_del_user(pvo);
+		return "redirect:/club_home.do";
+	}
+	//모임 해체
+	@RequestMapping("/club_del_club.do")
+	public String club_del_club(@ModelAttribute User_clubVO pvo) throws Exception {
+		clubDAO.club_del_club(pvo);
+		return "redirect:/club_home.do";
 	}
 	
 	//쪽지 보내기 팝업 실행

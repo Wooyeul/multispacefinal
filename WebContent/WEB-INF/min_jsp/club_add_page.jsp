@@ -32,7 +32,7 @@
 				<option value="${c.c_category_no}">${c.c_category_name}</option>
 			</jl:forEach>
 		</select>
-		<input name="user_id" type="hidden" value="admin">
+		<input name="user_id" type="hidden" value="${user_id}">
 		<input type="submit" value="등록하기"><input id="cancel" type="button" value="취소하기">
 	</form>
 </body>

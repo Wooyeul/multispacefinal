@@ -1,20 +1,16 @@
 package multi.club.vo;
 
 public class Club_searchVO {
-	public Club_searchVO(Integer l_category_no, Integer c_category_no, Integer search_option, String search_content) {
-		this.l_category_no = l_category_no;
-		this.c_category_no = c_category_no;
-		this.search_option = search_option;
-		this.search_content = search_content;
-	}
 	//기본 생성자 생성
 	public Club_searchVO() {}
 	
 	//프로퍼티 선언
-	public Integer l_category_no;
-	public Integer c_category_no;
-	public Integer search_option;
-	public String search_content;
+	private Integer l_category_no;
+	private Integer c_category_no;
+	private Integer search_option;
+	private String search_content;
+	private Integer start;
+	private Integer end;
 	
 	//setter & getter
 	public Integer getL_category_no() {
@@ -40,6 +36,18 @@ public class Club_searchVO {
 	}
 	public void setSearch_content(String search_content) {
 		this.search_content = search_content;
+	}
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
+	public Integer getEnd() {
+		return end;
+	}
+	public void setEnd(Integer end) {
+		this.end = end;
 	}
 	
 
