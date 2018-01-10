@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.vo.HostApplyVO;
 import main.vo.HostVO;
 import main.vo.UserVO;
+import multi.admin.vo.Admin_Host_DowngradeVO;
 
 public class Admin_HostDAO_MysqlImpl implements Admin_HostDAO {
 	@Autowired @Qualifier("sqlSession")
@@ -50,7 +51,7 @@ public class Admin_HostDAO_MysqlImpl implements Admin_HostDAO {
 	}
 
 	@Override
-	public int host_user_downgrade( HostVO hvo) throws Exception {
+	public int host_user_downgrade( Admin_Host_DowngradeVO hvo) throws Exception {
 		return sqlSession.update("admin_host.p_admin_host_user_downgrade",hvo);
 	}
 

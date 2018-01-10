@@ -81,12 +81,14 @@ INSERT INTO HostApplyT Values(default,'444-44-44444', 'user', '이양재', 'Korean 
 	DELIMITER ;
 	
 ################################################################	
-	
 	DROP PROCEDURE IF EXISTS p_admin_host_user_downgrade;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_host_user_downgrade(
 		IN v_crn VARCHAR(50),
-		IN v_user_id VARCHAR(50)
+		IN v_user_id VARCHAR(50),
+		IN v_send_user_id VARCHAR(50),
+		IN v_receive_user_id VARCHAR(50),
+		IN v_msg_content TEXT
 	)
 	BEGIN	
 		DECLARE exit handler FOR SQLEXCEPTION
@@ -97,6 +99,7 @@ INSERT INTO HostApplyT Values(default,'444-44-44444', 'user', '이양재', 'Korean 
 		START TRANSACTION;
 			DELETE FROM HostT WHERE crn = v_crn;
 			UPDATE UserT SET grade=1 WHERE user_id = v_user_id;
+			INSERT INTO MessageT VALUES ( default, v_send_user_id, v_receive_user_id, v_msg_content, NOW(), 0 );
 		COMMIT;
 	END$$
 	DELIMITER ;

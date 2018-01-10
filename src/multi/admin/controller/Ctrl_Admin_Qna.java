@@ -102,9 +102,6 @@ public class Ctrl_Admin_Qna {
 	
 	@RequestMapping("/admin_community_qna_reple_recom.do")
 	public String community_board_recom(@ModelAttribute Community_qna_repleVO pvo)throws Exception {
-		System.out.println("admin_community_qna_reple_recom.do");
-		System.out.println(pvo.getUser_id());
-		System.out.println(pvo.getCom_qna_reple_no());
 		admin_QnaDAO_MysqlImpl.incRecom(pvo);
 		
 		return "redirect:/admin_community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();

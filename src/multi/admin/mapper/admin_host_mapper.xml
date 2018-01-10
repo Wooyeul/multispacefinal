@@ -167,7 +167,10 @@
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_host_user_downgrade(
 		IN v_crn VARCHAR(50),
-		IN v_user_id VARCHAR(50)
+		IN v_user_id VARCHAR(50),
+		IN v_send_user_id VARCHAR(50),
+		IN v_receive_user_id VARCHAR(50),
+		IN v_msg_content TEXT
 	)
 	BEGIN	
 		DECLARE exit handler FOR SQLEXCEPTION
@@ -178,19 +181,22 @@
 		START TRANSACTION;
 			DELETE FROM HostT WHERE crn = v_crn;
 			UPDATE UserT SET grade=1 WHERE user_id = v_user_id;
+			INSERT INTO MessageT VALUES ( default, v_send_user_id, v_receive_user_id, v_msg_content, NOW(), 0 );
 		COMMIT;
 	END$$
 	DELIMITER ;
-	CALL p_admin_host_user_downgrade('111-11-11111','seller');
 	-->
-	<parameterMap id="PM_p_admin_host_user_downgrade" type="main.vo.HostVO" >
+	<parameterMap id="PM_p_admin_host_user_downgrade" type="multi.admin.vo.Admin_Host_DowngradeVO" >
 		<parameter property="crn" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="send_user_id" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="receive_user_id" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="msg_content" mode="IN" jdbcType="VARCHAR"/>
 	</parameterMap>
 	<update id="p_admin_host_user_downgrade" statementType="CALLABLE"
 		parameterType = "main.vo.HostVO"
 		parameterMap = "PM_p_admin_host_user_downgrade">
-		{call p_admin_host_user_downgrade(?,?)}
+		{call p_admin_host_user_downgrade(?,?,?,?,?)}
 	</update>
 	
 	

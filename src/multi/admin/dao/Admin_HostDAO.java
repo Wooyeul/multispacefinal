@@ -5,6 +5,7 @@ import java.util.List;
 import main.vo.HostApplyVO;
 import main.vo.HostVO;
 import main.vo.UserVO;
+import multi.admin.vo.Admin_Host_DowngradeVO;
 
 
 public interface Admin_HostDAO {
@@ -16,7 +17,7 @@ public interface Admin_HostDAO {
 	public int host_user_refuse ( HostApplyVO hvo ) throws Exception;
 	public int host_user_remove_request( HostApplyVO hvo) throws Exception;
 	
-	public int host_user_downgrade ( HostVO hvo ) throws Exception;
+	public int host_user_downgrade ( Admin_Host_DowngradeVO hvo ) throws Exception;
 	public int host_user_remove ( HostVO hvo ) throws Exception;
 	
 	public UserVO host_user_check ( HostVO hvo ) throws Exception;

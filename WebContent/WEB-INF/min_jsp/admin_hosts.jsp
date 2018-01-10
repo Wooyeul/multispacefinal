@@ -20,7 +20,7 @@ table {
 </script>
 </head>
 <body>
-<h1>판매자 리스트</h1>
+<h1>판매자 리스트</h1> 
 <table border="1">
 	<tr>
 		<td>사업자 번호</td>
@@ -33,14 +33,14 @@ table {
 		<td>탈퇴 시키기</td>
 	</tr>
 	<jl:forEach var="vo" items="${ls}">
-		<tr>
+		<tr> 
 			<td>${vo.crn}</td>
 			<td><a href="admin_host_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 			<td>${vo.host_name}</td>
 			<td>${vo.host_account}</td>
 			<td>${vo.zipcode}</td>
 			<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">판매자 공간 확인 하기</a></td>
-			<td><a href="admin_host_user_downgrade.do?crn=${vo.crn}&user_id=${vo.user_id}">강등시키기</a></td>
+			<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">강등시키기</a></td>
 			<td><a href="admin_host_user_remove.do?crn=${vo.crn}&user_id=${vo.user_id}">탈퇴시키기</a></td>
 		</tr>
 	</jl:forEach>
