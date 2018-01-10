@@ -133,6 +133,8 @@ public class CtrlLogin {
 		
 
 		UserVO userInfo = UserDAO.find_userId(uvo);
+		System.out.println(uvo.getUser_name());
+		System.out.println(uvo.getSsn1());
 
 		ModelAndView mnv = new ModelAndView("home_findId");
 		mnv.addObject("user_id",userInfo.getUser_id());		
