@@ -19,8 +19,8 @@ public class User_clubDAO_MybatisImpl implements User_clubDAO{
 	}
 
 	@Override
-	public List<User_clubVO> find_user_club_MemberInfo(String club_no) {
-		return sqlSession.selectList("apple.mypage_message_findUserClubMember",club_no);
+	public List<User_clubVO> find_user_club_MemberInfo(User_clubVO ucvo) {
+		return sqlSession.selectList("apple.mypage_message_findUserClubMember",ucvo);
 	}
 
 }

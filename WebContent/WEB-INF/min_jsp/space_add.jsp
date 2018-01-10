@@ -36,9 +36,14 @@
 		ADD
 		</h1>
 		<form method="POST" action="space_add2.do" enctype="multipart/form-data">
-			<jl:forEach var="vo" items="${host }">
-				<input type="text" id="crn" name="crn" value="crn" class="form-control"/>
-			</jl:forEach>
+			<div class="form-group">
+				<label for="crn">사업자번호</label>
+				<select name="crn" id="crn">
+				<jl:forEach var="vo" items="${host }">
+					<option value="${vo.crn }">${vo.crn }</option>
+				</jl:forEach>
+				</select>
+			</div>
 			
 			<div class="form-group">
 				<label for="space_title">공간 이름</label>

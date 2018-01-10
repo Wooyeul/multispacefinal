@@ -27,13 +27,18 @@ public class CtrlMypageInfo {
 	public ModelAndView moveMypageMainPage(@CookieValue("user_id") String user_id) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		
-		ModelAndView mnv = new ModelAndView("mypage_main");
-		mnv.addObject("userInfo", userInfo);
-		return mnv;
+
+		if (userInfo != null) {
+			ModelAndView mnv = new ModelAndView("mypage_main");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("user_name", userInfo.getUser_name());
+			mnv.addObject("top_nav_code", "20000");
+			return mnv;
+		} else {
+			return null;
+		}
 
 	}
-	
 	
 	@RequestMapping("/myinfo_ckpass.do")
 	public ModelAndView ckpasswd() throws Exception{

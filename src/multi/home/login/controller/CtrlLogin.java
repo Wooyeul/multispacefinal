@@ -20,6 +20,7 @@ import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
 import main.RequestParam;
+import main.ResponseBody;
 import multi.home.login.dao.UserDAO;
 import main.vo.UserVO;
 
@@ -29,17 +30,45 @@ public class CtrlLogin {
 	@Autowired	@Qualifier("home_login_UserDAO")
 	private UserDAO UserDAO = null;
 
-	@RequestMapping("/main.do")
-	public ModelAndView main(@CookieValue("user_id") String user_id) throws Exception {
+	
+	
+	
+	/*
+	 * main.html 실행시 main_html.do 실행
+	 */
+	@RequestMapping("/main_html.do")
+	@ResponseBody
+	public String main_html(@CookieValue("user_id") String user_id) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-
-		ModelAndView mnv = new ModelAndView("main");
-		mnv.addObject("user_name", userInfo.getUser_name());
-		return mnv;
-
+		if( userInfo == null ){ //로그인을 안했으면
+			return "10002";
+		}
+		else{ // 로그인을 했으면
+			String user_name = userInfo.getUser_name();
+			return user_name;
+		}
+		
 	}
 	
+
+	@RequestMapping("/main.do")
+	public Object main(@CookieValue("user_id") String user_id) throws Exception {
+
+		UserVO userInfo = UserDAO.find_userInfo(user_id);
+		System.out.println("user_id:"+user_id);
+		
+		if (user_id != null) {
+			ModelAndView mnv = new ModelAndView("main");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("user_name", userInfo.getUser_name());
+			mnv.addObject("top_nav_code", "20000");
+			return mnv;
+		}else {
+			return "redirect:/main.html";
+		}
+	}
+
 
 	@RequestMapping("/home_moveLoginPage.do")
 	public ModelAndView moveLoginPage(@CookieValue("code") String code, HttpServletRequest request) throws Exception {
@@ -61,6 +90,11 @@ public class CtrlLogin {
 
 	}
 
+	
+	/*
+	 * 로그인 성공 여부에 따라 code값 심어줌.
+	 */
+	
 	@RequestMapping("/home_login.do")
 	public Object login(@ModelAttribute UserVO uvo, HttpServletResponse response) throws Exception {
 
@@ -70,23 +104,22 @@ public class CtrlLogin {
 				&& uvo.getPasswd().equals(userInfo.getPasswd())) {
 			Cookie ck = new Cookie("user_id", userInfo.getUser_id());
 			response.addCookie(ck);
-			return "redirect:/main.do";
 
+			//Cookie ck1 = new Cookie("code", "");
+			//response.addCookie(ck1);
+			
+			return "redirect:/main.do";
+			//user_id 와 passwd가 제대로 맞으면 로그인 성공 -> cookie에 code가 없다.
+			
 		} else {
+		
+			//user_id 와 passwd가 제대로 맞지 않으면 로그인 실패 -> code 값이 10001
 			Cookie ck = new Cookie("code", "10001");
 			response.addCookie(ck);
 			return "redirect:/home_moveLoginPage.do";
 		}
+
 	}
-	
-	@RequestMapping("/home_logout.do")
-	public String logout( HttpServletResponse response) throws Exception{
-		Cookie ck = new Cookie("user_id","");
-		response.addCookie(ck);
-		
-		return "redirect:/main.html";
-	}
-	
 	
 	
 	@RequestMapping("/home_moveFindIdPage.do")
@@ -121,10 +154,12 @@ public class CtrlLogin {
 
 		
 		UserVO userInfo = UserDAO.find_userPasswd(uvo);
+
 		
 		ModelAndView mnv = new ModelAndView("home_findPasswd");
 		mnv.addObject("passwd",userInfo.getPasswd());		
 		return mnv;
+
 
 	}
 	

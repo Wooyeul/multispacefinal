@@ -11,6 +11,11 @@
  <script src="common.js" type="text/javascript"></script>
  	<script>
  		$(document).ready(function(){
+ 			if("${bookmark}"==""){
+ 				$("#del_bookmark").hide();
+ 			} else {
+ 				$("#add_bookmark").hide();
+ 			}
  			if("${code }"==10001){
  				alert("본인만 삭제가 가능합니다.");
  			}
@@ -94,6 +99,10 @@
 					<td><button id="call">전화</button></td>
 					<td><button id="qna">문의하기</button></td>
 					<td><a href="space_reservation.do?space_no=${space.space_no }"><button>예약하기</button></a></td>
+					<td><div id="add_bookmark"><a href="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"><button>즐겨찾기</button></a></div>
+						<div id="del_bookmark"><a href="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"><button>즐겨찾기해제</button></a></div>
+					</td>
+					
 				</tr>
 			</table>
 		</div>
@@ -130,29 +139,33 @@
 								<td>${space_qna.the_time }</td>
 							</tr>
 						</table>
-							<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}">질문 삭제</a>
+							<jl:if test="${user_id eq space_qna.user_id }">
+								<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}">질문 삭제</a>
+							</jl:if>
 								<div id="qna_reple${space_qna.space_qna_no }"></div>
-								<div id="qna_reple_add">
-								<form method="POST" action="add_space_qna_reple.do">
-									<input type="hidden" name="space_qna_no" value="${space_qna.space_qna_no }">
-									<input type="hidden" name="space_no" value="${space_qna.space_no }">
-									<input type="hidden" name="user_id" value="${user_id }">
-									<table>
-									
-									<tr>
-										<td>제목</td>
-										<td><input type="text" name="space_qna_reple_title"></td>
-									</tr>
-									<tr>
-										<td>내용</td>
-										<td><textarea row="5" col="30" name="space_qna_reple_content"></textarea></td>
-									</tr>
-									</table>
-									<input type="submit">
-								</form>
-							</div>
-						
-							
+								<jl:forEach var="vo" items="${host }">
+									<jl:if test="${vo.crn eq space.crn }">
+										<div id="qna_reple_add">
+											<form method="POST" action="add_space_qna_reple.do">
+												<input type="hidden" name="space_qna_no" value="${space_qna.space_qna_no }">
+												<input type="hidden" name="space_no" value="${space_qna.space_no }">
+												<input type="hidden" name="user_id" value="${user_id }">
+												<table>
+												
+												<tr>
+													<td>제목</td>
+													<td><input type="text" name="space_qna_reple_title"></td>
+												</tr>
+												<tr>
+													<td>내용</td>
+													<td><textarea row="5" col="30" name="space_qna_reple_content"></textarea></td>
+												</tr>
+												</table>
+												<input type="submit">
+											</form>
+										</div>
+									</jl:if>
+								</jl:forEach>
 					</div>
 				</div>
 				</div>
@@ -215,18 +228,23 @@
 								</tr>
 								
 							</table>
-							<a href="del_review.do?review_no=${review.review_no }&space_no=${review.space_no}">후기 삭제</a>
+							<jl:if test="${user_id eq review.user_id }">
+								<a href="del_review.do?review_no=${review.review_no }&space_no=${review.space_no}">후기 삭제</a>
+							</jl:if>
 						</div>
 					</div>
 				</div>
 				</div>
 			</jl:forEach>
 			
-			<form method="POST" action="review_add.do">
-				<input type="hidden" name="user_id" value="${user_id }">
-				<input type="hidden" name="space_no" value="${space.space_no }">
-				<input type="submit" value="후기 작성">
-			</form>
+			
+				<form method="POST" action="review_add.do">
+					<input type="hidden" name="user_id" value="${user_id }">
+					<input type="hidden" name="space_no" value="${space.space_no }">
+					<input type="submit" value="후기 작성">
+				</form>
+		
+			
 		</div>
 		
 	</div>

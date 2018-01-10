@@ -3,6 +3,7 @@ package multi.space.dao;
 import java.util.List;
 import java.util.Map;
 
+import main.vo.BookmarkVO;
 import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
@@ -39,5 +40,6 @@ public interface SpaceDAO {
 	
 	//°ø°£ search
 	public List<SpaceVO> search_space(Space_searchVO vo) throws Exception;
+	
 }
 

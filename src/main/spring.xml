@@ -39,22 +39,28 @@
 	<bean class="multi.space.controller.CtrlSpace" />
 
 	<!--space DAO -->
-	<bean id="spaceDAO" class="multi.space.dao.SpaceDAO_MySQLImpl" />
+	<bean id="space_spaceDAO" class="multi.space.dao.SpaceDAO_MySQLImpl" />
 
 	<!--booking DAO -->
-	<bean id="bookingDAO" class="multi.space.dao.BookingDAO_MySQLImpl" />
+	<bean id="space_bookingDAO" class="multi.space.dao.BookingDAO_MySQLImpl" />
 
 	<!--space_QnADAO -->
-	<bean id="space_QnADAO" class="multi.space.dao.Space_QnADAO_MySQLImpl" />
+	<bean id="space_space_QnADAO" class="multi.space.dao.Space_QnADAO_MySQLImpl" />
 
 	<!--space_Qna_RepleDAO -->
-	<bean id="space_QnA_RepleDAO" class="multi.space.dao.Space_QnA_RepleDAO_MySQLImpl" />
+	<bean id="space_space_QnA_RepleDAO" class="multi.space.dao.Space_QnA_RepleDAO_MySQLImpl" />
 	
 	<!--userDAO -->
-	<bean id="userDAO" class="multi.space.dao.UserDAO_MySQLImpl" />
+	<bean id="space_userDAO" class="multi.space.dao.UserDAO_MySQLImpl" />
 	
 	<!--hostDAO -->
-	<bean id="hostDAO" class="multi.space.dao.HostDAO_MySQLImpl" />
+	<bean id="space_hostDAO" class="multi.space.dao.HostDAO_MySQLImpl" />
+	
+	<!--bookmarkDAO -->
+	<bean id="space_bookmarkDAO" class="multi.space.dao.BookmarkDAO_MySQLImpl"/>
+	
+	<!--reviewDAO -->
+	<bean id="space_reviewDAO" class="multi.space.dao.ReviewDAO_MySQLImpl" />
 
 	<bean class="multi.home.userjoin.controller.CtrlUserJoin" />
 
@@ -103,8 +109,7 @@
 
 	<!--@@@@@@@@@@@@@@@@ sb-end @@@@@@@@@@@@@@@@@@@@ -->
 
-	<!--reviewDAO -->
-	<bean id="reviewDAO" class="multi.space.dao.ReviewDAO_MySQLImpl" />
+	
 
 	<!-- 김소영 -->
 	<!--CtrlCommunity 컨트롤러 -->
@@ -123,9 +128,14 @@
 	<bean class="multi.community.board.dao.Community_boardDAO_MybatisProcImpl"
 		id="community_boardDAO" />
 	<!--community_boardrepleDAO 컨트롤러 -->
-	<bean
-		class="multi.community.board.dao.Community_boardrepleDAO_MybatisProcImpl"
+	<bean class="multi.community.board.dao.Community_boardrepleDAO_MybatisProcImpl"
 		id="community_boardrepleDAO" />
+	<!--Community_boardmytextDAO 컨트롤러 -->	
+		<bean class="multi.community.board.dao.Community_boardmytextDAO_MybatisProcImpl"
+		id="community_boardmytextDAO" />
+	<!--Community_board_searchDAO 컨트롤러 -->	
+		<bean class="multi.community.board.dao.Community_board_searchDAO_MybatisProcImpl"
+		id="community_board_searchDAO" />
 	<!-- 김소영 -->
 
 	<!-- 조우열 -->

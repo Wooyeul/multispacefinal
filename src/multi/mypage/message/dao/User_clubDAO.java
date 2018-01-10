@@ -8,6 +8,6 @@ public interface User_clubDAO {
 
 	public List<User_clubVO> find_user_clubInfo(String user_id);
 
-	public List<User_clubVO> find_user_club_MemberInfo(String club_no);
+	public List<User_clubVO> find_user_club_MemberInfo(User_clubVO ucvo);
 
 }

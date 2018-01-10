@@ -46,24 +46,33 @@ public class CtrlMessage {
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		List<MessageVO> receiveMessage = MessageDAO.find_receiveMessage(user_id);
 		
-		
-		ModelAndView mnv = new ModelAndView("mypage_receive_message");
-		mnv.addObject("userInfo", userInfo);
-		mnv.addObject("receiveMessage", receiveMessage);
-		return mnv;
-
+		if(userInfo != null){
+			ModelAndView mnv = new ModelAndView("mypage_receive_message");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("receiveMessage", receiveMessage);
+			return mnv;
+		}else{
+			return null;
+		}
 	}
 	
+	
 	@RequestMapping("/mypage_moveMypageReceiveMessageRead.do")
-	public ModelAndView moveMypageReceiveMessageRead(@CookieValue("user_id") String user_id,@RequestParam("msg_no")String msg_no) throws Exception {
+	public ModelAndView moveMypageReceiveMessageRead(@CookieValue("user_id") String user_id,@ModelAttribute MessageVO mvo) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		MessageVO receiveMessageRead = MessageDAO.read_receiveMessage(msg_no);
+		MessageVO receiveMessageRead = MessageDAO.read_receiveMessage(mvo);
 
-		ModelAndView mnv = new ModelAndView("mypage_read_receive_message");
-		mnv.addObject("userInfo", userInfo);
-		mnv.addObject("receiveMessageRead", receiveMessageRead);
-		return mnv;
+		if(userInfo != null){
+			ModelAndView mnv = new ModelAndView("mypage_read_receive_message");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("receiveMessageRead", receiveMessageRead);
+			return mnv;
+		}else{
+			return null;
+		}
+		
+		
 
 	}
 	
@@ -73,25 +82,35 @@ public class CtrlMessage {
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		List<MessageVO> sendMessage = MessageDAO.find_sendMessage(user_id);
 		
+		if(userInfo != null){
+			ModelAndView mnv = new ModelAndView("mypage_send_message");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("sendMessage", sendMessage);
+			return mnv;
+		}else{
+			return null;
+		}
 		
-		ModelAndView mnv = new ModelAndView("mypage_send_message");
-		mnv.addObject("userInfo", userInfo);
-		mnv.addObject("sendMessage", sendMessage);
-		return mnv;
 
 	}
 	
 	
 	@RequestMapping("/mypage_moveMypageSendMessageRead.do")
-	public ModelAndView moveMypageSendMessageRead(@CookieValue("user_id") String user_id,@RequestParam("msg_no")String msg_no) throws Exception {
+	public ModelAndView moveMypageSendMessageRead(@CookieValue("user_id") String user_id,@ModelAttribute MessageVO mvo) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		MessageVO sendMessageRead = MessageDAO.read_sendMessage(msg_no);
+		MessageVO sendMessageRead = MessageDAO.read_sendMessage(mvo);
 
-		ModelAndView mnv = new ModelAndView("mypage_read_send_message");
-		mnv.addObject("userInfo", userInfo);
-		mnv.addObject("sendMessageRead", sendMessageRead);
-		return mnv;
+		if(userInfo != null){
+			ModelAndView mnv = new ModelAndView("mypage_read_send_message");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("sendMessageRead", sendMessageRead);
+			return mnv;
+		}else{
+			return null;
+		}
+		
+
 
 	}
 
@@ -101,20 +120,27 @@ public class CtrlMessage {
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		List<User_clubVO> user_clubInfo = User_clubDAO.find_user_clubInfo(user_id);
 		
-		ModelAndView mnv = new ModelAndView("mypage_write_send_message");
-		mnv.addObject("userInfo", userInfo);
-		mnv.addObject("user_clubInfo", user_clubInfo);
-		return mnv;
+
+		if(userInfo != null){
+			ModelAndView mnv = new ModelAndView("mypage_write_send_message");
+			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("user_clubInfo", user_clubInfo);
+			return mnv;
+		}else{
+			return null;
+		}
+		
+		
 
 	}
 	
 
 	@RequestMapping("/mypage_moveMypageWriteMessageFindUserClubMemberPage.do")
 	@ResponseBody
-	public String moveMypageWriteMessageFindUserClubMemberPage(@CookieValue("user_id") String user_id,@RequestParam("club_no")String club_no) throws Exception {
+	public String moveMypageWriteMessageFindUserClubMemberPage(@CookieValue("user_id") String user_id,@ModelAttribute User_clubVO ucvo) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		List<User_clubVO> user_club_MemberInfo = User_clubDAO.find_user_club_MemberInfo(club_no);
+		List<User_clubVO> user_club_MemberInfo = User_clubDAO.find_user_club_MemberInfo(ucvo);
 
 		StringBuffer sb = null;
 
@@ -137,14 +163,21 @@ public class CtrlMessage {
 	}
 	
 	@RequestMapping("/mypage_sendMessage.do")
-	public ModelAndView sendMessage(@CookieValue("user_id") String user_id,@ModelAttribute MessageVO pvo) throws Exception {
+	public ModelAndView sendMessage(@CookieValue("user_id") String user_id,@ModelAttribute MessageVO mvo) throws Exception {
+
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		pvo.setSend_user_id(user_id);
-		MessageDAO.send_Message(pvo);
 		
-		ModelAndView mnv = new ModelAndView("mypage_finish_send_message");
-		return mnv;
+		if(userInfo != null){
+			mvo.setSend_user_id(user_id);
+			MessageDAO.send_Message(mvo);
+			
+			ModelAndView mnv = new ModelAndView("mypage_finish_send_message");
+			return mnv;
+		}else{
+			return null;
+		}
+		
 
 	}
 	

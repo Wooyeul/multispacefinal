@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import main.vo.BookmarkVO;
 import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
@@ -75,6 +76,8 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space.search_space",vo);
 	}
+
+
 
 	
 	

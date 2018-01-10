@@ -19,6 +19,7 @@ import main.RequestMapping;
 import main.RequestParam;
 import main.ResponseBody;
 import main.vo.BookingVO;
+import main.vo.BookmarkVO;
 import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.ReviewVO;
@@ -27,6 +28,7 @@ import main.vo.Space_qnaVO;
 import main.vo.Space_qna_repleVO;
 import main.vo.UserVO;
 import multi.space.dao.BookingDAO;
+import multi.space.dao.BookmarkDAO;
 import multi.space.dao.HostDAO;
 import multi.space.dao.ReviewDAO;
 import multi.space.dao.SpaceDAO;
@@ -42,26 +44,29 @@ public class CtrlSpace {
 		return Integer.parseInt(str);
 	}
 	
-	@Autowired @Qualifier("spaceDAO")
+	@Autowired @Qualifier("space_spaceDAO")
 	public SpaceDAO spaceDAO = null;
 	
-	@Autowired @Qualifier("bookingDAO")
+	@Autowired @Qualifier("space_bookingDAO")
 	public BookingDAO bookingDAO = null;
 	
-	@Autowired @Qualifier("space_QnADAO")
+	@Autowired @Qualifier("space_space_QnADAO")
 	public Space_QnADAO space_QnADAO = null;
 	
-	@Autowired @Qualifier("space_QnA_RepleDAO")
+	@Autowired @Qualifier("space_space_QnA_RepleDAO")
 	public Space_QnA_RepleDAO space_QnA_RepleDAO = null;
 	
-	@Autowired @Qualifier("reviewDAO")
+	@Autowired @Qualifier("space_reviewDAO")
 	public ReviewDAO reviewDAO = null;
 	
-	@Autowired @Qualifier("userDAO")
+	@Autowired @Qualifier("space_userDAO")
 	public UserDAO userDAO = null;
 	
-	@Autowired @Qualifier("hostDAO")
+	@Autowired @Qualifier("space_hostDAO")
 	public HostDAO hostDAO = null;
+	
+	@Autowired @Qualifier("space_bookmarkDAO")
+	public BookmarkDAO bookmarkDAO = null;
 	
 	//공간 첫화면
 	@RequestMapping("/space_home.do")
@@ -166,18 +171,24 @@ public class CtrlSpace {
 	//공간 상세
 	@RequestMapping("/space_detail.do")
 	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
-			@ModelAttribute ReviewVO reviewVO,@CookieValue("user_id") String user_id,@RequestParam("code") String code) throws Exception{
+			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(reviewVO);
 		String s_category = spaceDAO.find_s_category_by_space_no(spaceVO);
+		List<HostVO> host = hostDAO.find_host_by_user_id(user_id);
+		
+		bookmark.setUser_id(user_id);
+		BookmarkVO return_bookmark = bookmarkDAO.find_bookmark(bookmark);
+		
+		mnv.addObject("bookmark", return_bookmark);
 		mnv.addObject("space", space);
 		mnv.addObject("list_space_qna", list_space_qna);
 		mnv.addObject("list_review", list_review);
 		mnv.addObject("user_id", user_id);
 		mnv.addObject("s_category", s_category);
-		mnv.addObject("code", code);
+		mnv.addObject("host", host);
 		return mnv;
 	}
 	
@@ -242,13 +253,15 @@ public class CtrlSpace {
 		if(user_id==null|| user_id.length()<=1){
 			return "redirect:/home_moveLoginPage.do";
 		}
-		UserVO user = userDAO.find_user_by_user_id(user_id);
+		
+		
 		Space_qnaVO qna = space_QnADAO.find_space_QnA_by_space_qna_no(space_QnAVO);
-		if(user.getUser_id()!=qna.getUser_id()) {
-			return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&code=10001";
+		if(user_id.equals(qna.getUser_id())) {
+			space_QnADAO.delete_spaceQnA_by_spane_qna_no(space_QnAVO);
+			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
+			
 		}
-		space_QnADAO.delete_spaceQnA_by_spane_qna_no(space_QnAVO);
-		return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
+		return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&code=10001";
 	}
 	
 	//space reple 등록
@@ -267,7 +280,6 @@ public class CtrlSpace {
 	public String find_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO) throws Exception{
 		Space_qna_repleVO space_qna_reple = space_QnA_RepleDAO.find_space_QnA_Reple(space_QnA_RepleVO);
 		try{
-		space_qna_reple.getSpace_qna_reple_content();
 		String qna_reple = 
 				" { 'qna_reple_content' :'"+ space_qna_reple.getSpace_qna_reple_content()+"',"
 				+ "'qna_reple_title' :'"+space_qna_reple.getSpace_qna_reple_title()+"'}";
@@ -328,14 +340,33 @@ public class CtrlSpace {
 		if(user_id==null|| user_id.length()<=1){
 			return "redirect:/home_moveLoginPage.do";
 		}
-		UserVO user = userDAO.find_user_by_user_id(user_id);
 		ReviewVO review = reviewDAO.find_review_by_review_no(reviewVO);
-		if(user.getUser_id()!=review.getUser_id()) {
-			return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&code=10001";
+		if(user_id.equals(review.getUser_id())) {
+			reviewDAO.del_review(reviewVO);
+			return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no();
+			
 		}
-		reviewDAO.del_review(reviewVO);
-		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no();
+		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&code=10001";
+		
 	}
 	
+	//북마크 등록
+	@RequestMapping("/add_bookmark.do")
+	public String add_bookmark(@ModelAttribute BookmarkVO bookmark,@CookieValue("user_id") String user_id) throws Exception{
+		if(user_id==null|| user_id.length()<=1){
+			return "redirect:/home_moveLoginPage.do";
+		}
+		bookmarkDAO.add_bookmark(bookmark);
+		return "redirect:/space_detail.do?space_no="+bookmark.getSpace_no();
+	}
+	
+	@RequestMapping("/del_bookmark.do")
+	public String del_bookmark(@ModelAttribute BookmarkVO bookmark,@CookieValue("user_id") String user_id) throws Exception{
+		if(user_id==null|| user_id.length()<=1){
+			return "redirect:/home_moveLoginPage.do";
+		}
+		bookmarkDAO.del_bookmark(bookmark);
+		return "redirect:/space_detail.do?space_no="+bookmark.getSpace_no();
+	}
 	
 }

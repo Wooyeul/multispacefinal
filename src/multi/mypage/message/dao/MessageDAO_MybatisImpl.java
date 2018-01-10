@@ -19,8 +19,8 @@ public class MessageDAO_MybatisImpl implements MessageDAO{
 	}
 
 	@Override
-	public MessageVO read_receiveMessage(String msg_no) {
-		return sqlSession.selectOne("apple.mypage_message_readReceiveMessage",msg_no);
+	public MessageVO read_receiveMessage(MessageVO mvo) {
+		return sqlSession.selectOne("apple.mypage_message_readReceiveMessage",mvo);
 	}
 
 	@Override
@@ -29,8 +29,8 @@ public class MessageDAO_MybatisImpl implements MessageDAO{
 	}
 
 	@Override
-	public MessageVO read_sendMessage(String msg_no) {
-		return sqlSession.selectOne("apple.mypage_message_readSendMessage",msg_no);
+	public MessageVO read_sendMessage(MessageVO mvo) {
+		return sqlSession.selectOne("apple.mypage_message_readSendMessage",mvo);
 	}
 
 	@Override
