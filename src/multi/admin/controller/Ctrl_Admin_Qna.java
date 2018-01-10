@@ -42,6 +42,7 @@ public class Ctrl_Admin_Qna {
 		ModelAndView mnv = new ModelAndView("admin_community_qna_read");
 		mnv.addObject("vo", vo);
 		mnv.addObject("rp", rp);
+		mnv.addObject("user_id", user_id);
 		return mnv;
 	}
 	
@@ -100,6 +101,7 @@ public class Ctrl_Admin_Qna {
 	
 	@RequestMapping("/admin_community_qna_reple_recom.do")
 	public String community_board_recom(@ModelAttribute Community_qna_repleVO pvo)throws Exception {
+		System.out.println("admin_community_qna_reple_recom.do");
 		System.out.println(pvo.getUser_id());
 		System.out.println(pvo.getCom_qna_reple_no());
 		admin_QnaDAO_MysqlImpl.incRecom(pvo);
