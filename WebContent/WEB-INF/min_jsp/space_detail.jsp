@@ -14,8 +14,24 @@
  			if("${bookmark}"!=""){
  				$("#btn_bookmark").html("북마크해제");
  			}
- 			if("${code }"==20001){
- 				alert("본인만 삭제가 가능합니다.");
+ 			if("${space_code }"=="20002"){
+ 				$("#status-modal-body").html("후기 삭제 성공");
+ 				$("#status-modal").modal('show');
+ 			}else if("${space_code }"=="20001"){
+ 				$("#status-modal-body").html("본인만 삭제 가능합니다");
+ 				$("#status-modal").modal('show');
+ 			}else if("${space_code }"=="20003"){
+ 				$("#status-modal-body").html("후기 등록 성공");
+ 				$("#status-modal").modal('show');
+ 			}else if("${space_code }"=="20004"){
+ 				$("#status-modal-body").html("질문 수정 성공");
+ 				$("#status-modal").modal('show');
+ 			}else if("${space_code }"=="20005"){
+ 				$("#status-modal-body").html("질문 삭제 성공");
+ 				$("#status-modal").modal('show');
+ 			}else if("${space_code }"=="20006"){
+ 				$("#status-modal-body").html("질문 등록 성공");
+ 				$("#status-modal").modal('show');
  			}
  			
  			$("#btn_bookmark").on("click",function(){
@@ -236,25 +252,19 @@
 				</div>
 			</jl:forEach>
 			<!-- space q&a 쓰는 곳 -->
-			
+			<h3>질문하기</h3>
 			<form method="POST" action="add_space_qna.do">
-			<table>
-				
-				<tr><th>질문 하기</th></tr>
-				<tr>
-					<td>제목</td>
-					<td><input type="text" name="space_qna_title"></td>
-				</tr>
-				<tr>
-					<td>내용</td>
-					<td><textarea name="space_qna_content" rows="5" cols="30"></textarea></td>
-				</tr>
-				
-			</table>
-			
-			<input type="hidden" name="user_id" value="${user_id }">
-			<input type="hidden" name="space_no" value="${space.space_no }">
-			<input type="submit"  class="btn btn-default" value="질문 제출">
+				<div class="form-group">
+					<label for="space_qna_title">제목</label>
+					<input type="text" name="space_qna_title" id="space_qna_title" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="space_qna_content">내용</label>
+					<textarea name="space_qna_content" id="space_qna_content" class="form-control"></textarea>
+				</div>
+				<input type="hidden" name="user_id" value="${user_id }">
+				<input type="hidden" name="space_no" value="${space.space_no }">
+				<input type="submit"  class="btn btn-default" value="질문 제출">
 			</form>
 		</div>
 			
@@ -362,9 +372,26 @@
 			</div>
 		</div>
 		
-		
-		
-		
+		<!-- 상태 모달 -->
+		<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+							<span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">진행상태</h4>
+					</div>
+					<div class="modal-body">
+						<h2 id="status-modal-body">XX 완료</h2>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 	</div>
 	</div>
