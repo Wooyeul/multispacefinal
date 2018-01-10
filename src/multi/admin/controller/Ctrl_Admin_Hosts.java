@@ -101,7 +101,7 @@ public class Ctrl_Admin_Hosts {
 	public ModelAndView admin_host_user_downgrade( @ModelAttribute Admin_Host_DowngradeVO hvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView();
 		admin_HostDAO.host_user_downgrade(hvo);
-		mnv.setViewName("redirect:/admin_hosts.do");
+		mnv.setViewName("redirect:/admin_hosts.do"); 
 		return mnv;
 	}
 	// 판매자 유저 삭제. 리다이렉트 시 판매자 리스트 정보 확인 페이지

@@ -33,7 +33,7 @@ table {
 		<td>탈퇴 시키기</td>
 	</tr>
 	<jl:forEach var="vo" items="${ls}">
-		<tr>
+		<tr> 
 			<td>${vo.crn}</td>
 			<td><a href="admin_host_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 			<td>${vo.host_name}</td>

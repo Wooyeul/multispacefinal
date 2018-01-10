@@ -16,7 +16,7 @@
 	$("document").ready(function(){
 		$("#can").on("click",function(){
 			document.frm.action="admin_host_request.do";
-			document.frm.submit();
+			document.frm.submit(); 
 		});
 	});
 </script>

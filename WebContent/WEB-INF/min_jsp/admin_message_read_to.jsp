@@ -29,16 +29,6 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
 	$(document).ready(function(){
-		alert();
-		$("#repleModal").modal("show");
-		
-		
-		
-		$("#cancel").on("click",function(){
-			document.frm.method="POST";
-			document.frm.action="admin_message_write.do";
-			document.frm.submit();
-		});
 
 	});
 
@@ -59,23 +49,8 @@
 		<jl:forEach var="vo" items="${ls}">
 		<tr>
 			<td>${vo.receive_user_id}</td>
-			<jl:set var = "string1" value = "${vo.msg_content}"/>
-			<jl:choose>
-				<jl:when test="${fn:length(string1) > 10}">
-      				<jl:set var = "string2" value = "${fn:substring(string1, 1, 10)}" />
-					<td>
-						<span id="rb_${vo.msg_no}">${string2}</span>
-						[<a href="#" class="detailMessage" rid="rb_${vo.msg_no}" rno="${vo.msg_no}">자세히 보기</a>] 
-					</td>
-				</jl:when>
-				<jl:when test="${fn:length(string1) <= 10}">
-					<td>${vo.msg_content}</td>
-				</jl:when>
-							
-			</jl:choose>
-			
+			<td><textarea rows="10" cols="30">${vo.msg_content}</textarea></td>	
 			<td>${vo.the_time }</td>
-			
 			<jl:choose>
 				<jl:when test="${vo.view_count == 0}">
 					<td>읽지 않음</td>

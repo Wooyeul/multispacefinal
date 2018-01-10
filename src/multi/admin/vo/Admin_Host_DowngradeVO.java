@@ -6,7 +6,7 @@ public class Admin_Host_DowngradeVO {
 			String msg_no, String send_user_id, String receive_user_id, String msg_content, String the_time,
 			String view_count) {
 		this.crn = crn;
-		this.user_id = user_id;
+		this.user_id = user_id; 
 		this.host_name = host_name;
 		this.host_account = host_account;
 		this.zipcode = zipcode;
