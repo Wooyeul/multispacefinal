@@ -17,6 +17,10 @@
 		SELECT * FROM Space_QnA_RepleT WHERE space_qna_no=#{space_qna_no}
 	</select>
 	
+	<delete id="delete_spaceQnA_by_space_qna_no" parameterType="main.vo.Space_qnaVO">
+		DELETE FROM Space_QnA_RepleT WHERE space_qna_no=#{space_qna_no}
+	</delete>
+	
 </mapper>
 
 

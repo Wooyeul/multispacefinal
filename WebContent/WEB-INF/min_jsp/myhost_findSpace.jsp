@@ -8,7 +8,6 @@
 $(document).ready(function(){
 	$(".space_no").on("click",function(){
 		var temp = $(this).attr("abc");
-		alert(temp);
 		
 		document.frm.method="POST";
 		document.frm.action="space_detail.do?space_no="+temp;

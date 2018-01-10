@@ -11,10 +11,9 @@
  <script src="common.js" type="text/javascript"></script>
  	<script>
  		$(document).ready(function(){
- 			if("${bookmark}"==""){
- 				$("#del_bookmark").hide();
- 			} else {
- 				$("#add_bookmark").hide();
+ 			if("${bookmark}"!=""){
+ 				$("#btn_bookmark").html("북마크해제");
+ 				$("#a_bookmark").attr("href","del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}");
  			}
  			if("${code }"==10001){
  				alert("본인만 삭제가 가능합니다.");
@@ -85,7 +84,6 @@
 		</div>
 		
 		<hr/>
-		//예약 이동
 		<div>
 			<table>
 				<tr>
@@ -93,14 +91,14 @@
 					<td>최소 ${space.min_people } 명~ 최대 ${space.max_people } 명</td>
 				</tr>
 				<tr>
+					<td>가격</td>
 					<td>${space.price } 원 /시간</td>
 				</tr>
 				<tr>
 					<td><button id="call">전화</button></td>
 					<td><button id="qna">문의하기</button></td>
 					<td><a href="space_reservation.do?space_no=${space.space_no }"><button>예약하기</button></a></td>
-					<td><div id="add_bookmark"><a href="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"><button>즐겨찾기</button></a></div>
-						<div id="del_bookmark"><a href="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"><button>즐겨찾기해제</button></a></div>
+					<td><a id="a_bookmark" href="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"><button id="btn_bookmark">북마크등록</button></a>
 					</td>
 					
 				</tr>
