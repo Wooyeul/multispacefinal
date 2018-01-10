@@ -34,11 +34,11 @@ public class CtrlLogin {
 	
 	
 	/*
-	 * main.html 실행시 main_html.do 실행
+	 * main.html 실행시 chk_login.do 실행
 	 */
-	@RequestMapping("/main_html.do")
+	@RequestMapping("/chk_login.do")
 	@ResponseBody
-	public String main_html(@CookieValue("user_id") String user_id) throws Exception {
+	public String chk_login(@CookieValue("user_id") String user_id) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		if( userInfo == null ){ //로그인을 안했으면

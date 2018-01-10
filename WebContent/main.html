@@ -38,7 +38,19 @@
 		xhr.send(null);
 	}	
 	$(document).ready(function(){
-		var url = "main_html.do";
+		
+		var scOffset = $('.navbar-Menu').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > scOffset.top) {
+				$('.navbar').addClass('navbar-fixed-top');
+			} else {
+				$('.navbar').removeClass('navbar-fixed-top');
+			}
+		});
+		
+		
+		
+		var url = "chk_login.do";
  		ajaxGet(url,function(rt){
  			
  				// 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
@@ -63,7 +75,7 @@
 </head>
 <body>
 
-<input type="hidden" id="i_top_nav_code" /> 
+
 
 
 	<!-- Fixed navbar -->
@@ -77,15 +89,15 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="main_html.do">Multi Space</a>
+				<a class="navbar-brand" href="main.html">Multi Space</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="space_home.do">공간</a></li>
-					<li><a href="club_list.do">모임</a></li>
+					<li><a href="club_home.do">모임</a></li>
 					<li><a href="community_list.do">커뮤니티</a></li>
-					<li><a href="event_list.do">이벤트</a></li>
+					<li><a href="event_user_list.do">이벤트</a></li>
 					<li><a href="notice_list.do">공지사항</a></li>
 					<li><a href="faq_list.do">FAQ</a></li>
 					<li><a href="admin_main.do">관리자</a></li>
@@ -96,9 +108,9 @@
 				</ul>
 				
 				<ul id="login_nav" class="nav navbar-nav navbar-right">
-					<li><a id="user_name"></a></li>
+					<li><a href="#">${user_name}님이 로그인 하셨습니다.</a></li>
 					<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-					<li><a href="#">로그아웃</a></li>					
+					<li><a href="/home_logout.do">로그아웃</a></li>					
 				</ul>
 				
 			</div>

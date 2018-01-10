@@ -18,65 +18,86 @@
 	
 	<script>
 	$(document).ready(function(){
-	
-		
-		if($("#i_top_nav_code").val() == 20000){
-			$("#login_nav").show();
-			$("#non_login_nav").hide();
-		}
-		if($("#i_top_nav_code").val() == 20002){
-			$("#login_nav").hide();
-			$("#non-login").show();
-		}
 
+		var url = "chk_login.do";
+ 		ajaxGet(url,function(rt){
+ 			
+ 				// 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+ 				if(rt =="10002"){ 
+					$("#login_nav").hide();
+					$("#non_login_nav").show();
+				}
+ 					
+ 				// 로그인 시 : rt값 -> user_name
+				else if(rt!=""){ 
+					$("#login_nav").show();
+					$("#non_login_nav").hide();
+					$("#user_name").text(rt+"님이 로그인하셨습니다.");
+				}
+ 			});	
 		
-	});
-	
-	
+		
+		var scOffset = $('.navbar-Menu').offset();
+			$(window).scroll(function() {
+				if ($(document).scrollTop() > scOffset.top) {
+					$('.navbar').addClass('navbar-fixed-top');
+				} else {
+					$('.navbar').removeClass('navbar-fixed-top');
+				}
+			});
+			
+			
+			
+			
 
+
+		});
 	</script>
 </head>
 <body>
+
+
+	<input type="hidden" id="i_top_nav_code" /> 
+	
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"	aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="main_html.do">Project name</a>
+				<a class="navbar-brand" href="main.html">Multi Space</a>
 			</div>
-			
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="space_home.do">공간</a></li>
 					<li><a href="club_home.do">모임</a></li>
 					<li><a href="community_list.do">커뮤니티</a></li>
-					<li><a href="event_list.do">이벤트</a></li>	
+					<li><a href="event_user_list.do">이벤트</a></li>
 					<li><a href="notice_list.do">공지사항</a></li>
-					<li><a href="faq_list.do">FAQ</a></li>			
-					<li><a href="admin_main.do">관리자</a></li>			
+					<li><a href="faq_list.do">FAQ</a></li>
+					<li><a href="admin_main.do">관리자</a></li>
+				</ul>
+				
+				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+					<li><a href="home_moveLoginPage.do">로그인</a></li>
 				</ul>
 				
 				<ul id="login_nav" class="nav navbar-nav navbar-right">
 					<li><a href="#">${user_name}님이 로그인 하셨습니다.</a></li>
 					<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-					<li><a href="home_logout.do">로그아웃</a></li>					
-				</ul>
-				
-				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-					<li><a href="#">로그인</a></li>				
+					<li><a href="/home_logout.do">로그아웃</a></li>					
 				</ul>
 				
 			</div>
+			<!--/.nav-collapse -->
 		</div>
 	</nav>
-	<!--/.nav-collapse -->
 
 	<div class="container">
 
