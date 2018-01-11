@@ -1,63 +1,70 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="common.js" type="text/javascript"></script>
 
+	  
+	  <script>
+	  $(document).ready(function(){
 
+	  
+	$("#testBtn").on("click",function(){
+		  
+	  var url = "/home_findId.do?user_name="+$("#user_name").val()+"&ssn1="+$("#ssn1").val()+"&ssn2="+$("#ssn2").val();
+	  
+	  ajaxGet(url,function(rt){
+		  if(rt==null){
+			  alert("아이디가 없습니다.");
+			  // 회원이 아니거나 유저 정보가 맞지 않습니다. 다시 확인해주세요
+		  }else{
+			  //$("#modal-title").attr("value",rt);
+			 //var k =  $("#modal-title").val();
+			  
+			$("#modal-title").text(rt).append();
 
-<link rel='stylesheet prefetch'
-	href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
-
-<link rel="stylesheet" href="css/style.css">
-
-<style>
-
-.form-text {
-	float: left; 
-	padding:10px;
-}
-.form-input {
-	float: left; 
-	padding:10px;
-}
-
-
-</style>	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> -->
-	<!--  <script type="text/javascript" src="common.js"></script> -->
+			  $("#qna_mod").modal('show');
+			 
+			 
+			 
+		  }
+	  });
+			 
+		 });
+		 
+	  
+	  });
+	  
+	  
+	  </script>
+	  
 	
-	<script>
-/* 	
-	window.onload =function () {
-		   window.open("popup. html",  "popupNo1", "width=500, height=360");
-		}
- */
-
-	</script>
 </head>
 <body>
-	<form method="POST" action="home_findId.do" class="form-signin">
+	<form method="POST" class="form-signin">
 		<table width="422" align="left">
 			<tr>
 				<td width="15"></td>
 				<td width="12"></td>
-				<td width="95" height="35" class="g_13" align="left">�̸�</td>
+				<td width="95" height="35" class="g_13" align="left">이름</td>
 				<td width="300" align="left">
-					<input name="user_name"	type="text" class="textareabg" size="15" />
+					<input name="user_name"	id="user_name" type="text" class="textareabg" size="15" />
 				</td>
 			</tr>
 
 			<tr>
 				<td width="15"></td>
 				<td width="12"></td>
-				<td width="95" height="35" class="g_13" align="left">�ֹι�ȣ</td>
+				<td width="95" height="35" class="g_13" align="left">주민번호</td>
 				<td width="300" class="g_13" align="left">
-					<input name="ssn1" class="textareabg" size="15" maxlength="20" /> - 
-					<input name="ssn2" class="textareabg" size="15" maxlength="20" />
+					<input name="ssn1" id="ssn1" class="textareabg" size="15" maxlength="20" /> - 
+					<input name="ssn2" id="ssn2" class="textareabg" size="15" maxlength="20" />
 				</td>
 			</tr>
 			<tr>
@@ -76,8 +83,8 @@
 			</tr>
 			<tr>
 				<td colspan="5" align="center" class="btn_wrap_align_top">
-				<button id="sub-btn" class="btn btn-lg btn-success" type="submit" >
-				���̵� ã��
+				<button id="sub-btn" class="btn btn-lg btn-success" type="button" >
+				아이디 찾기
 				</button>
 				</td>
 			</tr>
@@ -90,8 +97,33 @@
 			</tr>
 		</table>
 	</form>
-	<!-- �̸��� �ּҷ�ã�� �� ��-->
+	
+	<input type="button" id="testBtn"/>
+
+	<!-- 이메일 주소로찾기 폼 끝-->
 userId : ${user_id}
+
+
+					<!-- qna 수정 모달 -->
+								<div class="modal fade" id="qna_mod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">
+													<span aria-hidden="true">&times;</span>
+													<span class="sr-only">Close</span>
+												</button>
+												<p id="modal-title"></p>
+											</div>
+										
+										</div>
+									</div>
+								</div>
+								<!-- qna 수정 모달 끝 -->
+							
+								
+
+
 
 </body>
 </html>
