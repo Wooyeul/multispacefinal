@@ -21,7 +21,6 @@ taglib
 <script>
 
 
-
 $(document).ready(function() {
 	$("#btnMod").on("click", function() {
 		$("#repleModal").modal("hide");

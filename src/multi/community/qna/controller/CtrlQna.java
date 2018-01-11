@@ -116,7 +116,7 @@ public class CtrlQna {
 		System.out.println(pvo.getUser_id());
 		System.out.println(pvo.getCom_qna_reple_no());
 		community_qna_repleDAO.incRecom(pvo);
-		
+	
 		return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
     }
 	

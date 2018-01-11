@@ -180,7 +180,6 @@
 		<hr/>
 		
 		<div>
-		<hr/>
 		
 		<!-- space q&a 부분 -->
 		<div class="col-xs-6">
