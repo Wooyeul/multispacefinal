@@ -38,9 +38,23 @@
       <result property="club_no" column="club_no" jdbcType="INTEGER"/>    
       <result property="user_id" column="user_id" jdbcType="VARCHAR"/>          
    </resultMap>
-
-   <select id="mypage_message_findUserClub" resultMap="RM_userclub">
-		SELECT * from User_clubT where user_id = #{user_id};
+   
+ 	<resultMap id="RM_club_findAll" type="main.vo.ClubVO">
+      <result property="club_no"            column="club_no"         jdbcType="INTEGER"/>
+      <result property="user_id"            column="user_id"          jdbcType="VARCHAR"/>
+      <result property="club_name"        column="club_name"         jdbcType="VARCHAR"/>
+      <result property="club_content"       column="club_content"      jdbcType="VARCHAR"/>
+      <result property="club_thumb_img"   column="club_thumb_img"      jdbcType="VARCHAR"/>
+      <result property="max_member"       column="max_member"         jdbcType="INTEGER"/>
+      <result property="create_time"      column="create_time"      jdbcType="VARCHAR"/>
+      <result property="l_category_no"      column="l_category_no"      jdbcType="INTEGER"/>
+      <result property="c_category_no"      column="c_category_no"      jdbcType="INTEGER"/>
+      <result property="user_count"      column="user_count"         jdbcType="INTEGER"/>
+   	</resultMap>
+   
+  
+   <select id="mypage_message_findUserClub" resultMap="RM_club_findAll">
+		SELECT * from clubT c , user_clubT ut where c.club_no = ut.club_no AND ut.user_id = #{user_id};
 	</select>
 	
    <select id="mypage_message_findUserClubMember" resultMap="RM_userclub">

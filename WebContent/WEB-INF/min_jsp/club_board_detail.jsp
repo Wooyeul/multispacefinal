@@ -44,8 +44,8 @@
 			<jl:if test="${user_id == rvo.user_id }">
 				<a class="delRe" reNo="${rvo.c_board_reple_no}" boardNo="${rvo.c_board_no}" userId="${rvo.user_id }" 
 				href="#"><span class="glyphicon glyphicon-remove"></span></a>
-				<a reNo="${rvo.c_board_reple_no}"  reText="${rvo.c_board_reple_content}" boardNo="${rvo.c_board_no}" userId="${rvo.user_id}" 
-				class="modRe"href="#"><span class="glyphicon glyphicon-pencil"></span></a></label>
+				<a reNo="${rvo.c_board_reple_no}"  reText="${rvo.c_board_reple_content}" class="modRe"href="#">
+				<span class="glyphicon glyphicon-pencil"></span></a></label>
 			</jl:if>
 			<br/>
 			<hr/>
@@ -55,7 +55,7 @@
 </div>
 
 	<!-- 댓글 수정 modal창 시작 -->
-	<form id="mod_frm" method="post" action="club_mod_board_reple.do">
+	<form id="mod_frm">
 		<div id="mod_modal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -71,7 +71,6 @@
 			</div>
 		</div>
 		<input id="c_board_reple_no" name='c_board_reple_no' type='hidden'/>
-		<input id="c_board_no" name='c_board_no' type='hidden'/>
 	</form>
 	<!-- 댓글 수정 modal창 끝 -->
 	
@@ -95,11 +94,70 @@
 		<input id="del_board_no" name='c_board_no' type='hidden'/>
 	</form>
 	<!-- 댓글 삭제 modal창 끝 -->
+
+	<!-- 댓글 삭제 확인 modal창 시작 -->
+	<!-- 댓글 삭제 확인 modal창 끝 -->
+	
 	
 	<!-- 자바스크립트에서 사용할 값 -->
 	<input id="club_no" type="hidden" value="${vo.club_no}">
 	<input id="c_board_no" type="hidden" value="${vo.c_board_no}">
-	<!-- 자바스크립트파일 -->
-	<script type="text/javascript" src="/js/club/club_board_detail.js"></script>
+	
+	<!-- 자바스크립트 -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//뒤로가기 버튼 클릭 시 이벤트 발생
+			$("#prev").on("click",function(){
+				location.href="club_community.do?club_no="+'${vo.club_no}';
+			});
+			// 글 수정 버튼 클릭 시 이벤트 발생
+			$("#textMod").on("click",function(){
+				location.href="club_mod_board_detail.do?c_board_no="+'${vo.c_board_no}';
+			});
+			// 댓글 삭제 버튼 눌렀을 때 이벤트 발생
+			$(".delRe").on("click",function(){
+				var reNo = $(this).attr("reNo");
+				$("#del_modal").modal("show");
+				$("#del_modal_Yes").on("click",function(){
+					var url = "club_del_board_reple.do?c_board_reple_no="+reNo;
+					ajaxGet(url,function(rt){
+						if(rt=="ok"){
+						}
+					});
+				});
+				$("#del_modal_No").on("click",function(){
+					$("#del_modal").modal("hide");
+				});
+			});
+			// 댓글 수정 버튼 눌렀을 때 이벤트 발생
+			$(".modRe").on("click",function(){
+				var reText = $(this).attr("reText");
+				var reNo = $(this).attr("reNo");
+				$("#reple_content").text(reText);
+				$("#c_board_reple_no").attr("value",reNo)
+				$("#mod_modal").modal("show");
+				$("#mod_modal_Yes").on("click",function(){
+					var formData = $("#mod_frm").serialize();
+					$.ajax({
+						type : "POST",
+						url : "club_mod_board_reple.do",
+						data : formData,
+						success	: function(rt) {
+							alert(rt);
+					    },
+						error : function(xhr, option, error){
+				             alert(xhr.status); 
+				             alert(error); 
+				       }
+					});
+				});
+				$("#mod_modal_No").on("click",function(){
+					$("#mod_modal").modal("hide");
+				});
+			});
+			
+		});
+	
+	</script>
 </body>
 </html>

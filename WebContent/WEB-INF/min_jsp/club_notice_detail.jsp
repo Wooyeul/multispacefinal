@@ -18,7 +18,7 @@
 	<label>작성시간 : ${vo.the_time}	</label><label>작성자 : ${vo.user_id}</label>
 	<label>조회수 : ${vo.view_count}</label><br/>
 	<label>소개</label><textarea rows="15" cols="30" disabled="disabled">${vo.c_notice_content}</textarea><br/>
-	<input id="clubMod" type="button" value="수정하기"><input id="prev" type="button" value="뒤로가기">
+	<input id=textMod type="button" value="수정하기"><input id="prev" type="button" value="뒤로가기">
 	<br/><hr>
 	
 	<form method="post" action="club_add_notice_reple.do">
@@ -99,10 +99,31 @@
 	<!-- 댓글 삭제 modal창 끝 -->
 	
 	<!-- 자바스크립트에서 사용할 값 -->
-	<input id="club_no" type="hidden" value="${vo.club_no}">
-	<input id="c_notice_no" type="hidden" value="${vo.c_notice_no}">
 	<!-- 자바스크립트 import -->
-	<script type="text/javascript" src="/js/club/club_notice_detail.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// 뒤로가기 버튼 클릭 시 이벤트 발생
+			$("#prev").on("click",function(){
+				location.href="club_community.do?club_no="+'${vo.club_no}';
+			});
+			// 수정하기 버튼 클릭 시 이벤트 발생
+			$("#textMod").on("click",function(){
+				location.href="club_mod_notice_detail.do?c_notice_no="+'${vo.c_notice_no}';
+			});
+			// 댓글 삭제 버튼 눌렀을 때 이벤트 발생
+			$(".delRe").on("click",function(){
+				var reNo = $(this).attr("reNo");
+				$("#del_modal").modal("show");
+				$("#del_modal_Yes").on("click",function(){
+					var url = "club_del_notice_reple.do?c_notice_reple_no="+reNo;
+					ajaxGet(url,function(rt){
+						if(rt=="ok"){
+						}
+					});
+				});
+			});
+		});
+	</script>
 	
 </body>
 </html>

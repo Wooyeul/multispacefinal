@@ -10,6 +10,7 @@ import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
+import main.ResponseBody;
 import main.vo.ClubVO;
 import multi.club.dao.ClubDAO;
 import multi.club.vo.Club_boardVO;
@@ -51,6 +52,7 @@ public class CtrlClub_board {
 		@RequestMapping("/club_mod_board_detail.do")
 		public ModelAndView club_mod_board_detail(@ModelAttribute Club_boardVO pvo) throws Exception {
 			ModelAndView mnv = new ModelAndView("club_mod_board_detail");
+			System.out.println();
 			Club_boardVO vo = clubDAO.club_find_board_detail(pvo);
 			mnv.addObject("vo", vo);
 			return mnv;
@@ -78,15 +80,25 @@ public class CtrlClub_board {
 		
 		//모임 커뮤니티 게시판의 댓글 삭제
 		@RequestMapping("/club_del_board_reple.do")
+		@ResponseBody
 		public String club_del_board_reple(@ModelAttribute Club_board_repleVO pvo) throws Exception {
-			clubDAO.club_del_board_reple(pvo);
-			return "redirect:/club_board_detail.do?c_board_no="+pvo.getC_board_no();
+			try{
+				clubDAO.club_del_board_reple(pvo);
+				return "ok";
+			}catch(Exception e){
+				return "no";
+			}
 		}
 
 		//모임 커뮤니티 게시판의 댓글 수정
 		@RequestMapping("/club_mod_board_reple.do")
+		@ResponseBody
 		public String club_mod_board_reple(@ModelAttribute Club_board_repleVO pvo) throws Exception {
-			clubDAO.club_mod_board_reple(pvo);
-			return "redirect:/club_board_detail.do?c_board_no="+pvo.getC_board_no();
+			try{
+				clubDAO.club_mod_board_reple(pvo);
+				return "ok";
+			}catch(Exception e){
+				return "no";
+			}
 		}
 }

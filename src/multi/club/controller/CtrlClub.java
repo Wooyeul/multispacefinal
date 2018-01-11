@@ -19,6 +19,7 @@ import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
 import main.RequestParam;
+import main.ResponseBody;
 import main.vo.ClubVO;
 import main.vo.MessageVO;
 import main.vo.SpaceVO;
@@ -64,10 +65,7 @@ public class CtrlClub {
 		// 페이지 나누기 관련 처리
 		BoardPager boardPager = new BoardPager(count, curPage);
 		svo.setStart(boardPager.getPageBegin());
-		/*//limit #{end} 값 설정
-		svo.setEnd(10);*/
 		vo = clubDAO.club_search(svo);
-		
 		
 		// 데이터 맵에 저장
 		Map<String,Object> map = new HashMap<String,Object>();
