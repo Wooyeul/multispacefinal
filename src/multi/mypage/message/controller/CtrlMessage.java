@@ -163,19 +163,17 @@ public class CtrlMessage {
 	}
 	
 	@RequestMapping("/mypage_sendMessage.do")
-	public ModelAndView sendMessage(@CookieValue("user_id") String user_id,@ModelAttribute MessageVO mvo) throws Exception {
-
+	@ResponseBody
+	public String sendMessage(@CookieValue("user_id") String user_id,@ModelAttribute MessageVO mvo) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		
 		if(userInfo != null){
 			mvo.setSend_user_id(user_id);
 			MessageDAO.send_Message(mvo);
-			
-			ModelAndView mnv = new ModelAndView("mypage_finish_send_message");
-			return mnv;
+			return "30003";
 		}else{
-			return null;
+			return "error";
 		}
 		
 
