@@ -150,14 +150,30 @@ public class CtrlLogin {
 	
 	@RequestMapping("/home_findPassswd.do")
 	@ResponseBody
-	public String findPasswd(@ModelAttribute UserVO uvo) throws Exception {	
+	public String findPasswd(HttpServletRequest request) throws Exception {	
 		
+		UserVO uvo = new UserVO();
 		
-		System.out.println(uvo.getUser_name());
-
+		String user_id = request.getParameter("user_id");
+		String user_name = request.getParameter("user_name");
+		String ssn1 = request.getParameter("ssn1");
+		String ssn2 = request.getParameter("ssn2");
+		
+		uvo.setUser_id(user_id);
+		uvo.setUser_name(user_name);
+		uvo.setSsn1(ssn1);
+		uvo.setSsn2(ssn2);
+		
 		UserVO userInfo = UserDAO.find_userPasswd(uvo);
+		
+		
 		try{
-			return userInfo.getPasswd();
+			if(userInfo!=null){
+				return userInfo.getPasswd();				
+			}
+			else{
+				return "error";
+			}
 		} catch (Exception e) {
 			return null;
 		}

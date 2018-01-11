@@ -48,10 +48,18 @@
 		           url : "home_findPassswd.do",
 		           data : formFindPasswdData,
 		           success   : function(rt) {
-	 					alert(rt);
+		        	   
+		        	if(rt=="error"){
+			          $("#ErrorpasswdModal_body").text("입력된 정보가 없습니다. 다시 입력해 주세요").append();
+				      $("#ErrorpasswdModal").modal('show');
+		        	}else{
+			          $("#passwdModal_body").text("비밀번호 : " + rt).append();
+			  		  $("#passwdModal").modal('show');	
+		        	}
+
 		           },
 		           error : function(xhr , option , error){
-		        	   alert(error);
+						alert(error)
 		           }
 		  	 });
  		});
@@ -132,12 +140,23 @@
 passwd : ${passwd}
 
 
-	<div id="messageModal" class="modal " role="dialog">
+
+	<div id="passwdModal" class="modal " role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-body">쪽지가 성공적으로 보내졌습니다.</div>
+				<div id="passwdModal_body" class="modal-body"></div>
 				<div class="modal-footer">
-					<button class="btn btn-default" id="move_sendMessageBox">보낸쪽지함 가기</button>
+					<button class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+	
+	<div id="ErrorpasswdModal" class="modal " role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="ErrorpasswdModal_body" class="modal-body"></div>
+				<div class="modal-footer">
 					<button class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>

@@ -18,7 +18,7 @@
 	<label>작성시간 : ${vo.the_time}	</label><label>작성자 : ${vo.user_id}</label>
 	<label>조회수 : ${vo.view_count}</label><br/>
 	<label>소개</label><textarea rows="15" cols="30" disabled="disabled">${vo.c_notice_content}</textarea><br/>
-	<input id=textMod type="button" value="수정하기"><input id="prev" type="button" value="뒤로가기">
+	<input id=textMod type="button" value="수정하기" style="display: none"><input id="prev" type="button" value="뒤로가기">
 	<br/><hr>
 	
 	<form method="post" action="club_add_notice_reple.do">
@@ -43,7 +43,7 @@
 			<jl:if test="${user_id == rvo.user_id}">
 				<a class="delRe" reNo="${rvo.c_notice_reple_no}" noticeNo="${rvo.c_notice_no}" userId="${rvo.user_id}" 
 				href="#"><span class="glyphicon glyphicon-remove"></span></a>
-				<a reNo="${rvo.c_notice_reple_no}"  reText="${rvo.c_notice_reple_content}" noticeNo="${rvo.c_notice_no}" userId="${rvo.user_id}" 
+				<a reNo="${rvo.c_notice_reple_no}"  reText="${rvo.c_notice_reple_content}" 
 				class="modRe"href="#"><span class="glyphicon glyphicon-pencil"></span></a></label>
 			</jl:if>
 			
@@ -73,7 +73,6 @@
 			</div>
 		</div>
 		<input id="c_notice_reple_no" name='c_notice_reple_no' type='hidden'/>
-		<input id="c_notice_no" name='c_notice_no' type='hidden'/>
 	</form>
 	<!-- 댓글 수정 modal창 끝 -->
 	
@@ -102,6 +101,12 @@
 	<!-- 자바스크립트 import -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			// 접속한 유저와 글의 유저를 비교해 수정하기 버튼 보여지기(어드민은 다보여주게).
+			if('${user_id}'=='${vo.user_id}'||'${user_id}'=='admin'){
+				$("#textMod").attr("style","display: inline;");
+			}
+			
 			// 뒤로가기 버튼 클릭 시 이벤트 발생
 			$("#prev").on("click",function(){
 				location.href="club_community.do?club_no="+'${vo.club_no}';
@@ -122,6 +127,38 @@
 					});
 				});
 			});
+			
+			// 댓글 수정 버튼 눌렀을 때 이벤트 발생
+			$(".modRe").on("click",function(){
+				var reText = $(this).attr("reText");
+				var reNo = $(this).attr("reNo");
+				$("#reple_content").text(reText);
+				$("#c_notice_reple_no").attr("value",reNo)
+				$("#mod_modal").modal("show");
+				$("#mod_modal_Yes").on("click",function(){
+					var formData = $("#mod_frm").serialize();
+					$.ajax({
+						type : "POST",
+						url : "club_mod_notice_reple.do",
+						data : formData,
+						success	: function(rt) {
+							if(rt=="ok"){
+								$("#mod_modal").modal("hide");
+								alert(rt);
+								location.reload();
+							}else{
+								$("#mod_modal").modal("hide");
+								alert('실패');
+								location.reload();
+							}
+					    }
+					});
+				});
+				$("#mod_modal_No").on("click",function(){
+					$("#mod_modal").modal("hide");
+				});
+			});
+
 		});
 	</script>
 	

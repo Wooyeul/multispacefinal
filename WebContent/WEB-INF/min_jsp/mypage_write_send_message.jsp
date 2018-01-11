@@ -72,9 +72,7 @@
 		$("#move_sendMessageBox").on("click",function(e){
 			location.href="mypage_moveMypageSendMessagePage.do";
 		})
-		
-		
-		
+				
 		
 	}); //end$(document)
 	
@@ -83,6 +81,12 @@
 	</script>
 </head>
 <body>
+
+<jl:forEach var="User_clubInfo" items="${user_clubInfo}">
+				<a class="aclass" clubno="${User_clubInfo.club_no}">sujin</a>
+</jl:forEach>
+			
+			
 	<form id="form_sendMessage">
 <%-- 		<jl:forEach var="ReceiveMessage" items="${receiveMessage}">
 			<tr>
@@ -99,6 +103,7 @@
 		
 		<select name="club_list" id="select_club" >
 			<jl:forEach var="User_clubInfo" items="${user_clubInfo}">
+				<a class="aclass" clubno="${User_clubInfo.club_no}">sujin</a>
 				<option value="${User_clubInfo.club_no}">${User_clubInfo.club_name}</option>
 			</jl:forEach>
 		</select> <br/>
