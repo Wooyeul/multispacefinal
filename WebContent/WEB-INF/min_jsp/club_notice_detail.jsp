@@ -7,6 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="common.js"></script>
 	
 	<style>
 	</style>
@@ -97,6 +98,20 @@
 	</form>
 	<!-- 댓글 삭제 modal창 끝 -->
 	
+	<!-- 기본 modal창 시작 -->
+	<div id="basic_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 기본 modal창 끝 -->
+	
 	<!-- 자바스크립트에서 사용할 값 -->
 	<!-- 자바스크립트 import -->
 	<script type="text/javascript">
@@ -123,8 +138,26 @@
 					var url = "club_del_notice_reple.do?c_notice_reple_no="+reNo;
 					ajaxGet(url,function(rt){
 						if(rt=="ok"){
+							$("#del_modal").modal("hide");
+							$("#basic_mobody").text("댓글이 삭제 되었습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							});
+						}else{
+							$("#del_modal").modal("hide");
+							$("#basic_mobody").text("댓글 삭제 처리가 실패 되었습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							}); 
 						}
 					});
+				});
+				$("#del_modal_No").on("click",function(){
+					$("#del_modal").modal("hide");
 				});
 			});
 			
@@ -144,12 +177,20 @@
 						success	: function(rt) {
 							if(rt=="ok"){
 								$("#mod_modal").modal("hide");
-								alert(rt);
-								location.reload();
+								$("#basic_mobody").text("댓글이 수정 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal_Yes").on("click",function(){
+									$("#basic_modal").modal("hide");
+									location.reload();
+								});
 							}else{
 								$("#mod_modal").modal("hide");
-								alert('실패');
-								location.reload();
+								$("#basic_mobody").text("댓글 수정 처리가 실패 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal_Yes").on("click",function(){
+									$("#basic_modal").modal("hide");
+									location.reload();
+								}); 
 							}
 					    }
 					});

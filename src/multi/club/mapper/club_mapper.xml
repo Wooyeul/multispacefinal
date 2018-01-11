@@ -425,6 +425,12 @@ CREATE PROCEDURE p_club_apply_agree(
 	IN v_club_no INT
 )
 BEGIN
+	DECLARE user_count INT;
+	DECLARE max_count INT;
+	
+	SELECT COUNT(*) INTO user_count FROM User_Clubt WHERE club_no = v_club_no AND user_id = v_user_id;
+	SELECT max_member INTO max_count FROM ClubT WHERE club_no = v_club_no;
+	
 	DECLARE exit handler FOR SQLEXCEPTION
 	BEGIN
 		ROLLBACK;
@@ -448,13 +454,15 @@ DELIMITER $$
 
 CREATE PROCEDURE p_club_apply_disagree(
 	IN v_user_id VARCHAR(20),
-	IN v_club_no INT
+	IN v_club_no INT,
+	IN v_etc TEXT
 )
 BEGIN
-	DELETE
-	  FROM Club_applyT
-	 WHERE user_id=v_user_id
-	   AND club_no=v_club_no;
+	IF user_count>=max_count THEN
+		DELETE
+		  FROM Club_applyT
+		 WHERE user_id=v_user_id
+	   	   AND club_no=v_club_no;
 END$$
 DELIMITER ;
 p_club_apply_disagree 프로시저 끝-->

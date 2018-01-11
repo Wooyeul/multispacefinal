@@ -11,6 +11,7 @@ public class Club_boardVO {
     private Integer club_no;
     private String user_id;
     private Integer view_count;
+    private String user_name;
     
 	public Integer getC_board_no() {
 		return c_board_no;
@@ -59,6 +60,12 @@ public class Club_boardVO {
 	}
 	public void setC_board_subject(String c_board_subject) {
 		this.c_board_subject = c_board_subject;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
 }

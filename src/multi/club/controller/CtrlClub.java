@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import main.BeanUtil;
 import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
@@ -170,20 +171,25 @@ public class CtrlClub {
 	}
 	//모임 신청자 수락
 	@RequestMapping("/club_apply_agree.do")
+	@ResponseBody
 	public String club_apply_agree(@ModelAttribute User_clubVO pvo) throws Exception {
 		try{
-			clubDAO.club_apply_agree(pvo);
-			return "redirect:/club_community.do?club_no="+pvo.getClub_no()+"&flag=1";
-			
+			//clubDAO.club_apply_agree(pvo);
+			return "ok";
 		}catch(Exception e){
-			return "redirect:/club_community.do?club_no="+pvo.getClub_no()+"&flag=-1";
+			return "no";
 		}
 	}
 	//모임 신청자 거절
 	@RequestMapping("/club_apply_disagree.do")
-	public String club_apply_disagree(@ModelAttribute User_clubVO pvo) throws Exception {
-		clubDAO.club_apply_disagree(pvo);
-		return "redirect:/club_community.do?club_no="+pvo.getClub_no();
+	@ResponseBody
+	public String club_apply_disagree(HttpServletRequest request) throws Exception {
+		Club_applyVO pvo = new Club_applyVO();
+		pvo.setClub_no(BeanUtil.pInt(request.getParameter("club_no")));
+		pvo.setUser_id(request.getParameter("user_id"));
+		pvo.setEtc(request.getParameter("etc"));
+		//clubDAO.club_apply_disagree(pvo);
+		return "ok";
 	}
 	//모임 탈퇴_유저
 	@RequestMapping("/club_del_user.do")

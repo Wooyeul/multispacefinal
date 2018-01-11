@@ -100,9 +100,14 @@ public class CtrlClub_notice {
 	}
 	//모임 커뮤니티 공지사항 댓글 삭제
 	@RequestMapping("/club_del_notice_reple.do")
+	@ResponseBody
 	public String club_del_notice_reple(@ModelAttribute Club_notice_repleVO pvo) throws Exception {
-		clubDAO.club_del_notice_reple(pvo);
-		return "redirect:/club_notice_detail.do?c_notice_no="+pvo.getC_notice_no();
+		try{
+			clubDAO.club_del_notice_reple(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	
 	//모임 커뮤니티 공지사항 댓글 수정

@@ -112,6 +112,19 @@
 	</div>
 	<!-- 글 수정 modal창 끝 -->
 	
+	<!-- 기본 modal창 시작 -->
+	<div id="basic_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 기본 modal창 끝 -->
 	
 	<!-- 자바스크립트에서 사용할 값 -->
 	<input id="club_no" type="hidden" value="${vo.club_no}">
@@ -149,10 +162,20 @@
 					ajaxGet(url,function(rt){
 						if(rt=="ok"){
 							$("#del_modal").modal("hide");
-							alert(rt);
-							location.reload();
+							$("#basic_mobody").text("댓글이 삭제 되었습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							});
 						}else{
-							alert(rt);
+							$("#del_modal").modal("hide");
+							$("#basic_mobody").text("댓글 삭제 처리가 실패 되었습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							}); 
 						}
 					});
 				});
@@ -176,12 +199,20 @@
 						success	: function(rt) {
 							if(rt=="ok"){
 								$("#mod_modal").modal("hide");
-								alert(rt);
-								location.reload();
+								$("#basic_mobody").text("댓글이 수정 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal_Yes").on("click",function(){
+									$("#basic_modal").modal("hide");
+									location.reload();
+								});
 							}else{
 								$("#mod_modal").modal("hide");
-								alert('실패');
-								location.reload();
+								$("#basic_mobody").text("댓글 수정 처리가 실패 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal_Yes").on("click",function(){
+									$("#basic_modal").modal("hide");
+									location.reload();
+								}); 
 							}
 					    }
 					});

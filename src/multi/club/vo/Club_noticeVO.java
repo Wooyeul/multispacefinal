@@ -10,6 +10,7 @@ public class Club_noticeVO {
     private String user_id;
     private Integer club_no;
     private Integer view_count;
+    private String user_name;
     
 	public Integer getC_notice_no() {
 		return c_notice_no;
@@ -52,5 +53,11 @@ public class Club_noticeVO {
 	}
 	public void setView_count(Integer view_count) {
 		this.view_count = view_count;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 }
