@@ -57,7 +57,6 @@
 			$("#ck_modal").modal("hide");
 		});
 		
-		
 	});
 
 </script>
