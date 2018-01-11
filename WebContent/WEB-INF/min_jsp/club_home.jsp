@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
@@ -7,6 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="common.js"></script>
 	<style>
 		table, tr, td{
 			border: 1px solid;
@@ -15,55 +16,133 @@
 	</style>
 </head>
 <body>
+	<div class="jbTitle">
+		<h1>Multi Space</h1>
+	</div>
+	
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default ">
+		<div class="container">
+		 <div class="navbar-header">
+		   <a class="navbar-brand" href="main.html">multi space</a>
+		 </div>
+	
+	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+		<ul class="nav navbar-nav ">
+	 	 <li><a href="space_home.do">°ø°£</a></li>
+		 <li><a href="club_home.do">¸ğÀÓ</a></li>
+		 <li><a href="community_list.do">Ä¿¹Â´ÏÆ¼</a></li>
+		 <li><a href="event_user_list.do">ÀÌº¥Æ®</a></li>	
+		 <li><a href="notice_list.do">°øÁö»çÇ×</a></li>
+		 <li><a href="faq_list.do">FAQ</a></li>			
+		 <li><a href="admin_main.do">°ü¸®ÀÚ</a></li>			
+		</ul>
+				
+	<ul id="login_nav" class="nav navbar-nav navbar-right">
+	<li><a href="#" id="user_name"></a></li>
+		<li><a href="mypage_moveMypageMainPage.do">¸¶ÀÌÆäÀÌÁö</a></li>
+		<li><a href="home_logout.do">·Î±×¾Æ¿ô</a></li>	
+	</ul>
+		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+		     <li><a href="home_login.do">·Î±×ÀÎ</a></li>		
+		</ul>
+	
+		   </div>
+		</div>
+	</nav>
+	<!-- nav -->
+
+
 	<div class="container">
-		<h2>ëª¨ì„ í˜ì´ì§€</h2>
+		<h2>¸ğÀÓ ÆäÀÌÁö</h2>
 		
-		<form id="frm" target="iframe" action="club_list.do">
+		<form id="frm" target="club_list" action="club_list.do" method="post">
 			<div style="display: inline;">
-				<h4>ì§€ì—­ë³„ ì„ íƒ</h4>
-				<jl:forEach items="${lmap}" var="l">
-					<input type="radio" value="${l.l_category_no}" name="l_category_no" />${l.l_category_name}
+				<h4>Áö¿ªº° ¼±ÅÃ</h4>
+				<jl:forEach items="${lmap}" var="l" varStatus="i">
+					<input num="${i.count}" class="a" type="radio" value="${l.l_category_no}" name="l_category_no" />${l.l_category_name}
 				</jl:forEach>
 				<br/>
-				<h4>ë¶„ì•¼ë³„ ì„ íƒ</h4>
+				<h4>ºĞ¾ßº° ¼±ÅÃ</h4>
 				<jl:forEach items="${cmap}" var="c">
 					<input type="radio" value="${c.c_category_no}" name="c_category_no" />${c.c_category_name}
 				</jl:forEach>
 			</div><br/>
 			<select name="search_option">
 				<option value="0"></option>
-				<option value="1">ì œëª©</option>
-				<option value="2">ë‚´ìš©</option>
-				<option value="3">ì œëª©+ë‚´ìš©</option>
-				<option value="4">ì‘ì„±ì</option>
+				<option value="1">Á¦¸ñ</option>
+				<option value="2">³»¿ë</option>
+				<option value="3">Á¦¸ñ+³»¿ë</option>
+				<option value="4">ÀÛ¼ºÀÚ</option>
 			</select>
 			<input type="text" name="search_content"/>
-			<br/><input type="button" id="submitBtn" value="ê²€ìƒ‰">
+			<br/><input type="button" id="submitBtn" value="°Ë»ö">
 			<input id="curPage" name="curPage" type="hidden" value="1">
 		</form>
 		<br/><br/>
+		
 		<div>
-			<iframe id="ifr" name="iframe" width="100%" height="100%"></iframe>
+			<iframe name="club_list" width="100%" height="100%"></iframe>
 		</div>
-		<input id="btn" type="button" value="ëª¨ì„ë“±ë¡"/>
+		
+		<input id="btn" type="button" value="¸ğÀÓµî·Ï"/>
 	</div>
 
-	<!-- ìë°”ìŠ¤í¬ë¦½íŠ¸ -->	
+	<!-- ÀÚ¹Ù½ºÅ©¸³Æ® -->	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$("#a").on("click",function(){
+				$(this).attr("checked","checked")
+			})
 			$("#frm").submit();
 			$("#btn").on("click",function(){
 				location.href="club_add_page.do";
 			});
+			
 			$("#submitBtn").on("click",function(){
+				$("#curPage").attr("value",1);
 				$("#frm").submit();
 			});
 		});
 	
 		function setCurpage(page){
-			$("#curPage").attr("value",page);
+			if($("input[name=l_category_no]:checked").val()>0){
+				$("#curPage").attr("value",1);
+			}else{
+				$("#curPage").attr("value",page);
+			}
 			$("#frm").submit();
 		}
+		
+		var scOffset = $( '.navbar-Menu' ).offset();
+		$( window ).scroll( function() {
+			if ( $( document ).scrollTop() > scOffset.top ) {
+				$( '.navbar' ).addClass( 'navbar-fixed-top' );
+			}else {
+				$( '.navbar' ).removeClass( 'navbar-fixed-top' );
+			}
+		});
+		
+		
+		var url = "chk_login.do";
+	 	ajaxGet(url,function(rt){
+		 // ·Î±×ÀÎ ½ÇÆĞ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
+		 if(rt =="10002"){ 
+			$("#login_nav").hide();				
+			$("#non_login_nav").show();
+		 }
+		 					
+		 // ·Î±×ÀÎ ½Ã : rt°ª -> user_name
+		 else if(rt!=""){ 
+			 $("#login_nav").show();
+			 $("#non_login_nav").hide(); 
+			 $("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
+		 }
+		});	
+
+		
+
+
 	</script>
 </body>
 </html>

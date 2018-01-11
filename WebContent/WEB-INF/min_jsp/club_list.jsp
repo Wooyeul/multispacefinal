@@ -23,12 +23,12 @@
 			<jl:forEach  var="pvo" items="${map.vo}" varStatus="vs">
 				<tr>
 					<td id="no" align="center">${vs.count }</td>
-					<td><p onclick="parent.location.href='club_detail.do?club_no=${pvo.club_no}'">${pvo.club_title}</a></td>
+					<td><p onclick="parent.location.href='club_detail.do?club_no=${pvo.club_no}'">${pvo.club_title}</td>
 				</tr>
 			</jl:forEach>
 			
 			<tr>
-				<td colspan="2">
+				<td colspan="2" align="center">
 					<!-- 현재 페이지가 1보다 크면 [처음] 하이퍼링크 생성-->
 					<jl:if test="${map.boardPager.curPage > 1}">
 						<a href="javascript:list('1')">[처음]</a>
