@@ -58,6 +58,7 @@
 		SELECT s_category_name FROM S_categoryT WHERE s_category_no = ( SELECT s_category_no FROM SpaceT WHERE space_no=${space_no} )
 	</select>
 	
+	
 	<select id="search_space" parameterType="multi.space.vo.Space_searchVO" resultType="main.vo.SpaceVO">
 		SELECT * FROM SpaceT WHERE 0=0
 		<if test="l_category_no != null">
@@ -75,6 +76,9 @@
 		<if test="search_option == 3">
 			AND space_title like '%${search_content}%'
 			OR space_content like '%${search_content}%'
+		</if>
+		<if test="start_no != null">
+			ORDER BY space_no ASC LIMIT #{start_no},10
 		</if>
 	</select>
 </mapper>
