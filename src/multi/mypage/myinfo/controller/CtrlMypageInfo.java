@@ -91,9 +91,10 @@ public class CtrlMypageInfo {
 	}
 	
 	@RequestMapping("/myinfo_complete.do")
-	public ModelAndView myinfo_complete() throws Exception{
+	public ModelAndView myinfo_complete(@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("myinfo_complete");
 		
+		mnv.addObject("user_id", user_id);
 		return mnv;
 	}
 	

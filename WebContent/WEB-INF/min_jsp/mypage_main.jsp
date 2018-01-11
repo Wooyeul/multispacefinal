@@ -51,7 +51,6 @@ li a:hover {
 	<script>
 	$(document).ready(function(){
 		
-		
 		var scOffset = $('.navbar-Menu').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > scOffset.top) {
@@ -60,7 +59,6 @@ li a:hover {
 				$('.navbar').removeClass('navbar-fixed-top');
 			}
 		});
-		
 
 		var url = "chk_login.do";
  		ajaxGet(url,function(rt){

@@ -5,6 +5,6 @@
 <head>
 </head>
 <body>
-	수정되었습니다.
+	${user_id}님 성공적으로 수정되었습니다.
 </body>
 </html>

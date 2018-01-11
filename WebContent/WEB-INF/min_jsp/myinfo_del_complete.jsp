@@ -9,7 +9,7 @@ $("document").ready(function(){
 	var co = "${co}";
 	if(co==1001){
 		window.parent.location.href ="main.html";
-	}
+	} 
 });
 </script>
 </head>
