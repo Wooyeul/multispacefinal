@@ -24,26 +24,26 @@
 	<script>
 
 	$(document).ready(function() {
+
+		
+		
 		$("#btnClose").on("click", function() {
 			$("#repleModal").modal("hide");
 			$("#rsModal").modal("hide");
 			$("#rdModal").modal("hide");
-			$("#repModModal").modal("hide");
+			$("#repleModal").modal("hide");
 		});
 	
 		$("#btnMod").on("click", function() {
 			$("#reple_form").submit();
-	
 		});
 		
 		$("#btnModRep").on("click", function() {
 			$("#reple_mod").submit();
-	
 		});
 		
 		$("#btnSub").on("click", function() {
 			$("#reple_submit").submit();
-	
 		});
 		
 		$("#btnDel").on("click", function() {
@@ -52,17 +52,31 @@
 		
 		$("#btnDelQna").on("click", function() {
 			$("#Qna_delete").submit();
-	
 		});
 		
 		$(".modReple").on("click", function() {
 			$("#com_qna_reple_no").val($(this).attr("xyz"));
-			$("#content").val($("#" + $(this).attr("abcd")).text());
-			$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
+			$("#content").val($("#" + $(this).attr("abcd")).text());	
 			$("#repleModal").modal("show");
 		});
 		
-	
+		$("#recom").on("click", function() {
+			alert($(this).attr("user_id"));
+			alert($(this).attr("com_qna_reple_no"));
+			
+			var user_id=$(this).attr("user_id");
+			var com_qna_reple_no=$(this).attr("com_qna_reple_no");
+
+					var dc = "?dc=" + new Date().getTime();
+					ajaxGet("community_qna_reple_recom.do" + dc
+							+ "&user_id="+user_id+"&com_qna_reple_no="+com_qna_reple_no, function(rt) {
+						if(rt>=0) {
+							e("recom_count").innerHTML = rt;
+						}
+					});
+
+		});
+
 	});
 
 </script>
@@ -113,15 +127,12 @@
 				</td>
 				
 				<td>
-					[<a href="community_qna_reple_recom.do?user_id=${user_id}&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
+					<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
+					<a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm"">추천</a>
 				</td>
 				
 				<td>
-				<form method="POST" action="community_qna_reple_mod.do" id="reple_mod" class="modReple" >
-				<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}" name="com_qna_no" /> 
-				<input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
-				<input type="button" class="btn btn-primary btn-sm" id="reple_mod" value="수정" data-toggle="modal" data-target="#repModModal"/>
-				</form>
+					<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple btn btn-primary btn-sm" href="#">수정</a>
 				</td>
 				
 				<td>
@@ -161,11 +172,13 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<div class="form-group">
-							<label id="lblContent" for="content"></label>
+							<label id="lblContent" for="content">수정할 댓글을 입력하세요:</label>
 							<textarea name ="com_qna_reple_content" class="form-control" id="content" rows="7"></textarea>
 						</div>
-						<input type="button" class="btn btn-primary btn-sm" id="btnClose" value="닫기"/>
-						<input type="button" class="btn btn-primary btn-sm" id="btnMod" value="수정"/>
+						<div class="modal-footer">
+						<input type="button" class="btn btn-primary btn-sm" data-dismiss="modal"  id="btnClose" value="닫기"/>
+						<input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnMod" value="수정"/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -232,5 +245,6 @@
 		</div>
 		</form>
 	</div>
+	
 </body>
 </html>
