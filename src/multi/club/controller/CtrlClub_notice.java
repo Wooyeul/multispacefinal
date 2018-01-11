@@ -2,9 +2,12 @@ package multi.club.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import main.BeanUtil;
 import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
@@ -63,15 +66,30 @@ public class CtrlClub_notice {
 	}
 	//모임 공지사항 수정
 	@RequestMapping("/club_mod_notice_detail_submit.do")
-	public String club_mod_notice_detail_submit(@ModelAttribute Club_noticeVO pvo) throws Exception {
-		clubDAO.club_mod_notice_detail(pvo);
-		return "redirect:/club_notice_detail.do?c_notice_no="+pvo.getC_notice_no();
+	@ResponseBody
+	public String club_mod_notice_detail_submit(HttpServletRequest request) throws Exception {
+		Club_noticeVO pvo = new Club_noticeVO();
+		pvo.setC_notice_no(BeanUtil.pInt(request.getParameter("c_notice_no")));
+		pvo.setC_notice_title(request.getParameter("c_notice_title"));
+		pvo.setC_notice_content(request.getParameter("c_notice_content"));
+		try{
+			clubDAO.club_mod_notice_detail(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	//모임 공지사항 삭제
 	@RequestMapping("/club_del_notice_detail.do")
+	@ResponseBody
 	public String club_del_notice_detail(@ModelAttribute Club_noticeVO pvo) throws Exception {
-		clubDAO.club_del_notice_detail(pvo);
-		return "redirect:/club_community.do?club_no="+pvo.getClub_no();
+		try{
+			clubDAO.club_del_notice_detail(pvo);
+			return "ok";
+			
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	
 	//모임 커뮤니티 공지사항 댓글 작성
@@ -90,7 +108,10 @@ public class CtrlClub_notice {
 	//모임 커뮤니티 공지사항 댓글 수정
 	@RequestMapping("/club_mod_notice_reple.do")
 	@ResponseBody
-	public String club_mod_notice_reple(@ModelAttribute Club_notice_repleVO pvo) throws Exception {
+	public String club_mod_notice_reple(HttpServletRequest request) throws Exception {
+		Club_notice_repleVO pvo = new Club_notice_repleVO();
+		pvo.setC_notice_reple_no(BeanUtil.pInt(request.getParameter("c_notice_reple_no")));
+		pvo.setC_notice_reple_content(request.getParameter("c_notice_reple_content"));
 		try{
 			clubDAO.club_mod_notice_reple(pvo);
 			return "ok";

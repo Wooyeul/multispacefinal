@@ -99,8 +99,10 @@ public class BeanUtil
 			pn.equals("apply_content")||
 			pn.equals("c_notice_title")||
 			pn.equals("c_notice_content")|| 		
+			pn.equals("c_notice_reple_content")|| 		
 			pn.equals("c_board_title")||
 			pn.equals("c_board_content")||
+			pn.equals("c_board_reple_content")||
 			pn.equals("c_board_subject")||
 			pn.equals("msg_content")||
 			pn.equals("space_qna_title")||

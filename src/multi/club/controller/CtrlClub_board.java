@@ -2,9 +2,12 @@ package multi.club.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import main.BeanUtil;
 import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
@@ -15,6 +18,7 @@ import main.vo.ClubVO;
 import multi.club.dao.ClubDAO;
 import multi.club.vo.Club_boardVO;
 import multi.club.vo.Club_board_repleVO;
+import multi.club.vo.Club_notice_repleVO;
 
 @Controller
 public class CtrlClub_board {
@@ -52,23 +56,36 @@ public class CtrlClub_board {
 		@RequestMapping("/club_mod_board_detail.do")
 		public ModelAndView club_mod_board_detail(@ModelAttribute Club_boardVO pvo) throws Exception {
 			ModelAndView mnv = new ModelAndView("club_mod_board_detail");
-			System.out.println();
 			Club_boardVO vo = clubDAO.club_find_board_detail(pvo);
 			mnv.addObject("vo", vo);
 			return mnv;
 		}
 		//모임 커뮤니티 게시판 수정 작업
 		@RequestMapping("/club_mod_board_detail_submit.do")
-		public String club_mod_board_detail_submit(@ModelAttribute Club_boardVO pvo) throws Exception {
-			clubDAO.club_mod_board_detail(pvo);
-			return "redirect:/club_board_detail.do?c_board_no="+pvo.getC_board_no();
+		@ResponseBody
+		public String club_mod_board_detail_submit(HttpServletRequest request) throws Exception {
+			Club_boardVO pvo = new Club_boardVO();
+			pvo.setC_board_no(BeanUtil.pInt(request.getParameter("c_board_no")));
+			pvo.setC_board_title(request.getParameter("c_board_title"));
+			pvo.setC_board_content(request.getParameter("c_board_content"));
+			try {
+				clubDAO.club_mod_board_detail(pvo);
+				return "ok";
+			} catch (Exception e) {
+				return "no";
+			}
 		}
 		
 		//모임 커뮤니티 게시판 글 삭제
 		@RequestMapping("/club_del_board_detail.do")
+		@ResponseBody
 		public String club_del_board_detail(@ModelAttribute Club_boardVO pvo) throws Exception {
-			clubDAO.club_del_board(pvo);
-			return "redirect:/club_community.do?club_no="+pvo.getClub_no();
+			try{
+				clubDAO.club_del_board(pvo);
+				return "ok";
+			}catch(Exception e){
+				return "no";
+			}
 		}
 
 		//모임 커뮤니티 게시판의 댓글 등록
@@ -93,9 +110,11 @@ public class CtrlClub_board {
 		//모임 커뮤니티 게시판의 댓글 수정
 		@RequestMapping("/club_mod_board_reple.do")
 		@ResponseBody
-		public String club_mod_board_reple(@ModelAttribute Club_board_repleVO pvo) throws Exception {
+		public String club_mod_board_reple(HttpServletRequest request) throws Exception {
+			Club_board_repleVO pvo = new Club_board_repleVO();
+			pvo.setC_board_reple_no(BeanUtil.pInt(request.getParameter("c_board_reple_no")));
+			pvo.setC_board_reple_content(request.getParameter("c_board_reple_content"));
 			try{
-				System.out.println(pvo.getC_board_reple_content());
 				clubDAO.club_mod_board_reple(pvo);
 				return "ok";
 			}catch(Exception e){
