@@ -134,8 +134,7 @@ public class CtrlLogin {
 		UserVO userInfo = UserDAO.find_userId(uvo);
 
 		try{
-			String FindId = "ID : "+ userInfo.getUser_id();
-			return FindId;
+			return userInfo.getUser_id();
 		} catch (Exception e) {
 			return null;
 		}
@@ -152,12 +151,13 @@ public class CtrlLogin {
 	@RequestMapping("/home_findPassswd.do")
 	@ResponseBody
 	public String findPasswd(@ModelAttribute UserVO uvo) throws Exception {	
+		
+		
 		System.out.println(uvo.getUser_name());
 
 		UserVO userInfo = UserDAO.find_userPasswd(uvo);
 		try{
-			String FindPasswd = "Passwd : "+ userInfo.getPasswd();
-			return FindPasswd;
+			return userInfo.getPasswd();
 		} catch (Exception e) {
 			return null;
 		}
