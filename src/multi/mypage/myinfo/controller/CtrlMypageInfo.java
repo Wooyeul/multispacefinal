@@ -102,12 +102,13 @@ public class CtrlMypageInfo {
 		
 		myInfoDAO.del_user(user_id);
 		
-		return "redirect:/myinfo_del_complete.do";
+		return "redirect:/myinfo_del_complete.do?co="+1001;
 	}
 	
 	@RequestMapping("/myinfo_del_complete.do")
-	public ModelAndView myinfo_del_complete() throws Exception{
+	public ModelAndView myinfo_del_complete(@RequestParam("co") String co) throws Exception{
 		ModelAndView mnv = new ModelAndView("myinfo_del_complete");
+		mnv.addObject("co", co);
 		
 		return mnv;
 	}

@@ -14,14 +14,17 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+		var flag_mod=0;
+		alert("${co}");
 		$("#cancel").on("click",function(){
 			history.back(-1);
 		});
 		
 		$("#delete").on("click",function(){
-			document.frm.method="POST";
-			document.frm.action = "myinfo_delete.do";
-			document.frm.submit();
+			$("#lblC").text("삭제하시겠습니까?");
+			$("#modal-btn-Yes").text("삭제");
+			$("#ck_modal").modal("show");
+			flag_mod = 1;
 		});
 		
 		$("#member_join").on("click",function(){
@@ -30,31 +33,52 @@
 			var phone = $("#phone").val();
 			var email = $("#email").val();
 			var nickname= $("#nickname").val();
-			
+			var flag = 0;
 			if(passwd==""){
 				$("#lblContent").text("비밀번호를 입력하세요.");
+				flag = 1;
 			} else if(passwd2==""){
 				$("#lblContent").text("비밀번호를 입력하세요.");
+				flag = 1;
 			} else if(passwd != passwd2){
 				$("#lblContent").text("비밀번호가 다릅니다.");
+				flag = 1;
 			} else if(nickname==""){
 				$("#lblContent").text("닉네임을 입력하세요.");
+				flag = 1;
 			} else if(phone==""){
 				$("#lblContent").text("핸드폰번호를 입력하세요.");
+				flag = 1;
 			} else if(email==""){
 				$("#lblContent").text("이메일을 입력하세요.");
-			} else {
+				flag = 1;
+			}  else {
+				$("#lblC").text("수정하시겠습니까?");
+				$("#modal-btn-Yes").text("수정");
 				$("#ck_modal").modal("show");
 			}
+			
+			if(flag == 1){
+				$("#repleModal").modal("show");
+			}
+			
 		});
 		
 		$("#modal-btn-Yes").on("click",function(){
-			$("#frm").submit();
+			if(flag_mod==0)
+				$("#frm").submit();
+			else if(flag_mod ==1){
+				document.frm.method="POST";
+				document.frm.action = "myinfo_delete.do";
+				document.frm.submit();
+			}
 		});
-		
 		
 		$("#btnClose").on("click",function(){
 			$("#ck_modal").modal("hide");
+		});
+		$("#btnClose1").on("click",function(){
+			$("#repleModal").modal("hide");
 		});
 		
 	});
@@ -62,7 +86,8 @@
 </script>
 </head>
 <body>
-	<form action="myinfo_mod_user2.do" method="POST" id="frm">
+	
+	<form action="myinfo_mod_user2.do" method="POST" id="frm" name="frm">
 		<table border="0" cellpadding="8" align="center">
 			<tr>
 				<th colspan="3" align="center"><h1>회원정보수정</h1></th>
@@ -151,26 +176,39 @@
 			<tr>
 				<td></td>
 				<td>
-				<input type="button" name="member_join" id="member_join" value="    수정하기    " /> &nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="reset" value="      재설정      " />&nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="button" value="      취소      " id="cancel"/>
-					<input type="button" value="      탈퇴       " id="delete"/></td>
+				<input type="button" name="member_join" id="member_join" value="    수정하기    " class='btn btn-primary'/> &nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="reset" value="      재설정      " class='btn btn-primary'/>&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="button" value="      취소      "  class='btn btn-primary' id="cancel"/>
+					<input type="button" value="      탈퇴       "  class='btn btn-primary' id="delete"/></td>
 				<td></td>
 			</tr>
 		</table>
 		<input type="hidden" name="user_id" value="${rvo.user_id}"/>
 	</form>
 	
-	<form id="ck_total" action="myinfo_mod_user2.do" method="POST">
+	<form>
 		<div id="ck_modal" class="modal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body" align="center">
-						<label id="lblContent">수정하시겠습니까?</label><br/>
+						<label id="lblC"></label><br/>
 					</div>
 					<div id="ft" class="modal-footer">
-							<button type='button' class='btn btn-default' id='modal-btn-Yes' >수정</button>
+							<button type='button' class='btn btn-default' id='modal-btn-Yes' ></button>
 							<button type='button' class='btn btn-primary' id='btnClose' data-dismiss="modal">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<form id="ck_total">
+		<div id="repleModal" class="modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+							<label id="lblContent"></label><br/>
+							<button type="button" class="btn btn-primary btn-sm" id="btnClose1" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>
