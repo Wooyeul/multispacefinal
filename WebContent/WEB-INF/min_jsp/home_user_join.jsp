@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <script type="text/javascript" src="common.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
 </head>
-<body>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -138,143 +145,196 @@
 			}
 		});
 	});
-</script>
-<form action ="home_user_join2.do" name=frm>
-<table border="0" cellpadding = "8" align="center">
+	
+	$(document).ready(function(){
 
-	<tr>
-		<th colspan="3" align="center"><h1>회원가입</h1></th>
-		<!-- <td></td>
+		var scOffset = $( '.navbar-Menu' ).offset();
+			$( window ).scroll( function() {
+			if ( $( document ).scrollTop() > scOffset.top ) {
+				$( '.navbar' ).addClass( 'navbar-fixed-top' );
+			}
+			else {
+				$( '.navbar' ).removeClass( 'navbar-fixed-top' );
+			}
+		});
+			
+			var url = "chk_login.do";
+	 	ajaxGet(url,function(rt){
+	 			
+	 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+	 if(rt =="10002"){ 
+		$("#login_nav").hide();				$("#non_login_nav").show();
+	}
+	 					
+	 // 로그인 시 : rt값 -> user_name
+	else if(rt!=""){ 
+	$("#login_nav").show();
+	$("#non_login_nav").hide(); 
+	$("#user_name").text(rt+"님이 로그인하셨습니다.");
+		}
+		 });	
+
+	});
+	
+</script>
+<body>
+	<div class="jbTitle">
+		<h1>Multi Space</h1>
+	</div>
+
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default ">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="main.html">multi space</a>
+		</div>
+
+		<div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+			<ul class="nav navbar-nav ">
+				<li><a href="space_home.do">공간</a></li>
+				<li><a href="club_home.do">모임</a></li>
+				<li><a href="community_list.do">커뮤니티</a></li>
+				<li><a href="event_user_list.do">이벤트</a></li>
+				<li><a href="notice_list.do">공지사항</a></li>
+				<li><a href="faq_list.do">FAQ</a></li>
+				<li><a href="admin_main.do">관리자</a></li>
+			</ul>
+
+			<ul id="login_nav" class="nav navbar-nav navbar-right">
+				<li><a href="#" id="user_name"></a></li>
+				<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+				<li><a href="home_logout.do">로그아웃</a></li>
+			</ul>
+
+			<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+				<li><a href="#">로그인</a></li>
+			</ul>
+
+		</div>
+	</div>
+	</nav>
+	<!-- nav -->
+
+
+	<form action="home_user_join2.do" name=frm>
+		<table border="0" cellpadding="8" align="center">
+
+			<tr>
+				<th colspan="3" align="center"><h1>회원가입</h1></th>
+				<!-- <td></td>
 		<td></td> -->
-	</tr>
-	
-	<tr>
-		<th align="right">아이디</th>
-		<td>
-		
-		<input type="text" name="user_id" id="user_id" size="10"/>   
-		<input type="button" id="primary_id" value="중복확인"/>
-		</td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">비밀번호</th>
-		<td><input type="password" name="passwd" id="passwd"size="20" maxlength="20"/></td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">비밀번호 확인</th>
-		<td><input type="password" name="passwd2" id="passwd2" size="20" maxlength="20"/></td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">이름</th>
-		<td><input type="text" name="user_name" id="user_name" size="10" maxlength="8" class="nameCk"/></td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">닉네임</th>
-		<td><input type="text" name="nickname" id="nickname" size="10" maxlength="8"/></td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">전화번호</th>
-		<td>
-		     <select name="num">
-			<option value="010">010</option>		
-			<option value="011">011</option>		
-			<option value="017">017</option>		
-			<option value="018">018</option>		
-			<option value="019">019</option>		
-			</select>
-			 - 
-			 <input type="text" name="phone_cen" size="5" maxlength="4"/> - 
-			 <input type="text" name="phone_end" size="5" maxlength="4"/>
-		</td>
-		<td></td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">이메일</th>
-		<td>
-			<input type="text" name="email" id="email" size="10"/>@  
-			<select name="home">
-			<option value="daum.net">daum.net</option>
-			<option value="naver.com">naver.com</option>
-			<option value="gmail.com">gmail.com</option>
-			<option value="hotmail.com">hotmail.com</option>
-			<option value="hanmail.net">hanmail.net</option>
-			</select>
-		</td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">우편번호</th>
-		<td>
-		<input type="hidden" name="zipcode" value="qwer"/>
-		<input type="text" name="zip1" size="6" readonly="readonly"/> 
-		&nbsp;
-		
-		<input type="button" name="findzip" value="찾기" class="btn"
-			onclick="zipSearch()"/>
-		</td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">주소</th>
-		<td>
-		<input type="text" name="addr1" size="40" readonly="readonly"/>
-		</td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">상세주소</th>
-		<td>
-		<input type="text" size="20"/>
-		</td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">주민번호</th>
-		<td>
-		<input type="text" name="ssn1" id="ssn1" size="6" maxlength="6" /> - 
-		<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7" />
-		<input type="button" value="확인" class="btn"/>
-		<div id="dv"></div>
-		</td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<th align="right">성별</th>
-		<td>
-		<input type="radio" name="gender" value="M" checked="checked"/> 남 
-		<input type="radio" name="gender" value="F"/> 여 
-		<input type="hidden" name="grade" value="1"/>
-		</td>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<td></td>
-		<td>
-		 <input type="button" name="member_join" id="member_join" value="    회원가입    "/>
-		 &nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="reset" value="      재설정      "/>
-		</td>
-		<td></td>
-	</tr>
-</table>
-</form>
+			</tr>
+
+			<tr>
+				<th align="right">아이디</th>
+				<td><input type="text" name="user_id" id="user_id" size="10" />
+					<input type="button" id="primary_id" value="중복확인" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">비밀번호</th>
+				<td><input type="password" name="passwd" id="passwd" size="20"
+					maxlength="20" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">비밀번호 확인</th>
+				<td><input type="password" name="passwd2" id="passwd2"
+					size="20" maxlength="20" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">이름</th>
+				<td><input type="text" name="user_name" id="user_name"
+					size="10" maxlength="8" class="nameCk" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">닉네임</th>
+				<td><input type="text" name="nickname" id="nickname" size="10"
+					maxlength="8" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">전화번호</th>
+				<td><select name="num">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+				</select> - <input type="text" name="phone_cen" size="5" maxlength="4" /> -
+					<input type="text" name="phone_end" size="5" maxlength="4" /></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">이메일</th>
+				<td><input type="text" name="email" id="email" size="10" />@ <select
+					name="home">
+						<option value="daum.net">daum.net</option>
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="hotmail.com">hotmail.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+				</select></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">우편번호</th>
+				<td><input type="hidden" name="zipcode" value="qwer" /> <input
+					type="text" name="zip1" size="6" readonly="readonly" /> &nbsp; <input
+					type="button" name="findzip" value="찾기" class="btn"
+					onclick="zipSearch()" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">주소</th>
+				<td><input type="text" name="addr1" size="40"
+					readonly="readonly" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">상세주소</th>
+				<td><input type="text" size="20" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">주민번호</th>
+				<td><input type="text" name="ssn1" id="ssn1" size="6"
+					maxlength="6" /> - <input type="password" name="ssn2" id="ssn2"
+					size="7" maxlength="7" /> <input type="button" value="확인"
+					class="btn" />
+					<div id="dv"></div></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th align="right">성별</th>
+				<td><input type="radio" name="gender" value="M"
+					checked="checked" /> 남 <input type="radio" name="gender" value="F" />
+					여 <input type="hidden" name="grade" value="1" /></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="button" name="member_join" id="member_join"
+					value="    회원가입    " /> &nbsp;&nbsp;&nbsp;&nbsp; <input
+					type="reset" value="      재설정      " /></td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

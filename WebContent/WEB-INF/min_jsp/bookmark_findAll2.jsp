@@ -21,9 +21,9 @@
 			var url = "bookmark_del.do?check="+arr;
 			ajaxGet(url,function(rt){
 				alert(rt);
+				location.reload();
 			});
 			
-			location.reload();
 		});
 	});
 </script>
