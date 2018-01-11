@@ -122,16 +122,22 @@ aside#left {
 <script src="common.js" type="text/javascript"></script>
 <script>
  $("document").ready(function(){
-	 
-/* 	 var scOffset = $( '.navbar-Menu' ).offset();
- 	 $( window ).scroll( function() {
-	 	if ( $( document ).scrollTop() > scOffset.top ) {
-	 		$( '.navbar' ).addClass( 'navbar-fixed-top' );
-		 }
-		 else {
-		 	$( '.navbar' ).removeClass( 'navbar-fixed-top' );
-		 }
-	 }); */
+	 var url = "chk_login.do";
+	 	ajaxGet(url,function(rt){
+	 			
+	 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+	 if(rt =="10002"){ 
+		$("#login_nav").hide();				$("#non_login_nav").show();
+	}
+	 					
+	 // 로그인 시 : rt값 -> user_name
+	else if(rt!=""){ 
+	$("#login_nav").show();
+	$("#non_login_nav").hide(); 
+	$("#user_name").text(rt+"님이 로그인하셨습니다.");
+		}
+	 });
+
 
 	$("#user_manage").hide();
 	$("#user_stastic").hide();
@@ -302,7 +308,7 @@ aside#left {
 	</ul>
 			
 <ul id="login_nav" class="nav navbar-nav navbar-right">
-	<li><a href="#">${user_name}님이 로그인 하셨습니다.</a></li>
+<li><a href="#" id="user_name"></a></li>
 	<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
 	<li><a href="home_logout.do">로그아웃</a></li>	
 </ul>
@@ -315,6 +321,7 @@ aside#left {
 	</div>
 </nav>
 <!-- nav -->
+
 
 	<aside id="left">
 		<h4>관리 항목들</h4>

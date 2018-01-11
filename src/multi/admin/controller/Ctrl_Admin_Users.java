@@ -18,6 +18,7 @@ import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
 import main.RequestParam;
+import main.vo.HostVO;
 import main.vo.O2OQnAVO;
 import main.vo.UserVO;
 import multi.admin.dao.Admin_ClubDAO;
@@ -46,6 +47,8 @@ import multi.admin.vo.Admin_User_Del_EmailVO;
 public class Ctrl_Admin_Users {
 	@Autowired @Qualifier("admin_UserDAO")
 	private Admin_UserDAO admin_UserDAO = null;
+	@Autowired @Qualifier("admin_HostDAO")
+	private Admin_HostDAO admin_HostDAO = null;
 	
 	// 유저 리스트 페이지
 	@RequestMapping("/admin_users.do")
@@ -63,14 +66,6 @@ public class Ctrl_Admin_Users {
 		mnv.addObject("vo", vo);
 		return mnv;
 	}
-/*	// 특정 유저 삭제. 리다이렉트 유저 리스트 페이지
-	@RequestMapping("/admin_user_del.do")
-	public ModelAndView admin_user_del( @ModelAttribute Admin_User_Del_EmailVO uvo ) throws Exception {
-		ModelAndView mnv = new ModelAndView();
-		admin_UserDAO.user_del(uvo);
-		mnv.setViewName("redirect:/admin_users.do");
-		return mnv;
-	}*/
 	
 	// 유저 정보 수정 페이지. 특정 유저 정보 불러옴
 	@RequestMapping("/admin_user_mod.do")
@@ -90,12 +85,24 @@ public class Ctrl_Admin_Users {
 	}
 	// 특정 유저 삭제시 이메일로 탈퇴 사유 작성하는 페이지
 	@RequestMapping("/admin_user_del_write.do")
-	public ModelAndView admin_user_del_write( @ModelAttribute Admin_User_Del_EmailVO uvo ) throws Exception {
+	public ModelAndView admin_user_del_write( @ModelAttribute Admin_User_Del_EmailVO uvo, @ModelAttribute HostVO hvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_user_del_write");
-		System.out.println(uvo.getUser_id());
-		System.out.println(uvo.getUser_name());
-		System.out.println(uvo.getEmail());
-		mnv.addObject("vo", uvo);
+		UserVO vo = null;
+		
+		try {
+			if ( hvo.getCrn() != null || hvo.getCrn().equals("") ){
+				System.out.println("admin_user_del_write for host.do");
+				vo = admin_HostDAO.host_user_check(hvo);
+				uvo.setUser_id(vo.getUser_id());
+				uvo.setUser_name(vo.getUser_name());
+				uvo.setEmail(vo.getEmail());
+				mnv.addObject("vo", uvo);
+			}
+		} catch ( Exception e) {
+			System.out.println("admin_user_del_write for user.do");
+			mnv.addObject("vo", uvo);
+		}
+
 		return mnv;
 	}
 	@RequestMapping("/admin_user_del.do")
@@ -115,7 +122,7 @@ public class Ctrl_Admin_Users {
         String admin_opinion = uvo.getMail_content();
         
         String subject = "안녕하세요 멀티 스페이스입니다." + admin_subject;
-        String message = admin_opinion +"\n\n\n\n 항상 멀티 스페이스를 이용해 주셔서 감사했니다.\n"
+        String message = admin_opinion +"\n\n\n\n 항상 멀티 스페이스를 이용해 주셔서 감사했습니다.\n"
         				+ "\n본메일은 발신 전용입니다."
         				+ "\n\n감사합니다.";
         

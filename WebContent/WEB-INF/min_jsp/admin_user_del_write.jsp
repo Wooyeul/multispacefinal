@@ -43,7 +43,7 @@ taglib
 </head>
 <body>
 	<div class="jumbotron" style="background-color: orange">
-		<h1>회원 탈퇴 사유 작성하기</h1>
+		<h3>${vo.user_id} 회원 탈퇴 사유 작성하기</h3>
 	</div>
 	<form action="admin_user_del.do" class="form-group" method="POST" name="frm">
 		<input type="hidden" name="user_id" value="${vo.user_id}"/>
