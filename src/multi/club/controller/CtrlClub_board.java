@@ -95,6 +95,7 @@ public class CtrlClub_board {
 		@ResponseBody
 		public String club_mod_board_reple(@ModelAttribute Club_board_repleVO pvo) throws Exception {
 			try{
+				System.out.println(pvo.getC_board_reple_content());
 				clubDAO.club_mod_board_reple(pvo);
 				return "ok";
 			}catch(Exception e){

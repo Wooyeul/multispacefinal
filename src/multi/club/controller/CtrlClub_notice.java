@@ -10,6 +10,7 @@ import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
+import main.ResponseBody;
 import main.vo.ClubVO;
 import multi.club.dao.ClubDAO;
 import multi.club.vo.Club_noticeVO;
@@ -85,11 +86,17 @@ public class CtrlClub_notice {
 		clubDAO.club_del_notice_reple(pvo);
 		return "redirect:/club_notice_detail.do?c_notice_no="+pvo.getC_notice_no();
 	}
+	
 	//모임 커뮤니티 공지사항 댓글 수정
 	@RequestMapping("/club_mod_notice_reple.do")
+	@ResponseBody
 	public String club_mod_notice_reple(@ModelAttribute Club_notice_repleVO pvo) throws Exception {
-		clubDAO.club_mod_notice_reple(pvo);
-		return "redirect:/club_notice_detail.do?c_notice_no="+pvo.getC_notice_no();
+		try{
+			clubDAO.club_mod_notice_reple(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	
 }

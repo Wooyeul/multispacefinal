@@ -17,7 +17,7 @@
 	<label>${vo.c_board_title}</label><br/>
 	<label>작성시간 : ${vo.the_time}	</label><label>작성자 : ${vo.user_id}</label><label>조회수 : ${vo.view_count }</label><br/>
 	<label>내용</label><textarea rows="15" cols="30" disabled="disabled">${vo.c_board_content}</textarea><br/>
-	<input id="textMod" type="button" value="수정하기"><input id="prev" type="button" value="뒤로가기">
+	<input id="textMod" type="button" value="수정하기" style="display: none"><input id="prev" type="button" value="뒤로가기">
 	<br/><hr>
 	
 	<!-- 댓글 등록 창 구현 -->
@@ -42,7 +42,7 @@
 			<label id="repleContent" class="l" style="font-size: 100%;">${rvo.c_board_reple_content } </label><br/>
 			<label id="repletime" class="l" style="font-size: 100%; color: gray;">${rvo.the_time }
 			<jl:if test="${user_id == rvo.user_id }">
-				<a class="delRe" reNo="${rvo.c_board_reple_no}" boardNo="${rvo.c_board_no}" userId="${rvo.user_id }" 
+				<a class="delRe" reNo="${rvo.c_board_reple_no}" boardNo="${rvo.c_board_no}" user_id="${rvo.user_id }" 
 				href="#"><span class="glyphicon glyphicon-remove"></span></a>
 				<a reNo="${rvo.c_board_reple_no}"  reText="${rvo.c_board_reple_content}" class="modRe"href="#">
 				<span class="glyphicon glyphicon-pencil"></span></a></label>
@@ -106,6 +106,12 @@
 	<!-- 자바스크립트 -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			// 접속한 유저와 글의 유저를 비교해 수정하기 버튼 보여지기(어드민은 다보여주게).
+			if('${user_id}'=='${vo.user_id}'||'${user_id}'=='admin'){
+				$("#textMod").attr("style","display: inline;");
+			}
+			
 			//뒤로가기 버튼 클릭 시 이벤트 발생
 			$("#prev").on("click",function(){
 				location.href="club_community.do?club_no="+'${vo.club_no}';
@@ -122,6 +128,11 @@
 					var url = "club_del_board_reple.do?c_board_reple_no="+reNo;
 					ajaxGet(url,function(rt){
 						if(rt=="ok"){
+							$("#del_modal").modal("hide");
+							alert(rt);
+							location.reload();
+						}else{
+							alert(rt);
 						}
 					});
 				});
@@ -143,12 +154,16 @@
 						url : "club_mod_board_reple.do",
 						data : formData,
 						success	: function(rt) {
-							alert(rt);
-					    },
-						error : function(xhr, option, error){
-				             alert(xhr.status); 
-				             alert(error); 
-				       }
+							if(rt=="ok"){
+								$("#mod_modal").modal("hide");
+								alert(rt);
+								location.reload();
+							}else{
+								$("#mod_modal").modal("hide");
+								alert('실패');
+								location.reload();
+							}
+					    }
 					});
 				});
 				$("#mod_modal_No").on("click",function(){

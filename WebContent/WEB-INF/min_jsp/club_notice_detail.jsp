@@ -43,7 +43,7 @@
 			<jl:if test="${user_id == rvo.user_id}">
 				<a class="delRe" reNo="${rvo.c_notice_reple_no}" noticeNo="${rvo.c_notice_no}" userId="${rvo.user_id}" 
 				href="#"><span class="glyphicon glyphicon-remove"></span></a>
-				<a reNo="${rvo.c_notice_reple_no}"  reText="${rvo.c_notice_reple_content}" noticeNo="${rvo.c_notice_no}" userId="${rvo.user_id}" 
+				<a reNo="${rvo.c_notice_reple_no}"  reText="${rvo.c_notice_reple_content}" 
 				class="modRe"href="#"><span class="glyphicon glyphicon-pencil"></span></a></label>
 			</jl:if>
 			
@@ -73,7 +73,6 @@
 			</div>
 		</div>
 		<input id="c_notice_reple_no" name='c_notice_reple_no' type='hidden'/>
-		<input id="c_notice_no" name='c_notice_no' type='hidden'/>
 	</form>
 	<!-- 댓글 수정 modal창 끝 -->
 	
@@ -122,6 +121,34 @@
 					});
 				});
 			});
+			
+			// 댓글 수정 버튼 눌렀을 때 이벤트 발생
+			$(".modRe").on("click",function(){
+				var reText = $(this).attr("reText");
+				var reNo = $(this).attr("reNo");
+				$("#reple_content").text(reText);
+				$("#c_notice_reple_no").attr("value",reNo)
+				$("#mod_modal").modal("show");
+				$("#mod_modal_Yes").on("click",function(){
+					var formData = $("#mod_frm").serialize();
+					$.ajax({
+						type : "POST",
+						url : "club_mod_notice_reple.do",
+						data : formData,
+						success	: function(rt) {
+							
+					    },
+						error : function(xhr, option, error){
+				             alert(xhr.status); 
+				             alert(error); 
+				       }
+					});
+				});
+				$("#mod_modal_No").on("click",function(){
+					$("#mod_modal").modal("hide");
+				});
+			});
+
 		});
 	</script>
 	
