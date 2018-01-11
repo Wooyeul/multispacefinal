@@ -143,7 +143,6 @@
 					$("#member_join").attr('type','submit');
 				}
 				$("#repleModal").modal("show");
-				
 			});
 		});
 		
