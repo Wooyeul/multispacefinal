@@ -3,49 +3,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="common.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script type="text/javascript" src="common.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-</style>
+		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-</head>
-<script type="text/javascript">
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 
-	$(document).ready(function(){
-		var flag1 = 0;
-		var ssn11 = 0;
-		var ssn22 = 0;
+	<script type="text/javascript">
 	
-		$(function(){
+		$(document).ready(function(){
+			var flag1 = 0;
+			var ssn11 = 0;
+			var ssn22 = 0;
+			
 			$(".nameCk").on("focusout",function(){
-				
-				var user_name = $("#user_name").val();
-				
+				var user_name = $("#user_name1").val();
 				if(user_name.replace(/[A-Za-z0-9!@#$%^&*()_+=|\ `~]/g, "")==""){
-					$("#user_name").val("");
-					alert("이름은 한글로 입력해주세요");
+					$("#user_name1").val("");
+					$("#lblContent").text("이름은 한글로 입력해주세요.");
+					$("#repleModal").modal("show");
 					return;
 				}
-				
 			});
 			
-			$(".btn").on("click",function(){
+			$(".btn_ssn").on("click",function(){
 			 	var ssn1 = $("#ssn1").val();
 				if(ssn1.replace(/[A-Za-zㄱ-힣!@#$%^&*()_+=|\ `~]/g, "")==""){
-					alert("주민등록번호는 숫자만 입력해주세요");
+					$("#lblContent").text("주민번호는 숫자만 입력해주세요");
+					$("#repleModal").modal("show");
 					return;
 				}
 				
 		 		var ssn2 = $("#ssn2").val();
 				if(ssn2.replace(/[A-Za-zㄱ-힣!@#$%^&*()_+=|\ `~]/g, "")==""){
-					alert("주민등록번호는 숫자만 입력해주세요");
+					$("#lblContent").text("주민번호는 숫자만 입력해주세요");
+					$("#repleModal").modal("show");
 					return;
 				} 
 				
@@ -67,116 +64,120 @@
 			    var check = (11 - sum%11)%10;
 		
 			    if(ssn2.charAt(6) != check || (ssn1.length != 6 && ssn2.length !=7)){
-			    	$("#dv").html("주민번호는 유효하지 않습니다.");
+			    	$("#lblContent").text("주민번호는 유효하지 않습니다.");
+			    	$("#repleModal").modal("show");
 			    	return ;
 			    } else{
 			    	flag1 = 1;
 			    	ssn11 = $("#ssn1").val();
 					ssn22 = $("#ssn2").val();
-			    	$("#dv").html("주민번호는 유효합니다.");
+					$("#lblContent").text("사용가능");
+			    	$("#repleModal").modal("show");
 			    }
 			});
-		});
-	
-		var flag = 0;
-		var user_id;
-		$("#primary_id").on("click",function(){
-			user_id = $("#user_id").val();
-			var url ="overlap.do?user_id="+user_id;
+		
+			var flag = 0;
+			var user_id;
+			$("#primary_id").on("click",function(){
+				user_id = $("#user_id").val();
+				var url ="overlap.do?user_id="+user_id;
+				
+				ajaxGet(url,function(rt){
+					if(rt==1){
+						$("#lblContent").text("중복되었습니다.");
+						$("#repleModal").modal("show");
+						$("#user_id").val("");
+					} else if(user_id==""){
+						$("#lblContent").text("아이디를 입력하세요");
+						$("#repleModal").modal("show");
+					} else if( rt == 0){
+						$("#lblContent").text("사용이 가능합니다.");
+						$("#repleModal").modal("show");
+						flag = 1;
+					} 
+				});
+			});
 			
-			ajaxGet(url,function(rt){
-				if(rt==1){
-					alert("중복되었습니다.");
-					$("#user_id").val("");
-				} else if(user_id==""){
-					alert("아이디를 입력하세요");
-				} else if( rt == 0){
-					alert("사용가능합니다.");
-					flag = 1;
-				} 
+			$("#member_join").on("click",function(){
+				var user_idck = $("#user_id").val();
+				var user_id1 = $("#user_id").val();
+				var passwd = $("#passwd").val();
+				var passwd2 = $("#passwd2").val();
+				var user_name = $("#user_name1").val();
+				var phone = $("#phone").val();
+				var email = $("#email").val();
+				var ssn1ck = $("#ssn1").val();
+				var ssn2ck = $("#ssn2").val();
+				var nickname= $("#nickname").val();
+				
+				
+				if(user_id1==""){
+					$("#lblContent").text("아이디를 입력하세요");
+				} else if(passwd==""){
+					$("#lblContent").text("비밀번호를 입력하세요.");
+				} else if(passwd2==""){
+					$("#lblContent").text("비밀번호를 입력하세요.");
+				} else if(passwd != passwd2){
+					$("#lblContent").text("비밀번호가 다릅니다.");
+				} else if(user_name==""){
+					$("#lblContent").text("이름을 입력하세요.");
+				} else if(nickname==""){
+					$("#lblContent").text("닉네임을 입력하세요.");
+				} else if(phone==""){
+					$("#lblContent").text("핸드폰번호를 입력하세요.");
+				} else if(email==""){
+					$("#lblContent").text("이메일을 입력하세요.");
+				} else if(ssn1ck==""){
+					$("#lblContent").text("주민번호를 입력하세요.");
+				} else if(ssn2ck==""){
+					$("#lblContent").text("주민번호를 입력하세요.");
+				} else if(flag==0){
+					$("#lblContent").text("아이디 중복체크 해주세요.");
+				} else if(user_id != user_idck){
+					$("#lblContent").text("아이디 중복체크 해주세요.");
+				} else if(flag1==0){
+					$("#lblContent").text("주민번호 체크 해주세요.");
+				} else if(ssn11 != ssn1ck || ssn22 != ssn2ck) {
+					$("#lblContent").text("주민번호 체크 해주세요.");
+				} else {
+					$("#member_join").attr('type','submit');
+				}
+				$("#repleModal").modal("show");
+				
 			});
 		});
 		
+		$("#btnClose").on("click",function(){
+			$("#repleModal").modal("hide");
+		});
 		
-		
-		$("#member_join").on("click",function(){
-			var user_idck = $("#user_id").val();
-			var user_id1 = $("#user_id").val();
-			var passwd = $("#passwd").val();
-			var passwd2 = $("#passwd2").val();
-			var user_name = $("#user_name").val();
-			var phone = $("#phone").val();
-			var email = $("#email").val();
-			var ssn1ck = $("#ssn1").val();
-			var ssn2ck = $("#ssn2").val();
-			var nickname= $("#nickname").val();
-			
-			
-			if(user_id1==""){
-				alert("아이디를 입력하세요.");
-			} else if(passwd==""){
-				alert("비밀번호 입력하세요");
-			} else if(passwd2==""){
-				alert("비밀번호 입력하세요");
-			} else if(passwd != passwd2){
-				alert("비밀번호 다름");
-			} else if(user_name==""){
-				alert("이름을 입력하세요");
-			} else if(nickname==""){
-				alert("닉네임을 입력하세요");
-			} else if(phone==""){
-				alert("폰번호를 입력하세요");
-			} else if(email==""){
-				alert("email을 입력하세요");
-			} else if(ssn1ck==""){
-				alert("주민번호를 입력하세요");
-			} else if(ssn2ck==""){
-				alert("주민번호를 입력하세요");
-			} else if(flag==0){
-				alert("아이디 중복체크 해주세요");
-			} else if(user_id != user_idck){
-				alert("아이디 중복체크를 다시해주세요")
-			} else if(flag1==0){
-				alert("주민번호 확인눌러주세요");
-			} else if(ssn11 != ssn1ck || ssn22 != ssn2ck) {
-				alert("주민번호 다시 체크해주세요")
+		var scOffset = $('.navbar-Menu').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > scOffset.top) {
+				$('.navbar').addClass('navbar-fixed-top');
 			} else {
-				$("#member_join").attr('type','submit');
+				$('.navbar').removeClass('navbar-fixed-top');
 			}
 		});
-	});
 	
-	$(document).ready(function(){
-
-		var scOffset = $( '.navbar-Menu' ).offset();
-			$( window ).scroll( function() {
-			if ( $( document ).scrollTop() > scOffset.top ) {
-				$( '.navbar' ).addClass( 'navbar-fixed-top' );
+		var url = "chk_login.do";
+		ajaxGet(url, function(rt) {
+	
+			// 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+			if (rt == "10002") {
+				$("#login_nav").hide();
+				$("#non_login_nav").show();
 			}
-			else {
-				$( '.navbar' ).removeClass( 'navbar-fixed-top' );
+	
+			// 로그인 시 : rt값 -> user_name
+			else if (rt != "") {
+				$("#login_nav").show();
+				$("#non_login_nav").hide();
+				$("#user_name").text(rt + "님이 로그인하셨습니다.");
 			}
 		});
-			
-			var url = "chk_login.do";
-	 	ajaxGet(url,function(rt){
-	 			
-	 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
-	 if(rt =="10002"){ 
-		$("#login_nav").hide();				$("#non_login_nav").show();
-	}
-	 					
-	 // 로그인 시 : rt값 -> user_name
-	else if(rt!=""){ 
-	$("#login_nav").show();
-	$("#non_login_nav").hide(); 
-	$("#user_name").text(rt+"님이 로그인하셨습니다.");
-		}
-		 });	
-
-	});
-	
-</script>
+	</script>
+</head>
 <body>
 	<div class="jbTitle">
 		<h1>Multi Space</h1>
@@ -228,7 +229,9 @@
 			<tr>
 				<th align="right">아이디</th>
 				<td><input type="text" name="user_id" id="user_id" size="10" />
-					<input type="button" id="primary_id" value="중복확인" /></td>
+					<input type="button" id="primary_id" value="중복확인" />
+					<div id="dvname"></div>
+					</td>
 				<td></td>
 			</tr>
 
@@ -248,15 +251,15 @@
 
 			<tr>
 				<th align="right">이름</th>
-				<td><input type="text" name="user_name" id="user_name"
-					size="10" maxlength="8" class="nameCk" /></td>
+				<td><input type="text" name="user_name" id="user_name1" size="10" maxlength="8" class="nameCk"/>
+					<div id="dv1"></div>
+				</td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<th align="right">닉네임</th>
-				<td><input type="text" name="nickname" id="nickname" size="10"
-					maxlength="8" /></td>
+				<td><input type="text" name="nickname" id="nickname" size="10" maxlength="8" /></td>
 				<td></td>
 			</tr>
 
@@ -289,17 +292,15 @@
 
 			<tr>
 				<th align="right">우편번호</th>
-				<td><input type="hidden" name="zipcode" value="qwer" /> <input
-					type="text" name="zip1" size="6" readonly="readonly" /> &nbsp; <input
-					type="button" name="findzip" value="찾기" class="btn"
-					onclick="zipSearch()" /></td>
+				<td><input type="hidden" name="zipcode" value="qwer" /> 
+				<input type="text" name="zip1" size="6" readonly="readonly" /> &nbsp; 
+				<input type="button" name="findzip" value="찾기" class="btn_zip" onclick="zipSearch()" /></td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<th align="right">주소</th>
-				<td><input type="text" name="addr1" size="40"
-					readonly="readonly" /></td>
+				<td><input type="text" name="addr1" size="40" readonly="readonly" /></td>
 				<td></td>
 			</tr>
 
@@ -311,30 +312,45 @@
 
 			<tr>
 				<th align="right">주민번호</th>
-				<td><input type="text" name="ssn1" id="ssn1" size="6"
-					maxlength="6" /> - <input type="password" name="ssn2" id="ssn2"
-					size="7" maxlength="7" /> <input type="button" value="확인"
-					class="btn" />
+				<td><input type="text" name="ssn1" id="ssn1" size="6" maxlength="6" /> - 
+					<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7" /> 
+					<input type="button" value="확인" class="btn_ssn" />
 					<div id="dv"></div></td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<th align="right">성별</th>
-				<td><input type="radio" name="gender" value="M"
-					checked="checked" /> 남 <input type="radio" name="gender" value="F" />
-					여 <input type="hidden" name="grade" value="1" /></td>
+				<td><input type="radio" name="gender" value="M" checked="checked" /> 남 
+				<input type="radio" name="gender" value="F" /> 여 
+				<input type="hidden" name="grade" value="1" /></td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<td></td>
-				<td><input type="button" name="member_join" id="member_join"
-					value="    회원가입    " /> &nbsp;&nbsp;&nbsp;&nbsp; <input
-					type="reset" value="      재설정      " /></td>
+				<td>
+				<input type="button" name="member_join" id="member_join" value="    회원가입    " /> 
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="reset" value="      재설정      " /></td>
 				<td></td>
 			</tr>
 		</table>
 	</form>
+	
+	<form id="ck_total">
+		<div id="repleModal" class="modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+							<label id="lblContent"></label><br/>
+							<button type="button" class="btn btn-primary btn-sm" id="btnClose" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	
 </body>
 </html>

@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -26,44 +25,44 @@
 
 		<table border="0" cellpadding="8" align="center">
 			<tr>
-				<th colspan="3" align="center"><h1>È¸¿øÁ¤º¸¼öÁ¤</h1></th>
+				<th colspan="3" align="center"><h1>íšŒì›ì •ë³´ìˆ˜ì •</h1></th>
 				<!-- <td></td>
 		<td></td> -->
 			</tr>
 
 			<tr>
-				<th align="right">¾ÆÀÌµğ</th>
+				<th align="right">ì•„ì´ë””</th>
 				<td><label>${rvo.user_id}</label></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ºñ¹Ğ¹øÈ£</th>
+				<th align="right">ë¹„ë°€ë²ˆí˜¸</th>
 				<td><input type="password" name="passwd" id="passwd" size="20"  maxlength="20"/></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ºñ¹Ğ¹øÈ£ È®ÀÎ</th>
+				<th align="right">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</th>
 				<td><input type="password" name="passwd2" id="passwd2"
 					size="20" maxlength="20"/></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ÀÌ¸§</th>
+				<th align="right">ì´ë¦„</th>
 				<td><label>${rvo.user_name}</label>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">´Ğ³×ÀÓ</th>
+				<th align="right">ë‹‰ë„¤ì„</th>
 				<td><input type="text" name="nickname" id="nickname" size="10" value="${nickname}" maxlength="8"/></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ÀüÈ­¹øÈ£</th>
+				<th align="right">ì „í™”ë²ˆí˜¸</th>
 				<td><select name="num">
 						<option value="010">010</option>
 						<option value="011">011</option>
@@ -77,7 +76,7 @@
 			</tr>
 
 			<tr>
-				<th align="right">ÀÌ¸ŞÀÏ</th>
+				<th align="right">ì´ë©”ì¼</th>
 				<td><input type="text" name="email" id="email" size="10" value="${email}"/>@ 
 				<select name="home">
 						<option value="daum.net">daum.net</option>
@@ -90,23 +89,23 @@
 			</tr>
 
 			<tr>
-				<th align="right">¿ìÆí¹øÈ£</th>
+				<th align="right">ìš°í¸ë²ˆí˜¸</th>
 				<td><input type="hidden" name="zipcode" value="qwer" /> <input
 					type="text" name="zip1" size="6" readonly="readonly" /> &nbsp; <input
-					type="button" name="findzip" value="Ã£±â" class="btn"
+					type="button" name="findzip" value="ì°¾ê¸°" class="btn"
 					onclick="zipSearch()" /></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ÁÖ¼Ò</th>
+				<th align="right">ì£¼ì†Œ</th>
 				<td><input type="text" name="addr1" size="40"
 					readonly="readonly" /></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">»ó¼¼ÁÖ¼Ò</th>
+				<th align="right">ìƒì„¸ì£¼ì†Œ</th>
 				<td><input type="text" size="20" /></td>
 				<td></td>
 			</tr>
@@ -114,10 +113,10 @@
 			<tr>
 				<td></td>
 				<td><input type="submit" name="member_join" id="member_join"
-					value="    ¼öÁ¤ÇÏ±â    " /> &nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="reset" value="      Àç¼³Á¤      " />&nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="button" value="      Ãë¼Ò      " id="cancel"/>
-					<input type="button" value="      Å»Åğ       " id="delete"/></td>
+					value="    ìˆ˜ì •í•˜ê¸°    " /> &nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="reset" value="      ì¬ì„¤ì •      " />&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="button" value="      ì·¨ì†Œ      " id="cancel"/>
+					<input type="button" value="      íƒˆí‡´       " id="delete"/></td>
 				<td></td>
 			</tr>
 		</table>
