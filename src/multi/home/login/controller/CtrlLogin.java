@@ -128,17 +128,16 @@ public class CtrlLogin {
 	}
 
 	@RequestMapping("/home_findId.do")
-	public ModelAndView findId(@ModelAttribute UserVO uvo) throws Exception {
+	@ResponseBody
+	public String findId(@ModelAttribute UserVO uvo) throws Exception {
 		
-
 		UserVO userInfo = UserDAO.find_userId(uvo);
-		System.out.println(uvo.getUser_name());
-		System.out.println(uvo.getSsn1());
 
-		ModelAndView mnv = new ModelAndView("home_findId");
-		mnv.addObject("user_id",userInfo.getUser_id());		
-		return mnv;
-
+		try{
+			return userInfo.getUser_id();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	@RequestMapping("/home_moveFindPasswdPage.do")
@@ -150,15 +149,18 @@ public class CtrlLogin {
 	}
 	
 	@RequestMapping("/home_findPassswd.do")
-	public ModelAndView findPasswd(@ModelAttribute UserVO uvo) throws Exception {
-
+	@ResponseBody
+	public String findPasswd(@ModelAttribute UserVO uvo) throws Exception {	
 		
+		
+		System.out.println(uvo.getUser_name());
+
 		UserVO userInfo = UserDAO.find_userPasswd(uvo);
-
-		
-		ModelAndView mnv = new ModelAndView("home_findPasswd");
-		mnv.addObject("passwd",userInfo.getPasswd());		
-		return mnv;
+		try{
+			return userInfo.getPasswd();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	 @RequestMapping("/home_logout.do")

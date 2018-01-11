@@ -1,5 +1,10 @@
 package main;
 
+import java.util.List;
+
+import main.vo.SpaceVO;
+import multi.space.vo.Space_searchVO;
+
 public class PaginationDTO {
 	public static int pageSize = 10; // 한 페이지에 보일 게시글 갯수
 	public static int paginationSize = 10;  // 10개짜리 글이 들어있는 리스트를 몇개까지 보여줄것인가.
@@ -34,23 +39,37 @@ public class PaginationDTO {
 	
 	private boolean hasPrevPagination;
 	private boolean hasNextPagination;
+	private boolean hasPrevPage;
+	private boolean hasNextPage;
 	
-	
-	public void setHasPrevPagination(boolean hasPrevPagination) {
-		this.hasPrevPagination = hasPrevPagination;
-	}
-	public void setHasNextPagination(boolean hasNextPagination) {
-		this.hasNextPagination = hasNextPagination;
-	}
 	public int getCurPagination(){return curPagination;} // 현재 페이지 반환해주는 메소드
 	public int getPaginationStart(){return paginationStart;} // 페이지네이션 스타트 값 반환
 	public int getPaginationEnd(){return paginationEnd;} // 페이지네이션 엔드 값 반환
 	
-	public boolean getHasPrevPagination(){return paginationStart != 1;} // 페이지가 1페이지가 아니면 이전태그 생성
-	public boolean getHasNextPagination(){return paginationEnd != numPages;} // 페이지가 전체 페이지 수(끝 페이지)와 같지 않으면 다음태그 생성
+	public boolean getHasPrevPagination(){return paginationStart != 1;} 
+	public boolean getHasNextPagination(){return paginationEnd != numPages;} 
+	public boolean getHasPrevPage(){return curPagination != 1;}
+	public boolean getHasNextPage(){return curPagination != numPages;}
 	
 	public int getSkip(){
 		return ( curPagination == 1 ) ? 0 : (curPagination -1 ) * paginationSize;
 	}
 	
 }
+
+/*
+ * 
+ * //공간 첫화면 아이프레임
+	@RequestMapping("/space_home_iframe.do")
+	public ModelAndView space_home_iframe(@ModelAttribute Space_searchVO search,@RequestParam("pg") String pg) throws Exception {
+		ModelAndView mnv = new ModelAndView("space_home_iframe");
+		List<SpaceVO> list = spaceDAO.find_space_all();
+		
+		PaginationDTO pz = new PaginationDTO().init(pg, list.size()) ;  // pg값을 받고, 전체 글 갯수를 뽑아와서 페이지네이션 시작!
+		search.setStart_no(pz.getSkip());
+		List<SpaceVO> list2 = spaceDAO.search_space(search);
+		mnv.addObject("list2", list2);
+		mnv.addObject("pz", pz); // 페이지네이션을 심어줍니다!
+		return mnv;
+	}
+ */
