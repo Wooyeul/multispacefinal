@@ -76,6 +76,7 @@
  						$("#btn_bookmark").html("북마크등록");
  					});
  				}
+ 				
  			});
  			$(".collapsed").on("click",function(){
  				
@@ -211,11 +212,11 @@
 							</tr>
 						</table>
 							<jl:if test="${user_id eq space_qna.user_id }">
-								<a href="#qna_mod" data-toggle="modal">질문 수정</a>
-								<a href="#qna_del" data-toggle="modal">질문 삭제</a>
+								<a href="#qna_mod${space_qna.space_qna_no }" data-toggle="modal">질문 수정</a>
+								<a href="#qna_del${space_qna.space_qna_no }" data-toggle="modal">질문 삭제</a>
 								
 								<!-- qna 삭제 모달 -->
-								<div class="modal fade" id="qna_del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal fade" id="qna_del${space_qna.space_qna_no }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -240,7 +241,7 @@
 								<!-- qna 삭제 모달 끝 -->
 								
 								<!-- qna 수정 모달 -->
-								<div class="modal fade" id="qna_mod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal fade" id="qna_mod${space_qna.space_qna_no }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -357,10 +358,10 @@
 								
 							</table>
 							<jl:if test="${user_id eq review.user_id }">
-								<a href="#review_del" data-toggle="modal">후기 삭제</a>
+								<a href="#review_del${review.review_no }" data-toggle="modal">후기 삭제</a>
 								
 								<!-- 후기 삭제 모달 -->
-								<div class="modal fade" id="review_del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal fade" id="review_del${review.review_no }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -425,6 +426,8 @@
 			</div>
 		</div>
 		
+		
+		
 		<!-- 상태 모달 -->
 		<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -469,6 +472,8 @@
 	</div>
 	<div class="col-xs-1"></div>
 	</div>
+
+	
 	
 
 	

@@ -91,13 +91,17 @@ public class CtrlSpace {
 	@RequestMapping("/space_home_iframe.do")
 	public ModelAndView space_home_iframe(@ModelAttribute Space_searchVO search,@RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("space_home_iframe");
-		List<SpaceVO> list = spaceDAO.find_space_all();
-		
-		PaginationDTO pz = new PaginationDTO().init(pg, list.size()) ;  // pg값을 받고, 전체 글 갯수를 뽑아와서 페이지네이션 시작!
-		search.setStart_no(pz.getSkip());
 		List<SpaceVO> list2 = spaceDAO.search_space(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, list2.size()) ;  // pg값을 받고, 전체 글 갯수를 뽑아와서 페이지네이션 시작!
+		search.setStart_no(pz.getSkip());
+		list2 = spaceDAO.search_space(search);
+		
+		
+		
+		
 		mnv.addObject("list2", list2);
 		mnv.addObject("pz", pz); // 페이지네이션을 심어줍니다!
+		mnv.addObject("search", search);
 		return mnv;
 	}
 	
