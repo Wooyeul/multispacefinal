@@ -11,6 +11,30 @@
  <script src="common.js" type="text/javascript"></script>
  	<script>
  		$(document).ready(function(){
+ 			var scOffset = $( '.navbar-Menu' ).offset();
+ 	 		$( window ).scroll( function() {
+ 	 		if ( $( document ).scrollTop() > scOffset.top ) {
+ 	 			$( '.navbar' ).addClass( 'navbar-fixed-top' );
+ 	 		}else {
+ 	 			$( '.navbar' ).removeClass( 'navbar-fixed-top' );
+ 	 		}
+ 	 		});
+ 	 		var url = "chk_login.do";
+ 	 	 	ajaxGet(url,function(rt){	
+		 	 	 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+		 	 	 if(rt =="10002"){ 
+		 	 		$("#login_nav").hide();				$("#non_login_nav").show();
+		 	 	}
+		 	 	 					
+		 	 	 // 로그인 시 : rt값 -> user_name
+		 	 	else if(rt!=""){ 
+		 	 	$("#login_nav").show();
+		 	 	$("#non_login_nav").hide(); 
+		 	 	$("#user_name").text(rt+"님이 로그인하셨습니다.");
+		 	 		}
+	 	 	 });
+
+ 	 		
  			if("${bookmark}"!=""){
  				$("#btn_bookmark").html("북마크해제");
  			}
@@ -34,6 +58,12 @@
  				$("#status-modal").modal('show');
  			}
  			
+ 			$("#status-modal").on("hidden.bs.modal",function(){
+ 				location.href="space_detail.do?space_no="+${space.space_no};
+ 			});
+ 			
+ 			$("#status-modal")
+ 		
  			$("#btn_bookmark").on("click",function(){
  				if($(this).html()=="북마크등록"){
  					var url=$(this).attr("add");
@@ -79,7 +109,45 @@
  	</script>
 </head>
 <body>
-	<div class="container">
+	<div class="jbTitle">
+		<h1>Multi Space</h1>
+	</div>
+	
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default ">
+		<div class="container">
+		 <div class="navbar-header">
+		   <a class="navbar-brand" href="main.html">multi space</a>
+		 </div>
+	
+	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+		<ul class="nav navbar-nav ">
+	 	 <li><a href="space_home.do">공간</a></li>
+		 <li><a href="club_home.do">모임</a></li>
+		 <li><a href="community_list.do">커뮤니티</a></li>
+		 <li><a href="event_user_list.do">이벤트</a></li>	
+		 <li><a href="notice_list.do">공지사항</a></li>
+		 <li><a href="faq_list.do">FAQ</a></li>			
+		 <li><a href="admin_main.do">관리자</a></li>			
+		</ul>
+				
+	<ul id="login_nav" class="nav navbar-nav navbar-right">
+		<li><a href="#" id="user_name"></a></li>
+		<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+		<li><a href="home_logout.do">로그아웃</a></li>	
+	</ul>
+					
+		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+		     <li><a href="#">로그인</a></li>		
+		</ul>
+	
+		   </div>
+		</div>
+	</nav>
+	<!-- nav -->
+	<div class="container-fluid">
+	<div class="col-xs-2"></div>
+	<div class="col-xs-7">
 	<h1>공간 상세 페이지</h1>
 		<div>
 			<table>
@@ -109,21 +177,6 @@
 		</div>
 		
 		<hr/>
-		<div>
-			<table>
-				<tr>
-					<td>예약 인원</td>
-					<td>최소 ${space.min_people } 명~ 최대 ${space.max_people } 명</td>
-				</tr>
-				<tr>
-					<td>가격</td>
-					<td>${space.price } 원 /시간</td>
-				</tr>
-			</table>
-			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#call">전화</button>
-			<a href="space_reservation.do?space_no=${space.space_no }"><button class="btn btn-default btn-sm">예약하기</button></a>
-			<button class="btn btn-default btn-sm" id="btn_bookmark" add="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}" del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">북마크등록</button>
-		</div>
 		
 		<div>
 		<hr/>
@@ -387,13 +440,34 @@
 						<h2 id="status-modal-body">XX 완료</h2>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button id="btn-status-close" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 	</div>
+	</div>
+	<div class="col-xs-2">
+		<div class="panel">
+			공간 이름: <h1>${space.space_title }</h1>
+			<img src="thumbnail/${space.space_thumb_img }" width="100" height="100"/>
+			<table>
+				<tr>
+					<td>예약 인원</td>
+					<td>최소 ${space.min_people } 명~ 최대 ${space.max_people } 명</td>
+				</tr>
+				<tr>
+					<td>가격</td>
+					<td>${space.price } 원 /시간</td>
+				</tr>
+			</table>
+			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#call">전화</button>
+			<a href="space_reservation.do?space_no=${space.space_no }"><button class="btn btn-default btn-sm">예약하기</button></a>
+			<button class="btn btn-default btn-sm" id="btn_bookmark" add="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}" del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">북마크등록</button>
+		</div>
+	</div>
+	<div class="col-xs-1"></div>
 	</div>
 	
 
