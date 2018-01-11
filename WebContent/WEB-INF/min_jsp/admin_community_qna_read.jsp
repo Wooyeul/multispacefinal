@@ -25,6 +25,8 @@
 $(document).ready(function() {
 	$("#btnClose").on("click", function() {
 		$("#repleModal").modal("hide");
+		document.frm.action="admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
+		document.frm.submit();
 
 	});
 
@@ -86,7 +88,6 @@ $(document).ready(function() {
 					<div id="recom_count">${rpl.recom_count}</div>
 				</td>
 				<td>
-					${user_id}
 					[<a href="admin_community_qna_reple_recom.do?user_id=${user_id}&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
 				</td>
 				<td>[<a href="admin_community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">삭제</a>]</td>
@@ -94,7 +95,7 @@ $(document).ready(function() {
 		</jl:forEach>
 	</table>
 	
-		<form method="POST" action="admin_community_qna_reple_mod.do" id="reple_form">
+		<form method="POST" action="admin_community_qna_reple_mod.do" id="reple_form" name="frm">
 		<div id="repleModal" class="modal" role="dialog">
 			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}"
 				name="com_qna_no" /> <input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />

@@ -16,6 +16,7 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.ResponseBody;
@@ -28,6 +29,7 @@ import main.vo.SpaceVO;
 import main.vo.Space_qnaVO;
 import main.vo.Space_qna_repleVO;
 import main.vo.UserVO;
+import multi.space.Paging;
 import multi.space.dao.BookingDAO;
 import multi.space.dao.BookmarkDAO;
 import multi.space.dao.HostDAO;
@@ -69,13 +71,17 @@ public class CtrlSpace {
 	@Autowired @Qualifier("space_bookmarkDAO")
 	public BookmarkDAO bookmarkDAO = null;
 	
+	@Autowired @Qualifier("paging")
+	public Paging paging = null;
+	
 	//공간 첫화면
 	@RequestMapping("/space_home.do")
-	public ModelAndView space_home() throws Exception {
+	public ModelAndView space_home(@RequestParam("space_code") String space_code) throws Exception {
 		ModelAndView mnv = new ModelAndView("space_home");
 		List<Map<Integer,String>> local_list = spaceDAO.find_l_category();
 		List<Map<Integer,String>> category_list = spaceDAO.find_s_category();
 		
+		mnv.addObject("space_code", space_code);
 		mnv.addObject("local_list", local_list);
 		mnv.addObject("category_list", category_list);
 		return mnv;
@@ -83,24 +89,18 @@ public class CtrlSpace {
 	
 	//공간 첫화면 아이프레임
 	@RequestMapping("/space_home_iframe.do")
-	public ModelAndView space_home_iframe() throws Exception {
+	public ModelAndView space_home_iframe(@ModelAttribute Space_searchVO search,@RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("space_home_iframe");
 		List<SpaceVO> list = spaceDAO.find_space_all();
-		mnv.addObject("list", list);
+		
+		PaginationDTO pz = new PaginationDTO().init(pg, list.size()) ;  // pg값을 받고, 전체 글 갯수를 뽑아와서 페이지네이션 시작!
+		search.setStart_no(pz.getSkip());
+		List<SpaceVO> list2 = spaceDAO.search_space(search);
+		mnv.addObject("list2", list2);
+		mnv.addObject("pz", pz); // 페이지네이션을 심어줍니다!
 		return mnv;
 	}
 	
-	//공간 검색
-	@RequestMapping("/space_home_iframe_search.do")
-	public ModelAndView space_home_iframe_search(@ModelAttribute Space_searchVO search) throws Exception {
-		ModelAndView mnv = new ModelAndView("space_home_iframe_search");
-		System.out.println(search.getSearch_option());
-		System.out.println(search.getSearch_content());
-		
-		List<SpaceVO> list = spaceDAO.search_space(search);
-		mnv.addObject("list", list);
-		return mnv;
-	}
 	
 	//공간 등록 페이지
 	@RequestMapping("/space_add.do")
@@ -114,7 +114,7 @@ public class CtrlSpace {
 		
 		//등급이 판매자가 아니면 홈화면으로 돌려보냄
 		if(user2.getGrade()!=2){
-			ModelAndView mnv = new ModelAndView("redirect:/space_home.do");
+			ModelAndView mnv = new ModelAndView("redirect:/space_home.do?space_code=20007");
 			return mnv;
 		}
 		
@@ -377,6 +377,7 @@ public class CtrlSpace {
 		return null;
 	}
 	
+	//북마크 해제
 	@RequestMapping("/del_bookmark.do")
 	@ResponseBody
 	public String del_bookmark(@ModelAttribute BookmarkVO bookmark) throws Exception{

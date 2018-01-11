@@ -66,11 +66,9 @@ public class CtrlQnA {
 			throws Exception {
 		
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-
 		Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(space_qna_no);
-		
 		return qna_repleInfo.getSpace_qna_reple_content();
-
+		
 	}
 
 }

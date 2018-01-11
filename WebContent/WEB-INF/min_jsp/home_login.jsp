@@ -45,7 +45,7 @@
 		</div>
 		
 		<div class="wrapper2">
-			<a id="sub-btn" class="btn btn-lg btn-success" href="home_terms.do" role="button">회원가입</a>
+			<a id="sub-btn" class="btn btn-lg btn-success" href="#" role="button">회원가입</a>
 			<a id="sub-btn" class="btn btn-lg btn-success" href="home_moveFindIdPage.do" role="button">ID 찾기</a>
 			<a id="sub-btn" class="btn btn-lg btn-success" href="home_moveFindPasswdPage.do" role="button">Passward 찾기</a>
 		</div>

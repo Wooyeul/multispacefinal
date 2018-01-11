@@ -5,15 +5,25 @@ public class Space_searchVO {
 	public Integer s_category_no;
 	public Integer search_option;
 	public String search_content;
+	public Integer start_no;
 	
 	public Space_searchVO(){}
 
-	public Space_searchVO(Integer l_category_no, Integer s_category_no, Integer search_option, String search_content) {
+	public Space_searchVO(Integer l_category_no, Integer s_category_no, Integer search_option, String search_content,Integer start_no) {
 		super();
 		this.l_category_no = l_category_no;
 		this.s_category_no = s_category_no;
 		this.search_option = search_option;
 		this.search_content = search_content;
+		this.start_no = start_no;
+	}
+
+	public Integer getStart_no() {
+		return this.start_no;
+	}
+
+	public void setStart_no(Integer start_no) {
+			this.start_no = start_no;
 	}
 
 	public Integer getL_category_no() {

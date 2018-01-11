@@ -1,12 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="common.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 		$("#cancel").on("click",function(){
 			history.back(-1);
 		});
@@ -16,114 +23,160 @@
 			document.frm.action = "myinfo_delete.do";
 			document.frm.submit();
 		});
+		
+		$("#member_join").on("click",function(){
+			var passwd = $("#passwd").val();
+			var passwd2 = $("#passwd2").val();
+			var phone = $("#phone").val();
+			var email = $("#email").val();
+			var nickname= $("#nickname").val();
+			
+			if(passwd==""){
+				$("#lblContent").text("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+			} else if(passwd2==""){
+				$("#lblContent").text("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+			} else if(passwd != passwd2){
+				$("#lblContent").text("ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤.");
+			} else if(nickname==""){
+				$("#lblContent").text("ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”.");
+			} else if(phone==""){
+				$("#lblContent").text("í•¸ë“œí°ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+			} else if(email==""){
+				$("#lblContent").text("ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”.");
+			} else {
+				$("#ck_modal").modal("show");
+			}
+		});
+		
+		$("#modal-btn-Yes").on("click",function(){
+			$("#frm").submit();
+		});
+		
+		
+		$("#btnClose").on("click",function(){
+			$("#ck_modal").modal("hide");
+		});
+		
 	});
 
 </script>
-<title>Insert title here</title>
 </head>
 <body>
-	<form action="myinfo_mod_user2.do" method="POST" name="frm">
-
+	<form action="myinfo_mod_user2.do" method="POST" id="frm">
 		<table border="0" cellpadding="8" align="center">
 			<tr>
-				<th colspan="3" align="center"><h1>È¸¿øÁ¤º¸¼öÁ¤</h1></th>
-				<!-- <td></td>
-		<td></td> -->
+				<th colspan="3" align="center"><h1>íšŒì›ì •ë³´ìˆ˜ì •</h1></th>
 			</tr>
 
 			<tr>
-				<th align="right">¾ÆÀÌµğ</th>
+				<th align="right">ì•„ì´ë””</th>
 				<td><label>${rvo.user_id}</label></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ºñ¹Ğ¹øÈ£</th>
-				<td><input type="password" name="passwd" id="passwd" size="20" /></td>
+				<th align="right">ë¹„ë°€ë²ˆí˜¸</th>
+				<td><input type="password" name="passwd" id="passwd" size="20"  maxlength="20"/></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ºñ¹Ğ¹øÈ£ È®ÀÎ</th>
+				<th align="right">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</th>
 				<td><input type="password" name="passwd2" id="passwd2"
-					size="20" /></td>
+					size="20" maxlength="20"/></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ÀÌ¸§</th>
+				<th align="right">ì´ë¦„</th>
 				<td><label>${rvo.user_name}</label>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">´Ğ³×ÀÓ</th>
-				<td><input type="text" name="nickname" id="nickname" size="10" value="${rvo.nickname}"/></td>
+				<th align="right">ë‹‰ë„¤ì„</th>
+				<td><input type="text" name="nickname" id="nickname" size="10" value="${nickname}" maxlength="8"/></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ÀüÈ­¹øÈ£</th>
+				<th align="right">ì „í™”ë²ˆí˜¸</th>
 				<td><select name="num">
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="017">017</option>
 						<option value="018">018</option>
 						<option value="019">019</option>
-				</select> - <input type="text" name="phone_cen" size="5" value="${phone_cen}"/> - <input
-					type="text" name="phone_end" size="5"  value="${phone_end}"/></td>
+				</select> - <input type="text" name="phone_cen" size="5" value="${phone_cen}" maxlength="4"/> - <input
+					type="text" name="phone_end" size="5"  value="${phone_end}" maxlength="4"/></td>
 				<td></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ÀÌ¸ŞÀÏ</th>
-				<td><input type="text" name="email" id="email" size="10" value="${email }"/>@ 
+				<th align="right">ì´ë©”ì¼</th>
+				<td><input type="text" name="email" id="email" size="10" value="${email}"/>@ 
 				<select name="home">
-						<option value="¸ŞÀÏ¼±ÅÃ">¸ŞÀÏ¼±ÅÃ</option>
 						<option value="daum.net">daum.net</option>
 						<option value="naver.com">naver.com</option>
 						<option value="gmail.com">gmail.com</option>
 						<option value="hotmail.com">hotmail.com</option>
 						<option value="hanmail.net">hanmail.net</option>
-						<option value="Á÷Á¢ÀÔ·Â">Á÷Á¢ÀÔ·Â</option>
 				</select> <!-- <input type="text" name="msg" size="7"/> --></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">¿ìÆí¹øÈ£</th>
+				<th align="right">ìš°í¸ë²ˆí˜¸</th>
 				<td><input type="hidden" name="zipcode" value="qwer" /> <input
 					type="text" name="zip1" size="6" readonly="readonly" /> &nbsp; <input
-					type="button" name="findzip" value="Ã£±â" class="btn"
+					type="button" name="findzip" value="ì°¾ê¸°" class="btn"
 					onclick="zipSearch()" /></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">ÁÖ¼Ò</th>
+				<th align="right">ì£¼ì†Œ</th>
 				<td><input type="text" name="addr1" size="40"
 					readonly="readonly" /></td>
 				<td></td>
 			</tr>
 
 			<tr>
-				<th align="right">»ó¼¼ÁÖ¼Ò</th>
+				<th align="right">ìƒì„¸ì£¼ì†Œ</th>
 				<td><input type="text" size="20" /></td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<td></td>
-				<td><input type="submit" name="member_join" id="member_join"
-					value="    ¼öÁ¤ÇÏ±â    " /> &nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="reset" value="      Àç¼³Á¤      " />&nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="button" value="      Ãë¼Ò      " id="cancel"/>
-					<input type="button" value="      Å»Åğ       " id="delete"/></td>
+				<td>
+				<input type="button" name="member_join" id="member_join" value="    ìˆ˜ì •í•˜ê¸°    " /> &nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="reset" value="      ì¬ì„¤ì •      " />&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="button" value="      ì·¨ì†Œ      " id="cancel"/>
+					<input type="button" value="      íƒˆí‡´       " id="delete"/></td>
 				<td></td>
 			</tr>
 		</table>
 		<input type="hidden" name="user_id" value="${rvo.user_id}"/>
 	</form>
+	
+	<form id="ck_total" action="myinfo_mod_user2.do" method="POST">
+		<div id="ck_modal" class="modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" align="center">
+						<label id="lblContent">ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</label><br/>
+					</div>
+					<div id="ft" class="modal-footer">
+							<button type='button' class='btn btn-default' id='modal-btn-Yes' >ìˆ˜ì •</button>
+							<button type='button' class='btn btn-primary' id='btnClose' data-dismiss="modal">ì·¨ì†Œ</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	
 </body>
 </html>

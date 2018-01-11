@@ -46,6 +46,7 @@
 			var dc = "?dc=" + new Date().getTime();
 			var url = "mypage_getMypageQnAReple.do"+dc+"&space_qna_no="+space_qna_no;
 			ajaxGet(url,function(rt){
+
 				$(".c_space_qna_reple_content").attr("value",rt);
 			}); 
 		

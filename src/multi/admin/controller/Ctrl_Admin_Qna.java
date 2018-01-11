@@ -33,7 +33,6 @@ public class Ctrl_Admin_Qna {
 	public ModelAndView admin_community_qna_read(@ModelAttribute Community_qnaVO pvo,
 			@ModelAttribute Community_qna_repleVO rpl, 
 			@CookieValue("user_id") String user_id ) throws Exception{
-		System.out.println(user_id);
 		pvo.setUser_id(user_id);
 		admin_QnaDAO_MysqlImpl.modView(pvo);
 		Community_qnaVO vo=admin_QnaDAO_MysqlImpl.findByPK(pvo);
