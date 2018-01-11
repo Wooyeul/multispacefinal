@@ -28,7 +28,7 @@
 		<h1>QnA</h1>
 	</div>
 	
-	<a href="community_qna_mytext.do"> <input type="button" value="My QnA"/></a>
+	<a href="community_qna_mytext.do"> <input type="button" value="My QnA" class="btn btn-primary btn-sm"/></a>
 	
 	<form id="textserch" action="community_qna_serch.do">
 	<select name="comm_search_option"> 
@@ -63,7 +63,7 @@
 	</table>
 	
 		<form action="community_qna_add.do" method="post" class="addqna">
-			<input type="submit" value="글쓰기" class="btn btn-success" type="button"/>
+			<input type="submit" value="글쓰기" class="btn btn-primary" type="button"/>
 		</form>
 </body>
 </html>
