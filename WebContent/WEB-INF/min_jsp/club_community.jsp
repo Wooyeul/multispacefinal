@@ -4,8 +4,8 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="common.js"></script>
 	<style>
@@ -54,8 +54,6 @@
 	</nav>
 	<!-- nav -->
 	
-
-
 	<h2>모임 커뮤니티 페이지</h2>
 	<label>모임 이름 : ${vo.club_name}</label><br/>
 	<label>모임장 : ${master}</label><br/>
@@ -141,10 +139,25 @@
 	<br/>
 	<input id="prev" type="button" value="뒤로가기">
 	<input id="delClub" type="button" value="해체하기"/>
-</div>
+	
 
-
-
+	
+	
+	<!-- 글 작성 modal창 시작 -->
+	<div id="text_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="text_mobody" class="modal-body" align="center">
+					글을 작성 하시겠습니까?
+				</div>
+				<div id="text_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='text_modal_yes'>확인</button>
+					<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 글 작성 modal창 끝 -->
 	<!-- 클럽 해체 modal창 시작 -->
 	<form id="del_club_frm" method="post" action="club_del_club.do">
 		<div id="del_club_modal" class="modal fade" role="dialog">
@@ -182,6 +195,20 @@
 	</form>
 	<!-- 유저 탈퇴 modal창 끝 -->
 	
+	<!-- 기본 modal창 시작 -->
+	<div id="basic_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 기본 modal창 끝 -->
+	
 	<!-- 유저 신청 수락 modal창 시작 -->
 	<form id="agree_frm">
 		<div id="user_agree_modal" class="modal fade" role="dialog">
@@ -216,50 +243,51 @@
 	</div>
 	<!-- 유저 신청 거절 modal창 끝 -->
 	
-
-	<!-- 기본 modal창 시작 -->
-	<div id="basic_modal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div id="basic_mobody" class="modal-body" align="center">
-				</div>
-				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 기본 modal창 끝 -->
-	
-	<!-- 글 작성 modal창 시작 -->
-	<div id="text_modal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div id="text_mobody" class="modal-body" align="center">
-					글을 작성 하시겠습니까?
-				</div>
-				<div id="text_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='text_modal_yes'>확인</button>
-					<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 글 작성 modal창 끝 -->
+</div>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
 			// 기본 모달창의 확인 버튼 누르면 숨기기
 			$("#basic_modal_Yes").on("click",function(){
 				$("#basic_modal").modal("hide");
-				
 			});
-			/* 마스터 이외에게 신청 현황 리스트, 공지쓰기 버튼 보여주지 않기*/
-			if('${user_id}'!='${vo.user_id}'){
-				$("#applyList").attr("style","display:none");
-				$("#noticeBtn").attr("style","display:none");
-				$("#delClub").attr("value","탈퇴하기");
-			}
+			
+			/* 모임 신청자 거절 버튼 클릭시 이벤트 발생 */
+			$(".disagree").on("click",function(){
+				var user_id = $(this).attr("user_id");
+				var club_no = $(this).attr("club_no");
+				var club_name = $(this).attr("club_name");
+				
+				$("#user_disagree_modal").modal("show");
+				$("#user_disagree_yes").on("click",function(){
+					var url = "club_apply_disagree.do?club_no="+user_id+"&user_id="+club_no+"&club_name="+club_name;
+					ajaxGet(url, function(rt){
+						if(rt=="ok"){
+							alert("okbutton");
+							$("#user_disagree_modal").modal("hide");
+							$("#basic_mobody").text("사용자를 거절 하였습니다.");
+							$("#basic_modal").modal("show");
+							
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							});
+						}else{
+							$("#user_disagree_modal").modal("hide");
+							$("#basic_mobody").text("사용자 거절을 실패 하였습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							});
+						}
+					});
+				});
+				$("#user_disagree_no").on("click",function(){
+					$("#user_disagree_modal").modal("hide");
+				});
+			});
 			
 			/* 모임 신청자 수락 버튼 클릭시 이벤트 발생 */
 			$(".agree").on("click",function(){
@@ -309,9 +337,28 @@
 				});
 			});
 			
-			/* 모임 신청자 거절 버튼 클릭시 이벤트 발생 */
+			/* 공지사항,자유게시판 글쓰기 버튼 클릭 시 이동  */
+			$("#noticeBtn").on("click",function(){
+				$("#text_modal").modal("show");
+				$("#text_modal_yes").on("click",function(){
+					$("#text_modal_modal").modal("hide");
+					location.href="club_add_community_notice.do?club_no="+${vo.club_no};
+				});
+				$("#text_modal_no").on("click",function(){
+					$("#text_modal").modal('hide');
+				});
+			});
 			
-			
+			$("#boardBtn").on("click",function(){
+				$("#text_modal").modal("show");
+				$("#text_modal_yes").on("click",function(){
+					$("#text_modal_modal").modal("hide");
+					location.href="club_add_community_board.do?club_no="+${vo.club_no};
+				});
+				$("#text_modal_no").on("click",function(){
+					$("#text_modal").modal('hide');
+				});
+			});
 			
 			/* 해체하기, 혹은 탈퇴하기 버튼을 눌렀을 때 실행*/
 			$("#delClub").on("click",function(){
@@ -348,32 +395,18 @@
 				}
 			});
 			
-			/* 이미 수락한 내용인지 확인  */
-			if('${flag}'==1){
-				alert("수락 되었습니다.");
-			}else if('${flag}'==-1){
-				alert("이미 수락 되었습니다.");
+			/* 마스터 이외에게 신청 현황 리스트, 공지쓰기 버튼 보여주지 않기*/
+			if('${user_id}'!='${vo.user_id}'){
+				$("#applyList").attr("style","display:none");
+				$("#noticeBtn").attr("style","display:none");
+				$("#delClub").attr("value","탈퇴하기");
 			}
-			/* 공지사항,자유게시판 글쓰기 버튼 클릭 시 이동  */
-			$("#noticeBtn").on("click",function(){
-				$("#text_modal").modal("show");
-				$("#text_modal_yes").on("click",function(){
-					$("#text_modal_modal").modal("hide");
-					location.href="club_add_community_notice.do?club_no="+${vo.club_no};
-				});
-				$("#text_modal_no").on("click",function(){
-					$("#text_modal").modal('hide');
-				});
-			});
-			$("#boardBtn").on("click",function(){
-				$("#text_modal").modal("show");
-				$("#text_modal_yes").on("click",function(){
-					$("#text_modal_modal").modal("hide");
-					location.href="club_add_community_board.do?club_no="+${vo.club_no};
-				});
-				$("#text_modal_no").on("click",function(){
-					$("#text_modal").modal('hide');
-				});
+			
+			// 이름 클릭하면 쪽지 보낼 팝업창 띄우기
+			$(".user_name").on("click",function(e){
+				e.preventDefault();  
+	            var url = "club_message_popup.do?receive_user_id="+$(this).attr("user_id")+"&send_user_id=admin";
+	            window.open(url, "popup","width=300,height=400,toolbar=no,location=no,direcories=no,status=no,menubar=no,resizable=no,scrollbars=no,copyhistory=no");
 			});
 			
 			/* 뒤로가기 버튼 클릭 시 club_home.do로 이동*/
@@ -382,14 +415,7 @@
 			});
 			
 			
-			//이름 클릭하고 쪽지 보낼 팝업창 띄우기
-			$(".user_name").on("click",function(e){
-				e.preventDefault();  
-	            var url = "club_message_popup.do?receive_user_id="+$(this).attr("user_id")+"&send_user_id=admin";
-	            window.open(url, "popup","width=300,height=400,toolbar=no,location=no,direcories=no,status=no,menubar=no,resizable=no,scrollbars=no,copyhistory=no");
-			});
-			
-			
+			/* 네비바 관련 script */
 			var scOffset = $( '.navbar-Menu' ).offset();
 			$( window ).scroll( function() {
 				if ( $( document ).scrollTop() > scOffset.top ) {
@@ -413,9 +439,8 @@
 			$("#non_login_nav").hide(); 
 			$("#user_name").text(rt+"님이 로그인하셨습니다.");
 				}
-			 });	
-
-
+			 });
+		 	
 		});
 	</script>
 </body>
