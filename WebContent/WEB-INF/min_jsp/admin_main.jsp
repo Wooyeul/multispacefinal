@@ -138,29 +138,30 @@ aside#left {
 		}
 	 });
 
-
+	// 회원 관리 부분 
 	$("#user_manage").hide();
 	$("#user_stastic").hide();
-	
+	// 판매자 관리 부분 
 	$("#host_manage").hide();
 	$("#host_requests").hide();
-	
+	// 커뮤니티 관리 부분
 	$("#community_free").hide();
 	$("#community_review").hide();
 	$("#community_question").hide();
-	
+	// 관리자 공지 관련 부분
 	$("#admin_announcement").hide();
 	$("#admin_event").hide();
 	$("#admin_faq").hide();
-	
+	// 1:1 문의 관련 부분
 	$("#one_one_request").hide();
 	$("#one_one_un_reple").hide();
 	$("#one_one_reple_done").hide();
-	
+	// 쪽지 관련 부분
 	$("#sending_message").hide();
 	$("#have_messages").hide();
 	$("#to_messages").hide();
 	
+	// 회원 관리 항목 클릭 시
 	$("#user").on("click",function(){
 		$("#user_manage").show();
 		$("#user_stastic").show();
@@ -180,7 +181,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	
+	// 판매자 관리 항목 클릭 시
 	$("#host").on("click",function(){
 		$("#host_manage").show();
 		$("#host_requests").show();
@@ -200,7 +201,45 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	
+	// 공간 관리 항목 클릭 시
+	$("#spaces").on("click",function(){
+		$("#user_manage").hide();
+		$("#user_stastic").hide();
+		$("#host_manage").hide();
+		$("#host_requests").hide();
+		$("#community_free").hide();
+		$("#community_review").hide();
+		$("#community_question").hide();
+		$("#admin_announcement").hide();
+		$("#admin_event").hide();
+		$("#admin_faq").hide();
+		$("#one_one_request").hide();
+		$("#one_one_un_reple").hide();
+		$("#one_one_reple_done").hide();
+		$("#sending_message").hide();
+		$("#have_messages").hide();
+		$("#to_messages").hide();
+	});
+	// 모임 관리 항목 클릭 시
+	$("#clubs").on("click",function(){
+		$("#user_manage").hide();
+		$("#user_stastic").hide();
+		$("#host_manage").hide();
+		$("#host_requests").hide();
+		$("#community_free").hide();
+		$("#community_review").hide();
+		$("#community_question").hide();
+		$("#admin_announcement").hide();
+		$("#admin_event").hide();
+		$("#admin_faq").hide();
+		$("#one_one_request").hide();
+		$("#one_one_un_reple").hide();
+		$("#one_one_reple_done").hide();
+		$("#sending_message").hide();
+		$("#have_messages").hide();
+		$("#to_messages").hide();
+	});
+	// 커뮤니티 관리 항목 클릭 시
 	$("#community").on("click",function(){
 		$("#community_free").show();
 		$("#community_review").show();
@@ -220,7 +259,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	
+	// 공지 관리 항목 클릭 시
 	$("#admin_user").on("click",function(){
 		$("#admin_announcement").show();
 		$("#admin_event").show();
@@ -240,7 +279,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	
+	// 1:1 관리 항목 클릭 시
 	$("#one_one").on("click",function(){
 		$("#one_one_request").show();
 		$("#one_one_un_reple").show();
@@ -260,7 +299,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	
+	// 쪽지 관리 항목 클릭 시
 	$("#message").on("click",function(){
 		$("#sending_message").show();
 		$("#have_messages").show();
@@ -334,9 +373,9 @@ aside#left {
 			<li id="host_manage"><a target="iframe1" href="admin_hosts.do">판매자 회원 관리</a></li>
 			<li id="host_requests"><a target="iframe1" href="admin_host_request.do">신청리스트</a></li>
 			
-			<li><a target="iframe1" href="admin_spaces.do">물품 관리</a></li>
+			<li id="spaces"><a target="iframe1" href="admin_spaces.do">물품 관리</a></li>
 			
-			<li><a target="iframe1" href="admin_clubs.do">모임 관리</a></li>
+			<li id="clubs"><a target="iframe1" href="admin_clubs.do">모임 관리</a></li>
 			
 			<li id="community">커뮤니티 관리</li>
 			<li id="community_free"><a target="iframe1" href="admin_community_board_list.do">자유 게시판 관리</a></li>
