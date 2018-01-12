@@ -120,25 +120,25 @@
 	</jl:if>
 	<br/><br/>
 	<div id="applyList">
-	<label><h3>신청 현황 리스트</h3></label><br/>
-	<table class="table">
-		<tr>
-			<td>이름</td>
-			<td>신청내용</td>
-			<td>신청승인</td>
-		</tr>
-		<jl:forEach items="${applyVO}" var="avo">
+		<label><h3>신청 현황 리스트</h3></label><br/>
+		<table class="table">
 			<tr>
-				<td>${avo.user_name}</td>
-				<td>${avo.apply_content}</td>
-				<td><p class="agree" club_no="${vo.club_no}" user_id="${avo.user_id}" style="display: inline;">수락</p>
-				<p class="disagree" club_no="${vo.club_no}" user_id="${avo.user_id}" style="display: inline;">거절</p>
-				</td>
+				<td>이름</td>
+				<td>신청내용</td>
+				<td>신청승인</td>
 			</tr>
-		</jl:forEach>
-	</table>
+			<jl:forEach items="${applyVO}" var="avo">
+				<tr>
+					<td>${avo.user_name}</td>
+					<td>${avo.apply_content}</td>
+					<td><span class="agree" club_no="${vo.club_no}" user_id="${avo.user_id}"">수락</span>
+					<span class="disagree" club_name="${vo.club_name }"club_no="${vo.club_no}" user_id="${avo.user_id}">거절</span>
+					</td>
+				</tr>
+			</jl:forEach>
+		</table>
 	</div>
-	
+	<br/>
 	<input id="prev" type="button" value="뒤로가기">
 	<input id="delClub" type="button" value="해체하기"/>
 </div>
@@ -183,40 +183,37 @@
 	<!-- 유저 탈퇴 modal창 끝 -->
 	
 	<!-- 유저 신청 수락 modal창 시작 -->
-	<div id="user_agree_modal" class="modal fade" role="dialog">
+	<form id="agree_frm">
+		<div id="user_agree_modal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div id="mohead" class="modal-header"align="center"><h2>유저 수락</h3></div>
+					<div id="mobody" class="modal-body" align="center"><h3>유저를 모임에 수락하시겠습니까?</h2></div>
+					<div id="ft" class="modal-footer">
+						<button type="button" class="btn btn-default" id="user_agree_yes">확인</button>
+						<button type='button' class='btn btn-primary' id='user_agree_no'>취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input id="agree_id" name="user_id" type="hidden"/>
+		<input id="agree_no" name="club_no" type="hidden"/>
+	</form>
+	<!-- 유저 신청 수락 modal창 끝 -->
+	
+	<!-- 유저 신청 거절 modal창 시작 -->
+	<div id="user_disagree_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header"align="center"><h2>유저 수락</h3></div>
-				<div id="mobody" class="modal-body" align="center"><h3>유저를 모임에 수락하시겠습니까?</h2></div>
+				<div id="mohead" class="modal-header"align="center"><h2>유저 거절</h3></div>
+				<div id="mobody" class="modal-body" align="center"><h3>유저를 거절 하시겠습니까?</h2>
 				<div id="ft" class="modal-footer">
-					<button type="button" class="btn btn-default" id="user_agree_yes">확인</button>
-					<button type='button' class='btn btn-primary' id='user_agree_no'>취소</button>
+					<button type="button" class="btn btn-default" id="user_disagree_yes">확인</button>
+					<button type='button' class='btn btn-primary' id='user_disagree_no'>취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 유저 신청 수락 modal창 끝 -->
-	
-	<!-- 유저 신청 거절 modal창 시작 -->
-	<form id="disagree_frm">
-		<div id="user_disagree_modal" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div id="mohead" class="modal-header"align="center"><h2>유저 거절</h3></div>
-					<div id="mobody" class="modal-body" align="center"><h3>거절 이유를 입력해주세요</h2>
-					<textarea id="etc" rows="10" cols="50"></textarea>
-					</div>
-					<div id="ft" class="modal-footer">
-						<button type="button" class="btn btn-default" id="user_disagree_yes">확인</button>
-						<button type='button' class='btn btn-primary' id='user_disagree_no'>취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<input id="disagree_id" name="user_id"/>
-		<input id="disagree_no" name="club_no"/>
-		<input id="disagree_etc" name="etc"/>
-	</form>
 	<!-- 유저 신청 거절 modal창 끝 -->
 	
 
@@ -233,9 +230,30 @@
 		</div>
 	</div>
 	<!-- 기본 modal창 끝 -->
+	
+	<!-- 글 작성 modal창 시작 -->
+	<div id="text_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="text_mobody" class="modal-body" align="center">
+					글을 작성 하시겠습니까?
+				</div>
+				<div id="text_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='text_modal_yes'>확인</button>
+					<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 글 작성 modal창 끝 -->
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+			// 기본 모달창의 확인 버튼 누르면 숨기기
+			$("#basic_modal_Yes").on("click",function(){
+				$("#basic_modal").modal("hide");
+				
+			});
 			/* 마스터 이외에게 신청 현황 리스트, 공지쓰기 버튼 보여주지 않기*/
 			if('${user_id}'!='${vo.user_id}'){
 				$("#applyList").attr("style","display:none");
@@ -247,22 +265,30 @@
 			$(".agree").on("click",function(){
 				var user_id = $(this).attr("user_id")
 				var club_no = $(this).attr("club_no")
+				
 				$("#user_agree_modal").modal("show");
 				$("#user_agree_yes").on("click",function(){
-					$("#disagree_id").attr("value",user_id);
-					$("#disagree_no").attr("value",club_no);
-					$("#disagree_etc").attr("value",$("#etc").val());
-					var formData = $("#disagree_frm").serialize();
+					$("#agree_id").attr("value",user_id);
+					$("#agree_no").attr("value",club_no);
+					var formData = $("#agree_frm").serialize();
 					$.ajax({
 						type : "POST",
-						url : "club_apply_disagree.do",
+						url : "club_apply_agree.do",
 						data : formData,
 						success	: function(rt) {
-							if(rt=="ok"){
+							if(rt=="10000"){
 								$("#user_agree_modal").modal("hide");
-								$("#basic_mobody").text("사용자 신청이 거절 되었습니다.");
+								$("#basic_mobody").text("사용자가 모임에 가입되었습니다.");
 								$("#basic_modal").modal("show");
-								$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").on("hidden.bs.modal",function(){
+									$("#basic_modal").modal("hide");
+									location.reload();
+								});
+							}else if(rt=="10001"){
+								$("#user_agree_modal").modal("hide");
+								$("#basic_mobody").text("정원이 다 되어서 가입이 불가능합니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");
 									location.reload();
 								});
@@ -270,10 +296,10 @@
 								$("#user_agree_modal").modal("hide");
 								$("#basic_mobody").text("사용자 신청 처리가 실패 되었습니다.");
 								$("#basic_modal").modal("show");
-								$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");
 									location.reload();
-								}); 
+								});
 							}
 					    }
 					});
@@ -284,46 +310,22 @@
 			});
 			
 			/* 모임 신청자 거절 버튼 클릭시 이벤트 발생 */
-			/*  <a href="club_apply_disagree.do?club_no=${vo.club_no}&user_id=${avo.user_id}">거절</a> */
-			$(".disagree").on("click",function(){
-				var user_id = $(this).attr("user_id")
-				var club_no = $(this).attr("club_no")
-				$("#user_disagree_modal").modal("show");
-				$("#user_disagree_yes").on("click",function(){
-					var url = "club_apply_disagree.do?club_no="+user_id+"&user_id="+club_no+"&etc="+$("#etc").val();
-					ajaxGet(url,function(rt){
-						if(rt=="ok"){
-							$("#user_disagree_modal").modal("hide");
-							$("#basic_mobody").text("사용자를 거절 하였습니다.");
-							$("#basic_modal").modal("show");
-							$("#basic_modal_Yes").on("click",function(){
-								$("#basic_modal").modal("hide");
-								location.reload();
-							});
-						}else{
-							$("#user_disagree_modal").modal("hide");
-							$("#basic_mobody").text("사용자 거절을 실패 하였습니다.");
-							$("#basic_modal").modal("show");
-							$("#basic_modal_Yes").on("click",function(){
-								$("#basic_modal").modal("hide");
-								location.reload();
-							}); 
-						}
-					});
-				});
-				$("#user_disagree_no").on("click",function(){
-					$("#user_disagree_modal").modal("hide");
-				});
-			});
+			
 			
 			
 			/* 해체하기, 혹은 탈퇴하기 버튼을 눌렀을 때 실행*/
 			$("#delClub").on("click",function(){
 				/*쿠키의 user_id와 모임의 user_id가 같을 때 즉 마스터이면 모임 해체가 가능하다*/
-				if('${user_id}'=='${pvo.user_id}'){
-					$("#del_club_modal").modal();
+				if('${user_id}'=='${vo.user_id}'){
+					$("#del_club_modal").modal("show");
 					$("#del_club_yes").on("click",function(){
-						$("#del_club_frm").submit();
+						$("#del_club_modal").modal("hide");
+						$("#basic_mobody").text("모임이 해체 되었습니다.");
+						$("#basic_modal").modal("show");
+						$("#status-basic_modal").on("hidden.bs.modal",function(){
+							$("#basic_modal").modal("hide");
+							$("#del_club_frm").submit();
+						});
 					});
 					$("#del_club_no").on("click",function(){
 						$("#del_club_modal").modal('hide');
@@ -332,7 +334,13 @@
 					/*그게 아니라면 일반 회원 이므로 유저 탈퇴로 실행*/
 					$("#del_user_modal").modal();
 					$("#del_user_yes").on("click",function(){
-						$("#del_user_frm").submit();
+						$("#del_user_modal").modal("hide");
+						$("#basic_mobody").text("모임에서 탈퇴 되었습니다.");
+						$("#basic_modal").modal("show");
+						$("#basic_modal_Yes").on("click",function(){
+							$("#basic_modal").modal("hide");
+							$("#del_user_frm").submit();
+						});
 					});
 					$("#del_user_no").on("click",function(){
 						$("#del_user_modal").modal('hide');
@@ -348,10 +356,24 @@
 			}
 			/* 공지사항,자유게시판 글쓰기 버튼 클릭 시 이동  */
 			$("#noticeBtn").on("click",function(){
-				location.href="club_add_community_notice.do?club_no="+${vo.club_no};
+				$("#text_modal").modal("show");
+				$("#text_modal_yes").on("click",function(){
+					$("#text_modal_modal").modal("hide");
+					location.href="club_add_community_notice.do?club_no="+${vo.club_no};
+				});
+				$("#text_modal_no").on("click",function(){
+					$("#text_modal").modal('hide');
+				});
 			});
 			$("#boardBtn").on("click",function(){
-				location.href="club_add_community_board.do?club_no="+${vo.club_no};
+				$("#text_modal").modal("show");
+				$("#text_modal_yes").on("click",function(){
+					$("#text_modal_modal").modal("hide");
+					location.href="club_add_community_board.do?club_no="+${vo.club_no};
+				});
+				$("#text_modal_no").on("click",function(){
+					$("#text_modal").modal('hide');
+				});
 			});
 			
 			/* 뒤로가기 버튼 클릭 시 club_home.do로 이동*/

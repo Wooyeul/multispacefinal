@@ -44,7 +44,7 @@ public interface ClubDAO {
 	public int club_add_community_board_submit(Club_boardVO pvo) throws Exception;
 	public List<SpaceVO> club_find_detail_space(ClubVO pvo)throws Exception;
 	public List<UserVO> club_find_community_user(ClubVO pvo) throws Exception;
-	public int club_apply_agree(User_clubVO pvo) throws Exception;
+	public int club_apply_agree(Club_applyVO pvo) throws Exception;
 	public int club_apply_disagree(User_clubVO pvo) throws Exception;
 	public int club_add_message(MessageVO pvo) throws Exception;
 	public Club_applyVO club_find_apply_detail(Club_applyVO pvo) throws Exception;

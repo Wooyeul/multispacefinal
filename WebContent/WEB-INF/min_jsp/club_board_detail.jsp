@@ -143,6 +143,8 @@
 			$("#prev").on("click",function(){
 				location.href="club_community.do?club_no="+'${vo.club_no}';
 			});
+			
+			
 			// 글 수정 버튼 클릭 시 이벤트 발생
 			$("#textMod").on("click",function(){
 				$("#text_mod_modal").modal("show");

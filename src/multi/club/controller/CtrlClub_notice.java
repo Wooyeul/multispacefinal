@@ -35,9 +35,20 @@ public class CtrlClub_notice {
 	}
 	//모임 커뮤니티 공지사항 작성
 	@RequestMapping("/club_add_community_notice_submit.do")
-	public String club_add_community_notice_submit(@ModelAttribute Club_noticeVO pvo) throws Exception {
-		clubDAO.club_add_community_notice_submit(pvo);
-		return "redirect:/club_community.do?club_no="+pvo.getClub_no();
+	@ResponseBody
+	public String club_add_community_notice_submit(HttpServletRequest request) throws Exception {
+		Club_noticeVO pvo = new Club_noticeVO();
+		pvo.setC_notice_title(request.getParameter("c_notice_title"));
+		pvo.setC_notice_content(request.getParameter("c_notice_content"));
+		pvo.setClub_no(BeanUtil.pInt(request.getParameter("club_no")));
+		pvo.setUser_id(request.getParameter("user_id"));
+		
+		try{
+			clubDAO.club_add_community_notice_submit(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	
 	//모임 커뮤니티 공지사항 디테일 페이지 호출

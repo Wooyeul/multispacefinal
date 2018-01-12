@@ -186,7 +186,7 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 
 	//모임 신청자 수락
 	@Override
-	public int club_apply_agree(User_clubVO pvo) throws Exception {
+	public int club_apply_agree(Club_applyVO pvo) throws Exception {
 		return sqlSession.update("club.club_apply_agree",pvo);
 	}
 

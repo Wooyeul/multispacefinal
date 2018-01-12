@@ -36,9 +36,21 @@ public class CtrlClub_board {
 		}
 		//모임 커뮤니티 게시판 글 작성
 		@RequestMapping("/club_add_community_board_submit.do")
-		public String club_add_community_board_submit(@ModelAttribute Club_boardVO pvo) throws Exception {
-			clubDAO.club_add_community_board_submit(pvo);
-			return "redirect:/club_community.do?club_no="+pvo.getClub_no();
+		@ResponseBody
+		public String club_add_community_board_submit(HttpServletRequest request) throws Exception {
+			Club_boardVO pvo = new Club_boardVO();
+			pvo.setC_board_title(request.getParameter("c_board_title"));
+			pvo.setC_board_content(request.getParameter("c_board_content"));
+			pvo.setC_board_subject(request.getParameter("c_board_subject"));
+			pvo.setClub_no(BeanUtil.pInt(request.getParameter("club_no")));
+			pvo.setUser_id(request.getParameter("user_id"));
+			
+			try{
+				clubDAO.club_add_community_board_submit(pvo);
+				return "ok";
+			}catch(Exception e){
+				return "no";
+			}
 		}
 		
 		//모임 커뮤니티 게시판 디테일 페이지 호출

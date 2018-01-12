@@ -169,9 +169,14 @@
 	<!-- 모임 신청자 신청내역 조회 끝-->
 	
 	<!-- 모임 신청 수락 시작-->
-	<update id="club_apply_agree" parameterType="main.vo.User_clubVO" statementType="CALLABLE">
-		{call p_club_apply_agree(#{user_id},#{club_no})}
+	<update id="club_apply_agree" parameterMap="PM_club_apply_agree" statementType="CALLABLE">
+		{call p_club_apply_agree(?,?,?)}
 	</update>
+	<parameterMap id="PM_club_apply_agree" type="multi.club.vo.Club_applyVO">
+		<parameter property="user_id"		 mode="IN" 	jdbcType="VARCHAR"/>
+		<parameter property="club_no"	 	 mode="IN" 	jdbcType="INTEGER"/>
+		<parameter property="flag"			 mode="OUT" jdbcType="INTEGER"/>
+	</parameterMap>
 	<!-- 모임 신청 수락 끝-->
 	
 	<!-- 모임 신청 거절 시작-->
@@ -422,14 +427,12 @@ DELIMITER $$
 
 CREATE PROCEDURE p_club_apply_agree(
 	IN v_user_id VARCHAR(20),
-	IN v_club_no INT
+	IN v_club_no INT,
+	OUT flag INT
 )
 BEGIN
 	DECLARE user_count INT;
 	DECLARE max_count INT;
-	
-	SELECT COUNT(*) INTO user_count FROM User_Clubt WHERE club_no = v_club_no AND user_id = v_user_id;
-	SELECT max_member INTO max_count FROM ClubT WHERE club_no = v_club_no;
 	
 	DECLARE exit handler FOR SQLEXCEPTION
 	BEGIN
@@ -438,11 +441,21 @@ BEGIN
 	END;
 
 	START TRANSACTION;
-	DELETE
-	  FROM Club_applyT
-	 WHERE user_id=v_user_id
-	   AND club_no=v_club_no;
-	INSERT INTO User_ClubT VALUES(v_club_no,v_user_id);
+
+	
+	SELECT COUNT(*) INTO user_count FROM User_Clubt WHERE club_no = v_club_no;
+	SELECT max_member INTO max_count FROM ClubT WHERE club_no = v_club_no;
+
+	IF user_count<max_count-1 THEN
+		DELETE
+		  FROM Club_applyT
+		 WHERE user_id=v_user_id
+	  	   AND club_no=v_club_no;
+		INSERT INTO User_ClubT VALUES(v_club_no,v_user_id);
+		SET flag = 10000;
+	ELSE
+		SET flag = 10001;
+	END IF;
 	COMMIT;
 END$$
 DELIMITER ;

@@ -172,12 +172,12 @@ public class CtrlClub {
 	//모임 신청자 수락
 	@RequestMapping("/club_apply_agree.do")
 	@ResponseBody
-	public String club_apply_agree(@ModelAttribute User_clubVO pvo) throws Exception {
+	public String club_apply_agree(@ModelAttribute Club_applyVO pvo) throws Exception {
 		try{
-			//clubDAO.club_apply_agree(pvo);
-			return "ok";
+			clubDAO.club_apply_agree(pvo);
+			return String.valueOf(pvo.getFlag());
 		}catch(Exception e){
-			return "no";
+			return "10003";
 		}
 	}
 	//모임 신청자 거절
@@ -188,6 +188,7 @@ public class CtrlClub {
 		pvo.setClub_no(BeanUtil.pInt(request.getParameter("club_no")));
 		pvo.setUser_id(request.getParameter("user_id"));
 		pvo.setEtc(request.getParameter("etc"));
+		System.out.println(request.getParameter("club_name"));
 		//clubDAO.club_apply_disagree(pvo);
 		return "ok";
 	}
