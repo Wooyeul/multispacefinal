@@ -38,7 +38,7 @@
 				<td>${rl.review_content}</td>
 				<td>${rl.the_time}</td>
 				<td>${rl.review_score}</td>
-				<td><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></td>
+				<td><img src="thumbnail/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></td>
 			</tr>
 		</jl:forEach>
 	</table>
