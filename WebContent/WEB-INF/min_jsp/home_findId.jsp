@@ -11,38 +11,32 @@
  <script src="common.js" type="text/javascript"></script>
 
 	  
-	  <script>
-	  $(document).ready(function(){
-
-	  
-	$("#testBtn").on("click",function(){
+ <script>
+ $(document).ready(function(){
+	$("#sub-btn").on("click",function(){
 		  
-	  var url = "/home_findId.do?user_name="+$("#user_name").val()+"&ssn1="+$("#ssn1").val()+"&ssn2="+$("#ssn2").val();
+	  var url = "home_findId.do?user_name="+$("#user_name").val()+"&ssn1="+$("#ssn1").val()+"&ssn2="+$("#ssn2").val();
 	  
 	  ajaxGet(url,function(rt){
-		  if(rt==null){
-			  alert("아이디가 없습니다.");
-			  // 회원이 아니거나 유저 정보가 맞지 않습니다. 다시 확인해주세요
+		  if(rt=="error"){
+			  $("#modal-title").text("회원이 아니거나 유저 정보가 맞지 않습니다. 다시 확인해주세요").append();
+			  $("#id_modal").modal('show');
+			  $("#login-btn").hide();
 		  }else{
-			  //$("#modal-title").attr("value",rt);
-			 //var k =  $("#modal-title").val();
-			  
-			$("#modal-title").text(rt).append();
-
-			  $("#qna_mod").modal('show');
-			 
-			 
-			 
+			//$("#modal-title").attr("value",rt);
+			//var k =  $("#modal-title").val();
+			$("#modal-title").text("고객님의 아이디는 " + rt).append();
+		    $("#id_modal").modal('show');
+		    $("#login-btn").show();
 		  }
-	  });
-			 
-		 });
-		 
-	  
-	  });
-	  
-	  
-	  </script>
+	  });	 
+	 });
+
+	$("#login-btn").on("click",function(){
+		window.location.href = "home_moveLoginPage.do";
+	});
+ });
+ </script>
 	  
 	
 </head>
@@ -97,33 +91,22 @@
 			</tr>
 		</table>
 	</form>
-	
-	<input type="button" id="testBtn"/>
-
-	<!-- 이메일 주소로찾기 폼 끝-->
-userId : ${user_id}
 
 
-					<!-- qna 수정 모달 -->
-								<div class="modal fade" id="qna_mod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal">
-													<span aria-hidden="true">&times;</span>
-													<span class="sr-only">Close</span>
-												</button>
-												<p id="modal-title"></p>
-											</div>
-										
-										</div>
-									</div>
-								</div>
-								<!-- qna 수정 모달 끝 -->
-							
-								
-
-
-
+<!-- qna 수정 모달 -->
+<div class="modal fade" id="id_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<p id="modal-title"></p>
+				<div class="pull-right">
+					<button id="login-btn" class="login-btn" >로그인하기</button>
+					<button id="close-btn" class="close-btn" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- qna 수정 모달 끝 -->
 </body>
 </html>

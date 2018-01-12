@@ -129,14 +129,26 @@ public class CtrlLogin {
 
 	@RequestMapping("/home_findId.do")
 	@ResponseBody
-	public String findId(@ModelAttribute UserVO uvo) throws Exception {
+	public String findId(HttpServletRequest request) throws Exception {
 		
-		UserVO userInfo = UserDAO.find_userId(uvo);
+		String user_name = request.getParameter("user_name");
+		String ssn1 = request.getParameter("ssn1");
+		String ssn2 = request.getParameter("ssn2");
+		System.out.println(user_name);
+		
+		UserVO uvo = new UserVO();
+		uvo.setUser_name(user_name);
+		uvo.setSsn1(ssn1);
+		uvo.setSsn2(ssn2);
+		System.out.println(uvo.getUser_name());
+		System.out.println(uvo.getSsn1());
 
+		UserVO userInfo = UserDAO.find_userId(uvo);
+		
 		try{
 			return userInfo.getUser_id();
 		} catch (Exception e) {
-			return null;
+			return "error";
 		}
 	}
 	
