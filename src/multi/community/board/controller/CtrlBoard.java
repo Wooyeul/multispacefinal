@@ -138,6 +138,7 @@ public class CtrlBoard {
 	//커뮤니티 보드 글 리플
 	@RequestMapping("/community_board_addreple.do")
 	public String community_board_addreple(@CookieValue("user_id") String user_id, @ModelAttribute Community_board_repleVO  pvo) throws Exception {
+		pvo.setUser_id(user_id);
 		community_boardrepleDAO.addReple(pvo);
 		return "redirect:/community_board_read.do?com_board_no="+pvo.getCom_board_no();
 	}

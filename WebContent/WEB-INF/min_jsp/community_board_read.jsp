@@ -147,20 +147,16 @@ $(document).ready(function() {
 			<td>${vo2.com_board_reple_no}</td>
 			<td> <span id="rb_${vo2.com_board_reple_no}"> ${vo2.com_board_reple_content} </span>
 														
-			<jl:if test="${vo2.user_id eq user_id || vo.user_id eq vo2.user_id}"> 
+			<jl:if test="${user_id eq vo2.user_id}"> 
  			 <input type="button" class="modReple" value="수정" abcd="rb_${vo2.com_board_reple_no}" xyz="${vo2.com_board_reple_no}" />	</jl:if>
 			
-			<jl:if test="${vo.user_id eq user_id || vo2.user_id eq user_id}"> 
+			<jl:if test="${vo2.user_id eq user_id}"> 
 			<input type="button" class="delRe" value="삭제" aa="${vo2.com_board_reple_no}" bb="${vo2.com_board_no}"/> </jl:if>
 			
 			 </td>
-			<td>${vo2.the_time}</td>
-			<td>댓글쓴사람 : ${vo2.user_id}</td>
 		</tr>
 		</jl:forEach>
 	</table>
-글쓴이 : ${vo.user_id}
-로그인 : ${user_id}
 
 
 <!--  글수정-->

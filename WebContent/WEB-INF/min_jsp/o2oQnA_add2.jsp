@@ -45,9 +45,7 @@ taglib
 	<div class="jumbotron" style="background-color: orange">
 		<h1>FAQ 문의하기</h1>
 	</div>
-	<!-- 
-	<form action="o2oQnA_add2.do" class="form-group" method="POST" name="frm">
-	-->
+	
 	<form action="admin_o2oQnA_add.do" class="form-group" method="POST" name="frm">
 		제목 : <input type="text" name="o2o_title" size="30" /> <br>
 		이메일 : <input type="text" name="o2o_email" size="30" /> <br>
@@ -61,7 +59,7 @@ taglib
 		</select> <br> 문의 내용:
 		<textarea name="o2o_content" rows="10" cols="60"></textarea>
 		<br> <input class="btn btn-success" type="submit" value="문의하기" />
-		<input type="button"class="btn btn-success" id="cancel" value="취소하기"/>
+		<a href="faq_list.do"><input type="button"class="btn btn-success" id="cancel" value="취소하기"/></a>
 	</form>
 	
 
