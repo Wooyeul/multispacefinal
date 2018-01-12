@@ -314,7 +314,8 @@
             UPDATE Community_QnA_RepleT SET recom_count = recom_count - 1 
                WHERE com_qna_reple_no = v_com_qna_reple_no;
             SELECT recom_count INTO v_recom FROM Community_QnA_RepleT
-               WHERE com_qna_reple_no = v_com_qna_reple_no; 
+               WHERE com_qna_reple_no = v_com_qna_reple_no;
+             
 		COMMIT;
       END IF;
    END$$

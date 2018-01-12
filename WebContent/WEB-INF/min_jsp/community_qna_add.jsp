@@ -7,7 +7,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css"></style>
+	<style type="text/css">
+	
+		.jumbotron{
+			text-align:center;
+		}
+		
+	</style>
 	<script src="common.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -26,6 +32,10 @@
 	</script>
 </head>
 <body>
+	<div id="i" class="jumbotron panel-primary">
+		<h1>QnA</h1>
+	</div>
+	
 	<form action="community_qna_add2.do" method="POST" id="qna_submit">
 		<input type="hidden" name="user_id" value="${user_id}"/>
 		Á¦¸ñ : <input type="text" name="com_qna_title"/><br/>
