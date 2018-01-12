@@ -73,7 +73,7 @@ public class CtrlLogin {
 	public ModelAndView moveLoginPage(@CookieValue("code") String code) throws Exception {
 		
 		System.out.println("@@@@");
-		System.out.println("code : "+ code);
+		System.out.print("code : "+ code);
 
 		if (code == null) {
 			ModelAndView mnv = new ModelAndView("home_login");
