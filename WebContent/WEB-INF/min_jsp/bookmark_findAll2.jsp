@@ -22,6 +22,7 @@
 				$("#modal").modal("show");
 			});
 			
+			//수정하시겠습니까? 확인버튼
 			$("#success").on("click",function(){
 				var str = $("form").serialize();
 				$.ajax({
@@ -39,6 +40,7 @@
 				});
 			});
 			
+			//삭제완료 버튼
 			$("#success1").on("click",function(){
 				location.reload();
 			});
