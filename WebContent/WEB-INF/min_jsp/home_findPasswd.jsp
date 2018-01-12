@@ -53,7 +53,7 @@
 			          $("#ErrorpasswdModal_body").text("입력된 정보가 없습니다. 다시 입력해주세요").append();
 				      $("#ErrorpasswdModal").modal('show');
 		        	}else{
-			          $("#passwdModal_body").text("비밀번호 : " + rt).append();
+			          $("#passwdModal_body").text(("고객님의 비밀번호는 " + rt+" 입니다.")).append();
 			  		  $("#passwdModal").modal('show');	
 		        	}
 

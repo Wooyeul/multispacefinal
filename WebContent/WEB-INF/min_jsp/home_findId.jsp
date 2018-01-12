@@ -23,7 +23,7 @@
 			  $("#id_modal").modal('show');
 			  $("#login-btn").hide();
 		  }else{
-			$("#modal-title").text("고객님의 아이디는 " + rt).append();
+			$("#modal-title").text("고객님의 아이디는 " + rt+" 입니다.").append();
 		    $("#id_modal").modal('show');
 		    $("#login-btn").show();
 		  }
