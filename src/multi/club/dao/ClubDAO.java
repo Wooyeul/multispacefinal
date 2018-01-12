@@ -45,7 +45,7 @@ public interface ClubDAO {
 	public List<SpaceVO> club_find_detail_space(ClubVO pvo)throws Exception;
 	public List<UserVO> club_find_community_user(ClubVO pvo) throws Exception;
 	public int club_apply_agree(Club_applyVO pvo) throws Exception;
-	public int club_apply_disagree(User_clubVO pvo) throws Exception;
+	public int club_apply_disagree(Club_applyVO pvo) throws Exception;
 	public int club_add_message(MessageVO pvo) throws Exception;
 	public Club_applyVO club_find_apply_detail(Club_applyVO pvo) throws Exception;
 	public List<Map<Integer, Object>> club_find_l_category()throws Exception;
@@ -54,4 +54,5 @@ public interface ClubDAO {
 	public User_clubVO club_find_user_byId(User_clubVO pvo) throws Exception;
 	public int club_del_user(User_clubVO pvo) throws Exception;
 	public int club_del_club(User_clubVO pvo) throws Exception;
+	public int club_user_release(Club_applyVO pvo) throws Exception;
 }

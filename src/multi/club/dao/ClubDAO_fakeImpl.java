@@ -192,7 +192,7 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 
 	//모임 신청자 거절
 	@Override
-	public int club_apply_disagree(User_clubVO pvo) throws Exception {
+	public int club_apply_disagree(Club_applyVO pvo) throws Exception {
 		return sqlSession.update("club.club_apply_disagree",pvo);
 	}
 
@@ -242,6 +242,12 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 	@Override
 	public int club_del_club(User_clubVO pvo) throws Exception {
 		return sqlSession.update("club.club_del_club",pvo);
+	}
+
+	// 모임 회원 방출
+	@Override
+	public int club_user_release(Club_applyVO pvo) throws Exception {
+		return sqlSession.update("club.club_user_release",pvo);
 	}
 
 }

@@ -92,11 +92,14 @@ public class CtrlClub {
 	}
 	//모임 신청
 	@RequestMapping("/club_apply.do")
-	public ModelAndView club_apply(@ModelAttribute Club_applyVO pvo) throws Exception {
+	@ResponseBody
+	public String club_apply(HttpServletRequest request) throws Exception {
+		Club_applyVO pvo = new Club_applyVO();
+		pvo.setUser_id(request.getParameter("user_id"));
+		pvo.setClub_no(BeanUtil.pInt(request.getParameter("club_no")));
+		pvo.setApply_content(request.getParameter("apply_content"));
 		clubDAO.club_add_apply(pvo);
-		String url = "redirect:/club_detail.do?club_no="+pvo.getClub_no()+"&flag="+pvo.getFlag();
-		ModelAndView mnv = new ModelAndView(url);
-		return mnv;
+		return String.valueOf(pvo.getFlag());
 	}
 	
 	//모임 등록 실행
@@ -133,16 +136,11 @@ public class CtrlClub {
 		club_apply.setUser_id(user_id);
 		Club_applyVO club_applyVO = clubDAO.club_find_apply_detail(club_apply);
 		
-		User_clubVO uv = new User_clubVO();
-		uv.setUser_id(user_id);
-		uv.setClub_no(pvo.getClub_no());
-		User_clubVO uvo = clubDAO.club_find_user_byId(uv);
 		mnv.addObject("vo", vo);
 		mnv.addObject("sVO", sVO);
-		mnv.addObject("flag", flag);
+		mnv.addObject("flag", club_apply.getFlag());
 		mnv.addObject("club_applyVO", club_applyVO);
 		mnv.addObject("user_id", user_id);
-		mnv.addObject("uvo", uvo);
 		
 		return mnv;
 	}
@@ -172,8 +170,9 @@ public class CtrlClub {
 	//모임 신청자 수락
 	@RequestMapping("/club_apply_agree.do")
 	@ResponseBody
-	public String club_apply_agree(@ModelAttribute Club_applyVO pvo) throws Exception {
+	public String club_apply_agree(@ModelAttribute Club_applyVO pvo, HttpServletRequest request) throws Exception {
 		try{
+			pvo.setApply_content(request.getParameter("club_name")+"모임에 가입되셨습니다");
 			clubDAO.club_apply_agree(pvo);
 			return String.valueOf(pvo.getFlag());
 		}catch(Exception e){
@@ -187,10 +186,13 @@ public class CtrlClub {
 		Club_applyVO pvo = new Club_applyVO();
 		pvo.setClub_no(BeanUtil.pInt(request.getParameter("club_no")));
 		pvo.setUser_id(request.getParameter("user_id"));
-		pvo.setEtc(request.getParameter("etc"));
-		System.out.println(request.getParameter("club_name"));
-		//clubDAO.club_apply_disagree(pvo);
-		return "ok";
+		pvo.setEtc(request.getParameter("club_name")+" 클럽에서 거절 당하였습니다.");
+		try{
+			clubDAO.club_apply_disagree(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	//모임 탈퇴_유저
 	@RequestMapping("/club_del_user.do")
@@ -218,6 +220,18 @@ public class CtrlClub {
 		clubDAO.club_add_message(pvo);
 		ModelAndView mnv = new ModelAndView("club_message_success");
 		return mnv;
+	}
+	//모임 회원 방출
+	@RequestMapping("/club_user_release.do")
+	@ResponseBody
+	public String club_user_release(@ModelAttribute Club_applyVO pvo, HttpServletRequest request) throws Exception {
+		try{
+			pvo.setApply_content(request.getParameter("club_name")+"에서 방출되셨습니다.");
+			clubDAO.club_user_release(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 
 }

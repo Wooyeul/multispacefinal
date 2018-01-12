@@ -112,7 +112,9 @@
 		<table class="table">
 			<tr>${master}(모임장)</tr><br/>
 			<jl:forEach items="${userVO}" var="uvo">
-				<tr><label class="user_name" user_id="${uvo.user_id}">${uvo.user_name}</label></tr><br/>
+				<tr><label class="user_name" user_id="${uvo.user_id}">${uvo.user_name}</label>
+				<a class="release" user_id="${uvo.user_id }" club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
+				<span class="glyphicon glyphicon-remove"></span></a><br/>
 			</jl:forEach>
 		</table>
 	</jl:if>
@@ -129,7 +131,7 @@
 				<tr>
 					<td>${avo.user_name}</td>
 					<td>${avo.apply_content}</td>
-					<td><span class="agree" club_no="${vo.club_no}" user_id="${avo.user_id}"">수락</span>
+					<td><span class="agree" club_name="${vo.club_name }" club_no="${vo.club_no}" user_id="${avo.user_id}"">수락</span>
 					<span class="disagree" club_name="${vo.club_name }"club_no="${vo.club_no}" user_id="${avo.user_id}">거절</span>
 					</td>
 				</tr>
@@ -140,9 +142,21 @@
 	<input id="prev" type="button" value="뒤로가기">
 	<input id="delClub" type="button" value="해체하기"/>
 	
-
 	
-	
+	<!-- 유저 강퇴 modal창 시작 -->
+	<div id="user_release" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="user_releasehead" class="modal-header"align="center"><h2>유저 강퇴</h2></div>
+				<div id="user_releasebody" class="modal-body" align="center"><h3>유저를 강퇴 하시겠습니까?</h3></div>
+				<div id="user_releaseft" class="modal-footer">
+					<button type="button" class="btn btn-default" id="user_release_yes">확인</button>
+					<button type='button' class='btn btn-primary' id='user_release_no'>취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 유저 강퇴 modal창 끝 -->
 	<!-- 글 작성 modal창 시작 -->
 	<div id="text_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -163,8 +177,8 @@
 		<div id="del_club_modal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="mohead" class="modal-header"align="center"><h2>모임 해체</h3></div>
-					<div id="mobody" class="modal-body" align="center"><h3>모임을 정말 해체하시겠습니까?</h2></div>
+					<div id="mohead" class="modal-header"align="center"><h2>모임 해체</h2></div>
+					<div id="mobody" class="modal-body" align="center"><h3>모임을 정말 해체하시겠습니까?</h3></div>
 					<div id="ft" class="modal-footer">
 						<button type="button" class="btn btn-default" id="del_club_yes">확인</button>
 						<button type='button' class='btn btn-primary' id='del_club_no'>취소</button>
@@ -181,8 +195,8 @@
 		<div id="del_user_modal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="mohead" class="modal-header"align="center"><h2>모임 탈퇴</h3></div>
-					<div id="mobody" class="modal-body" align="center"><h3>모임을 정말 탈퇴하시겠습니까?</h2></div>
+					<div id="mohead" class="modal-header"align="center"><h2>모임 탈퇴</h2></div>
+					<div id="mobody" class="modal-body" align="center"><h3>모임을 정말 탈퇴하시겠습니까?</h3></div>
 					<div id="ft" class="modal-footer">
 						<button type="button" class="btn btn-default" id="del_user_yes">확인</button>
 						<button type='button' class='btn btn-primary' id='del_user_no'>취소</button>
@@ -214,8 +228,8 @@
 		<div id="user_agree_modal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="mohead" class="modal-header"align="center"><h2>유저 수락</h3></div>
-					<div id="mobody" class="modal-body" align="center"><h3>유저를 모임에 수락하시겠습니까?</h2></div>
+					<div id="mohead" class="modal-header"align="center"><h2>유저 수락</h2></div>
+					<div id="mobody" class="modal-body" align="center"><h3>유저를 모임에 수락하시겠습니까?</h3></div>
 					<div id="ft" class="modal-footer">
 						<button type="button" class="btn btn-default" id="user_agree_yes">확인</button>
 						<button type='button' class='btn btn-primary' id='user_agree_no'>취소</button>
@@ -225,6 +239,7 @@
 		</div>
 		<input id="agree_id" name="user_id" type="hidden"/>
 		<input id="agree_no" name="club_no" type="hidden"/>
+		<input id="agree_name" name="club_name" type="hidden"/>
 	</form>
 	<!-- 유저 신청 수락 modal창 끝 -->
 	
@@ -232,8 +247,8 @@
 	<div id="user_disagree_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header"align="center"><h2>유저 거절</h3></div>
-				<div id="mobody" class="modal-body" align="center"><h3>유저를 거절 하시겠습니까?</h2>
+				<div id="mohead" class="modal-header"align="center"><h2>유저 거절</h2></div>
+				<div id="mobody" class="modal-body" align="center"><h3>유저를 거절 하시겠습니까?</h3></div>
 				<div id="ft" class="modal-footer">
 					<button type="button" class="btn btn-default" id="user_disagree_yes">확인</button>
 					<button type='button' class='btn btn-primary' id='user_disagree_no'>취소</button>
@@ -253,6 +268,40 @@
 				$("#basic_modal").modal("hide");
 			});
 			
+			/* 모임 회원 강퇴시키기 기능 */
+			$(".release").on("click",function(){
+				var user_id = $(this).attr("user_id");
+				var club_no = $(this).attr("club_no");
+				var club_name = $(this).attr("club_name");
+				$("#user_release").modal("show");
+				$("#user_release_yes").on("click",function(){
+					var url = "club_user_release.do?user_id="+user_id+"&club_no="+club_no+"&club_name="+club_name;
+					ajaxGet(url, function(rt){
+						if(rt=="ok"){
+							$("#user_release").modal("hide");
+							$("#basic_mobody").text("사용자를 방출 시켰습니다.");
+							$("#basic_modal").modal("show");
+							
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							});
+						}else{
+							$("#user_release").modal("hide");
+							$("#basic_mobody").text("사용자 방출을 실패 하였습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							});
+						}
+					});
+				});
+				$("#user_release_no").on("click",function(){
+					$("#user_release").modal("hide");
+				});
+			});
+			
 			/* 모임 신청자 거절 버튼 클릭시 이벤트 발생 */
 			$(".disagree").on("click",function(){
 				var user_id = $(this).attr("user_id");
@@ -261,10 +310,9 @@
 				
 				$("#user_disagree_modal").modal("show");
 				$("#user_disagree_yes").on("click",function(){
-					var url = "club_apply_disagree.do?club_no="+user_id+"&user_id="+club_no+"&club_name="+club_name;
+					var url = "club_apply_disagree.do?club_no="+club_no+"&user_id="+user_id+"&club_name="+club_name;
 					ajaxGet(url, function(rt){
 						if(rt=="ok"){
-							alert("okbutton");
 							$("#user_disagree_modal").modal("hide");
 							$("#basic_mobody").text("사용자를 거절 하였습니다.");
 							$("#basic_modal").modal("show");
@@ -293,11 +341,13 @@
 			$(".agree").on("click",function(){
 				var user_id = $(this).attr("user_id")
 				var club_no = $(this).attr("club_no")
+				var club_name = $(this).attr("club_name");
 				
 				$("#user_agree_modal").modal("show");
 				$("#user_agree_yes").on("click",function(){
 					$("#agree_id").attr("value",user_id);
 					$("#agree_no").attr("value",club_no);
+					$("#agree_name").attr("value",club_name);
 					var formData = $("#agree_frm").serialize();
 					$.ajax({
 						type : "POST",
