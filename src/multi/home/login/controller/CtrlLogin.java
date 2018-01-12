@@ -70,7 +70,10 @@ public class CtrlLogin {
 
 
 	@RequestMapping("/home_moveLoginPage.do")
-	public ModelAndView moveLoginPage(@CookieValue("code") String code, HttpServletRequest request) throws Exception {
+	public ModelAndView moveLoginPage(@CookieValue("code") String code) throws Exception {
+		
+		System.out.println("@@@@");
+		System.out.println("code : "+ code);
 
 		if (code == null) {
 			ModelAndView mnv = new ModelAndView("home_login");
@@ -79,11 +82,7 @@ public class CtrlLogin {
 			ModelAndView mnv = new ModelAndView("home_login");
 			mnv.addObject("code", "ID 가 없거나 암호가 틀립니다.");
 			return mnv;
-		}/* else if (code.equals("10002")) {
-			ModelAndView mnv = new ModelAndView("home_login");
-			mnv.addObject("code", "로그인이 필요한 페이지 입니다.");
-			return mnv;
-		}*/ else {
+		} else {
 			return null;
 		}
 
