@@ -117,7 +117,6 @@ public class CtrlMessage {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		List<User_clubVO> user_clubInfo = User_clubDAO.find_user_clubInfo(user_id);
-		System.out.println(user_clubInfo);
 
 		if (userInfo != null) {
 			ModelAndView mnv = new ModelAndView("mypage_write_send_message");

@@ -53,7 +53,8 @@ li a:hover {
 		
 		var scOffset = $('.navbar-Menu').offset();
 		$(window).scroll(function() {
-			if ($(document).scrollTop() > scOffset.top) {
+
+			if ($(document).scrollTop() > scOffset.top+50) {
 				$('.navbar').addClass('navbar-fixed-top');
 			} else {
 				$('.navbar').removeClass('navbar-fixed-top');
