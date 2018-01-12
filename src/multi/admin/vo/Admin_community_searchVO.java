@@ -12,7 +12,7 @@ public class Admin_community_searchVO {
 	public void setCommsearch_option(String commsearch_option) {
 		this.commsearch_option = commsearch_option;
 	}
-	public String getCommsearch_content() {
+	public String getCommsearch_content() { 
 		return commsearch_content;
 	}
 	public void setCommsearch_content(String commsearch_content) {
