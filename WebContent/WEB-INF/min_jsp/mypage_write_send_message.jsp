@@ -80,10 +80,6 @@
 </head>
 <body>
 
-<jl:forEach var="User_clubInfo" items="${user_clubInfo}">
-				<a class="aclass" clubno="${User_clubInfo.club_no}">sujin</a>
-</jl:forEach>
-			
 			
 	<form id="form_sendMessage">
 <%-- 		<jl:forEach var="ReceiveMessage" items="${receiveMessage}">

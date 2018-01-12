@@ -133,17 +133,16 @@ public class CtrlLogin {
 		String user_name = request.getParameter("user_name");
 		String ssn1 = request.getParameter("ssn1");
 		String ssn2 = request.getParameter("ssn2");
-		System.out.println(user_name);
+
 		
 		UserVO uvo = new UserVO();
 		uvo.setUser_name(user_name);
 		uvo.setSsn1(ssn1);
 		uvo.setSsn2(ssn2);
-		System.out.println(uvo.getUser_name());
-		System.out.println(uvo.getSsn1());
+
 
 		UserVO userInfo = UserDAO.find_userId(uvo);
-		System.out.println(userInfo);
+
 		
 		try{
 			if(userInfo!=null){
