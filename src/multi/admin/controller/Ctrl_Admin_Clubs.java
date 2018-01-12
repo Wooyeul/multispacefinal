@@ -10,7 +10,11 @@ import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
 import main.vo.ClubVO;
+import main.vo.SpaceVO;
+import main.vo.UserVO;
+import main.vo.User_clubVO;
 import multi.admin.dao.Admin_ClubDAO;
+import multi.admin.vo.Admin_searchVO;
 
 /* 
 모임 관리
@@ -44,10 +48,22 @@ public class Ctrl_Admin_Clubs {
 	}
 	// 특정 모임 정보를 확인하는 페이지
 	@RequestMapping("/admin_club_detail.do")
-	public ModelAndView admin_club_detail( @ModelAttribute ClubVO cvo ) throws Exception {
+	public ModelAndView admin_club_detail( @ModelAttribute ClubVO cvo, @ModelAttribute User_clubVO uvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_club_detail");
 		ClubVO vo = admin_ClubDAO.check_specific_Club(cvo);
+		List<User_clubVO> ls = admin_ClubDAO.check_joined_Users(cvo);
 		mnv.addObject("vo", vo);
+		mnv.addObject("ls", ls);
 		return mnv;
 	}
+	
+	@RequestMapping("/admin_clubs_search.do")
+	public ModelAndView admin_clubs_search(@ModelAttribute  Admin_searchVO  pvo) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_clubs_search");
+		List<ClubVO> ls = admin_ClubDAO.club_search(pvo);
+		mnv.addObject("ls", ls);
+		return mnv;
+	}
+	
+	
 }

@@ -94,5 +94,47 @@
 		{call p_admin_club_FindSpecificClub(?)}
 	</select>
 	
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_club_FindjoinedUsers;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_club_FindjoinedUsers(
+		IN v_club_no INT
+	)
+	BEGIN
+		SELECT * FROM User_ClubT WHERE club_no = v_club_no;
+	END$$
+	DELIMITER ;
+	-->
+	<parameterMap id="PM_p_admin_club_FindjoinedUsers" type="main.vo.User_clubVO" >
+		<parameter property="club_no" mode="IN" jdbcType="VARCHAR"/>
+	</parameterMap>
+	<resultMap id="RM_p_admin_club_FindjoinedUsers" type="main.vo.User_clubVO">
+		<result property="user_id" column="user_id" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="p_admin_club_FindjoinedUsers" statementType="CALLABLE"
+			parameterMap="PM_p_admin_club_FindjoinedUsers"
+			resultMap="RM_p_admin_club_FindjoinedUsers">
+		{call p_admin_club_FindjoinedUsers(?)}
+	</select>
+	
+	<select id="admin_clubs_search" parameterType="multi.admin.vo.Admin_searchVO"
+		resultType="main.vo.ClubVO">
+	
+		SELECT * FROM ClubT WHERE 0 = 0
+		<if test="search_option == 1">
+		AND club_name like '%${search_content}%'
+		</if>
+		<if test="search_option == 2">
+		AND user_id like '%${search_content}%'
+		</if>
+		<if test="search_option == 3">
+		AND max_member like '%${search_content}%'
+		</if>
+		<if test="search_option == 4">
+		AND create_time like '%${search_content}%'
+		</if>
+		
+	</select>
 </mapper>
 

@@ -22,10 +22,17 @@ text-align: center;
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 </head>
 <body>
-admin_community_board_list.jsp 자유게시판 여기에서 이제 리스트를 불러옵니다 
 <br>
+
+<a href="admin_community_board_search2.do?commsearch_option=1">[1]</a>
+<a href="admin_community_board_search2.do?commsearch_option=2">[2]</a>
+<a href="admin_community_board_search2.do?commsearch_option=3">[3]</a>
+<a href="admin_community_board_search2.do?commsearch_option=4">[4]</a>
+
 <table class="table table-hover">
 <tr>
+
+
 <th>NO</th>
 <th>TITLE</th>
 <th>TIME</th>
@@ -52,7 +59,22 @@ admin_community_board_list.jsp 자유게시판 여기에서 이제 리스트를 불러옵니다
 			</a>
 			
 		</div>
+<br/>
+<br/>
 
+
+
+<form id="textsearch" action="admin_community_board_search.do">
+	<select name="commsearch_option">
+		<option value="0">선택해주세요</option>
+		<option value="1">제목</option>
+		<option value="2">내용</option>
+		<option value="3">제목 + 내용</option>
+		<option value="4">작성자</option>
+	</select>
+	검색 : <input type="text" name="commsearch_content">
+	<input type="submit" value="검색">
+</form>
 
 </body>
 </html>

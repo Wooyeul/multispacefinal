@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.Community_qnaVO;
 import main.vo.Community_qna_repleVO;
+import multi.admin.vo.Admin_community_searchVO;
 
 public class Admin_QnaDAO_MysqlImpl implements Admin_QnaDAO{
 
@@ -77,6 +78,11 @@ public class Admin_QnaDAO_MysqlImpl implements Admin_QnaDAO{
 	public int incRecom(Community_qna_repleVO pvo) throws Exception {
 
 		return sqlSession.update("admin_qna.p_admin_comm_qnaincRecom",pvo);
+	}
+
+	@Override
+	public List<Community_qnaVO> comm_qna_search(Admin_community_searchVO pvo) throws Exception {
+		return sqlSession.selectList( "admin_qna.admin_qna_search", pvo );
 	}
 
 	

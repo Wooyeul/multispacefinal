@@ -14,6 +14,7 @@ import main.ResponseBody;
 import main.vo.Community_boardVO;
 import main.vo.Community_board_repleVO;
 import multi.admin.dao.Admin_FreeboardDAO;
+import multi.admin.vo.Admin_community_searchVO;
 
 @Controller
 public class Ctrl_Admin_Freeboard {
@@ -118,6 +119,21 @@ public class Ctrl_Admin_Freeboard {
 	public String admin_community_board_repledel(@ModelAttribute  Community_board_repleVO  pvo) throws Exception {
 		admin_FreeboardDAO.delReple(pvo);
 		return "redirect:/admin_community_board_read.do?com_board_no="+pvo.getCom_board_no();
+	}
+	
+	@RequestMapping("/admin_community_board_search.do")
+	public ModelAndView admin_community_board_search(@ModelAttribute  Admin_community_searchVO  pvo) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_community_board_search");
+		List<Community_boardVO> ls = admin_FreeboardDAO.comm_board_search(pvo);
+		mnv.addObject("ls", ls);
+		return mnv;
+	}
+	@RequestMapping("/admin_community_board_search2.do")
+	public ModelAndView admin_community_board_search2(@ModelAttribute  Admin_community_searchVO  pvo) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_community_board_search2");
+		List<Community_boardVO> ls = admin_FreeboardDAO.comm_board_search2(pvo);
+		mnv.addObject("ls", ls);
+		return mnv;
 	}
 
 }

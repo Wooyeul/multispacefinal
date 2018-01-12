@@ -86,7 +86,7 @@
 			SIGNAL SQLSTATE '45000';
 		END;
 		START TRANSACTION;
-			INSERT INTO User_del_emailT VALUES ( v_user_id, v_user_name, v_email, v_subject, v_mail_content, NOW() );
+			INSERT INTO User_del_emailT VALUES ( default, v_user_id, v_user_name, v_email, v_subject, v_mail_content, NOW() );
 			DELETE FROM Club_BoardT WHERE user_id = v_user_id;
 			DELETE FROM BookingT WHERE user_id = v_user_id;
 			DELETE FROM Community_Board_RepleT WHERE user_id = v_user_id;

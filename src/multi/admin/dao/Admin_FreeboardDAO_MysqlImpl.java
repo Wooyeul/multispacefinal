@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.Community_boardVO;
 import main.vo.Community_board_repleVO;
+import multi.admin.vo.Admin_community_searchVO;
 
 public class Admin_FreeboardDAO_MysqlImpl implements Admin_FreeboardDAO {
 	
@@ -79,6 +80,18 @@ public class Admin_FreeboardDAO_MysqlImpl implements Admin_FreeboardDAO {
 	public List<Community_board_repleVO> findAllreple(Community_board_repleVO pvo) throws Exception {
 		
 		return sqlSession.selectList("admin_free_board.p_admin_comm_boradrepleFindAllTexts",pvo);
+	}
+
+
+	@Override
+	public List<Community_boardVO> comm_board_search(Admin_community_searchVO pvo) throws Exception {
+		return sqlSession.selectList("admin_free_board.admin_freeboard_search",pvo);
+	}
+
+
+	@Override
+	public List<Community_boardVO> comm_board_search2(Admin_community_searchVO pvo) throws Exception {
+		return sqlSession.selectList("admin_free_board.admin_freeboard_search2",pvo);
 	}
 
 }

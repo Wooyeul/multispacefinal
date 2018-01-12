@@ -18,6 +18,8 @@ import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
 import main.RequestParam;
+import main.vo.ClubVO;
+import main.vo.Community_boardVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
 import multi.admin.dao.Admin_FaqDAO;
@@ -26,6 +28,8 @@ import multi.admin.dao.Admin_NoticeDAO;
 import multi.admin.dao.Admin_SpaceDAO;
 import multi.admin.dao.Admin_UserDAO;
 import multi.admin.dao.Admin_o2oQnADAO;
+import multi.admin.vo.Admin_community_searchVO;
+import multi.admin.vo.Admin_searchVO;
 
 /* 
 물품 관리
@@ -44,37 +48,51 @@ public class Ctrl_Admin_Spaces {
 
 	// 물품 관리 리스트 페이지
 	@RequestMapping("/admin_spaces.do")
-	public ModelAndView admin_space( @ModelAttribute SpaceVO svo, @RequestParam("value_check")String value_check  ) throws Exception {
+	public ModelAndView admin_space( @ModelAttribute SpaceVO svo,@ModelAttribute  Admin_searchVO  pvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_spaces");
-		List<SpaceVO> ls = null;
-		if( value_check == null || value_check.equals("") ){
-			ls = admin_SpaceDAO.findAllPlacesCreatedDesc(svo);
-			value_check = "최신 순으로 정렬";
-		} else if ( value_check.equals("casc") ){
-			ls = admin_SpaceDAO.findAllPlacesCreatedAsc(svo);
-			value_check = "오래된 순으로 정렬";
-		} else if ( value_check.equals("cdesc") ){
-			ls = admin_SpaceDAO.findAllPlacesCreatedDesc(svo);
-			value_check = "최신 순으로 정렬";
-		} else if ( value_check.equals("pasc") ){
-			ls = admin_SpaceDAO.findAllPlacesPriceAsc(svo);
-			value_check = "싼 가격 순으로 정렬";
-		} else if ( value_check.equals("pdesc") ){
-			ls = admin_SpaceDAO.findAllPlacesPriceDesc(svo);
-			value_check = "비싼 가격 순으로 정렬";
-		}
+		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search(pvo);
 		mnv.addObject("ls", ls);
-		mnv.addObject("value_check", value_check);
-		
 		return mnv;
 	}
 	// 장소에 따른 판매자 정보 확인 페이지
 	@RequestMapping("/admin_host_spaces.do")
-	public ModelAndView admin_host_space_rooms( @ModelAttribute SpaceVO svo, @ModelAttribute HostVO hvo  ) throws Exception {
+	public ModelAndView admin_host_spaces( @ModelAttribute SpaceVO svo, @ModelAttribute HostVO hvo  ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_host_spaces");
 		List<SpaceVO> ls = admin_SpaceDAO.findHostPlaces(svo);
 		mnv.addObject("ls", ls);
 		mnv.addObject("host_name", hvo.getHost_name());
+		return mnv;
+	}
+	
+	@RequestMapping("/admin_spaces_search.do")
+	public ModelAndView admin_spaces_search(@ModelAttribute  Admin_searchVO  pvo) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_spaces_search");
+		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search(pvo);
+		mnv.addObject("ls", ls);
+		return mnv;
+	}
+	@RequestMapping("/admin_spaces_search2.do")
+	public ModelAndView admin_spaces_search2(@ModelAttribute  Admin_searchVO  pvo) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_spaces_search2");
+		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search2(pvo);
+		mnv.addObject("ls", ls);
+		return mnv;
+	}
+	// 특정 모임 삭제시 이용. 리다이렉트 시 모임 리스트 확인 페이지
+	@RequestMapping("/admin_space_remove.do")
+	public ModelAndView admin_space_remove( @ModelAttribute SpaceVO svo ) throws Exception {
+		ModelAndView mnv = new ModelAndView();
+		admin_SpaceDAO.removeSpace(svo);
+		mnv.setViewName("redirect:/admin_spaces.do");
+		return mnv;
+	}
+	
+	// 특정 사업자 번호에 관한 정보를 확인 하는 페이지
+	@RequestMapping("/admin_space_crn_check.do")
+	public ModelAndView admin_host_space_rooms( @ModelAttribute SpaceVO svo, @ModelAttribute HostVO hvo  ) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_space_crn_check");
+		HostVO vo = admin_SpaceDAO.space_crn_check(svo);
+		mnv.addObject("vo", vo);
 		return mnv;
 	}
 	

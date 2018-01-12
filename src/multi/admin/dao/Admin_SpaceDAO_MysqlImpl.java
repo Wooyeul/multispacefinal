@@ -6,7 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import main.vo.HostVO;
 import main.vo.SpaceVO;
+import multi.admin.vo.Admin_searchVO;
 
 public class Admin_SpaceDAO_MysqlImpl implements Admin_SpaceDAO{
 	@Autowired @Qualifier("sqlSession")
@@ -17,23 +19,24 @@ public class Admin_SpaceDAO_MysqlImpl implements Admin_SpaceDAO{
 	}
 
 	@Override
-	public List<SpaceVO> findAllPlacesCreatedDesc(SpaceVO svo) throws Exception {
-		return sqlSession.selectList("admin_space.p_admin_space_created_desc");
+	public List<SpaceVO> host_spaces_search( Admin_searchVO pvo ) {
+		return sqlSession.selectList("admin_space.admin_space_search",pvo);
 	}
 
 	@Override
-	public List<SpaceVO> findAllPlacesCreatedAsc(SpaceVO svo) throws Exception {
-		return sqlSession.selectList("admin_space.p_admin_space_created_asc");
+	public List<SpaceVO> host_spaces_search2(Admin_searchVO pvo) {
+		return sqlSession.selectList("admin_space.admin_space_search2",pvo);
+
 	}
 
 	@Override
-	public List<SpaceVO> findAllPlacesPriceDesc(SpaceVO svo) throws Exception {
-		return sqlSession.selectList("admin_space.p_admin_space_price_desc");
+	public int removeSpace(SpaceVO svo) throws Exception {
+		return sqlSession.delete("admin_space.p_admin_remove_Space", svo);
 	}
 
 	@Override
-	public List<SpaceVO> findAllPlacesPriceAsc(SpaceVO svo) throws Exception {
-		return sqlSession.selectList("admin_space.p_admin_space_price_asc");
+	public HostVO space_crn_check(SpaceVO svo) throws Exception {
+		return sqlSession.selectOne("admin_space.p_admin_space_crn_check",svo);
 	}
 
 }

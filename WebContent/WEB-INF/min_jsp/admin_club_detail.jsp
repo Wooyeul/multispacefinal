@@ -22,8 +22,26 @@ table {
 	<div class="jumbotron" style="background-color: orange">
 		<h1>모임 세부 정보</h1>
 	</div>
+	
+	<br>
+	<br>
+	<form id="textsearch" action="admin_clubs_search.do">
+		<select name="search_option">
+			<option value="0">검색할 것을 선택해주세요</option>
+			<option value="1">모임 이름</option>
+			<option value="2">모임장 유저 ID</option>
+			<option value="3">모임 최대 인원</option>
+			<option value="4">모임 생성 날짜 시간</option>
+		</select>
+		&nbsp;<input type="text" name="search_content">
+		<input type="submit" value="검색">
+	</form>
+	<br>
+	<br>
+	
 	<table border="1">
 		<tr>
+			<td>모임 번호</td>
 			<td>모임 이름</td>
 			<td>모임장 유저 ID</td>
 			<td>모임 제목</td>
@@ -35,16 +53,31 @@ table {
 			<td>클럽 카테고리</td>
 		</tr>
 		<tr>
-			<td>${vo.user_id}</td>
+			<td>${vo.club_no}</td>
 			<td>${vo.club_name}</td>
+			<td>${vo.user_id}</td>
 			<td>${vo.club_title}</td>
 			<td>${vo.club_content}</td>
-			<td><img src="club_thumb_images/${vo.club_thumb_img}" "style="width:128px;height:128px;"/></td>
+			<td><img src="club_thumb_images/${vo.club_thumb_img}" style="width:128px;height:128px;"/></td>
 			<td>${vo.max_member}</td>
 			<td>${vo.create_time}</td>
 			<td>${vo.l_category_no}</td>
 			<td>${vo.c_category_no}</td>
 		</tr>
+	</table>
+	<br/>
+	<a href="club_detail.do?club_no=${vo.club_no}">해당 모임으로 가기</a>
+	<br/>
+	<br/>
+	<table border="1">
+		<tr>
+			<td>모임 회원 목록들</td>
+		</tr>
+		<jl:forEach var="ls" items="${ls}">
+			<tr>
+				<td>${ls.user_id}&nbsp;<a href="admin_host_user_check.do?user_id=${ls.user_id}">유저 정보 확인하기</a></td>
+			</tr>
+		</jl:forEach>
 	</table>
 </body>
 </html>

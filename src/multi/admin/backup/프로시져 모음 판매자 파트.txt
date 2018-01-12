@@ -4,7 +4,6 @@ INSERT INTO HostT Values('111-11-11111', 'seller', '이양재', 'Korean bank', '442
 INSERT INTO HostT Values('222-22-22222', 'imseller', '이양재', 'Korean bank', '442-470');
 INSERT INTO HostApplyT Values(default,'333-33-33333', 'seller_request', '이양재', 'Korean bank', '442-470','ing');
 INSERT INTO HostApplyT Values(default,'444-44-44444', 'user', '이양재', 'Korean bank', '442-470','ing');
-INSERT INTO HostApplyT Values(default,'444-44-44444', 'rreedd', '이양재', 'Korean bank', '442-470','ing');
 ################################################################
 	DROP PROCEDURE IF EXISTS p_admin_host_findAll;
 	DELIMITER $$

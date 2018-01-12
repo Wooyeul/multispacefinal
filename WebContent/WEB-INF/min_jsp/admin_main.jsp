@@ -58,7 +58,7 @@ aside#left {
     color: #464646;
     overflow: scroll;
     float: left;
-    width: 800px;
+    width: 1300px;
 }
 
 #user_manage {
@@ -363,7 +363,7 @@ aside#left {
 	
 	<section id="main">
 		<article id="article1">
-			<iframe name="iframe1" src="admin_users.do" width="800px" height="700px" seamless></iframe>	
+			<iframe name="iframe1" src="admin_users.do" width="1300px" height="700px" seamless></iframe>	
 		</article>
 	</section>
 

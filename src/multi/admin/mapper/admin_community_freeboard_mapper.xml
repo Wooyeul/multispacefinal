@@ -366,6 +366,42 @@ parameterMap ="PM_p_admin_comm_boradrepleFindAllTexts">
 	{call p_admin_comm_boradrepleFindAllTexts(?)}
 </select>
 
+
+<!-- freeboard search -->
+<select id="admin_freeboard_search" parameterType="multi.admin.vo.Admin_community_searchVO"
+		resultType="main.vo.Community_boardVO">
+	SELECT * FROM Community_BoardT WHERE 0 = 0
+	<if test="commsearch_option == 1">
+	AND com_board_title like '%${commsearch_content}%'
+	</if>
+	<if test="commsearch_option == 2">
+	AND com_board_content like '%${commsearch_content}%'
+	</if>
+	<if test="commsearch_option == 3">
+	AND com_board_title like '%${commsearch_content}%'
+	OR com_board_content like '%${commsearch_content}%'
+	</if>
+	<if test="commsearch_option == 4">
+	AND user_id like '%${commsearch_content}%'
+	</if>
+</select>
+
+<select id="admin_freeboard_search2" parameterType="multi.admin.vo.Admin_community_searchVO"
+		resultType="main.vo.Community_boardVO">
+	SELECT * FROM Community_BoardT WHERE 0 = 0
+	<if test="commsearch_option == 1">
+	AND com_board_no BETWEEN 16 AND 20 ORDER BY com_board_no DESC
+	</if>
+	<if test="commsearch_option == 2">
+	AND com_board_no BETWEEN 11 AND 15 ORDER BY com_board_no DESC
+	</if>
+	<if test="commsearch_option == 3">
+	AND com_board_no BETWEEN 6 AND 10 ORDER BY com_board_no DESC
+	</if>
+	<if test="commsearch_option == 4">
+	AND com_board_no BETWEEN 1 AND 5 ORDER BY com_board_no DESC
+	</if>
+</select>
    
 </mapper>
 

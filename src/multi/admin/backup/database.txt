@@ -393,16 +393,15 @@ CREATE TABLE BookmarkT
 #오후 3:19 2018-01-10 User_del_emailT 테이블 추가
 #오후 4:30 2018-01-10 User_del_emailT 테이블 변경
 #오후 4:30 2018-01-10 User_del_emailT 테이블 기본키 삭제
+#오전 9:30 2018-01-11 User_del_emailT 테이블 변경
 CREATE TABLE User_del_emailT
 (
+	`writing_no`       INT            NOT NULL    AUTO_INCREMENT, 
 	`user_id`  VARCHAR(20)  	NULL,
 	`user_name`  VARCHAR(10)    NULL, 
 	`email`      VARCHAR(50)    NULL,
 	`subject`	TEXT  			NULL,
 	`mail_content`	TEXT     NULL,
-	`the_time`        DATETIME        NULL
+	`the_time`        DATETIME        NULL,
+	PRIMARY KEY (writing_no)
 );
-
-###################################################
-
-###################################################

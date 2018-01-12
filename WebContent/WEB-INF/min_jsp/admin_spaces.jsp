@@ -23,22 +23,43 @@ table {
 	<div class="jumbotron" style="background-color: orange">
 		<h1>공간 모음</h1>
 	</div>
-		<form action="admin_spaces.do" method="post" >
-			<select name="value_check">
-				<option value="cdesc">최신 순</option>
-				<option value="casc">오래된 순</option>
-				<option value="pdesc">비싼 가격 순</option>
-				<option value="pasc">싼 가격 순</option>
-			</select>
-			<button type="submit">정렬 하기</button>
-		</form>
-	<br/>	
-	<br/>
-	<br/>
-	${value_check}
-	<br/>
-	<br/>
-
+	 
+	<form id="textsearch" action="admin_spaces_search.do">
+		<select name="search_option">
+			<option value="0">검색할 것을 선택해주세요</option>
+			<option value="1">사업자 등록번호</option>
+			<option value="2">공간 이름</option>
+			<option value="3">공간 내용</option>
+			<option value="4">오픈 시간</option>
+			<option value="5">클로즈 시간</option>
+			<option value="6">가격</option>
+			<option value="7">최대 인원</option>
+			<option value="8">최소 인원</option>
+			<option value="9">공간 전화 번호</option>
+			<option value="10">주소</option>
+			<option value="11">공간 카테고리</option>
+			<option value="12">장소 카테고리</option>
+			<option value="13">생성일</option>
+			<option value="14">공간 이름 + 내용</option>
+		</select>
+		&nbsp;<input type="text" name="search_content">
+		<input type="submit" value="검색">
+	</form>
+	
+	<br>
+	<br>
+	<form id="textsearch" action="admin_spaces_search2.do">
+		<select name="search_option">
+			<option value="0">정렬을 선택해주세요</option>
+			<option value="1">최신 순</option>
+			<option value="2">오래된 순</option>
+			<option value="3">비싼 가격 순</option>
+			<option value="4">싼 가격 순</option>
+		</select>
+		<input type="submit" value="전체 정렬하기">
+	</form>
+	<br>
+	<br>
 		<table border="1">
 		<tr>
 			<td>사업자 등록 번호</td>
@@ -55,13 +76,14 @@ table {
 			<td>공간 카테고리</td>
 			<td>장소 카테고리</td>
 			<td>생성일</td>
+			<td>삭제하기</td>
 		</tr>
 		<jl:forEach var="vo" items="${ls}">
 			<tr>
-				<td>${vo.crn}</td>
+				<td><a href="admin_space_crn_check.do?crn=${vo.crn}">${vo.crn}</a></td>
 				<td>${vo.space_title}</td>
 				<td>${vo.space_content}</td>
-				<td><img src="thumbnail/${vo.space_thumb_img}" style="width:128px;height:128px;"></img></td>
+				<td><a href="space_detail.do?space_no=${vo.space_no}"><img src="thumbnail/${vo.space_thumb_img}" style="width:128px;height:128px;"></img></a></td>
 				<td>${vo.open_time}</td>
 				<td>${vo.close_time}</td>
 				<td>${vo.price}</td>
@@ -72,6 +94,7 @@ table {
 				<td>${vo.s_category_no}</td>
 				<td>${vo.l_category_no}</td>
 				<td>${vo.the_time}</td>
+				<td><a href="admin_space_remove.do?space_no=${vo.space_no}">삭제</a></td>
 			</tr>
 		</jl:forEach>
 	</table>

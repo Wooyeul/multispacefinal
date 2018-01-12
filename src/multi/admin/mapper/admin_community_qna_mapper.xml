@@ -332,7 +332,25 @@
       {call p_admin_comm_qnaincRecom(?,?,?)}
    </update>
 
+	<!-- qna search -->
+	<select id="admin_qna_search" parameterType="multi.admin.vo.Admin_community_searchVO"
+		resultType="main.vo.Community_qnaVO">
 	
+		SELECT * FROM Community_qnaT WHERE 0 = 0
+		<if test="commsearch_option == 1">
+		AND com_qna_title like '%${commsearch_content}%'
+		</if>
+		<if test="commsearch_option == 2">
+		AND com_qna_content like '%${commsearch_content}%'
+		</if>
+		<if test="commsearch_option == 3">
+		AND com_qna_title like '%${commsearch_content}%'
+		OR com_qna_content like '%${commsearch_content}%'
+		</if>
+		<if test="commsearch_option == 4">
+		AND user_id like '%${commsearch_content}%'
+		</if>
+</select>
 </mapper>
 <!--
 

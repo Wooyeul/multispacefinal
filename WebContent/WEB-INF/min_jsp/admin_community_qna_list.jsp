@@ -41,5 +41,18 @@
 		<form action="admin_community_qna_add.do" method="post">
 			<input type="submit" value="글쓰기" class="btn btn-success" type="button"/>
 		</form>
+	<br>
+	<br>
+	<form id="textsearch" action="admin_community_qna_search.do">
+	<select name="commsearch_option">
+		<option value="0">선택해주세요</option>
+		<option value="1">제목</option>
+		<option value="2">내용</option>
+		<option value="3">제목 + 내용</option>
+		<option value="4">작성자</option>
+	</select>
+	검색 : <input type="text" name="commsearch_content">
+	<input type="submit" value="검색">
+</form>
 </body>
 </html>
