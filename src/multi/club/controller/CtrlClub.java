@@ -135,7 +135,6 @@ public class CtrlClub {
 		club_apply.setClub_no(pvo.getClub_no());
 		club_apply.setUser_id(user_id);
 		Club_applyVO club_applyVO = clubDAO.club_find_apply_detail(club_apply);
-		
 		mnv.addObject("vo", vo);
 		mnv.addObject("sVO", sVO);
 		mnv.addObject("flag", club_apply.getFlag());

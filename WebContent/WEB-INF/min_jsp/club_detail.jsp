@@ -13,6 +13,43 @@
 </head>
 <body>
 	<div class="container">
+		<div class="jbTitle">
+			<h1>Multi Space</h1>
+		</div>
+		
+		<!-- Fixed navbar -->
+		<nav class="navbar navbar-default ">
+			<div class="container">
+			 <div class="navbar-header">
+			   <a class="navbar-brand" href="main.html">multi space</a>
+			 </div>
+		
+		 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+			<ul class="nav navbar-nav ">
+		 	 <li><a href="space_home.do">공간</a></li>
+			 <li><a href="club_home.do">모임</a></li>
+			 <li><a href="community_list.do">커뮤니티</a></li>
+			 <li><a href="event_user_list.do">이벤트</a></li>	
+			 <li><a href="notice_list.do">공지사항</a></li>
+			 <li><a href="faq_list.do">FAQ</a></li>			
+			 <li><a href="admin_main.do">관리자</a></li>			
+			</ul>
+					
+		<ul id="login_nav" class="nav navbar-nav navbar-right">
+		<li><a href="#" id="user_name"></a></li>
+			<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+			<li><a href="home_logout.do">로그아웃</a></li>	
+		</ul>
+						
+			<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+			     <li><a href="home_login.do">로그인</a></li>		
+			</ul>
+		
+			   </div>
+			</div>
+		</nav>
+		<!-- nav -->
+
 		<h2>모임장/모임신청자 페이지</h2>
 		<label>${vo.club_name}</label><br/>
 		<label>인원</label><input type="text" value="${vo.user_count+1}" disabled="disabled"/><br/>
@@ -24,8 +61,9 @@
 		<h3>모임 장소 추천 페이지(이미지 슬라이딩으로 구현 예정)</h3>
 		<table class="table" style="border: 1px solid;">
 			<tr style="border: 1px solid;">
-				<jl:forEach items="${sVO}" var="vo">
-					<td style="border: 1px solid;"><a href="space_detail.do?space_no=${vo.space_no}">${vo.space_thumb_img}</a></td>
+				<jl:forEach items="${sVO}" var="svo">
+					<td style="border: 1px solid;"><a href="space_detail.do?space_no=${svo.space_no}">
+					<img src="thumbnail/${svo.space_thumb_img}.jpg" alt="공간 사진 없음" width="100" height="130"/></a></td>
 				</jl:forEach>
 			</tr>
 		</table>
@@ -40,7 +78,7 @@
 							<h4>모임 신청</h4>
 						</div>
 						<div class="modal-body" align="center"><h3 id="modalbody">
-							<textarea name="apply_content" id="apply_content" class='form-control' rows="7"></textarea>
+							<textarea name="apply_content" id="apply_content" class='form-control' rows="7" placeholder="자기소개를 입력하세요"></textarea>
 							<input name="user_id" type="hidden"value="${user_id}"/>
 							<input name="club_no" type="hidden"value="${vo.club_no}"/>
 						</h3></div>
@@ -134,7 +172,32 @@
 			$("#moveCommunity").on("click",function(){
 				$("#move_frm").submit();
 			});
-			
+
+			/* 네비바 관련 script */
+			var scOffset = $( '.navbar-Menu' ).offset();
+			$( window ).scroll( function() {
+				if ( $( document ).scrollTop() > scOffset.top ) {
+					$( '.navbar' ).addClass( 'navbar-fixed-top' );
+				}
+				else {
+					$( '.navbar' ).removeClass( 'navbar-fixed-top' );
+				}
+			});
+			var url = "chk_login.do";
+		 	ajaxGet(url,function(rt){
+			 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+			 if(rt =="10002"){ 
+				$("#login_nav").hide();
+				$("#non_login_nav").show();
+			}
+			 					
+			 // 로그인 시 : rt값 -> user_name
+			else if(rt!=""){ 
+			$("#login_nav").show();
+			$("#non_login_nav").hide(); 
+			$("#user_name").text(rt+"님이 로그인하셨습니다.");
+				}
+			 });
 		});
 	</script>	
 	
