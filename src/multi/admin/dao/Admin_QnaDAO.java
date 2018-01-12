@@ -1,6 +1,6 @@
 package multi.admin.dao;
 
-import java.util.List;
+import java.util.List; 
 
 import main.vo.Community_qnaVO;
 import main.vo.Community_qna_repleVO;

@@ -1,11 +1,10 @@
 package multi.admin.dao;
 
-import java.util.List;
+import java.util.List; 
 
 import main.vo.Community_boardVO;
 import main.vo.Community_board_repleVO;
 import multi.admin.vo.Admin_community_searchVO;
-import multi.community.board.vo.Community_board_searchVO;
 
 public interface Admin_FreeboardDAO {
 	

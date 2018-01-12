@@ -1,4 +1,4 @@
-package multi.admin.vo;
+package multi.admin.vo; 
 
 public class Admin_searchVO {
 	public Admin_searchVO(){}
