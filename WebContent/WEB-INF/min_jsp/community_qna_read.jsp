@@ -44,8 +44,24 @@
 			$("#reple_submit").submit();
 		});
 		
-		$("#btnDel").on("click", function() {
-			$("#reple_delete").submit();
+		
+		$(".showDelModal").on("click",function()
+		{
+			$("#del_com_qna_no").val( $(this).attr("del_com_qna_no") );
+			$("#del_com_qna_reple_no").val( $(this).attr("del_com_qna_reple_no") );
+			
+			$('#repDelModal').modal('show');			
+		});
+		
+		$(".btnDel").on("click", function() {
+			$("#repledeletecompleteModal").modal("show");
+		});
+		
+		$("#repledeletecompleteModal").on("hidden.bs.modal",function(){
+			var del_com_qna_no = $("#del_com_qna_no").val();
+			var del_com_qna_reple_no = $("#del_com_qna_reple_no").val();
+				location.href = "community_qna_reple_del.do?com_qna_no=" + 
+				del_com_qna_no + "&com_qna_reple_no=" + del_com_qna_reple_no;
 		});
 		
 		
@@ -105,68 +121,67 @@
 		
 		<table border="1" cellspacing="0" cellpadding="8">
 		<tr>
-			<th>유저</th>
-			<th width="200">댓글내용</th>
-			<th>시간</th>
-			<th>추천수</th>
-			<th>추천하기</th>
-			<th>댓글수정</th>
-			<th>댓글삭제</th>
+			<th>#</th>		
+			<th>ID</th>
+			<th width="400">CONTENT</th>
+			<th>TIME</th>
+			<th>RECOM</th>
+			<th>추천</th>
+			<th>수정</th>
+			<th>삭제</th>
 		</tr>
-		<jl:forEach var="rpl" items="${rp}">
+		<jl:forEach var="rpl" items="${rp}" varStatus="vs">
 			<tr>
+				<td>${rpl.com_qna_reple_no}</td>
 				<td>${rpl.user_id}</td>
 				<td>
-				<span id="rb_${rpl.com_qna_reple_no}"> ${rpl.com_qna_reple_content} </span>
-				
+					<span id="rb_${rpl.com_qna_reple_no}"> ${rpl.com_qna_reple_content} </span>
 				</td>
 				<td>${rpl.the_time}</td>
-				
 				<td>
 					<div id="recom_count${rpl.com_qna_reple_no}">${rpl.recom_count}</div>
 				</td>
-				
 				<td>
 					<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
 					<jl:if test="${user_id ne ''}">
 					<a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" class="btn btn-primary btn-sm recom"">추천</a>
 					</jl:if>
 				</td>
-				
 				<td> 
 					<jl:if test="${rpl.user_id eq user_id}"> 
 					<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple btn btn-primary btn-sm" href="#">수정</a>
 					</jl:if>
 				</td>
-				
 				<td>
-					<form action="community_qna_reple_del.do" method="post" id="reple_delete" ">
-					<input type="hidden" name="com_qna_no" value="${rpl.com_qna_no}"/>
-					<input type="hidden" name="com_qna_reple_no" value="${rpl.com_qna_reple_no}"/>
-					<jl:if test="${rpl.user_id eq user_id}"> 
-					<input type="button" class="btn btn-primary btn-sm" value="삭제" data-toggle="modal" data-target="#repDelModal"/>
-					</jl:if>
-					<div class="modal fade" id="repDelModal" role="dialog">
-					    <div class="modal-dialog">
-					      <!-- Modal content-->
-					      <div class="modal-content" >
-					        <div class="modal-header">
-					          <button type="button" class="close" data-dismiss="modal">&times;</button>
-					        </div>
-					        <div class="modal-body">
-					          <p>댓글을 삭제 하시겠습니까?</p>
-					        </div>
-					        <div class="modal-footer">
-					        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnClose" value="닫기">
-					        <input type="button"  class="btn btn-primary btn-sm" data-dismiss="modal" id="btnDel"  value="삭제" >
-					        </div>
-					      </div>
-					    </div>
-					</div>
-					</form>
+				<jl:if test="${rpl.user_id eq user_id}"> 
+					<input type="button" class="btn btn-primary btn-sm showDelModal" 
+						del_com_qna_no="${rpl.com_qna_no}"
+						del_com_qna_reple_no="${rpl.com_qna_reple_no}"
+						value="삭제"/>		
+				</jl:if>	
 				</td>
 			</tr>
 		</jl:forEach>
+
+		<div class="modal fade" id="repDelModal" role="dialog">
+			<input type="hidden" id="del_com_qna_no" value="0"/>
+			<input type="hidden" id="del_com_qna_reple_no" value="0"/>
+			
+			<div class="modal-dialog">
+	      		<div class="modal-content" >
+	        		<div class="modal-header">
+	          			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	        		</div>
+	        		<div class="modal-body">
+	          			<p>댓글을 삭제 하시겠습니까?</p>
+	        		</div>
+	        		<div class="modal-footer">
+	        			<input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnClose" value="닫기">
+	        			<input type="button" to-delete="reple_delete_${vs.count}" class="btn btn-primary btn-sm btnDel" data-dismiss="modal" value="삭제"/>
+	        		</div>
+	      		</div>
+	    	</div>
+		</div>
 	</table>
 	
 	

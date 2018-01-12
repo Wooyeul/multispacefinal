@@ -104,9 +104,13 @@ public class CtrlQna {
 	}
 	
 	@RequestMapping("/community_qna_reple_del.do")
-	public String community_qna_reple_del(@ModelAttribute Community_qna_repleVO pvo) throws Exception{
-			community_qna_repleDAO.delReple(pvo);
-			return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
+	public String community_qna_reple_del(@ModelAttribute Community_qna_repleVO pvo) throws Exception
+	{
+		System.out.println( pvo.getCom_qna_reple_no() );
+		System.out.println( pvo.getCom_qna_no() );
+		
+		community_qna_repleDAO.delReple(pvo);
+		return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 	}
 	
 	@RequestMapping("/community_qna_reple_mod.do")
