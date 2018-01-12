@@ -19,12 +19,10 @@
 	  
 	  ajaxGet(url,function(rt){
 		  if(rt=="error"){
-			  $("#modal-title").text("회원이 아니거나 유저 정보가 맞지 않습니다. 다시 확인해주세요").append();
+			  $("#modal-title").text("입력된 정보가 없습니다. 다시 입력해주세요").append();
 			  $("#id_modal").modal('show');
 			  $("#login-btn").hide();
 		  }else{
-			//$("#modal-title").attr("value",rt);
-			//var k =  $("#modal-title").val();
 			$("#modal-title").text("고객님의 아이디는 " + rt).append();
 		    $("#id_modal").modal('show');
 		    $("#login-btn").show();
@@ -33,7 +31,7 @@
 	 });
 
 	$("#login-btn").on("click",function(){
-		window.location.href = "home_moveLoginPage.do";
+		location.href = "home_moveLoginPage.do";
 	});
  });
  </script>
@@ -100,8 +98,8 @@
 			<div class="modal-header">
 				<p id="modal-title"></p>
 				<div class="pull-right">
-					<button id="login-btn" class="login-btn" >로그인하기</button>
-					<button id="close-btn" class="close-btn" data-dismiss="modal">닫기</button>
+					<button id="login-btn" class="btn btn-defalut" >로그인하기</button>
+					<button id="close-btn" class="btn btn-defalut" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>

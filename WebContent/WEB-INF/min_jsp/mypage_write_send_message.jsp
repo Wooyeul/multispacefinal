@@ -14,8 +14,6 @@
 	<script>
 	
 	$(document).ready(function(){
-		
-		
 		var club_no_1 = $("#select_club").val();
 		if(club_no_1=="1"){
 			$('#select_club_member').empty();	

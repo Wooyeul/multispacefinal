@@ -144,11 +144,17 @@ public class CtrlLogin {
 		System.out.println(uvo.getSsn1());
 
 		UserVO userInfo = UserDAO.find_userId(uvo);
+		System.out.println(userInfo);
 		
 		try{
-			return userInfo.getUser_id();
+			if(userInfo!=null){
+				return userInfo.getPasswd();				
+			}
+			else{
+				return "error";
+			}
 		} catch (Exception e) {
-			return "error";
+			return null;
 		}
 	}
 	

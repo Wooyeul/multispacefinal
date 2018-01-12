@@ -50,7 +50,7 @@
 		           success   : function(rt) {
 		        	   
 		        	if(rt=="error"){
-			          $("#ErrorpasswdModal_body").text("입력된 정보가 없습니다. 다시 입력해 주세요").append();
+			          $("#ErrorpasswdModal_body").text("입력된 정보가 없습니다. 다시 입력해주세요").append();
 				      $("#ErrorpasswdModal").modal('show');
 		        	}else{
 			          $("#passwdModal_body").text("비밀번호 : " + rt).append();
