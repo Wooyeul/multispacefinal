@@ -1,6 +1,7 @@
 package multi.space.controller;
 
 import java.util.List;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,6 @@ import main.vo.SpaceVO;
 import main.vo.Space_qnaVO;
 import main.vo.Space_qna_repleVO;
 import main.vo.UserVO;
-import multi.space.Paging;
 import multi.space.dao.BookingDAO;
 import multi.space.dao.BookmarkDAO;
 import multi.space.dao.HostDAO;
@@ -71,8 +71,7 @@ public class CtrlSpace {
 	@Autowired @Qualifier("space_bookmarkDAO")
 	public BookmarkDAO bookmarkDAO = null;
 	
-	@Autowired @Qualifier("paging")
-	public Paging paging = null;
+
 	
 	//공간 첫화면
 	@RequestMapping("/space_home.do")
@@ -176,15 +175,50 @@ public class CtrlSpace {
 		return mnv;
 	}
 	
+	//공간 삭제
+	@RequestMapping("/space_del.do")
+	public String space_del(@ModelAttribute SpaceVO spaceVO) throws Exception{
+		spaceDAO.del_space_by_space_no(spaceVO);
+		return "redirect:/space_home.do?space_code=20006";
+	}
+	
+	//공간 수정
+	@RequestMapping("/space_mod.do")
+	public ModelAndView space_mod(@ModelAttribute SpaceVO spaceVO) throws Exception{
+		ModelAndView mnv = new ModelAndView("space_mod");
+		List<Map<Integer,String>> local_list = spaceDAO.find_l_category();
+		List<Map<Integer,String>> category_list = spaceDAO.find_s_category();
+		
+		mnv.addObject("local_list", local_list);
+		mnv.addObject("category_list", category_list);
+		mnv.addObject("space", spaceVO);
+		return mnv;
+	}
+	
+	//공간 수정
+		@RequestMapping("/space_mod2.do")
+		public ModelAndView space_mod2(@ModelAttribute SpaceVO spaceVO) throws Exception{
+
+			spaceDAO.mod_space(spaceVO);
+			ModelAndView mnv = new ModelAndView("redirect:/space_detail.do?space_no="+spaceVO.getSpace_no());
+			return mnv;
+		}
+	
 	//공간 상세
 	@RequestMapping("/space_detail.do")
 	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
-			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code) throws Exception{
+			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code
+			,HttpServletRequest request) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
+		
+		
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
+
 		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(reviewVO);
+
 		String s_category = spaceDAO.find_s_category_by_space_no(spaceVO);
+
 		List<HostVO> host = hostDAO.find_host_by_user_id(user_id);
 		
 		bookmark.setUser_id(user_id);
@@ -248,6 +282,7 @@ public class CtrlSpace {
 	//space qna등록
 	@RequestMapping("/add_space_qna.do")
 	public String add_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id) throws Exception{
+		
 		if(user_id==null || user_id.length()<=1 ){
 			return "redirect:/home_moveLoginPage.do";
 		}
@@ -367,7 +402,6 @@ public class CtrlSpace {
 		if(user_id.equals(review.getUser_id())) {
 			reviewDAO.del_review(reviewVO);
 			return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&space_code=20002";
-			
 		}
 		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&space_code=20001";
 		

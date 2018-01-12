@@ -57,12 +57,10 @@
  				$("#status-modal-body").html("질문 등록 성공");
  				$("#status-modal").modal('show');
  			}
- 			
  			$("#status-modal").on("hidden.bs.modal",function(){
- 				location.href="space_detail.do?space_no="+${space.space_no};
+ 				location.replace="space_detail.do?space_no="+${space.space_no};
  			});
  			
- 			$("#status-modal")
  		
  			$("#btn_bookmark").on("click",function(){
  				if($(this).html()=="북마크등록"){
@@ -78,6 +76,7 @@
  				}
  				
  			});
+
  			$(".collapsed").on("click",function(){
  				
  				//후기가 있으면 작성 못하게 하는거 & 후기 없으면 안불러 오게 해야함
@@ -105,6 +104,9 @@
  				function(){alert(2);},
  				function(){alert(3);}
  				);
+ 			});
+ 			$("#a_mod").on("click",function(){
+ 				$("#form_space_mod").submit();
  			});
  		});
  	</script>
@@ -154,6 +156,28 @@
 			<table>
 				<tr>
 					<th><h1>공간 소개</h1></th>
+					<jl:forEach var="vo" items="${host }">
+						<jl:if test="${vo.crn == space.crn }">
+							<th><a id="a_mod">공간 수정</a>
+								<form method="POST" id="form_space_mod" action="space_mod.do">
+									<input type="hidden" value="${space.space_no }" name="space_no">
+									<input type="hidden" value="${space.space_title }" name="space_title">
+									<input type="hidden" value="${space.space_content }" name="space_content">
+									<input type="hidden" value="${space.space_thumb_img }" name="space_thumb_img">
+									<input type="hidden" value="${space.open_time }" name="open_time">
+									<input type="hidden" value="${space.close_time }" name="close_time">
+									<input type="hidden" value="${space.price }" name="price">
+									<input type="hidden" value="${space.min_people }" name="min_people">
+									<input type="hidden" value="${space.max_people }" name="max_people">
+									<input type="hidden" value="${space.space_call }" name="space_call">
+									<input type="hidden" value="${space.s_category_no }" name="s_category_no">
+									<input type="hidden" value="${space.l_category_no }" name="l_category_no">
+								
+								</form>
+							</th>
+							<th><a href="space_del.do?space_no=${space.space_no }">공간 삭제</a></th>
+						</jl:if>
+					</jl:forEach>
 				</tr>
 				<tr>
 					<td>공간 이름</td>

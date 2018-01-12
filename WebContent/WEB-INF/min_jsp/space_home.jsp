@@ -21,7 +21,14 @@
  		if("${space_code }"=="20007"){
 			$("#status-modal-body").html("판매자만 공간 등록이 가능합니다");
 			$("#status-modal").modal('show');
+		}else if("${space_code}"=="20006"){
+			$("#status-modal-body").html("게시글이 삭제되었습니다.");
+			$("#status-modal").modal('show');
 		}
+ 		
+ 		$("#status-modal").on("hidden.bs.modal",function(){
+			location.href="space_home.do?";
+		});
  		
  		var scOffset = $( '.navbar-Menu' ).offset();
  		$( window ).scroll( function() {

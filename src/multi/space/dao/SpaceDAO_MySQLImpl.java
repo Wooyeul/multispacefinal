@@ -40,25 +40,29 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 	public SpaceVO find_space_by_pk(SpaceVO vo) throws Exception {
 		return sqlSession.selectOne("space.find_space_by_pk",vo);
 	}
-
+	
+	//유저가 가입한 모임 가져오기
 	@Override
 	public List<ClubVO> find_user_club(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space.find_user_club",user_id);
 	}
-
+	
+	//공간 넘버를 통해 호스트의 정보 가져오기
 	@Override
 	public HostVO find_host_by_space_no(SpaceVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("space.find_host_by_space_no",vo);
 	}
-
+	
+	//지역 카테고리 가져오기
 	@Override
 	public List<Map<Integer, String>> find_l_category() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space.find_l_category");
 	}
-
+	
+	//space카테고리 가져오기
 	@Override
 	public List<Map<Integer, String>> find_s_category() throws Exception {
 		// TODO Auto-generated method stub
@@ -71,10 +75,25 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 		return sqlSession.selectOne("space.find_s_category_by_space_no",vo);
 	}
 
+	//공간 검색
 	@Override
 	public List<SpaceVO> search_space(Space_searchVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space.search_space",vo);
+	}
+
+	//공간 삭제
+	@Override
+	public Integer del_space_by_space_no(SpaceVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("space.del_space_by_space_no",vo);
+	}
+	
+	//공간 수정
+	@Override
+	public Integer mod_space(SpaceVO space) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update("space.mod_space",space);
 	}
 
 

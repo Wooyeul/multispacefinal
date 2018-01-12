@@ -20,6 +20,9 @@ public interface SpaceDAO {
 	//공간 추가
 	public Integer add_space(SpaceVO vo) throws Exception;
 	
+	//공간 삭제
+	public Integer del_space_by_space_no(SpaceVO vo) throws Exception;
+	
 	//공간 하나 불러오기
 	public SpaceVO find_space_by_pk(SpaceVO vo) throws Exception;
 	
@@ -41,5 +44,7 @@ public interface SpaceDAO {
 	//공간 search
 	public List<SpaceVO> search_space(Space_searchVO vo) throws Exception;
 	
+	//공간 수정
+	public Integer mod_space(SpaceVO space) throws Exception;	
 }
 

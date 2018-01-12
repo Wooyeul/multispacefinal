@@ -90,7 +90,7 @@
  	 		$("#date2").datepicker({
  	 			dateFormat:"yy-mm-dd"
 			});
- 	 		
+ 	 			
  	 		$("#date2").on("change",function(){
  	 			var currentDate = $( "#date2" ).datepicker("getDate","dateFormat" );
  	 			$("#booking_date").datepicker("setDate",currentDate);

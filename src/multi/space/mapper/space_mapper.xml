@@ -81,6 +81,20 @@
 			ORDER BY space_no ASC LIMIT #{start_no},10
 		</if>
 	</select>
+	
+	<delete id="del_space_by_space_no" parameterType="main.vo.SpaceVO">
+		DELETE FROM SpaceT WHERE space_no=#{space_no}
+	</delete>
+	
+	<update id="mod_space" parameterType="main.vo.SpaceVO">
+		UPDATE SpaceT SET space_title='${space_title}',space_content='${space_content}',open_time='${open_time}',
+		close_time='${close_time}',price=${price},min_people=${min_people},max_people=${max_people},l_category_no=${l_category_no},
+		s_category_no=${s_category_no} WHERE space_no=${space_no}
+	</update>
+	
+	<!--
+	
+	-->
 </mapper>
 
 

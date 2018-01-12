@@ -62,8 +62,6 @@
 	<!--reviewDAO -->
 	<bean id="space_reviewDAO" class="multi.space.dao.ReviewDAO_MySQLImpl" />
 
-	<!--paging -->
-	<bean id="paging" class="multi.space.Paging"/>
 	
 	<bean class="multi.home.userjoin.controller.CtrlUserJoin" />
 
