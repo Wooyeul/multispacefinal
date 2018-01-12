@@ -24,10 +24,24 @@
 
 	});
 
-	$("#btnQnASub").on("click", function() {
-		$("#qna_submit").submit();
-
+	$("#ee").on("click",function(){
+		$("#QnaModal").modal("show");
 	});
+	
+/* 	$("#status-modal").on("hidden.bs.modal",function(){
+        location.href="space_detail.do?space_no="+${space.space_no};
+     }); */
+	
+	$("#btnQnASub").on("click", function() {
+		$("#completeModal").modal("show");
+		
+	});
+	
+	$("#completeModal").on("hidden.bs.modal",function(){
+		location.href="community_qna_list.do";
+		$("#qna_submit").submit();
+	});
+	
 	});
 	</script>
 </head>
@@ -40,7 +54,7 @@
 		<input type="hidden" name="user_id" value="${user_id}"/>
 		제목 : <input type="text" name="com_qna_title"/><br/>
 		내용 : <textarea name="com_qna_content" rows="7" cols="63"></textarea>
-		<br/><input type="button" value="QnA작성" class="btn btn-info btn-sm" data-toggle="modal" data-target="#QnaModal"/>
+		<br/><input type="button" value="QnA작성" class="btn btn-info btn-sm" data-toggle="modal"  id="ee"/>
 		<div class="modal fade" id="QnaModal" role="dialog">
 		    <div class="modal-dialog">
 		      <!-- Modal content-->
@@ -63,5 +77,22 @@
 	<form action="community_qna_list.do" method="POST">
 		<input type="submit" value="취소" class="btn btn-info btn-sm"/>
 	</form>
+	
+	<div class="modal fade" id="completeModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content" >
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          <p>QnA 작성 완료!</p>
+		        </div>
+		         <div class="modal-footer">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        </div>
+		      </div>
+		    </div>
+		</div>
 </body>
 </html>

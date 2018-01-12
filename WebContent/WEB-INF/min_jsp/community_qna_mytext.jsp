@@ -39,5 +39,8 @@ taglib
 </jl:forEach>
 
 </table>
+	<form action="community_qna_list.do" method="post">
+		<input type="submit" value="QnA¸ñ·Ï" class="btn btn-info btn-sm"/>
+	</form>
 </body>
 </html>

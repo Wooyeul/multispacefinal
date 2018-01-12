@@ -48,9 +48,16 @@
 			$("#reple_delete").submit();
 		});
 		
+		
 		$("#btnDelQna").on("click", function() {
+			$("#qnadeletecompleteModal").modal("show");
+			
+		});
+		$("#qnadeletecompleteModal").on("hidden.bs.modal",function(){
+			location.href="community_qna_list.do"
 			$("#Qna_delete").submit();
 		});
+		
 		
 		$(".modReple").on("click", function() {
 			$("#com_qna_reple_no").val($(this).attr("xyz"));
@@ -133,7 +140,7 @@
 				</td>
 				
 				<td>
-					<form action="community_qna_reple_del.do" method="post" id="reple_delete">
+					<form action="community_qna_reple_del.do" method="post" id="reple_delete" ">
 					<input type="hidden" name="com_qna_no" value="${rpl.com_qna_no}"/>
 					<input type="hidden" name="com_qna_reple_no" value="${rpl.com_qna_reple_no}"/>
 					<jl:if test="${rpl.user_id eq user_id}"> 
@@ -151,7 +158,7 @@
 					        </div>
 					        <div class="modal-footer">
 					        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnClose" value="닫기">
-					        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnDel" value="삭제">
+					        <input type="button"  class="btn btn-primary btn-sm" data-dismiss="modal" id="btnDel"  value="삭제" >
 					        </div>
 					      </div>
 					    </div>
@@ -251,5 +258,38 @@
 		</form>
 	</div>
 	
+	<div class="modal fade" id="repledeletecompleteModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content" >
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          <p>댓글 삭제 완료!</p>
+		        </div>
+		         <div class="modal-footer">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        </div>
+		      </div>
+	    </div>
+	</div>
+	
+		<div class="modal fade" id="qnadeletecompleteModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content" >
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          <p>QnA 삭제 완료!</p>
+		        </div>
+		         <div class="modal-footer">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        </div>
+		      </div>
+	    </div>
+	</div>
 </body>
 </html>

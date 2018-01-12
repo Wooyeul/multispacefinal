@@ -48,6 +48,10 @@
 		<h1>QnA</h1>
 	</div>
 	
+	<div class="commask">
+   		<input class="btn btn-primary btn-lg" type="button" value="글쓰기" id="write" xyz="${user_id}" />
+   	</div>
+   	
 	<jl:if test="${user_id ne ''}">
      <a href="community_qna_mytext.do"> <input type="button" value="My QnA" class="btn btn-primary btn-sm"/></a>
 	</jl:if>
@@ -84,9 +88,7 @@
 		</jl:forEach>
 	</table>
 	
-	<div class="commask">
-   		<input class="btn btn-primary btn-lg" type="button" value="글쓰기" id="write" xyz="${user_id}" />
-   	</div>
+	
 		
 		<!-- 모달폼 -->
    <div class="modal fade" id="addwrite" tabindex="-1" role="dialog"

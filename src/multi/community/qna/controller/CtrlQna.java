@@ -74,6 +74,7 @@ public class CtrlQna {
 			return "redirect:/community_qna_list.do";
 	}
 	
+	
 	@RequestMapping("/community_qna_mod.do")
 	public ModelAndView community_qna_mod(@ModelAttribute Community_qnaVO pvo) throws Exception{
 			ModelAndView mnv = new ModelAndView("community_qna_mod");
