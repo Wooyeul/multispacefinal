@@ -70,17 +70,17 @@ public class CtrlLogin {
 
 
 	@RequestMapping("/home_moveLoginPage.do")
-	public ModelAndView moveLoginPage(@CookieValue("code") String code) throws Exception {
+	public ModelAndView moveLoginPage(@CookieValue("code") String code,HttpServletResponse response) throws Exception {
 		
-		System.out.println("@@@@");
-		System.out.print("code : "+ code);
 
-		if (code == null) {
+		if (code == null||code == "") {
 			ModelAndView mnv = new ModelAndView("home_login");
 			return mnv;
 		} else if (code.equals("10001")) {
 			ModelAndView mnv = new ModelAndView("home_login");
-			mnv.addObject("code", "ID 가 없거나 암호가 틀립니다.");
+			mnv.addObject("chkcode","10001");
+			Cookie ck = new Cookie("code","");
+			response.addCookie(ck);
 			return mnv;
 		} else {
 			return null;

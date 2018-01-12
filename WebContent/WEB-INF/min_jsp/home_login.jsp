@@ -36,6 +36,11 @@
 	<script>
 	$(document).ready(function(){
 		
+		var chkcode = ${chkcode};
+		if(chkcode=="10001"){
+		$("#loginModal").modal('show');   
+		}
+		
 	});
 	
 	
@@ -62,7 +67,20 @@
 			<a id="sub-btn" class="btn btn-lg btn-success" href="home_moveFindIdPage.do" role="button">ID 찾기</a>
 			<a id="sub-btn" class="btn btn-lg btn-success" href="home_moveFindPasswdPage.do" role="button">Passward 찾기</a>
 		</div>
-	</div>
+	</div>s
+	
+	
+						
+	<div id="loginModal" class="modal " role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="modal_text" class="modal-body">ID 가 없거나 암호가 틀립니다.</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div> 
 
 </body>
 </html>
