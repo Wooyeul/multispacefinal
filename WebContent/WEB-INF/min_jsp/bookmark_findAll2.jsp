@@ -61,7 +61,7 @@
 				${ab.space_no}
 				<input type="checkbox" class="space_no" name="check" value="${ab.space_no}" abc="${ab.space_no}"/><br/>
 				<img src="img/${ab.space_thumb_img}" width="100px"/><br/>
-				<a href="space_detail.do?space_no=${ab.space_no}">${ab.space_title}</a><br/>
+				<a href="space_detail.do?space_no=${ab.space_no}" target="_parent">${ab.space_title}</a><br/>
 				</td>
 			</jl:forEach>
 		</table>

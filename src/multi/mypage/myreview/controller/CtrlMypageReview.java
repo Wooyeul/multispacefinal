@@ -20,10 +20,10 @@ public class CtrlMypageReview {
 	private MPReviewDAO MPreviewDAO = null;
 	
 	
-	@RequestMapping("/PMreview_findAll.do")
+	@RequestMapping("/mypage_review_findAll.do")
 	public ModelAndView PMreview_findAll(@CookieValue("user_id") String user_id) throws Exception{
 		
-		ModelAndView mnv = new ModelAndView("PMreview_findAll2");
+		ModelAndView mnv = new ModelAndView("mypage_review_findAll2");
 		List<ReviewVO> rl = MPreviewDAO.review_findAll(user_id);
 		mnv.addObject("rl", rl);
 		

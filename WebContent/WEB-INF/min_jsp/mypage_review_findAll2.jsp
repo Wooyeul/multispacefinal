@@ -1,37 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".space_no").on("click",function(){
 			var temp = $(this).attr("abc");
-			
-			document.frm.method="POST";
-			document.frm.action="space_detail.do?space_no="+temp;
-			document.frm.submit();
+			window.parent.location.href="space_detail.do?space_no="+temp;
 		});
 	});
 </script>
-<title>Insert title here</title>
 </head>
 <body>
 	<form name="frm">
 	<h3>Review</h3>
 	<table border="1">
 		<tr>
-			<th>¸®ºä¹øÈ£</th>
-			<th>¹æ¹øÈ£</th>
-			<th>¾ÆÀÌµğ</th>
-			<th>Á¦¸ñ</th>
-			<th>³»¿ë</th>
-			<th>½Ã°£</th>
-			<th>º°Á¡</th>
-			<th>ÀÌ¹ÌÁö</th>
+			<th>ë¦¬ë·°ë²ˆí˜¸</th>
+			<th>ë°©ë²ˆí˜¸</th>
+			<th>ì•„ì´ë””</th>
+			<th>ì œëª©</th>
+			<th>ë‚´ìš©</th>
+			<th>ì‹œê°„</th>
+			<th>ë³„ì </th>
+			<th>ì´ë¯¸ì§€</th>
 		</tr>
 		<jl:forEach items="${rl}" var="rl">
 			<tr>
