@@ -16,15 +16,34 @@
 <script>
 
  	 	function startTimeChange() {
- 	 		var x = document.getElementById("start_time_range");
- 	 		var y = document.getElementById("start_time");
- 	 		y.value=x.value;
+ 	 		
+ 	 		//var start_time_range = document.getElementById("start_time_range");
+ 	 		var start_time_range = document.getElementById("start_time_range");
+ 	 		var start_time = document.getElementById("start_time");
+ 	 		var end_time_range = document.getElementById("end_time_range");
+ 	 		var end_time = document.getElementById("end_time");
+ 	 		if(parseInt(start_time_range.value)>parseInt(end_time_range.value)){
+ 	 			$("#time_warning").html("예약 시작 시간은 종료 시간보다 빠를 수 없습니다.");
+				$("#status").modal("show");
+ 	 			start_time_range.value=start_time.value;
+ 	 		}else {
+ 	 			start_time.value=start_time_range.value;
+ 	 		}
+ 	 		
  	 	}
  	 	
  	 	function endTimeChange() {
- 	 		var a = document.getElementById("end_time_range");
- 	 		var b = document.getElementById("end_time");
- 	 		b.value=a.value;
+ 	 		var start_time_range = document.getElementById("start_time_range");
+ 	 		var start_time = document.getElementById("start_time");
+ 	 		var end_time_range = document.getElementById("end_time_range");
+ 	 		var end_time = document.getElementById("end_time");
+ 	 		if(parseInt(start_time_range.value)>parseInt(end_time_range.value)){
+ 	 			$("#time_warning").html("예약 종료 시간은 시작 시간보다 빠를 수 없습니다.");
+				$("#status").modal("show");
+ 	 			end_time_range.value=end_time.value;
+ 	 		}else {
+ 	 			end_time.value=end_time_range.value;
+ 	 		}
  	 	}
 
  	 	
@@ -194,15 +213,15 @@
 			
 			<div class="form-group">
 					<label for="start_time">대여 시작 시간</label>
-					<input id="start_time_range" type="range" min="${space.open_time }" max="${space.close_time }" onchange="startTimeChange();"/>
-					<input id="start_time" type="number"  value="0" disabled="disabled" name="start_time"/>시
+					<input id="start_time_range" type="range" min="${space.open_time }" max="${space.close_time }" onchange="startTimeChange();" value="${space.open_time }"/>
+					<input id="start_time" type="number"  value="${space.open_time }" disabled="disabled" name="start_time"/>시
 				</div>
 				
 				
 				<div class="form-group">
-					<label for="end_time">대여 종료 시간</label>
-					<input id="end_time_range" type="range" min="${space.open_time }" max="${space.close_time }" onchange="endTimeChange();"/>
-					<input id="end_time" type="number" value="0" disabled="disabled" name="end_time"/>시
+					<label for="end_time">대여 종료 시간dd</label>
+					<input id="end_time_range" type="range" min="${space.open_time }" max="${space.close_time }" onchange="endTimeChange();" value="${space.close_time }"/>
+					<input id="end_time" type="number" value="${space.close_time }" disabled="disabled" name="end_time"/>시
 				</div>
 				
 				
@@ -286,5 +305,25 @@
 				</div>
 		</form>
 	</div>
+	<!-- 모달 -->
+	<div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+							<span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">주의</h4>
+					</div>
+					<div class="modal-body">
+						<p id="time_warning"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>

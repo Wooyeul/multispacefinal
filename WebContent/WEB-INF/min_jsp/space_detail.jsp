@@ -58,7 +58,7 @@
  				$("#status-modal").modal('show');
  			}
  			$("#status-modal").on("hidden.bs.modal",function(){
- 				location.replace="space_detail.do?space_no="+${space.space_no};
+ 				location.replace("space_detail.do?space_no=${space.space_no}");
  			});
  			
  		

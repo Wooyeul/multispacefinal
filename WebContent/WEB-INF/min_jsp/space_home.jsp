@@ -27,7 +27,7 @@
 		}
  		
  		$("#status-modal").on("hidden.bs.modal",function(){
-			location.href="space_home.do?";
+			location.replace("space_home.do");
 		});
  		
  		var scOffset = $( '.navbar-Menu' ).offset();

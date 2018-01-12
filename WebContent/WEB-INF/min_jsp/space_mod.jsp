@@ -147,13 +147,27 @@
 			<div class="form-group">
 				<label for="l_category_no">지역</label>
 				<jl:forEach var="local" items="${local_list }">
-					<label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
+					<jl:choose>
+						<jl:when test="${local.l_category_no eq space.l_category_no }">
+							<label class="radio-inline"><input type="radio" name="l_category_no" checked value="${local.l_category_no }">${local.l_category_name }</label>
+						</jl:when>
+						<jl:otherwise>
+							<label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
+						</jl:otherwise>
+					</jl:choose>
 				</jl:forEach>
 			</div>
 			<div class="form-group">
 				<label for="s_category_no">카테고리</label>
 				<jl:forEach var="category" items="${category_list }">
-					<label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
+					<jl:choose>
+						<jl:when test="${category.s_category_no eq space.s_category_no }">
+							<label class="radio-inline"><input type="radio" name="s_category_no" checked value="${category.s_category_no }">${category.s_category_name }</label>
+						</jl:when>
+						<jl:otherwise>
+							<label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
+						</jl:otherwise>
+					</jl:choose>
 				</jl:forEach>
 			</div>
 			
