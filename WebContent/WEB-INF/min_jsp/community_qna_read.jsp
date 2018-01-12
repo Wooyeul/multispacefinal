@@ -63,20 +63,18 @@
 		$("#recom").on("click", function() {
 			alert($(this).attr("user_id"));
 			alert($(this).attr("com_qna_reple_no"));
-			
+		
 			var user_id=$(this).attr("user_id");
 			var com_qna_reple_no=$(this).attr("com_qna_reple_no");
-
-					var dc = "?dc=" + new Date().getTime();
-					ajaxGet("community_qna_reple_recom.do" + dc
-							+ "&user_id="+user_id+"&com_qna_reple_no="+com_qna_reple_no, function(rt) {
-						if(rt>=0) {
-							e("recom_count").innerHTML = rt;
-						}
-					});
-
+			var dc = "?dc=" + new Date().getTime();
+			ajaxGet("community_qna_reple_recom.do" + dc
+						+"&com_qna_reple_no="+com_qna_reple_no+"&user_id="+user_id, function(rt) {
+				if(rt!= -1) {
+					e("recom_count").innerHTML = rt;
+				}
+			});
 		});
-
+	
 	});
 
 </script>

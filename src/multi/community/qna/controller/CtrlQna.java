@@ -115,8 +115,8 @@ public class CtrlQna {
 	public String community_board_recom(@ModelAttribute Community_qna_repleVO pvo)throws Exception {
 		System.out.println(pvo.getUser_id());
 		System.out.println(pvo.getCom_qna_reple_no());
-		community_qna_repleDAO.incRecom(pvo);
-	
+		int rcount = community_qna_repleDAO.incRecom(pvo);
+		System.out.println(rcount);
 		//return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 		 return pvo.getRecom_count().toString();
     }

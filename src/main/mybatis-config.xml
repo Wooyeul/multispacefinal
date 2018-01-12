@@ -34,7 +34,7 @@
 
 		<!-- 조우열 -->
 		<mapper resource="multi/notice/mapper/notice_mapper.xml" />
-		<mapper resource="multi/community/qna/mapper/community_mapper.xml" />
+		<mapper resource="multi/community/qna/mapper/community_qna_mapper.xml" />
 		<!-- 조우열 -->
 
 		<!-- 허빛찬샘 -->
