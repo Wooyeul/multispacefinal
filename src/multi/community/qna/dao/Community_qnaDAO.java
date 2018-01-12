@@ -7,7 +7,7 @@ import multi.community.qna.vo.Community_qnaVO;
 
 
 public interface Community_qnaDAO {
-	public List<Community_qnaVO> findAll() throws Exception;
+	public List<Community_qnaVO> findAll(String user_id) throws Exception;
 	public Community_qnaVO findByPK(Community_qnaVO pvo) throws Exception;
 	public int add(Community_qnaVO pvo) throws Exception;
 	public int mod(Community_qnaVO pvo) throws Exception;

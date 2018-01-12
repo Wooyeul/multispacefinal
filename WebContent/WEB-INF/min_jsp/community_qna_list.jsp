@@ -12,18 +12,18 @@
 	.jumbotron{
 		text-align:center;
 	}
-	.addqna{
+	.commask{
 		text-align:center;
 	}
 	th, td {
 		text-align: center;
 	}
 	</style>
+	<script src="common.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script type="text/javascript">
-	   $(document).ready(function(){
+	<script>
+	  $(document).ready(function(){
 	      $("#write").on("click",function(){
 	         var user_id = $(this).attr("xyz");
 	         if(user_id != ""){
@@ -84,9 +84,9 @@
 		</jl:forEach>
 	</table>
 	
-		
-			<input type="submit" value="글쓰기" class="btn btn-primary" type="button" id="write"/>
-		
+	<div class="commask">
+   		<input class="btn btn-primary btn-lg" type="button" value="글쓰기" id="write" xyz="${user_id}" />
+   	</div>
 		
 		<!-- 모달폼 -->
    <div class="modal fade" id="addwrite" tabindex="-1" role="dialog"

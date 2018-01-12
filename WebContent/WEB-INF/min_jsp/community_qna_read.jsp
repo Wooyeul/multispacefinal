@@ -25,8 +25,6 @@
 
 	$(document).ready(function() {
 
-		
-		
 		$("#btnClose").on("click", function() {
 			$("#repleModal").modal("hide");
 			$("#rsModal").modal("hide");
@@ -60,18 +58,15 @@
 			$("#repleModal").modal("show");
 		});
 		
-		$("#recom").on("click", function() {
-			alert($(this).attr("user_id"));
-			alert($(this).attr("com_qna_reple_no"));
-		
+		$(".recom").on("click", function() {
+			
 			var user_id=$(this).attr("user_id");
 			var com_qna_reple_no=$(this).attr("com_qna_reple_no");
 			var dc = "?dc=" + new Date().getTime();
 			ajaxGet("community_qna_reple_recom.do" + dc
 						+"&com_qna_reple_no="+com_qna_reple_no+"&user_id="+user_id, function(rt) {
-				if(rt!= -1) {
-					e("recom_count").innerHTML = rt;
-				}
+
+					$("#recom_count"+com_qna_reple_no).html(rt);
 			});
 		});
 	
@@ -121,23 +116,29 @@
 				<td>${rpl.the_time}</td>
 				
 				<td>
-					<div id="recom_count">${rpl.recom_count}</div>
+					<div id="recom_count${rpl.com_qna_reple_no}">${rpl.recom_count}</div>
 				</td>
 				
 				<td>
 					<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
-					<a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm"">추천</a>
+					<jl:if test="${user_id ne ''}">
+					<a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" class="btn btn-primary btn-sm recom"">추천</a>
+					</jl:if>
 				</td>
 				
-				<td>
+				<td> 
+					<jl:if test="${rpl.user_id eq user_id}"> 
 					<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple btn btn-primary btn-sm" href="#">수정</a>
+					</jl:if>
 				</td>
 				
 				<td>
 					<form action="community_qna_reple_del.do" method="post" id="reple_delete">
 					<input type="hidden" name="com_qna_no" value="${rpl.com_qna_no}"/>
 					<input type="hidden" name="com_qna_reple_no" value="${rpl.com_qna_reple_no}"/>
+					<jl:if test="${rpl.user_id eq user_id}"> 
 					<input type="button" class="btn btn-primary btn-sm" value="삭제" data-toggle="modal" data-target="#repDelModal"/>
+					</jl:if>
 					<div class="modal fade" id="repDelModal" role="dialog">
 					    <div class="modal-dialog">
 					      <!-- Modal content-->
@@ -184,10 +185,12 @@
 	</form>
 	
 		<form action="community_qna_reple_add.do" method="post" id="reple_submit">
+		<jl:if test="${user_id ne ''}">
 			<input type="text" name="com_qna_reple_content" />
 			<input type="hidden" name="user_id" value="${user_id}"/>
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<input type="button" value="댓글작성" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rsModal">
+		</jl:if>
 		<div class="modal fade" id="rsModal" role="dialog">
 		    <div class="modal-dialog">
 		      <!-- Modal content-->
@@ -218,12 +221,16 @@
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
 			<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
+			<jl:if test="${vo.user_id eq user_id}"> 
 			<input type="submit" value="QnA수정" class="btn btn-info btn-sm"/>
+			</jl:if>
 		</form>
 		
 		<form action="community_qna_del.do" method="post" id="Qna_delete">
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+			<jl:if test="${vo.user_id eq user_id}"> 
 			<input type="button" value="QnA삭제" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rdModal"/>
+			</jl:if>
 		<div class="modal fade" id="rdModal" role="dialog">
 		    <div class="modal-dialog">
 		      <!-- Modal content-->

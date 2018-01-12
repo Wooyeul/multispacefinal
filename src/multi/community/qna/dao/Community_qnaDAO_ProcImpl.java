@@ -13,7 +13,7 @@ public class Community_qnaDAO_ProcImpl implements Community_qnaDAO {
 	private SqlSession sqlSession = null;
 	
 	@Override
-	public List<Community_qnaVO> findAll() throws Exception {
+	public List<Community_qnaVO> findAll(String user_id) throws Exception {
 		
 		return sqlSession.selectList("community.p_comm_qnaFindAllTexts");
 	}

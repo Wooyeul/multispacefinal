@@ -10,6 +10,7 @@ import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
 import main.RequestMapping;
+import main.ResponseBody;
 import multi.community.qna.dao.Community_qnaDAO;
 import multi.community.qna.dao.Community_qna_mytextDAO;
 import multi.community.qna.dao.Community_qna_repleDAO;
@@ -34,10 +35,12 @@ public class CtrlQna {
 	
 	//QnA 게시판
 	@RequestMapping("/community_qna_list.do")
-	public ModelAndView community_qna() throws Exception{
-		List<Community_qnaVO> rl=community_qnaDAO.findAll();
+	public ModelAndView community_qna(@CookieValue("user_id") String user_id) throws Exception{
+	
+		List<Community_qnaVO> rl=community_qnaDAO.findAll(user_id);
 		ModelAndView mnv = new ModelAndView("community_qna_list");
 		mnv.addObject("rl", rl);
+		mnv.addObject("user_id", user_id);
 		return mnv;
 	}
 	
@@ -112,13 +115,13 @@ public class CtrlQna {
 	}
 	
 	@RequestMapping("/community_qna_reple_recom.do")
+	@ResponseBody
 	public String community_board_recom(@ModelAttribute Community_qna_repleVO pvo)throws Exception {
 		System.out.println(pvo.getUser_id());
 		System.out.println(pvo.getCom_qna_reple_no());
-		int rcount = community_qna_repleDAO.incRecom(pvo);
-		System.out.println(rcount);
+		community_qna_repleDAO.incRecom(pvo);
 		//return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
-		 return pvo.getRecom_count().toString();
+		return pvo.getRecom_count().toString();
     }
 	
 	// search랑 내가쓴글보기
