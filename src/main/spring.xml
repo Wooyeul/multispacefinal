@@ -137,6 +137,12 @@
 	<!--Community_board_searchDAO 컨트롤러 -->	
 		<bean class="multi.community.board.dao.Community_board_searchDAO_MybatisProcImpl"
 		id="community_board_searchDAO" />
+		
+	<!--CtrlReview 컨트롤러  -->
+		<bean class="multi.community.review.controller.CtrlReview" />
+	<!--Community_board_reviewDAO 컨트롤러  -->	
+		<bean class="multi.community.review.dao.Community_board_reviewDAO_MybatisProcImpl"
+		id="community_board_reviewDAO" />
 	<!-- 김소영 -->
 
 	<!-- 조우열 -->

@@ -30,6 +30,7 @@
 		<mapper resource="multi/faq/mapper/faq_mapper.xml" />
 		<mapper resource="multi/o2oQnA/mapper/o2oQnA_mapper.xml" />
 		<mapper resource="multi/community/board/mapper/community_board_mapper.xml" />
+		<mapper resource="multi/community/review/mapper/community_board_review_mapper.xml" />
 		<!-- 김소영 -->
 
 		<!-- 조우열 -->
