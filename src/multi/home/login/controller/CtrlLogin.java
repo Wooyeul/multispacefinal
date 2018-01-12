@@ -39,15 +39,8 @@ public class CtrlLogin {
 	@RequestMapping("/chk_login.do")
 	@ResponseBody
 	public String chk_login(@CookieValue("user_id") String user_id) throws Exception {
-		
-		System.out.println("user_id : " + user_id);
-		
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		
-		System.out.println("userInfo(null이 아니면 DAO 잘 먹은거임) : " + userInfo);
-		
-		
 		if( userInfo == null ){ //로그인을 안했으면
 			return "10002";
 		}
@@ -76,30 +69,9 @@ public class CtrlLogin {
 	}
 
 
-	
-	/*
-	 * hoem_login.html 실행시 chk_login.do 실행
-	 */
-/*	@RequestMapping("/chk_home_login.do")
-	@ResponseBody
-	public String chk_home_login(@CookieValue("code") String code) throws Exception {
-
-		if( code == "" ){ //모달이 닫히고 코드가 "" 이 되면
-			return "10002";
-		}
-		else{ 
-			return null;
-		}
-		
-	}*/
-	
-
-	
 	@RequestMapping("/home_moveLoginPage.do")
 	public ModelAndView moveLoginPage(@CookieValue("code") String code, HttpServletRequest request) throws Exception {
 
-		
-		
 		if (code == null) {
 			ModelAndView mnv = new ModelAndView("home_login");
 			return mnv;
@@ -116,7 +88,7 @@ public class CtrlLogin {
 		}
 
 	}
-	
+
 	
 	/*
 	 * 로그인 성공 여부에 따라 code값 심어줌.
@@ -182,7 +154,7 @@ public class CtrlLogin {
 				return "error";
 			}
 		} catch (Exception e) {
-			return null;
+			return "error";
 		}
 	}
 	

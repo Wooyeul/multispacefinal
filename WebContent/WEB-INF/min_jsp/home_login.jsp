@@ -4,11 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel='stylesheet prefetch'	href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+
+<link rel='stylesheet prefetch'
+	href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+
 <link rel="stylesheet" href="css/style.css">
+
 <style>
 .login_div {
 	margin: auto;
@@ -25,31 +26,12 @@
 	margin: auto;
 }
 </style>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <script src="common.js" type="text/javascript"></script>
- 
- <script>
- $(document).ready(function(){
-	 
-	 var formLoginData = $("#login_form").serialize();
-	 $.ajax({
-		type : "POST",
-		url : "",
-		
-		 
-	 });
-	 
-	 
-	
- });
- </script>
 
 </head>
 <body>
 	<div class="login_div">
 		<div class="wrapper">
-			<form id="login_form" class="form-signin">
+			<form method="POST" action="home_login.do" class="form-signin">
 				<h2 class="form-signin-heading">Please login</h2>
 				
 				<input type="text" class="form-control" name="user_id"
@@ -63,7 +45,7 @@
 		</div>
 		
 		<div class="wrapper2">
-			<a id="sub-btn" class="btn btn-lg btn-success" href="home_user_join.do" role="button">회원가입</a>
+			<a id="sub-btn" class="btn btn-lg btn-success" href="#" role="button">회원가입</a>
 			<a id="sub-btn" class="btn btn-lg btn-success" href="home_moveFindIdPage.do" role="button">ID 찾기</a>
 			<a id="sub-btn" class="btn btn-lg btn-success" href="home_moveFindPasswdPage.do" role="button">Passward 찾기</a>
 		</div>
