@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<script type="text/javascript" src="common.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,27 +16,41 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var flag = 0;
+			
 			$("#del").on("click",function(){
-				var arr = [];
-				
-				$("input[name=check]:checked").each(function(i){
-					arr.push($(this).val());
-				});
-				
-				if(arr!=""){
-					var url = "bookmark_del.do?check="+arr;
-					ajaxGet(url,function(rt){
-						location.reload();
-					});
-				}
+				$("#lblContent").text("수정하시겠습니까?");
+				$("#modal").modal("show");
 			});
-			$("#modal").modal("show");
+			
+			$("#success").on("click",function(){
+				var str = $("form").serialize();
+				$.ajax({
+					type : "POST",
+					url : "bookmark_del.do",
+					data : str,
+					success : function(rt) {
+						if(rt == 321){
+							$("#modalSuccess").modal("show");
+						}
+					},
+					error : function(shr,option,error){
+						alert(error);
+					}
+				});
+			});
+			
+			$("#success1").on("click",function(){
+				location.reload();
+			});
+			
+			$("#close").on("click",function(){
+				$("#modal").modal("hide");
+			})
 		});
 	</script>
 </head>
 <body>
-	<h3>���ã��</h3>
+	<h3>즐겨찾기</h3>
 	<form name="frm">
 		<table border="1">
 			<jl:forEach var="ab" items="${rl}" varStatus="i" begin="0">
@@ -51,18 +65,37 @@
 				</td>
 			</jl:forEach>
 		</table>
-		<input type="button" value="�����ϱ�" id="del" />
+		<input type="button" value="삭제하기" id="del" class="btn btn-default"/>
 	</form>
 	
 	<div id="modal" class="modal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
-					<label id="lblContent">qwew</label>
+					<label id="lblContent"></label>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal" id="success">확인</button>
+					<button class="btn btn-default" data-dismiss="modal" id="close">닫기</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<div id="modalSuccess" class="modal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<label>삭제되었습니다.</label>
+				</div>
+				<div class="modal-footer">
+						<button class="btn btn-default" data-dismiss="modal" id="success1">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 	
 </body>
 </html>

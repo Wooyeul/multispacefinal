@@ -37,18 +37,15 @@ public class CtrlMypageBookmark {
 	public String delBookmark(HttpServletRequest request){
 		String[] r = request.getParameterValues("check");
 		Integer m = 0;
-		Integer a = 0;
-		String[] temp = null;
 		if(r != null){
-			for(String t : r){
-				temp = t.split(",");
-			}
-		
-			for(String ab : temp){
+			for(String ab : r){
 				m = Integer.parseInt(ab);
-				a = bookmakrDAO.bookmarkDel(m);
+				bookmakrDAO.bookmarkDel(m);
 			}
+			return "321";
+			
+		}else{
+			return "error";
 		}
-		return a.toString();
 	}
 }
