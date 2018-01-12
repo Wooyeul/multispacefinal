@@ -12,7 +12,7 @@ public class Admin_searchVO {
 	public void setSearch_option(String search_option) {
 		this.search_option = search_option;
 	}
-	public String getSearch_content() {
+	public String getSearch_content() { 
 		return search_content;
 	}
 	public void setSearch_content(String search_content) {
