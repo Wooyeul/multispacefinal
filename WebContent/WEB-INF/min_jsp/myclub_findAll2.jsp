@@ -21,7 +21,7 @@
 		<jl:forEach items="${rl}" var="rl">
 			<tr>
 				<td>${rl.club_no}</td>
-				<td><a href="club_community.do?club_no=${rl.club_no}">${rl.user_id}</a></td>
+				<td><a href="club_community.do?club_no=${rl.club_no}" target="_parent">${rl.user_id}</a></td>
 				<td>${rl.club_name}</td>
 				<td>${rl.club_title}</td>
 				<td>${rl.club_content}</td>
