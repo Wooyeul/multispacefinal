@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.UserVO;
+import main.vo.ZipcodeVO;
 
 public class MyInfoDAO_MybatisProcImpl implements MyInfoDAO{
 
@@ -29,5 +30,10 @@ public class MyInfoDAO_MybatisProcImpl implements MyInfoDAO{
 	@Override
 	public int del_user(String user_id) throws Exception {
 		return sqlSession.delete("myinfo.p_mypage_del_user",user_id);
+	}
+
+	@Override
+	public ZipcodeVO find_zipcode(String user_id) throws Exception {
+		return sqlSession.selectOne("myinfo.p_user_zipcode_find",user_id);
 	}
 }

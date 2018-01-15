@@ -10,6 +10,7 @@ import main.ModelAttribute;
 import main.RequestMapping;
 import main.RequestParam;
 import main.vo.UserVO;
+import main.vo.ZipcodeVO;
 import multi.mypage.myinfo.dao.MyInfoDAO;
 import multi.mypage.myinfo.dao.UserDAO;
 
@@ -69,11 +70,13 @@ public class CtrlMypageInfo {
 			String phone_cen = rvo.getPhone().substring(3,7);
 			String phone_end = rvo.getPhone().substring(7);
 			String email = rvo.getEmail().substring(0, rvo.getEmail().indexOf("@"));
+			ZipcodeVO zvo = myInfoDAO.find_zipcode(user_id);
 			mnv.addObject("phone_cen", phone_cen);
 			mnv.addObject("phone_end", phone_end);
 			mnv.addObject("email", email);
 			mnv.addObject("nickname", rvo.getNickname());
 			mnv.addObject("rvo", rvo);
+			mnv.addObject("zvo", zvo);
 		}
 		
 		return mnv;
