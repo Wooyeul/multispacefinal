@@ -146,7 +146,7 @@ public class CtrlLogin {
 		
 		try{
 			if(userInfo!=null){
-				return userInfo.getPasswd();				
+				return userInfo.getUser_id();				
 			}
 			else{
 				return "error";
