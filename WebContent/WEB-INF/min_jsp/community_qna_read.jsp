@@ -33,6 +33,10 @@
 		});
 	
 		$("#btnMod").on("click", function() {
+			$("#replemodcompleteModal").modal("show");
+		});
+		
+		$("#replemodcompleteModal").on("hidden.bs.modal",function(){
 			$("#reple_form").submit();
 		});
 		
@@ -299,6 +303,23 @@
 		        </div>
 		        <div class="modal-body">
 		          <p>QnA 삭제 완료!</p>
+		        </div>
+		         <div class="modal-footer">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        </div>
+		      </div>
+	    </div>
+	</div>
+	
+	<div class="modal fade" id="replemodcompleteModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content" >
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          <p>댓글 수정 완료!</p>
 		        </div>
 		         <div class="modal-footer">
 		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">

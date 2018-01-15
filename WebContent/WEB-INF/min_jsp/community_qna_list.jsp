@@ -53,6 +53,7 @@
    	</div>
    	
 	<jl:if test="${user_id ne ''}">
+	${user_id} 님 환영합니다
      <a href="community_qna_mytext.do"> <input type="button" value="My QnA" class="btn btn-primary btn-sm"/></a>
 	</jl:if>
 	
