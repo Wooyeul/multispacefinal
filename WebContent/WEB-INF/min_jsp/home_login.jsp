@@ -36,6 +36,8 @@
 	<script>
 	$(document).ready(function(){
 		
+		//ctrlLogin에서 chkcode 받아와서 조건에 맞으면 모달 show
+		
 		var chkcode = ${chkcode};
 		if(chkcode=="10001"){
 		$("#loginModal").modal('show');   
@@ -47,6 +49,8 @@
 	</script>
 </head>
 <body>
+
+
 	<div class="login_div">
 		<div class="wrapper">
 			<form method="POST" action="home_login.do" class="form-signin">
@@ -67,10 +71,12 @@
 			<a id="sub-btn" class="btn btn-lg btn-success" href="home_moveFindIdPage.do" role="button">ID 찾기</a>
 			<a id="sub-btn" class="btn btn-lg btn-success" href="home_moveFindPasswdPage.do" role="button">Passward 찾기</a>
 		</div>
-	</div>s
+	</div>
 	
 	
-						
+					
+	<!-- **************************************** loginModal *************************************** -->
+					
 	<div id="loginModal" class="modal " role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">

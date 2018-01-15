@@ -13,11 +13,12 @@
 	  
  <script>
  $(document).ready(function(){
-	$("#sub-btn").on("click",function(){
+	 
+  $("#sub-btn").on("click",function(){ //아이디찾기 버튼 클릭시
 		  
-	  var url = "home_findId.do?user_name="+$("#user_name").val()+"&ssn1="+$("#ssn1").val()+"&ssn2="+$("#ssn2").val();
-	  
+	var url = "home_findId.do?user_name="+$("#user_name").val()+"&ssn1="+$("#ssn1").val()+"&ssn2="+$("#ssn2").val();
 	  ajaxGet(url,function(rt){
+		  
 		  if(rt=="error"){
 			  $("#modal-title").text("입력된 정보가 없습니다. 다시 입력해주세요").append();
 			  $("#id_modal").modal('show');
@@ -26,11 +27,12 @@
 			$("#modal-title").text("고객님의 아이디는 " + rt+" 입니다.").append();
 		    $("#id_modal").modal('show');
 		    $("#login-btn").show();
-		  }
-	  });	 
-	 });
+		  }//end else
+			  
+	  }); //end ajaxGet
+   }); // end function
 
-	$("#login-btn").on("click",function(){
+	$("#login-btn").on("click",function(){ // 모달의 로그인하기 버튼 클릭시 이동
 		location.href = "home_moveLoginPage.do";
 	});
  });
@@ -91,7 +93,7 @@
 	</form>
 
 
-<!-- qna 수정 모달 -->
+<!-- **************************************** id_modal **************************************** -->
 <div class="modal fade" id="id_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

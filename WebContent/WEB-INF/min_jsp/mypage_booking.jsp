@@ -14,10 +14,11 @@
 	<script type="text/javascript" src="common.js"></script>
 	<script>
 	$(document).ready(function(){
+		
 		$(".s_space_no").on("click",function(e){
-			//alert($(this).attr("i"));  // s_space_no 의 i값 
-			$("#i").attr("value",$(this).attr("s")); // 여기서 바로 값 대입 X
-			space_no = $("#i").val();
+			//해당 space_no 클릭시 
+			$("#i_space_no").attr("value",$(this).attr("s_spaceNo")); 
+			space_no = $("#i_space_no").val();
 			location.href="mypage_moveSpaceinfo.do?space_no="+space_no;
 		})
 	});
@@ -44,8 +45,8 @@
 		<jl:forEach var="bkInfo" items="${bookingInfo}">
 			<tr>
 				<td>${bkInfo.booking_no}</td>
-				<td><span class="s_space_no" s="${bkInfo.space_no}">${bkInfo.space_no}</span>
-					<input id="i" type="hidden" name="space_no" />
+				<td><span class="s_space_no" s_spaceNo="${bkInfo.space_no}">${bkInfo.space_no}</span>
+					<input id="i_space_no" type="hidden" name="space_no" />
 				</td>
 				<td>${bkInfo.user_id}</td>
 				<td>${bkInfo.du_time}</td>

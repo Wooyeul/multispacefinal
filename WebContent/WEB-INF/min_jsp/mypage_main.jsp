@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
@@ -51,9 +51,11 @@ li a:hover {
 	<script>
 	$(document).ready(function(){
 		
-		var scOffset = $('.navbar-Menu').offset();
+	/* ************************** top_nav - 상단고정 ************************** */	
+		
+		var scOffset = $('.navbar-Menu').offset(); //top_nav의 현재 좌표 구함.
+		
 		$(window).scroll(function() {
-
 			if ($(document).scrollTop() > scOffset.top+50) {
 				$('.navbar').addClass('navbar-fixed-top');
 			} else {
@@ -61,6 +63,7 @@ li a:hover {
 			}
 		});
 
+	/* ************************** top_nav - 로그인 ************************** */	
 		var url = "chk_login.do";
  		ajaxGet(url,function(rt){
  			
@@ -78,6 +81,10 @@ li a:hover {
 				}
  			});	
 		
+ 		
+ 	/* ************************** 쪽지함 ************************** */	
+ 		
+ 		
 		$("#receiveMessageBox").hide();
 		$("#sendMessageBox").hide();
 		$("#sendMessage").hide();

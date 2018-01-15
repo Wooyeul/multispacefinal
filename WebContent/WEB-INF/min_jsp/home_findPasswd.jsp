@@ -3,16 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
-
-<link rel='stylesheet prefetch'
-	href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
-
+<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 <link rel="stylesheet" href="css/style.css">
-
 <style>
-
 .form-text {
 	float: left; 
 	padding:10px;
@@ -21,22 +14,14 @@
 	float: left; 
 	padding:10px;
 }
-
-
 </style>	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!-- <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> -->
-	<!--  <script type="text/javascript" src="common.js"></script> -->
+	<script type="text/javascript" src="common.js"></script>
 	
 	<script>
-/* 	
-	window.onload =function () {
-		   window.open("popup. html",  "popupNo1", "width=500, height=360");
-		}
- */
-
   $(document).ready(function(){
  		
  		
@@ -61,11 +46,11 @@
 		           error : function(xhr , option , error){
 						alert(error)
 		           }
-		  	 });
- 		});
+		  	 });//end ajax
+ 		}); //end function
         
         
-	});
+});
 
  	
  	
@@ -137,10 +122,11 @@
 		</table>
 	</form>
 	<!-- 이메일 주소로찾기 폼 끝-->
-passwd : ${passwd}
 
 
 
+	<!-- **************************************** passwdModal *************************************** -->
+	
 	<div id="passwdModal" class="modal " role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -152,7 +138,10 @@ passwd : ${passwd}
 		</div>
 	</div> 
 	
+	
+		<!-- **************************************** ErrorpasswdModal *************************************** -->
 	<div id="ErrorpasswdModal" class="modal " role="dialog">
+	
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="ErrorpasswdModal_body" class="modal-body"></div>

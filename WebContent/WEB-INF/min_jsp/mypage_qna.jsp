@@ -36,20 +36,21 @@
 		xhr.send(null);
 	}
 	
+	
 	$(document).ready(function(){
+		
+		/* ************************** 질문 클릭시 답변이 밑에 보이는 기능 ************************** */	
 		$(".collapsed").on("click",function(e){
-			//alert("space_qna_no : " + $(this).attr("space_qna_no"));
-			//alert("space_no : " + $(this).attr("space_no"));
 			$("#i_space_qna_no").attr("value",$(this).attr("space_qna_no")); // 여기서 바로 값 대입 X
 			space_qna_no = $("#i_space_qna_no").val();
 			
 			var dc = "?dc=" + new Date().getTime();
 			var url = "mypage_getMypageQnAReple.do"+dc+"&space_qna_no="+space_qna_no;
+			
+			// ajax로 해당 QnA 의 reple 받아옴.
 			ajaxGet(url,function(rt){
-
 				$(".c_space_qna_reple_content").attr("value",rt);
 			}); 
-		
 		})
 	});
 	
@@ -93,11 +94,11 @@
 							<a class="collapsed" data-toggle="collapse" href="#${QnAInfo.space_qna_no}"
 							space_qna_no="${QnAInfo.space_qna_no}" 
 							space_no="${QnAInfo.space_no}" 
-								role="button" aria-expanded="false" aria-controls="collapseTwo">
+							role="button" aria-expanded="false" aria-controls="collapseTwo">
 								${QnAInfo.space_qna_content}
 								<input type="hidden" name="space_qna_no" id="i_space_qna_no"/>
 								<input type="hidden" name="space_no" id="i_space_no"/>
-								</a>
+							</a>
 						</h5>
 					</div>
 					<div id="${QnAInfo.space_qna_no}" class="collapse" role="tabpanel"
@@ -108,14 +109,10 @@
 						</div>
 					</div>
 				</div>
-
-
+				
 			</jl:forEach>
-
 		</div>
 	</div>
-
-
 
 </body>
 </html>

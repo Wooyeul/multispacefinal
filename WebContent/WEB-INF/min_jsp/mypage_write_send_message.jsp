@@ -14,6 +14,10 @@
 	<script>
 	
 	$(document).ready(function(){
+		
+		
+		/* ************************** select_club의 기본값 ************************** */	
+		
 		var club_no_1 = $("#select_club").val();
 		if(club_no_1=="1"){
 			$('#select_club_member').empty();	
@@ -27,7 +31,7 @@
 			 });
 		}
 		
-		
+		/* ************************** select_club의 선택값 ************************** */	
 		$("#select_club").change(function(){
 			 club_no = $(this).val();	
 			 $('#select_club_member').empty();	
@@ -42,29 +46,27 @@
 			 });
 		});		
 
-
+		/* ************************** 쪽지 보내기 버튼 클릭시 ************************** */	
 		$("#submitBtn").on("click",function(e){
 			
 			var sel_receive_user_id = $("#select_club_member option:selected").val();
 			$("#i_receive_user_id").attr("value",sel_receive_user_id);
-
-
 			
-	   var formMData = $("#form_sendMessage").serialize();	
-       $.ajax({
-	           type : "POST",
-	           url : "mypage_sendMessage.do",
-	           data : formMData,
-	           success   : function(rt) {
-	             	if(rt=="30003"){
-	             		$("#messageModal").modal('show');         		
-	             	}
-				 },
-			   error : function(xhr, option, error){
-				   alert(error);
-	            }
-	        }); 
-		});
+		    var formMData = $("#form_sendMessage").serialize();	
+		       $.ajax({
+			           type : "POST",
+			           url : "mypage_sendMessage.do",
+			           data : formMData,
+			           success   : function(rt) {
+			             	if(rt=="30003"){
+			             		$("#messageModal").modal('show');         		
+			             	}
+						 },
+					   error : function(xhr, option, error){
+						   alert(error);
+			            }
+			        }); 
+		});// end function
 		
 		
 		$("#move_sendMessageBox").on("click",function(e){
@@ -82,17 +84,7 @@
 
 			
 	<form id="form_sendMessage">
-<%-- 		<jl:forEach var="ReceiveMessage" items="${receiveMessage}">
-			<tr>
-				<td>${ReceiveMessage.send_user_id}</td>
-				<td><span class="s_msg_no" i="${ReceiveMessage.msg_no}" >${ReceiveMessage.msg_content}</span>
-					<input id="i_msg_no" type="hidden" name="msg_no" />
-				</td>
-				<td>${ReceiveMessage.the_time}</td>
-			</tr>
-		</jl:forEach>
-		
-		 --%>
+
 		<label> 모임 </label> 
 		
 		<select name="club_list" id="select_club" >
@@ -116,6 +108,9 @@
 		<button class="btn btn-info"  id="submitBtn">쪽지 보내기</button>
 						
 						
+						
+						
+	<!-- ************************** messageModal ************************** --> 
 	<div id="messageModal" class="modal " role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
