@@ -1,5 +1,6 @@
 package multi.home.login.controller;
 
+import java.net.URLEncoder;
 import java.util.List;
 import static main.Single.*;
 import javax.servlet.http.Cookie;
@@ -46,7 +47,11 @@ public class CtrlLogin {
 		}
 		else{ // 로그인을 했으면
 			String user_name = userInfo.getUser_name();
-			return user_name.toString();
+			System.out.println(user_name);
+			
+			byte[] bs = user_name.getBytes("utf-8");
+			user_name = new String(bs,"euc-kr");
+			return user_name;
 		}
 		
 	}

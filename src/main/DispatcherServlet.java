@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.Hashtable;
@@ -46,7 +47,7 @@ public class DispatcherServlet extends HttpServlet
 				{
 					if( mnt.hasAnnotation(ResponseBody.class) ) 
 					{
-						String responseText = obj.toString();
+/*						String responseText = obj.toString();
 						try{
 							byte[] bs = responseText.getBytes("euc-kr");
 							responseText = new String(bs,"utf-8");
@@ -57,6 +58,17 @@ public class DispatcherServlet extends HttpServlet
 						out.print( responseText );
 						out.flush();
 						out.close();
+*/
+						String responseText = obj.toString();
+						
+						response.setContentType("text/plain; charset=utf-8");
+						response.setCharacterEncoding("utf-8");
+						
+						OutputStream out = response.getOutputStream();
+						out.write( responseText.getBytes("utf-8") );
+						out.flush();
+						out.close();
+						
 					}
 					else
 					{
