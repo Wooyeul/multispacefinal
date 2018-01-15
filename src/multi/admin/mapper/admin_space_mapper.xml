@@ -42,73 +42,6 @@
 		{call p_admin_host_space_check(?)}
 	</select>
 	
-	<select id="admin_space_search" parameterType="multi.admin.vo.Admin_searchVO"
-		resultType="main.vo.SpaceVO">
-	
-		SELECT * FROM SpaceT WHERE 0 = 0
-		<if test="search_option == 1">
-		AND crn like '%${search_content}%'
-		</if>
-		<if test="search_option == 2">
-		AND space_title like '%${search_content}%'
-		</if>
-		<if test="search_option == 3">
-		AND space_title like '%${search_content}%'
-		</if>
-		<if test="search_option == 4">
-		AND open_time like '%${search_content}%'
-		</if>
-		<if test="search_option == 5">
-		AND close_time like '%${search_content}%'
-		</if>
-		<if test="search_option == 6">
-		AND price like '%${search_content}%'
-		</if>
-		<if test="search_option == 7">
-		AND max_people like '%${search_content}%'
-		</if>
-		<if test="search_option == 8">
-		AND min_people like '%${search_content}%'
-		</if>
-		<if test="search_option == 9">
-		AND space_call like '%${search_content}%'
-		</if>
-		<if test="search_option == 10">
-		AND zipcode like '%${search_content}%'
-		</if>
-		<if test="search_option == 11">
-		AND s_category_no like '%${search_content}%'
-		</if>
-		<if test="search_option == 12">
-		AND l_category_no like '%${search_content}%'
-		</if>
-		<if test="search_option == 13">
-		AND the_time like '%${search_content}%'
-		</if>
-		<if test="search_option == 14">
-		AND space_title like '%${search_content}%'
-		OR space_content like '%${search_content}%'
-		</if>
-	</select>
-
-	<select id="admin_space_search2" parameterType="multi.admin.vo.Admin_searchVO"
-		resultType="main.vo.SpaceVO">
-	
-		SELECT * FROM SpaceT
-		<if test="search_option == 1">
-		ORDER BY the_time DESC
-		</if>
-		<if test="search_option == 2">
-		ORDER BY the_time ASC
-		</if>
-		<if test="search_option == 3">
-		ORDER BY price DESC
-		</if>
-		<if test="search_option == 4">
-		ORDER BY price ASC
-		</if>
-	</select>
-	
 	
 	<!--
 	DROP PROCEDURE IF EXISTS p_admin_remove_Space;
@@ -172,6 +105,138 @@
 		{call p_admin_space_crn_check(?)}
 	</select>
 	
+	
+	<select id="admin_space_search" parameterType="multi.admin.vo.Admin_searchVO"
+		resultType="main.vo.SpaceVO">
+		SELECT * FROM SpaceT WHERE 0 = 0
+		<if test="search_option == 1">
+		AND crn like '%${search_content}%'
+		</if>
+		<if test="search_option == 2">
+		AND space_title like '%${search_content}%'
+		</if>
+		<if test="search_option == 3">
+		AND space_title like '%${search_content}%'
+		</if>
+		<if test="search_option == 4">
+		AND open_time like '%${search_content}%'
+		</if>
+		<if test="search_option == 5">
+		AND close_time like '%${search_content}%'
+		</if>
+		<if test="search_option == 6">
+		AND price like '%${search_content}%'
+		</if>
+		<if test="search_option == 7">
+		AND max_people like '%${search_content}%'
+		</if>
+		<if test="search_option == 8">
+		AND min_people like '%${search_content}%'
+		</if>
+		<if test="search_option == 9">
+		AND space_call like '%${search_content}%'
+		</if>
+		<if test="search_option == 10">
+		AND zipcode like '%${search_content}%'
+		</if>
+		<if test="search_option == 11">
+		AND s_category_no like '%${search_content}%'
+		</if>
+		<if test="search_option == 12">
+		AND l_category_no like '%${search_content}%'
+		</if>
+		<if test="search_option == 13">
+		AND the_time like '%${search_content}%'
+		</if>
+		<if test="search_option == 14">
+		AND space_title like '%${search_content}%'
+		OR space_content like '%${search_content}%'
+		</if>
+	</select>
+
+	<select id="admin_space_search2" parameterType="multi.admin.vo.Admin_searchVO"
+		resultType="main.vo.SpaceVO">
+		
+		SELECT * FROM SpaceT
+		<if test="search_option == 1">
+		ORDER BY the_time DESC
+		</if>
+		<if test="search_option == 2">
+		ORDER BY the_time ASC
+		</if>
+		<if test="search_option == 3">
+		ORDER BY price DESC
+		</if>
+		<if test="search_option == 4">
+		ORDER BY price ASC
+		</if>
+		<if test="start_no != null">
+			ORDER BY space_no DESC LIMIT #{start_no}, 10
+		</if>
+	</select>
+	
+	<select id="admin_space_search3" parameterType="multi.admin.vo.Admin_searchVO"
+		resultType="main.vo.SpaceVO">
+		SELECT * FROM SpaceT WHERE 0 = 0
+		<if test="search_option == 1">
+		AND crn like '%${search_content}%'
+		</if>
+		<if test="search_option == 2">
+		AND space_title like '%${search_content}%'
+		</if>
+		<if test="search_option == 3">
+		AND space_title like '%${search_content}%'
+		</if>
+		<if test="search_option == 4">
+		AND open_time like '%${search_content}%'
+		</if>
+		<if test="search_option == 5">
+		AND close_time like '%${search_content}%'
+		</if>
+		<if test="search_option == 6">
+		AND price like '%${search_content}%'
+		</if>
+		<if test="search_option == 7">
+		AND max_people like '%${search_content}%'
+		</if>
+		<if test="search_option == 8">
+		AND min_people like '%${search_content}%'
+		</if>
+		<if test="search_option == 9">
+		AND space_call like '%${search_content}%'
+		</if>
+		<if test="search_option == 10">
+		AND zipcode like '%${search_content}%'
+		</if>
+		<if test="search_option == 11">
+		AND s_category_no like '%${search_content}%'
+		</if>
+		<if test="search_option == 12">
+		AND l_category_no like '%${search_content}%'
+		</if>
+		<if test="search_option == 13">
+		AND the_time like '%${search_content}%'
+		</if>
+		<if test="search_option == 14">
+		AND space_title like '%${search_content}%'
+		OR space_content like '%${search_content}%'
+		</if>
+		<if test="search_option2 == 1">
+		ORDER BY the_time DESC
+		</if>
+		<if test="search_option2 == 2">
+		ORDER BY the_time ASC
+		</if>
+		<if test="search_option2 == 3">
+		ORDER BY price DESC
+		</if>
+		<if test="search_option2 == 4">
+		ORDER BY price ASC
+		</if>
+		<if test="start_no != null">
+			ORDER BY space_no DESC LIMIT #{start_no}, 10
+		</if>
+	</select>
 </mapper>
 
 

@@ -28,14 +28,27 @@
 	<tr>
 		<td>이름</td>
 		<td>유저 ID</td>
+		<td>닉네임</td>
+		<td>성별</td>
 		<td>이메일</td>
+		<td>상세 정보</td>
 		<td>탈퇴 시키기</td>
 	</tr>
 	<jl:forEach var="vo" items="${ls}">
 		<tr>
 			<td>${vo.user_name}</td>
-			<td><a href="admin_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
+			<td>${vo.user_id}</td>
+			<td>${vo.nickname}</td>
+			<jl:choose>
+						<jl:when test="${vo.gender == 'M'}">
+							<td>남자</td>
+						</jl:when>
+						<jl:when test="${vo.gender == 'F'}">
+							<td>여자</td>
+						</jl:when>
+			</jl:choose>
 			<td>${vo.email}</td>
+			<td><a href="admin_user_check.do?user_id=${vo.user_id}">상세 정보 확인</a></td>
 			<td><a href="admin_user_del_write.do?user_id=${vo.user_id}&user_name=${vo.user_name}&email=${vo.email}">탈퇴 시키기</a></td>
 		</tr>
 	</jl:forEach>

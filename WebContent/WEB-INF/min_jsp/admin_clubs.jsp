@@ -60,6 +60,8 @@ table {
 	
 <form id="form_search" action="admin_clubs.do">
 	<input type="hidden" name="pg" value="" id="pg">
+	<input type="hidden" name="search_content" value="${search.search_content}">
+	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">

@@ -16,6 +16,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.vo.ClubVO;
@@ -48,10 +49,19 @@ public class Ctrl_Admin_Spaces {
 
 	// 물품 관리 리스트 페이지
 	@RequestMapping("/admin_spaces.do")
-	public ModelAndView admin_space( @ModelAttribute SpaceVO svo,@ModelAttribute  Admin_searchVO  pvo ) throws Exception {
+	public ModelAndView admin_space( @ModelAttribute SpaceVO svo,
+			@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_spaces");
-		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search(pvo);
+		
+		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search(search);
+		
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_SpaceDAO.host_spaces_search(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+
 		return mnv;
 	}
 	// 장소에 따른 판매자 정보 확인 페이지
@@ -65,19 +75,33 @@ public class Ctrl_Admin_Spaces {
 	}
 	
 	@RequestMapping("/admin_spaces_search.do")
-	public ModelAndView admin_spaces_search(@ModelAttribute  Admin_searchVO  pvo) throws Exception {
+	public ModelAndView admin_spaces_search(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_spaces_search");
-		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search(pvo);
+		
+		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_SpaceDAO.host_spaces_search(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
 		return mnv;
 	}
 	@RequestMapping("/admin_spaces_search2.do")
-	public ModelAndView admin_spaces_search2(@ModelAttribute  Admin_searchVO  pvo) throws Exception {
+	public ModelAndView admin_spaces_search2(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_spaces_search2");
-		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search2(pvo);
+		
+		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search2(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_SpaceDAO.host_spaces_search2(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
 		return mnv;
 	}
+	
 	// 특정 모임 삭제시 이용. 리다이렉트 시 모임 리스트 확인 페이지
 	@RequestMapping("/admin_space_remove.do")
 	public ModelAndView admin_space_remove( @ModelAttribute SpaceVO svo ) throws Exception {

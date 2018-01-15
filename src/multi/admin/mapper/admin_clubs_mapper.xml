@@ -135,7 +135,7 @@
 		AND create_time like '%${search_content}%'
 		</if>
 		<if test="start_no != null">
-			ORDER BY club_no DESC LIMIT #{start_no}, 5
+			ORDER BY club_no DESC LIMIT #{start_no}, 10
 		</if>
 	</select>
 

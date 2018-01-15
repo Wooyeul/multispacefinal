@@ -20,7 +20,7 @@ public class Admin_SpaceDAO_MysqlImpl implements Admin_SpaceDAO{
 
 	@Override
 	public List<SpaceVO> host_spaces_search( Admin_searchVO pvo ) {
-		return sqlSession.selectList("admin_space.admin_space_search",pvo);
+		return sqlSession.selectList("admin_space.admin_space_search3",pvo);
 	}
 
 	@Override

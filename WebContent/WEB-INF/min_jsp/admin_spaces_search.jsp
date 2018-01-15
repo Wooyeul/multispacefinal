@@ -24,7 +24,7 @@ table {
 		<h1>공간 모음</h1>
 	</div>
 	 
-	<form id="textsearch" action="admin_spaces_search.do">
+	<form id="textsearch" action="admin_spaces_search2.do">
 		<select name="search_option">
 			<option value="0">검색할 것을 선택해주세요</option>
 			<option value="1">사업자 등록번호</option>
@@ -49,8 +49,7 @@ table {
 	<br>
 	<br>
 	<form id="textsearch" action="admin_spaces_search2.do">
-		<select name="search_option">
-			<option value="0">정렬을 선택해주세요</option>
+		<select name="search_option2">
 			<option value="1">최신 순</option>
 			<option value="2">오래된 순</option>
 			<option value="3">비싼 가격 순</option>
@@ -60,7 +59,6 @@ table {
 	</form>
 	<br>
 	<br>
-
 		<table border="1">
 		<tr>
 			<td>사업자 등록 번호</td>
@@ -77,11 +75,11 @@ table {
 			<td>공간 카테고리</td>
 			<td>장소 카테고리</td>
 			<td>생성일</td>
-			<td>삭제 하기</td>
+			<td>삭제하기</td>
 		</tr>
 		<jl:forEach var="vo" items="${ls}">
 			<tr>
-				<td>${vo.crn}</td>
+				<td><a href="admin_space_crn_check.do?crn=${vo.crn}">${vo.crn}</a></td>
 				<td>${vo.space_title}</td>
 				<td>${vo.space_content}</td>
 				<td><a href="space_detail.do?space_no=${vo.space_no}"><img src="thumbnail/${vo.space_thumb_img}" style="width:128px;height:128px;"></img></a></td>
@@ -99,6 +97,41 @@ table {
 			</tr>
 		</jl:forEach>
 	</table>
+	
+<form id="form_search" action="admin_spaces_search2.do">
+	<input type="hidden" name="pg" value="" id="pg">
+	<input type="hidden" name="search_content" value="${search.search_content}">
+	<input type="hidden" name="search_option" value="${search.search_option}">
+</form>
+<form id="form_search2" action="admin_spaces_search2.do">
+	<input type="hidden" name="pg" value="" id="pg">
+	<input type="hidden" name="search_content2" value="${search.search_content2}">
+	<input type="hidden" name="search_option2" value="${search.search_option2}">
+</form>
+	<ul class="pagination pagination-sm">
+			<jl:if test="${pz.hasPrevPagination }">
+				<li><a class="page" href="admin_spaces_search.do?pg=${pz.paginationStart-1}">&lt;</a></li>
+			</jl:if>
+				<jl:if test="${pz.hasPrevPage }">
+					<li><a class="page" href="admin_spaces_search.do?pg=${pz.curPagination-1 }">&lt;</a></li>
+				</jl:if>
+				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
+					<jl:choose>
+						<jl:when test="${vs.index!=pz.curPagination }">
+							<li><a class="page" href="admin_spaces_search.do?pg=${vs.index }">${vs.index }</a></li>
+						</jl:when>
+						<jl:otherwise>
+							<li class="active"><a class="page" href="admin_spaces_search.do?pg=${vs.index }">${vs.index }</a></li>
+						</jl:otherwise>
+					</jl:choose>
+				</jl:forEach>
+				<jl:if test="${pz.hasNextPage }">
+					<li><a class="page" href="admin_spaces_search.do?pg=${pz.curPagination+1}">&gt;</a></li>
+				</jl:if>
+			<jl:if test="${pz.hasNextPagination }">
+				<li><a class="page" href="admin_spaces_search.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+			</jl:if>
+		</ul>
 
 </body>
 </html>
