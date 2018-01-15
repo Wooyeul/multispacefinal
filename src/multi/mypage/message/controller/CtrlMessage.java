@@ -43,6 +43,11 @@ public class CtrlMessage {
 	@Qualifier("mypage_message_User_clubDAO")
 	private User_clubDAO User_clubDAO = null;
 
+	
+	/* 180115수정
+	 * 마이페이지에서 쪽지함 이동.
+	 * 쪽지함은 기본으로 받은쪽지함 mypage_receive_message.jsp 가 나옴.
+	 */
 	@RequestMapping("/mypage_moveMypageReceiveMessagePage.do")
 	public ModelAndView moveMypageReceiveMessagePage(@CookieValue("user_id") String user_id) throws Exception {
 
@@ -59,6 +64,10 @@ public class CtrlMessage {
 		}
 	}
 
+	/* 180115수정
+	 * 받은 쪽지함에서 쪽지 클릭시 mypage_read_receive_message.jsp 에서 
+	 * 쪽지 읽을 수 있음.
+	 */
 	@RequestMapping("/mypage_moveMypageReceiveMessageRead.do")
 	public ModelAndView moveMypageReceiveMessageRead(@CookieValue("user_id") String user_id,
 			@ModelAttribute MessageVO mvo) throws Exception {
@@ -77,6 +86,10 @@ public class CtrlMessage {
 
 	}
 
+	/* 180115수정
+	 * 마이페이지에서 보낸쪽지함 mypage_send_message.jsp 로 이동
+	 * 내가 보낸 쪽지 들이 보임
+	 */
 	@RequestMapping("/mypage_moveMypageSendMessagePage.do")
 	public ModelAndView moveMypageSendMessagePage(@CookieValue("user_id") String user_id) throws Exception {
 
@@ -94,6 +107,10 @@ public class CtrlMessage {
 
 	}
 
+	/* 180115수정
+	 * 보낸 쪽지함에서 쪽지 클릭시 mypage_read_send_message.jsp 에서
+	 * 쪽지 읽을 수 있음.
+	 */
 	@RequestMapping("/mypage_moveMypageSendMessageRead.do")
 	public ModelAndView moveMypageSendMessageRead(@CookieValue("user_id") String user_id, @ModelAttribute MessageVO mvo)
 			throws Exception {
@@ -112,6 +129,9 @@ public class CtrlMessage {
 
 	}
 
+	/* 180115수정
+	 * 마이페이지에서 쪽지보내기 mypage_write_send_message.jsp 로 이동.
+	 */
 	@RequestMapping("/mypage_moveMypageWriteMessagePage.do")
 	public ModelAndView moveMypageWriteMessagePage(@CookieValue("user_id") String user_id) throws Exception {
 
@@ -129,6 +149,11 @@ public class CtrlMessage {
 
 	}
 
+	
+	/* 180115수정
+	 * mypage_write_send_message.jsp 에서 ajax로 해당 유저가 가입한 클럽 리스트 찾아옴
+	 * json으로 List를 보내기 때문에  앞에 {} 과 [] 붙여서 같이 return 함.
+	 */
 	@RequestMapping("/mypage_moveMypageWriteMessageFindUserClubMemberPage.do")
 	@ResponseBody
 	public String moveMypageWriteMessageFindUserClubMemberPage(@CookieValue("user_id") String user_id,
@@ -149,14 +174,17 @@ public class CtrlMessage {
 			}
 			sb.append("'").append(vo.getUser_id()).append("'");
 
-			// System.out.println("user_id : " + rl.getUser_id());
-
 		}
 		sb.append("]}");
 		return sb.toString();
 
 	}
 
+	
+	/* 180115수정
+	 * 성공적으로 쪽지 보내면 ajax로 성공 코드 리턴함.
+	 * mypage_write_send_message.jsp 에서 모달로 띄움.
+	 */
 	@RequestMapping("/mypage_sendMessage.do")
 	@ResponseBody
 	public String sendMessage(@CookieValue("user_id") String user_id, @ModelAttribute MessageVO mvo) throws Exception {

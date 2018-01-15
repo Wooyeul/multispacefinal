@@ -43,6 +43,10 @@ public class CtrlQnA {
 	@Qualifier("mypage_qna_Space_qna_repleDAO")
 	private Space_qna_repleDAO Space_qna_repleDAO = null;
 
+	
+	/* 180115수정
+	 * 마이페이지_Q&A 페이지 mypage_qna.jsp로 이동.
+	 */
 	@RequestMapping("/mypage_moveMypageQnAPage.do")
 	public ModelAndView moveMypageQnAPage(@CookieValue("user_id") String user_id) throws Exception {
 
@@ -60,6 +64,10 @@ public class CtrlQnA {
 
 	}
 
+	/* 180115수정
+	 * 마이페이지_Q&A 페이지 에서 해당 내 질문 클릭시 
+	 * 내 질문에 대한 reple find함.
+	 */
 	@RequestMapping("/mypage_getMypageQnAReple.do")
 	@ResponseBody
 	public String getMypageQnAReple(@CookieValue("user_id") String user_id, @RequestParam("space_qna_no") String space_qna_no)

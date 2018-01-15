@@ -55,7 +55,7 @@ public class CtrlLogin {
 	 * ※ 페이지 이동 순서 
 	 *  1) main.html -> login 페이지 -> 로그인 시 main.do로 인해 main.jsp로 이동.
 	 *  개발 순서상 main.html에 ajax붙이는 작업을 뒤에서 하게 되어서 main.jsp와 main.html이 
-	 *  나눠지게 되었음. 나중에 main 페이지 하나로 만드는 작업 추가할 예정
+	 *  나눠지게 되었음. 나중에 main 페이지 하나로 만드는 작업 추가할 예정(아마..)
 	 */
 	@RequestMapping("/main.do")
 	public Object main(@CookieValue("user_id") String user_id) throws Exception {
@@ -186,9 +186,9 @@ public class CtrlLogin {
 	
 	/* 180115수정
 	 * home_findPasswd.jsp 에서 이름,user_id,ssn1,ssn2 입력하고 아이디 찾기 버튼 누를시
-	 * ajax를 통해서 user_id값 리턴.
+	 * ajax를 통해서 passwd값 리턴.
 	 * 따라서, 입력한 값들은 getParameter로 받아옴.
-	 * userInfo 있을시에만 returnd 으로 user_id값 반환
+	 * userInfo 있을시에만 returnd 으로 passwd값 반환
 	 * 예외처리 위해 try ~ catch 씌워줌 
 	 */
 	@RequestMapping("/home_findPassswd.do")
@@ -222,6 +222,11 @@ public class CtrlLogin {
 		}
 	}
 	
+	
+	/* 180115수정
+	 * 로그아웃기능.
+	 * 로그아웃 시, user_id에 ""값을 넣어 쿠키에 추가한다.
+	 */
 	 @RequestMapping("/home_logout.do")
 	   public String logout( HttpServletResponse response) throws Exception{
 		 		 
