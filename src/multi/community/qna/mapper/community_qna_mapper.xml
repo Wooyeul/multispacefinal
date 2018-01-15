@@ -177,7 +177,7 @@
 		IN v_com_qna_no INT
 	)
 	BEGIN
-		SELECT * FROM Community_QnA_RepleT WHERE com_qna_no = v_com_qna_no;
+		SELECT * FROM Community_QnA_RepleT WHERE com_qna_no = v_com_qna_no ORDER BY recom_count desc;
 	END$$
 	DELIMITER ;
 	-->

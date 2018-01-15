@@ -45,9 +45,12 @@
 		});
 		
 		$("#btnSub").on("click", function() {
-			$("#reple_submit").submit();
+			$("#replewritecompleteModal").modal("show");
 		});
 		
+		$("#replewritecompleteModal").on("hidden.bs.modal",function(){
+			$("#reple_submit").submit();
+		});
 		
 		$(".showDelModal").on("click",function()
 		{
@@ -217,6 +220,7 @@
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<input type="button" value="댓글작성" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rsModal">
 		</jl:if>
+		
 		<div class="modal fade" id="rsModal" role="dialog">
 		    <div class="modal-dialog">
 		      <!-- Modal content-->
@@ -320,6 +324,23 @@
 		        </div>
 		        <div class="modal-body">
 		          <p>댓글 수정 완료!</p>
+		        </div>
+		         <div class="modal-footer">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        </div>
+		      </div>
+	    </div>
+	</div>
+	
+	<div class="modal fade" id="replewritecompleteModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content" >
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          <p>댓글 작성 완료!</p>
 		        </div>
 		         <div class="modal-footer">
 		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
