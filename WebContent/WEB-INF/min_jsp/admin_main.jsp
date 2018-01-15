@@ -353,7 +353,7 @@ aside#left {
 </ul>
 				
 	<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-	     <li><a href="#">로그인</a></li>		
+	     <li><a href="home_moveLoginPage.do">로그인</a></li>		
 	</ul>
 
 	   </div>

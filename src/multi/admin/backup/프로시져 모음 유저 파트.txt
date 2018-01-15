@@ -96,4 +96,11 @@ DELIMITER ;
 	DELIMITER ;
 	
 ################################################################
+	DROP PROCEDURE IF EXISTS p_admin_list_removed_users;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_list_removed_users()
+	BEGIN
+		SELECT * FROM User_Del_EmailT ORDER BY writing_no DESC;
+	END$$
+	DELIMITER ;
 ################################################################

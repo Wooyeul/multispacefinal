@@ -19,6 +19,10 @@
 </head>
 <body>
 <h1>유저리스트</h1>
+<br>
+<a href="admin_user_del_write_list.do">탈퇴 시킨 유저 리스트 보기(판매자 포함)</a>
+<br>
+<br>
 <table border="1">
 	<tr>
 		<td>이름</td>

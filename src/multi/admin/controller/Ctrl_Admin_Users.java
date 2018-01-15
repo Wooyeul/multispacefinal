@@ -88,7 +88,6 @@ public class Ctrl_Admin_Users {
 	public ModelAndView admin_user_del_write( @ModelAttribute Admin_User_Del_EmailVO uvo, @ModelAttribute HostVO hvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_user_del_write");
 		UserVO vo = null;
-		
 		try {
 			if ( hvo.getCrn() != null || hvo.getCrn().equals("") ){
 				System.out.println("admin_user_del_write for host.do");
@@ -102,7 +101,6 @@ public class Ctrl_Admin_Users {
 			System.out.println("admin_user_del_write for user.do");
 			mnv.addObject("vo", uvo);
 		}
-
 		return mnv;
 	}
 	@RequestMapping("/admin_user_del.do")
@@ -112,10 +110,6 @@ public class Ctrl_Admin_Users {
         String port = "587";
         String mailFrom = "multipro2018@gmail.com";
         String password = "rmfnpdlxm2";
-        
-		System.out.println(uvo.getUser_id());
-		System.out.println(uvo.getUser_name());
-		System.out.println(uvo.getEmail());
 
         String customer_email = uvo.getEmail();
         String admin_subject = uvo.getSubject();
@@ -150,6 +144,15 @@ public class Ctrl_Admin_Users {
 		mnv.addObject("message", message);
 		return mnv;
 	}
+	// 삭제한 유저 리스트들을 보는 페이지
+	@RequestMapping("/admin_user_del_write_list.do")
+	public ModelAndView admin_user_del_write_list() throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_user_del_write_list");
+		List<Admin_User_Del_EmailVO> ls = admin_UserDAO.removed_users();
+		mnv.addObject("ls", ls);
+		return mnv;
+	}
+	
 	
 	// 유저 통계 페이지. 미구현. 사진 하나 대체
 	@RequestMapping("/admin_user_stastic.do")

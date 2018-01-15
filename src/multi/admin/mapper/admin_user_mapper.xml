@@ -142,7 +142,6 @@
 		nickname=v_nickname, zipcode = v_zipcode, email = v_email WHERE user_id = v_user_id;
 	END$$
 	DELIMITER ;
-	CALL p_admin_user_modifyUser('user','일양재', '01012345678', 'gentleGuy', '442-471', 'remd@naver.com');
 	-->
 	<parameterMap id="PM_p_admin_user_modifyUser" type="main.vo.UserVO" >
 		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
@@ -157,6 +156,29 @@
 		parameterMap = "PM_p_admin_user_modifyUser">
 		{call p_admin_user_modifyUser(?,?,?,?,?,?)}
 	</update>
+	
+	<!--
+	DROP PROCEDURE IF EXISTS p_admin_list_removed_users;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_list_removed_users()
+	BEGIN
+		SELECT * FROM User_Del_EmailT ORDER BY writing_no DESC;
+	END$$
+	DELIMITER ;
+	-->
+	<resultMap id="RM_p_admin_list_removed_users" type="multi.admin.vo.Admin_User_Del_EmailVO" >
+		<result property="writing_no" column="writing_no" jdbcType="INTEGER"/>
+		<result property="user_id" column="user_id" jdbcType="VARCHAR"/>
+		<result property="user_name" column="user_name" jdbcType="VARCHAR"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="subject" column="subject" jdbcType="VARCHAR"/>
+		<result property="mail_content" column="mail_content" jdbcType="VARCHAR"/>
+		<result property="the_time" column="the_time" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="p_admin_list_removed_users" statementType="CALLABLE"
+		resultMap = "RM_p_admin_list_removed_users">
+		{call p_admin_list_removed_users()}
+	</select>
 	
 </mapper>
 <!--

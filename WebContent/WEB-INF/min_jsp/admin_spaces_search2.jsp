@@ -77,6 +77,7 @@ table {
 			<td>공간 카테고리</td>
 			<td>장소 카테고리</td>
 			<td>생성일</td>
+			<td>삭제 하기</td>
 		</tr>
 		<jl:forEach var="vo" items="${ls}">
 			<tr>
@@ -94,6 +95,7 @@ table {
 				<td>${vo.s_category_no}</td>
 				<td>${vo.l_category_no}</td>
 				<td>${vo.the_time}</td>
+				<td><a href="admin_space_remove.do?space_no=${vo.space_no}">삭제</a></td>
 			</tr>
 		</jl:forEach>
 	</table>

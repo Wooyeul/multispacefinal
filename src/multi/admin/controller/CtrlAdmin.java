@@ -1,6 +1,8 @@
 package multi.admin.controller;
 
-import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -60,7 +62,8 @@ public class CtrlAdmin {
 
 	// 어드민 메인 페이지(iframe으로 이루어짐)
 	@RequestMapping("/admin_main.do")
-	public ModelAndView admin_main( @CookieValue("user_id") String user_id,HttpServletRequest request ) throws Exception {
+	public ModelAndView admin_main( @CookieValue("user_id") String user_id, 
+			HttpServletRequest request) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_main");
 		mnv.addObject("user_id", user_id);
 		if ( !user_id.equals("admin") ){

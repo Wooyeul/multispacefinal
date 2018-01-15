@@ -33,4 +33,9 @@ public class Admin_UserDAO_MysqlImpl implements Admin_UserDAO {
 		return sqlSession.update("admin_user.p_admin_user_modifyUser",uvo);
 	}
 
+	@Override
+	public List<Admin_User_Del_EmailVO> removed_users() throws Exception {
+		return sqlSession.selectList("admin_user.p_admin_list_removed_users");
+	}
+
 }
