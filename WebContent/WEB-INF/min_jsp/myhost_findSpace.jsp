@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,13 +13,10 @@ $(document).ready(function(){
 });
 </script>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
 </head>
 <body>
-${user_id}
 	<form action="myhost_addForm.do" method="POST">
-		<input type="submit" value="°ø°£Ãß°¡µî·Ï"/>
+		<input type="submit" value="ê³µê°„ì¶”ê°€ë“±ë¡"/>
 		<input type="hidden" name="user_id" value="${user_id}"/>
 	</form>
 

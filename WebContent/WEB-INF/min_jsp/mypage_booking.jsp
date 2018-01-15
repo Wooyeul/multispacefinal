@@ -22,14 +22,7 @@
 			location.href="mypage_moveSpaceinfo.do?space_no="+space_no;
 		})
 	});
-	
-
-
 	</script>
-
-
-
-
 </head>
 <body>
 	<table border="1" cellspacing="0" cellpadding="8">

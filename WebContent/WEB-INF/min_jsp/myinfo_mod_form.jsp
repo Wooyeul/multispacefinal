@@ -15,7 +15,6 @@
 	$(document).ready(function(){
 		
 		var flag_mod=0;
-		alert("${co}");
 		$("#cancel").on("click",function(){
 			history.back(-1);
 		});

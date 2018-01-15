@@ -1,31 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
     <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".thumb_img").on("click",function(){
+		var club_no = $(this).attr("abc");
+		window.parent.location.href="club_community.do?club_no="+club_no;
+	});
+})
+</script>
 </head>
 <body>
 	<form name="frm">
 	<h3>Myclub</h3>
 	<table border="1">
 		<tr>
-			<th>Å¬·´¹øÈ£</th>
-			<th>¾ÆÀÌµğ</th>
-			<th>Å¬·´ÀÌ¸§</th>
-			<th>Á¦¸ñ</th>
-			<th>³»¿ë</th>
-			<th>ÀÌ¹ÌÁö</th>
-			<th>ÃÖ´ëÀÎ¿ø</th>
+			<th>í´ëŸ½ë²ˆí˜¸</th>
+			<th>ì•„ì´ë””</th>
+			<th>í´ëŸ½ì´ë¦„</th>
+			<th>ì œëª©</th>
+			<th>ë‚´ìš©</th>
+			<th>ì´ë¯¸ì§€</th>
+			<th>ìµœëŒ€ì¸ì›</th>
 		</tr>
 		<jl:forEach items="${rl}" var="rl">
 			<tr>
 				<td>${rl.club_no}</td>
-				<td><a href="club_community.do?club_no=${rl.club_no}" target="_parent">${rl.user_id}</a></td>
+				<td>${rl.user_id}</td>
 				<td>${rl.club_name}</td>
 				<td>${rl.club_title}</td>
 				<td>${rl.club_content}</td>
-				<td><img src="img/${rl.club_thumb_img}" width="100px" /></td>
+				<td><img src="img/${rl.club_thumb_img}" width="100px" class="thumb_img" abc="${rl.club_no}"/></td>
 				<td>${rl.max_member}</td>
 			</tr>
 		</jl:forEach>
