@@ -109,7 +109,11 @@ public class BeanUtil
 			pn.equals("space_qna_title")||
 			pn.equals("space_qna_content")||
 			pn.equals("space_qna_reple_title")||
-			pn.equals("space_qna_reple_content")); 
+			pn.equals("space_qna_reple_content")||
+			pn.equals("zonecode")||
+			pn.equals("address")||
+			pn.equals("jibunAddress")||
+			pn.equals("detail")); 
 	}
 	
 	//	String l2 = BeanUtil.toPropName( l );
