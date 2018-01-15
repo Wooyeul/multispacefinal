@@ -22,7 +22,7 @@ table {
 <body>
 	<div class="jumbotron" style="background-color: orange">
 		<h1>공간 모음</h1>
-	</div>
+	</div> 
 	<form id="textsearch" action="admin_spaces_search.do">
 		<select name="search_option">
 			<option value="0">검색할 것을 선택해주세요</option>

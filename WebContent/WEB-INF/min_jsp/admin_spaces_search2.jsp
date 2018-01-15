@@ -62,7 +62,7 @@ table {
 	<br>
 
 		<table border="1">
-		<tr>
+		<tr> 
 			<td>사업자 등록 번호</td>
 			<td>공간 이름</td>
 			<td>공간 내용</td>
