@@ -50,7 +50,8 @@ public class CtrlUserJoin {
 		uvo.setEmail(e);
 		String phone = num + phone_cen + phone_end;
 		uvo.setPhone(phone);
-		
+		System.out.println(uvo.getUser_name());
+		System.out.println(uvo.getNickname());
 		userJoinDAO.addUser(uvo);
 		
 		return "redirect:/home_complete.do?user_id="+uvo.getUser_id();
