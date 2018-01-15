@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<meta http-equiv="Compatible" content="no-cache"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -14,7 +15,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
 <script>
-
+	
  	 	function startTimeChange() {
  	 		
  	 		//var start_time_range = document.getElementById("start_time_range");
@@ -48,6 +49,34 @@
 
  	 	
  	 	$(document).ready(function(){
+ 	 		var time_click_flag = "a";
+ 	 		var first_click_time = 0;
+ 	 		var second_click_time = 0;
+ 	 		<jl:forEach items="${booking_list}" var="booking">
+ 	 			alert("${booking.start_time}");
+ 	 			alert("${booking.end_time}");
+ 	 		</jl:forEach>
+ 	 		 $(".cb_time").on("click",function(){
+ 	 			if(time_click_flag=="a"){
+ 	 				$(".cb_time").removeClass("active");
+ 	 				first_click_time = $(this).attr("time");
+ 	 				time_click_flag="b";
+ 	 			} else if(time_click_flag=="b"){
+ 	 				second_click_time=$(this).attr("time");
+ 	 				if(parseInt(first_click_time) > parseInt(second_click_time)){
+ 	 					for(var a = parseInt(second_click_time) ; a < parseInt(first_click_time) ; a ++ ) {
+ 	 						$("#btn_time"+[a]).addClass("active");
+ 	 					}
+ 	 				} else if(parseInt(first_click_time) < parseInt(second_click_time)){
+ 	 					for(var b = parseInt(first_click_time) ; b < parseInt(second_click_time) ; b++ ) {
+	 	 					$("#btn_time"+[b]).addClass("active");
+	 	 				}
+ 	 				}
+ 	 				time_click_flag="a";
+ 	 			} 
+ 	 		 });
+ 	 		 
+ 	 		 
  	 		 
  	 		 $("#booking_people").val("${space.min_people}");
  	 		 
@@ -116,12 +145,6 @@
 				var dat = $("#booking_date").val();
  	 			$("#reserve_day").html(dat);
  	 		});
- 	 		
- 	 	
- 	 		
- 	 	});
- 	 
- 	 	$(document).ready(function(){
  	 		var scOffset = $( '.navbar-Menu' ).offset();
  	 		$( window ).scroll( function() {
  	 		if ( $( document ).scrollTop() > scOffset.top ) {
@@ -147,10 +170,12 @@
  	 		$("#non_login_nav").hide(); 
  	 		$("#user_name").text(rt+"님이 로그인하셨습니다.");
  	 			}
- 	 		 });	
-
-
- 	 		});
+ 	 		 });
+ 	 		
+ 	 	
+ 	 		
+ 	 	});
+ 	 
 
 
  	 </script>
@@ -211,6 +236,15 @@
 				<input type="text"  id="booking_date" name="booking_date" disabled="disabled">
 			</div>
 			
+			<h4>시간</h4>
+			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+				<jl:forEach begin="0" end="24" varStatus="time">
+					  <label class="btn btn-secondary btn-success cb_time"  time="${time.index }" id="btn_time${time.index }">
+					    <input type="checkbox" autocomplete="off" id="asdf${time.index }"> ${time.index }
+					  </label>
+			  </jl:forEach>
+			</div>
+			
 			<div class="form-group">
 					<label for="start_time">대여 시작 시간</label>
 					<input id="start_time_range" type="range" min="${space.open_time }" max="${space.close_time }" onchange="startTimeChange();" value="${space.open_time }"/>
@@ -219,7 +253,7 @@
 				
 				
 				<div class="form-group">
-					<label for="end_time">대여 종료 시간dd</label>
+					<label for="end_time">대여 종료 시간</label>
 					<input id="end_time_range" type="range" min="${space.open_time }" max="${space.close_time }" onchange="endTimeChange();" value="${space.close_time }"/>
 					<input id="end_time" type="number" value="${space.close_time }" disabled="disabled" name="end_time"/>시
 				</div>
@@ -264,7 +298,7 @@
 						</tr>
 						<tr>
 							<td>예약 시간</td>
-							<td><label id="start">3</label>시 ~ <label id="end">10</label>시</td>
+							<td><label id="start"></label>시 ~ <label id="end"></label>시</td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="text" name="booking_price" id="booking_price" disabled="disabled"></td>

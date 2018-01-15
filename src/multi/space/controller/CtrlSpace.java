@@ -90,8 +90,15 @@ public class CtrlSpace {
 	@RequestMapping("/space_home_iframe.do")
 	public ModelAndView space_home_iframe(@ModelAttribute Space_searchVO search,@RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("space_home_iframe");
-		List<SpaceVO> list2 = spaceDAO.search_space(search);
-		PaginationDTO pz = new PaginationDTO().init(pg, list2.size()) ;  // pg값을 받고, 전체 글 갯수를 뽑아와서 페이지네이션 시작!
+		List<SpaceVO> list2 = spaceDAO.search_space(search); // 찾고자 하는 게시판의 전체 글 갯수를 가져와야합니다.
+		/*
+		 * 처음 시작에는 검색이 되지 않은 전체 글 갯수가 리턴됩니당. 100개 글이면 처음 들어갈 땐 검색이 없기 때문에 100개가 리턴됨.
+		 */
+		PaginationDTO pz = new PaginationDTO().init(pg, list2.size()) ;
+		/* pg값은 현재 페이지를 뜻합니다!
+		 * 처음 시작에는 pg 값이 없기 때문에 PaginationDTO에서 pg값이 null일 경우 1로 만들어주기 때문에 현재 페이지 1로 페이지네이션이 시작됩니다.
+		 * 
+		 */
 		search.setStart_no(pz.getSkip());
 		list2 = spaceDAO.search_space(search);
 		
@@ -237,18 +244,26 @@ public class CtrlSpace {
 	
 	//공간 예약
 	@RequestMapping("/space_reservation.do")
-	public ModelAndView space_reseravtion_find_by_pk(@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id) throws Exception{
+	public ModelAndView space_reseravtion_find_by_pk(@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id,@ModelAttribute BookingVO bookingVO) throws Exception{
 		if(user_id==null || user_id.length()<=1){
 			ModelAndView mnv = new ModelAndView("redirect:/home_moveLoginPage.do");
 			return mnv;
 		}
-		ModelAndView mnv = new ModelAndView("space_reservation");
 		
+		ModelAndView mnv = new ModelAndView("space_reservation");
+		String booking_date = "2018-01-15";
+		bookingVO.setBooking_date(booking_date);
+		System.out.println(bookingVO.getSpace_no());
+		System.out.println(bookingVO.getBooking_date());
+		
+		List<BookingVO> booking_list = bookingDAO.find_booking_by_space_no_and_booking_date(bookingVO);
+
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		List<ClubVO> club_list = spaceDAO.find_user_club(user_id);
 		mnv.addObject("club_list", club_list);			
 		mnv.addObject("space", space);
 		mnv.addObject("user_id", user_id);
+		mnv.addObject("booking_list", booking_list);
 		return mnv;
 	}
 	
@@ -282,7 +297,6 @@ public class CtrlSpace {
 	//space qna등록
 	@RequestMapping("/add_space_qna.do")
 	public String add_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id) throws Exception{
-		
 		if(user_id==null || user_id.length()<=1 ){
 			return "redirect:/home_moveLoginPage.do";
 		}

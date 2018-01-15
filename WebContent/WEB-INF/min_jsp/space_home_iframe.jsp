@@ -62,7 +62,7 @@
 					<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.curPagination+1}">&gt;</a></li>
 				</jl:if>
 			<jl:if test="${pz.hasNextPagination }">
-				<li><a class="page" href="space_home_iframe.do" pg="${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+				<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
 </body>
