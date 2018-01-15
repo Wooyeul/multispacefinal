@@ -1,4 +1,4 @@
-DELETE FROM o2oQnAT;
+ DELETE FROM o2oQnAT;
 INSERT INTO o2oQnAT ( o2o_title, o2o_content, o2o_email, o2o_type, o2o_phone, the_time ) VALUES( '첫번째 질문', '궁금해요', 'remd@naver.com', '회원', '010', NOW() );
 INSERT INTO o2oQnAT ( o2o_title, o2o_content, o2o_email, o2o_type, o2o_phone, the_time, re_o2o_content ) VALUES( '첫번째 질문', '궁금해요', 'remd@naver.com', '회원', '010', NOW(), '문의 사항 보았고 해결했습니다.');
 

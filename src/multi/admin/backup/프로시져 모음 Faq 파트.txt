@@ -1,4 +1,4 @@
-	DROP PROCEDURE IF EXISTS p_admin_faq_FindAllTexts;
+ 	DROP PROCEDURE IF EXISTS p_admin_faq_FindAllTexts;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_faq_FindAllTexts()
 	BEGIN

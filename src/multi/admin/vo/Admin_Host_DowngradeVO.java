@@ -1,5 +1,5 @@
 package multi.admin.vo; 
-
+ 
 public class Admin_Host_DowngradeVO {
 	public Admin_Host_DowngradeVO(){}
 	public Admin_Host_DowngradeVO(String crn, String user_id, String host_name, String host_account, String zipcode,

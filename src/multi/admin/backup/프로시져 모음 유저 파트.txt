@@ -1,4 +1,4 @@
-DELETE FROM UserT;
+DELETE FROM UserT; 
 SELECT * FROM UserT;
 INSERT INTO UserT Values('user', '881001', '8888888', '1234', 'ÀÌ¾çÀç', 'M', '01055246469',
 'coolGuy', '442-470', 'remd@naver.com' , 1 );

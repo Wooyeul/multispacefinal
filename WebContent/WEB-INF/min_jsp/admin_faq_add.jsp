@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%>
 <%@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html> 
+<html>
 <head>
 <!-- ±è¼Ò¿µ -->
 <meta name="viewport" content="width=device-width, initial-scale=1">

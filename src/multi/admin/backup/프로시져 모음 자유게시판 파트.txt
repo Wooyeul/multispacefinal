@@ -1,4 +1,4 @@
-################################################################
+ ################################################################
 	DROP PROCEDURE IF EXISTS p_admin_comm_boardFindAllTexts;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_comm_boardFindAllTexts()

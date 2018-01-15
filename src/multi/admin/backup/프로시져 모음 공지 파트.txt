@@ -1,4 +1,4 @@
-DELETE FROM NoticeT;
+DELETE FROM NoticeT; 
 INSERT INTO NoticeT VALUES ( default, '첫번째 공지', '공지사항은 이렇이렇습니다.', NOW() );
 
 ################################################################

@@ -15,7 +15,7 @@ import main.vo.Community_boardVO;
 import main.vo.Community_board_repleVO;
 import multi.admin.dao.Admin_FreeboardDAO;
 import multi.admin.vo.Admin_community_searchVO;
-
+ 
 @Controller
 public class Ctrl_Admin_Freeboard {
 	

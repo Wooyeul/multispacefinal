@@ -1,4 +1,4 @@
-################################################################
+ ################################################################ 
 	DROP PROCEDURE IF EXISTS p_admin_event_add;
      DELIMITER $$
      CREATE PROCEDURE p_admin_event_add(

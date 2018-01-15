@@ -1,5 +1,5 @@
 package multi.admin.vo; 
-
+ 
 public class Admin_User_Del_EmailVO {
 	public Admin_User_Del_EmailVO(){}
 	

@@ -1,4 +1,4 @@
-
+ 
 CREATE TABLE FAQT
 (
     `faq_no`       INT            NOT NULL    AUTO_INCREMENT, 

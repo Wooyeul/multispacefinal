@@ -1,5 +1,5 @@
 package multi.admin.vo; 
-
+ 
 public class Admin_searchVO {
 	public Admin_searchVO(){}
 	public Admin_searchVO(String search_option, String search_content) {

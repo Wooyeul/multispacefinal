@@ -1,4 +1,4 @@
-DELETE FROM HostT;
+ DELETE FROM HostT;
 SELECT * FROM HostT;
 INSERT INTO HostT Values('111-11-11111', 'seller', '이양재', 'Korean bank', '442-470');
 INSERT INTO HostT Values('222-22-22222', 'imseller', '이양재', 'Korean bank', '442-470');
