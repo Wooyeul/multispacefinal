@@ -54,6 +54,9 @@
 		SELECT * from space_qna_repleT where space_qna_no = #{space_qna_no};
 	</select>
 	
+	<select id="mypage_qna_byqnano" resultMap="RM_qna_qnainfo">
+		select * from space_qnaT where space_qna_no = #{space_qna_no};
+	</select>
 
    
 </mapper>

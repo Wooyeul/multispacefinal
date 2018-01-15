@@ -69,14 +69,22 @@ public class CtrlQnA {
 	 * 내 질문에 대한 reple find함.
 	 */
 	@RequestMapping("/mypage_getMypageQnAReple.do")
-	@ResponseBody
-	public String getMypageQnAReple(@CookieValue("user_id") String user_id, @RequestParam("space_qna_no") String space_qna_no)
+	public ModelAndView getMypageQnAReple(@CookieValue("user_id") String user_id, 
+			@RequestParam("space_qna_no") String space_qna_no)
 			throws Exception {
-		
+		ModelAndView mnv = new ModelAndView("mypage_qna_anwer");
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(space_qna_no);
-		return qna_repleInfo.getSpace_qna_reple_content();
+		Space_qnaVO qnaInfo = Space_qnaDAO.find_qnaByspace_no(space_qna_no);
 		
+			
+		mnv.addObject("userInfo", userInfo);
+		mnv.addObject("Space_qna_repleVO", qna_repleInfo);
+		mnv.addObject("qnaInfo", qnaInfo);
+		return mnv;
 	}
+	
+	
+	
 
 }

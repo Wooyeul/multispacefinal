@@ -17,4 +17,9 @@ public class Space_qnaDAO_MybatisImpl implements Space_qnaDAO{
 		return sqlSession.selectList("apple.mypage_qna_qnaInfo",user_id);
 	}
 
+	@Override
+	public Space_qnaVO find_qnaByspace_no(String space_qna_no) throws Exception {
+		return sqlSession.selectOne("apple.mypage_qna_byqnano",space_qna_no);
+	}
+
 }
