@@ -12,6 +12,10 @@ import main.ResponseBody;
 import main.vo.UserVO;
 import multi.home.userjoin.dao.UserJoinDAO;
 
+/**
+ * @author sb
+ * 회원가입
+ */
 @Controller
 public class CtrlUserJoin {
 	
@@ -39,6 +43,7 @@ public class CtrlUserJoin {
 		return mnv;
 	}
 	
+	//회원가입 DAO실행하는 부분
 	@RequestMapping("/home_user_join2.do")
 	public String joinUser2(@ModelAttribute UserVO uvo,
 			@RequestParam(value = "home") String r,
@@ -57,6 +62,7 @@ public class CtrlUserJoin {
 		return "redirect:/home_complete.do?user_id="+uvo.getUser_id();
 	}
 	
+	//회원가입 완료 페이지
 	@RequestMapping("/home_complete.do")
 	public ModelAndView join_complete(@RequestParam("user_id") String user_id) throws Exception{
 		
@@ -65,6 +71,7 @@ public class CtrlUserJoin {
 		return mnv;
 	}
 	
+	//회원아이디 중복검사
 	@RequestMapping("/overlap.do")
 	@ResponseBody
 	public String overlap(@ModelAttribute UserVO uvo) throws Exception{

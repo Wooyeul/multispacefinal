@@ -15,13 +15,17 @@ import main.vo.HostVO;
 import main.vo.SpaceVO;
 import multi.mypage.myhost.dao.MyHostDAO;
 
+/**
+ * @author sb
+ * 마이페이지 판매자 페이지
+ */
 @Controller
 public class CtrlMypageMyHost {
 	
 	@Autowired @Qualifier("myhostDAO")
 	private MyHostDAO myhostDAO;
 	
-	
+	//판매자 여부 확인
 	@RequestMapping("/myhost_findAll.do")
 	public ModelAndView findHost(@CookieValue("user_id") String user_id,@ModelAttribute HostVO hvo) throws Exception{
 		
@@ -43,6 +47,7 @@ public class CtrlMypageMyHost {
 		return mnv;
 	}
 	
+	//판매자 추가
 	@RequestMapping("/myhost_addForm.do")
 	public ModelAndView addHost(@ModelAttribute HostVO hvo)throws Exception{
 		

@@ -13,13 +13,17 @@ import main.RequestMapping;
 import main.vo.ReviewVO;
 import multi.mypage.myreview.dao.MPReviewDAO;
 
+/**
+ * @author sb
+ * 마이페이지 리뷰
+ */
 @Controller
 public class CtrlMypageReview {
 	
 	@Autowired @Qualifier("MPreviewDAO")
 	private MPReviewDAO MPreviewDAO = null;
 	
-	
+	//전체 후기 뿌려오기
 	@RequestMapping("/mypage_review_findAll.do")
 	public ModelAndView PMreview_findAll(@CookieValue("user_id") String user_id) throws Exception{
 		

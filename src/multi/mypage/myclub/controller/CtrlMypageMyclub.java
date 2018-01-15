@@ -13,6 +13,10 @@ import main.RequestMapping;
 import main.vo.ClubVO;
 import multi.mypage.myclub.dao.MyclubDAO;
 
+/**
+ * @author sb
+ * 마이페이지 내 클럽
+ */
 @Controller
 public class CtrlMypageMyclub {
 	

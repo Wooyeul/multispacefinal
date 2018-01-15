@@ -17,12 +17,17 @@ import main.vo.BookmarkVO;
 import main.vo.SpaceVO;
 import multi.mypage.mybookmark.dao.BookmarkDAO;
 
+/**
+ * @author sb
+ * 마이페이지 즐겨찾기
+ */
 @Controller
 public class CtrlMypageBookmark {
 	
 	@Autowired @Qualifier("bookmarkDAO")
 	private BookmarkDAO bookmakrDAO;
 	
+	//즐겨찾기 by user_id
 	@RequestMapping("/bookmark_findAll.do")
 	public ModelAndView findBookmark(@CookieValue("user_id") String user_id) throws Exception{
 		
@@ -32,6 +37,7 @@ public class CtrlMypageBookmark {
 		return mnv;
 	}
 	
+	//즐겨찾기 삭제
 	@RequestMapping("/bookmark_del.do")
 	@ResponseBody
 	public String delBookmark(HttpServletRequest request){

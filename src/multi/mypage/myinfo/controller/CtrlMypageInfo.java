@@ -13,6 +13,10 @@ import main.vo.UserVO;
 import multi.mypage.myinfo.dao.MyInfoDAO;
 import multi.mypage.myinfo.dao.UserDAO;
 
+/**
+ * @author sb
+ * 마이페이지 내정보
+ */
 @Controller
 public class CtrlMypageInfo {
 	
@@ -40,6 +44,7 @@ public class CtrlMypageInfo {
 
 	}
 	
+	//마이페이지 들어가기전 passwd 확인
 	@RequestMapping("/myinfo_ckpass.do")
 	public ModelAndView ckpasswd() throws Exception{
 		ModelAndView mnv = new ModelAndView("myinfo_ckpass");
@@ -47,6 +52,7 @@ public class CtrlMypageInfo {
 		return mnv;
 	}
 	
+	//회원정보 수정
 	@RequestMapping("/mypage_mod_user.do")
 	public ModelAndView modUser(@CookieValue("user_id")String user_id,@ModelAttribute UserVO uvo) throws Exception{
 		
@@ -73,6 +79,7 @@ public class CtrlMypageInfo {
 		return mnv;
 	}
 	
+	//회원정보 수정 dao
 	@RequestMapping("/myinfo_mod_user2.do")
 	public String modUser2(@ModelAttribute UserVO uvo,
 			@RequestParam(value = "home") String r,
@@ -90,6 +97,7 @@ public class CtrlMypageInfo {
 		return "redirect:/myinfo_complete.do";
 	}
 	
+	//회원정보수정 완료
 	@RequestMapping("/myinfo_complete.do")
 	public ModelAndView myinfo_complete(@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("myinfo_complete");
@@ -98,6 +106,7 @@ public class CtrlMypageInfo {
 		return mnv;
 	}
 	
+	//회원정보 삭제
 	@RequestMapping("/myinfo_delete.do")
 	public String myinfo_delete(@CookieValue("user_id") String user_id) throws Exception{
 		
@@ -106,6 +115,7 @@ public class CtrlMypageInfo {
 		return "redirect:/myinfo_del_complete.do?co="+1001;
 	}
 	
+	//회원정보 삭제 확인 페이지
 	@RequestMapping("/myinfo_del_complete.do")
 	public ModelAndView myinfo_del_complete(@RequestParam("co") String co) throws Exception{
 		ModelAndView mnv = new ModelAndView("myinfo_del_complete");
