@@ -35,7 +35,7 @@ public class CtrlLogin {
 	/* 180115수정
 	 * 모든 페이지에서 top-nav의 ajaxGet으로 인해 chk_login.do 실행됨.
 	 * chk_login.do 통해서 로그인 여부 판별
-	 * 로그인 했을 시 user_name 리턴
+	 * 로그인 했을 시 user_name 리턴!
 	 */
 	@RequestMapping("/chk_login.do")
 	@ResponseBody
