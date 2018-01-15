@@ -15,7 +15,6 @@
 	$(document).ready(function(){
 		$(".btnspace_no").on("click",function(){
 			var space_qna_no = $(this).attr("abc");
-			alert(space_qna_no);
 			document.frm.method="POST";
 			document.frm.action="mypage_getMypageQnAReple.do?space_qna_no="+space_qna_no;
 			document.frm.submit();
