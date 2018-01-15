@@ -113,8 +113,10 @@
 			<tr>${master}(모임장)</tr><br/>
 			<jl:forEach items="${userVO}" var="uvo">
 				<tr><label class="user_name" user_id="${uvo.user_id}">${uvo.user_name}</label>
-				<a class="release" user_id="${uvo.user_id }" club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
-				<span class="glyphicon glyphicon-remove"></span></a><br/>
+				<jl:if test="${master eq user_id }">
+					<a class="release" user_id="${uvo.user_id }" club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
+					<span class="glyphicon glyphicon-remove"></span></a>
+				</jl:if><br/>
 			</jl:forEach>
 		</table>
 	</jl:if>
@@ -191,22 +193,18 @@
 	<!-- 클럽 해체 modal창 끝 -->
 	
 	<!-- 유저 탈퇴 modal창 시작 -->
-	<form id="del_user_frm" method="post" action="club_del_user.do">
-		<div id="del_user_modal" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div id="mohead" class="modal-header"align="center"><h2>모임 탈퇴</h2></div>
-					<div id="mobody" class="modal-body" align="center"><h3>모임을 정말 탈퇴하시겠습니까?</h3></div>
-					<div id="ft" class="modal-footer">
-						<button type="button" class="btn btn-default" id="del_user_yes">확인</button>
-						<button type='button' class='btn btn-primary' id='del_user_no'>취소</button>
-					</div>
+	<div id="del_user_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="mohead" class="modal-header"align="center"><h2>모임 탈퇴</h2></div>
+				<div id="mobody" class="modal-body" align="center"><h3>모임을 정말 탈퇴하시겠습니까?</h3></div>
+				<div id="ft" class="modal-footer">
+					<button type="button" class="btn btn-default" id="del_user_yes">확인</button>
+					<button type='button' class='btn btn-primary' id='del_user_no'>취소</button>
 				</div>
 			</div>
 		</div>
-		<input name="club_no" type="hidden" value="${vo.club_no}"/>
-		<input name="user_id" type="hidden" value="${user_id}"/>
-	</form>
+	</div>
 	<!-- 유저 탈퇴 modal창 끝 -->
 	
 	<!-- 기본 modal창 시작 -->
@@ -416,12 +414,25 @@
 				if('${user_id}'=='${vo.user_id}'){
 					$("#del_club_modal").modal("show");
 					$("#del_club_yes").on("click",function(){
-						$("#del_club_modal").modal("hide");
-						$("#basic_mobody").text("모임이 해체 되었습니다.");
-						$("#basic_modal").modal("show");
-						$("#status-basic_modal").on("hidden.bs.modal",function(){
-							$("#basic_modal").modal("hide");
-							$("#del_club_frm").submit();
+						var url = "club_del_club.do?club_no="+${vo.club_no};
+						ajaxGet(url,function(rt){
+							if(rt=="ok"){
+								$("#del_club_modal").modal("hide");
+								$("#basic_mobody").text("모임이 해체 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal").on("hidden.bs.modal",function(){
+									$("#basic_modal").modal("hide");
+									location.href="club_home.do";
+								});
+							}else{
+								$("#del_club_modal").modal("hide");
+								$("#basic_mobody").text("모임 해체가 실패 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal_Yes").on("click",function(){
+									$("#basic_modal").modal("hide");
+									location.reload();
+								});
+							}
 						});
 					});
 					$("#del_club_no").on("click",function(){
@@ -429,21 +440,34 @@
 					});
 				}else{
 					/*그게 아니라면 일반 회원 이므로 유저 탈퇴로 실행*/
-					$("#del_user_modal").modal();
+					$("#del_user_modal").modal("show");
 					$("#del_user_yes").on("click",function(){
-						$("#del_user_modal").modal("hide");
-						$("#basic_mobody").text("모임에서 탈퇴 되었습니다.");
-						$("#basic_modal").modal("show");
-						$("#basic_modal_Yes").on("click",function(){
-							$("#basic_modal").modal("hide");
-							$("#del_user_frm").submit();
-						});
+						var url = "club_del_user.do?club_no="+${vo.club_no};
+						ajaxGet(url,function(rt){
+							if(rt=="ok"){
+								$("#del_user_modal").modal("hide");
+								$("#basic_mobody").text('${vo.club_name}'+"모임에서 탈퇴 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal").on("hidden.bs.modal",function(){
+									$("#basic_modal").modal("hide");
+									location.href="club_home.do";
+								});
+							}else{
+								$("#del_user_modal").modal("hide");
+								$("#basic_mobody").text("모임 탈퇴가 실패 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal_Yes").on("click",function(){
+									$("#basic_modal").modal("hide");
+									location.reload();
+								});
+							}//end if
+						});//end ajaxGet
 					});
 					$("#del_user_no").on("click",function(){
 						$("#del_user_modal").modal('hide');
-					});
-				}
-			});
+					});//취소 버튼 클릭시 이벤트
+				}//end if
+			});//delClub function
 			
 			/* 마스터 이외에게 신청 현황 리스트, 공지쓰기 버튼 보여주지 않기*/
 			if('${user_id}'!='${vo.user_id}'){

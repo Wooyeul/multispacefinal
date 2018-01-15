@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -16,6 +17,7 @@ import main.RequestMapping;
 import main.ResponseBody;
 import main.vo.ClubVO;
 import multi.club.dao.ClubDAO;
+import multi.club.vo.Club_board_repleVO;
 import multi.club.vo.Club_noticeVO;
 import multi.club.vo.Club_notice_repleVO;
 
@@ -33,6 +35,7 @@ public class CtrlClub_notice {
 		mnv.addObject("user_id", user_id);
 		return mnv;
 	}
+	
 	//모임 커뮤니티 공지사항 작성
 	@RequestMapping("/club_add_community_notice_submit.do")
 	@ResponseBody
@@ -103,11 +106,46 @@ public class CtrlClub_notice {
 		}
 	}
 	
+	//모임 커뮤니티 게시판 댓글 조회
+	@RequestMapping("/club_find_notice_reple.do")
+	@ResponseBody
+	public String club_find_reple(@ModelAttribute Club_noticeVO pvo) throws Exception {
+		List<Club_notice_repleVO> reVO = clubDAO.club_find_notice_reple(pvo);
+		System.out.println("C_notice_no():"+pvo.getC_notice_no());
+		
+		StringBuffer sb = null;
+		
+		for (Club_notice_repleVO vo : reVO) {
+			if (sb == null) {
+				sb = new StringBuffer();
+		        sb.append("{data:[");
+		} else {
+			sb.append(",");
+		}
+		sb.append("{'user_id' :'").append(vo.getUser_id()).append("', 'c_notice_reple_content' : '").append(vo.getC_notice_reple_content())
+		.append("', 'the_time' : '").append(vo.getThe_time()).append("', 'c_notice_no' : '").append(vo.getC_notice_no()).append("', 'c_notice_reple_no' : '")
+		.append(vo.getC_notice_reple_no()).append("'}");
+		
+		}
+		sb.append("]}");
+		System.out.println(sb.toString());
+		return sb.toString();
+	}
+		
 	//모임 커뮤니티 공지사항 댓글 작성
 	@RequestMapping("/club_add_notice_reple.do")
-	public String club_add_notice_reple(@ModelAttribute Club_notice_repleVO pvo) throws Exception {
-		clubDAO.club_add_notice_reple(pvo);
-		return "redirect:/club_notice_detail.do?c_notice_no="+pvo.getC_notice_no();
+	@ResponseBody
+	public String club_add_notice_reple(HttpServletRequest request) throws Exception {
+		Club_notice_repleVO pvo = new Club_notice_repleVO();
+		pvo.setC_notice_reple_content(request.getParameter("c_notice_reple_content"));
+		pvo.setUser_id(request.getParameter("user_id"));
+		pvo.setC_notice_no(BeanUtil.pInt(request.getParameter("c_notice_no")));
+		try{
+			clubDAO.club_add_notice_reple(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	//모임 커뮤니티 공지사항 댓글 삭제
 	@RequestMapping("/club_del_notice_reple.do")

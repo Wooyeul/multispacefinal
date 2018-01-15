@@ -64,6 +64,31 @@ public class CtrlClub_board {
 			mnv.addObject("user_id", user_id);
 			return mnv;
 		}
+		//모임 커뮤니티 게시판 댓글 조회
+		@RequestMapping("/club_find_board_reple.do")
+		@ResponseBody
+		public String club_find_reple(@ModelAttribute Club_boardVO pvo) throws Exception {
+			List<Club_board_repleVO> reVO = clubDAO.club_find_board_reple(pvo);
+			
+			StringBuffer sb = null;
+			
+			for (Club_board_repleVO vo : reVO) {
+				if (sb == null) {
+					sb = new StringBuffer();
+			        sb.append("{data:[");
+			} else {
+				sb.append(",");
+			}
+			sb.append("{'user_id' :'").append(vo.getUser_id()).append("', 'c_board_reple_content' : '").append(vo.getC_board_reple_content())
+			.append("', 'the_time' : '").append(vo.getThe_time()).append("', 'c_board_no' : '").append(vo.getC_board_no()).append("', 'c_board_reple_no' : '")
+			.append(vo.getC_board_reple_no()).append("'}");
+			
+			}
+			sb.append("]}");
+			System.out.println(sb.toString());
+			return sb.toString();
+		}
+		
 		//모임 커뮤니티 게시판 수정 페이지 호출
 		@RequestMapping("/club_mod_board_detail.do")
 		public ModelAndView club_mod_board_detail(@ModelAttribute Club_boardVO pvo) throws Exception {
@@ -102,9 +127,18 @@ public class CtrlClub_board {
 
 		//모임 커뮤니티 게시판의 댓글 등록
 		@RequestMapping("/club_add_board_reple.do")
-		public String club_add_board_reple(@ModelAttribute Club_board_repleVO pvo) throws Exception {
-			clubDAO.club_add_board_reple(pvo);
-			return "redirect:/club_board_detail.do?c_board_no="+pvo.getC_board_no();
+		@ResponseBody
+		public String club_add_board_reple(HttpServletRequest request) throws Exception {
+			Club_board_repleVO pvo = new Club_board_repleVO();
+			pvo.setC_board_reple_content(request.getParameter("c_board_reple_content"));
+			pvo.setUser_id(request.getParameter("user_id"));
+			pvo.setC_board_no(BeanUtil.pInt(request.getParameter("c_board_no")));
+			try{
+				clubDAO.club_add_board_reple(pvo);
+				return "ok";
+			}catch(Exception e){
+				return "no";
+			}
 		}
 		
 		//모임 커뮤니티 게시판의 댓글 삭제

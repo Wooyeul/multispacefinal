@@ -7,6 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="common.js"></script>
 	
 	<style>
 	</style>
@@ -151,7 +152,7 @@
 									$("#basic_modal").modal("hide");
 									location.reload();
 								});
-							}else if(rt="10001"){
+							}else if(rt=="10001"){
 								$("#modal").modal("hide");
 								$("#basic_mobody").text("신청 처리가 실패 되었습니다.");
 								$("#basic_modal").modal("show");

@@ -8,10 +8,47 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="common.js"></script>
+	
 	<style>
 	</style>
 </head>
 <body>
+	<div class="jbTitle">
+		<h1>Multi Space</h1>
+	</div>
+	
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default ">
+		<div class="container">
+		 <div class="navbar-header">
+		   <a class="navbar-brand" href="main.html">multi space</a>
+		 </div>
+	
+	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+		<ul class="nav navbar-nav ">
+	 	 <li><a href="space_home.do">공간</a></li>
+		 <li><a href="club_home.do">모임</a></li>
+		 <li><a href="community_list.do">커뮤니티</a></li>
+		 <li><a href="event_user_list.do">이벤트</a></li>	
+		 <li><a href="notice_list.do">공지사항</a></li>
+		 <li><a href="faq_list.do">FAQ</a></li>			
+		 <li><a href="admin_main.do">관리자</a></li>			
+		</ul>
+				
+	<ul id="login_nav" class="nav navbar-nav navbar-right">
+	<li><a href="#" id="user_name"></a></li>
+		<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+		<li><a href="home_logout.do">로그아웃</a></li>	
+	</ul>
+		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+		     <li><a href="home_login.do">로그인</a></li>		
+		</ul>
+	
+		   </div>
+		</div>
+	</nav>
+	<!-- nav -->
+
 	<form id="frm">
 		<label>작성시간 : ${vo.the_time}</label><label> 작성자 : ${vo.user_id}</label><br/>
 		<label>제목</label><input name="c_board_title" type="text" value="${vo.c_board_title}"/><br/>
@@ -76,6 +113,12 @@
 	<!-- 자바스크립트 -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			//기본 모달창 확인 버튼 클릭 시 이벤트 발생
+			$("#basic_modal_Yes").on("click",function(){
+				$("#basic_modal").modal("hide");
+			});
+			
 			$("#cancel").on("click",function(){
 				location.href="club_board_detail.do?c_board_no="+${vo.c_board_no};
 			});
@@ -94,7 +137,7 @@
 								$("#text_mod_modal").modal("hide");
 								$("#basic_mobody").text("글이 수정 되었습니다.");
 								$("#basic_modal").modal("show");
-								$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");
 									location.href="club_board_detail.do?c_board_no="+${vo.c_board_no};
 								});
@@ -102,7 +145,7 @@
 								$("#mod_modal").modal("hide");
 								$("#basic_mobody").text("글 수정이 실패 되었습니다.");
 								$("#basic_modal").modal("show");
-								$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");
 									location.reload();
 								});
@@ -147,6 +190,33 @@
 				});
 			});
 			
+			
+			/* 네비 바 부분 */
+			var scOffset = $( '.navbar-Menu' ).offset();
+			$( window ).scroll( function() {
+				if ( $( document ).scrollTop() > scOffset.top ) {
+					$( '.navbar' ).addClass( 'navbar-fixed-top' );
+				}else {
+					$( '.navbar' ).removeClass( 'navbar-fixed-top' );
+				}
+			});
+			
+			var url = "chk_login.do";
+		 	ajaxGet(url,function(rt){
+			 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+			 if(rt =="10002"){ 
+				$("#login_nav").hide();				
+				$("#non_login_nav").show();
+			 }
+			 					
+			 // 로그인 시 : rt값 -> user_name
+			 else if(rt!=""){ 
+				 $("#login_nav").show();
+				 $("#non_login_nav").hide(); 
+				 $("#user_name").text(rt+"님이 로그인하셨습니다.");
+			 }
+			});	
+		 	/* 네비 바 부분 */
 		});
 	</script>
 </body>

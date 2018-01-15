@@ -22,35 +22,21 @@
 	<input id=textMod type="button" value="수정하기" style="display: none"><input id="prev" type="button" value="뒤로가기">
 	<br/><hr>
 	
-	<form method="post" action="club_add_notice_reple.do">
+	<form id="add_reple_frm">
 		<div class="form-group" align="left">
 			<label id="reple" class="l" style="width: 100px; font-size: 100%">의견쓰기 </label>
 			<div class="input-group">
-				<input name="c_notice_reple_content" type="text" style="height: 80px;" class="form-control"/>
+				<input id="c_notice_reple_content" name="c_notice_reple_content" type="text" style="height: 80px;" class="form-control"/>
 				<span class="input-group-addon" style="background-color: #00C73C;">
-				<input type="submit" class="btn" value="등록" style="color:white; font-weight: bold; background-color: #00C73C;"/></span>
+				<input id="add_reple_btn" type="button" class="btn" value="등록" style="color:white; font-weight: bold; background-color: #00C73C;"/></span>
 			</div>
 			<input type="hidden" name="user_id" value="${user_id}">
 			<input type="hidden" name="c_notice_no" value="${vo.c_notice_no}">
 		</div>
 	</form>
 	<br/>
-	<div class="form-group" align="left">
 	<hr/>
-		<jl:forEach var="rvo" items="${reVO}">
-			<label id="repleId" class="l" style="font-size: 120%; font-weight: bold;">${rvo.user_id } </label><br/>
-			<label id="repleContent" class="l" style="font-size: 100%;">${rvo.c_notice_reple_content } </label><br/>
-			<label id="repletime" class="l" style="font-size: 100%; color: gray;">${rvo.the_time } 
-			<jl:if test="${user_id == rvo.user_id}">
-				<a class="delRe" reNo="${rvo.c_notice_reple_no}" noticeNo="${rvo.c_notice_no}" userId="${rvo.user_id}" 
-				href="#"><span class="glyphicon glyphicon-remove"></span></a>
-				<a reNo="${rvo.c_notice_reple_no}"  reText="${rvo.c_notice_reple_content}" 
-				class="modRe"href="#"><span class="glyphicon glyphicon-pencil"></span></a></label>
-			</jl:if>
-			
-			<br/>
-			<hr/>
-		</jl:forEach>
+	<div id="reple_list" class="form-group" align="left">
 	</div>	
 	
 </div>
@@ -117,6 +103,14 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
+			/* 시작하자마자 댓글 조회 */
+			find_reple();
+			
+			// 기본 모달창 확인 버튼 클릭 시 이벤트 발생
+			$("#basic_modal_Yes").on("click",function(){
+				$("#basic_modal").modal("hide");
+			});
+			
 			// 접속한 유저와 글의 유저를 비교해 수정하기 버튼 보여지기(어드민은 다보여주게).
 			if('${user_id}'=='${vo.user_id}'||'${user_id}'=='admin'){
 				$("#textMod").attr("style","display: inline;");
@@ -130,8 +124,36 @@
 			$("#textMod").on("click",function(){
 				location.href="club_mod_notice_detail.do?c_notice_no="+'${vo.c_notice_no}';
 			});
+			// 댓글 등록 버튼 클릭 시 이벤트 발생
+			$("#add_reple_btn").on("click",function(){
+				var formData = $("#add_reple_frm").serialize();
+				$.ajax({
+					type : "POST",
+					url : "club_add_notice_reple.do",
+					data : formData,
+					success	: function(rt) {
+						if(rt=="ok"){
+							$("#basic_mobody").text("댓글이 등록 되었습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								$("#c_notice_reple_content").val("");
+								find_reple();
+							});
+						}else if(rt=="no"){
+							$("#basic_mobody").text("댓글 처리가 실패 되었습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								find_reple();
+							});
+						}
+				    }
+				});
+			});
+			
 			// 댓글 삭제 버튼 눌렀을 때 이벤트 발생
-			$(".delRe").on("click",function(){
+			$(document).on("click",".delRe",function(){ 
 				var reNo = $(this).attr("reNo");
 				$("#del_modal").modal("show");
 				$("#del_modal_Yes").on("click",function(){
@@ -143,7 +165,7 @@
 							$("#basic_modal").modal("show");
 							$("#basic_modal_Yes").on("click",function(){
 								$("#basic_modal").modal("hide");
-								location.reload();
+								find_reple();
 							});
 						}else{
 							$("#del_modal").modal("hide");
@@ -151,7 +173,7 @@
 							$("#basic_modal").modal("show");
 							$("#basic_modal_Yes").on("click",function(){
 								$("#basic_modal").modal("hide");
-								location.reload();
+								find_reple();
 							}); 
 						}
 					});
@@ -162,7 +184,7 @@
 			});
 			
 			// 댓글 수정 버튼 눌렀을 때 이벤트 발생
-			$(".modRe").on("click",function(){
+			$(document).on("click",".modRe",function(){ 
 				var reText = $(this).attr("reText");
 				var reNo = $(this).attr("reNo");
 				$("#reple_content").text(reText);
@@ -181,7 +203,7 @@
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");
-									location.reload();
+									find_reple();
 								});
 							}else{
 								$("#mod_modal").modal("hide");
@@ -189,7 +211,7 @@
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");
-									location.reload();
+									find_reple();
 								}); 
 							}
 					    }
@@ -199,8 +221,27 @@
 					$("#mod_modal").modal("hide");
 				});
 			});
-
 		});
+		
+		function find_reple(){
+			var url = "club_find_notice_reple.do?c_notice_no="+${vo.c_notice_no};
+		 	ajaxGet(url,function(rt){
+			 	var list = window.eval("("+rt+")");
+			 	var html = "";
+			 	for( var i = 0 ; i < list.data.length ; i++ ){
+			 		html += "<label id='repleId' class='l' style='font-size: 120%; font-weight: bold;'>"+list.data[i].user_id +"</label><br/>";
+			 		html += "<label id='repleContent' class='l' style='font-size: 100%;'>"+list.data[i].c_notice_reple_content +"</label><br/>";
+					html += "<label id='repletime' class='l' style='font-size: 100%; color: gray;'>"+list.data[i].the_time ;
+					if(list.data[i].user_id=='${user_id}'){
+						html += "<a class='delRe' reNo='"+list.data[i].c_notice_reple_no+"' noticeNo='"+list.data[i].c_notice_no+"' user_id='"+list.data[i].user_id+ 
+							"'href='#'><span class='glyphicon glyphicon-remove'></span></a>"+
+							"<a reNo='"+list.data[i].c_notice_reple_no+"'  reText='"+list.data[i].c_notice_reple_content+"' class='modRe' href='#'>"+
+							"<span class='glyphicon glyphicon-pencil'></span></a></label><br/><hr/>";
+					}//end if
+			 	}//end for
+                   $('#reple_list').html(html);
+		 	});
+		}
 	</script>
 	
 </body>
