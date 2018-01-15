@@ -47,10 +47,6 @@ public class CtrlLogin {
 		}
 		else{ // 로그인을 했으면
 			String user_name = userInfo.getUser_name();
-			System.out.println(user_name);
-			
-			byte[] bs = user_name.getBytes("utf-8");
-			user_name = new String(bs,"euc-kr");
 			return user_name;
 		}
 		
