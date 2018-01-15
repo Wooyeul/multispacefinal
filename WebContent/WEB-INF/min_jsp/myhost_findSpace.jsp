@@ -8,11 +8,7 @@
 $(document).ready(function(){
 	$(".space_no").on("click",function(){
 		var temp = $(this).attr("abc");
-		
-		document.frm.method="POST";
-		document.frm.action="space_detail.do?space_no="+temp;
-		document.frm.submit();
-		
+		window.parent.location.href="space_detail.do?space_no="+temp;
 	});
 });
 </script>
