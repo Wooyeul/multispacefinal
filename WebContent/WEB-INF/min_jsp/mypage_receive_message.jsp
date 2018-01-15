@@ -17,7 +17,7 @@
 		$(".s_msg_no").on("click",function(e){
 			$("#i_msg_no").attr("value",$(this).attr("i"));
 			msg_no = $("#i_msg_no").val();
-			
+			alert(msg_no);
 			location.href="mypage_moveMypageReceiveMessageReadPage.do?msg_no=" + msg_no;		
 		});
 		

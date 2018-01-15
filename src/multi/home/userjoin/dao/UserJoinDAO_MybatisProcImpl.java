@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.UserVO;
+import main.vo.ZipcodeVO;
 
 public class UserJoinDAO_MybatisProcImpl implements UserJoinDAO{
 
@@ -21,5 +22,10 @@ public class UserJoinDAO_MybatisProcImpl implements UserJoinDAO{
 	public int ckId(UserVO uvo) throws Exception {
 		
 		return sqlSession.selectOne("userjoin.p_ckId",uvo);
+	}
+
+	@Override
+	public int addZipcode(ZipcodeVO zvo) throws Exception {
+		return sqlSession.insert("userjoin.p_user_zipcode_add",zvo);
 	}
 }

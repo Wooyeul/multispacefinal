@@ -35,6 +35,20 @@
 		{call p_overlap(?)};
 	</select>
 	
+	<parameterMap type="main.vo.ZipcodeVO" id="PM_p_user_zipcode_add">
+		<parameter property="user_id" mode="IN"/>
+		<parameter property="zonecode" mode="IN"/>
+		<parameter property="address" mode="IN"/>
+		<parameter property="jibunAddress" mode="IN"/>
+		<parameter property="detail" mode="IN"/>
+		
+	</parameterMap>
+	
+	<insert id="p_user_zipcode_add" parameterMap="PM_p_user_zipcode_add">
+		{call p_user_zipcode_add(?,?,?,?,?)}
+	</insert>
+	
+	
 </mapper>
 
 

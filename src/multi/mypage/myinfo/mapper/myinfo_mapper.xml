@@ -48,11 +48,22 @@
 		{call p_mypage_mod_user(?,?,?,?,?)}
 	</update>
 	
-	
-	
 	<delete id="p_mypage_del_user" parameterType="java.lang.String" statementType="CALLABLE">
 		{call p_mypage_del_user(#{user_id})}
 	</delete>
+	
+	<resultMap type="main.vo.ZipcodeVO" id="RM_p_user_zipcode_find">
+		<result property="user_id" column="user_id"/>
+		<result property="zonecode" column="zonecode"/>
+		<result property="address" column="address"/>
+		<result property="jibunAddress" column="jibunAddress"/>
+		<result property="detail" column="detail"/>
+	</resultMap>
+	
+	
+	<select id="p_user_zipcode_find" resultMap="RM_p_user_zipcode_find" parameterType="java.lang.String" statementType="CALLABLE">
+		{call p_user_zipcode_find(#{user_id})}
+	</select>
 	
 	
 </mapper>
