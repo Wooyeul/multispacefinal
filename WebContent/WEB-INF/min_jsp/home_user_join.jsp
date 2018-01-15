@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
-
 	<script type="text/javascript" src="common.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -215,7 +214,7 @@
 	<!-- nav -->
 
 
-	<form action="home_user_join2.do" name=frm>
+	<form action="home_user_join2.do" name=frm method="POST">
 		<table border="0" cellpadding="8" align="center">
 
 			<tr>

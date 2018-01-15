@@ -1,6 +1,6 @@
 <%@ page 
 	contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%><!DOCTYPE html>
+    pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -23,17 +23,17 @@
 		var url = "chk_login.do";
  		ajaxGet(url,function(rt){
  			
- 				// ·Î±×ÀÎ ½ÇÆÐ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
+ 				// ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
  				if(rt =="10002"){ 
 					$("#login_nav").hide();
 					$("#non_login_nav").show();
 				}
  					
- 				// ·Î±×ÀÎ ½Ã : rt°ª -> user_name
+ 				// ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
 				else if(rt!=""){ 
 					$("#login_nav").show();
 					$("#non_login_nav").hide();
-					$("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
+					$("#user_name").text(rt+"ë‹˜ì´ ë¡œê·¸ì¸í•˜ì…¨ìŠµë‹ˆë‹¤.");
 				}
  			});	
 		
@@ -67,23 +67,23 @@
 			<div id="navbar" class="navbar-collapse collapse navbar-Menu ">
 	
 				<ul class="nav navbar-nav ">
-					<li><a href="space_home.do">°ø°£</a></li>
-					<li><a href="club_home.do">¸ðÀÓ</a></li>
-					<li><a href="community_list.do">Ä¿¹Â´ÏÆ¼</a></li>
-					<li><a href="event_user_list.do">ÀÌº¥Æ®</a></li>	
-					<li><a href="notice_list.do">°øÁö»çÇ×</a></li>
+					<li><a href="space_home.do">ê³µê°„</a></li>
+					<li><a href="club_home.do">ëª¨ìž„</a></li>
+					<li><a href="community_list.do">ì»¤ë®¤ë‹ˆí‹°</a></li>
+					<li><a href="event_user_list.do">ì´ë²¤íŠ¸</a></li>	
+					<li><a href="notice_list.do">ê³µì§€ì‚¬í•­</a></li>
 					<li><a href="faq_list.do">FAQ</a></li>			
-					<li><a href="admin_main.do">°ü¸®ÀÚ</a></li>			
+					<li><a href="admin_main.do">ê´€ë¦¬ìž</a></li>			
 				</ul>
 				
 				<ul id="login_nav" class="nav navbar-nav navbar-right">
 					<li><a href="#" id="user_name"></a></li>
-					<li><a href="mypage_moveMypageMainPage.do">¸¶ÀÌÆäÀÌÁö</a></li>
-					<li><a href="home_logout.do">·Î±×¾Æ¿ô</a></li>					
+					<li><a href="mypage_moveMypageMainPage.do">ë§ˆì´íŽ˜ì´ì§€</a></li>
+					<li><a href="home_logout.do">ë¡œê·¸ì•„ì›ƒ</a></li>					
 				</ul>
 				
 				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-					<li><a href="home_moveLoginPage.do">·Î±×ÀÎ</a></li>				
+					<li><a href="home_moveLoginPage.do">ë¡œê·¸ì¸</a></li>				
 				</ul>
 
 				
