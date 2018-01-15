@@ -43,7 +43,8 @@ public class Ctrl_Admin_o2oQnA {
 	public ModelAndView admin_o2oQnA_add( @ModelAttribute O2OQnAVO ovo ) throws Exception {
 		ModelAndView mnv = new ModelAndView();
 		admin_o2oQnADAO.addAsking(ovo);
-		mnv.setViewName("redirect:/admin_o2oQnA.do");
+		//mnv.setViewName("redirect:/admin_o2oQnA.do");
+		mnv.setViewName("redirect:/faq_list.do");
 		return mnv;
 	}
 	// 1:1 문의 리스트 확인 페이지.

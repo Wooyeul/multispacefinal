@@ -41,4 +41,5 @@ public class Admin_ClubDAO_MysqlImpl implements Admin_ClubDAO {
 		return sqlSession.selectList("admin_club.admin_clubs_search",pvo);
 	}
 
+
 }

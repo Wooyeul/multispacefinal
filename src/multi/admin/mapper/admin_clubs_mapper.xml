@@ -134,7 +134,10 @@
 		<if test="search_option == 4">
 		AND create_time like '%${search_content}%'
 		</if>
-		
+		<if test="start_no != null">
+			ORDER BY club_no DESC LIMIT #{start_no}, 5
+		</if>
 	</select>
+
 </mapper>
 

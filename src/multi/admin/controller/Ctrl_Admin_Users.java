@@ -16,6 +16,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.vo.HostVO;
@@ -30,6 +31,7 @@ import multi.admin.dao.Admin_UserDAO;
 import multi.admin.dao.Admin_o2oQnADAO;
 import multi.admin.mail.EmailUtility;
 import multi.admin.vo.Admin_User_Del_EmailVO;
+import multi.admin.vo.Admin_searchVO;
 
 
 /* 
@@ -52,10 +54,18 @@ public class Ctrl_Admin_Users {
 	
 	// 유저 리스트 페이지
 	@RequestMapping("/admin_users.do")
-	public ModelAndView admin_users() throws Exception {
+	public ModelAndView admin_users(  @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_users");
-		List<UserVO> ls = admin_UserDAO.user_findAll();
+/*		List<UserVO> ls = admin_UserDAO.user_findAll();*/
+		
+		List<UserVO> ls = admin_UserDAO.search_users(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_UserDAO.search_users(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
 		return mnv;
 	}
 	// 특정 유저 클릭시 확인 페이지
@@ -144,11 +154,21 @@ public class Ctrl_Admin_Users {
 		mnv.addObject("message", message);
 		return mnv;
 	}
+	
 	// 삭제한 유저 리스트들을 보는 페이지
 	@RequestMapping("/admin_user_del_write_list.do")
-	public ModelAndView admin_user_del_write_list() throws Exception {
+	public ModelAndView admin_user_del_write_list( @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_user_del_write_list");
-		List<Admin_User_Del_EmailVO> ls = admin_UserDAO.removed_users();
+		//List<Admin_User_Del_EmailVO> ls = admin_UserDAO.removed_users();
+		List<Admin_User_Del_EmailVO> ls = admin_UserDAO.search_removed_users(search);
+		
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_UserDAO.search_removed_users(search);
+		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
 		mnv.addObject("ls", ls);
 		return mnv;
 	}

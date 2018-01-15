@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.vo.ClubVO;
 import main.vo.SpaceVO;
 import main.vo.UserVO;
@@ -31,10 +33,19 @@ public class Ctrl_Admin_Clubs {
 	
 	// 모임 리스트 확인 페이지
 	@RequestMapping("/admin_clubs.do")
-	public ModelAndView admin_clubs( @ModelAttribute ClubVO cvo ) throws Exception {
+	public ModelAndView admin_clubs( @ModelAttribute ClubVO cvo, 
+			@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_clubs");
-		List<ClubVO> ls = admin_ClubDAO.findAllClub();
+		//List<ClubVO> ls = admin_ClubDAO.findAllClub();
+		
+		List<ClubVO> ls = admin_ClubDAO.club_search(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_ClubDAO.club_search(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+
 		
 		return mnv;
 	}
@@ -58,10 +69,17 @@ public class Ctrl_Admin_Clubs {
 	}
 	
 	@RequestMapping("/admin_clubs_search.do")
-	public ModelAndView admin_clubs_search(@ModelAttribute  Admin_searchVO  pvo) throws Exception {
+	public ModelAndView admin_clubs_search( @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_clubs_search");
-		List<ClubVO> ls = admin_ClubDAO.club_search(pvo);
+		
+		List<ClubVO> ls = admin_ClubDAO.club_search(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_ClubDAO.club_search(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+
 		return mnv;
 	}
 	

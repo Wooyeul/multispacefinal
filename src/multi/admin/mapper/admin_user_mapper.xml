@@ -36,6 +36,7 @@
 		{call p_admin_user_findAll()}
 	</select>
 	
+	
 	<!--
 	DROP PROCEDURE IF EXISTS p_admin_user_findUser;
 	DELIMITER $$
@@ -178,6 +179,22 @@
 	<select id="p_admin_list_removed_users" statementType="CALLABLE"
 		resultMap = "RM_p_admin_list_removed_users">
 		{call p_admin_list_removed_users()}
+	</select>
+	
+	
+	<select id="admin_search_user" parameterType="multi.admin.vo.Admin_searchVO" resultType="main.vo.UserVO">
+		 SELECT * FROM UserT WHERE grade=1 AND 0=0 
+		<if test="start_no != null">
+			ORDER BY user_id ASC LIMIT #{start_no},10
+		</if>
+	</select>
+	
+	<select id="admin_search_removed_user" parameterType="multi.admin.vo.Admin_searchVO" 
+		resultType="multi.admin.vo.Admin_User_Del_EmailVO">
+		SELECT * FROM User_Del_EmailT WHERE 0=0 
+		<if test="start_no != null">
+			ORDER BY writing_no DESC LIMIT #{start_no},10
+		</if>
 	</select>
 	
 </mapper>
