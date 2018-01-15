@@ -16,7 +16,6 @@
 			$("#pg").val($(this).attr("pg"));
 			$("#form_search").submit();
 		});
-		
 	});
  </script>
 
@@ -29,6 +28,7 @@
 			<input type="hidden" name="search_content" value="${search.search_content }">
 			<input type="hidden" name="search_option" value="${search.search_option }">
 		</form>
+		
 		<table border="1">
 		<jl:forEach var="vo" items="${list2 }">
 			<tr>
@@ -38,7 +38,9 @@
 				<td>${vo.space_content }</td>
 			</tr>
 		</jl:forEach>
+		
 		</table>
+		
 		<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.paginationStart-1}">&lt;</a></li>

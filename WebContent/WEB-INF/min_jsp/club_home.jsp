@@ -52,7 +52,6 @@
 	</nav>
 	<!-- nav -->
 
-
 	<div class="container">
 		<h2>모임 페이지</h2>
 		
@@ -77,7 +76,7 @@
 			</select>
 			<input type="text" name="search_content"/>
 			<br/><input type="button" id="submitBtn" value="검색">
-			<input id="curPage" name="curPage" type="hidden" value="1">
+			<input id="curPage" name="curPage" type="hidden" value="">
 		</form>
 		<br/><br/>
 		
@@ -107,7 +106,7 @@
 	
 		function setCurpage(page){
 			if($("input[name=l_category_no]:checked").val()>0){
-				$("#curPage").attr("value",1);
+				$("#curPage").attr("value","");
 			}else{
 				$("#curPage").attr("value",page);
 			}

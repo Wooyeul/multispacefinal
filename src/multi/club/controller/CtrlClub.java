@@ -18,6 +18,7 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.ResponseBody;
@@ -55,24 +56,27 @@ public class CtrlClub {
 	
 	//모임 리스트 페이지 호출
 	@RequestMapping("/club_list.do")
-	public ModelAndView club_list(@ModelAttribute Club_searchVO svo, @RequestParam("curPage") int curPage ,@CookieValue("user_id") String user_id) throws Exception {
+	public ModelAndView club_list(@ModelAttribute Club_searchVO svo, @RequestParam("curPage") String curPage ,@CookieValue("user_id") String user_id) throws Exception {
 		ModelAndView mnv = new ModelAndView("club_list");
-		
 		// start, end이용해서 데이터 뽑아오기 
+		System.out.println(svo.getSearch_content());
 		List<ClubVO> vo = clubDAO.club_search(svo);
 		// 페이지 레코드의 개수 계산
 		int count = vo.size();
 		
 		// 페이지 나누기 관련 처리
+		PaginationDTO pz = new PaginationDTO().init(curPage, vo.size());
+		svo.setStart(pz.getSkip());
+		/*// 페이지 나누기 관련 처리(내가한거)
 		BoardPager boardPager = new BoardPager(count, curPage);
-		svo.setStart(boardPager.getPageBegin());
+		svo.setStart(boardPager.getPageBegin());*/
 		vo = clubDAO.club_search(svo);
 		
 		// 데이터 맵에 저장
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("vo", vo); // vo 저장
 		map.put("count", count); // 레코드 개수
-		map.put("boardPager", boardPager);
+		map.put("pz", pz);
 		map.put("svo", svo);
 		mnv.addObject("map", map);
 		
@@ -199,6 +203,7 @@ public class CtrlClub {
 		clubDAO.club_del_user(pvo);
 		return "redirect:/club_home.do";
 	}
+	
 	//모임 해체
 	@RequestMapping("/club_del_club.do")
 	public String club_del_club(@ModelAttribute User_clubVO pvo) throws Exception {

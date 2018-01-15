@@ -97,6 +97,7 @@ public class BeanUtil
 			pn.equals("club_title")||
 			pn.equals("club_content")||
 			pn.equals("apply_content")||
+			pn.equals("search_content")||
 			pn.equals("c_notice_title")||
 			pn.equals("c_notice_content")|| 		
 			pn.equals("c_notice_reple_content")|| 		

@@ -12,7 +12,6 @@
 	</style>
 </head>
 <body>
-	<div class="container">
 		<div class="jbTitle">
 			<h1>Multi Space</h1>
 		</div>
@@ -49,7 +48,7 @@
 			</div>
 		</nav>
 		<!-- nav -->
-
+	<div class="container">
 		<h2>모임장/모임신청자 페이지</h2>
 		<label>${vo.club_name}</label><br/>
 		<label>인원</label><input type="text" value="${vo.user_count+1}" disabled="disabled"/><br/>
@@ -176,7 +175,7 @@
 			/* 네비바 관련 script */
 			var scOffset = $( '.navbar-Menu' ).offset();
 			$( window ).scroll( function() {
-				if ( $( document ).scrollTop() > scOffset.top ) {
+				if ( $( document ).scrollTop() > scOffset.top+50 ) {
 					$( '.navbar' ).addClass( 'navbar-fixed-top' );
 				}
 				else {

@@ -27,7 +27,7 @@
 				</tr>
 			</jl:forEach>
 			
-			<tr>
+			<%-- <tr>
 				<td colspan="2" align="center">
 					<!-- 현재 페이지가 1보다 크면 [처음] 하이퍼링크 생성-->
 					<jl:if test="${map.boardPager.curPage > 1}">
@@ -58,20 +58,44 @@
 	                    <a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
 	                </jl:if>
 				</td>
-			</tr>
+			</tr> --%>
 		</table>
+		<div align="center">
+			<ul class="pagination pagination-sm">
+				<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
+				<jl:if test="${map.pz.hasPrevPagination }">
+					<li><a class="page" href="javascript:list('${map.pz.paginationStart-1}')">&lt;</a></li>
+				</jl:if>
+				<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
+				<jl:if test="${map.pz.hasPrevPage }">
+					<li><a class="page" href="javascript:list('${map.pz.curPagination-1 }')">&lt;</a></li>
+				</jl:if>
+					<!-- 페이지 번호 만들기 -->
+					<jl:forEach begin="${map.pz.paginationStart }" end="${map.pz.paginationEnd }" step="1" varStatus="vs">
+						<jl:choose>
+							<jl:when test="${vs.index!=map.pz.curPagination }">
+								<li><a class="page" href="javascript:list('${vs.index }')">${vs.index }</a></li>
+							</jl:when>
+							<jl:otherwise>
+								<li class="active"><a class="page" href="javascript:list('${vs.index }')">${vs.index }</a></li>
+							</jl:otherwise>
+						</jl:choose>
+					</jl:forEach>
+				<!-- 다음 페이지로 이동 : 한페이지 이동 -->
+				<jl:if test="${map.pz.hasNextPage }">
+					<li><a class="page" href="javascript:list('${map.pz.curPagination+1}')">&gt;</a></li>
+				</jl:if>
+				<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
+				<jl:if test="${map.pz.hasNextPagination }">
+					<li><a class="page" href="javascript:list('${map.pz.paginationEnd+1 }')">&gt;&gt;</a></li>
+				</jl:if>
+			</ul>
+		</div>
 	</div>
-	
-	<form id="frm" action="club_home.do" method="post">
-		<input type="hidden" value="${svo.l_category_no}" name="l_category_no" />
-		<input type="hidden" value="${svo.c_category_no}" name="c_category_no" />
-		<input type="hidden" value="${svo.search_content}" name="search_content"/>
-		<input type="hidden" value="${svo.search_option}" name="search_option"/>
-		<input id="curPage" name="curPage" type="hidden" value="1">
-	</form>
 	
 	<!-- 자바스크립트 -->
 	<script type="text/javascript">
+
 		function list(page){
 			parent.setCurpage(page);
 		}
