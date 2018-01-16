@@ -368,21 +368,21 @@ parameterMap ="PM_p_admin_comm_boradrepleFindAllTexts">
 
 
 <!-- freeboard search -->
-<select id="admin_freeboard_search" parameterType="multi.admin.vo.Admin_community_searchVO"
+<select id="admin_freeboard_search" parameterType="multi.admin.vo.Admin_searchVO"
 		resultType="main.vo.Community_boardVO">
 	SELECT * FROM Community_BoardT WHERE 0 = 0
-	<if test="commsearch_option == 1">
-	AND com_board_title like '%${commsearch_content}%'
+	<if test="search_option == 1">
+	AND com_board_title like '%${search_content}%'
 	</if>
-	<if test="commsearch_option == 2">
-	AND com_board_content like '%${commsearch_content}%'
+	<if test="search_option == 2">
+	AND com_board_content like '%${search_content}%'
 	</if>
-	<if test="commsearch_option == 3">
-	AND com_board_title like '%${commsearch_content}%'
-	OR com_board_content like '%${commsearch_content}%'
+	<if test="search_option == 3">
+	AND com_board_title like '%${search_content}%'
+	OR com_board_content like '%${search_content}%'
 	</if>
-	<if test="commsearch_option == 4">
-	AND user_id like '%${commsearch_content}%'
+	<if test="search_option == 4">
+	AND user_id like '%${search_content}%'
 	</if>
 	<if test="start_no != null">
 		ORDER BY com_board_no DESC LIMIT #{start_no},10

@@ -33,11 +33,10 @@ public class Ctrl_Admin_Freeboard {
 	      ModelAndView mnv = new ModelAndView("admin_community_board_list");
 	      mnv.addObject("user_id", user_id);
 	      
-	      List<Community_boardVO> rl = admin_FreeboardDAO.findAll();
-	      System.out.println(rl.size());
+	      List<Community_boardVO> rl = admin_FreeboardDAO.searchAll(search);
 	      PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
 	      search.setStart_no(pz.getSkip());
-	      rl = admin_FreeboardDAO.findAll();
+	      rl = admin_FreeboardDAO.searchAll(search);
 	      mnv.addObject("pz", pz);
 	      mnv.addObject("search", search);
 	      
