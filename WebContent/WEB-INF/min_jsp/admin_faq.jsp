@@ -45,23 +45,6 @@ $(document).ready(function(){
 		</div>
 	</div>
 
-	<%-- 되는테이블<table border="1" class="table table-hover" >
-		<tr>
-			<th>NO</th>
-			<th>TITLE</th>
-			<th>CONTENT</th>
-		</tr>
-		<jl:forEach var="vo" items="${rl}">
-			<tr>
-				<td>${vo.faq_no}</td>
-				<td>${vo.faq_title}</td>
-				<td>${vo.faq_content}</td>
-			</tr>
-		</jl:forEach>
-	</table> --%>
-
-
-
 	<div class="container">
 		<h2>FAQ Board</h2>
 		<div class="panel-group" id="accordion" role="tablist"

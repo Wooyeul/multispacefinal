@@ -1,4 +1,4 @@
- 
+
 CREATE TABLE FAQT
 (
     `faq_no`       INT            NOT NULL    AUTO_INCREMENT, 
@@ -42,7 +42,7 @@ CREATE TABLE Club_BoardT
 	`c_board_content`  TEXT   		  NULL, 
 	`c_board_subject`  VARCHAR(15)	  NULL,
     `the_time`         DATETIME 	  NULL, 
-    `club_no`          INT            NULL, 
+    `culb_no`          INT            NULL, 
     `user_id`          VARCHAR(20)    NULL, 
     `view_count`       INT            NULL, 
     PRIMARY KEY (c_board_no)
@@ -342,14 +342,21 @@ CREATE TABLE S_CategoryT
 );
 
 
-
+오후 1:14 2018-01-16 컬럼 추가 및 변경.
 CREATE TABLE ImageT
 (
     `image_no`    INT            NOT NULL    AUTO_INCREMENT, 
     `space_no`    INT            NULL, 
-    `image_name`  VARCHAR(45)    NULL, 
+    `image_one`  VARCHAR(45)    NULL,
+    `image_two`  VARCHAR(45)    NULL, 
+    `image_three`  VARCHAR(45)    NULL, 
+    `image_for`  VARCHAR(45)    NULL, 
+    `image_five`  VARCHAR(45)    NULL,
+    `image_six`  VARCHAR(45)    NULL, 
+    `image_seven`  VARCHAR(45)    NULL,   
     PRIMARY KEY (image_no)
 );
+
 
 
 
@@ -379,9 +386,13 @@ CREATE TABLE Review_RepleT
 );
 
 
-CREATE TABLE ZipcodeT
-(
-    `zipcode`  VARCHAR(200)    NOT NULL
+#오후 7:01 2018-01-15 수정
+create table zipcodet(
+	user_id varchar(20),
+	zonecode varchar(100),
+	address varchar(100),
+	jibunAddress varchar(100),
+	detail varchar(100)
 );
 
 CREATE TABLE BookmarkT
@@ -389,6 +400,8 @@ CREATE TABLE BookmarkT
 	`user_id`  VARCHAR(20)  NULL, 
 	`space_no`        INT   NULL
 );
+
+
 
 #오후 3:19 2018-01-10 User_del_emailT 테이블 추가
 #오후 4:30 2018-01-10 User_del_emailT 테이블 변경
@@ -405,3 +418,5 @@ CREATE TABLE User_del_emailT
 	`the_time`        DATETIME        NULL,
 	PRIMARY KEY (writing_no)
 );
+
+

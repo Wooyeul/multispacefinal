@@ -1,18 +1,22 @@
 package multi.admin.controller;
  
+import java.util.ArrayList;
 import java.util.List; 
 import static main.Single.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import main.BeanUtil;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
@@ -29,7 +33,9 @@ import multi.admin.dao.Admin_NoticeDAO;
 import multi.admin.dao.Admin_SpaceDAO;
 import multi.admin.dao.Admin_UserDAO;
 import multi.admin.dao.Admin_o2oQnADAO;
+import multi.admin.vo.AdminSearchVO;
 import multi.admin.vo.Admin_community_searchVO;
+import multi.admin.vo.Admin_search2VO;
 import multi.admin.vo.Admin_searchVO;
 
 /* 
@@ -64,6 +70,55 @@ public class Ctrl_Admin_Spaces {
 
 		return mnv;
 	}
+
+	@RequestMapping("/admin_spaces_search.do")
+	public ModelAndView admin_spaces_search( @RequestParam("pg") String pg, 
+		@RequestParam("re") String re,
+		@RequestParam("option") String field , 
+		@RequestParam("content") String keyword ,
+		@ModelAttribute Admin_searchVO search,
+		HttpSession session ) throws Exception 
+	{
+		ModelAndView mnv = new ModelAndView("admin_spaces_search");
+		System.out.println("RE ==> " + re);
+		
+		//keyword = BeanUtil.utf2kr( keyword );
+		
+		//		STEP 1. 만일 검색후 재검색이 아니면 세션에 혹시 있을 수 있는 검색내역을 제거한다.
+		if( re == null || !re.equals("Y") ) {
+			session.removeAttribute("club_search");
+		}
+
+		//		STEP 2. 세션에 있는 기존의 검색 내용을 가져온다. 없으면 새로이 만든다.   
+		List<AdminSearchVO> searchs = (List<AdminSearchVO>)session.getAttribute("club_search");
+		if( searchs == null ) {
+			searchs = new ArrayList<AdminSearchVO>();
+			session.setAttribute( "club_search", searchs );
+		}
+		//		STEP 3. 검색내역을 세션에 추가한다.
+		if( keyword != null && !keyword.equals("") ) {
+			searchs.add( new AdminSearchVO( field , keyword ) );
+		}
+		
+		for( AdminSearchVO vo : searchs){
+			System.out.println( ">> " + vo.getOption() + "," + vo.getContent() );
+		}
+
+		List<SpaceVO> ls = spring().getBean("sqlSession",SqlSession.class).
+			selectList("admin_space_search_All", new Admin_search2VO(searchs) );
+		mnv.addObject("ls", ls);
+		
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = spring().getBean("sqlSession",SqlSession.class).
+				selectList("admin_space_search_All", new Admin_search2VO(searchs) );
+		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
+		return mnv;
+	}
+	
 	// 장소에 따른 판매자 정보 확인 페이지
 	@RequestMapping("/admin_host_spaces.do")
 	public ModelAndView admin_host_spaces( @ModelAttribute SpaceVO svo, @ModelAttribute HostVO hvo  ) throws Exception {
@@ -71,34 +126,6 @@ public class Ctrl_Admin_Spaces {
 		List<SpaceVO> ls = admin_SpaceDAO.findHostPlaces(svo);
 		mnv.addObject("ls", ls);
 		mnv.addObject("host_name", hvo.getHost_name());
-		return mnv;
-	}
-	
-	@RequestMapping("/admin_spaces_search.do")
-	public ModelAndView admin_spaces_search(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
-		ModelAndView mnv = new ModelAndView("admin_spaces_search");
-		
-		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search(search);
-		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
-		search.setStart_no(pz.getSkip());
-		ls = admin_SpaceDAO.host_spaces_search(search);
-		mnv.addObject("ls", ls);
-		mnv.addObject("pz", pz);
-		mnv.addObject("search", search);
-		
-		return mnv;
-	}
-	@RequestMapping("/admin_spaces_search2.do")
-	public ModelAndView admin_spaces_search2(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
-		ModelAndView mnv = new ModelAndView("admin_spaces_search2");
-		
-		List<SpaceVO> ls = admin_SpaceDAO.host_spaces_search2(search);
-		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
-		search.setStart_no(pz.getSkip());
-		ls = admin_SpaceDAO.host_spaces_search2(search);
-		mnv.addObject("ls", ls);
-		mnv.addObject("pz", pz);
-		mnv.addObject("search", search);
 		return mnv;
 	}
 	

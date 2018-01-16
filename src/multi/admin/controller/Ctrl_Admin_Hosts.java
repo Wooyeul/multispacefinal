@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.vo.HostApplyVO;
 import main.vo.HostVO;
 import main.vo.UserVO;
 import multi.admin.dao.Admin_HostDAO;
 import multi.admin.vo.Admin_Host_DowngradeVO;
+import multi.admin.vo.Admin_searchVO;
  
 /* 
 판매자 관리
@@ -36,18 +39,32 @@ public class Ctrl_Admin_Hosts {
 	private Admin_HostDAO admin_HostDAO = null;
 	// 판매자 리스트 호출 페이지
 	@RequestMapping("/admin_hosts.do")
-	public ModelAndView admin_hosts() throws Exception {
+	public ModelAndView admin_hosts( @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_hosts");
 		List<HostVO> ls = admin_HostDAO.host_findAll();
+		
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_HostDAO.host_findAll();
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
 		return mnv;
 	}
 	// 판매자 요청 정보 리스트 확인 페이지
 	@RequestMapping("/admin_host_request.do")
-	public ModelAndView admin_host_request() throws Exception {
+	public ModelAndView admin_host_request( @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_host_request");
 		List<HostApplyVO> ls = admin_HostDAO.host_request_findAll();
+		
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_HostDAO.host_request_findAll();
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+
 		return mnv;
 	}
 	// 특정 판매자 요청 정보 확인 페이지

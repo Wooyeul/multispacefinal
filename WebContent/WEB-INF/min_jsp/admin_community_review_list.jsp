@@ -57,7 +57,7 @@ $(document).ready(function(){
 				<td>${rl.the_time}</td>
 				<td>${rl.review_score}</td>
 				<td><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></td>
-				<td>삭제하기</td>
+				<td><a href="admin_space_review_remove.do?review_no=${rl.review_no}&space_no=${rl.space_no}">삭제하기</a></td>
 		</tr>
 			</jl:forEach>
 

@@ -89,9 +89,4 @@ public class Admin_FreeboardDAO_MysqlImpl implements Admin_FreeboardDAO {
 	}
 
 
-	@Override
-	public List<Community_boardVO> comm_board_search2(Admin_community_searchVO pvo) throws Exception {
-		return sqlSession.selectList("admin_free_board.admin_freeboard_search2",pvo);
-	}
-
 }

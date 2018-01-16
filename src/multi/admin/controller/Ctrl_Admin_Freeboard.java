@@ -128,12 +128,5 @@ public class Ctrl_Admin_Freeboard {
 		mnv.addObject("ls", ls);
 		return mnv;
 	}
-	@RequestMapping("/admin_community_board_search2.do")
-	public ModelAndView admin_community_board_search2(@ModelAttribute  Admin_community_searchVO  pvo) throws Exception {
-		ModelAndView mnv = new ModelAndView("admin_community_board_search2");
-		List<Community_boardVO> ls = admin_FreeboardDAO.comm_board_search2(pvo);
-		mnv.addObject("ls", ls);
-		return mnv;
-	}
 
 }

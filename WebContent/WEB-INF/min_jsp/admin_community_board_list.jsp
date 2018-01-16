@@ -24,11 +24,6 @@ text-align: center;
 <body>
 <br>
 
-<a href="admin_community_board_search2.do?commsearch_option=1">[1]</a>
-<a href="admin_community_board_search2.do?commsearch_option=2">[2]</a>
-<a href="admin_community_board_search2.do?commsearch_option=3">[3]</a>
-<a href="admin_community_board_search2.do?commsearch_option=4">[4]</a>
-
 <table class="table table-hover">
 <tr>
 
