@@ -90,10 +90,13 @@
 	<!-- 자바스크립트 -->	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
 			$("#a").on("click",function(){
 				$(this).attr("checked","checked")
 			})
+			
 			$("#frm").submit();
+			
 			$("#btn").on("click",function(){
 				location.href="club_add_page.do";
 			});
@@ -138,9 +141,6 @@
 			 $("#user_name").text(rt+"님이 로그인하셨습니다.");
 		 }
 		});	
-
-		
-
 
 	</script>
 </body>

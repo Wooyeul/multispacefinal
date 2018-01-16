@@ -17,6 +17,7 @@ import main.vo.User_clubVO;
 import multi.club.vo.Club_applyVO;
 import multi.club.vo.Club_boardVO;
 import multi.club.vo.Club_board_repleVO;
+import multi.club.vo.Club_community_listVO;
 import multi.club.vo.Club_noticeVO;
 import multi.club.vo.Club_notice_repleVO;
 import multi.club.vo.Club_searchVO;
@@ -78,7 +79,7 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 		
 	//모임 공지사항 조회
 	@Override
-	public List<Club_noticeVO> club_findAll_notice(ClubVO pvo) throws Exception {
+	public List<Club_noticeVO> club_findAll_notice(Club_community_listVO pvo) throws Exception {
 		return sqlSession.selectList("club_notice.club_findAll_notice",pvo);
 	}
 
@@ -90,7 +91,7 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 
 	//모임 커뮤니티 글 조회
 	@Override
-	public List<Club_boardVO> club_findAll_board(ClubVO pvo) throws Exception {
+	public List<Club_boardVO> club_findAll_board(Club_community_listVO pvo) throws Exception {
 		return sqlSession.selectList("club_board.club_findAll_board",pvo);
 	}
 

@@ -111,25 +111,27 @@ public class CtrlClub_notice {
 	@ResponseBody
 	public String club_find_reple(@ModelAttribute Club_noticeVO pvo) throws Exception {
 		List<Club_notice_repleVO> reVO = clubDAO.club_find_notice_reple(pvo);
-		System.out.println("C_notice_no():"+pvo.getC_notice_no());
 		
 		StringBuffer sb = null;
-		
-		for (Club_notice_repleVO vo : reVO) {
-			if (sb == null) {
-				sb = new StringBuffer();
-		        sb.append("{data:[");
-		} else {
-			sb.append(",");
+		try{
+			for (Club_notice_repleVO vo : reVO) {
+				if (sb == null) {
+					sb = new StringBuffer();
+			        sb.append("{data:[");
+			} else {
+				sb.append(",");
+			}
+			sb.append("{'user_id' :'").append(vo.getUser_id()).append("', 'c_notice_reple_content' : '").append(vo.getC_notice_reple_content())
+			.append("', 'the_time' : '").append(vo.getThe_time()).append("', 'c_notice_no' : '").append(vo.getC_notice_no()).append("', 'c_notice_reple_no' : '")
+			.append(vo.getC_notice_reple_no()).append("'}");
+			
+			}
+			sb.append("]}");
+			return sb.toString();
+		}catch(Exception e){
+			return null;
 		}
-		sb.append("{'user_id' :'").append(vo.getUser_id()).append("', 'c_notice_reple_content' : '").append(vo.getC_notice_reple_content())
-		.append("', 'the_time' : '").append(vo.getThe_time()).append("', 'c_notice_no' : '").append(vo.getC_notice_no()).append("', 'c_notice_reple_no' : '")
-		.append(vo.getC_notice_reple_no()).append("'}");
 		
-		}
-		sb.append("]}");
-		System.out.println(sb.toString());
-		return sb.toString();
 	}
 		
 	//모임 커뮤니티 공지사항 댓글 작성
