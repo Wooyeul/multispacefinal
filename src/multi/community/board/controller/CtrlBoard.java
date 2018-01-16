@@ -2,6 +2,8 @@ package multi.community.board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -15,6 +17,7 @@ import main.RequestParam;
 import main.ResponseBody;
 import main.vo.Community_boardVO;
 import main.vo.Community_board_repleVO;
+import multi.club.vo.Club_board_repleVO;
 import multi.community.board.dao.Community_boardDAO;
 import multi.community.board.dao.Community_board_searchDAO;
 import multi.community.board.dao.Community_boardmytextDAO;
@@ -83,7 +86,6 @@ public class CtrlBoard {
 	 
 	 @RequestMapping("/community_board_read.do")
 	 public ModelAndView community_board_read(@CookieValue("user_id") String user_id, @ModelAttribute Community_boardVO pvo, @ModelAttribute Community_board_repleVO rvo) throws Exception{
-		 System.out.println("qwer"+pvo.getCom_board_no());
 		 Community_boardVO bvo = community_boardDAO.findByPK(pvo);
 		 ModelAndView mnv = new ModelAndView("community_board_read");
 		 mnv.addObject("vo", bvo);
@@ -94,9 +96,32 @@ public class CtrlBoard {
 	     mnv.addObject("user_id", user_id);
 		 mnv.addObject("rl",rl);
 		 
-	
 		 return mnv;
-		 
+	 }
+	 /* 리플 조회 */
+	 @RequestMapping("/community_board_read_reple.do")
+	 @ResponseBody
+	 public String community_board_read_reple(@ModelAttribute Community_board_repleVO pvo) throws Exception{
+		 List<Community_board_repleVO> rl = community_boardrepleDAO.findAllreple(pvo);
+			
+			StringBuffer sb = null;
+			try{
+				for (Community_board_repleVO vo : rl) {
+					if (sb == null) {
+						sb = new StringBuffer();
+						sb.append("{data:[");
+					} else {
+						sb.append(",");
+					}
+					sb.append("{'com_board_reple_no' :'").append(vo.getCom_board_reple_no()).append("', 'com_board_reple_content' : '").append(vo.getCom_board_reple_content())
+					.append("', 'user_id' : '").append(vo.getUser_id()).append("', 'com_board_no' : '").append(vo.getCom_board_no()).append("'}");
+					
+				}
+				sb.append("]}");
+				return sb.toString();
+			}catch(Exception e){
+				return null;
+			}
 	 }
 	 
 	 
@@ -146,23 +171,45 @@ public class CtrlBoard {
 	
 	//커뮤니티 보드 글 리플
 	@RequestMapping("/community_board_addreple.do")
-	public String community_board_addreple(@CookieValue("user_id") String user_id, @ModelAttribute Community_board_repleVO  pvo) throws Exception {
+	@ResponseBody
+	public String community_board_addreple(@CookieValue("user_id") String user_id, HttpServletRequest request) throws Exception {
+		Community_board_repleVO pvo = new Community_board_repleVO();
+		pvo.setCom_board_no(request.getParameter("com_board_no"));
+		pvo.setCom_board_reple_content(request.getParameter("com_board_reple_content"));
 		pvo.setUser_id(user_id);
-		community_boardrepleDAO.addReple(pvo);
-		return "redirect:/community_board_read.do?com_board_no="+pvo.getCom_board_no();
+		
+		try{
+			pvo.setUser_id(user_id);
+			community_boardrepleDAO.addReple(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	
 	@RequestMapping("/community_board_replemod.do")
-	public String community_board_replemod(@ModelAttribute  Community_board_repleVO  pvo) throws Exception {
-		community_boardrepleDAO.modReple(pvo);
-		return  "redirect:/community_board_read.do?com_board_no="+pvo.getCom_board_no();
+	@ResponseBody
+	public String community_board_replemod(HttpServletRequest request) throws Exception {
+		Community_board_repleVO pvo = new Community_board_repleVO();
+		pvo.setCom_board_reple_no(request.getParameter("com_board_reple_no"));
+		pvo.setCom_board_reple_content(request.getParameter("com_board_reple_content"));
+		try{
+			community_boardrepleDAO.modReple(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	
 	@RequestMapping("/community_board_repledel.do")
+	@ResponseBody
 	public String community_board_repledel(@ModelAttribute  Community_board_repleVO  pvo) throws Exception {
-		System.out.println("aa"+pvo.getCom_board_no());
-	community_boardrepleDAO.delReple(pvo);
-	return "redirect:/community_board_read.do?com_board_no="+pvo.getCom_board_no();
+		try{
+			community_boardrepleDAO.delReple(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	
 	
