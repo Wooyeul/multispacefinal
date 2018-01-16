@@ -83,7 +83,6 @@ DROP PROCEDURE IF EXISTS p_comm_boardAdd;
 	END$$
 	DELIMITER ;
 
-
 -->
  		<parameterMap id="PM_p_comm_boardAdd" type="main.vo.Community_boardVO">
 		<parameter property="com_board_no"   mode="IN" jdbcType="INTEGER"/>
