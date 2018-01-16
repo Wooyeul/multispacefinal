@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.ReviewVO;
+import multi.mypage.vo.Mypage_searchVO;
 
 public class MPReviewDAO_MybatisProcImpl implements MPReviewDAO{
 
@@ -15,7 +16,13 @@ public class MPReviewDAO_MybatisProcImpl implements MPReviewDAO{
 	
 	
 	@Override
-	public List<ReviewVO> review_findAll(String user_id) {
+	public List<ReviewVO> review_findAll(String user_id) throws Exception{
 		return sqlSession.selectList("mypage_review.p_MPreview_find",user_id);
+	}
+
+
+	@Override
+	public List<ReviewVO> search_reviews(Mypage_searchVO search) throws Exception {
+		return sqlSession.selectList("mypage_review.mypage_search_review",search);
 	}
 }
