@@ -33,10 +33,7 @@ taglib
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
 $(document).ready(function(){
-	$("#faq_del").on("click",function(){
-		document.frm.action="admin_faq_remove.do";
-		document.frm.submit();
-	});
+
 });
 </script>
 </head>
@@ -87,8 +84,13 @@ $(document).ready(function(){
 							<input type="hidden" name="faq_title" value="${vo.faq_title}" />
 							<input type="hidden" name="faq_content" value="${vo.faq_content}" />
 							<button type="submit">수정 하기</button>&nbsp;&nbsp;&nbsp;
-							<button id="faq_del" type="submit" >삭제 하기</button> 
 						</form>
+						<br>
+						<form method="post" action="admin_faq_remove.do" name="frm" >
+							<input type="hidden" name="faq_no" value="${vo.faq_no}" />
+							<button id="faq_can" type="submit">삭제 하기</button>
+						</form>
+						
 					</div>
 				</div>
 			</jl:forEach>
