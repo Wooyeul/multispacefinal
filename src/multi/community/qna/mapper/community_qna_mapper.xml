@@ -336,21 +336,27 @@
 	<!--@@@@@@@검색@@@@@@@ -->
 	<select id="comm_qna_search" parameterType="multi.community.qna.vo.Community_qna_searchVO" resultType="multi.community.qna.vo.Community_qnaVO">
 
-	SELECT * FROM Community_qnaT WHERE 0 = 0
-	<if test="comm_search_option ==1">
-	AND com_qna_title like '%${comm_search_content}%'
-	</if>
-	<if test="comm_search_option == 2">
-	AND com_qna_content like'%${comm_search_content}%'
-	</if>
-	<if test="comm_search_option == 3">
-	AND com_qna_title like '%${comm_search_content}%'
-	OR com_qna_content like '%${comm_search_content}%'
-	</if>
-	<if test="comm_search_option == 4">
-	AND user_id = #{comm_search_content}
-	</if>
-	
+		SELECT * FROM Community_qnaT WHERE 0 = 0
+		<if test="comm_search_option ==1">
+			AND com_qna_title like '%${comm_search_content}%'
+		</if>
+		<if test="comm_search_option == 2">
+			AND com_qna_content like'%${comm_search_content}%'
+		</if>
+		<if test="comm_search_option == 3">
+			AND com_qna_title like '%${comm_search_content}%'
+			OR com_qna_content like '%${comm_search_content}%'
+		</if>
+		<if test="comm_search_option == 4">
+			AND user_id = #{comm_search_content}
+		</if>
+		<if test="start!=null">
+			ORDER BY com_qna_no DESC LIMIT #{start},10
+		</if>
+		<if test="start==null">
+			ORDER BY com_qna_no DESC
+		</if>
+		
 	</select>
 	
 	<!--@@@@@@@@@@@@내가쓴글 보기-@@@@@@@@@@@ -->

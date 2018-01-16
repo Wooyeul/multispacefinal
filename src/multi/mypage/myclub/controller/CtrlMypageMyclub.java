@@ -35,10 +35,12 @@ public class CtrlMypageMyclub {
 		ModelAndView mnv = new ModelAndView("myclub_findAll2");
 		//List<ClubVO> rl = myclubDAO.find_myClub(user_id);
 		search.setUser_id(user_id);
+		
 		List<ClubVO> rl = myclubDAO.search_clubs(search);
 		PaginationDTO pz = new PaginationDTO().init(pg, rl.size());
 		search.setStart_no(pz.getSkip());
 		rl = myclubDAO.search_clubs(search);
+		
 		mnv.addObject("rl", rl);
 		mnv.addObject("pz", pz);
 		mnv.addObject("search", search);

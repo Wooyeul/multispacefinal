@@ -32,12 +32,14 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 		});
 		
 		$("#success").on("click",function(){
-			
 			parent.location.href="home_moveLoginPage.do";
-			
 		});
 	});
-
+	function board_list(page){
+		$("#cur_board_page").attr("value",page);
+		$("#paging_frm").submit();
+	}
+	
 </script>
 </head>
 <body>
@@ -47,15 +49,16 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 		<a href="community_board_mytext.do"> <input type="button" value="내가쓴글보기" /></a>
 	</jl:if>
 
-	<form id="textserch" action="community_board_serch.do" name="frm">
+	<form id="paging_frm" action="community_board_list.do" name="frm">
 		<select name="commserch_option">
 			<option value="0">선택해주세요</option>
 			<option value="1">제목</option>
 			<option value="2">내용</option>
 			<option value="3">제목+내용</option>
 			<option value="4">작성자</option>
-		</select> 검색 : <input type="text" name="commserch_content"> <input
-			type="submit" value="검색">
+		</select> 검색 : <input type="text" name="commserch_content"> 
+		<input id="cur_board_page" type="hidden" name="cur_board_page" value="${board_pz.curPagination }">
+		<input type="submit" value="검색">
 	</form>
 
 	<table class="table table-hover">
@@ -66,7 +69,7 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 			<th>ID</th>
 			<th>VIEW</th>
 			<th>LIKE</th>
-			<jl:forEach var="vo" items="${rl}">
+			<jl:forEach var="vo" items="${board_list}">
 				<tr>
 					<td>${vo.com_board_no}</td>
 					<td><a
@@ -79,8 +82,42 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 			</jl:forEach>
 	</table>
+	<!-- 페이징 -->
+	<div align="center">
+		<ul class="pagination pagination-sm">
+			<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
+			<jl:if test="${board_pz.hasPrevPagination }">
+				<li><a class="page" href="javascript:board_list('${board_pz.paginationStart-1}')">&lt;</a></li>
+			</jl:if>
+			<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
+			<jl:if test="${board_pz.hasPrevPage }">
+				<li><a class="page" href="javascript:board_list('${board_pz.curPagination-1 }')">&lt;</a></li>
+			</jl:if>
+				<!-- 페이지 번호 만들기 -->
+				<jl:forEach begin="${board_pz.paginationStart }" end="${board_pz.paginationEnd }" step="1" varStatus="vs">
+					<jl:choose>
+						<jl:when test="${vs.index!=board_pz.curPagination }">
+							<li><a class="page" href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
+						</jl:when>
+						<jl:otherwise>
+							<li class="active"><a class="page" href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
+						</jl:otherwise>
+					</jl:choose>
+				</jl:forEach>
+			<!-- 다음 페이지로 이동 : 한페이지 이동 -->
+			<jl:if test="${board_pz.hasNextPage }">
+				<li><a class="page" href="javascript:board_list('${board_pz.curPagination+1}')">&gt;</a></li>
+			</jl:if>
+			<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
+			<jl:if test="${board_pz.hasNextPagination }">
+				<li><a class="page" href="javascript:board_list('${board_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
+			</jl:if>
+		</ul>
+	</div>
+	<!-- 페이징 -->	
 	
-<!-- 글쓰기 버튼-->
+	
+	<!-- 글쓰기 버튼-->
 	<div class="commask">
 	<input class="btn btn-primary btn-lg" type="button" value="글쓰기" id="write" xyz="${user_id}" />
 	</div>
@@ -104,6 +141,11 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 			</div>
 		</div>
 	</div>
-	
+
+	<!-- paging 이용할 form -->
+	<form id="paging_frm" action="community_board_list.do" method="post">
+		
+	</form>
+	<!-- paging 이용할 form -->
 </body>
 </html>

@@ -18,10 +18,12 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.ResponseBody;
 import multi.mypage.qna.dao.UserDAO;
+import multi.mypage.vo.Mypage_searchVO;
 import main.vo.UserVO;
 import multi.mypage.qna.dao.Space_qnaDAO;
 import main.vo.Space_qnaVO;
@@ -48,15 +50,25 @@ public class CtrlQnA {
 	 * 마이페이지_Q&A 페이지 mypage_qna.jsp로 이동.
 	 */
 	@RequestMapping("/mypage_moveMypageQnAPage.do")
-	public ModelAndView moveMypageQnAPage(@CookieValue("user_id") String user_id) throws Exception {
+	public ModelAndView moveMypageQnAPage(@CookieValue("user_id") String user_id,
+			@ModelAttribute Mypage_searchVO search,
+			@RequestParam("pg") String pg) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		List<Space_qnaVO> qnaInfo = Space_qnaDAO.find_qnaInfo(user_id);
+		search.setUser_id(user_id);
+		//List<Space_qnaVO> qnaInfo = Space_qnaDAO.find_qnaInfo(user_id);
 
 		if (userInfo != null) {
 			ModelAndView mnv = new ModelAndView("mypage_qna");
+			List<Space_qnaVO> qnaInfo = Space_qnaDAO.search_QnA(search);
+			PaginationDTO pz = new PaginationDTO().init(pg, qnaInfo.size());
+			search.setStart_no(pz.getSkip());
+			qnaInfo = Space_qnaDAO.search_QnA(search);
+			
 			mnv.addObject("userInfo", userInfo);
+			mnv.addObject("pz", pz);
 			mnv.addObject("qnaInfo", qnaInfo);
+			mnv.addObject("search", search);
 			return mnv;
 		} else {
 			return null;
@@ -77,7 +89,13 @@ public class CtrlQnA {
 		Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(space_qna_no);
 		Space_qnaVO qnaInfo = Space_qnaDAO.find_qnaByspace_no(space_qna_no);
 		
-			
+		System.out.println(qna_repleInfo);
+		if(qna_repleInfo==null){
+			qna_repleInfo = new Space_qna_repleVO();
+			qna_repleInfo.setSpace_qna_reple_content("답변내용없음");
+		}
+		
+		
 		mnv.addObject("userInfo", userInfo);
 		mnv.addObject("Space_qna_repleVO", qna_repleInfo);
 		mnv.addObject("qnaInfo", qnaInfo);

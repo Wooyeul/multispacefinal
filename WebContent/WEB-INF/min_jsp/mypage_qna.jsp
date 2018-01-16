@@ -51,5 +51,33 @@
 			</jl:forEach>
 		</table>
 	</form>
+	
+	
+	<ul class="pagination pagination-sm">
+			<jl:if test="${pz.hasPrevPagination }">
+				<li><a class="page" href="mypage_moveMypageQnAPage.do?pg=${pz.paginationStart-1}">&lt;</a></li>
+			</jl:if>
+				<jl:if test="${pz.hasPrevPage }">
+					<li><a class="page" href="mypage_moveMypageQnAPage.do?pg=${pz.curPagination-1 }">&lt;</a></li>
+				</jl:if>
+				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
+					<jl:choose>
+						<jl:when test="${vs.index!=pz.curPagination }">
+							<li><a class="page" href="mypage_moveMypageQnAPage.do?pg=${vs.index }">${vs.index }</a></li>
+						</jl:when>
+						<jl:otherwise>
+							<li class="active"><a class="page" href="mypage_moveMypageQnAPage.do?pg=${vs.index }">${vs.index }</a></li>
+						</jl:otherwise>
+					</jl:choose>
+				</jl:forEach>
+				<jl:if test="${pz.hasNextPage }">
+					<li><a class="page" href="mypage_moveMypageQnAPage.do?pg=${pz.curPagination+1}">&gt;</a></li>
+				</jl:if>
+			<jl:if test="${pz.hasNextPagination }">
+				<li><a class="page" href="mypage_moveMypageQnAPage.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+			</jl:if>
+		</ul>
+	
+	
 </body>
 </html>

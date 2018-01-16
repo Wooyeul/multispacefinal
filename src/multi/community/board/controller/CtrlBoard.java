@@ -9,7 +9,9 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.ResponseBody;
 import main.vo.Community_boardVO;
 import main.vo.Community_board_repleVO;
@@ -37,11 +39,18 @@ public class CtrlBoard {
 	
 	//커뮤니티 보드 
 	 @RequestMapping("/community_board_list.do")
-	   public ModelAndView community_board(@CookieValue("user_id") String user_id) throws Exception{
+	   public ModelAndView community_board(@CookieValue("user_id") String user_id,
+			   @ModelAttribute Community_board_searchVO pvo, @RequestParam("cur_board_page") String cur_board_page) throws Exception{
 	      ModelAndView mnv = new ModelAndView("community_board_list");
-	      List<Community_boardVO> rl = community_boardDAO.findAll(user_id);
-	      mnv.addObject("rl",rl);
-	      
+	      pvo.setStart(null);
+		  List<Community_boardVO> board_list = community_board_searchDAO.comm_board_search(pvo);
+	      // 페이지 나누기 관련 처리(페이지 레코드 계산)
+	      PaginationDTO board_pz = new PaginationDTO().init(cur_board_page, board_list.size());
+	      pvo.setStart(board_pz.getSkip());
+	      board_list = community_board_searchDAO.comm_board_search(pvo);
+
+	      mnv.addObject("board_list",board_list);
+	      mnv.addObject("board_pz",board_pz);
 	      mnv.addObject("user_id", user_id);
 
 	      return mnv;

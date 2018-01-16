@@ -1,6 +1,7 @@
 package multi.community.review.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,9 @@ public class Community_board_reviewDAO_MybatisProcImpl implements Community_boar
 	private SqlSession sqlSession = null;
 	
 	@Override
-	public List<ReviewVO> review_findAll() throws Exception {
+	public List<ReviewVO> review_findAll(Map<String, Integer> map) throws Exception {
 		
-		return sqlSession.selectList("community_review.p_comm_boardreviewFindAllTexts");
+		return sqlSession.selectList("community_review.p_comm_boardreviewFindAllTexts",map);
 	}
 
 }
