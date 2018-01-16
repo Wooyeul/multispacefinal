@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,13 +30,13 @@
 	
 	<table>
 		<tr>
-			<td>ê°•ë“±ì‚¬í•­ ìž‘ì„± : </td>
+			<td>°­µî»çÇ× ÀÛ¼º : </td>
 			<td><textarea rows="20" cols="20" name="msg_content"></textarea></td>
 		</tr>
 	</table>
 		
-	<button type="submit">ìª½ì§€ ì „ì†¡ í•˜ê¸°</button> &nbsp;&nbsp;&nbsp;
-	<button id="can" type="submit">ì·¨ì†Œ í•˜ê¸°</button>
+	<button type="submit">ÂÊÁö Àü¼Û ÇÏ±â</button> &nbsp;&nbsp;&nbsp;
+	<button id="can" type="submit">Ãë¼Ò ÇÏ±â</button>
 </form>
 
 </body>

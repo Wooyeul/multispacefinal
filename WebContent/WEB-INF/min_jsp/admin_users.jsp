@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,21 +17,21 @@
 </script>
 </head>
 <body>
-<h1>ìœ ì €ë¦¬ìŠ¤íŠ¸</h1>
+<h1>À¯Àú¸®½ºÆ®</h1>
 <br>
-<a href="admin_user_del_write_list.do">íƒˆí‡´ ì‹œí‚¨ ìœ ì € ë¦¬ìŠ¤íŠ¸ ë³´ê¸°(íŒë§¤ìž í¬í•¨)</a>
+<a href="admin_user_del_write_list.do">Å»Åð ½ÃÅ² À¯Àú ¸®½ºÆ® º¸±â(ÆÇ¸ÅÀÚ Æ÷ÇÔ)</a>
 <br>
 <br>
 
 <table border="1">
 	<tr>
-		<td>ì´ë¦„</td>
-		<td>ìœ ì € ID</td>
-		<td>ë‹‰ë„¤ìž„</td>
-		<td>ì„±ë³„</td>
-		<td>ì´ë©”ì¼</td>
-		<td>ìƒì„¸ ì •ë³´</td>
-		<td>íƒˆí‡´ ì‹œí‚¤ê¸°</td>
+		<td>ÀÌ¸§</td>
+		<td>À¯Àú ID</td>
+		<td>´Ð³×ÀÓ</td>
+		<td>¼ºº°</td>
+		<td>ÀÌ¸ÞÀÏ</td>
+		<td>»ó¼¼ Á¤º¸</td>
+		<td>Å»Åð ½ÃÅ°±â</td>
 	</tr>
 	<jl:forEach var="vo" items="${ls}">
 		<tr>
@@ -41,15 +40,15 @@
 			<td>${vo.nickname}</td>
 			<jl:choose>
 						<jl:when test="${vo.gender == 'M'}">
-							<td>ë‚¨ìž</td>
+							<td>³²ÀÚ</td>
 						</jl:when>
 						<jl:when test="${vo.gender == 'F'}">
-							<td>ì—¬ìž</td>
+							<td>¿©ÀÚ</td>
 						</jl:when>
 			</jl:choose>
 			<td>${vo.email}</td>
-			<td><a href="admin_user_check.do?user_id=${vo.user_id}">ìƒì„¸ ì •ë³´ í™•ì¸</a></td>
-			<td><a href="admin_user_del_write.do?user_id=${vo.user_id}&user_name=${vo.user_name}&email=${vo.email}">íƒˆí‡´ ì‹œí‚¤ê¸°</a></td>
+			<td><a href="admin_user_check.do?user_id=${vo.user_id}">»ó¼¼ Á¤º¸ È®ÀÎ</a></td>
+			<td><a href="admin_user_del_write.do?user_id=${vo.user_id}&user_name=${vo.user_name}&email=${vo.email}">Å»Åð ½ÃÅ°±â</a></td>
 		</tr>
 	</jl:forEach>
 </table>
@@ -57,14 +56,14 @@
 <br>
 <form id="textsearch" action="admin_users.do">
 	<select name="search_option">
-		<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-		<option value="1">ì œëª©</option>
-		<option value="2">ë‚´ìš©</option>
-		<option value="3">ì œëª© + ë‚´ìš©</option>
-		<option value="4">ìž‘ì„±ìž</option>
+		<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+		<option value="1">Á¦¸ñ</option>
+		<option value="2">³»¿ë</option>
+		<option value="3">Á¦¸ñ + ³»¿ë</option>
+		<option value="4">ÀÛ¼ºÀÚ</option>
 	</select>
-	ê²€ìƒ‰ : <input type="text" name="search_content">
-	<input type="submit" value="ê²€ìƒ‰">
+	°Ë»ö : <input type="text" name="search_content">
+	<input type="submit" value="°Ë»ö">
 </form>
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">

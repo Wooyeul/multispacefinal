@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +19,10 @@ table {
 </script>
 </head>
 <body>
-<h1>판매자 유저 공간 상세 정보</h1>
+<h1>�Ǹ��� ���� ���� �� ����</h1>
 	<table border="1">
 		<tr>
-			<td>판매자 이름</td>
+			<td>�Ǹ��� �̸�</td>
 			<td>${vo.host_name}</td>
 		</tr>
 	</table>
@@ -32,11 +31,11 @@ table {
 	<br/>
 		<table border="1">
 		<tr>
-			<td>사업자 등록 번호</td>
-			<td>호스트 유저 ID</td>
-			<td>호스트 이름</td>
-			<td>호스트 계좌 번호</td>
-			<td>주소</td>
+			<td>����� ��� ��ȣ</td>
+			<td>ȣ��Ʈ ���� ID</td>
+			<td>ȣ��Ʈ �̸�</td>
+			<td>ȣ��Ʈ ���� ��ȣ</td>
+			<td>�ּ�</td>
 		</tr>
 		<tr>
 			<td>${vo.crn}</td>

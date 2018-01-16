@@ -81,9 +81,6 @@ public class Ctrl_Admin_Spaces {
 	{
 		ModelAndView mnv = new ModelAndView("admin_spaces_search");
 		System.out.println("RE ==> " + re);
-		
-		//keyword = BeanUtil.utf2kr( keyword );
-		
 		//		STEP 1. 만일 검색후 재검색이 아니면 세션에 혹시 있을 수 있는 검색내역을 제거한다.
 		if( re == null || !re.equals("Y") ) {
 			session.removeAttribute("club_search");

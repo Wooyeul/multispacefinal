@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,20 +19,20 @@ table {
 </script>
 </head>
 <body>
-<h1>íŒë§¤ìž ì‹ ì²­ ë¦¬ìŠ¤íŠ¸</h1>
+<h1>ÆÇ¸ÅÀÚ ½ÅÃ» ¸®½ºÆ®</h1>
 <table border="1">
 	<tr>
-		<td>ìœ ì € ID</td>
-		<td>í˜¸ìŠ¤íŠ¸ ì´ë¦„</td>
-		<td>ì‹ ì²­ ì •ë³´ í™•ì¸í•˜ê¸°</td>
-		<td>ì°¸ê³ ì‚¬í•­(ê±°ì ˆ ì‚¬í•­)</td>
+		<td>À¯Àú ID</td>
+		<td>È£½ºÆ® ÀÌ¸§</td>
+		<td>½ÅÃ» Á¤º¸ È®ÀÎÇÏ±â</td>
+		<td>Âü°í»çÇ×(°ÅÀý »çÇ×)</td>
 	</tr>
 	
 	<jl:forEach var="vo" items="${ls}">
 		<tr>
 			<td><a href="admin_host_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 			<td>${vo.host_name}</td>
-			<td><a href="admin_host_request_view.do?crn=${vo.crn}">ì •ë³´ í™•ì¸ í•˜ê¸°</a></td>
+			<td><a href="admin_host_request_view.do?crn=${vo.crn}">Á¤º¸ È®ÀÎ ÇÏ±â</a></td>
 			<td>${vo.etc}</td>
 		</tr>
 	</jl:forEach>
@@ -47,14 +47,14 @@ table {
 </form>
 <form id="textsearch" action="admin_host_request.do">
 	<select name="search_option">
-		<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-		<option value="1">ì œëª©</option>
-		<option value="2">ë‚´ìš©</option>
-		<option value="3">ì œëª© + ë‚´ìš©</option>
-		<option value="4">ìž‘ì„±ìž</option>
+		<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+		<option value="1">Á¦¸ñ</option>
+		<option value="2">³»¿ë</option>
+		<option value="3">Á¦¸ñ + ³»¿ë</option>
+		<option value="4">ÀÛ¼ºÀÚ</option>
 	</select>
-	ê²€ìƒ‰ : <input type="text" name="search_content">
-	<input type="submit" value="ê²€ìƒ‰">
+	°Ë»ö : <input type="text" name="search_content">
+	<input type="submit" value="°Ë»ö">
 </form>
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">

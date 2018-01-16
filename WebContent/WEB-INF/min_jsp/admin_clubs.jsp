@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,31 +20,31 @@ table {
 </head>
 <body>
 	<div class="jumbotron" style="background-color: orange">
-		<h1>ëª¨ìž„ ë¦¬ìŠ¤íŠ¸</h1>
+		<h1>¸ðÀÓ ¸®½ºÆ®</h1>
 	</div>
 	<br>
 	<br>
-	<form id="textsearch" action="admin_clubs_search.do">
+	<form id="textsearch" action="admin_clubs_search.do" method="post">
 		<select name="search_option">
-			<option value="0">ê²€ìƒ‰í•  ê²ƒì„ ì„ íƒí•´ì£¼ì„¸ìš”</option>
-			<option value="1">ëª¨ìž„ ì´ë¦„</option>
-			<option value="2">ëª¨ìž„ìž¥ ìœ ì € ID</option>
-			<option value="3">ëª¨ìž„ ìµœëŒ€ ì¸ì›</option>
-			<option value="4">ëª¨ìž„ ìƒì„± ë‚ ì§œ ì‹œê°„</option>
+			<option value="0">°Ë»öÇÒ °ÍÀ» ¼±ÅÃÇØÁÖ¼¼¿ä</option>
+			<option value="1">¸ðÀÓ ÀÌ¸§</option>
+			<option value="2">¸ðÀÓÀå À¯Àú ID</option>
+			<option value="3">¸ðÀÓ ÃÖ´ë ÀÎ¿ø</option>
+			<option value="4">¸ðÀÓ »ý¼º ³¯Â¥ ½Ã°£</option>
 		</select>
 		&nbsp;<input type="text" name="search_content">
-		<input type="submit" value="ê²€ìƒ‰">
+		<input type="submit" value="°Ë»ö">
 	</form>
 	<br>
 	<br>
 	<table border="1">
 		<tr>
-			<td>ëª¨ìž„ ì´ë¦„</td>
-			<td>ëª¨ìž„ìž¥ ìœ ì € ID</td>
-			<td>ëª¨ìž„ ì´ë¯¸ì§€</td>
-			<td>ëª¨ìž„ ìµœëŒ€ ì¸ì›</td>
-			<td>ëª¨ìž„ ìƒì„± ë‚ ì§œ/ì‹œê°„</td>
-			<td>ëª¨ìž„ ì‚­ì œ í•˜ê¸°</td>
+			<td>¸ðÀÓ ÀÌ¸§</td>
+			<td>¸ðÀÓÀå À¯Àú ID</td>
+			<td>¸ðÀÓ ÀÌ¹ÌÁö</td>
+			<td>¸ðÀÓ ÃÖ´ë ÀÎ¿ø</td>
+			<td>¸ðÀÓ »ý¼º ³¯Â¥/½Ã°£</td>
+			<td>¸ðÀÓ »èÁ¦ ÇÏ±â</td>
 		</tr>
 		<jl:forEach var="vo" items="${ls}">
 			<tr>
@@ -53,12 +53,12 @@ table {
 				<td><img src="club_thumb_images/${vo.club_thumb_img}" style="width:128px;height:128px;"/></td>
 				<td>${vo.max_member}</td>
 				<td>${vo.create_time}</td>
-				<td><a href="admin_club_remove.do?club_no=${vo.club_no}">ì‚­ì œ</a></td>
+				<td><a href="admin_club_remove.do?club_no=${vo.club_no}">»èÁ¦</a></td>
 			</tr>
 		</jl:forEach>
 	</table>
 	
-<form id="form_search" action="admin_clubs.do">
+<form id="form_search" action="admin_clubs.do" method="post">
 	<input type="hidden" name="pg" value="" id="pg">
 	<input type="hidden" name="search_content" value="${search.search_content}">
 	<input type="hidden" name="search_option" value="${search.search_option}">

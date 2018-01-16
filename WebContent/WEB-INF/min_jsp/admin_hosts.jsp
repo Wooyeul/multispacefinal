@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +19,17 @@ table {
 </script>
 </head>
 <body>
-<h1>íŒë§¤ìž ë¦¬ìŠ¤íŠ¸</h1> 
+<h1>ÆÇ¸ÅÀÚ ¸®½ºÆ®</h1> 
 <table border="1">
 	<tr>
-		<td>ì‚¬ì—…ìž ë²ˆí˜¸</td>
-		<td>ìœ ì € ID</td>
-		<td>í˜¸ìŠ¤íŠ¸ ì´ë¦„</td>
-		<td>í˜¸ìŠ¤íŠ¸ ê³„ì¢Œ ë²ˆí˜¸</td>
-		<td>ì£¼ì†Œ</td>
-		<td>íŒë§¤ìž ê³µê°„</td>
-		<td>ì‚¬ìš©ìžë¡œ ê°•ë“±</td>
-		<td>íƒˆí‡´ ì‹œí‚¤ê¸°</td>
+		<td>»ç¾÷ÀÚ ¹øÈ£</td>
+		<td>À¯Àú ID</td>
+		<td>È£½ºÆ® ÀÌ¸§</td>
+		<td>È£½ºÆ® °èÁÂ ¹øÈ£</td>
+		<td>ÁÖ¼Ò</td>
+		<td>ÆÇ¸ÅÀÚ °ø°£</td>
+		<td>»ç¿ëÀÚ·Î °­µî</td>
+		<td>Å»Åð ½ÃÅ°±â</td>
 	</tr>
 	<jl:forEach var="vo" items="${ls}">
 		<tr> 
@@ -39,9 +38,9 @@ table {
 			<td>${vo.host_name}</td>
 			<td>${vo.host_account}</td>
 			<td>${vo.zipcode}</td>
-			<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">íŒë§¤ìž ê³µê°„ í™•ì¸ í•˜ê¸°</a></td>
-			<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">ê°•ë“±ì‹œí‚¤ê¸°</a></td>
-			<td><a href="admin_user_del_write.do?crn=${vo.crn}&user_id=${vo.user_id}">íƒˆí‡´ì‹œí‚¤ê¸°</a></td>
+			<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">ÆÇ¸ÅÀÚ °ø°£ È®ÀÎ ÇÏ±â</a></td>
+			<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">°­µî½ÃÅ°±â</a></td>
+			<td><a href="admin_user_del_write.do?crn=${vo.crn}&user_id=${vo.user_id}">Å»Åð½ÃÅ°±â</a></td>
 		</tr>
 	</jl:forEach>
 </table>
@@ -52,14 +51,14 @@ table {
 </form>
 <form id="textsearch" action="admin_hosts.do">
 	<select name="search_option">
-		<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-		<option value="1">ì œëª©</option>
-		<option value="2">ë‚´ìš©</option>
-		<option value="3">ì œëª© + ë‚´ìš©</option>
-		<option value="4">ìž‘ì„±ìž</option>
+		<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+		<option value="1">Á¦¸ñ</option>
+		<option value="2">³»¿ë</option>
+		<option value="3">Á¦¸ñ + ³»¿ë</option>
+		<option value="4">ÀÛ¼ºÀÚ</option>
 	</select>
-	ê²€ìƒ‰ : <input type="text" name="search_content">
-	<input type="submit" value="ê²€ìƒ‰">
+	°Ë»ö : <input type="text" name="search_content">
+	<input type="submit" value="°Ë»ö">
 </form>
 
 	<ul class="pagination pagination-sm">

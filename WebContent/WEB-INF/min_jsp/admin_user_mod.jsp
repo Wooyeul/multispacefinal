@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +17,15 @@
 </script>
 </head>
 <body>
-<h1>ê°œë³„ ìœ ì € ìƒì„¸ ì •ë³´ ìˆ˜ì •í•˜ê¸°</h1>
+<h1>°³º° À¯Àú »ó¼¼ Á¤º¸ ¼öÁ¤ÇÏ±â</h1>
 <table border="1">
 	<tr>
-		<td>ì´ë¦„</td>
-		<td>ìœ ì € ID</td>
-		<td>ì „í™”ë²ˆí˜¸</td>
-		<td>ë‹‰ë„¤ìž„</td>
-		<td>ì£¼ì†Œ</td>
-		<td>ì´ë©”ì¼</td>
+		<td>ÀÌ¸§</td>
+		<td>À¯Àú ID</td>
+		<td>ÀüÈ­¹øÈ£</td>
+		<td>´Ð³×ÀÓ</td>
+		<td>ÁÖ¼Ò</td>
+		<td>ÀÌ¸ÞÀÏ</td>
 	</tr>
 	<tr>
 		<td>${vo.user_name}</td>
@@ -41,16 +40,16 @@
 <br/>
 <form method="POST" action="admin_user_mod2.do">
 		<input type ="hidden" name="user_id" value="${vo.user_id}"></input>
-		ì´ë¦„ : <input type="text" name="user_name" value="${vo.user_name}" /> <br/>
-		ì „í™”ë²ˆí˜¸ : <input type="text" name="phone" value="${vo.phone}" /> <br/>
-		ë‹‰ë„¤ìž„ : <input type="text" name="nickname" value="${vo.nickname}" /> <br/>
-		ì£¼ì†Œ : <input type="text" name="zipcode" value="${vo.zipcode}" /> <br/>
-		ì´ë©”ì¼ : <input type="text" name="email" value="${vo.email}" /> <br/>
-	<button type="submit">ìˆ˜ì •í•˜ê¸°</button>
+		ÀÌ¸§ : <input type="text" name="user_name" value="${vo.user_name}" /> <br/>
+		ÀüÈ­¹øÈ£ : <input type="text" name="phone" value="${vo.phone}" /> <br/>
+		´Ð³×ÀÓ : <input type="text" name="nickname" value="${vo.nickname}" /> <br/>
+		ÁÖ¼Ò : <input type="text" name="zipcode" value="${vo.zipcode}" /> <br/>
+		ÀÌ¸ÞÀÏ : <input type="text" name="email" value="${vo.email}" /> <br/>
+	<button type="submit">¼öÁ¤ÇÏ±â</button>
 </form>
 
 <form method="POST" action="admin_users.do">
-	<button type="submit">ì·¨ì†Œí•˜ê¸°</button>
+	<button type="submit">Ãë¼ÒÇÏ±â</button>
 </form>
 
 </body>

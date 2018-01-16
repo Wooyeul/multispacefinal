@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
@@ -25,7 +24,7 @@ table {
 	</div> 
 	 
 	검색할 것을 선택해주세요.
-	<form id="textsearch" action="admin_spaces_search.do"  accept-charset="UTF-8">
+	<form id="textsearch" action="admin_spaces_search.do" method="post">
 		
 		<select name="option">
 			<option value="crn">사업자 등록번호</option>

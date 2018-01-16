@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,13 +26,13 @@
 	<input type="hidden" name="host_apply_no" value="${vo.host_apply_no}"></input>
 	<table>
 		<tr>
-			<td>ì°¸ê³  ì‚¬í•­(ê±°ì ˆ ì‚¬í•­) ìž‘ì„± : </td>
+			<td>Âü°í »çÇ×(°ÅÀý »çÇ×) ÀÛ¼º : </td>
 			<td><textarea rows="20" cols="20" name="etc">${vo.etc}</textarea></td>
 		</tr>
 	</table>
 		
-	<button type="submit">ì „ì†¡ í•˜ê¸°</button> &nbsp;&nbsp;&nbsp;
-	<button id="can" type="submit">ì·¨ì†Œ í•˜ê¸°</button>
+	<button type="submit">Àü¼Û ÇÏ±â</button> &nbsp;&nbsp;&nbsp;
+	<button id="can" type="submit">Ãë¼Ò ÇÏ±â</button>
 </form>
 
 </body>
