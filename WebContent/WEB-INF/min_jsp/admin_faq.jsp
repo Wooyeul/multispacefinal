@@ -89,7 +89,7 @@ $(document).ready(function(){
 						<form method="post" action="admin_faq_remove.do" name="frm" >
 							<input type="hidden" name="faq_no" value="${vo.faq_no}" />
 							<button id="faq_can" type="submit">삭제 하기</button>
-						</form>
+						</form> 
 						
 					</div>
 				</div>
