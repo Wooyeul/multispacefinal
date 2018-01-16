@@ -25,7 +25,7 @@ public class Ctrl_Admin_Review {
 		List<ReviewVO> rl = admin_ReviewDAO.review_findAll();
 		ModelAndView mnv = new ModelAndView("admin_community_review_list");
 		mnv.addObject("rl", rl);
-		return mnv;
+		return mnv; 
 		
 	}
 	

@@ -26,7 +26,7 @@ public class CtrlReview {
 		ModelAndView mnv = new ModelAndView("community_review_list");
 		mnv.addObject("rl", rl);
 		return mnv;
-		
+		 
 	}
 	
 
