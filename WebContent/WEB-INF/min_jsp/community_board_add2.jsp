@@ -14,20 +14,6 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#myAlert").on("click",function(e){
-			e.preventDefault();
-			$("#addwrite2").modal("show");
-		});
-		
-		$("#btn-submit").on("click",function(){
-			$('#text_addform').submit();
-		});
-	});
-	
-</script>
-
 
 </head>
 <body>
@@ -53,26 +39,7 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 	</form>
 	
 	<!--alert 모달폼  -->
-	
-	<!-- 모달폼 -->
-	<div class="modal fade" id="addwrite2" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">알림</h4>
-				</div>
-				<div class="modal-body">글등록하시겠습니까</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary" id="btn-submit">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 
 </body>
