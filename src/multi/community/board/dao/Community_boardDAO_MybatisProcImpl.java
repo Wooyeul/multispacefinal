@@ -15,8 +15,8 @@ public class Community_boardDAO_MybatisProcImpl implements Community_boardDAO{
 	
 	
 	@Override
-	public List<Community_boardVO> findAll( String user_id) throws Exception {
-		return sqlSession.selectList("community_board.p_comm_boardFindAllTexts");
+	public List<Community_boardVO> findAll(int start) throws Exception {
+		return sqlSession.selectList("community_board.p_comm_boardFindAllTexts",start);
 	}
 
 

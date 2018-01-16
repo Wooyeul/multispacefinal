@@ -9,7 +9,9 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.ResponseBody;
 import multi.community.qna.dao.Community_qnaDAO;
 import multi.community.qna.dao.Community_qna_mytextDAO;
@@ -35,14 +37,21 @@ public class CtrlQna {
 	
 	//QnA 게시판 리스트
 	@RequestMapping("/community_qna_list.do")
-	public ModelAndView community_qna(@CookieValue("user_id") String user_id) throws Exception{
-	
-		List<Community_qnaVO> rl=community_qnaDAO.findAll(user_id);
+	public ModelAndView community_qna(@CookieValue("user_id") String user_id,
+			@ModelAttribute Community_qna_searchVO pvo, @RequestParam("cur_page") String cur_page) throws Exception{
 		ModelAndView mnv = new ModelAndView("community_qna_list");
-		mnv.addObject("rl", rl);
+		pvo.setStart(null);
+		List<Community_qnaVO> qna_list = community_qna_searchDAO.comm_qna_search(pvo);
+	    // 페이지 나누기 관련 처리(페이지 레코드 계산)
+	    PaginationDTO board_pz = new PaginationDTO().init(cur_page, qna_list.size());
+	    pvo.setStart(board_pz.getSkip());
+	    qna_list = community_qna_searchDAO.comm_qna_search(pvo);		
+	    mnv.addObject("qna_list", qna_list);
 		mnv.addObject("user_id", user_id);
+		mnv.addObject("board_pz", board_pz);
 		return mnv;
 	}
+	
 	//QNA 게시판 읽기
 	@RequestMapping("/community_qna_read.do")
 	public ModelAndView community_qna_read(@ModelAttribute Community_qnaVO pvo,

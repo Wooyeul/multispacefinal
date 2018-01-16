@@ -45,8 +45,14 @@ CREATE TABLE ReviewT
 <result property="review_img" column="review_img" jdbcType="VARCHAR"/>
 </resultMap>
 
-<select id="p_comm_boardreviewFindAllTexts" statementType="CALLABLE" resultMap="RM_Review">
-	{call p_comm_boardreviewFindAllTexts()}
+<select id="p_comm_boardreviewFindAllTexts" parameterType="hashmap" resultMap="RM_Review">
+	SELECT * FROM ReviewT WHERE 0=0 
+	<if test="start!=null">
+		ORDER BY review_no DESC LIMIT #{start},10
+	</if>
+	<if test="start==null">
+		ORDER BY review_no DESC;
+	</if>
 </select>
 
 

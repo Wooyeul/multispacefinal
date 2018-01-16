@@ -391,24 +391,27 @@ parameterMap ="PM_p_comm_boradrepleFindAllTexts">
 </select>
 
 <!-- boradSearch -->
-
 <select id="comm_boradSearch" parameterType="multi.community.board.vo.Community_board_searchVO" resultType="main.vo.Community_boardVO">
-
-SELECT * FROM Community_BoardT WHERE 0 = 0
-<if test="commserch_option ==1">
-and com_board_title like '%${commserch_content}%'
-</if>
-<if test="commserch_option == 2">
-AND com_board_content like'%${commserch_content}%'
-</if>
-<if test="commserch_option == 3">
-AND com_board_title like '%${commserch_content}%'
-OR com_board_content like '%${commserch_content}%'
-</if>
-<if test="commserch_option == 4">
-AND user_id = #{commserch_content}
-</if>
-
+	SELECT * FROM Community_BoardT WHERE 0 = 0
+	<if test="commserch_option ==1">
+		and com_board_title like '%${commserch_content}%'
+	</if>
+	<if test="commserch_option == 2">
+		AND com_board_content like'%${commserch_content}%'
+	</if>
+	<if test="commserch_option == 3">
+		AND com_board_title like '%${commserch_content}%'
+		OR com_board_content like '%${commserch_content}%'
+	</if>
+	<if test="commserch_option == 4">
+		AND user_id = #{commserch_content}
+	</if>
+	<if test="start!=null">
+		ORDER BY com_board_no DESC LIMIT #{start},10
+	</if>
+	<if test="start==null">
+		ORDER BY com_board_no DESC
+	</if>
 
 </select>
 
