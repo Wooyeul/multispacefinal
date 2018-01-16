@@ -52,24 +52,50 @@ text-align: center;
 			<a href="admin_community_board_add.do">
 				<input class="btn btn-success" type="button" value="글쓰기">
 			</a>
-			
-		</div>
-<br/>
-<br/>
+	</div>
 
-
-
-<form id="textsearch" action="admin_community_board_search.do">
-	<select name="commsearch_option">
+<br>
+<br>
+<form id="form_search" action="admin_community_board_list.do">
+	<input type="hidden" name="pg" value="" id="pg">
+	<input type="hidden" name="search_content" value="${search.search_content}">
+	<input type="hidden" name="search_option" value="${search.search_option}">
+</form>
+<form id="textsearch" action="admin_community_board_list.do">
+	<select name="search_option">
 		<option value="0">선택해주세요</option>
 		<option value="1">제목</option>
 		<option value="2">내용</option>
 		<option value="3">제목 + 내용</option>
 		<option value="4">작성자</option>
 	</select>
-	검색 : <input type="text" name="commsearch_content">
+	검색 : <input type="text" name="search_content">
 	<input type="submit" value="검색">
 </form>
+	<ul class="pagination pagination-sm">
+			<jl:if test="${pz.hasPrevPagination }">
+				<li><a class="page" href="admin_community_board_list.do?pg=${pz.paginationStart-1}">&lt;</a></li>
+			</jl:if>
+				<jl:if test="${pz.hasPrevPage }">
+					<li><a class="page" href="admin_community_board_list.do?pg=${pz.curPagination-1 }">&lt;</a></li>
+				</jl:if>
+				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
+					<jl:choose>
+						<jl:when test="${vs.index!=pz.curPagination }">
+							<li><a class="page" href="admin_community_board_list.do?pg=${vs.index }">${vs.index }</a></li>
+						</jl:when>
+						<jl:otherwise>
+							<li class="active"><a class="page" href="admin_community_board_list.do?pg=${vs.index }">${vs.index }</a></li>
+						</jl:otherwise>
+					</jl:choose>
+				</jl:forEach>
+				<jl:if test="${pz.hasNextPage }">
+					<li><a class="page" href="admin_community_board_list.do?pg=${pz.curPagination+1}">&gt;</a></li>
+				</jl:if>
+			<jl:if test="${pz.hasNextPagination }">
+				<li><a class="page" href="admin_community_board_list.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+			</jl:if>
+		</ul>
 
 </body>
 </html>

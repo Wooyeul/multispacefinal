@@ -343,17 +343,12 @@ CREATE TABLE S_CategoryT
 
 
 오후 1:14 2018-01-16 컬럼 추가 및 변경.
+오후 5:41 2018-01-16 다시 컬럼 변경.
 CREATE TABLE ImageT
 (
     `image_no`    INT            NOT NULL    AUTO_INCREMENT, 
     `space_no`    INT            NULL, 
-    `image_one`  VARCHAR(45)    NULL,
-    `image_two`  VARCHAR(45)    NULL, 
-    `image_three`  VARCHAR(45)    NULL, 
-    `image_for`  VARCHAR(45)    NULL, 
-    `image_five`  VARCHAR(45)    NULL,
-    `image_six`  VARCHAR(45)    NULL, 
-    `image_seven`  VARCHAR(45)    NULL,   
+    `image_name`  VARCHAR(45)    NULL,  
     PRIMARY KEY (image_no)
 );
 

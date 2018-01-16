@@ -9,12 +9,15 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.ResponseBody;
 import main.vo.Community_boardVO;
 import main.vo.Community_board_repleVO;
 import multi.admin.dao.Admin_FreeboardDAO;
 import multi.admin.vo.Admin_community_searchVO;
+import multi.admin.vo.Admin_searchVO;
  
 @Controller
 public class Ctrl_Admin_Freeboard {
@@ -25,10 +28,19 @@ public class Ctrl_Admin_Freeboard {
 	
 	//커뮤니티 보드 
 	 @RequestMapping("/admin_community_board_list.do")
-	   public ModelAndView admin_community_board_list( @CookieValue("user_id") String user_id ) throws Exception{
+	   public ModelAndView admin_community_board_list( @CookieValue("user_id") String user_id,
+			   @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception{
 	      ModelAndView mnv = new ModelAndView("admin_community_board_list");
-	      List<Community_boardVO> rl = admin_FreeboardDAO.findAll();
 	      mnv.addObject("user_id", user_id);
+	      
+	      List<Community_boardVO> rl = admin_FreeboardDAO.findAll();
+	      System.out.println(rl.size());
+	      PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
+	      search.setStart_no(pz.getSkip());
+	      rl = admin_FreeboardDAO.findAll();
+	      mnv.addObject("pz", pz);
+	      mnv.addObject("search", search);
+	      
 	      mnv.addObject("rl",rl);
 	      return mnv;
 	   }

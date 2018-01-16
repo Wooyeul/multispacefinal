@@ -45,10 +45,23 @@ table {
 		</tr>
 	</jl:forEach>
 </table>
-
+<br>
+<br>
 <form id="form_search" action="admin_hosts.do">
 	<input type="hidden" name="pg" value="" id="pg">
 </form>
+<form id="textsearch" action="admin_hosts.do">
+	<select name="search_option">
+		<option value="0">선택해주세요</option>
+		<option value="1">제목</option>
+		<option value="2">내용</option>
+		<option value="3">제목 + 내용</option>
+		<option value="4">작성자</option>
+	</select>
+	검색 : <input type="text" name="search_content">
+	<input type="submit" value="검색">
+</form>
+
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_hosts.do?pg=${pz.paginationStart-1}">&lt;</a></li>

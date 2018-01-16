@@ -6,6 +6,7 @@ import main.vo.HostApplyVO;
 import main.vo.HostVO;
 import main.vo.UserVO;
 import multi.admin.vo.Admin_Host_DowngradeVO;
+import multi.admin.vo.Admin_searchVO;
 
 
 public interface Admin_HostDAO {
@@ -21,6 +22,8 @@ public interface Admin_HostDAO {
 	public int host_user_remove ( HostVO hvo ) throws Exception;
 	
 	public UserVO host_user_check ( HostVO hvo ) throws Exception;
+	public List<HostVO> search_hosts(Admin_searchVO search) throws Exception;
+	public List<HostApplyVO> search_host_requests(Admin_searchVO search) throws Exception;
 	
 	
 	

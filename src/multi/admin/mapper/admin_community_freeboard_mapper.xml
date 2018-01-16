@@ -384,6 +384,9 @@ parameterMap ="PM_p_admin_comm_boradrepleFindAllTexts">
 	<if test="commsearch_option == 4">
 	AND user_id like '%${commsearch_content}%'
 	</if>
+	<if test="start_no != null">
+		ORDER BY com_board_no DESC LIMIT #{start_no},10
+	</if>
 </select>
 
    

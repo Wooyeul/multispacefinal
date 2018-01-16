@@ -41,11 +41,12 @@ public class Ctrl_Admin_Hosts {
 	@RequestMapping("/admin_hosts.do")
 	public ModelAndView admin_hosts( @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_hosts");
-		List<HostVO> ls = admin_HostDAO.host_findAll();
+		//List<HostVO> ls = admin_HostDAO.host_findAll();
 		
+		List<HostVO> ls = admin_HostDAO.search_hosts(search);
 		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
 		search.setStart_no(pz.getSkip());
-		ls = admin_HostDAO.host_findAll();
+		ls = admin_HostDAO.search_hosts(search);
 		mnv.addObject("ls", ls);
 		mnv.addObject("pz", pz);
 		mnv.addObject("search", search);
@@ -56,11 +57,12 @@ public class Ctrl_Admin_Hosts {
 	@RequestMapping("/admin_host_request.do")
 	public ModelAndView admin_host_request( @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_host_request");
-		List<HostApplyVO> ls = admin_HostDAO.host_request_findAll();
+		//List<HostApplyVO> ls = admin_HostDAO.host_request_findAll();
 		
+		List<HostApplyVO> ls = admin_HostDAO.search_host_requests(search);
 		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
 		search.setStart_no(pz.getSkip());
-		ls = admin_HostDAO.host_request_findAll();
+		ls = admin_HostDAO.search_host_requests(search);
 		mnv.addObject("ls", ls);
 		mnv.addObject("pz", pz);
 		mnv.addObject("search", search);

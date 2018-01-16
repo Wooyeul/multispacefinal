@@ -19,4 +19,9 @@ public class Admin_ReviewDAO_MysqlImpl implements Admin_ReviewDAO {
 		return sqlSession.selectList("admin_community_review.p_admin_comm_boardreviewFindAllTexts");
 	}
 
+	@Override
+	public int remove_review(ReviewVO rvo) throws Exception {
+		return sqlSession.delete("admin_community_review.p_admin_remove_Review",rvo);
+	}
+
 }

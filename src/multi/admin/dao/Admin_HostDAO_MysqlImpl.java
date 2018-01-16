@@ -10,6 +10,7 @@ import main.vo.HostApplyVO;
 import main.vo.HostVO;
 import main.vo.UserVO;
 import multi.admin.vo.Admin_Host_DowngradeVO;
+import multi.admin.vo.Admin_searchVO;
 
 public class Admin_HostDAO_MysqlImpl implements Admin_HostDAO {
 	@Autowired @Qualifier("sqlSession")
@@ -58,6 +59,16 @@ public class Admin_HostDAO_MysqlImpl implements Admin_HostDAO {
 	@Override
 	public int host_user_remove( HostVO hvo) throws Exception {
 		return sqlSession.delete("admin_host.p_admin_host_user_remove",hvo);
+	}
+
+	@Override
+	public List<HostVO> search_hosts(Admin_searchVO search) throws Exception {
+		return sqlSession.selectList("admin_host.admin_search_host_user",search);
+	}
+
+	@Override
+	public List<HostApplyVO> search_host_requests(Admin_searchVO search) throws Exception {
+		return sqlSession.selectList("admin_host.admin_search_host_request_user",search);
 	}
 
 	
