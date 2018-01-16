@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.HostVO;
 import main.vo.SpaceVO;
+import multi.mypage.vo.Mypage_searchVO;
 
 public class MyHostDAO_MybatisProcImpl implements MyHostDAO {
 
@@ -27,6 +28,11 @@ public class MyHostDAO_MybatisProcImpl implements MyHostDAO {
 	@Override
 	public List<SpaceVO> findMySpace(String user_id) throws Exception {
 		return sqlSession.selectList("myhost.p_findspaceBycrn",user_id);
+	}
+
+	@Override
+	public List<SpaceVO> searchSpace(Mypage_searchVO search) throws Exception {
+		return sqlSession.selectList("myhost.mypage_search_host",search);
 	}
 
 }
