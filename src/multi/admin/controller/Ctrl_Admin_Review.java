@@ -9,20 +9,21 @@ import main.Controller;
 import main.ModelAndView;
 import main.RequestMapping;
 import main.vo.ReviewVO;
+import multi.admin.dao.Admin_ReviewDAO;
 import multi.community.review.dao.Community_board_reviewDAO;
 
 
 @Controller
 public class Ctrl_Admin_Review {
 	
-	@Autowired 	@Qualifier("community_board_reviewDAO")
-	private Community_board_reviewDAO community_board_reviewDAO = null;
+	@Autowired 	@Qualifier("admin_ReviewDAO")
+	private Admin_ReviewDAO admin_ReviewDAO = null;
 	
-	@RequestMapping("/community_review_list.do")
-	public ModelAndView community_review_list() throws Exception{
+	@RequestMapping("/admin_community_review_list.do")
+	public ModelAndView admin_community_review_list() throws Exception{
 		
-		List<ReviewVO> rl = community_board_reviewDAO.review_findAll();
-		ModelAndView mnv = new ModelAndView("community_review_list");
+		List<ReviewVO> rl = admin_ReviewDAO.review_findAll();
+		ModelAndView mnv = new ModelAndView("admin_community_review_list");
 		mnv.addObject("rl", rl);
 		return mnv;
 		

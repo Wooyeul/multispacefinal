@@ -16,14 +16,14 @@ import multi.community.review.dao.Community_board_reviewDAO;
 @Controller
 public class CtrlReview {
 	
-	@Autowired 	@Qualifier("admin_ReviewDAO")
-	private Admin_ReviewDAO admin_ReviewDAO = null;
+	@Autowired 	@Qualifier("community_board_reviewDAO")
+	private Community_board_reviewDAO community_board_reviewDAO = null;
 	
-	@RequestMapping("/admin_community_review_list.do")
-	public ModelAndView admin_community_review_list() throws Exception{
+	@RequestMapping("/community_review_list.do")
+	public ModelAndView community_review_list() throws Exception{
 		
-		List<ReviewVO> rl = admin_ReviewDAO.review_findAll();
-		ModelAndView mnv = new ModelAndView("admin_community_review_list");
+		List<ReviewVO> rl = community_board_reviewDAO.review_findAll();
+		ModelAndView mnv = new ModelAndView("community_review_list");
 		mnv.addObject("rl", rl);
 		return mnv;
 		
