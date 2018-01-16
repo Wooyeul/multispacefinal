@@ -81,7 +81,7 @@ table {
 		</tr>
 		<jl:forEach var="vo" items="${ls}">
 			<tr>
-				<td>${vo.crn}</td>
+				<td><a href="admin_space_crn_check.do?crn=${vo.crn}">${vo.crn}</a></td>
 				<td>${vo.space_title}</td>
 				<td>${vo.space_content}</td>
 				<td><a href="space_detail.do?space_no=${vo.space_no}"><img src="thumbnail/${vo.space_thumb_img}" style="width:128px;height:128px;"></img></a></td>

@@ -25,8 +25,12 @@
 		});
 
 		$("#btnQnASub").on("click", function() {
-			$("#qna_mod").submit();
+			$("#qnamodcompleteModal").modal("show");
 
+		});
+		
+		$("#qnamodcompleteModal").on("hidden.bs.modal",function(){
+			$("#qna_mod").submit();
 		});
 		});
 	</script>
@@ -58,6 +62,23 @@
 		      </div>
 		    </div>
 		</div>
-	</form>		
+	</form>
+	
+	<div class="modal fade" id="qnamodcompleteModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content" >
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          <p>QnA 수정 완료!</p>
+		        </div>
+		         <div class="modal-footer">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        </div>
+		      </div>
+	    </div>
+	</div>		
 </body>
 </html>

@@ -21,7 +21,7 @@ table {
 </head>
 <body>
 	<div class="jumbotron" style="background-color: orange">
-		<h1>공간 모음</h1>
+		<h1>공간 모음</h1> 
 	</div> 
 	 
 	<form id="textsearch" action="admin_spaces_search2.do">

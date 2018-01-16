@@ -18,11 +18,13 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import multi.mypage.booking.dao.BookingDAO;
 import multi.mypage.booking.dao.UserDAO;
 import multi.mypage.booking.vo.BookingVO;
+import multi.mypage.vo.Mypage_searchVO;
 import main.vo.SpaceVO;
 import main.vo.UserVO;
 
@@ -43,15 +45,26 @@ public class CtrlBooking {
 	 * º¸³¿
 	 */
 	@RequestMapping("/mypage_moveMypageBookingPage.do")
-	public ModelAndView moveMypageBookingPage(@CookieValue("user_id") String user_id) throws Exception {
-
+	public ModelAndView moveMypageBookingPage(@CookieValue("user_id") String user_id,
+			@ModelAttribute Mypage_searchVO search,
+			@RequestParam("pg") String pg) throws Exception {
+			
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		List<BookingVO> bookingInfo = BookingDAO.find_bookingInfo(user_id);
+		//List<BookingVO> bookingInfo = BookingDAO.find_bookingInfo(user_id);
 
 		if (userInfo != null) {
 			ModelAndView mnv = new ModelAndView("mypage_booking");
+			search.setUser_id(user_id);
+			List<BookingVO> bookingInfo = BookingDAO.search_bookings(search);
+			
+			PaginationDTO pz = new PaginationDTO().init(pg, bookingInfo.size());
+			search.setStart_no(pz.getSkip());
+			bookingInfo = BookingDAO.search_bookings(search);
+			
 			mnv.addObject("userInfo", userInfo);
 			mnv.addObject("bookingInfo", bookingInfo);
+			mnv.addObject("search", search);
+			mnv.addObject("pz", pz);
 			return mnv;
 		} else {
 			return null;

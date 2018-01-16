@@ -31,6 +31,7 @@ import multi.club.dao.ClubDAO;
 import multi.club.service.BoardPager;
 import multi.club.vo.Club_applyVO;
 import multi.club.vo.Club_boardVO;
+import multi.club.vo.Club_community_listVO;
 import multi.club.vo.Club_noticeVO;
 import multi.club.vo.Club_searchVO;
 
@@ -60,9 +61,8 @@ public class CtrlClub {
 		ModelAndView mnv = new ModelAndView("club_list");
 		// start, end이용해서 데이터 뽑아오기 
 		List<ClubVO> vo = clubDAO.club_search(svo);
+
 		// 페이지 레코드의 개수 계산
-		int count = vo.size();
-		
 		// 페이지 나누기 관련 처리
 		PaginationDTO pz = new PaginationDTO().init(curPage, vo.size());
 		svo.setStart(pz.getSkip());
@@ -71,7 +71,6 @@ public class CtrlClub {
 		// 데이터 맵에 저장
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("vo", vo); // vo 저장
-		map.put("count", count); // 레코드 개수
 		map.put("pz", pz);
 		map.put("svo", svo);
 		mnv.addObject("map", map);
@@ -151,22 +150,45 @@ public class CtrlClub {
 	
 	//모임 커뮤니티 페이지 호출
 	@RequestMapping("/club_community.do")
-	public ModelAndView club_community(@CookieValue("user_id") String user_id, @ModelAttribute ClubVO pvo, @RequestParam("flag") int flag) throws Exception {
+	public ModelAndView club_community(@CookieValue("user_id") String user_id, @RequestParam("cur_notice_page") String cur_notice_page,
+			@RequestParam("cur_board_page") String cur_board_page ,  @ModelAttribute ClubVO pvo) throws Exception {
+		
 		ModelAndView mnv = new ModelAndView("club_community");
+		
 		ClubVO vo = clubDAO.club_find_detail(pvo);
 		String master = clubDAO.club_find_master(pvo);
-		List<Club_noticeVO> noticeVO = clubDAO.club_findAll_notice(pvo);
-		List<Club_boardVO> boardVO = clubDAO.club_findAll_board(pvo);
+		
+		Club_community_listVO listVO = new Club_community_listVO();
+		listVO.setClub_no(pvo.getClub_no());
+		/* 공지사항 list 조회 */
+		List<Club_noticeVO> noticeVO = clubDAO.club_findAll_notice(listVO);
+		// 페이지 나누기 관련 처리(페이지 레코드 계산)
+		PaginationDTO notice_pz = new PaginationDTO().init(cur_notice_page, noticeVO.size());
+		listVO.setStart(notice_pz.getSkip());
+		noticeVO = clubDAO.club_findAll_notice(listVO);
+		/* 공지사항 list 조회 */
+
+		/* 일반 게시판 list 조회 */
+		listVO.setStart(null);
+		List<Club_boardVO> boardVO = clubDAO.club_findAll_board(listVO);
+		// 페이지 나누기 관련 처리(페이지 레코드 계산)
+		PaginationDTO board_pz = new PaginationDTO().init(cur_board_page, boardVO.size());
+		listVO.setStart(board_pz.getSkip());
+		boardVO = clubDAO.club_findAll_board(listVO);
+		/* 일반 게시판 list 조회 */
+		
 		List<UserVO> userVO = clubDAO.club_find_community_user(pvo);
 		List<Club_applyVO> applyVO = clubDAO.club_find_apply(pvo);
 
+		
 		mnv.addObject("vo", vo);
 		mnv.addObject("master", master);
 		mnv.addObject("noticeVO", noticeVO);
+		mnv.addObject("notice_pz", notice_pz);
+		mnv.addObject("board_pz", board_pz);
 		mnv.addObject("boardVO", boardVO);
 		mnv.addObject("userVO", userVO);
 		mnv.addObject("applyVO", applyVO);
-		mnv.addObject("flag", flag);
 		mnv.addObject("user_id", user_id);
 
 		return mnv;
