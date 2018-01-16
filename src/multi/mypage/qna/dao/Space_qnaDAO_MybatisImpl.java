@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.Space_qnaVO;
+import multi.mypage.vo.Mypage_searchVO;
 
 public class Space_qnaDAO_MybatisImpl implements Space_qnaDAO{
 	@Autowired @Qualifier("sqlSession")
@@ -20,6 +21,11 @@ public class Space_qnaDAO_MybatisImpl implements Space_qnaDAO{
 	@Override
 	public Space_qnaVO find_qnaByspace_no(String space_qna_no) throws Exception {
 		return sqlSession.selectOne("apple.mypage_qna_byqnano",space_qna_no);
+	}
+
+	@Override
+	public List<Space_qnaVO> search_QnA(Mypage_searchVO search) throws Exception {
+		return sqlSession.selectList("apple.mypage_search_QnA",search);
 	}
 
 }
