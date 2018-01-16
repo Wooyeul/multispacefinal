@@ -38,6 +38,7 @@ public class CtrlMypageReview {
 		List<ReviewVO> rl = MPreviewDAO.search_reviews(search);
 		PaginationDTO pz = new PaginationDTO().init(pg, rl.size());
 		search.setStart_no(pz.getSkip());
+		rl = MPreviewDAO.search_reviews(search);
 		
 		mnv.addObject("rl", rl);
 		mnv.addObject("pz", pz);
