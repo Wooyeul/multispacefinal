@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.MessageVO;
+import multi.mypage.vo.Mypage_searchVO;
 
 public class MessageDAO_MybatisImpl implements MessageDAO{
 
@@ -36,6 +37,16 @@ public class MessageDAO_MybatisImpl implements MessageDAO{
 	@Override
 	public int send_Message(MessageVO pvo) {
 		return sqlSession.insert("apple.mypage_message_SendMessage",pvo);
+	}
+
+	@Override
+	public List<MessageVO> search_receivemsg(Mypage_searchVO search) throws Exception {
+		return sqlSession.selectList("apple.mypage_search_receive_msg",search);
+	}
+
+	@Override
+	public List<MessageVO> search_sendmsg(Mypage_searchVO search) throws Exception {
+		return sqlSession.selectList("apple.mypage_search_send_msg",search);
 	}
 	
 

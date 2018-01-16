@@ -16,11 +16,11 @@
 		$(document).ready(function(){
 			
 			$("#del").on("click",function(){
-				$("#lblContent").text("수정하시겠습니까?");
+				$("#lblContent").text("삭제하시겠습니까?");
 				$("#modal").modal("show");
 			});
 			
-			//수정하시겠습니까? 확인버튼
+			//삭제하시겠습니까? 확인버튼
 			$("#success").on("click",function(){
 				var str = $("form").serialize();
 				$.ajax({
@@ -30,6 +30,8 @@
 					success : function(rt) {
 						if(rt == 321){
 							$("#modalSuccess").modal("show");
+						}else{
+							$("#dv").html("삭제할 공간을 선택해주세요.");
 						}
 					},
 					error : function(shr,option,error){
@@ -52,7 +54,7 @@
 <body>
 	<h3>즐겨찾기</h3>
 	<form name="frm">
-		<table border="1">
+		<table border="1" cellspacing="1" cellpadding="1">
 			<jl:forEach var="ab" items="${rl}" varStatus="i" begin="0">
 			<jl:if test="${(i.count-1) % 3 eq 0}">
 				<tr>
@@ -65,6 +67,7 @@
 				</td>
 			</jl:forEach>
 		</table>
+		<div id="dv"></div>
 		<input type="button" value="삭제하기" id="del" class="btn btn-default"/>
 	</form>
 	

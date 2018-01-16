@@ -25,15 +25,15 @@ $(document).ready(function(){
 	</form>
 	<form name="frm">
 	<h3>Myclub</h3>
-	<table border="1">
+	<table border="1" cellspacing="1" cellpadding="1">
 		<tr>
-			<th>클럽번호</th>
-			<th>아이디</th>
-			<th>클럽이름</th>
-			<th>제목</th>
-			<th>내용</th>
-			<th>이미지</th>
-			<th>최대인원</th>
+			<th width="100">클럽번호</th>
+			<th width="100">아이디</th>
+			<th width="100">클럽이름</th>
+			<th width="100">제목</th>
+			<th width="200">내용</th>
+			<th width="100">이미지</th>
+			<th width="100">최대인원</th>
 		</tr>
 		<jl:forEach items="${rl}" var="rl">
 			<tr>

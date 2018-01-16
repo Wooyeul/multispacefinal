@@ -23,7 +23,7 @@
 <body>
 	<form name="frm">
 	<h3>Review</h3>
-	<table border="1">
+	<table border="1" cellspacing="1" cellpadding="1">
 		<tr>
 			<th>리뷰번호</th>
 			<th>방번호</th>
