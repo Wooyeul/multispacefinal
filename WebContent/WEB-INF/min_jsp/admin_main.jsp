@@ -379,7 +379,7 @@ aside#left {
 			
 			<li id="community">커뮤니티 관리</li>
 			<li id="community_free"><a target="iframe1" href="admin_community_board_list.do">자유 게시판 관리</a></li>
-			<li id="community_review"><a target="iframe1" href="#">후기 게시판 관리</a></li>
+			<li id="community_review"><a target="iframe1" href="admin_community_review_list.do">후기 게시판 관리</a></li>
 			<li id="community_question"><a target="iframe1" href="admin_community_qna_list.do">Q&A 관리</a></li>
 			
 			<li id="admin_user">공지 항목 관리</li>
