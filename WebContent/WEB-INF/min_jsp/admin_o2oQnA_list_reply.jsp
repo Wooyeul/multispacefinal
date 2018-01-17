@@ -71,13 +71,17 @@
 	<input type="hidden" name="search_content" value="${search.search_content}">
 	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
-<form id="textsearch" action="admin_o2oQnA_list_reply.do">
+<form id="textsearch" action="admin_o2oQnA_list_reply.do" method="post">
 	<select name="search_option">
 		<option value="0">선택해주세요</option>
 		<option value="1">제목</option>
 		<option value="2">내용</option>
 		<option value="3">제목 + 내용</option>
-		<option value="4">작성자</option>
+		<option value="4">고객님 이메일</option>
+		<option value="5">문의 타입</option>
+		<option value="6">전화 번호</option>
+		<option value="7">문의 시간</option>
+		<option value="8">답변 내용</option>
 	</select>
 	검색 : <input type="text" name="search_content">
 	<input type="submit" value="검색">

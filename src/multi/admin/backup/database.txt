@@ -141,7 +141,8 @@ CREATE TABLE UserT
     `nickname`   VARCHAR(20)     NOT NULL, 
     `zipcode`    VARCHAR(200)    NOT NULL, 
     `email`      VARCHAR(50)     NOT NULL, 
-    `grade`      INT             NOT NULL, 
+    `grade`      INT             NOT NULL,
+    `zipdetail`    VARCHAR(200)    NOT NULL,
     PRIMARY KEY (user_id)
 );
 

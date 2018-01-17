@@ -1,15 +1,15 @@
 DELETE FROM UserT; 
 SELECT * FROM UserT;
 INSERT INTO UserT Values('user', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
-'coolGuy', '442470', 'remd@naver.com' , 1 );
+'coolGuy', '442-470', 'remd@naver.com' , 1,'test' );
 INSERT INTO UserT Values('seller_request', '881001', '8888888', '1234', '삼양재', 'M', '01055246469',
-'coolGuy', '442470', 'remd@naver.com' , 1 );
+'coolGuy', '442-470', 'remd@naver.com' , 1,'test' );
 INSERT INTO UserT Values('seller', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
-'coolGuy', '442470', 'remd@naver.com' , 2 );
+'coolGuy', '442-470', 'remd@naver.com' , 2,'test' );
 INSERT INTO UserT Values('imseller', '881001', '8888888', '1234', '사양재', 'M', '01055246469',
-'coolGuy', '442470', 'remd@naver.com' , 2 );
+'coolGuy', '442-470', 'remd@naver.com' , 2,'test' );
 INSERT INTO UserT Values('admin', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
-'coolGuy', '442470', 'remd@naver.com' , 3 );
+'coolGuy', '442-470', 'remd@naver.com' , 3 ,'test');
 ################################################################
 DROP PROCEDURE IF EXISTS p_admin_user_findAll;
 DELIMITER $$

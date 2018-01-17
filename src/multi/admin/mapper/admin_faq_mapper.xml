@@ -125,17 +125,14 @@
 
 	SELECT * FROM FaqT WHERE 0 = 0
 	<if test="search_option == 1">
-	AND com_board_title like '%${search_content}%'
+	AND faq_title like '%${search_content}%'
 	</if>
 	<if test="search_option == 2">
-	AND com_board_content like '%${search_content}%'
+	AND faq_content like '%${search_content}%'
 	</if>
 	<if test="search_option == 3">
-	AND com_board_title like '%${search_content}%'
-	OR com_board_content like '%${search_content}%'
-	</if>
-	<if test="search_option == 4">
-	AND user_id like '%${search_content}%'
+	AND faq_title like '%${search_content}%'
+	OR faq_content like '%${search_content}%'
 	</if>
 	<if test="start_no != null">
 		ORDER BY faq_no DESC LIMIT #{start_no},10

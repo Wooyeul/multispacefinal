@@ -57,10 +57,13 @@
 <form id="textsearch" action="admin_users.do" method="post">
 	<select name="search_option">
 		<option value="0">선택해주세요</option>
-		<option value="1">제목</option>
-		<option value="2">내용</option>
-		<option value="3">제목 + 내용</option>
-		<option value="4">작성자</option>
+		<option value="1">이름</option>
+		<option value="2">유저 ID</option>
+		<option value="3">닉네임</option>
+		<option value="4">성별</option>
+		<option value="5">이메일</option>
+		<option value="6">우편 번호</option>
+		<option value="7">상세 주소</option>
 	</select>
 	검색 : <input type="text" name="search_content">
 	<input type="submit" value="검색">

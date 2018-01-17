@@ -26,7 +26,7 @@ table {
 		<td>유저 ID</td>
 		<td>호스트 이름</td>
 		<td>호스트 계좌 번호</td>
-		<td>주소</td>
+		<td>우편 번호</td>
 		<td>판매자 공간</td>
 		<td>사용자로 강등</td>
 		<td>탈퇴 시키기</td>
@@ -52,10 +52,11 @@ table {
 <form id="textsearch" action="admin_hosts.do" method="post">
 	<select name="search_option">
 		<option value="0">선택해주세요</option>
-		<option value="1">제목</option>
-		<option value="2">내용</option>
-		<option value="3">제목 + 내용</option>
-		<option value="4">작성자</option>
+		<option value="1">사업자 번호</option>
+		<option value="2">유저 ID</option>
+		<option value="3">호스트 이름</option>
+		<option value="4">호스트 계좌 번호</option>
+		<option value="5">호스트 우편 번호</option>
 	</select>
 	검색 : <input type="text" name="search_content">
 	<input type="submit" value="검색">

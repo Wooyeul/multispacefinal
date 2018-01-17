@@ -40,7 +40,7 @@
 </table>
 <br/>
 <br/>
-<form method="POST" action="admin_user_mod2.do">
+<form method="POST" action="admin_user_mod2.do" method="post">
 		<input type ="hidden" name="user_id" value="${vo.user_id}"></input>
 		이름 : <input type="text" name="user_name" value="${vo.user_name}" /> <br/>
 		전화번호 : <input type="text" name="phone" value="${vo.phone}" /> <br/>

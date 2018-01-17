@@ -49,7 +49,6 @@
 		<option value="1">제목</option>
 		<option value="2">내용</option>
 		<option value="3">제목 + 내용</option>
-		<option value="4">작성자</option>
 	</select>
 	검색 : <input type="text" name="search_content">
 	<input type="submit" value="검색">

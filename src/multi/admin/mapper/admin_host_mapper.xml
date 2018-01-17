@@ -272,7 +272,22 @@
 	
 	<select id="admin_search_host_user" parameterType="multi.admin.vo.Admin_searchVO" 
 		resultType="main.vo.HostVO">
-		SELECT * FROM HostT WHERE 0=0 
+		SELECT * FROM HostT WHERE 0=0
+		<if test="search_option == 1">
+		AND crn like '%${search_content}%'
+		</if>
+		<if test="search_option == 2">
+		AND user_id like '%${search_content}%'
+		</if>
+		<if test="search_option == 3">
+		AND host_name like '%${search_content}%'
+		</if>
+		<if test="search_option == 4">
+		AND host_account like '%${search_content}%'
+		</if>
+		<if test="search_option == 5">
+		AND zipcode like '%${search_content}%'
+		</if>
 		<if test="start_no != null">
 			ORDER BY crn DESC LIMIT #{start_no},10
 		</if>
@@ -280,7 +295,25 @@
 	
 	<select id="admin_search_host_request_user" parameterType="multi.admin.vo.Admin_searchVO" 
 		resultType="main.vo.HostApplyVO">
-		SELECT * FROM HostApplyT WHERE 0=0 
+		SELECT * FROM HostApplyT WHERE 0=0
+		<if test="search_option == 1">
+		AND crn like '%${search_content}%'
+		</if>
+		<if test="search_option == 2">
+		AND user_id like '%${search_content}%'
+		</if>
+		<if test="search_option == 3">
+		AND host_name like '%${search_content}%'
+		</if>
+		<if test="search_option == 4">
+		AND host_account like '%${search_content}%'
+		</if>
+		<if test="search_option == 5">
+		AND zipcode like '%${search_content}%'
+		</if>
+		<if test="search_option == 6">
+		AND etc like '%${search_content}%'
+		</if>
 		<if test="start_no != null">
 			ORDER BY crn DESC LIMIT #{start_no},10
 		</if>
