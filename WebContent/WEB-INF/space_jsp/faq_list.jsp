@@ -31,6 +31,7 @@
 		.ask {
 			text-align: center;
 			margin-bottom: 27px;
+			margin-top: 27px;
 		}
 		body {
 			background-color: #bfd9f2;

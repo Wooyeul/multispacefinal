@@ -24,6 +24,7 @@
 	<style type="text/css">
 	.button{
 		text-align: center;
+		margin-bottom: 40px;
 	}
 	.table{
 		text-align: center;
