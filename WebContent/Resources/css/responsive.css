@@ -712,6 +712,7 @@ header nav .login_btn:hover{
 
 
 .btn_square{
+	background-color:transparent !important;
     text-decoration: none;
     padding: 10px 20px;
     border: 2px solid #bfd9f1;

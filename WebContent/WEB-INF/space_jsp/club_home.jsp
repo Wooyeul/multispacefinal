@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="euc-kr"%>
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
@@ -33,29 +33,29 @@
 			<div class="properties_list">
 			
 	<div class="container">
-		<h2>¸ğÀÓ ÆäÀÌÁö</h2>
+		<h2>ëª¨ì„ í˜ì´ì§€</h2>
 		
 		<form id="frm" target="club_list" action="club_list.do" method="post">
 			<div style="display: inline;">
-				<h4>Áö¿ªº° ¼±ÅÃ</h4>
+				<h4>ì§€ì—­ë³„ ì„ íƒ</h4>
 				<jl:forEach items="${lmap}" var="l" varStatus="i">
 					<input num="${i.count}" class="a" type="radio" value="${l.l_category_no}" name="l_category_no" />${l.l_category_name}
 				</jl:forEach>
 				<br/>
-				<h4>ºĞ¾ßº° ¼±ÅÃ</h4>
+				<h4>ë¶„ì•¼ë³„ ì„ íƒ</h4>
 				<jl:forEach items="${cmap}" var="c">
 					<input type="radio" value="${c.c_category_no}" name="c_category_no" />${c.c_category_name}
 				</jl:forEach>
 			</div><br/>
 			<select name="search_option">
 				<option value="0"></option>
-				<option value="1">Á¦¸ñ</option>
-				<option value="2">³»¿ë</option>
-				<option value="3">Á¦¸ñ+³»¿ë</option>
-				<option value="4">ÀÛ¼ºÀÚ</option>
+				<option value="1">ì œëª©</option>
+				<option value="2">ë‚´ìš©</option>
+				<option value="3">ì œëª©+ë‚´ìš©</option>
+				<option value="4">ì‘ì„±ì</option>
 			</select>
 			<input type="text" name="search_content"/>
-			<br/><input type="button" id="submitBtn" value="°Ë»ö">
+			<br/><input type="button" id="submitBtn" value="ê²€ìƒ‰">
 			<input id="curPage" name="curPage" type="hidden" value="">
 		</form>
 		<br/><br/>
@@ -64,7 +64,7 @@
 			<iframe name="club_list" width="100%" height="100%"></iframe>
 		</div>
 		
-		<input id="btn" class="btn_square" type="button" value="¸ğÀÓµî·Ï"/>
+		<button id="btn" class="btn_square" type="button" >ëª¨ì„ë“±ë¡</button>
 	</div>
 
 				</div>
@@ -75,11 +75,11 @@
 	  <%@include file="./jsp/footer.jsp"%>  
 	<!--  end footer  -->
 
-	<!-- ÀÚ¹Ù½ºÅ©¸³Æ® -->	
+	<!-- ìë°”ìŠ¤í¬ë¦½íŠ¸ -->	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
-			/* ·Î±×ÀÎ ¾ÈÇßÀ¸¸é ¸ğÀÓ µî·Ï ¹öÆ° ¼û±â±â */
+			/* ë¡œê·¸ì¸ ì•ˆí–ˆìœ¼ë©´ ëª¨ì„ ë“±ë¡ ë²„íŠ¼ ìˆ¨ê¸°ê¸° */
 			if('${user_id}'==''){
 				$("#btn").attr("style","display:none;");
 			}
@@ -122,17 +122,17 @@
 		
 		var url = "chk_login.do";
 	 	ajaxGet(url,function(rt){
-		 // ·Î±×ÀÎ ½ÇÆĞ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
+		 // ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
 		 if(rt =="10002"){ 
 			$("#login_nav").hide();				
 			$("#non_login_nav").show();
 		 }
 		 					
-		 // ·Î±×ÀÎ ½Ã : rt°ª -> user_name
+		 // ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
 		 else if(rt!=""){ 
 			 $("#login_nav").show();
 			 $("#non_login_nav").hide(); 
-			 $("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
+			 $("#user_name").text(rt+"ë‹˜ì´ ë¡œê·¸ì¸í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		 }
 		});	
 
