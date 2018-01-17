@@ -618,6 +618,19 @@ header nav .login_btn:hover{
 }
 
 	/* 18/01/17 조우열 이벤트 디테일 시작  */
+	
+.listings ul li .property_event_details{
+    width: 339px;
+    padding: 10px 20px 14px 20px;
+    border-bottom: 1px solid #f2f1f1;
+    border-left: 1px solid #f2f1f1;
+    border-right: 1px solid #f2f1f1;
+
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+}
 
 .listings ul li:hover .property_event_details{
        border-bottom: 1px solid #95badf;
@@ -862,10 +875,10 @@ footer .copyrights a.ph_link{
 
 @media (max-width:1500px){
     .hero{
-        height: 800px;
+        height: 600px;
     }
     .hero_page{
-        height: 800px;
+        height: 600px;
     }
 }
 
