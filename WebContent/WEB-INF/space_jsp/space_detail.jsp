@@ -54,22 +54,22 @@
  				$("#btn_bookmark").html("북마크해제");
  			}
  			if("${space_code }"=="20002"){
- 				$("#status-modal-body").html("후기 삭제 성공");
+ 				$("#status-modal-body").html("<h4>후기 삭제 성공</h4>");
  				$("#status-modal").modal('show');
  			}else if("${space_code }"=="20001"){
- 				$("#status-modal-body").html("본인만 삭제 가능합니다");
+ 				$("#status-modal-body").html("<h4>본인만 삭제 가능합니다</h4>");
  				$("#status-modal").modal('show');
  			}else if("${space_code }"=="20003"){
- 				$("#status-modal-body").html("후기 등록 성공");
+ 				$("#status-modal-body").html("<h4>후기 등록 성공</h4>");
  				$("#status-modal").modal('show');
  			}else if("${space_code }"=="20004"){
- 				$("#status-modal-body").html("질문 수정 성공");
+ 				$("#status-modal-body").html("<h4>질문 수정 성공</h4>");
  				$("#status-modal").modal('show');
  			}else if("${space_code }"=="20005"){
- 				$("#status-modal-body").html("질문 삭제 성공");
+ 				$("#status-modal-body").html("<h4>질문 삭제 성공</h4>");
  				$("#status-modal").modal('show');
  			}else if("${space_code }"=="20006"){
- 				$("#status-modal-body").html("질문 등록 성공");
+ 				$("#status-modal-body").html("<h4>질문 등록 성공</h4>");
  				$("#status-modal").modal('show');
  			}
  			$("#status-modal").on("hidden.bs.modal",function(){
@@ -306,21 +306,21 @@
 								<div class="modal fade" id="qna_del${space_qna.space_qna_no }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
-											<div class="modal-header">
+											<div class="modal-header" align="center">
 												<button type="button" class="close" data-dismiss="modal">
 													<span aria-hidden="true">&times;</span>
 													<span class="sr-only">Close</span>
 												</button>
 												<h4 class="modal-title">주의</h4>
 											</div>
-											<div class="modal-body">
-												<h2>정말 삭제하시겠습니까?</h2>
+											<div class="modal-body" align="center">
+												<h4>정말 삭제하시겠습니까?</h4>
 											</div>
 											<div class="modal-footer">
 												<a href="delete_space_qna.do?space_qna_no=${space_qna.space_qna_no }&space_no=${space_qna.space_no}" data-toggle="modal">
-													<button type="button" class="btn btn-default">질문 삭제</button>
+													<button type="button" class="btn btn-primary">질문 삭제</button>
 												</a>
-												<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+												<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 											</div>
 										</div>
 									</div>
@@ -331,7 +331,7 @@
 								<div class="modal fade" id="qna_mod${space_qna.space_qna_no }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
-											<div class="modal-header">
+											<div class="modal-header" align="center">
 												<button type="button" class="close" data-dismiss="modal">
 													<span aria-hidden="true">&times;</span>
 													<span class="sr-only">Close</span>
@@ -353,8 +353,8 @@
 													<input type="hidden" name="space_qna_no" value="${space_qna.space_qna_no }">
 												</div>
 												<div class="modal-footer">
-													<input type="submit" class="btn btn-default" value="질문 수정">
-													<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+													<input type="submit" class="btn btn-primary" value="질문 수정">
+													<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 												</div>
 											</form>
 										</div>
@@ -479,21 +479,21 @@
 								<div class="modal fade" id="review_del${review.review_no }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
-											<div class="modal-header">
+											<div class="modal-header" align="center">
 												<button type="button" class="close" data-dismiss="modal">
 													<span aria-hidden="true">&times;</span>
 													<span class="sr-only">Close</span>
 												</button>
-												<h4 class="modal-title">주의</h4>
+												<h4 class="modal-title">후기 삭제</h4>
 											</div>
-											<div class="modal-body">
-												<h2>정말 삭제하시겠습니까?</h2>
+											<div class="modal-body" align="center">
+												<h4>정말 삭제하시겠습니까?</h4>
 											</div>
 											<div class="modal-footer">
 												<a href="del_review.do?review_no=${review.review_no }&space_no=${review.space_no}" data-toggle="modal">
 													<button type="button" class="btn btn-default">후기 삭제</button>
 												</a>
-												<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+												<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 											</div>
 										</div>
 									</div>
@@ -544,7 +544,8 @@
 		<div class="modal fade" id="call" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" align="center">
+					
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span>
 							<span class="sr-only">Close</span>
@@ -556,7 +557,7 @@
 						<p>전화 하실 때 MSSPACE보고 문의 드립니다. 라고 말하시면 더욱 친절하게 대해주실거에요~</p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>
@@ -568,18 +569,11 @@
 		<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times;</span>
-							<span class="sr-only">Close</span>
-						</button>
-						<h4 class="modal-title">진행상태</h4>
-					</div>
 					<div class="modal-body">
-						<h2 id="status-modal-body">XX 완료</h2>
+						<div id="status-modal-body" align="center">XX 완료</div>
 					</div>
 					<div class="modal-footer">
-						<button id="btn-status-close" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button id="btn-status-close" type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>

@@ -41,7 +41,15 @@
 		xhr.send(null);
 	}	 */
 	$(document).ready(function(){
+		ajaxGet("best_space.do",function(rt){
+			var seoul_best = eval("("+rt+")");
+			alert(seoul_best);
+		});
 		
+		ajaxGet("best_space2.do",function(rt){
+			var party_best = eval("("+rt+")");
+			alert(party_best);
+		});
 		var scOffset = $('.navbar-Menu').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > scOffset.top) {

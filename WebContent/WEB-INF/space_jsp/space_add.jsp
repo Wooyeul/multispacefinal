@@ -10,6 +10,69 @@
   <script src="common.js" type="text/javascript"></script>
  
  	 <script>
+ 	var imageAddFlag=1;
+ 	 
+ 	var titleTimeFlag=0;
+	var titleCheckFlag=0;
+ 	function titleCheckLoop(){
+		var title = $("#space_title").val();
+		if(title==""){
+			$("#essential_space_title").html("필수 입력사항입니다.");
+			$("#essential_space_title").css("color","red");
+			titleCheckFlag=0;
+		}else{
+			$("#essential_space_title").text("사용 가능한 제목입니다");
+			$("#essential_space_title").css("color","green");
+			titleCheckFlag=1;
+		}
+		if(titleTimeFlag==1){
+			window.setTimeout(function(){
+				titleCheckLoop();
+			},500);
+		} 
+	}
+ 	
+ 	
+ 	var contentTimeFlag=0;
+	 var contentCheckFlag=0;
+ 	function contentCheckLoop(){
+		var content = $("#space_content").val();
+		if(content==""){
+			$("#essential_space_content").html("필수 입력사항입니다.");
+			$("#essential_space_content").css("color","red");
+			contentCheckFlag=0;
+		}else{
+			$("#essential_space_content").text("확인되었습니다.");
+			$("#essential_space_content").css("color","green");
+			contentCheckFlag=1;
+		}
+		if(contentTimeFlag==1){
+			window.setTimeout(function(){
+				contentCheckLoop();
+			},500);
+		} 
+	}
+ 	
+ 	var priceTimeFlag=0;
+	var priceCheckFlag=0;
+	function priceCheckLoop(){
+		var price = $("#price").val();
+		if(price==""){
+			$("#essential_price").html("필수 입력사항입니다.");
+			$("#essential_price").css("color","red");
+			priceCheckFlag=0;
+		}else{
+			$("#essential_price").text("확인되었습니다.");
+			$("#essential_price").css("color","green");
+			priceCheckFlag=1;
+		}
+		if(priceTimeFlag==1){
+			window.setTimeout(function(){
+				priceCheckLoop();
+			},500);
+		} 
+	}
+ 	
  	 	function openTimeChange() {
  	 		var x = document.getElementById("open_time_range");
  	 		var y = document.getElementById("open_time");
@@ -31,6 +94,9 @@
  	 	});
  	 	
  	 	$("document").ready(function(){
+ 	 		$("#test").on("click",function(){
+ 	 			alert($("#image_one").val());
+ 	 		});
  	 		var scOffset = $( '.navbar-Menu' ).offset();
  	 		$( window ).scroll( function() {
  	 		if ( $( document ).scrollTop() > scOffset.top ) {
@@ -53,8 +119,58 @@
 		 	 	$("#user_name").text(rt+"님이 로그인하셨습니다.");
 		 	 		}
 	 	 	 });
+ 	 	 	//유효성 검사
+ 	 	 	$("#space_title").on("focusin",function(){
+ 	 	 		$("#essential_space_title").show();
+ 	 	 		titleTimeFlag=1;
+ 	 	 		titleCheckLoop();
+ 	 	 	});
+ 	 	 	
+ 	 	 	$("#space_title").on("focusout",function(){
+ 	 	 		titleTimeFlag=0;
+ 	 	 	});
+ 	 	 	
+ 	 	 	$("#space_content").on("focusin",function(){
+ 	 	 		$("#essential_space_content").show();
+ 	 	 		contentTimeFlag=1;
+ 	 	 		contentCheckLoop();
+ 	 	 	});
+ 	 	 	
+ 	 	 	$("#space_content").on("focusout",function(){
+ 	 	 		contentTimeFlag=0;
+ 	 	 	});
+ 	 	 	
+ 	 	 	$("#price").on("focusin",function(){
+ 	 	 		$("#essential_price").show();
+ 	 	 		priceTimeFlag=1;
+ 	 	 		priceCheckLoop();
+ 	 	 	});
+ 	 	 	
+ 	 	 	$("#price").on("focusout",function(){
+ 	 	 		priceTimeFlag=0;
+ 	 	 	});
+ 	 	 	
+ 	 	 	
+ 	 	 	$("#btn_add_image").on("click",function(){
+ 	 	 		
+ 	 	 		imageAddFlag++;
+ 	 	 		if(imageAddFlag>7){
+ 	 	 			alert("사진은 최대 7장까지만 가능합니다");
+ 	 	 		}else{
+ 	 	 			alert(imageAddFlag);
+ 	 	 			$("#image_"+[imageAddFlag]).show();
+ 	 	 		}	
+ 	 	 	});
+
+ 	 	 	
  	 	});
  	 </script>
+ 	 <style>
+ 	 	.essential {
+ 	 		display: none;
+ 	 		color: red;
+ 	 	}
+ 	 </style>
 </head>
 <body>
 	<div class="jbTitle">
@@ -95,7 +211,7 @@
 	<!-- nav -->
 	<div class="container">
 		<h1>
-		ADD
+		ADDd
 		</h1>
 		<form method="POST" action="space_add2.do" enctype="multipart/form-data">
 			<div class="form-group">
@@ -110,15 +226,53 @@
 			<div class="form-group">
 				<label for="space_title">공간 이름</label>
 				<input type="text" id="space_title" name="space_title" class="form-control"/>
+				<div class="essential" id="essential_space_title">필수 입력 사항입니다</div>
 			</div>
 			<div class="form-group">
 				<label for="space_title">공간 소개</label>
 				<input type="text" id="space_content" name="space_content" class="form-control"/>
+				<div class="essential" id="essential_space_content">필수 입력 사항입니다</div>
 			</div>
 			<div class="form-group">
 				<label for="space_thumb_img">썸네일 이미지</label>
 				<input type="file" id="space_thumb_img" name="space_thumb_img" class="form-control"/>
 			</div>
+
+			
+				
+			
+			<div class="form-group">
+				<a href="#image-modal" data-toggle="modal"><button>사진 첨부</button></a>
+			</div>
+			<div class="modal fade" id="image-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">사진s 첨부</h4>
+						</div>
+						<div class="modal-body">
+							<input type="file" name="image_one" class="form-control" id="image_1"/>
+							<input type="file" name="image_two" class="form-control" id="image_2" style="display: none;"/>
+							<input type="file" name="image_three" class="form-control" id="image_3" style="display: none;"/>
+							<input type="file" name="image_four" class="form-control" id="image_4" style="display: none;"/>
+							<input type="file" name="image_five" class="form-control" id="image_5" style="display: none;"/>
+							<input type="file" name="image_six" class="form-control" id="image_6" style="display: none;"/>
+							<input type="file" name="image_seven" class="form-control" id="image_7" style="display: none;"/>
+							<button type="button" class="btn btn-default" id="btn_add_image">사진 추가</button>
+						</div>
+						<div class="modal-footer">
+							
+							<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 			<div class="form-group">
 				<label for="open_time">시작 시간</label>
 				<input id="open_time_range" type="range" value="0" min="0" max="24" onchange="openTimeChange();"/>
@@ -133,11 +287,12 @@
 			<div class="form-group">
 				<label for="price">시간당 가격</label>
 				<input id="price" type="number" name="price" class="form-control"/>
+				<div class="essential" id="essential_price">필수 입력 사항입니다</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="min_people">최소 인원</label>
-				<input id="min_people" type="number" name="min_people" class="form-control"/>
+				<input id="min_people" type="number" name="min_people" class="form-control" value="0"/>
 			</div>
 			
 			<div class="form-group">
@@ -162,7 +317,7 @@
 					<label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
 				</jl:forEach>
 			</div>
-			
+			<button type="button" id="test">test</button>
 			<input type="button" id="sub" value="등록"/>
 		</form>
 	</div>

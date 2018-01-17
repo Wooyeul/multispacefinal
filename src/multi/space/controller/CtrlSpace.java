@@ -45,6 +45,7 @@ import multi.space.dao.Space_QnA_RepleDAO;
 import multi.space.dao.UserDAO;
 import multi.space.vo.ImageVO;
 import multi.space.vo.Review_searchVO;
+import multi.space.vo.Space2VO;
 import multi.space.vo.Space_qna_searchVO;
 import multi.space.vo.Space_searchVO;
 
@@ -80,6 +81,69 @@ public class CtrlSpace {
 	public BookmarkDAO bookmarkDAO = null;
 	
 
+	//main.html
+	@RequestMapping("/best_space.do")
+	@ResponseBody
+	public String find_best_space() throws Exception{
+		List<Space2VO> list = spaceDAO.find_best_space();
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("{ 'data' :[ ");
+		int flag=0;
+		for(Space2VO space : list){
+			flag++;
+			sb.append("{");
+			sb.append("'space_title'");
+			sb.append(":");
+			sb.append("'"+space.getSpace_title()+"',");
+			sb.append("'price'");
+			sb.append(":");
+			sb.append("'"+space.getPrice()+"',");
+			sb.append("'count'");
+			sb.append(":");
+			sb.append("'"+space.getCount()+"'");
+			sb.append("}");
+			if(flag==list.size()){
+				
+			} else {
+				sb.append(",");
+			}
+		}
+		sb.append("]}");
+		return sb.toString();
+	}
+	
+	//main.html
+		@RequestMapping("/best_space2.do")
+		@ResponseBody
+		public String find_best_space2() throws Exception{
+			List<Space2VO> list = spaceDAO.find_best_space2();
+			
+			StringBuffer sb = new StringBuffer();
+			sb.append("{ 'data' :[ ");
+			int flag=0;
+			for(Space2VO space : list){
+				flag++;
+				sb.append("{");
+				sb.append("'space_title'");
+				sb.append(":");
+				sb.append("'"+space.getSpace_title()+"',");
+				sb.append("'price'");
+				sb.append(":");
+				sb.append("'"+space.getPrice()+"',");
+				sb.append("'count'");
+				sb.append(":");
+				sb.append("'"+space.getCount()+"'");
+				sb.append("}");
+				if(flag==list.size()){
+					
+				} else {
+					sb.append(",");
+				}
+			}
+			sb.append("]}");
+			return sb.toString();
+		}
 	
 	//공간 첫화면
 	@RequestMapping("/space_home.do")

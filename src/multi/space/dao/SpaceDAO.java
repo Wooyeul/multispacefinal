@@ -7,6 +7,7 @@ import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
 import multi.space.vo.ImageVO;
+import multi.space.vo.Space2VO;
 import multi.space.vo.Space_searchVO;
 
 public interface SpaceDAO {
@@ -54,6 +55,12 @@ public interface SpaceDAO {
 	public List<SpaceVO> search_space(Space_searchVO vo) throws Exception;
 	
 	//공간 수정
-	public Integer mod_space(SpaceVO space) throws Exception;	
+	public Integer mod_space(SpaceVO space) throws Exception;
+	
+	//베스트 공간 3개 뽑아오기(서울)
+	public List<Space2VO> find_best_space() throws Exception;
+	
+	//파티룸
+	public List<Space2VO> find_best_space2() throws Exception;
 }
 

@@ -71,6 +71,13 @@
 		SELECT s_category_name FROM S_categoryT WHERE s_category_no = ( SELECT s_category_no FROM SpaceT WHERE space_no=${space_no} )
 	</select>
 	
+	<select id="find_best_space" statementType="CALLABLE" resultType="multi.space.vo.Space2VO"> 
+		{call find_best_space()}
+	</select>
+	
+	<select id="find_best_space2" statementType="CALLABLE" resultType="multi.space.vo.Space2VO"> 
+		{call find_best_space2()}
+	</select>
 	
 	<select id="search_space" parameterType="multi.space.vo.Space_searchVO" resultType="main.vo.SpaceVO">
 		SELECT * FROM SpaceT WHERE 0=0

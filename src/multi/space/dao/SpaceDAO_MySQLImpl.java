@@ -11,6 +11,7 @@ import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
 import multi.space.vo.ImageVO;
+import multi.space.vo.Space2VO;
 import multi.space.vo.Space_searchVO;
 
 public class SpaceDAO_MySQLImpl implements SpaceDAO {
@@ -114,6 +115,20 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 	public ImageVO find_image_by_space_no(ImageVO image) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("space.find_image_by_space_no",image);
+	}
+
+	//best_space ¼­¿ï
+	@Override
+	public List<Space2VO> find_best_space() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("space.find_best_space");
+	}
+
+	//best_space ÆÄÆ¼·ë
+	@Override
+	public List<Space2VO> find_best_space2() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("space.find_best_space2");
 	}
 
 
