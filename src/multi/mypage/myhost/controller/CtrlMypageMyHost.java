@@ -1,6 +1,5 @@
 package multi.mypage.myhost.controller;
 
-import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,18 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".space_no").on("click",function(){
-		var temp = $(this).attr("abc");
-		window.parent.location.href="space_detail.do?space_no="+temp;
-	});
-});
-</script>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="common.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<style type="text/css">
+			@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".space_no").on("click",function(){
+			var temp = $(this).attr("abc");
+			window.parent.location.href="space_detail.do?space_no="+temp;
+		});
+	});
+	</script>
 </head>
 <body>
 	<form action="myhost_addForm.do" method="POST">
