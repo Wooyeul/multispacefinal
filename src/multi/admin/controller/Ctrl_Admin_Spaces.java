@@ -74,7 +74,8 @@ public class Ctrl_Admin_Spaces {
 	@RequestMapping("/admin_spaces_search.do")
 	public ModelAndView admin_spaces_search( @RequestParam("pg") String pg, 
 		@RequestParam("re") String re,
-		@RequestParam("option") String field , 
+		@RequestParam("option") String field ,
+		@RequestParam("option2") String field2 ,
 		@RequestParam("content") String keyword ,
 		@ModelAttribute Admin_searchVO search,
 		HttpSession session ) throws Exception 
@@ -94,7 +95,7 @@ public class Ctrl_Admin_Spaces {
 		}
 		//		STEP 3. 검색내역을 세션에 추가한다.
 		if( keyword != null && !keyword.equals("") ) {
-			searchs.add( new AdminSearchVO( field , keyword ) );
+			searchs.add( new AdminSearchVO( field ,field2, keyword ) );
 		}
 		
 		for( AdminSearchVO vo : searchs){

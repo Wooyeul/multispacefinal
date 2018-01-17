@@ -16,6 +16,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.vo.NoticeVO;
@@ -25,6 +26,7 @@ import multi.admin.dao.Admin_NoticeDAO;
 import multi.admin.dao.Admin_SpaceDAO;
 import multi.admin.dao.Admin_UserDAO;
 import multi.admin.dao.Admin_o2oQnADAO;
+import multi.admin.vo.Admin_searchVO;
 
 
 /* 
@@ -46,10 +48,18 @@ public class Ctrl_Admin_Notices {
 	
 	// 공지사항 리스트 확인하기
 	@RequestMapping("/admin_notice_list.do")
-	public ModelAndView textList() throws Exception {
-		List<NoticeVO> rl = admin_NoticeDAO.findAll();
+	public ModelAndView textList(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv=new ModelAndView("admin_notice_list");
-		mnv.addObject("rl",rl);
+		//List<NoticeVO> rl = admin_NoticeDAO.findAll();
+		//mnv.addObject("rl",rl);
+		List<NoticeVO> rl = admin_NoticeDAO.search_All(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
+		search.setStart_no(pz.getSkip());
+		rl = admin_NoticeDAO.search_All(search);
+		mnv.addObject("rl", rl);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
 		return mnv;
 	}
 	// 공지사항 하나 읽기

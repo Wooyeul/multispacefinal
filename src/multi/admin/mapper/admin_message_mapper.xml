@@ -73,5 +73,28 @@
 		{call p_admin_to_Allmessage()}
 	</select>
 	
+	<select id="admin_search_All" parameterType="multi.admin.vo.Admin_searchVO"
+		resultType="main.vo.MessageVO">
+
+	SELECT * FROM MessageT WHERE send_user_id = 'admin'
+	<if test="search_option == 1">
+	AND com_board_title like '%${search_content}%'
+	</if>
+	<if test="search_option == 2">
+	AND com_board_content like '%${search_content}%'
+	</if>
+	<if test="search_option == 3">
+	AND com_board_title like '%${search_content}%'
+	OR com_board_content like '%${search_content}%'
+	</if>
+	<if test="search_option == 4">
+	AND user_id like '%${search_content}%'
+	</if>
+	<if test="start_no != null">
+		ORDER BY msg_no DESC LIMIT #{start_no},10
+	</if>
+
+</select>
+	
 </mapper>
 

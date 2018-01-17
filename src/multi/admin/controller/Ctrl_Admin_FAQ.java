@@ -16,6 +16,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.vo.FaqVO;
@@ -25,6 +26,7 @@ import multi.admin.dao.Admin_NoticeDAO;
 import multi.admin.dao.Admin_SpaceDAO;
 import multi.admin.dao.Admin_UserDAO;
 import multi.admin.dao.Admin_o2oQnADAO;
+import multi.admin.vo.Admin_searchVO;
 
 /* 
 FAQ 관리
@@ -44,10 +46,17 @@ public class Ctrl_Admin_FAQ {
 		
 	// FAQ 리스트 확인하는 페이지
 	@RequestMapping("/admin_faq.do")
-	public ModelAndView admin_faq() throws Exception {
+	public ModelAndView admin_faq(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_faq");
-		List<FaqVO> rl = admin_FaqDAO.findAll();
+		/*List<FaqVO> rl = admin_FaqDAO.findAll();
+		mnv.addObject("rl", rl);*/
+		List<FaqVO> rl = admin_FaqDAO.search_All(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
+		search.setStart_no(pz.getSkip());
+		rl = admin_FaqDAO.search_All(search);
 		mnv.addObject("rl", rl);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
 		return mnv;
 	}
 	// 특정 FAQ을 읽는 페이지
