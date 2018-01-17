@@ -738,8 +738,18 @@ header nav .login_btn:hover{
 
 
 
-
-
+/* css√ﬂ∞° */
+	.sel_box{
+		margin-top:5px;
+		width: 150px;
+		float: left;
+	}
+	
+	 .sel_search {
+	 	width: 400px;
+		padding : 5px;
+		float: left;
+	}
 
 
 
