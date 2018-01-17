@@ -84,7 +84,7 @@
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>글 삭제</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-					글을 삭제하시겠습니까?
+					<h4>글을 삭제하시겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='del_modal_Yes'>삭제</button>

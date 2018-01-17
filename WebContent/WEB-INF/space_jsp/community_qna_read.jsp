@@ -25,6 +25,29 @@
 
 	$(document).ready(function() {
 
+		/* 기본 모달 창 닫기 버튼 눌렀을 때 이벤트 발생 */
+		$("#basic_modal_Yes").on("click",function(){
+			$("#basic_modal").modal("hide");
+		});
+		
+		/* 댓글 작성 버튼 클릭 시 이벤트 발생 */
+		$("#reple_submit_btn").on("click", function() {
+			$("#add_reple_modal").modal("show");
+			$("#add_reple_modal_Yes").on("click",function(){
+				$("#add_reple_modal").modal("hide");
+				$("#basic_mobody").html("댓글이 등록 되었습니다.");
+				$("#basic_modal").modal("show");
+				$("#basic_modal").on("hidden.bs.modal",function(){
+					$("#reple_submit").submit();
+				});
+			});
+			$("#add_reple_modal_No").on("click",function(){
+				$("#add_reple_modal").modal("hide");
+			});
+		});
+		
+		
+		
 		$("#btnClose").on("click", function() {
 			$("#repleModal").modal("hide");
 			$("#rsModal").modal("hide");
@@ -89,14 +112,13 @@
 		});
 		
 		$(".recom").on("click", function() {
-			
 			var user_id=$(this).attr("user_id");
 			var com_qna_reple_no=$(this).attr("com_qna_reple_no");
 			var dc = "?dc=" + new Date().getTime();
-			ajaxGet("community_qna_reple_recom.do" + dc
-						+"&com_qna_reple_no="+com_qna_reple_no+"&user_id="+user_id, function(rt) {
-
-					$("#recom_count"+com_qna_reple_no).html(rt);
+			var url ="community_qna_reple_recom.do" + dc +"&com_qna_reple_no="+com_qna_reple_no+"&user_id="+user_id;
+			ajaxGet(url, function(rt) {
+				alert(rt);
+				$("#recom_count"+com_qna_reple_no).html(rt);
 			});
 		});
 	
@@ -214,30 +236,12 @@
 	</form>
 	
 		<form action="community_qna_reple_add.do" method="post" id="reple_submit">
-		<jl:if test="${user_id ne ''}">
-			<input type="text" name="com_qna_reple_content" />
-			<input type="hidden" name="user_id" value="${user_id}"/>
-			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-			<input type="button" value="댓글작성" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rsModal">
-		</jl:if>
-		
-		<div class="modal fade" id="rsModal" role="dialog">
-		    <div class="modal-dialog">
-		      <!-- Modal content-->
-		      <div class="modal-content" >
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        </div>
-		        <div class="modal-body">
-		          <p>댓글을 작성 하시겠습니까?</p>
-		        </div>
-		        <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnClose" value="닫기">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnSub" value="작성">
-		        </div>
-		      </div>
-		    </div>
-		</div>
+			<jl:if test="${user_id ne ''}">
+				<input type="text" name="com_qna_reple_content" />
+				<input type="hidden" name="user_id" value="${user_id}"/>
+				<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+				<input id="reple_submit_btn" type="button" value="댓글작성" class="btn btn-info btn-sm">
+			</jl:if>
 		</form>
 		
 	</div>
@@ -348,5 +352,40 @@
 		      </div>
 	    </div>
 	</div>
+	
+	
+	
+	<!-- 모달 부분 -->
+	
+	<!-- 댓글 등록 modal창 시작 -->
+	<div id="add_reple_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="add_reple_mohead" class="modal-header" align="center"><h4>댓글 등록</h4></div>
+				<div id="add_reple_mobody" class="modal-body" align="center">
+					<h4>댓글을 등록 하시겠습니까?</h4>
+				</div>
+				<div id="ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='add_reple_modal_Yes'>등록</button>
+					<button type='button' class='btn btn-primary' id='add_reple_modal_No'>취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 댓글 등록 modal창 끝 -->
+	
+	<!-- 기본 modal창 시작 -->
+	<div id="basic_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 기본 modal창 끝 -->
 </body>
 </html>

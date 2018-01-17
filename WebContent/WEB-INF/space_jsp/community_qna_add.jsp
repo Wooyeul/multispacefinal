@@ -25,7 +25,19 @@
 	});
 
 	$("#ee").on("click",function(){
-		$("#QnaModal").modal("show");
+		$("#text_add_modal").modal("show");
+		$("#text_add_modal_Yes").on("click",function(){
+			$("#text_add_modal").modal("hide");
+			$("#basic_mobody").html("<h4>QnA가 등록되었습니다.</h4>");
+			$("#basic_modal").modal("show");
+			$("#basic_modal").on("hidden.bs.modal",function(){
+				$("#qna_submit").submit();
+			});
+			
+		});
+		$("#text_add_modal_No").on("click",function(){
+			$("#text_add_modal").modal("hide");
+		});
 	});
 	
 /* 	$("#status-modal").on("hidden.bs.modal",function(){
@@ -54,10 +66,49 @@
 		<input type="hidden" name="user_id" value="${user_id}"/>
 		제목 : <input type="text" name="com_qna_title"/><br/>
 		내용 : <textarea name="com_qna_content" rows="7" cols="63"></textarea>
-		<br/><input type="button" value="QnA작성" class="btn btn-info btn-sm" data-toggle="modal"  id="ee"/>
-		<div class="modal fade" id="QnaModal" role="dialog">
+		<br/>
+		<input type="button" value="QnA작성" class="btn btn-info btn-sm" data-toggle="modal"  id="ee"/>
+	</form>
+	
+	<form action="community_qna_list.do" method="POST">
+		<input type="submit" value="취소" class="btn btn-info btn-sm"/>
+	</form>
+	
+	<!-- 기본 modal창 시작 -->
+	<div id="basic_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 기본 modal창 끝 -->
+	<!-- 글 수정 modal창 시작 -->
+	<div id="text_add_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
+				<div id="mobody" class="modal-body" align="center">
+				<h4>QnA를 등록 하시겠습니까?</h4>
+				</div>
+				<div id="ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='text_add_modal_Yes'>등록</button>
+					<button type='button' class='btn btn-primary' id='text_add_modal_No'>취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 글 수정 modal창 끝 -->	
+	
+	
+	<!-- 수정 전 코드 -->
+	<!-- 		<div class="modal fade" id="QnaModal" role="dialog">
 		    <div class="modal-dialog">
-		      <!-- Modal content-->
+		      Modal content
 		      <div class="modal-content" >
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -71,16 +122,10 @@
 		        </div>
 		      </div>
 		    </div>
-		</div>
-	</form>
-	
-	<form action="community_qna_list.do" method="POST">
-		<input type="submit" value="취소" class="btn btn-info btn-sm"/>
-	</form>
-	
-	<div class="modal fade" id="completeModal" role="dialog">
+		</div> -->
+<!-- 	<div class="modal fade" id="completeModal" role="dialog">
 		    <div class="modal-dialog">
-		      <!-- Modal content-->
+		      Modal content
 		      <div class="modal-content" >
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -93,6 +138,6 @@
 		        </div>
 		      </div>
 		    </div>
-		</div>
+		</div> -->
 </body>
 </html>

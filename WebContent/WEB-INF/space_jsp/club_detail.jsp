@@ -140,7 +140,8 @@
 					$("#clubApply").attr("style","display:inline;");
 					$("#clubApply").attr("value","신청 중");
 					$("#clubApply").attr("disabled","disabled");
-				}else if('${flag}'=='10000'){
+				}else if('${user_id}'==''){}
+				else if('${flag}'=='10000'){
 					$("#clubApply").attr("style","display:inline;");
 				}
 			}

@@ -34,12 +34,17 @@ $(document).ready(function() {
 		//글삭제
 		$("#btnDel").on("click",function(){
 			$("#deltext").modal("show");
-			$("#delsuccess").on("click",function(){
+			$("#del_text_modal_Yes").on("click",function(){
 				$("#deltext").modal("hide");
-				$("#modaldel").modal("show");
-				$("#modaldel").on("hidden.bs.modal",function(){
+				$("#basic_mobody").html("<h4>글이 삭제 되었습니다.</h4>");
+				$("#modal").modal("show");
+				
+				$("#modal").on("hidden.bs.modal",function(){
 					$("#textDelform").submit();
-				});  
+				});
+			});
+			$("#del_text_modal_No").on("click",function(){
+				$("#deltext").modal("hide");
 			});
 		});
 		//글삭제끝
@@ -126,12 +131,17 @@ $(document).ready(function() {
 		//추천
 		$("#btnrecom").on("click",function(){
 			var dc = "?dc=" + new Date().getTime();
-			ajaxGet("community_board_recom.do" + dc	+ "&user_id=aav&com_board_no=${vo.com_board_no}", 
-					function(rt) {
+			var url = "community_board_recom.do" + dc	+ "&user_id=aav&com_board_no=${vo.com_board_no}";
+			ajaxGet(url, function(rt) {
 				if (rt == -1) {
-					$("#modalrecom").modal("show");
+					$("#basic_mobody").html("<h4>이미 추천하셨습니다.</h4>");
+					$("#modal").modal("show");
 				} 
-				else {e("recomCount").innerHTML = rt;}
+				else {
+					$("#basic_mobody").html("<h4>추천 되었습니다.</h4>");
+					$("#modal").modal("show");
+					e("recomCount").innerHTML = rt;
+				}
 			});
 		});
 		//추천끝
@@ -288,7 +298,7 @@ $(document).ready(function() {
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>댓글 삭제</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-					댓글을 삭제하시겠습니까?
+					<h4>댓글을 삭제하시겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='del_modal_Yes'>삭제</button>
@@ -315,41 +325,17 @@ $(document).ready(function() {
 	</div>
 	<!-- 기본 modal창 끝 -->
 	
-<!-- 추천모달창 -->
-	<div class="modal fade" id="modalrecom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">알림</h4>
-				</div>
-				<div class="modal-body">글을 이미 추천하셨습니다</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-<!-- 추천모달창끝 -->
-	
-
-
 	<!-- 글삭제모달폼 -->
-	<div class="modal fade" id="deltext" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
+	<div id="deltext" class="modal fade" role="dialog">
+		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">알림</h4>
+				<div id="mohead" class="modal-header" align="center"><h4>글 삭제</h4></div>
+				<div id="mobody" class="modal-body" align="center">
+					<h4>글을 삭제하시겠습니까?</h4>
 				</div>
-				<div class="modal-body">글을 정말로 정말로 삭제하시겠습니깡?</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary" id="delsuccess">확인</button>
+				<div id="ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='del_text_modal_Yes'>삭제</button>
+					<button type='button' class='btn btn-primary' id='del_text_modal_No'>취소</button>
 				</div>
 			</div>
 		</div>

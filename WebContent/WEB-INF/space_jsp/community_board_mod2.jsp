@@ -130,7 +130,7 @@ $(document).ready(function(){
 	</div>
 	<!-- 기본 modal창 끝 -->
 	
-<!--글수정모달창 -->
+	<!--글수정모달창 -->
 	<div class="modal fade" id="modtext" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
@@ -151,7 +151,7 @@ $(document).ready(function(){
 	</div>
 	
 
-<!-- 글수정모달창_수정버튼누르면 -->
+	<!-- 글수정모달창_수정버튼누르면 -->
 	<div class="modal fade" id="modalmod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
