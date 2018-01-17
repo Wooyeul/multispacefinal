@@ -157,7 +157,6 @@ aside#left {
 	$("#one_one_reple_done").hide();
 	// 쪽지 관련 부분
 	$("#sending_message").hide();
-	$("#have_messages").hide();
 	$("#to_messages").hide();
 	
 	// 회원 관리 항목 클릭 시
@@ -177,7 +176,6 @@ aside#left {
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
 		$("#sending_message").hide();
-		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
 	// 판매자 관리 항목 클릭 시
@@ -197,7 +195,6 @@ aside#left {
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
 		$("#sending_message").hide();
-		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
 	// 공간 관리 항목 클릭 시
@@ -216,7 +213,6 @@ aside#left {
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
 		$("#sending_message").hide();
-		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
 	// 모임 관리 항목 클릭 시
@@ -235,7 +231,6 @@ aside#left {
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
 		$("#sending_message").hide();
-		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
 	// 커뮤니티 관리 항목 클릭 시
@@ -255,7 +250,6 @@ aside#left {
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
 		$("#sending_message").hide();
-		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
 	// 공지 관리 항목 클릭 시
@@ -275,7 +269,6 @@ aside#left {
 		$("#one_one_un_reple").hide();
 		$("#one_one_reple_done").hide();
 		$("#sending_message").hide();
-		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
 	// 1:1 관리 항목 클릭 시
@@ -295,13 +288,11 @@ aside#left {
 		$("#admin_event").hide();
 		$("#admin_faq").hide();
 		$("#sending_message").hide();
-		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
 	// 쪽지 관리 항목 클릭 시
 	$("#message").on("click",function(){
 		$("#sending_message").show();
-		$("#have_messages").show();
 		$("#to_messages").show();
 		
 		$("#user_manage").hide();
@@ -393,7 +384,6 @@ aside#left {
 			
 			<li id="message">쪽지 관리</li>
 			<li id="sending_message"><a target="iframe1" href="admin_message_write.do">쪽지 보내기</a></li>
-			<li id="have_messages"><a target="iframe1" href="admin_message_read_get.do">받은 쪽지함</a></li>
 			<li id="to_messages"><a target="iframe1" href="admin_message_read_to.do">보낸 쪽지함</a></li>
 		</ul>
 	</aside>
