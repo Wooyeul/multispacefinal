@@ -4,56 +4,82 @@
 <!DOCTYPE>
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="common.js"></script>
-	<style>
-		table, tr, td{
-			border: 1px solid;
-		}
-	</style>
+<title>Welcome to Multi Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
+
 </head>
 <body>
-	<div class="container">
-		<div class="jbTitle">
-		<h1>Multi Space</h1>
-	</div>
+   <section class="hero">
+      <header>
+         <div class="wrapper">
+            <!-- <a href="#"><img src="./Resources/img/logo.png" class="logo" alt="" titl=""/></a> -->
+            <a href="#" class="logo" alt="" titl="">Multi Space</a>
+            <nav class="navbar navbar-default">
+
+               <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+
+                  <ul class="nav navbar-nav ">
+                     <li><a href="space_home.do">공간</a></li>
+                     <li><a href="club_home.do">모임</a></li>
+                     <li><a href="community_list.do">커뮤니티</a></li>
+                     <li><a href="event_user_list.do">이벤트</a></li>
+                     <li><a href="notice_list.do">공지사항</a></li>
+                     <li><a href="faq_list.do">FAQ</a></li>
+                     <li><a href="admin_main.do">관리자</a></li>
+                  </ul>
+      
+
+                  <ul id="login_nav" class="nav navbar-nav navbar-right">
+                     <li><a href="#" id="user_name"></a></li>
+                     <li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
+                     <li><a href="home_logout.do">로그아웃</a></li>
+                  </ul>
+
+                  <ul id="non_login_nav" class="nav navbar-nav navbar-right">
+                     <li><a href="home_moveLoginPage.do">로그인</a></li>
+                  </ul>
+
+
+               </div>
+            </nav>
+         </div>
+      </header><!--  end header section  -->
+	</section>
+
+
+
 	
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default ">
-		<div class="container">
-		 <div class="navbar-header">
-		   <a class="navbar-brand" href="main.html">multi space</a>
-		 </div>
 	
-	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-		<ul class="nav navbar-nav ">
-	 	 <li><a href="space_home.do">공간</a></li>
-		 <li><a href="club_home.do">모임</a></li>
-		 <li><a href="community_list.do">커뮤니티</a></li>
-		 <li><a href="event_user_list.do">이벤트</a></li>	
-		 <li><a href="notice_list.do">공지사항</a></li>
-		 <li><a href="faq_list.do">FAQ</a></li>			
-		 <li><a href="admin_main.do">관리자</a></li>			
-		</ul>
-				
-	<ul id="login_nav" class="nav navbar-nav navbar-right">
-	<li><a href="#" id="user_name"></a></li>
-		<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-		<li><a href="home_logout.do">로그아웃</a></li>	
-	</ul>
-					
-		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-		     <li><a href="home_login.do">로그인</a></li>		
-		</ul>
 	
-		   </div>
-		</div>
-	</nav>
-	<!-- nav -->
 	
+	<!-- paging 이용할 form -->
+	<form id="paging_frm" action="club_community.do" method="post">
+		<input type="hidden" name="club_no" value="${vo.club_no }">
+		<input id="cur_notice_page" type="hidden" name="cur_notice_page" value="${notice_pz.curPagination }">
+		<input id="cur_board_page" type="hidden" name="cur_board_page" value="${board_pz.curPagination }">
+	</form>
+	<!-- paging 이용할 form -->
+	
+
+
+
+
+	<section class="listings">
+		<div class="wrapper">
+				<ul class="properties_list">
+				<li>
+			
 	<h2>모임 커뮤니티 페이지</h2>
 	<label>모임 이름 : ${vo.club_name}</label><br/>
 	<label>모임장 : ${master}</label><br/>
@@ -205,18 +231,74 @@
 	<br/>
 	<input id="prev" type="button" value="뒤로가기">
 	<input id="delClub" type="button" value="해체하기"/>
+			
+			</li>
+			</ul>
+			
+		</div>
+	</section>	
+
+
+		<!-- ******************************* footer ******************************* -->
+
+	<footer>
+		<div class="wrapper footer">
+			<ul>
+			
+				<li class="about_multi">
+						<p>상호명 : 멀티스페이스</p>
+						<p>프로젝트 명 : multi space</p>
+						<p>개발자 : 허빛찬샘 | 안수진 | 김세환 | 배승현 |</p>
+						<p>조우열 | 이양재 | 임승범 | 김소영</p>
+						<p>기  간 : 17/12/22 - 18/01/24</p>
+						<p>이메일 : tnwls2274@naver.com</p>
+				 </li>
+			
+			
+				<li class="about_multi">
+						<p>계좌번호 :</p>
+						<p>(국민은행) 464801 - 01 - 061719</p>
+						<p>고객센터 :</p>
+						<p>AM 10: 00 ~ PM6 : 00</p>
+						<p>(오전 9시부터 오후 6시까지 가능합니다.)</p>
+						<p>개인정보관리 책임자 : </p>
+						<p>이숙희 (madhjh@redholic.com)</p>
+				 </li>
+			
+			
+				<li class="links">
+					<ul>
+						<li><a href="#">공간 예약</a></li>
+						<li><a href="#">모임</a></li>
+						<li><a href="#">커뮤니티</a></li>
+						<li><a href="#">공지사항</a></li>
+						<li><a href="#">이벤트</a></li>
+					</ul>
+				</li>
+				
+				<li class="about">
+					<ul>
+						<li><a href="http://facebook.com/pixelhint" class="facebook" target="_blank"></a></li>
+						<li><a href="http://twitter.com/pixelhint" class="twitter" target="_blank"></a></li>
+						<li><a href="http://plus.google.com/+Pixelhint" class="google" target="_blank"></a></li>
+						<li><a href="#" class="skype"></a></li>
+					</ul>
+				 </li>
+			
+
+	
+			</ul>
+		</div>
+
+		<div class="copyrights wrapper">
+			Copyright ⓒ 2018 <a href="http://pixelhint.com" target="_blank" class="ph_link" title="Download more free Templates">MultiSpace</a>. All Rights Reserved.
+		</div>
+	</footer><!--  end footer  -->
 	
 	
 	
-	<!-- paging 이용할 form -->
-	<form id="paging_frm" action="club_community.do" method="post">
-		<input type="hidden" name="club_no" value="${vo.club_no }">
-		<input id="cur_notice_page" type="hidden" name="cur_notice_page" value="${notice_pz.curPagination }">
-		<input id="cur_board_page" type="hidden" name="cur_board_page" value="${board_pz.curPagination }">
-	</form>
-	<!-- paging 이용할 form -->
 	
-	<!-- 유저 강퇴 modal창 시작 -->
+		<!-- 유저 강퇴 modal창 시작 -->
 	<div id="user_release" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -234,8 +316,9 @@
 	<div id="text_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
+				<div id="text_mohead" class="modal-header"align="center"><h4>글 작성</h4></div>
 				<div id="text_mobody" class="modal-body" align="center">
-					글을 작성 하시겠습니까?
+					<h4>글을 작성 하시겠습니까?</h4>
 				</div>
 				<div id="text_ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='text_modal_yes'>확인</button>
@@ -250,8 +333,8 @@
 		<div id="del_club_modal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="mohead" class="modal-header"align="center"><h2>모임 해체</h2></div>
-					<div id="mobody" class="modal-body" align="center"><h3>모임을 정말 해체하시겠습니까?</h3></div>
+					<div id="mohead" class="modal-header"align="center"><h4>모임 해체</h4></div>
+					<div id="mobody" class="modal-body" align="center"><h4>모임을 정말 해체하시겠습니까?</h4></div>
 					<div id="ft" class="modal-footer">
 						<button type="button" class="btn btn-default" id="del_club_yes">확인</button>
 						<button type='button' class='btn btn-primary' id='del_club_no'>취소</button>
@@ -267,8 +350,8 @@
 	<div id="del_user_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header"align="center"><h2>모임 탈퇴</h2></div>
-				<div id="mobody" class="modal-body" align="center"><h3>모임을 정말 탈퇴하시겠습니까?</h3></div>
+				<div id="mohead" class="modal-header"align="center"><h4>모임 탈퇴</h4></div>
+				<div id="mobody" class="modal-body" align="center"><h4>모임을 정말 탈퇴하시겠습니까?</h4></div>
 				<div id="ft" class="modal-footer">
 					<button type="button" class="btn btn-default" id="del_user_yes">확인</button>
 					<button type='button' class='btn btn-primary' id='del_user_no'>취소</button>
@@ -297,8 +380,8 @@
 		<div id="user_agree_modal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="mohead" class="modal-header"align="center"><h2>유저 수락</h2></div>
-					<div id="mobody" class="modal-body" align="center"><h3>유저를 모임에 수락하시겠습니까?</h3></div>
+					<div id="mohead" class="modal-header"align="center"><h4>유저 수락</h4></div>
+					<div id="mobody" class="modal-body" align="center"><h4>유저를 모임에 수락하시겠습니까?</h4></div>
 					<div id="ft" class="modal-footer">
 						<button type="button" class="btn btn-default" id="user_agree_yes">확인</button>
 						<button type='button' class='btn btn-primary' id='user_agree_no'>취소</button>
@@ -316,8 +399,8 @@
 	<div id="user_disagree_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header"align="center"><h2>유저 거절</h2></div>
-				<div id="mobody" class="modal-body" align="center"><h3>유저를 거절 하시겠습니까?</h3></div>
+				<div id="mohead" class="modal-header"align="center"><h4>유저 거절</h4></div>
+				<div id="mobody" class="modal-body" align="center"><h4>유저를 거절 하시겠습니까?</h4></div>
 				<div id="ft" class="modal-footer">
 					<button type="button" class="btn btn-default" id="user_disagree_yes">확인</button>
 					<button type='button' class='btn btn-primary' id='user_disagree_no'>취소</button>
@@ -326,6 +409,16 @@
 		</div>
 	</div>
 	<!-- 유저 신청 거절 modal창 끝 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </div>
 

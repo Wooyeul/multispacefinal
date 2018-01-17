@@ -91,6 +91,12 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
+			/* 로그인 안했으면 모임 등록 버튼 숨기기 */
+			if('${user_id}'==''){
+				$("#btn").attr("style","display:none;");
+			}
+			
+			
 			$("#a").on("click",function(){
 				$(this).attr("checked","checked")
 			})
