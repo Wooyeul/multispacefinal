@@ -20,11 +20,12 @@
 		<parameter property="zipcode" mode="IN"/>
 		<parameter property="email" mode="IN"/>
 		<parameter property="grade" mode="IN"/>
+		<parameter property="zipdetail" mode="IN"/>
 	</parameterMap>
 	
 	<!--회원가입  -->
 	<insert id="p_userJoin_add" parameterMap="PM_userJoin" statementType="CALLABLE">
-		{call p_userJoin_add(?,?,?,?,?,?,?,?,?,?,?)}
+		{call p_userJoin_add(?,?,?,?,?,?,?,?,?,?,?,?)}
 	</insert>
 	
 	<parameterMap type="main.vo.UserVO" id="PM_ckId">
@@ -36,7 +37,7 @@
 		{call p_overlap(?)};
 	</select>
 	
-	<parameterMap type="main.vo.ZipcodeVO" id="PM_p_user_zipcode_add">
+<!-- 	<parameterMap type="main.vo.ZipcodeVO" id="PM_p_user_zipcode_add">
 		<parameter property="user_id" mode="IN"/>
 		<parameter property="zonecode" mode="IN"/>
 		<parameter property="address" mode="IN"/>
@@ -45,11 +46,27 @@
 		
 	</parameterMap>
 	
-	<!-- zipcode 추가 -->
+	zipcode 추가
 	<insert id="p_user_zipcode_add" parameterMap="PM_p_user_zipcode_add">
 		{call p_user_zipcode_add(?,?,?,?,?)}
 	</insert>
-	
+	 -->
+	 
+	 <resultMap type="main.vo.ZipcodeVO" id="RM_p_user_zipcode_find">
+	 	<result property="zipcode_no" column="zipcode_no"/>
+	 	<result property="zipcode" column="zipcode"/>
+	 	<result property="sido" column="sido"/>
+	 	<result property="gugun" column="gugun"/>
+	 	<result property="dong" column="dong"/>
+	 	<result property="bunji" column="bunji"/>
+	 </resultMap>
+	 
+	 
+	 <select id="p_user_zipcode_find" parameterType="java.lang.String" resultMap="RM_p_user_zipcode_find">
+	 	SELECT * FROM zipcodet where dong like '%${dong}%';
+	 	<!-- {call p_user_zipcode_find(#{dong})} -->
+	 </select>
+	 
 	
 </mapper>
 

@@ -29,11 +29,11 @@ public class Ctrl_Admin_Review {
 		ModelAndView mnv = new ModelAndView("admin_community_review_list");
 		//List<ReviewVO> rl = admin_ReviewDAO.review_findAll();
 		
-		List<ReviewVO> rl = admin_ReviewDAO.search_All(search);
-		PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
+		List<ReviewVO> ls = admin_ReviewDAO.search_All(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
 		search.setStart_no(pz.getSkip());
-		rl = admin_ReviewDAO.search_All(search);
-		mnv.addObject("rl", rl);
+		ls = admin_ReviewDAO.search_All(search);
+		mnv.addObject("ls", ls);
 		mnv.addObject("pz", pz);
 		mnv.addObject("search", search);
 		

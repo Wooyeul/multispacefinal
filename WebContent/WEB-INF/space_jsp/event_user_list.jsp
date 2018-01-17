@@ -1,117 +1,176 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>	
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<title>Welcome to Multi Space</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/event_hover.css" >
+	
+		
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="common.js" type="text/javascript"></script>
-	<script>
-	$(document).ready(function(){
-
-		var scOffset = $( '.navbar-Menu' ).offset();
-		$( window ).scroll( function() {
-		if ( $( document ).scrollTop() > scOffset.top ) {
-		$( '.navbar' ).addClass( 'navbar-fixed-top' );
-		}
-		else {
-		$( '.navbar' ).removeClass( 'navbar-fixed-top' );
-		}
-		});
-		
-		var url = "chk_login.do";
-	 	
-		ajaxGet(url,function(rt){
-	 			
-	 // ·Î±×ÀÎ ½ÇÆĞ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
-	 if(rt =="10002"){ 
-		$("#login_nav").hide();				$("#non_login_nav").show();
+	<script type="text/javascript" src="./common.js"></script>
+	<style type="text/css">
+	
+	h1 {
+		text-align: center;
 	}
+	select {
+		float: left;
+	}
+	.eveb {
+		margin-top: 27px;
+		margin-bottom: 27px;
+		text-align: center;
+		font-size: 2em;
+		font-family: "lato-regular", Helvetica, Arial, sans-serif;
+	}
+	body {
+		background-color: #bfd9f2;
+	}
+	.property_details {
+		background-color: white;
+	}
+	.selectdiv1{
+		vertical-align : middle;
+		width: 800px;
+		float: left;
+	}
+	
+	.selectdiv2{
+		margin-top:5px;
+		width: 150px;
+		float: left;
+	}
+	
+	 .selectdiv3 {
+	 	width: 400px;
+		padding : 5px;
+		float: left;
+	}
+	 .selectdiv4 {
+	 	width: 100px;
+		padding : 5px;
+		float: left;
+	}
+	.selecdiv0 {
+		width: 600px;
+		margin:0 auto;
+	}
+	
+	</style>
+	<script>
+		$(document).ready(function(){
+			
+			var scOffset = $('.navbar-Menu').offset();
+			$(window).scroll(function() {
+				if ($(document).scrollTop() > scOffset.top) {
+					$('.navbar').addClass('navbar-fixed-top');
+				} else {
+					$('.navbar').removeClass('navbar-fixed-top');
+				}
+			});
+			
+			
+			
+			var url = "chk_login.do";
+	 		ajaxGet(url,function(rt){
+	 			
+	 				// ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
+	 				if(rt =="10002"){ 
+						$("#login_nav").hide();
+						$("#non_login_nav").show();
+					}
 	 					
-	 // ·Î±×ÀÎ ½Ã : rt°ª -> user_name
-	else if(rt!=""){ 
-	$("#login_nav").show();
-	$("#non_login_nav").hide(); 
-	$("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
-		}
-	 });	
-
-		
+	 				// ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
+					else if(rt!=""){ 
+						$("#login_nav").show();
+						$("#non_login_nav").hide();
+						$("#user_name").text(rt+"ë‹˜");
+					}
+	 			});	
 		});
-
 	</script>
-
-
 </head>
 
-
 <body>	
-		<div class="jbTitle">
-	<h1>Multi Space</h1>
-</div>
 
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default ">
-	<div class="container">
-	 <div class="navbar-header">
-	   <a class="navbar-brand" href="main.html">multi space</a>
-	 </div>
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
 
- <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-	<ul class="nav navbar-nav ">
- 	 <li><a href="space_home.do">°ø°£</a></li>
-	 <li><a href="club_home.do">¸ğÀÓ</a></li>
-	 <li><a href="community_list.do">Ä¿¹Â´ÏÆ¼</a></li>
-	 <li><a href="event_user_list.do">ÀÌº¥Æ®</a></li>	
-	 <li><a href="notice_list.do">°øÁö»çÇ×</a></li>
-	 <li><a href="faq_list.do">FAQ</a></li>			
-	 <li><a href="admin_main.do">°ü¸®ÀÚ</a></li>			
-	</ul>
-			
-<ul id="login_nav" class="nav navbar-nav navbar-right">
-<li><a href="#" id="user_name"></a></li>
-	<li><a href="mypage_moveMypageMainPage.do">¸¶ÀÌÆäÀÌÁö</a></li>
-	<li><a href="home_logout.do">·Î±×¾Æ¿ô</a></li>	
-</ul>
-
-	<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-	     <li><a href="#">·Î±×ÀÎ</a></li>		
-	</ul>
-
-	   </div>
-	</div>
-</nav>
-<!-- nav -->
 
 	
-	<form action="event_user_list.do">
-		<select name="eve_option">
-			<option value="0"></option>
-			<option value="1">Á¦¸ñ</option>
-			<option value="2">³»¿ë</option>
-			<option value="3">Á¦¸ñ+³»¿ë</option>
-		</select>
-		<input type="text" name="eve_key"/>
-		<input type="submit" value="Á¦Ãâ">	
-	</form>		
-			
-	<table border="1" cellspacing="0" cellpadding="8">
-		
-		<jl:forEach var="vo" items="${rl}">
-			<tr>
-				<td>${vo.eve_no}</td>
-				<td><a href="event_user_read.do?eve_no=${vo.eve_no}"><img src="thumbnail/${vo.eve_thumb_img}" height="100" width="100"/></a></td>
-				<td>
-					<a href="event_user_read.do?eve_no=${vo.eve_no}">${vo.eve_title}</a>
-				</td>
-			</tr>
-		</jl:forEach>
-	</table>
 
+
+<div class="container">
+	<div class="eveb"><h2>EVENT BOARD</h2></div>
+	
+		<div class="wrapper">
+			<form action="event_user_list.do">
+				<div class="selecdiv0">
+					<div class="selectdiv1">
+						<div class="selectdiv2">
+							<select class="form-control" name="eve_option">
+								<option value="0">ì„ íƒí•˜ì„¸ìš”</option>
+								<option value="1">ì œëª©</option>
+								<option value="2">ë‚´ìš©</option>
+								<option value="3">ì œëª©+ë‚´ìš©</option>
+							</select>
+						</div>
+						<div class="selectdiv3">
+							<input class="form-control" type="text" name="eve_key" placeholder="ì¹´í…Œê³ ë¦¬ ì„ íƒ -> ë‚´ìš© ì…ë ¥" />
+						</div>
+						<div class="selectdiv4">
+							<input type="submit" class="btn btn-primary" value="ê²€ìƒ‰"/>				
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	<section class="listings">
+		<div class="wrapper">
+			<ul class="properties_list">
+			<jl:forEach var="vo" items="${rl}">
+			<li>
+			<div class="ih-item square colored effect6 from_top_and_bottom"><a href="event_user_read.do?eve_no=${vo.eve_no}">
+			<div class="img"><img src="./thumbnail/${vo.eve_thumb_img}" alt="img"></div>
+			<div class="info">
+				<h3>${vo.eve_no}. ${vo.eve_title}</h3>
+				<p><span class="property_size">${vo.eve_content}</span></p>
+			</div></a>
+		</div>
+		<a href="event_user_read.do?eve_no=${vo.eve_no}">
+		<div class="property_event_details">
+			<h1>Event #${vo.eve_no}<br/>${vo.eve_title}</h1>
+			<h6>${vo.the_time}</h6>
+		</div></a>
+			</li>
+			</jl:forEach>
+			</ul>
+		</div>
+	</section>
+</div>
+
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
+	
+	
+	
 </body>
 </html>
 

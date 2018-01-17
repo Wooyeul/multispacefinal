@@ -17,29 +17,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 <script>
-	/* function ajaxGet( url, a, b, c ){
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function(){
-			if( xhr.readyState == 4 ){
-				if( xhr.status == 200 ){
-					a( xhr.responseText );
-				}
-				else if( xhr.status == 404 ){
-					alert("404");
-					if( b ){
-						b();
-					}
-				}
-				else if( xhr.status == 500 ){
-					if( c != undefined ){
-						c();
-					}
-				}
-			}
-		};
-		xhr.open("GET",url,true);
-		xhr.send(null);
-	}	 */
+
 	$(document).ready(function(){
 		ajaxGet("best_space.do",function(rt){
 			var seoul_best = eval("("+rt+")");

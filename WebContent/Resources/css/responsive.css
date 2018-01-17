@@ -556,7 +556,7 @@ header nav .login_btn:hover{
 }
 
 .listings ul li .property_details{
-    width: 87.64705882352941%;
+    width: 340px;
     height: 130px;
     padding: 2.941176470588235% 5.882352941176471% 4.117647058823529% 5.882352941176471%;
     border-bottom: 1px solid #f2f1f1;
@@ -617,6 +617,54 @@ header nav .login_btn:hover{
     font-weight: normal;
 }
 
+	/* 18/01/17 조우열 이벤트 디테일 시작  */
+	
+.listings ul li .property_event_details{
+    width: 339px;
+    padding: 10px 20px 14px 20px;
+    border-bottom: 1px solid #f2f1f1;
+    border-left: 1px solid #f2f1f1;
+    border-right: 1px solid #f2f1f1;
+
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+}
+
+.listings ul li:hover .property_event_details{
+       border-bottom: 1px solid #95badf;
+       border-left: 1px solid #95badf;
+       border-right: 1px solid #95badf;
+   }
+   
+   .listings ul li .property_event_details h1{
+       color: #666464;
+       font-family: "lato-bold", Helvetica, Arial, sans-serif;
+       font-size: 16px!important;
+       font-weight: bold;
+       margin-bottom: 5px;
+       line-height: 28px;
+   }
+   
+   .listings ul li .property_event_details h1 a{
+       text-decoration: none;
+       color: #666464;
+   }
+   
+   .listings ul li .property_event_details h2{
+       color: #9d9d9d;
+       font-family: "lato-regular", Helvetica, Arial, sans-serif;
+       font-size: 12px;
+       line-height: 26px;
+   }
+   
+   .listings ul li .property_event_details .property_size{
+       color: #676767;
+   }
+
+	/* 18/01/17 조우열 이벤트 디테일 끝 */
+
 .listings .more_listing{
     display: block;
     width: 100%;
@@ -646,6 +694,25 @@ header nav .login_btn:hover{
 }
 
 .listings .more_listing_btn_square{
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #bfd9f1;
+    color: #afcbe6;
+    font-family: "lato-regular", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+}
+
+
+.btn_square{
+	background-color:transparent !important;
     text-decoration: none;
     padding: 10px 20px;
     border: 2px solid #bfd9f1;
@@ -827,10 +894,10 @@ footer .copyrights a.ph_link{
 
 @media (max-width:1500px){
     .hero{
-        height: 800px;
+        height: 600px;
     }
     .hero_page{
-        height: 800px;
+        height: 600px;
     }
 }
 

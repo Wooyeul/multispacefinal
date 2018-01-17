@@ -1,62 +1,73 @@
 package main.vo;
 
 public class ZipcodeVO {
-	private String user_id;
-	private String zonecode;
-	private String address;
-	private String jibunAddress;
-	private String detail;
+	private Integer zipcode_no;
+	private String zipcode;
+	private String sido;
+	private String gugun;
+	private String dong;
+	private String bunji;
 
 	public ZipcodeVO() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public ZipcodeVO(String user_id, String zonecode, String address, String jibunAddress, String detail) {
+	public ZipcodeVO(Integer zipcode_no, String zipcode, String sido, String gugun, String dong, String bunji) {
 		super();
-		this.user_id = user_id;
-		this.zonecode = zonecode;
-		this.address = address;
-		this.jibunAddress = jibunAddress;
-		this.detail = detail;
+		this.zipcode_no = zipcode_no;
+		this.zipcode = zipcode;
+		this.sido = sido;
+		this.gugun = gugun;
+		this.dong = dong;
+		this.bunji = bunji;
 	}
 
-	public String getUser_id() {
-		return user_id;
+	public Integer getZipcode_no() {
+		return zipcode_no;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setZipcode_no(Integer zipcode_no) {
+		this.zipcode_no = zipcode_no;
 	}
 
-	public String getZonecode() {
-		return zonecode;
+	public String getZipcode() {
+		return zipcode;
 	}
 
-	public void setZonecode(String zonecode) {
-		this.zonecode = zonecode;
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getSido() {
+		return sido;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setSido(String sido) {
+		this.sido = sido;
 	}
 
-	public String getJibunAddress() {
-		return jibunAddress;
+	public String getGugun() {
+		return gugun;
 	}
 
-	public void setJibunAddress(String jibunAddress) {
-		this.jibunAddress = jibunAddress;
+	public void setGugun(String gugun) {
+		this.gugun = gugun;
 	}
 
-	public String getDetail() {
-		return detail;
+	public String getDong() {
+		return dong;
 	}
 
-	public void setDetail(String detail) {
-		this.detail = detail;
+	public void setDong(String dong) {
+		this.dong = dong;
+	}
+
+	public String getBunji() {
+		return bunji;
+	}
+
+	public void setBunji(String bunji) {
+		this.bunji = bunji;
 	}
 
 }

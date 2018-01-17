@@ -1,27 +1,41 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
-taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<title>Welcome to Multi Space</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+		
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-.form-group {
-	text-align: center;
-}
+
 
 .jumbotron {
 	text-align: center;
 }
 
-.btn {
+.button {
 	text-align: center;
 }
+.t1 {
+	text-align: right;
+}
+
 </style>
-<script src="common.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
 	$(document).ready(function(){
@@ -30,58 +44,91 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 			document.frm.action="faq_list.do";
 			document.frm.submit();
 		});
-		
-		$("#myAlert").on("click",function(e){
-			e.preventDefault();
-			$("#addwrite2").modal("show");
-		});
-		
-		$("#btn-submit").on("click",function(){
-			$('#text_addform').submit();
-		});
 	});
 
+	$(document).ready(function() {
+
+		var scOffset = $('.navbar-Menu').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > scOffset.top) {
+				$('.navbar').addClass('navbar-fixed-top');
+			} else {
+				$('.navbar').removeClass('navbar-fixed-top');
+			}
+		});
+
+		var url = "chk_login.do";
+		ajaxGet(url, function(rt) {
+
+			// ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
+			if (rt == "10002") {
+				$("#login_nav").hide();
+				$("#non_login_nav").show();
+			}
+
+			// ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
+			else if (rt != "") {
+				$("#login_nav").show();
+				$("#non_login_nav").hide();
+				$("#user_name").text(rt + "ë‹˜");
+			}
+		});
+	});
 </script>
 </head>
 <body>
-	<div class="jumbotron" style="background-color: orange">
-		<h1>FAQ ¹®ÀÇÇÏ±â</h1>
+
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
+	
+	<div class="jumbotron" style="background-color: #bfd9f2">
+		<h1>1:1 ë¬¸ì˜í•˜ê¸°</h1>
 	</div>
 	
-	<form action="admin_o2oQnA_add.do" class="form-group" method="POST" name="frm" id="text_addform">
-		Á¦¸ñ : <input type="text" name="o2o_title" size="30" /> <br>
-		ÀÌ¸ŞÀÏ : <input type="text" name="o2o_email" size="30" /> <br>
-		ÇÚµåÆù¹øÈ£ : <input type="text" name="o2o_phone" size="30" /><br>
-		¼­ºñ½ººĞ·ù : <select name="o2o_type">
-			<option value="¼±ÅÃ">¼±ÅÃÇÏ¼¼¿ä</option>
-			<option value="È¸¿ø">È¸¿ø</option>
-			<option value="¿¹¾à ¹× °áÁ¦">¿¹¾à ¹× °áÁ¦</option>
-			<option value="Ãë¼Ò ¹× È¯ºÒ">Ãë¼Ò ¹× È¯ºÒ</option>
-			<option value="±âÅ¸">±âÅ¸</option>
-		</select> <br> ¹®ÀÇ ³»¿ë:
-		<textarea name="o2o_content" rows="10" cols="60"></textarea>
-		<br> <input class="btn btn-success" type="submit" value="¹®ÀÇÇÏ±â" id="myAlert"/>
-		<a href="faq_list.do"><input type="button"class="btn btn-success" id="cancel" value="Ãë¼ÒÇÏ±â"/></a>
-	</form>
-	
-	<div class="modal fade" id="addwrite2" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">¡¿</span> <span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">¾Ë¸²</h4>
-				</div>
-				<div class="modal-body">¹®ÀÇÇÏ½Ã°Ú½À´Ï±î?</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">´İ±â</button>
-					<button type="button" class="btn btn-primary" id="btn-submit">È®ÀÎ</button>
-				</div>
-			</div>
-		</div>
+	<div class="container">
+		<form action="admin_o2oQnA_add.do" class="form-group" method="POST" name="frm">
+			<table>
+			<tr>
+				<td class="t1"><strong>ì œëª© : </strong></td> 
+				<td><input class="form-control" type="text" name="o2o_title" size="30" /></td>
+			<tr>
+			<tr>
+				<td class="t1"><strong>ì´ë©”ì¼ :</strong></td> 
+				<td><input class="form-control" type="text" name="o2o_email" size="30" /></td>
+			</tr>
+			<tr>
+				<td class="t1"><strong>í•¸ë“œí°ë²ˆí˜¸ :</strong></td> 
+				<td><input class="form-control" type="text" name="o2o_phone" size="30" /></td>
+			</tr>
+			<tr>
+				<td class="t1"><strong>ì„œë¹„ìŠ¤ë¶„ë¥˜ :</strong></td> 
+				<td><select class="form-control" name="o2o_type">
+						<option value="ì„ íƒ">ì„ íƒí•˜ì„¸ìš”</option>
+						<option value="íšŒì›">íšŒì›</option>
+						<option value="ì˜ˆì•½ ë° ê²°ì œ">ì˜ˆì•½ ë° ê²°ì œ</option>
+						<option value="ì·¨ì†Œ ë° í™˜ë¶ˆ">ì·¨ì†Œ ë° í™˜ë¶ˆ</option>
+						<option value="ê¸°íƒ€">ê¸°íƒ€</option>
+					</select>
+			</td>
+			<tr>
+			<td class="t1"></td>
+			<td>
+			<textarea class="form-control" placeholder="ë¬¸ì˜ ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”."  name="o2o_content" rows="10" cols="60"></textarea>
+			</td>
+			</tr>
+			<tr>
+			<td></td>
+			<td class="button">
+			<a href="faq_list.do"><input type="button"class="btn btn-primary" id="cancel" value="ì·¨ì†Œí•˜ê¸°"/></a>
+			<input class="btn btn-default" type="submit" value="ë¬¸ì˜í•˜ê¸°" />
+			</tr>
+		</table>
+		</form>
 	</div>
 
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 </body>
 </html>

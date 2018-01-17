@@ -40,6 +40,24 @@ $(document).ready(function() {
 		$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
 		$("#repleModal").modal("show");
 	});
+	
+	
+	$(".qna_remove").on("click",function(){
+		$("#qna_No").val( $(this).attr("com_qna_no") );
+		
+		$("#text_modal").modal("show");
+	});
+	//yes버튼 클릭 했을 때 실행할 function
+	$("#text_modal_yes").on("click",function(){
+		var del_qna_no = $("#qna_No").val();
+			location.href = "admin_community_qna_del.do?com_qna_no=" + del_qna_no;
+		$("#text_modal_modal").modal("hide");
+	});
+	//no버튼 클릭 했을 때 실행할 function
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
+
 });
 
 </script>
@@ -128,13 +146,29 @@ $(document).ready(function() {
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
 			<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
-			<input type="submit" value="QnA수정"/>
+			<input type="submit" value="QnA수정"/> &nbsp;&nbsp;&nbsp;
+			<input type="button" class="qna_remove" com_qna_no="${vo.com_qna_no}"  value="QnA삭제"/>
 		</form>
 		
-		<form action="admin_community_qna_del.do" method="post">
-			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-			<input type="submit" value="QnA삭제"/>
-		</form>
+		
+		
+		
+		<div id="text_modal" class="modal fade" role="dialog">
+			<input type="hidden" id="qna_No" value="0"/>
+	
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+					<div id="text_mobody" class="modal-body" align="center">
+						<h4>글을 삭제 하시겠습니까?</h4>
+					</div>
+					<div id="text_ft" class="modal-footer">
+						<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+						<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		
 	</div>

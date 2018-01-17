@@ -1,15 +1,35 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>	
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<title>Welcome to Multi Space</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+		
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="common.js" type="text/javascript"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	<style type="text/css">
+	.button{
+		text-align: center;
+		margin-bottom: 40px;
+	}
+	.table{
+		text-align: center;
+	}
+	</style>
 	<script>
 	$(document).ready(function(){
 
@@ -27,71 +47,43 @@
 	 	
 		ajaxGet(url,function(rt){
 	 			
-	 // ·Î±×ÀÎ ½ÇÆÐ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
+	 // ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
 	 if(rt =="10002"){ 
 		$("#login_nav").hide();				$("#non_login_nav").show();
 	}
 	 					
-	 // ·Î±×ÀÎ ½Ã : rt°ª -> user_name
+	 // ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
 	else if(rt!=""){ 
 	$("#login_nav").show();
 	$("#non_login_nav").hide(); 
-	$("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
+	$("#user_name").text(rt+"ë‹˜");
 		}
 	 });	
-
-		
 		});
 
 	</script>
-
-
 </head>
 
 
 <body>	
-		<div class="jbTitle">
-	<h1>Multi Space</h1>
-</div>
-
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default ">
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
+	
+	
 	<div class="container">
-	 <div class="navbar-header">
-	   <a class="navbar-brand" href="main.html">multi space</a>
-	 </div>
-
- <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-	<ul class="nav navbar-nav ">
- 	 <li><a href="space_home.do">°ø°£</a></li>
-	 <li><a href="club_home.do">¸ðÀÓ</a></li>
-	 <li><a href="community_list.do">Ä¿¹Â´ÏÆ¼</a></li>
-	 <li><a href="event_user_list.do">ÀÌº¥Æ®</a></li>	
-	 <li><a href="notice_list.do">°øÁö»çÇ×</a></li>
-	 <li><a href="faq_list.do">FAQ</a></li>			
-	 <li><a href="admin_main.do">°ü¸®ÀÚ</a></li>			
-	</ul>
-			
-<ul id="login_nav" class="nav navbar-nav navbar-right">
-<li><a href="#" id="user_name"></a></li>
-	<li><a href="mypage_moveMypageMainPage.do">¸¶ÀÌÆäÀÌÁö</a></li>
-	<li><a href="home_logout.do">·Î±×¾Æ¿ô</a></li>	
-</ul>
-
-	<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-	     <li><a href="#">·Î±×ÀÎ</a></li>		
-	</ul>
-
-	   </div>
+		<table class="table table-hover">
+			<tr><td><h3>EVENT #${text.eve_no}  ${text.eve_title}</h3></td></tr>
+			<tr><td><h4>${text.eve_content}</h4></td></tr>
+			<tr><td><img src="thumbnail/${text.eve_thumb_img}" height="400" width="400"/></td></tr>
+		</table>
+			<div class="button">
+				<input type="button"  class="btn btn-primary" value="ëª©ë¡" onclick= "window.location.href='event_user_list.do'">
+			</div>
 	</div>
-</nav>
-<!-- nav -->
-
-
-			
-			Á¦¸ñ :<input type="text" name="eve_title" value="${text.eve_title}" readonly /><br/>
-			³»¿ë :<textarea name="eve_content" rows="7" cols="40" readonly >${text.eve_content}</textarea><br/>
-				<img src="thumbnail/${text.eve_thumb_img}" height="100" width="100"/> <br/>
-			<input type="button" value="¸ñ·Ï" onclick= "window.location.href='event_user_list.do'">
+	
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 </body>
 </html>

@@ -1,150 +1,121 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
-taglib
-	prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<!-- ±è¼Ò¿µ -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+<!-- ê¹€ì†Œì˜ -->
+	<title>Welcome to Multi Space</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+		
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	
+	<style type="text/css">
+		.table {
+			text-align: center;
+			border-color: green;
+		}
+		
+		.ask {
+			text-align: center;
+			margin-bottom: 27px;
+			margin-top: 27px;
+		}
+		body {
+			background-color: #bfd9f2;
+		}
+		.faqB {
+			margin-top: 27px;
+			margin-bottom: 27px;
+			text-align: center;
+			font-size: 2em;
+			font-family: "lato-regular", Helvetica, Arial, sans-serif;
+		}
+		.panel-title {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+	</style>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="common.js" type="text/javascript"></script>
 
-.jumbotron {
-	background-color: orange;
-}
-
-.FAQ {
-	color: white;
-	text-align: center;
-}
-
-.table {
-	text-align: center;
-	border-color: green;
-}
-
-.ask {
-	text-align: center;
-}
-</style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script  src="common.js"></script>
 <script>
-	$(document).ready(function() {
+	$(document).ready(function(){
 
-		var scOffset = $('.navbar-Menu').offset();
-		$(window).scroll(function() {
-			if ($(document).scrollTop() > scOffset.top) {
-				$('.navbar').addClass('navbar-fixed-top');
-			} else {
-				$('.navbar').removeClass('navbar-fixed-top');
-			}
+		var scOffset = $( '.navbar-Menu' ).offset();
+		$( window ).scroll( function() {
+		if ( $( document ).scrollTop() > scOffset.top ) {
+		$( '.navbar' ).addClass( 'navbar-fixed-top' );
+		}
+		else {
+		$( '.navbar' ).removeClass( 'navbar-fixed-top' );
+		}
 		});
 		
-
 		var url = "chk_login.do";
-		 	ajaxGet(url,function(rt){
-		 // ·Î±×ÀÎ ½ÇÆÐ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
-		 if(rt =="10002"){ 
-			$("#login_nav").hide();				
-			$("#non_login_nav").show();
+	 	
+		ajaxGet(url,function(rt){
+	 			
+	 // ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
+	 if(rt =="10002"){ 
+		$("#login_nav").hide();				$("#non_login_nav").show();
+	}
+	 					
+	 // ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
+	else if(rt!=""){ 
+	$("#login_nav").show();
+	$("#non_login_nav").hide(); 
+	$("#user_name").text(rt+"ë‹˜");
 		}
-		 					
-		 // ·Î±×ÀÎ ½Ã : rt°ª -> user_name
-		else if(rt!=""){ 
-		$("#login_nav").show();
-		$("#non_login_nav").hide(); 
-		$("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
-			}
-		 });	
-
-		
+	});	
 	});
-</script>
+
+	</script>
+	
 </head>
 <body>
-${user_id}
-	<div class="jbTitle">
-		<h1>Multi Space</h1>
-	</div>
-
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default ">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="main.html">multi space</a>
-			</div>
-
-			<div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-				<ul class="nav navbar-nav ">
-					<li><a href="space_home.do">°ø°£</a></li>
-					<li><a href="club_home.do">¸ðÀÓ</a></li>
-					<li><a href="community_list.do">Ä¿¹Â´ÏÆ¼</a></li>
-					<li><a href="event_user_list.do">ÀÌº¥Æ®</a></li>
-					<li><a href="notice_list.do">°øÁö»çÇ×</a></li>
-					<li><a href="faq_list.do">FAQ</a></li>
-					<li><a href="admin_main.do">°ü¸®ÀÚ</a></li>
-				</ul>
-
-				<ul id="login_nav" class="nav navbar-nav navbar-right">
-					<li><a href="#" id="user_name"></a></li>
-					<li><a href="mypage_moveMypageMainPage.do">¸¶ÀÌÆäÀÌÁö</a></li>
-					<li><a href="home_logout.do">·Î±×¾Æ¿ô</a></li>
-				</ul>
-				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-					<li><a href="home_login.do">·Î±×ÀÎ</a></li>
-				</ul>
-
-			</div>
-		</div>
-	</nav>
-	<!-- nav -->
 	
-	<div class="jumbotron">
-		<div class="FAQ">
-			<h1>F A Q</h1>
-		</div>
-	</div>
-
-	<%-- µÇ´ÂÅ×ÀÌºí<table border="1" class="table table-hover" >
-		<tr>
-			<th>NO</th>
-			<th>TITLE</th>
-			<th>CONTENT</th>
-		</tr>
-		<jl:forEach var="vo" items="${rl}">
-			<tr>
-				<td>${vo.faq_no}</td>
-				<td>${vo.faq_title}</td>
-				<td>${vo.faq_content}</td>
-			</tr>
-		</jl:forEach>
-	</table> --%>
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
 
 
 
 	<div class="container">
-		<h2>FAQ Board</h2>
+		<div class="faqB"><h2>FAQ BOARD</h2></div>
 		<div class="panel-group" id="accordion" role="tablist"
 			aria-multiselectable="true">
 			<jl:forEach var="vo" items="${rl}">
-				<div class="panel panel-default">
+				<div class="panel panel-info">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion"
 								href="#${vo.faq_no}" aria-expanded="true"
-								aria-controls="collapseOne">${vo.faq_no} . ${vo.faq_title} </a>
+								aria-controls="collapseOne">
+							<table>
+								<tr>
+								<th width="50">${vo.faq_no}</th>
+								<th width="400"> ${vo.faq_title}</th>
+								</tr>
+							</table>
+							 </a>
 						</h4>
 					</div>
 					<div id="${vo.faq_no}" class="panel-collapse collapse"
 						role="tabpanel" aria-labelledby="headingOne">
-						<div class="panel-body">${vo.faq_content}</div>
+						<div class="panel-body"><h5>${vo.faq_content}</h5></div>
 					</div>
 				</div>
 			</jl:forEach>
@@ -152,14 +123,16 @@ ${user_id}
 
 		<div class="ask">
 			<a href="o2oQnA_add.do">
-				<input class="btn btn-success" type="button" value="ASK">
+				<input class="btn btn-primary" type="button" value="1:1 ë¬¸ì˜í•˜ê¸°">
 			</a>
 			
 		</div>
 		
 	</div>
 
-
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 
 </body>
 </html>

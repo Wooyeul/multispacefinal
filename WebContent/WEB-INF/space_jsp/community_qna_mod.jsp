@@ -19,20 +19,32 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
 	$(document).ready(function() {
-		$("#btnClose").on("click", function() {
-			$("#QnaModModal").modal("hide");
-
-		});
-
-		$("#btnQnASub").on("click", function() {
-			$("#qnamodcompleteModal").modal("show");
-
-		});
 		
-		$("#qnamodcompleteModal").on("hidden.bs.modal",function(){
+		/* 기본 모달 창 닫기 버튼 클릭 시 모달 숨김 */
+		$("#basic_modal_Yes").on("click", function() {
+			$("#basic_modal").modal("hide");
+		});
+		/* 기본 모달 창 닫기 버튼 클릭 시 모달 숨김 */
+		
+		
+		/* 모달창 숨겨지면 수정 submit 실행 */
+		$("#basic_modal").on("hidden.bs.modal",function(){
 			$("#qna_mod").submit();
 		});
-		});
+		/* 모달창 숨겨지면 수정 submit 실행 */
+		
+		/* 수정 모달 창 yes or no 버튼 클릭 시 */
+			$("#text_modal_Yes").on("click", function() {
+				$("#text_mod_modal").modal("hide");
+				$("#basic_mobody").html("<h4>글이 수정 되었습니다.</h4>");
+				$("#basic_modal").modal("show");
+			});
+			$("#text_modal_No").on("click", function() {
+				$("#text_mod_modal").modal("hide");
+			});
+		
+		/* 수정 모달 창 yes or no 버튼 클릭 시 */
+	});
 	</script>
 </head>
 <body>
@@ -44,10 +56,48 @@
 		제목 : <input type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
 		내용 :<textarea name="com_qna_content" rows="7" cols="63">${vo.com_qna_content}</textarea>
 		<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-		<input type="button" value="QnA수정" class="btn btn-info btn-sm" data-toggle="modal" data-target="#QnaModModal"/>
-		<div class="modal fade" id="QnaModModal" role="dialog">
+		<input type="button" value="QnA수정" class="btn btn-info btn-sm" data-toggle="modal" data-target="#text_mod_modal"/>
+	</form>
+	
+	
+	
+	<!-- 모달 창 부분 -->
+	
+	<!-- 글 수정 modal창 시작 -->
+	<div id="text_mod_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
+				<div id="mobody" class="modal-body" align="center">
+				<h4>글을 수정 하시 겠습니까?</h4>
+				</div>
+				<div id="ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='text_modal_Yes'>수정</button>
+					<button type='button' class='btn btn-primary' id='text_modal_No'>취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 글 수정 modal창 끝 -->	
+	<!-- 기본 modal창 시작 -->
+	<div id="basic_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 기본 modal창 끝 -->
+	
+	
+	
+	<!-- <div class="modal fade" id="QnaModModal" role="dialog">
 		    <div class="modal-dialog">
-		      <!-- Modal content-->
+		      Modal content
 		      <div class="modal-content" >
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -62,11 +112,9 @@
 		      </div>
 		    </div>
 		</div>
-	</form>
-	
 	<div class="modal fade" id="qnamodcompleteModal" role="dialog">
 		    <div class="modal-dialog">
-		      <!-- Modal content-->
+		      Modal content
 		      <div class="modal-content" >
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -79,6 +127,6 @@
 		        </div>
 		      </div>
 	    </div>
-	</div>		
+	</div>		 -->
 </body>
 </html>

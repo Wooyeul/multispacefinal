@@ -25,6 +25,27 @@ $(document).ready(function(){
 			document.frm.action="space_detail.do?space_no="+temp;
 			document.frm.submit();
 		});
+		
+		$(".remove_review").on("click",function(){
+			$("#review_No").val( $(this).attr("review_no") );
+			$("#space_No").val( $(this).attr("space_no") );
+			
+			$("#text_modal").modal("show");
+		});
+		
+		//yes버튼 클릭 했을 때 실행할 function
+		$("#text_modal_yes").on("click",function(){
+			var del_review_no = $("#review_No").val();
+			var del_space_no = $("#space_No").val();
+				location.href = "admin_community_review_remove.do?review_no=" + 
+				del_review_no + "&space_no=" + del_space_no;
+			$("#text_modal_modal").modal("hide");
+		});
+		//no버튼 클릭 했을 때 실행할 function
+		$("#text_modal_no").on("click",function(){
+			$("#text_modal").modal('hide');
+		});
+
 	});
 </script> 
 
@@ -46,7 +67,7 @@ $(document).ready(function(){
 			<th>삭제</th>
 		</tr>
 
-			<jl:forEach items="${rl}" var="rl">
+			<jl:forEach items="${ls}" var="rl" varStatus="vs">
 		<tr>
 				<td>${rl.review_no}</td>
 				<td>${rl.space_no}</td>
@@ -56,7 +77,9 @@ $(document).ready(function(){
 				<td>${rl.the_time}</td>
 				<td>${rl.review_score}</td>
 				<td><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></td>
-				<td><a href="admin_community_review_remove.do?review_no=${rl.review_no}&space_no=${rl.space_no}">삭제하기</a></td>
+				<td><button class="remove_review" review_no="${rl.review_no}" space_no="${rl.space_no}" >삭제하기</button></td>
+				<%-- <td><a href="admin_community_review_remove.do?review_no=${rl.review_no}&space_no=${rl.space_no}">삭제하기</a> 	</td> --%>
+			
 		</tr>
 			</jl:forEach>
 	</table>
@@ -102,6 +125,25 @@ $(document).ready(function(){
 				<li><a class="page" href="admin_community_review_list.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
+	
+<div id="text_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="review_No" value="0"/>
+	<input type="hidden" id="space_No" value="0"/>
+	
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 	
 
 </body>

@@ -26,7 +26,7 @@ table {
 		<td>유저 ID</td>
 		<td>판매자 이름</td>
 		<td>판매자 계좌</td>
-		<td>주소</td>
+		<td>우편번호</td>
 		<td>참고사항(거절 사항)</td>
 	</tr>
 	<tr>

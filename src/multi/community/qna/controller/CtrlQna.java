@@ -116,24 +116,21 @@ public class CtrlQna {
 	@RequestMapping("/community_qna_reple_del.do")
 	public String community_qna_reple_del(@ModelAttribute Community_qna_repleVO pvo) throws Exception
 	{
-		System.out.println( pvo.getCom_qna_reple_no() );
-		System.out.println( pvo.getCom_qna_no() );
-		
 		community_qna_repleDAO.delReple(pvo);
 		return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 	}
 	//QNA 리플 수정
 	@RequestMapping("/community_qna_reple_mod.do")
-	public String community_board_replemod(@ModelAttribute  Community_qna_repleVO  pvo) throws Exception {
+	public String community_board_replemod(@ModelAttribute Community_qna_repleVO pvo) throws Exception {
+			System.out.println("getCom_qna_reple_content() : "+pvo.getCom_qna_reple_content());
+			System.out.println(pvo.getCom_qna_reple_no());
 			community_qna_repleDAO.modReple(pvo);
-		return  "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
+			return  "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 	}
 	//QNA 리플 추천
 	@RequestMapping("/community_qna_reple_recom.do")
 	@ResponseBody
 	public String community_board_recom(@ModelAttribute Community_qna_repleVO pvo)throws Exception {
-		System.out.println(pvo.getUser_id());
-		System.out.println(pvo.getCom_qna_reple_no());
 		community_qna_repleDAO.incRecom(pvo);
 		//return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 		return pvo.getRecom_count().toString();

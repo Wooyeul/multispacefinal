@@ -29,7 +29,9 @@
 		<result property="phone" column="phone"/>
 		<result property="nickname" column="nickname"/>
 		<result property="email" column="email"/>
-	</resultMap>
+		<result property="zipcode" column="zipcode"/>
+		<result property="zipdetail" column="zipdetail"/>
+ 	</resultMap>
 	
 	<!-- 회원정보갖고오기 -->
 	<select id="p_mypage_find_user" parameterType="java.lang.String" resultMap="RM_find_user"  statementType="CALLABLE">
@@ -42,11 +44,13 @@
 		<parameter property="nickname" mode="IN"/>
 		<parameter property="phone" mode="IN"/>
 		<parameter property="email" mode="IN"/>
+		<parameter property="zipcode" mode="IN"/>
+		<parameter property="zipdetail" mode="IN"/>
 	</parameterMap>
 	
 	<!-- 회원정보수정 -->
 	<update id="p_mypage_mod_user" parameterMap="PM_mypage_mod_user">
-		{call p_mypage_mod_user(?,?,?,?,?)}
+		{call p_mypage_mod_user(?,?,?,?,?,?,?)}
 	</update>
 	
 	<!-- 회원탈퇴 -->
@@ -66,6 +70,17 @@
 	<select id="p_user_zipcode_find" resultMap="RM_p_user_zipcode_find" parameterType="java.lang.String" statementType="CALLABLE">
 		{call p_user_zipcode_find(#{user_id})}
 	</select>
+	
+ 	<resultMap type="main.vo.ZipcodeVO" id="RM_zipcode_find">
+		<result property="sido" column="sido"/>
+		<result property="gugun" column="gugun"/>
+		<result property="dong" column="dong"/>
+		<result property="bunji" column="bunji"/>
+	</resultMap>
+	
+	<select id="zipcode_find" resultMap="RM_zipcode_find" parameterType="java.lang.String">
+		select sido,gugun,dong,bunji from zipcodet where zipcode = #{zipcode}
+	</select>  
 	
 	
 </mapper>
