@@ -91,7 +91,7 @@
 	<div id="text_add_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
+				<div id="mohead" class="modal-header" align="center"><h4>글 등록</h4></div>
 				<div id="mobody" class="modal-body" align="center">
 				<h4>QnA를 등록 하시겠습니까?</h4>
 				</div>

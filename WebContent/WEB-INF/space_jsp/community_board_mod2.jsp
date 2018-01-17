@@ -106,7 +106,7 @@ $(document).ready(function(){
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-				<h4>글을 수정 하시 겠습니까?</h4>
+				<h4>글을 수정 하시겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='text_modal_Yes'>수정</button>
