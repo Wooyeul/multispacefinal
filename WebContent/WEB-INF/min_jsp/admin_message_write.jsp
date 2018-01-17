@@ -84,7 +84,7 @@
 					<input type="button" id="primary_id" value="ID 존재 여부 확인" />
 					<div id="dvname"></div>
 					
-					<br>
+					<br> 
 		<br> 쪽지 내용:
 		<textarea id="msg_content" name="msg_content" rows="10" cols="60"></textarea>
 		<br> <input id="m_submit" class="btn btn-success" type="button" value="메시지 보내기" />

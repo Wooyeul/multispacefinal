@@ -9,7 +9,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 .form-group {
-	text-align: center;
+	text-align: center; 
 }
 
 .jumbotron {
