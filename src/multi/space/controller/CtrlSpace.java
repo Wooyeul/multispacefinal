@@ -101,7 +101,10 @@ public class CtrlSpace {
 			sb.append("'"+space.getPrice()+"',");
 			sb.append("'count'");
 			sb.append(":");
-			sb.append("'"+space.getCount()+"'");
+			sb.append("'"+space.getCount()+"',");
+			sb.append("'space_img'");
+			sb.append(":");
+			sb.append("'"+space.getSpace_thumb_img()+"'");
 			sb.append("}");
 			if(flag==list.size()){
 				
@@ -133,7 +136,10 @@ public class CtrlSpace {
 				sb.append("'"+space.getPrice()+"',");
 				sb.append("'count'");
 				sb.append(":");
-				sb.append("'"+space.getCount()+"'");
+				sb.append("'"+space.getCount()+"',");
+				sb.append("'space_img'");
+				sb.append(":");
+				sb.append("'"+space.getSpace_thumb_img()+"'");
 				sb.append("}");
 				if(flag==list.size()){
 					
