@@ -41,6 +41,13 @@ table {
 			<option value="l_category_no">장소 카테고리</option>
 			<option value="the_time">생성일</option>
 		</select>
+		<select name="option2">
+			<option value="">정렬을 선택해주세요</option>
+			<option value="d_desc">최신순으로 정렬</option>
+			<option value="d_asc">오래된순으로 정렬</option>
+			<option value="p_desc">비싼 순으로 정렬</option>
+			<option value="p_asc">가격 싼 순으로 정렬</option>
+		</select>
 		&nbsp;<input type="text" name="content">
 		<input type="checkbox" name="re" value="Y">상세 검색 할려면 체크&nbsp;<br>
 		<input type="submit" value="검색">

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.vo.O2OQnAVO;
@@ -26,6 +27,7 @@ import multi.admin.mail.EmailUtility;
 비회원의 1:1 문의를 이메일로 전송하는 페이지
 이메일로 1:1 문의가 정상적으로 처리되었는지 확인 하는 페이지
  */
+import multi.admin.vo.Admin_searchVO;
 
 @Controller
 public class Ctrl_Admin_o2oQnA {
@@ -49,18 +51,33 @@ public class Ctrl_Admin_o2oQnA {
 	}
 	// 1:1 문의 리스트 확인 페이지.
 	@RequestMapping("/admin_o2oQnA_list.do")
-	public ModelAndView admin_o2oQnA_list() throws Exception {
+	public ModelAndView admin_o2oQnA_list(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_o2oQnA_list");
-		List<O2OQnAVO> ls = admin_o2oQnADAO.findAllAskWithNoRe();
+		/*List<O2OQnAVO> ls = admin_o2oQnADAO.findAllAskWithNoRe();
+		mnv.addObject("ls", ls);*/
+		List<O2OQnAVO> ls = admin_o2oQnADAO.search_All(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_o2oQnADAO.search_All(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
 		return mnv;
 	}
 	// 1:1 문의 운영자 메일 답장 완료시 확인 페이지
 	@RequestMapping("/admin_o2oQnA_list_reply.do")
-	public ModelAndView admin_o2oQnA_list_reply() throws Exception {
+	public ModelAndView admin_o2oQnA_list_reply(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_o2oQnA_list_reply");
-		List<O2OQnAVO> ls = admin_o2oQnADAO.findAllAskWithRe();
+		/*List<O2OQnAVO> ls = admin_o2oQnADAO.findAllAskWithRe();
+		mnv.addObject("ls", ls);*/
+		
+		List<O2OQnAVO> ls = admin_o2oQnADAO.search_All2(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_o2oQnADAO.search_All2(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
 		return mnv;
 	}
 	// 1:1 문의 미답장 및 답장 페이지에서 자세한 문의 정보를 읽어들일 때 쓰는 페이지

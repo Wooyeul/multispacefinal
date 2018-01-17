@@ -9,12 +9,15 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.ResponseBody;
 import main.vo.Community_qnaVO;
 import main.vo.Community_qna_repleVO;
 import multi.admin.dao.Admin_QnaDAO;
 import multi.admin.vo.Admin_community_searchVO;
+import multi.admin.vo.Admin_searchVO;
 
 @Controller
 public class Ctrl_Admin_Qna {
@@ -23,10 +26,19 @@ public class Ctrl_Admin_Qna {
 	
 	//QnA °Ô½ÃÆÇ
 	@RequestMapping("/admin_community_qna_list.do")
-	public ModelAndView admin_community_qna_list() throws Exception{
-		List<Community_qnaVO> rl= admin_QnaDAO_MysqlImpl.findAll();
+	public ModelAndView admin_community_qna_list(@ModelAttribute Admin_searchVO search, 
+			@RequestParam("pg") String pg) throws Exception{
 		ModelAndView mnv = new ModelAndView("admin_community_qna_list");
+		//List<Community_qnaVO> rl= admin_QnaDAO_MysqlImpl.findAll();
+		
+		List<Community_qnaVO> rl = admin_QnaDAO_MysqlImpl.search_All(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
+		search.setStart_no(pz.getSkip());
+		rl = admin_QnaDAO_MysqlImpl.search_All(search);
 		mnv.addObject("rl", rl);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
 		return mnv;
 	}
 	

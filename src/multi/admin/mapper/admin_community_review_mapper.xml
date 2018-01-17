@@ -74,7 +74,27 @@ CREATE TABLE ReviewT
 		parameterMap="PM_p_admin_remove_Review">
 		{call p_admin_remove_Review(?,?)}
 	</delete>
-
-
+	
+	<select id="admin_search_All" parameterType="multi.admin.vo.Admin_searchVO"
+		resultType="main.vo.ReviewVO">
+	SELECT * FROM ReviewT WHERE 0 = 0
+	<if test="search_option == 1">
+	AND com_board_title like '%${search_content}%'
+	</if>
+	<if test="search_option == 2">
+	AND com_board_content like '%${search_content}%'
+	</if>
+	<if test="search_option == 3">
+	AND com_board_title like '%${search_content}%'
+	OR com_board_content like '%${search_content}%'
+	</if>
+	<if test="search_option == 4">
+	AND user_id like '%${search_content}%'
+	</if>
+	<if test="start_no != null">
+		ORDER BY review_no DESC LIMIT #{start_no},10
+	</if>
+</select>
+	
 </mapper>
 

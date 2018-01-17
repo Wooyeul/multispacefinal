@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.NoticeVO;
+import multi.admin.vo.Admin_searchVO;
 
 public class Admin_NoticeDAO_MysqlImpl implements Admin_NoticeDAO {
 	
@@ -36,5 +37,10 @@ public class Admin_NoticeDAO_MysqlImpl implements Admin_NoticeDAO {
 	@Override
 	public int delByPK(NoticeVO pvo) throws Exception {
 		return sqlSession.delete("admin_notice.p_admin_notice_DelByPK",pvo);
+	}
+
+	@Override
+	public List<NoticeVO> search_All(Admin_searchVO search) throws Exception {
+		return sqlSession.selectList("admin_notice.admin_search_All",search);
 	}
 }

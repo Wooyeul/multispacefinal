@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.EventVO;
+import multi.admin.vo.Admin_searchVO;
 
 public class Admin_EventDAO_MysqlImpl implements Admin_EventDAO {
 
@@ -34,6 +35,11 @@ public class Admin_EventDAO_MysqlImpl implements Admin_EventDAO {
 	@Override
 	public int mod(EventVO pvo) throws Exception {
 		return sqlSession.update("admin_event.p_admin_event_mod", pvo );
+	}
+
+	@Override
+	public List<EventVO> search_All(Admin_searchVO search) throws Exception {
+		return sqlSession.selectList("admin_event.admin_search_All",search);
 	} 
 }
 
