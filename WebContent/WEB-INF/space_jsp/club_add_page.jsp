@@ -77,7 +77,7 @@
 			<div class="modal-content">
 				<div id="club_add_head" class="modal-header" align="center"><h4>모임 등록</h4></div>
 				<div id="club_add_body" class="modal-body" align="center">
-					모임을 등록 하시 겠습니까?
+					<h4>모임을 등록 하시 겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='club_add_yes'>등록</button>
@@ -125,16 +125,15 @@
 						success	: function(rt) {
 							if(rt=="ok"){
 								$("#club_add_modal").modal("hide");
-								$("#basic_mobody").text("모임이 등록 되었습니다.");
+								$("#basic_mobody").html("<h4>모임이 등록 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");
 									location.href="club_home.do";
 								});
 							}else{
-								alert(rt);
 								$("#club_add_modal").modal("hide");
-								$("#basic_mobody").text("모임 등록 처리가 실패 되었습니다.");
+								$("#basic_mobody").html("<h4>모임 등록 처리가 실패 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");

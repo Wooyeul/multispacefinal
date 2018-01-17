@@ -114,8 +114,7 @@
 		<div id="basic_modal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="basic_mobody" class="modal-body" align="center">
-					</div>
+					<div id="basic_mobody" class="modal-body" align="center"></div>
 					<div id="basic_ft" class="modal-footer">
 						<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
 					</div>
@@ -158,15 +157,14 @@
 						success	: function(rt) {
 							if(rt=="10000"){
 								$("#modal").modal("hide");
-								$("#basic_mobody").text("모임 신청이 되었습니다.");
+								$("#basic_mobody").html("<h4>모임 신청이 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
 									location.reload();
 								});
 							}else if(rt=="10001"){
 								$("#modal").modal("hide");
-								$("#basic_mobody").text("신청 처리가 실패 되었습니다.");
+								$("#basic_mobody").html("<h4>신청 처리가 실패 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");
