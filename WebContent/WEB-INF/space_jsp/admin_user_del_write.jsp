@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,39 +31,30 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
 	$(document).ready(function(){
-	
+		$("#cancel").on("click",function(){
+			document.frm.method="POST";
+			document.frm.action="admin_users.do";
+			document.frm.submit();
+		});
 	});
 
 </script>
 </head>
 <body>
 	<div class="jumbotron" style="background-color: orange">
-		<h1>받은 쪽지 보관함</h1>
+		<h3>${vo.user_id} 회원 탈퇴 사유 작성하기</h3>
 	</div>
-	
-	<table border="1">
-		<tr>
-			<td>보낸 유저 ID</td>
-			<td>쪽지 내용</td>
-			<td>작성 시간</td>
-			<td>수신 확인</td>
-		</tr>
-		<jl:forEach var="vo" items="${ls}">
-		<tr>
-			<td>${vo.send_user_id }</td>
-			<td><textarea rows="10" cols="30">${vo.msg_content}</textarea></td>		
-			<td>${vo.the_time }</td>
-			<jl:choose>
-				<jl:when test="${vo.view_count == 0}">
-					<td>읽지 않음</td>
-				</jl:when>
-				<jl:when test="${vo.view_count >= 1}">
-					<td>읽음</td>
-			</jl:when>
-			</jl:choose>
-		</tr>
-		</jl:forEach>
-	</table>
+	<form action="admin_user_del.do" class="form-group" method="POST" name="frm">
+		<input type="hidden" name="user_id" value="${vo.user_id}"/>
+		<input type="hidden" name="user_name" value="${vo.user_name}"/>
+		<input type="hidden" name="email" value="${vo.email}"/>
+		
+		제목 : <input type="text" name="subject" size="30" /> <br>
+		<br> 내용 작성:
+		<textarea name="mail_content" rows="10" cols="60"></textarea>
+		<br> <input class="btn btn-success" type="submit" value="작성 및 탈퇴 시키기" />
+		<input type="button"class="btn btn-success" id="cancel" value="취소하기"/>
+	</form>
 
 </body>
 </html>

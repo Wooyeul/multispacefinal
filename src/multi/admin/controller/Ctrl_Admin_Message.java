@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.vo.MessageVO;
 import multi.admin.dao.Admin_MessageDAO;
+import multi.admin.vo.Admin_searchVO;
 
 
 /* 
@@ -44,19 +47,27 @@ public class Ctrl_Admin_Message {
 		return mnv;
 	}
 
-	@RequestMapping("/admin_message_read_get.do")
+/*	@RequestMapping("/admin_message_read_get.do")
 	public ModelAndView admin_message_read_get( @ModelAttribute MessageVO mvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_message_read_get");
 		List<MessageVO> ls = admin_MessageDAO.findAllGetMessages();
 		mnv.addObject("ls", ls);
 		return mnv;
-	}
+	}*/
 	
 	@RequestMapping("/admin_message_read_to.do")
-	public ModelAndView admin_message_read_to( @ModelAttribute MessageVO mvo ) throws Exception {
+	public ModelAndView admin_message_read_to( @ModelAttribute MessageVO mvo, 
+			@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_message_read_to");
-		List<MessageVO> ls = admin_MessageDAO.findToGetMessages();
+		/*List<MessageVO> ls = admin_MessageDAO.findToGetMessages();
+		mnv.addObject("ls", ls);*/
+		List<MessageVO> ls = admin_MessageDAO.search_All(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_MessageDAO.search_All(search);
 		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
 		return mnv;
 	}
 }

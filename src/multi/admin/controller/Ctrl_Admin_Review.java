@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.vo.Community_qnaVO;
 import main.vo.ReviewVO;
 import multi.admin.dao.Admin_ReviewDAO;
+import multi.admin.vo.Admin_searchVO;
 import multi.community.review.dao.Community_board_reviewDAO;
 
 
@@ -22,11 +25,19 @@ public class Ctrl_Admin_Review {
 	private Admin_ReviewDAO admin_ReviewDAO = null;
 	
 	@RequestMapping("/admin_community_review_list.do")
-	public ModelAndView admin_community_review_list() throws Exception{
-		
-		List<ReviewVO> rl = admin_ReviewDAO.review_findAll();
+	public ModelAndView admin_community_review_list(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception{
 		ModelAndView mnv = new ModelAndView("admin_community_review_list");
+		//List<ReviewVO> rl = admin_ReviewDAO.review_findAll();
+		
+		List<ReviewVO> rl = admin_ReviewDAO.search_All(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
+		search.setStart_no(pz.getSkip());
+		rl = admin_ReviewDAO.search_All(search);
 		mnv.addObject("rl", rl);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
+		
 		return mnv; 
 		
 	}

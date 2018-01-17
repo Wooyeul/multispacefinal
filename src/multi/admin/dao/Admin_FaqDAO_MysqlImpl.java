@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.FaqVO;
+import multi.admin.vo.Admin_searchVO;
 
 public class Admin_FaqDAO_MysqlImpl implements Admin_FaqDAO {
 	
@@ -36,6 +37,11 @@ public class Admin_FaqDAO_MysqlImpl implements Admin_FaqDAO {
 	@Override
 	public int faq_add(FaqVO fvo) throws Exception {
 		return sqlSession.insert("admin_faq.p_admin_faq_addFaq",fvo);
+	}
+
+	@Override
+	public List<FaqVO> search_All(Admin_searchVO search) throws Exception {
+		return sqlSession.selectList("admin_faq.admin_search_All",search);
 	}
 
 

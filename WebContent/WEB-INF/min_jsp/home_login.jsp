@@ -63,7 +63,6 @@
 
 				<button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
 			</form>
-			<span id="code">${code}</span>
 		</div>
 		
 		<div class="wrapper2">

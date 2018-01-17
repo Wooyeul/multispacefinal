@@ -13,10 +13,12 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import main.Controller;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.vo.EventVO;
 import multi.admin.dao.Admin_EventDAO;
+import multi.admin.vo.Admin_searchVO;
 
 
 @Controller
@@ -27,10 +29,19 @@ public class Ctrl_Admin_Events {
 	
 	// 이벤트 리스트 페이지
 	@RequestMapping("/admin_event_list.do")
-	public ModelAndView textList() throws Exception {
-		List<EventVO> rl = admin_EventDAO.findAll();
+	public ModelAndView textList(@ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_event_list");
-		mnv.addObject("rl",rl);
+		/*List<EventVO> rl = admin_EventDAO.findAll();
+		
+		mnv.addObject("rl",rl);*/
+		List<EventVO> rl = admin_EventDAO.search_All(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
+		search.setStart_no(pz.getSkip());
+		rl = admin_EventDAO.search_All(search);
+		mnv.addObject("rl", rl);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
 		return mnv;
 	}
 	

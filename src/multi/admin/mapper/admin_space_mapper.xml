@@ -181,6 +181,26 @@
 				</choose>
 			</foreach>
 		</where>
-		ORDER BY space_no DESC
+		
+		<foreach item="vo" collection="list">
+			<choose>
+				<when test="vo.option2==''">
+					
+				</when>
+				<when test="vo.option2=='d_desc'">
+					ORDER BY space_no DESC
+				</when>
+				<when test="vo.option2=='d_asc'">
+					ORDER BY space_no ASC
+				</when>
+				<when test="vo.option2=='p_desc'">
+					ORDER BY price DESC
+				</when>
+				<when test="vo.option2=='p_asc'">
+					ORDER BY price ASC
+				</when>
+			</choose>
+		</foreach>
+		
 	</select>
 </mapper>
