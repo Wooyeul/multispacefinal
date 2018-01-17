@@ -126,6 +126,12 @@ header{
 }
 
 header .logo{
+	font-size : 30px;
+    margin-top: 40px;
+    float: left;
+}
+
+header .logo:hover{
     margin-top: 40px;
     float: left;
 }
