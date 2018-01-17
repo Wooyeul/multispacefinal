@@ -32,6 +32,23 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
 $(document).ready(function(){
+	$(".remove_faq").on("click",function(){
+		$("#faq_No").val( $(this).attr("faq_no") );
+		
+		$("#text_modal").modal("show");
+	});
+	
+	//yes버튼 클릭 했을 때 실행할 function
+	$("#text_modal_yes").on("click",function(){
+		var del_faq_no = $("#review_No").val();
+			location.href = "admin_faq_remove.do?faq_no=" + 
+			del_faq_no;
+		$("#text_modal_modal").modal("hide");
+	});
+	//no버튼 클릭 했을 때 실행할 function
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
 
 });
 </script>
@@ -66,12 +83,9 @@ $(document).ready(function(){
 							<input type="hidden" name="faq_title" value="${vo.faq_title}" />
 							<input type="hidden" name="faq_content" value="${vo.faq_content}" />
 							<button type="submit">수정 하기</button>&nbsp;&nbsp;&nbsp;
+							<input type="button"  class="remove_faq" faq_no="${vo.faq_no}" value="삭제 하기"/>
 						</form>
-						<br> 
-						<form method="post" action="admin_faq_remove.do" name="frm" >
-							<input type="hidden" name="faq_no" value="${vo.faq_no}" />
-							<button id="faq_can" type="submit">삭제 하기</button>
-						</form> 
+						<br>
 						
 					</div>
 				</div>
@@ -93,7 +107,7 @@ $(document).ready(function(){
 	<input type="hidden" name="search_content" value="${search.search_content}">
 	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
-<form id="textsearch" action="admin_faq.do">
+<form id="textsearch" action="admin_faq.do" method="post">
 	<select name="search_option">
 		<option value="0">선택해주세요</option>
 		<option value="1">제목</option>
@@ -130,5 +144,23 @@ $(document).ready(function(){
 		</ul>
 
 
+<div id="text_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="faq_No" value="0"/>
+	
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+	
 </body>
 </html>

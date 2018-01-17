@@ -90,7 +90,7 @@ $(document).ready(function(){
 	<input type="hidden" name="search_content" value="${search.search_content}">
 	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
-<form id="textsearch" action="admin_community_review_list.do">
+<form id="textsearch" action="admin_community_review_list.do" method="post">
 	<select name="search_option">
 		<option value="0">急琶秦林技夸</option>
 		<option value="1">力格</option>

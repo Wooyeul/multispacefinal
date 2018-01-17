@@ -54,7 +54,7 @@
 </table>
 <br>
 <br>
-<form id="textsearch" action="admin_users.do">
+<form id="textsearch" action="admin_users.do" method="post">
 	<select name="search_option">
 		<option value="0">急琶秦林技夸</option>
 		<option value="1">力格</option>

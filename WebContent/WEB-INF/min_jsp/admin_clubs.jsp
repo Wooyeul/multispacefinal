@@ -43,7 +43,7 @@ $(document).ready(function(){
 	</div>
 	<br>
 	<br>
-	<form id="textsearch" action="admin_clubs_search.do" method="post">
+	<form id="textsearch" action="admin_clubs.do" method="post">
 		<select name="search_option">
 			<option value="0">검색할 것을 선택해주세요</option>
 			<option value="1">모임 이름</option>

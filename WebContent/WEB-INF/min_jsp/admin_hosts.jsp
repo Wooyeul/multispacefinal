@@ -49,7 +49,7 @@ table {
 <form id="form_search" action="admin_hosts.do">
 	<input type="hidden" name="pg" value="" id="pg">
 </form>
-<form id="textsearch" action="admin_hosts.do">
+<form id="textsearch" action="admin_hosts.do" method="post">
 	<select name="search_option">
 		<option value="0">急琶秦林技夸</option>
 		<option value="1">力格</option>
