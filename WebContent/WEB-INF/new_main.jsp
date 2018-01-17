@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +25,16 @@
 	$(document).ready(function(){
 		ajaxGet("best_space.do",function(rt){
 			var seoul_best = eval("("+rt+")");
-			alert(seoul_best);
+			//alert(seoul_best);
+			for(var i=0; i<seoul_best.length; i++){
+				alert(seoul_best[i].space_title);
+			}
+			
 		});
 		
 		ajaxGet("best_space2.do",function(rt){
 			var party_best = eval("("+rt+")");
-			alert(party_best);
+			//alert(party_best);
 		});
 		var scOffset = $('.navbar-Menu').offset();
 		$(window).scroll(function() {

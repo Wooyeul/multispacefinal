@@ -1330,7 +1330,7 @@ a {
 }
 
 a:focus, a:hover {
-	color: white;
+	color: black;
 	font-weight : bold;
 	text-decoration: none;
 }
@@ -4283,6 +4283,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 
 .nav>li>a {
+	color: white;
 	position: relative;
 	display: block;
 	padding: 0px 15px
