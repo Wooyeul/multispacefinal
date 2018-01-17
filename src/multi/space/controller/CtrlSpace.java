@@ -1,11 +1,14 @@
 package multi.space.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
-
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import main.CaptchaUtil;
 import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
@@ -38,6 +42,7 @@ import multi.space.dao.SpaceDAO;
 import multi.space.dao.Space_QnADAO;
 import multi.space.dao.Space_QnA_RepleDAO;
 import multi.space.dao.UserDAO;
+import multi.space.vo.ImageVO;
 import multi.space.vo.Space_searchVO;
 
 @Controller
@@ -75,14 +80,16 @@ public class CtrlSpace {
 	
 	//공간 첫화면
 	@RequestMapping("/space_home.do")
-	public ModelAndView space_home(@RequestParam("space_code") String space_code) throws Exception {
+	public ModelAndView space_home(@RequestParam("space_code") String space_code,@CookieValue("user_id") String user_id) throws Exception {
 		ModelAndView mnv = new ModelAndView("space_home");
 		List<Map<Integer,String>> local_list = spaceDAO.find_l_category();
 		List<Map<Integer,String>> category_list = spaceDAO.find_s_category();
+		UserVO user2 = userDAO.find_user_by_user_id(user_id);
 		
 		mnv.addObject("space_code", space_code);
 		mnv.addObject("local_list", local_list);
 		mnv.addObject("category_list", category_list);
+		mnv.addObject("user", user2);
 		return mnv;
 	}
 	
@@ -143,9 +150,10 @@ public class CtrlSpace {
 	public ModelAndView space_add2(HttpServletRequest request,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("redirect:/space_add_clear.jsp");
 		//String savePath = request.getServletContext().getRealPath("images");
-		String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\thumbnail";
+		String thumbnailSavePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\image";
 		int sizeLimit = 1024*1024*15;
-		MultipartRequest mpr = new MultipartRequest(request, savePath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
+		MultipartRequest mpr = new MultipartRequest(request, thumbnailSavePath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
+		
 		
 		SpaceVO vo = new SpaceVO();
 		
@@ -153,7 +161,7 @@ public class CtrlSpace {
 		String space_title = mpr.getParameter("space_title");
 		String space_content = mpr.getParameter("space_content");
 		String space_thumb_img = mpr.getFilesystemName("space_thumb_img");
-		
+
 		String open_time = mpr.getParameter("open_time");
 		
 		String close_time= mpr.getParameter("close_time");
@@ -177,8 +185,21 @@ public class CtrlSpace {
 		vo.setCrn(crn); vo.setSpace_title(space_title); vo.setSpace_content(space_content); vo.setSpace_thumb_img(space_thumb_img); vo.setOpen_time(open_time);
 		vo.setClose_time(close_time); vo.setPrice(price); vo.setMin_people(min_people); vo.setMax_people(max_people); vo.setSpace_call(space_call);
 		vo.setS_category_no(s_category_no); vo.setL_category_no(l_category_no);
-		
 		spaceDAO.add_space(vo);
+		
+		ImageVO image = new ImageVO();
+		Integer space_no = spaceDAO.find_space_no();
+
+		image.setImage_one(mpr.getFilesystemName("image_one"));
+		image.setImage_two(mpr.getFilesystemName("image_two"));
+		image.setImage_three(mpr.getFilesystemName("image_three"));
+		image.setImage_for(mpr.getFilesystemName("image_for"));
+		image.setImage_five(mpr.getFilesystemName("image_five"));
+		image.setImage_six(mpr.getFilesystemName("image_six"));
+		image.setImage_seven(mpr.getFilesystemName("image_seven"));
+		image.setSpace_no(space_no);
+		spaceDAO.add_space_image(image);
+		
 		return mnv;
 	}
 	
@@ -213,13 +234,13 @@ public class CtrlSpace {
 	
 	//공간 상세
 	@RequestMapping("/space_detail.do")
-	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
+	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute ImageVO image, @ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
 			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code
 			,HttpServletRequest request) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
 		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
 		
-		
+		ImageVO image2 = spaceDAO.find_image_by_space_no(image);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 
 		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(reviewVO);
@@ -239,6 +260,7 @@ public class CtrlSpace {
 		mnv.addObject("space_code", space_code);
 		mnv.addObject("s_category", s_category);
 		mnv.addObject("host", host);
+		mnv.addObject("image", image2);
 		return mnv;
 	}
 	
@@ -251,10 +273,12 @@ public class CtrlSpace {
 		}
 		
 		ModelAndView mnv = new ModelAndView("space_reservation");
-		String booking_date = "2018-01-15";
-		bookingVO.setBooking_date(booking_date);
-		System.out.println(bookingVO.getSpace_no());
-		System.out.println(bookingVO.getBooking_date());
+		
+		//오늘날짜로 될 수 있도록 수정합시다.
+		Calendar currentDate = Calendar.getInstance();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String sysdate = df.format(currentDate.getTime());
+		bookingVO.setBooking_date(sysdate);
 		
 		List<BookingVO> booking_list = bookingDAO.find_booking_by_space_no_and_booking_date(bookingVO);
 
@@ -296,7 +320,12 @@ public class CtrlSpace {
 	
 	//space qna등록
 	@RequestMapping("/add_space_qna.do")
-	public String add_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id) throws Exception{
+	public String add_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id,HttpSession session,@RequestParam("cryptoLetter") String two) throws Exception{
+		String one = (String)session.getAttribute("cryptoLetter");
+		if( one == null || !( one.equals(two) ) ){
+			System.out.println("옳바르지 못한 코드를 입력했습니다");
+			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
+		}
 		if(user_id==null || user_id.length()<=1 ){
 			return "redirect:/home_moveLoginPage.do";
 		}
@@ -339,6 +368,7 @@ public class CtrlSpace {
 	//space reple 등록
 	@RequestMapping("/add_space_qna_reple.do")
 	public String add_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO,@CookieValue("user_id") String user_id) throws Exception{
+		System.out.println("hi");
 		if(user_id==null|| user_id.length()<=1){
 			return "redirect:/home_moveLoginPage.do";
 		}
@@ -435,6 +465,42 @@ public class CtrlSpace {
 	public String del_bookmark(@ModelAttribute BookmarkVO bookmark) throws Exception{
 		bookmarkDAO.del_bookmark(bookmark);
 		return null;
+	}
+	
+	@RequestMapping("/captcha.do")
+	@ResponseBody
+	public void captcha(HttpServletResponse response,
+		HttpSession session ) throws Exception 
+	{
+		String l = CaptchaUtil.writeImage(response);
+		session.setAttribute("cryptoLetter", l );
+	}
+	
+	@RequestMapping("/reserve_change_day.do")
+	@ResponseBody
+	public String reserve_change_day(@ModelAttribute BookingVO bookingVO) throws Exception{
+		List<BookingVO> booking_list = bookingDAO.find_booking_by_space_no_and_booking_date(bookingVO);
+		StringBuffer sb = new StringBuffer();
+		sb.append("{ 'data' :[ ");
+		int flag=0;
+		for(BookingVO booking : booking_list){
+			flag++;
+			sb.append("{");
+			sb.append("'start_time'");
+			sb.append(":");
+			sb.append("'"+booking.getStart_time()+"',");
+			sb.append("'end_time'");
+			sb.append(":");
+			sb.append("'"+booking.getEnd_time()+"'");
+			sb.append("}");
+			if(flag==booking_list.size()){
+				
+			} else {
+				sb.append(",");
+			}
+		}
+		sb.append("]}");
+		return sb.toString();
 	}
 	
 	

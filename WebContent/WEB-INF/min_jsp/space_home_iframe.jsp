@@ -21,7 +21,7 @@
 
 </head>
 <body>
-		<form id="form_search" action="hi">
+		<form id="form_search" action="">
 			<input type="hidden" name="pg" value="" id="pg">
 			<input type="hidden" name="s_category_no" value="${search.s_category_no }">
 			<input type="hidden" name="l_category_no" value="${search.l_category_no }">
@@ -32,7 +32,7 @@
 		<table border="1">
 		<jl:forEach var="vo" items="${list2 }">
 			<tr>
-				<td><p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'"><img src="thumbnail/${vo.space_thumb_img }" alt="공간 사진 없음" width="100" height="130"/></p></td>
+				<td><p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'"><img src="image/${vo.space_thumb_img }" alt="공간 사진 없음" width="100" height="130"/></p></td>
 				<td>${vo.space_no }</td>
 				<td>${vo.space_title }</td>
 				<td>${vo.space_content }</td>
@@ -46,7 +46,7 @@
 				<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.paginationStart-1}">&lt;</a></li>
 			</jl:if>
 				<jl:if test="${pz.hasPrevPage }">
-					<li><a class="page" hredf="space_home_iframe.do" pg="${pz.curPagination-1 }">&lt;</a></li>
+					<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.curPagination-1 }">&lt;</a></li>
 				</jl:if>
 				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
 					<jl:choose>

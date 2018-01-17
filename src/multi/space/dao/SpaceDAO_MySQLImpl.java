@@ -10,6 +10,7 @@ import main.vo.BookmarkVO;
 import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
+import multi.space.vo.ImageVO;
 import multi.space.vo.Space_searchVO;
 
 public class SpaceDAO_MySQLImpl implements SpaceDAO {
@@ -94,6 +95,25 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 	public Integer mod_space(SpaceVO space) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update("space.mod_space",space);
+	}
+
+	@Override
+	public Integer add_space_image(ImageVO image) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("space.add_space_image",image);
+	}
+	
+	//이미지 넣기 위해서 마지막으로 추가된 space_no추출
+	@Override
+	public Integer find_space_no() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("space.find_space_no");
+	}
+
+	@Override
+	public ImageVO find_image_by_space_no(ImageVO image) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("space.find_image_by_space_no",image);
 	}
 
 

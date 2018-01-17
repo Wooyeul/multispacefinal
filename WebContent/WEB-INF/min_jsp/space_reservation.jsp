@@ -16,47 +16,25 @@
 	
 <script>
 	
- 	 	function startTimeChange() {
- 	 		
- 	 		//var start_time_range = document.getElementById("start_time_range");
- 	 		var start_time_range = document.getElementById("start_time_range");
- 	 		var start_time = document.getElementById("start_time");
- 	 		var end_time_range = document.getElementById("end_time_range");
- 	 		var end_time = document.getElementById("end_time");
- 	 		if(parseInt(start_time_range.value)>parseInt(end_time_range.value)){
- 	 			$("#time_warning").html("예약 시작 시간은 종료 시간보다 빠를 수 없습니다.");
-				$("#status").modal("show");
- 	 			start_time_range.value=start_time.value;
- 	 		}else {
- 	 			start_time.value=start_time_range.value;
- 	 		}
- 	 		
- 	 	}
- 	 	
- 	 	function endTimeChange() {
- 	 		var start_time_range = document.getElementById("start_time_range");
- 	 		var start_time = document.getElementById("start_time");
- 	 		var end_time_range = document.getElementById("end_time_range");
- 	 		var end_time = document.getElementById("end_time");
- 	 		if(parseInt(start_time_range.value)>parseInt(end_time_range.value)){
- 	 			$("#time_warning").html("예약 종료 시간은 시작 시간보다 빠를 수 없습니다.");
-				$("#status").modal("show");
- 	 			end_time_range.value=end_time.value;
- 	 		}else {
- 	 			end_time.value=end_time_range.value;
- 	 		}
- 	 	}
-
  	 	
  	 	$(document).ready(function(){
+
+ 	 		<jl:forEach items="${booking_list }" var="booking">
+ 	 			var start = "${booking.start_time}";
+ 	 			var end = "${booking.end_time}";
+ 	 			for(var x = parseInt(start) ; x <= parseInt(end) ; x++ ) {
+ 	 				$("#btn_time"+[x]).css("background","gray");
+ 	 				$("#btn_time"+[x]).html("X");
+ 	 			}
+ 	 		</jl:forEach>
+
+ 	 		//시간 설정 기능
  	 		var time_click_flag = "a";
  	 		var first_click_time = 0;
  	 		var second_click_time = 0;
- 	 		<jl:forEach items="${booking_list}" var="booking">
- 	 			alert("${booking.start_time}");
- 	 			alert("${booking.end_time}");
- 	 		</jl:forEach>
+ 	 		
  	 		 $(".cb_time").on("click",function(){
+			
  	 			if(time_click_flag=="a"){
  	 				$(".cb_time").removeClass("active");
  	 				first_click_time = $(this).attr("time");
@@ -65,17 +43,44 @@
  	 				second_click_time=$(this).attr("time");
  	 				if(parseInt(first_click_time) > parseInt(second_click_time)){
  	 					for(var a = parseInt(second_click_time) ; a < parseInt(first_click_time) ; a ++ ) {
- 	 						$("#btn_time"+[a]).addClass("active");
+ 	 						if($("#btn_time"+[a]).html()=="X"){
+ 	 							alert("불가능해");
+ 	 							$(".cb_time").removeClass("active");
+ 	 							break;
+ 	 						} else {
+ 	 							$("#btn_time"+[a]).addClass("active");
+ 	 							if(a+1 == first_click_time){
+ 	 								$("#end").html(first_click_time);
+ 	 								$("#start").html(second_click_time);
+ 	 								$("#start_time").val(second_click_time);
+ 	 								$("#end_time").val(first_click_time);
+ 	 								$("#booking_price").val("${space.price}"*(first_click_time-second_click_time));
+ 	 							}
+ 	 						}
+ 	 						
  	 					}
  	 				} else if(parseInt(first_click_time) < parseInt(second_click_time)){
  	 					for(var b = parseInt(first_click_time) ; b < parseInt(second_click_time) ; b++ ) {
-	 	 					$("#btn_time"+[b]).addClass("active");
+ 	 						if($("#btn_time"+[b]).html()=="X"){
+ 	 							alert("불가능해");
+ 	 							$(".cb_time").removeClass("active");
+ 	 							break;
+ 	 						} else {
+ 	 							$("#btn_time"+[b]).addClass("active");
+ 	 							if(b+1 == second_click_time){
+ 	 								$("#start").html(first_click_time);
+ 	 								$("#end").html(second_click_time);
+ 	 								$("#start_time").val(first_click_time);
+ 	 								$("#end_time").val(second_click_time);
+ 	 								$("#booking_price").val("${space.price}"*(second_click_time-first_click_time));
+ 	 							}
+ 	 						}
 	 	 				}
  	 				}
  	 				time_click_flag="a";
  	 			} 
  	 		 });
- 	 		 
+ 	 		 //시간 설정 끝
  	 		 
  	 		 
  	 		 $("#booking_people").val("${space.min_people}");
@@ -124,8 +129,6 @@
  	 		});
  	 		
  	 		$("#pay").on("click",function(){
- 	 			$("#start_time").removeAttr("disabled");
- 	 			$("#end_time").removeAttr("disabled");
  	 			$("#booking_date").removeAttr("disabled");
  	 			$("#booking_people").removeAttr("disabled");
  	 			$("#booking_price").removeAttr("disabled");
@@ -138,12 +141,28 @@
  	 		$("#date2").datepicker({
  	 			dateFormat:"yy-mm-dd"
 			});
- 	 			
+		
  	 		$("#date2").on("change",function(){
  	 			var currentDate = $( "#date2" ).datepicker("getDate","dateFormat" );
  	 			$("#booking_date").datepicker("setDate",currentDate);
 				var dat = $("#booking_date").val();
  	 			$("#reserve_day").html(dat);
+ 	 			ajaxGet("reserve_change_day.do?booking_date="+dat+"&space_no=${space.space_no}",function(rt){	
+ 			 	 	 var booking_list = eval("("+rt+")");
+ 			 	 	 $(".cb_time").removeClass("active");
+ 			 	 	 for(var z = 1 ; z <=24 ; z++ ) {
+ 			 	 		$("#btn_time"+[z]).css("background","#5CB85C");
+ 	 	 				$("#btn_time"+[z]).html(z);
+ 			 	 	 }
+ 			 	 	 for(var g = 0 ; g < booking_list.data.length; g++){
+	 			 	 	for(var y = parseInt(booking_list.data[g].start_time) ; y < parseInt(booking_list.data[g].end_time) ; y++ ){
+	 			 	 		$("#btn_time"+[y]).css("background","gray");
+	 	 	 				$("#btn_time"+[y]).html("X");
+	 			 	 	}
+ 			 	 	 }
+ 		 	 	 });
+ 	 			
+ 	 			
  	 		});
  	 		var scOffset = $( '.navbar-Menu' ).offset();
  	 		$( window ).scroll( function() {
@@ -179,6 +198,11 @@
 
 
  	 </script>
+ 	 <style>
+ 	 	.active{
+ 	 		background: #449D44 !important;
+ 	 	}
+ 	 </style>
 </head>
 <body>
 	<div class="jbTitle">
@@ -238,27 +262,14 @@
 			
 			<h4>시간</h4>
 			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-				<jl:forEach begin="0" end="24" varStatus="time">
+				<jl:forEach begin="${space.open_time }" end="${space.close_time }" varStatus="time">
 					  <label class="btn btn-secondary btn-success cb_time"  time="${time.index }" id="btn_time${time.index }">
-					    <input type="checkbox" autocomplete="off" id="asdf${time.index }"> ${time.index }
+					    <input type="checkbox" autocomplete="off" id="input_time${time.index }"> ${time.index }
 					  </label>
 			  </jl:forEach>
 			</div>
-			
-			<div class="form-group">
-					<label for="start_time">대여 시작 시간</label>
-					<input id="start_time_range" type="range" min="${space.open_time }" max="${space.close_time }" onchange="startTimeChange();" value="${space.open_time }"/>
-					<input id="start_time" type="number"  value="${space.open_time }" disabled="disabled" name="start_time"/>시
-				</div>
-				
-				
-				<div class="form-group">
-					<label for="end_time">대여 종료 시간</label>
-					<input id="end_time_range" type="range" min="${space.open_time }" max="${space.close_time }" onchange="endTimeChange();" value="${space.close_time }"/>
-					<input id="end_time" type="number" value="${space.close_time }" disabled="disabled" name="end_time"/>시
-				</div>
-				
-				
+				<input id="start_time" type="hidden" name="start_time"/>
+				<input id="end_time" type="hidden" name="end_time"/>
 				<div class="form-group">
 					<label for="people">대여 인원</label>
 					<button id="people_plus" type="button" class="btn btn-default btn-lg">

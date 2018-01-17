@@ -11,6 +11,12 @@
  <script src="common.js" type="text/javascript"></script>
  	<script>
  		$(document).ready(function(){
+ 			$(".img").on("click",function(){
+ 				var img = $(this).attr("src");
+ 				$("#main_img").attr("src",img);
+ 			});
+
+ 			
  			var scOffset = $( '.navbar-Menu' ).offset();
  	 		$( window ).scroll( function() {
  	 		if ( $( document ).scrollTop() > scOffset.top ) {
@@ -175,7 +181,24 @@
 								
 								</form>
 							</th>
-							<th><a href="space_del.do?space_no=${space.space_no }">공간 삭제</a></th>
+							<th><a  data-toggle="modal" href="#space_del">공간 삭제</a></th>
+							<div class="modal fade" id="space_del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">
+													<span aria-hidden="true">&times;</span>
+													<span class="sr-only">Close</span>
+												</button>
+												<h4 class="modal-title">공간 삭제</h4>
+											</div>
+												<div class="modal-footer">
+													<a href="space_del.do?space_no=${space.space_no }"><button type="button" class="btn btn-defualt">삭제</button></a>
+													<button type="button" class="btn btn-defualt" data-dismiss="modal">닫기</button>
+												</div>
+										</div>
+									</div>
+								</div>
 						</jl:if>
 					</jl:forEach>
 				</tr>
@@ -188,7 +211,7 @@
 					<td>${s_category }</td>
 				</tr>
 				<tr>
-					<td><img src="thumbnail/${space.space_thumb_img }"/></td>
+					<td><img src="image/${space.space_thumb_img }"/></td>
 				</tr>
 				<tr>
 					<td>공간 소개</td>
@@ -201,6 +224,38 @@
 			</table>
 		</div>
 		
+		<hr/>
+			<div class="panel text-center">
+				<jl:if test="${image.image_one ne ''}">
+					<div>
+						<img src="image/${image.image_one }" width="400" height="300" id="main_img">
+					</div>
+				</jl:if>
+				<hr/>
+				<div>
+						<jl:if test="${image.image_one ne ''}">
+							<img src="image/${image.image_one }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${image.image_two ne ''}">
+							<img src="image/${image.image_two }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${image.image_three ne ''}">
+							<img src="image/${image.image_three }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${image.image_for ne ''}">
+							<img src="image/${image.image_for }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${image.image_five ne ''}">
+							<img src="image/${image.image_five }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${image.image_six ne ''}">
+							<img src="image/${image.image_six }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${image.image_seven ne ''}">
+							<img src="image/${image.image_seven }" width="100" height="130" class="img"/>
+						</jl:if>
+				</div>
+			</div>
 		<hr/>
 		
 		<div>
@@ -329,6 +384,7 @@
 				</div>
 			</jl:forEach>
 			<!-- space q&a 쓰는 곳 -->
+
 			<h3>질문하기</h3>
 			<form method="POST" action="add_space_qna.do">
 				<div class="form-group">
@@ -341,7 +397,10 @@
 				</div>
 				<input type="hidden" name="user_id" value="${user_id }">
 				<input type="hidden" name="space_no" value="${space.space_no }">
-				<input type="submit"  class="btn btn-default" value="질문 제출">
+				<img src="captcha.do"/>
+				<input type="text" name="captcha"/>
+				<br/>
+				<input type="submit"  class="btn btn-default" value="질문 제출s">
 			</form>
 		</div>
 			
@@ -477,7 +536,7 @@
 	<div class="col-xs-2">
 		<div class="panel">
 			공간 이름: <h1>${space.space_title }</h1>
-			<img src="thumbnail/${space.space_thumb_img }" width="100" height="100"/>
+			<img src="image/${space.space_thumb_img }" width="100" height="100"/>
 			<table>
 				<tr>
 					<td>예약 인원</td>

@@ -11,6 +11,9 @@
   <script src="common.js" type="text/javascript"></script>
  <script>
  	$(document).ready(function(){
+ 		if("${user.grade}" == "2"){
+ 			$("#add_space").css("display","block");
+ 		}
  		
  		$('#boy').on("load",function(){
  			var h = this.contentWindow.document.body.offsetHeight;
@@ -97,10 +100,9 @@
 
 	<div class="container">
 		<H1>공간 홈</H1>
-		<hr/>
-		<a href="space_add.do">공간 등록</a>
-		<hr/>
-		<hr/>
+
+		
+
 		<form target="boy" action="space_home_iframe.do">
 			<div class="form-group">
 				<label for="s_category_no">카테고리</label>
@@ -125,6 +127,7 @@
 		</form>
 		<hr/>
 		<iframe id="boy" name="boy" src="space_home_iframe.do" width="100%" frameborder="0"></iframe>
+		<a href="space_add.do" id="add_space" style="display: none;">공간 등록</a>
 	</div>
 		<!-- 상태 모달 -->
 		<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -146,5 +149,7 @@
 				</div>
 			</div>
 		</div>
+			
+		
 </body>
 </html>

@@ -32,9 +32,22 @@
 		INSERT INTO SpaceT VALUES (default,'${crn}','${space_title}','${space_content}','${space_thumb_img}', '${open_time}',
 		'${close_time}',${price},${max_people},${min_people},'${space_call}','null',${s_category_no},${l_category_no},NOW())
 	</insert>
+	
+	<select id="find_space_no" resultType="java.lang.Integer">
+		SELECT max(space_no) FROM SpaceT
+	</select>
+	
+	
+	<insert id="add_space_image" parameterType="multi.space.vo.ImageVO">
+		INSERT INTO ImageT VALUES (default,${space_no},'${image_one}','${image_two}','${image_three}','${image_for}','${image_five}','${image_six}','${image_seven}')
+	</insert>
 
 	<select id="find_space_by_pk" parameterType="main.vo.SpaceVO" resultType="main.vo.SpaceVO">
 		SELECT * FROM SpaceT WHERE space_no=${space_no}
+	</select>
+	
+	<select id="find_image_by_space_no" parameterType="multi.space.vo.ImageVO" resultType="multi.space.vo.ImageVO">
+		SELECT * FROM ImageT WHERE space_no=${space_no}
 	</select>
 	
 	<select id="find_user_club" parameterType="java.lang.String" resultType="main.vo.ClubVO">
