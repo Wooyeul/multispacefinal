@@ -1,10 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE >
 <html>
 <head>
+	<script type="text/javascript">
+		function move(){
+			window.parent.location.href="main.html";
+		}
+		setTimeout(move,3000);
+	</script>
 </head>
 <body>
-	${user_id}´Ô ¼º°øÀûÀ¸·Î ¼öÁ¤µÇ¾ú½À´Ï´Ù.
+	${user_id}ë‹˜ ì„±ê³µì ìœ¼ë¡œ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.
+	<a href="main.html" target="_parent">mainìœ¼ë¡œ ëŒì•„ê°€ê¸°</a>
 </body>
 </html>
