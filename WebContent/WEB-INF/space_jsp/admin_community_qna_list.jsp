@@ -16,9 +16,6 @@
 	</style>
 </head>
 <body>
-	<div id="i" class="jumbotron panel-primary">
-		<h1>QnA</h1>
-	</div>
 	<table border="1" cellspacing="0" cellpadding="8" class="table table-hover">
 		<tr>
 			<th width="40">QnA¹øÈ£</th>

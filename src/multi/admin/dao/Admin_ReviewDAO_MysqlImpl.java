@@ -27,7 +27,7 @@ public class Admin_ReviewDAO_MysqlImpl implements Admin_ReviewDAO {
 
 	@Override
 	public List<ReviewVO> search_All(Admin_searchVO search) throws Exception {
-		return sqlSession.selectList("admin_community_review.admin_search_All");
+		return sqlSession.selectList("admin_community_review.admin_search_All",search);
 	}
 
 }

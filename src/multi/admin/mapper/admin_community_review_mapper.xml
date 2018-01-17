@@ -77,6 +77,7 @@ CREATE TABLE ReviewT
 	
 	<select id="admin_search_All" parameterType="multi.admin.vo.Admin_searchVO"
 		resultType="main.vo.ReviewVO">
+		
 	SELECT * FROM ReviewT WHERE 0 = 0
 	<if test="search_option == 1">
 	AND com_board_title like '%${search_content}%'
