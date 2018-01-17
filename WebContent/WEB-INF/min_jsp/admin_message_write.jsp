@@ -42,14 +42,14 @@
 			
 			ajaxGet(url,function(rt){
 				if(rt==1){
-					$("#lblContent").text("ID가 중복되었습니다. 쪽지보내기가 가능합니다.");
+					$("#lblContent").text("ID가 존재합니다. 쪽지보내기가 가능합니다.");
 					$("#repleModal").modal("show");
 					flag = 1;
 				} else if(user_id==""){
 					$("#lblContent").text("아이디를 입력하세요");
 					$("#repleModal").modal("show");
 				} else if( rt == 0){
-					$("#lblContent").text("ID가 없어 쪽지 보내기가 불가능 합니다.");
+					$("#lblContent").text("ID가 존재하지 않아 쪽지 보내기가 불가능 합니다.");
 					$("#repleModal").modal("show");
 					$("#user_id").val("");
 					
@@ -60,8 +60,10 @@
 			var user_id_check = $("#receive_user_id").val();	
 			if(user_id_check==""){
 				$("#lblContent").text("아이디를 입력하고 중복검사 해주세요.");
-				$("#receive_user_id").val("");
-				$("#msg_content").val("");
+			} else if(flag==0){
+				$("#lblContent").text("아이디 체크 해주세요.");
+			} else {
+				$("#m_submit").attr('type','submit');
 			}
 			$("#repleModal").modal("show");
 		});
@@ -85,7 +87,7 @@
 					<br>
 		<br> 쪽지 내용:
 		<textarea id="msg_content" name="msg_content" rows="10" cols="60"></textarea>
-		<br> <input id="m_submit" class="btn btn-success" type="submit" value="메시지 보내기" />
+		<br> <input id="m_submit" class="btn btn-success" type="button" value="메시지 보내기" />
 		<input type="button"class="btn btn-success" id="cancel" value="취소하기"/>
 	</form>
 	
