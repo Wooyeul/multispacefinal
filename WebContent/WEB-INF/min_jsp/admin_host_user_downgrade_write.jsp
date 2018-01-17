@@ -15,7 +15,7 @@
 <script>
 	$("document").ready(function(){
 		$("#can").on("click",function(){
-			document.frm.action="admin_host_request.do";
+			document.frm.action="admin_hosts.do";
 			document.frm.submit();
 		});
 	});
