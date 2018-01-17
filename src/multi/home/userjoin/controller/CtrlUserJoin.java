@@ -1,5 +1,7 @@
 package multi.home.userjoin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -45,7 +47,7 @@ public class CtrlUserJoin {
 
 	// 회원가입 DAO실행하는 부분
 	@RequestMapping("/home_user_join2.do")
-	public String joinUser2(@ModelAttribute UserVO uvo, @ModelAttribute ZipcodeVO zvo, @RequestParam(value = "home") String r,
+	public String joinUser2(@ModelAttribute UserVO uvo, @RequestParam(value = "home") String r,
 			@RequestParam(value = "num") String num, @RequestParam(value = "phone_cen") String phone_cen,
 			@RequestParam(value = "phone_end") String phone_end) throws Exception {
 
@@ -53,9 +55,9 @@ public class CtrlUserJoin {
 		uvo.setEmail(e);
 		String phone = num + phone_cen + phone_end;
 		uvo.setPhone(phone);
+		System.out.println(uvo.getZipcode());
 		
 		userJoinDAO.addUser(uvo);
-		userJoinDAO.addZipcode(zvo);
 		return "redirect:/home_complete.do?user_id=" + uvo.getUser_id();
 	}
 
@@ -77,5 +79,44 @@ public class CtrlUserJoin {
 		return r.toString();
 	}
 	///////////////////// 회원가입 끝//////////////////////
-
+	
+	@RequestMapping("/findzipcode.do")
+	@ResponseBody
+	public String findzipcode(@ModelAttribute ZipcodeVO zvo) throws Exception{
+		List<ZipcodeVO> rl = userJoinDAO.findZipcode(zvo);
+		StringBuffer sb = new StringBuffer();
+		sb.append("{ 'data' :[ ");
+		int flag = 0;
+		for(ZipcodeVO vo : rl){
+			flag++;
+			sb.append("{");
+			sb.append("'zipcode_no'");
+			sb.append(":");
+			sb.append("'"+vo.getZipcode_no()+"',");
+			sb.append("'zipcode'");
+			sb.append(":");
+			sb.append("'"+vo.getZipcode()+"',");
+			sb.append("'sido'");
+			sb.append(":");
+			sb.append("'"+vo.getSido()+"',");
+			sb.append("'gugun'");
+			sb.append(":");
+			sb.append("'"+vo.getGugun()+"',");
+			sb.append("'dong'");
+			sb.append(":");
+			sb.append("'"+vo.getDong()+"',");
+			sb.append("'bunji'");
+			sb.append(":");
+			sb.append("'"+vo.getBunji()+"'");
+			sb.append("}");
+			
+			if(flag==rl.size()){
+				
+			} else{
+				sb.append(",");
+			}
+		}
+		sb.append("]}");
+		return sb.toString();
+	}
 }

@@ -176,6 +176,11 @@
 				$("#user_name").text(rt + "님이 로그인하셨습니다.");
 			}
 		});
+		
+		function zipSearch(){
+			window.open("find_zipcode.html", "zip", "width=600,height=450");
+		}
+		
 	</script>
 	
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -353,18 +358,31 @@
 				<td></td>
 			</tr> -->
 			
-			<tr>
+			<!-- <tr>
 				<th>우편번호</th>
 				<td><input type="text" id="sample4_postcode" name="zonecode" placeholder="우편번호" disabled="disabled">
 				<input type="button" onclick="sample4_execDaumPostcode()"  value="우편번호 찾기"><br/>
 				<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address" disabled="disabled">
 				<input type="text" id="sample4_jibunAddress" placeholder="지번주소"  name="jibunAddress" disabled="disabled">
 					<span id="guide" style="color:#999"></span></td>
+			</tr> -->
+			
+			<tr>
+				<th>우편번호</th>
+				<td><input type="text" name="zipcode" size="8"/>
+				<input type="button" name="findzip" value="찾기" class="btnzip" onclick="zipSearch()"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<th align="right">주소</th>
+				<td><input type="text" size="40" name="addr1"/></td>
+				<td></td>
 			</tr>
 			
 			<tr>
 				<th align="right">상세주소</th>
-				<td><input type="text" size="20" name="detail"/></td>
+				<td><input type="text" size="20" name="zipdetail"/></td>
 				<td></td>
 			</tr>
 
@@ -394,7 +412,7 @@
 				<td></td>
 			</tr>
 		</table>
-		<input type="hidden" name="zipcode" value="Qwere"/>
+		
 	</form>
 	
 	<form id="ck_total">
