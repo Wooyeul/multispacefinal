@@ -37,6 +37,10 @@
 	.panel-group {
 		margin-bottom: 40px;
 	}
+	.panel-title {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
 	</style>
 	
 <script>

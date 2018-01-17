@@ -43,6 +43,10 @@
 			font-size: 2em;
 			font-family: "lato-regular", Helvetica, Arial, sans-serif;
 		}
+		.panel-title {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
 	</style>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="common.js" type="text/javascript"></script>
