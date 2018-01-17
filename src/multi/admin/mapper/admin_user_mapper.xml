@@ -31,6 +31,7 @@
 		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
 		<result property="email" column="email" jdbcType="VARCHAR" />
 		<result property="grade" column="grade" jdbcType="INTEGER" />
+		<result property="zipdetail" column="zipdetail" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="p_admin_user_findAll" statementType="CALLABLE" resultMap="RM_p_admin_user_findAll">
 		{call p_admin_user_findAll()}
@@ -63,6 +64,7 @@
 		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
 		<result property="email" column="email" jdbcType="VARCHAR" />
 		<result property="grade" column="grade" jdbcType="INTEGER" />
+		<result property="zipdetail" column="zipdetail" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="p_admin_user_findUser" statementType="CALLABLE" 
 		resultMap="RM_p_admin_user_findUser"
@@ -136,11 +138,12 @@
 		IN v_phone VARCHAR(50),
 		IN v_nickname VARCHAR(50),
 		IN v_zipcode VARCHAR(50),
+		IN v_zipdetail VARCHAR(50),
 		IN v_email VARCHAR(50)
 	)
 	BEGIN
 		UPDATE UserT SET user_name = v_user_name, phone=v_phone, 
-		nickname=v_nickname, zipcode = v_zipcode, email = v_email WHERE user_id = v_user_id;
+		nickname=v_nickname, zipcode = v_zipcode, zipdetail = v_zipdetail, email = v_email WHERE user_id = v_user_id;
 	END$$
 	DELIMITER ;
 	-->
@@ -150,12 +153,14 @@
 		<parameter property="phone" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="nickname" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="zipcode" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="zipdetail" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="email" mode="IN" jdbcType="VARCHAR"/>
+		
 	</parameterMap>
 	<update id="p_admin_user_modifyUser" statementType="CALLABLE"
 		parameterType = "main.vo.UserVO"
 		parameterMap = "PM_p_admin_user_modifyUser">
-		{call p_admin_user_modifyUser(?,?,?,?,?,?)}
+		{call p_admin_user_modifyUser(?,?,?,?,?,?,?)}
 	</update>
 	
 	<!--

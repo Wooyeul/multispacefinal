@@ -16,7 +16,24 @@ table {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="common.js" type="text/javascript"></script>
 <script>
-
+$(document).ready(function(){
+	$(".remove_space").on("click",function(){
+		$("#space_No").val( $(this).attr("space_no") );
+		
+		$("#text_modal").modal("show");
+	});
+	
+	//yes버튼 클릭 했을 때 실행할 function
+	$("#text_modal_yes").on("click",function(){
+		var del_space_no = $("#space_No").val();
+			location.href = "admin_space_remove.do?space_no=" + del_space_no;
+		$("#text_modal_modal").modal("hide");
+	});
+	//no버튼 클릭 했을 때 실행할 function
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
+});
 </script>
 </head>
 <body>
@@ -55,15 +72,7 @@ table {
 	
 	<br>
 	<br>
-<!-- 	<form id="textsearch" action="admin_spaces_search2.do">
-		<select name="search_option2">
-			<option value="1">최신 순</option>
-			<option value="2">오래된 순</option>
-			<option value="3">비싼 가격 순</option>
-			<option value="4">싼 가격 순</option>
-		</select>
-		<input type="submit" value="전체 정렬하기">
-	</form> -->
+
 	<br>
 	<br>
 		<table border="1">
@@ -100,7 +109,8 @@ table {
 				<td>${vo.s_category_no}</td>
 				<td>${vo.l_category_no}</td>
 				<td>${vo.the_time}</td>
-				<td><a href="admin_space_remove.do?space_no=${vo.space_no}">삭제</a></td>
+				<%-- <td><a href="admin_space_remove.do?space_no=${vo.space_no}">삭제</a></td> --%>
+				<td><button class="remove_space" space_no="${vo.space_no}" >삭제하기</button></td>
 			</tr>
 		</jl:forEach>
 	</table>
@@ -134,6 +144,24 @@ table {
 				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
+	
 
+<div id="text_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="space_No" value="0"/>
+	
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+	
 </body>
 </html>

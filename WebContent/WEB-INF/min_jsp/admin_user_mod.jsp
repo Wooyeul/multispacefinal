@@ -24,7 +24,8 @@
 		<td>유저 ID</td>
 		<td>전화번호</td>
 		<td>닉네임</td>
-		<td>주소</td>
+		<td>우편 번호</td>
+		<td>상세 주소</td>
 		<td>이메일</td>
 	</tr>
 	<tr>
@@ -33,6 +34,7 @@
 		<td>${vo.phone}</td>
 		<td>${vo.nickname}</td>
 		<td>${vo.zipcode}</td>
+		<td>${vo.zipdetail}</td>
 		<td>${vo.email}</td>
 	</tr>
 </table>
@@ -43,7 +45,8 @@
 		이름 : <input type="text" name="user_name" value="${vo.user_name}" /> <br/>
 		전화번호 : <input type="text" name="phone" value="${vo.phone}" /> <br/>
 		닉네임 : <input type="text" name="nickname" value="${vo.nickname}" /> <br/>
-		주소 : <input type="text" name="zipcode" value="${vo.zipcode}" /> <br/>
+		우편 번호 : <input type="text" name="zipcode" value="${vo.zipcode}" /> <br/>
+		상세 주소 : <input type="text" name="zipdetail" value="${vo.zipdetail}" /> <br/>
 		이메일 : <input type="text" name="email" value="${vo.email}" /> <br/>
 	<button type="submit">수정하기</button>
 </form>

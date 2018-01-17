@@ -30,7 +30,7 @@
 	
 	<table>
 		<tr>
-			<td>강등사항 작성 : </td>
+			<td>${vo.user_id} 유저 강등사항 작성 : </td>
 			<td><textarea rows="20" cols="20" name="msg_content"></textarea></td>
 		</tr>
 	</table>
