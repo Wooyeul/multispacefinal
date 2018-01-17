@@ -22,7 +22,7 @@
 		<parameter property="grade" mode="IN"/>
 	</parameterMap>
 	
-	
+	<!--회원가입  -->
 	<insert id="p_userJoin_add" parameterMap="PM_userJoin" statementType="CALLABLE">
 		{call p_userJoin_add(?,?,?,?,?,?,?,?,?,?,?)}
 	</insert>
@@ -31,6 +31,7 @@
 		<parameter property="user_id" mode="IN"/>
 	</parameterMap>
 	
+	<!-- 아이디중복체크 -->
 	<select id="p_ckId" parameterMap="PM_ckId" resultType="java.lang.Integer" statementType="CALLABLE">
 		{call p_overlap(?)};
 	</select>
@@ -44,6 +45,7 @@
 		
 	</parameterMap>
 	
+	<!-- zipcode 추가 -->
 	<insert id="p_user_zipcode_add" parameterMap="PM_p_user_zipcode_add">
 		{call p_user_zipcode_add(?,?,?,?,?)}
 	</insert>

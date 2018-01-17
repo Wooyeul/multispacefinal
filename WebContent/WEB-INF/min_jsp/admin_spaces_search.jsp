@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
@@ -21,61 +20,53 @@ table {
 </head>
 <body>
 	<div class="jumbotron" style="background-color: orange">
-		<h1>ê³µê°„ ëª¨ìŒ</h1> 
+		<h1>°ø°£ ¸ðÀ½</h1> 
 	</div> 
 	 
-	<form id="textsearch" action="admin_spaces_search2.do">
-		<select name="search_option">
-			<option value="0">ê²€ìƒ‰í•  ê²ƒì„ ì„ íƒí•´ì£¼ì„¸ìš”</option>
-			<option value="1">ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸</option>
-			<option value="2">ê³µê°„ ì´ë¦„</option>
-			<option value="3">ê³µê°„ ë‚´ìš©</option>
-			<option value="4">ì˜¤í”ˆ ì‹œê°„</option>
-			<option value="5">í´ë¡œì¦ˆ ì‹œê°„</option>
-			<option value="6">ê°€ê²©</option>
-			<option value="7">ìµœëŒ€ ì¸ì›</option>
-			<option value="8">ìµœì†Œ ì¸ì›</option>
-			<option value="9">ê³µê°„ ì „í™” ë²ˆí˜¸</option>
-			<option value="10">ì£¼ì†Œ</option>
-			<option value="11">ê³µê°„ ì¹´í…Œê³ ë¦¬</option>
-			<option value="12">ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</option>
-			<option value="13">ìƒì„±ì¼</option>
-			<option value="14">ê³µê°„ ì´ë¦„ + ë‚´ìš©</option>
+	°Ë»öÇÒ °ÍÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.
+	<form id="textsearch" action="admin_spaces_search.do" method="post">
+		
+		<select name="option">
+			<option value="crn">»ç¾÷ÀÚ µî·Ï¹øÈ£</option>
+			<option value="space_title">°ø°£ ÀÌ¸§</option>
+			<option value="space_content">°ø°£ ³»¿ë</option>
+			<option value="open_time">¿ÀÇÂ ½Ã°£</option>
+			<option value="close_time">Å¬·ÎÁî ½Ã°£</option>
+			<option value="price">°¡°Ý</option>
+			<option value="max_people">ÃÖ´ë ÀÎ¿ø</option>
+			<option value="min_people">ÃÖ¼Ò ÀÎ¿ø</option>
+			<option value="space_call">°ø°£ ÀüÈ­ ¹øÈ£</option>
+			<option value="zipcode">ÁÖ¼Ò</option>
+			<option value="s_category_no">°ø°£ Ä«Å×°í¸®</option>
+			<option value="l_category_no">Àå¼Ò Ä«Å×°í¸®</option>
+			<option value="the_time">»ý¼ºÀÏ</option>
 		</select>
-		&nbsp;<input type="text" name="search_content">
-		<input type="submit" value="ê²€ìƒ‰">
+		&nbsp;<input type="text" name="content">
+		<input type="checkbox" name="re" value="Y">»ó¼¼ °Ë»ö ÇÒ·Á¸é Ã¼Å©&nbsp;<br>
+		<input type="submit" value="°Ë»ö">
 	</form>
 	
 	<br>
 	<br>
-	<form id="textsearch" action="admin_spaces_search2.do">
-		<select name="search_option2">
-			<option value="1">ìµœì‹  ìˆœ</option>
-			<option value="2">ì˜¤ëž˜ëœ ìˆœ</option>
-			<option value="3">ë¹„ì‹¼ ê°€ê²© ìˆœ</option>
-			<option value="4">ì‹¼ ê°€ê²© ìˆœ</option>
-		</select>
-		<input type="submit" value="ì „ì²´ ì •ë ¬í•˜ê¸°">
-	</form>
 	<br>
 	<br>
 		<table border="1">
 		<tr>
-			<td>ì‚¬ì—…ìž ë“±ë¡ ë²ˆí˜¸</td>
-			<td>ê³µê°„ ì´ë¦„</td>
-			<td>ê³µê°„ ë‚´ìš©</td>
-			<td>ê³µê°„ ì¸ë¸Œë„¤ì¼ ì´ë¯¸ì§€</td>
-			<td>ì˜¤í”ˆ ì‹œê°„</td>
-			<td>í´ë¡œì¦ˆ ì‹œê°„</td>
-			<td>ê°€ê²©</td>
-			<td>ìµœëŒ€ ì¸ì›</td>
-			<td>ìµœì†Œ ì¸ì›</td>
-			<td>ê³µê°„ ë²ˆí˜¸</td>
-			<td>ì£¼ì†Œ</td>
-			<td>ê³µê°„ ì¹´í…Œê³ ë¦¬</td>
-			<td>ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</td>
-			<td>ìƒì„±ì¼</td>
-			<td>ì‚­ì œí•˜ê¸°</td>
+			<td>»ç¾÷ÀÚ µî·Ï ¹øÈ£</td>
+			<td>°ø°£ ÀÌ¸§</td>
+			<td>°ø°£ ³»¿ë</td>
+			<td>°ø°£ ½æºê³×ÀÏ ÀÌ¹ÌÁö</td>
+			<td>¿ÀÇÂ ½Ã°£</td>
+			<td>Å¬·ÎÁî ½Ã°£</td>
+			<td>°¡°Ý</td>
+			<td>ÃÖ´ë ÀÎ¿ø</td>
+			<td>ÃÖ¼Ò ÀÎ¿ø</td>
+			<td>°ø°£ ¹øÈ£</td>
+			<td>ÁÖ¼Ò</td>
+			<td>°ø°£ Ä«Å×°í¸®</td>
+			<td>Àå¼Ò Ä«Å×°í¸®</td>
+			<td>»ý¼ºÀÏ</td>
+			<td>»èÁ¦ÇÏ±â</td>
 		</tr>
 		<jl:forEach var="vo" items="${ls}">
 			<tr>
@@ -93,21 +84,15 @@ table {
 				<td>${vo.s_category_no}</td>
 				<td>${vo.l_category_no}</td>
 				<td>${vo.the_time}</td>
-				<td><a href="admin_space_remove.do?space_no=${vo.space_no}">ì‚­ì œ</a></td>
+				<td><a href="admin_space_remove.do?space_no=${vo.space_no}">»èÁ¦</a></td>
 			</tr>
 		</jl:forEach>
 	</table>
 	
-<form id="form_search" action="admin_spaces_search2.do">
+<form id="form_search" action="admin_spaces_search.do">
 	<input type="hidden" name="pg" value="" id="pg">
-	<input type="hidden" name="search_content" value="${search.search_content}">
-	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
-<form id="form_search2" action="admin_spaces_search2.do">
-	<input type="hidden" name="pg" value="" id="pg">
-	<input type="hidden" name="search_content2" value="${search.search_content2}">
-	<input type="hidden" name="search_option2" value="${search.search_option2}">
-</form>
+
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_spaces_search.do?pg=${pz.paginationStart-1}">&lt;</a></li>

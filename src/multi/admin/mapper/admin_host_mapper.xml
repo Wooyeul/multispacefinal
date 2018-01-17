@@ -270,6 +270,22 @@
 		{call p_admin_user_findUser(?)}
 	</select>
 	
+	<select id="admin_search_host_user" parameterType="multi.admin.vo.Admin_searchVO" 
+		resultType="main.vo.HostVO">
+		SELECT * FROM HostT WHERE 0=0 
+		<if test="start_no != null">
+			ORDER BY crn DESC LIMIT #{start_no},10
+		</if>
+	</select>
+	
+	<select id="admin_search_host_request_user" parameterType="multi.admin.vo.Admin_searchVO" 
+		resultType="main.vo.HostApplyVO">
+		SELECT * FROM HostT WHERE 0=0 
+		<if test="start_no != null">
+			ORDER BY crn DESC LIMIT #{start_no},10
+		</if>
+	</select>
+	
 </mapper>
 
 

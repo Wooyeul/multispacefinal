@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,18 +17,18 @@
 </script>
 </head>
 <body>
-<h1>개별 유저 상세 정보</h1>
+<h1>���� ���� �� ����</h1>
 <table border="1" width="500">
 	<tr>
-		<td>이름</td>
-		<td>유저 ID</td>
-		<td>주민등록번호 앞자리</td>
-		<td>주민등록번호 뒷자리</td>
-		<td>성별</td>
-		<td>전화번호</td>
-		<td>닉네임</td>
-		<td>주소</td>
-		<td>이메일</td>
+		<td>�̸�</td>
+		<td>���� ID</td>
+		<td>�ֹε�Ϲ�ȣ ���ڸ�</td>
+		<td>�ֹε�Ϲ�ȣ ���ڸ�</td>
+		<td>����</td>
+		<td>��ȭ��ȣ</td>
+		<td>�г���</td>
+		<td>�ּ�</td>
+		<td>�̸���</td>
 	</tr>
 	<tr>
 		<td>${vo.user_name}</td>
@@ -38,10 +37,10 @@
 		<td>${vo.ssn2}</td>
 		<jl:choose>
 			<jl:when test="${vo.gender == 'M'}">
-				<td>남자</td>
+				<td>����</td>
 			</jl:when>
 			<jl:when test="${vo.gender == 'F'}">
-				<td>여자</td>
+				<td>����</td>
 			</jl:when>
 		</jl:choose>
 		<td>${vo.phone}</td>
@@ -52,10 +51,10 @@
 </table>
 <form method="POST" action="admin_user_mod.do">
 	<input type="hidden" name="user_id" value="${vo.user_id}" />
-	<button type="submit">수정하기</button>
+	<button type="submit">�����ϱ�</button>
 </form>
 <form method="POST" action="admin_hosts.do">
-	<button type="submit">취소하기</button>
+	<button type="submit">����ϱ�</button>
 </form>
 
 </body>

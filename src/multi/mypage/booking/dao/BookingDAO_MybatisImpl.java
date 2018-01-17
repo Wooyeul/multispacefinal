@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.UserVO;
 import multi.mypage.booking.vo.BookingVO;
+import multi.mypage.vo.Mypage_searchVO;
 
 public class BookingDAO_MybatisImpl implements BookingDAO{
 	
@@ -24,5 +25,11 @@ public class BookingDAO_MybatisImpl implements BookingDAO{
 	public List<BookingVO> find_bookingInfo(String user_id) throws Exception {
 		return sqlSession.selectList("apple.mypage_bookingInfo",user_id);
 	}
+
+	@Override
+	public List<BookingVO> search_bookings(Mypage_searchVO search) throws Exception {
+		return sqlSession.selectList("apple.mypage_search_booking",search);
+	}
+	
 
 }

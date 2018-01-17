@@ -1,6 +1,5 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
-taglib
-	prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html> 
 <head>
@@ -33,10 +32,7 @@ taglib
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
 $(document).ready(function(){
-	$("#faq_del").on("click",function(){
-		document.frm.action="admin_faq_remove.do";
-		document.frm.submit();
-	});
+
 });
 </script>
 </head>
@@ -47,23 +43,6 @@ $(document).ready(function(){
 			<h1>F A Q</h1>
 		</div>
 	</div>
-
-	<%-- 되는테이블<table border="1" class="table table-hover" >
-		<tr>
-			<th>NO</th>
-			<th>TITLE</th>
-			<th>CONTENT</th>
-		</tr>
-		<jl:forEach var="vo" items="${rl}">
-			<tr>
-				<td>${vo.faq_no}</td>
-				<td>${vo.faq_title}</td>
-				<td>${vo.faq_content}</td>
-			</tr>
-		</jl:forEach>
-	</table> --%>
-
-
 
 	<div class="container">
 		<h2>FAQ Board</h2>
@@ -87,8 +66,13 @@ $(document).ready(function(){
 							<input type="hidden" name="faq_title" value="${vo.faq_title}" />
 							<input type="hidden" name="faq_content" value="${vo.faq_content}" />
 							<button type="submit">수정 하기</button>&nbsp;&nbsp;&nbsp;
-							<button id="faq_del" type="submit" >삭제 하기</button> 
 						</form>
+						<br> 
+						<form method="post" action="admin_faq_remove.do" name="frm" >
+							<input type="hidden" name="faq_no" value="${vo.faq_no}" />
+							<button id="faq_can" type="submit">삭제 하기</button>
+						</form> 
+						
 					</div>
 				</div>
 			</jl:forEach>

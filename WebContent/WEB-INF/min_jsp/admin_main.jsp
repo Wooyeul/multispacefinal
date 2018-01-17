@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,43 +124,43 @@ aside#left {
 	 var url = "chk_login.do";
 	 	ajaxGet(url,function(rt){
 	 			
-	 // ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
+	 // ·Î±×ÀÎ ½ÇÆĞ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
 	 if(rt =="10002"){ 
 		$("#login_nav").hide();				$("#non_login_nav").show();
 	}
 	 					
-	 // ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
+	 // ·Î±×ÀÎ ½Ã : rt°ª -> user_name
 	else if(rt!=""){ 
 	$("#login_nav").show();
 	$("#non_login_nav").hide(); 
-	$("#user_name").text(rt+"ë‹˜ì´ ë¡œê·¸ì¸í•˜ì…¨ìŠµë‹ˆë‹¤.");
+	$("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
 		}
 	 });
 
-	// íšŒì› ê´€ë¦¬ ë¶€ë¶„ 
+	// È¸¿ø °ü¸® ºÎºĞ 
 	$("#user_manage").hide();
 	$("#user_stastic").hide();
-	// íŒë§¤ì ê´€ë¦¬ ë¶€ë¶„ 
+	// ÆÇ¸ÅÀÚ °ü¸® ºÎºĞ 
 	$("#host_manage").hide();
 	$("#host_requests").hide();
-	// ì»¤ë®¤ë‹ˆí‹° ê´€ë¦¬ ë¶€ë¶„
+	// Ä¿¹Â´ÏÆ¼ °ü¸® ºÎºĞ
 	$("#community_free").hide();
 	$("#community_review").hide();
 	$("#community_question").hide();
-	// ê´€ë¦¬ì ê³µì§€ ê´€ë ¨ ë¶€ë¶„
+	// °ü¸®ÀÚ °øÁö °ü·Ã ºÎºĞ
 	$("#admin_announcement").hide();
 	$("#admin_event").hide();
 	$("#admin_faq").hide();
-	// 1:1 ë¬¸ì˜ ê´€ë ¨ ë¶€ë¶„
+	// 1:1 ¹®ÀÇ °ü·Ã ºÎºĞ
 	$("#one_one_request").hide();
 	$("#one_one_un_reple").hide();
 	$("#one_one_reple_done").hide();
-	// ìª½ì§€ ê´€ë ¨ ë¶€ë¶„
+	// ÂÊÁö °ü·Ã ºÎºĞ
 	$("#sending_message").hide();
 	$("#have_messages").hide();
 	$("#to_messages").hide();
 	
-	// íšŒì› ê´€ë¦¬ í•­ëª© í´ë¦­ ì‹œ
+	// È¸¿ø °ü¸® Ç×¸ñ Å¬¸¯ ½Ã
 	$("#user").on("click",function(){
 		$("#user_manage").show();
 		$("#user_stastic").show();
@@ -181,7 +180,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	// íŒë§¤ì ê´€ë¦¬ í•­ëª© í´ë¦­ ì‹œ
+	// ÆÇ¸ÅÀÚ °ü¸® Ç×¸ñ Å¬¸¯ ½Ã
 	$("#host").on("click",function(){
 		$("#host_manage").show();
 		$("#host_requests").show();
@@ -201,7 +200,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	// ê³µê°„ ê´€ë¦¬ í•­ëª© í´ë¦­ ì‹œ
+	// °ø°£ °ü¸® Ç×¸ñ Å¬¸¯ ½Ã
 	$("#spaces").on("click",function(){
 		$("#user_manage").hide();
 		$("#user_stastic").hide();
@@ -220,7 +219,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	// ëª¨ì„ ê´€ë¦¬ í•­ëª© í´ë¦­ ì‹œ
+	// ¸ğÀÓ °ü¸® Ç×¸ñ Å¬¸¯ ½Ã
 	$("#clubs").on("click",function(){
 		$("#user_manage").hide();
 		$("#user_stastic").hide();
@@ -239,7 +238,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	// ì»¤ë®¤ë‹ˆí‹° ê´€ë¦¬ í•­ëª© í´ë¦­ ì‹œ
+	// Ä¿¹Â´ÏÆ¼ °ü¸® Ç×¸ñ Å¬¸¯ ½Ã
 	$("#community").on("click",function(){
 		$("#community_free").show();
 		$("#community_review").show();
@@ -259,7 +258,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	// ê³µì§€ ê´€ë¦¬ í•­ëª© í´ë¦­ ì‹œ
+	// °øÁö °ü¸® Ç×¸ñ Å¬¸¯ ½Ã
 	$("#admin_user").on("click",function(){
 		$("#admin_announcement").show();
 		$("#admin_event").show();
@@ -279,7 +278,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	// 1:1 ê´€ë¦¬ í•­ëª© í´ë¦­ ì‹œ
+	// 1:1 °ü¸® Ç×¸ñ Å¬¸¯ ½Ã
 	$("#one_one").on("click",function(){
 		$("#one_one_request").show();
 		$("#one_one_un_reple").show();
@@ -299,7 +298,7 @@ aside#left {
 		$("#have_messages").hide();
 		$("#to_messages").hide();
 	});
-	// ìª½ì§€ ê´€ë¦¬ í•­ëª© í´ë¦­ ì‹œ
+	// ÂÊÁö °ü¸® Ç×¸ñ Å¬¸¯ ½Ã
 	$("#message").on("click",function(){
 		$("#sending_message").show();
 		$("#have_messages").show();
@@ -337,23 +336,23 @@ aside#left {
 
  <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
 	<ul class="nav navbar-nav ">
- 	 <li><a href="space_home.do">ê³µê°„</a></li>
-	 <li><a href="club_home.do">ëª¨ì„</a></li>
-	 <li><a href="community_list.do">ì»¤ë®¤ë‹ˆí‹°</a></li>
-	 <li><a href="event_user_list.do">ì´ë²¤íŠ¸</a></li>	
-	 <li><a href="notice_list.do">ê³µì§€ì‚¬í•­</a></li>
+ 	 <li><a href="space_home.do">°ø°£</a></li>
+	 <li><a href="club_home.do">¸ğÀÓ</a></li>
+	 <li><a href="community_list.do">Ä¿¹Â´ÏÆ¼</a></li>
+	 <li><a href="event_user_list.do">ÀÌº¥Æ®</a></li>	
+	 <li><a href="notice_list.do">°øÁö»çÇ×</a></li>
 	 <li><a href="faq_list.do">FAQ</a></li>			
-	 <li><a href="admin_main.do">ê´€ë¦¬ì</a></li>			
+	 <li><a href="admin_main.do">°ü¸®ÀÚ</a></li>			
 	</ul>
 			
 <ul id="login_nav" class="nav navbar-nav navbar-right">
 <li><a href="#" id="user_name"></a></li>
-	<li><a href="mypage_moveMypageMainPage.do">ë§ˆì´í˜ì´ì§€</a></li>
-	<li><a href="home_logout.do">ë¡œê·¸ì•„ì›ƒ</a></li>	
+	<li><a href="mypage_moveMypageMainPage.do">¸¶ÀÌÆäÀÌÁö</a></li>
+	<li><a href="home_logout.do">·Î±×¾Æ¿ô</a></li>	
 </ul>
 				
 	<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-	     <li><a href="home_moveLoginPage.do">ë¡œê·¸ì¸</a></li>		
+	     <li><a href="home_moveLoginPage.do">·Î±×ÀÎ</a></li>		
 	</ul>
 
 	   </div>
@@ -363,39 +362,39 @@ aside#left {
 
 
 	<aside id="left">
-		<h4>ê´€ë¦¬ í•­ëª©ë“¤</h4>
+		<h4>°ü¸® Ç×¸ñµé</h4>
 		<ul>
-			<li id="user">íšŒì› ê´€ë¦¬ í•­ëª©</li>
-			<li id="user_manage"><a target="iframe1" href="admin_users.do">ì¼ë°˜ íšŒì› ê´€ë¦¬</a></li>
-			<li id="user_stastic"><a target="iframe1" href="admin_user_stastic.do">ë°©ë¬¸ì í†µê³„</a></li>
+			<li id="user">È¸¿ø °ü¸® Ç×¸ñ</li>
+			<li id="user_manage"><a target="iframe1" href="admin_users.do">ÀÏ¹İ È¸¿ø °ü¸®</a></li>
+			<li id="user_stastic"><a target="iframe1" href="admin_user_stastic.do">¹æ¹®ÀÚ Åë°è</a></li>
 			
-			<li id="host">íŒë§¤ì ê´€ë¦¬ í•­ëª©</li>
-			<li id="host_manage"><a target="iframe1" href="admin_hosts.do">íŒë§¤ì íšŒì› ê´€ë¦¬</a></li>
-			<li id="host_requests"><a target="iframe1" href="admin_host_request.do">ì‹ ì²­ë¦¬ìŠ¤íŠ¸</a></li>
+			<li id="host">ÆÇ¸ÅÀÚ °ü¸® Ç×¸ñ</li>
+			<li id="host_manage"><a target="iframe1" href="admin_hosts.do">ÆÇ¸ÅÀÚ È¸¿ø °ü¸®</a></li>
+			<li id="host_requests"><a target="iframe1" href="admin_host_request.do">½ÅÃ»¸®½ºÆ®</a></li>
 			
-			<li id="spaces"><a target="iframe1" href="admin_spaces.do">ë¬¼í’ˆ ê´€ë¦¬</a></li>
+			<li id="spaces"><a target="iframe1" href="admin_spaces.do">¹°Ç° °ü¸®</a></li>
 			
-			<li id="clubs"><a target="iframe1" href="admin_clubs.do">ëª¨ì„ ê´€ë¦¬</a></li>
+			<li id="clubs"><a target="iframe1" href="admin_clubs.do">¸ğÀÓ °ü¸®</a></li>
 			
-			<li id="community">ì»¤ë®¤ë‹ˆí‹° ê´€ë¦¬</li>
-			<li id="community_free"><a target="iframe1" href="admin_community_board_list.do">ììœ  ê²Œì‹œíŒ ê´€ë¦¬</a></li>
-			<li id="community_review"><a target="iframe1" href="#">í›„ê¸° ê²Œì‹œíŒ ê´€ë¦¬</a></li>
-			<li id="community_question"><a target="iframe1" href="admin_community_qna_list.do">Q&A ê´€ë¦¬</a></li>
+			<li id="community">Ä¿¹Â´ÏÆ¼ °ü¸®</li>
+			<li id="community_free"><a target="iframe1" href="admin_community_board_list.do">ÀÚÀ¯ °Ô½ÃÆÇ °ü¸®</a></li>
+			<li id="community_review"><a target="iframe1" href="admin_community_review_list.do">ÈÄ±â °Ô½ÃÆÇ °ü¸®</a></li>
+			<li id="community_question"><a target="iframe1" href="admin_community_qna_list.do">Q&A °ü¸®</a></li>
 			
-			<li id="admin_user">ê³µì§€ í•­ëª© ê´€ë¦¬</li>
-			<li id="admin_announcement"><a target="iframe1" href="admin_notice_list.do">ê³µì§€ ê´€ë¦¬</a></li>
-			<li id="admin_event"><a target="iframe1" href="admin_event_list.do">ì´ë²¤íŠ¸ ê´€ë¦¬</a></li>
-			<li id="admin_faq"><a target="iframe1" href="admin_faq.do">FAQ ê´€ë¦¬</a></li>
+			<li id="admin_user">°øÁö Ç×¸ñ °ü¸®</li>
+			<li id="admin_announcement"><a target="iframe1" href="admin_notice_list.do">°øÁö °ü¸®</a></li>
+			<li id="admin_event"><a target="iframe1" href="admin_event_list.do">ÀÌº¥Æ® °ü¸®</a></li>
+			<li id="admin_faq"><a target="iframe1" href="admin_faq.do">FAQ °ü¸®</a></li>
 			
-			<li id="one_one">1:1 ê´€ë¦¬</li>
-			<li id="one_one_request"><a target="iframe1" href="admin_o2oQnA.do">1:1 ë¬¸ì˜ í•˜ê¸°(í…ŒìŠ¤íŠ¸ ìš©)</a></li>
-			<li id="one_one_un_reple"><a target="iframe1" href="admin_o2oQnA_list.do">ë¬¸ì˜ ë¯¸ ë‹µë³€ ê´€ë¦¬</a></li>
-			<li id="one_one_reple_done"><a target="iframe1" href="admin_o2oQnA_list_reply.do">ë¬¸ì˜ ë‹µë³€ ì™„ë£Œ ë³´ê¸°</a></li>
+			<li id="one_one">1:1 °ü¸®</li>
+			<li id="one_one_request"><a target="iframe1" href="admin_o2oQnA.do">1:1 ¹®ÀÇ ÇÏ±â(Å×½ºÆ® ¿ë)</a></li>
+			<li id="one_one_un_reple"><a target="iframe1" href="admin_o2oQnA_list.do">¹®ÀÇ ¹Ì ´äº¯ °ü¸®</a></li>
+			<li id="one_one_reple_done"><a target="iframe1" href="admin_o2oQnA_list_reply.do">¹®ÀÇ ´äº¯ ¿Ï·á º¸±â</a></li>
 			
-			<li id="message">ìª½ì§€ ê´€ë¦¬</li>
-			<li id="sending_message"><a target="iframe1" href="admin_message_write.do">ìª½ì§€ ë³´ë‚´ê¸°</a></li>
-			<li id="have_messages"><a target="iframe1" href="admin_message_read_get.do">ë°›ì€ ìª½ì§€í•¨</a></li>
-			<li id="to_messages"><a target="iframe1" href="admin_message_read_to.do">ë³´ë‚¸ ìª½ì§€í•¨</a></li>
+			<li id="message">ÂÊÁö °ü¸®</li>
+			<li id="sending_message"><a target="iframe1" href="admin_message_write.do">ÂÊÁö º¸³»±â</a></li>
+			<li id="have_messages"><a target="iframe1" href="admin_message_read_get.do">¹ŞÀº ÂÊÁöÇÔ</a></li>
+			<li id="to_messages"><a target="iframe1" href="admin_message_read_to.do">º¸³½ ÂÊÁöÇÔ</a></li>
 		</ul>
 	</aside>
 	

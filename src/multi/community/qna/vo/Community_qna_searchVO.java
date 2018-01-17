@@ -1,6 +1,10 @@
 package multi.community.qna.vo;
 
 public class Community_qna_searchVO {
+	private String comm_search_option;
+	private String comm_search_content;
+	private Integer start;
+	
 	public String getComm_search_option() {
 		return comm_search_option;
 	}
@@ -14,6 +18,10 @@ public class Community_qna_searchVO {
 		this.comm_search_content = comm_search_content;
 	}
 	
-	private String comm_search_option;
-	private String comm_search_content;
+	public Integer getStart() {
+		return start;
+	}
+	public void setStart(Integer start) {
+		this.start = start;
+	}
 }

@@ -13,7 +13,7 @@
 		<parameter property="passwd" mode="IN"/>
 	</parameterMap>
 	
-	
+	<!-- 회원정보수정 비밀번호확인 -->
 	<select id="p_mypage_ckpass" parameterMap="PM_ckpass" resultType="java.lang.Integer" statementType="CALLABLE">
 		{call p_mypage_ckpass(?,?)}
 	</select>
@@ -31,7 +31,7 @@
 		<result property="email" column="email"/>
 	</resultMap>
 	
-	
+	<!-- 회원정보갖고오기 -->
 	<select id="p_mypage_find_user" parameterType="java.lang.String" resultMap="RM_find_user"  statementType="CALLABLE">
 		{call p_mypage_find_user(#{user_id})}
 	</select>
@@ -44,10 +44,12 @@
 		<parameter property="email" mode="IN"/>
 	</parameterMap>
 	
+	<!-- 회원정보수정 -->
 	<update id="p_mypage_mod_user" parameterMap="PM_mypage_mod_user">
 		{call p_mypage_mod_user(?,?,?,?,?)}
 	</update>
 	
+	<!-- 회원탈퇴 -->
 	<delete id="p_mypage_del_user" parameterType="java.lang.String" statementType="CALLABLE">
 		{call p_mypage_del_user(#{user_id})}
 	</delete>
@@ -60,7 +62,7 @@
 		<result property="detail" column="detail"/>
 	</resultMap>
 	
-	
+	<!-- zipcode 가져오기 -->
 	<select id="p_user_zipcode_find" resultMap="RM_p_user_zipcode_find" parameterType="java.lang.String" statementType="CALLABLE">
 		{call p_user_zipcode_find(#{user_id})}
 	</select>

@@ -71,22 +71,24 @@ public class CtrlClub_board {
 			List<Club_board_repleVO> reVO = clubDAO.club_find_board_reple(pvo);
 			
 			StringBuffer sb = null;
-			
-			for (Club_board_repleVO vo : reVO) {
-				if (sb == null) {
-					sb = new StringBuffer();
-			        sb.append("{data:[");
-			} else {
-				sb.append(",");
+			try{
+				for (Club_board_repleVO vo : reVO) {
+					if (sb == null) {
+						sb = new StringBuffer();
+						sb.append("{data:[");
+					} else {
+						sb.append(",");
+					}
+					sb.append("{'user_id' :'").append(vo.getUser_id()).append("', 'c_board_reple_content' : '").append(vo.getC_board_reple_content())
+					.append("', 'the_time' : '").append(vo.getThe_time()).append("', 'c_board_no' : '").append(vo.getC_board_no()).append("', 'c_board_reple_no' : '")
+					.append(vo.getC_board_reple_no()).append("'}");
+					
+				}
+				sb.append("]}");
+				return sb.toString();
+			}catch(Exception e){
+				return null;
 			}
-			sb.append("{'user_id' :'").append(vo.getUser_id()).append("', 'c_board_reple_content' : '").append(vo.getC_board_reple_content())
-			.append("', 'the_time' : '").append(vo.getThe_time()).append("', 'c_board_no' : '").append(vo.getC_board_no()).append("', 'c_board_reple_no' : '")
-			.append(vo.getC_board_reple_no()).append("'}");
-			
-			}
-			sb.append("]}");
-			System.out.println(sb.toString());
-			return sb.toString();
 		}
 		
 		//모임 커뮤니티 게시판 수정 페이지 호출

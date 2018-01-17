@@ -12,26 +12,31 @@ public class MyInfoDAO_MybatisProcImpl implements MyInfoDAO{
 	@Autowired @Qualifier("sqlSession")
 	private SqlSession  sqlSession = null; 
 	
+	//내정보수정들어갈때 패스워드확인
 	@Override
 	public int ckpass(UserVO uvo) throws Exception {
 		return sqlSession.selectOne("myinfo.p_mypage_ckpass",uvo);
 	}
 
+	//내정보 갖고오기
 	@Override
 	public UserVO find_user(String user_id) throws Exception {
 		return sqlSession.selectOne("myinfo.p_mypage_find_user",user_id);
 	}
 
+	//내정보수정쿼리
 	@Override
 	public int mod_user(UserVO uvo) throws Exception {
 		return sqlSession.update("myinfo.p_mypage_mod_user",uvo);
 	}
 
+	//회원탈퇴
 	@Override
 	public int del_user(String user_id) throws Exception {
 		return sqlSession.delete("myinfo.p_mypage_del_user",user_id);
 	}
 
+	//zipcode 탐색
 	@Override
 	public ZipcodeVO find_zipcode(String user_id) throws Exception {
 		return sqlSession.selectOne("myinfo.p_user_zipcode_find",user_id);

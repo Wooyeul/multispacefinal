@@ -18,12 +18,14 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.ResponseBody;
 import multi.mypage.message.dao.MessageDAO;
 import multi.mypage.message.dao.UserDAO;
 import multi.mypage.message.dao.User_clubDAO;
+import multi.mypage.vo.Mypage_searchVO;
 import main.vo.MessageVO;
 import main.vo.UserVO;
 import main.vo.User_clubVO;
@@ -49,15 +51,25 @@ public class CtrlMessage {
 	 * 쪽지함은 기본으로 받은쪽지함 mypage_receive_message.jsp 가 나옴.
 	 */
 	@RequestMapping("/mypage_moveMypageReceiveMessagePage.do")
-	public ModelAndView moveMypageReceiveMessagePage(@CookieValue("user_id") String user_id) throws Exception {
+	public ModelAndView moveMypageReceiveMessagePage(@CookieValue("user_id") String user_id,
+			@ModelAttribute Mypage_searchVO search,
+			@RequestParam("pg") String pg) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		List<MessageVO> receiveMessage = MessageDAO.find_receiveMessage(user_id);
-
+		//List<MessageVO> receiveMessage = MessageDAO.find_receiveMessage(user_id);
+		search.setUser_id(user_id);
+		
 		if (userInfo != null) {
 			ModelAndView mnv = new ModelAndView("mypage_receive_message");
+			List<MessageVO> receiveMessage = MessageDAO.search_receivemsg(search);
+			PaginationDTO pz = new PaginationDTO().init(pg, receiveMessage.size());
+			search.setStart_no(pz.getSkip());
+			receiveMessage = MessageDAO.search_receivemsg(search);
+			
 			mnv.addObject("userInfo", userInfo);
 			mnv.addObject("receiveMessage", receiveMessage);
+			mnv.addObject("pz", pz);
+			mnv.addObject("search", search);
 			return mnv;
 		} else {
 			return null;
@@ -91,15 +103,27 @@ public class CtrlMessage {
 	 * 내가 보낸 쪽지 들이 보임
 	 */
 	@RequestMapping("/mypage_moveMypageSendMessagePage.do")
-	public ModelAndView moveMypageSendMessagePage(@CookieValue("user_id") String user_id) throws Exception {
+	public ModelAndView moveMypageSendMessagePage(@CookieValue("user_id") String user_id,
+			@ModelAttribute Mypage_searchVO search,
+			@RequestParam("pg") String pg) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		List<MessageVO> sendMessage = MessageDAO.find_sendMessage(user_id);
+		search.setUser_id(user_id);
+		//List<MessageVO> sendMessage = MessageDAO.find_sendMessage(user_id);
 
 		if (userInfo != null) {
 			ModelAndView mnv = new ModelAndView("mypage_send_message");
+			
+			List<MessageVO> sendMessage = MessageDAO.search_sendmsg(search);
+			PaginationDTO pz = new PaginationDTO().init(pg, sendMessage.size());
+			search.setStart_no(pz.getSkip());
+			sendMessage = MessageDAO.search_sendmsg(search);
+			
+			
 			mnv.addObject("userInfo", userInfo);
 			mnv.addObject("sendMessage", sendMessage);
+			mnv.addObject("pz", pz);
+			mnv.addObject("search", search);
 			return mnv;
 		} else {
 			return null;

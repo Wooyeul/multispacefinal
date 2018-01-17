@@ -7,6 +7,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	
 	<script type="text/javascript" src="common.js"></script>
 	
 	<style>
@@ -58,16 +60,26 @@
 		<input id="clubApply" type="button" value="신청하기" style="display: none">
 		<input id="moveCommunity" type="button" value="모임커뮤니티 가기" style="display: none">
 		<br/><br/><br/>
-		<h3>모임 장소 추천 페이지(이미지 슬라이딩으로 구현 예정)</h3>
-		<table class="table" style="border: 1px solid;">
-			<tr style="border: 1px solid;">
-				<jl:forEach items="${sVO}" var="svo">
-					<td style="border: 1px solid;"><a href="space_detail.do?space_no=${svo.space_no}">
-					<img src="thumbnail/${svo.space_thumb_img}.jpg" alt="공간 사진 없음" width="100" height="130"/></a></td>
-				</jl:forEach>
-			</tr>
-		</table>
 		
+		<h3>모임 장소 추천 페이지(이미지 슬라이딩으로 구현 예정)</h3>
+		<%-- <div class="cycle-slideshow" align="center"
+			data-cycle-fx="scrollHorz"
+			data-cycle-pause-on-hover="true"
+			data-cycle-speed="200">
+			<jl:forEach items="${sVO}" var="svo">
+				<a href="space_detail.do?space_no=${svo.space_no}">
+				<img src="thumbnail/${svo.space_thumb_img}" alt="공간 사진 없음"/></a>
+			</jl:forEach>
+		    <img src="thumbnail/abc.jpg"/>
+		    <img src="thumbnail/Penguins.jpg"/>
+		    <img src="thumbnail/Tulips.jpg"/>
+	    </div> --%>
+	    <div id="img_slide">
+			<jl:forEach items="${sVO}" var="svo">
+				<a href="space_detail.do?space_no=${svo.space_no}">
+				<img src="thumbnail/${svo.space_thumb_img}" alt="공간 사진 없음"/></a>
+			</jl:forEach>
+	    </div>
 		
 		<!-- modal창 시작 -->
 		<form id="frm" action="club_apply.do" method="post">
@@ -185,20 +197,27 @@
 			});
 			var url = "chk_login.do";
 		 	ajaxGet(url,function(rt){
-			 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
-			 if(rt =="10002"){ 
+			// 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+			if(rt =="10002"){ 
 				$("#login_nav").hide();
 				$("#non_login_nav").show();
 			}
-			 					
-			 // 로그인 시 : rt값 -> user_name
+			// 로그인 시 : rt값 -> user_name
 			else if(rt!=""){ 
 			$("#login_nav").show();
 			$("#non_login_nav").hide(); 
 			$("#user_name").text(rt+"님이 로그인하셨습니다.");
 				}
-			 });
+			});
+		 	
+		 	/* 이미지 슬라이드 구현 */
+		 	$("img").css("width",200);
+		 	setInterval(function(){
+		 		$("#img_slide").append($("img").first());
+		 	},2000);
+		 	
 		});
+		
 	</script>	
 	
 </body>

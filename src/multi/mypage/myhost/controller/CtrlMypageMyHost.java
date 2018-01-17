@@ -1,6 +1,5 @@
 package multi.mypage.myhost.controller;
 
-import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,13 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
+import main.PaginationDTO;
 import main.RequestMapping;
+import main.RequestParam;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
 import multi.mypage.myhost.dao.MyHostDAO;
+import multi.mypage.vo.Mypage_searchVO;
 
 /**
  * @author sb
@@ -27,7 +29,10 @@ public class CtrlMypageMyHost {
 	
 	//판매자 여부 확인
 	@RequestMapping("/myhost_findAll.do")
-	public ModelAndView findHost(@CookieValue("user_id") String user_id,@ModelAttribute HostVO hvo) throws Exception{
+	public ModelAndView findHost(@CookieValue("user_id") String user_id,
+			@ModelAttribute HostVO hvo,
+			@ModelAttribute Mypage_searchVO search,
+			@RequestParam("pg") String pg) throws Exception{
 		
 		ModelAndView mnv = new ModelAndView();
 		int flag = myhostDAO.ckhost(user_id);
@@ -35,9 +40,19 @@ public class CtrlMypageMyHost {
 		if(flag >= 1){
 			//이미 판매자일때
 			mnv.setViewName("myhost_findSpace");
-			List<SpaceVO> rl = myhostDAO.findMySpace(user_id);
+			//List<SpaceVO> rl = myhostDAO.findMySpace(user_id);
+			search.setUser_id(user_id);
+			
+			List<SpaceVO> rl = myhostDAO.searchSpace(search);
+			PaginationDTO pz = new PaginationDTO().init(pg, rl.size());
+			search.setStart_no(pz.getSkip());
+			rl = myhostDAO.searchSpace(search);
 			
 			mnv.addObject("rl", rl);
+			mnv.addObject("pz", pz);
+			mnv.addObject("search", search);
+			mnv.addObject("user_id", user_id);
+			
 		} else if(flag == 0 ){	
 			//판매자 아닐때
 			mnv.setViewName("myhost_addButton");

@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +19,10 @@ table {
 </script>
 </head>
 <body>
-<h1>íŒë§¤ìž ìœ ì € ê³µê°„ ìƒì„¸ ì •ë³´</h1>
+<h1>ÆÇ¸ÅÀÚ À¯Àú °ø°£ »ó¼¼ Á¤º¸</h1>
 	<table border="1">
 		<tr>
-			<td>íŒë§¤ìž ì´ë¦„</td>
+			<td>ÆÇ¸ÅÀÚ ÀÌ¸§</td>
 			<td>${host_name}</td>
 		</tr>
 	</table>
@@ -32,20 +31,20 @@ table {
 	<br/>
 		<table border="1">
 		<tr>
-			<td>ì‚¬ì—…ìž ë“±ë¡ ë²ˆí˜¸</td>
-			<td>ê³µê°„ ì´ë¦„</td>
-			<td>ê³µê°„ ë‚´ìš©</td>
-			<td>ê³µê°„ ì¸ë¸Œë„¤ì¼ ì´ë¯¸ì§€</td>
-			<td>ì˜¤í”ˆ ì‹œê°„</td>
-			<td>í´ë¡œì¦ˆ ì‹œê°„</td>
-			<td>ê°€ê²©</td>
-			<td>ìµœëŒ€ ì¸ì›</td>
-			<td>ìµœì†Œ ì¸ì›</td>
-			<td>ê³µê°„ ë²ˆí˜¸</td>
-			<td>ì£¼ì†Œ</td>
-			<td>ê³µê°„ ì¹´í…Œê³ ë¦¬</td>
-			<td>ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</td>
-			<td>ìƒì„±ì¼</td>
+			<td>»ç¾÷ÀÚ µî·Ï ¹øÈ£</td>
+			<td>°ø°£ ÀÌ¸§</td>
+			<td>°ø°£ ³»¿ë</td>
+			<td>°ø°£ ½æºê³×ÀÏ ÀÌ¹ÌÁö</td>
+			<td>¿ÀÇÂ ½Ã°£</td>
+			<td>Å¬·ÎÁî ½Ã°£</td>
+			<td>°¡°Ý</td>
+			<td>ÃÖ´ë ÀÎ¿ø</td>
+			<td>ÃÖ¼Ò ÀÎ¿ø</td>
+			<td>°ø°£ ¹øÈ£</td>
+			<td>ÁÖ¼Ò</td>
+			<td>°ø°£ Ä«Å×°í¸®</td>
+			<td>Àå¼Ò Ä«Å×°í¸®</td>
+			<td>»ý¼ºÀÏ</td>
 		</tr>
 		<jl:forEach var="vo" items="${ls}">
 			<tr>

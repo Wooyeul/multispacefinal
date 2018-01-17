@@ -19,6 +19,9 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 $(document).ready(function() {
 
+		/* 시작했을 때 find_reple() 이벤트 실행 */
+		find_reple();
+		
 		//글삭제
 		$("#btnDel").on("click",function(){
 			$("#deltext").modal("show");
@@ -33,63 +36,90 @@ $(document).ready(function() {
 		//글삭제끝
 	
 	
-		//댓글 수정
 	    $("#btnClose").on("click",function(){
 	    	$("#repleModal").modal("hide");
 	    });
-	    
 
-		$(".modReple").on("click", function() {
+		/* 댓글 수정 비동기 처리 */
+		$(document).on("click",".modReple",function() {
 			$("#com_board_reple_no").val($(this).attr("xyz"));
 			$("#content").val($("#" + $(this).attr("abcd")).text());
 			$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
 			$("#repleModal").modal("show");
 			
 			$("#btnMod").on("click",function(){
-				$("#repleModal").modal("hide");
-				$("#modalmod").modal("show");
-				
-				$("#modalmod").on("hidden.bs.modal",function(){
-					$("#reple_form").submit();
-				});
-				
+				var formData = $("#reple_form").serialize();
+				$.ajax({
+					type : "POST",
+					url : "community_board_replemod.do",
+					data : formData,
+					success	: function(rt) {
+						$("#repleModal").modal("hide");
+						if(rt=="ok"){
+							$("#mobody").text("댓글이 수정 되었습니다.");
+							$("#modal").modal("show");
+							$("#ft").html("");
+							$("#modal").on("hidden.bs.modal",function(){
+								$("#modal").modal("hide");
+								$("#com_board_reple_content").val("");
+								find_reple();
+							});
+						}else if(rt=="no"){
+							$("#mobody").text("댓글 수정 처리가 실패 되었습니다.");
+							$("#modal").modal("show");
+							$("#ft").html("");
+							$("#modal").on("hidden.bs.modal",function(){
+								$("#modal").modal("hide");
+								find_reple();
+							});
+						}
+				    }
+				});	
 			});
 		});
 
 	    $(".abcd").on("click",function(e){
 	           alert();
 	    });
-	  //댓글 수정끝
-	    
-		
+	    /* 댓글 수정 비동기 처리 */
     
-		//댓글삭제
-		$(".delRe").on("click",function(){
-			
-	 			var com_board_reple_no = $(this).attr("aa");
-				var com_board_no = $(this).attr("bb");
-				$("#mohead").html("<div class='modal-title'align='center'><h4>댓글삭제</h4></div>");
-				$("#mobody").html("<h3>댓글을 삭제하시겠습니까?</h3>");
-				$("#ft").html("<button type='button' class='btn btn-default' id='modal-btn-Yes'>확인</button>"+
-						"<button type='button' class='btn btn-primary' id='modal-btn-No'>취소</button>");
-				$("#modal").modal();
-				$("#modal-btn-Yes").on("click",function(){
-					location.href="community_board_repledel.do?com_board_reple_no="+com_board_reple_no+"&com_board_no="+com_board_no;
+		/* 댓글 삭제 부분 비동기 처리 */
+		$(document).on("click",".delRe",function(){
+ 			var com_board_reple_no = $(this).attr("aa");
+			var com_board_no = $(this).attr("bb");
+			$("#mohead").html("<div class='modal-title'align='center'><h4>댓글삭제</h4></div>");
+			$("#mobody").html("<h3>댓글을 삭제하시겠습니까?</h3>");
+			$("#ft").html("<button type='button' class='btn btn-default' id='modal-del-Yes'>확인</button>"+
+					"<button type='button' class='btn btn-primary' id='modal-del-No'>취소</button>");
+			$("#modal").modal();
+			$("#modal-del-Yes").on("click",function(){
+				var url = "community_board_repledel.do?com_board_reple_no="+com_board_reple_no+"&com_board_no="+com_board_no;
+				ajaxGet(url,function(rt){
+					if(rt=="ok"){
+						$("#mobody").text("댓글이 삭제 되었습니다.");
+						$("#ft").html("");
+						$("#modal").modal("show");
+						$("#modal").on("hidden.bs.modal",function(){
+							$("#modal").modal("hide");
+							find_reple();
+						});
+					}else if(rt=="no"){
+						$("#mobody").text("댓글 삭제 처리가 실패 되었습니다.");
+						$("#ft").html("");
+						$("#modal").modal("show");
+						$("#modal").on("hidden.bs.modal",function(){
+							$("#modal").modal("hide");
+							find_reple();
+						});
+					}
 				});
-				$("#modal-btn-No").on("click",function(){
-					$("#modal").modal("hide");
-				}); 
+			});
+			$("#modal-del-No").on("click",function(){
+				$("#modal").modal("hide");
+			}); 
 		});
-
-				$("#modal-btn-Yes").on("click",function(){
-					$("#mohead").html("<div class=div class='modal-title'align='center'><h4>댓글삭제완료</h4></div>");
-					$("ft").html("<button type='button' class='btn btn-default' id='modal-btn-Yes'>확인</button>");
-					
-				});
-		//댓글삭제끝
+		/* 댓글 삭제 부분 비동기 처리 */
 	
-		
-		
 		//추천
 		$("#btnrecom").on("click",function(){
 			var dc = "?dc=" + new Date().getTime();
@@ -102,9 +132,61 @@ $(document).ready(function() {
 			});
 		});
 		//추천끝
+		
+		/* 댓글 등록 부분 비동기 처리 */
+		$("#submit_btn").on("click",function(){
+			var formData = $("#add_reple_frm").serialize();
+			$.ajax({
+				type : "POST",
+				url : "community_board_addreple.do",
+				data : formData,
+				success	: function(rt) {
+					if(rt=="ok"){
+						$("#mobody").text("댓글이 등록 되었습니다.");
+						$("#ft").html("");
+						$("#modal").modal("show");
+						$("#modal").on("hidden.bs.modal",function(){
+							$("#modal").modal("hide");
+							$("#com_board_reple_content").val("");
+							find_reple();
+						});
+					}else if(rt=="no"){
+						$("#mobody").text("댓글 처리가 실패 되었습니다.");
+						$("#ft").html("");
+						$("#modal").modal("show");
+						$("#modal").on("hidden.bs.modal",function(){
+							$("#modal").modal("hide");
+							find_reple();
+						});
+					}
+			    }
+			});	
+		});
+		/* 댓글 등록 부분 비동기 처리 */
+	})
 	
-});
-
+	/* 댓글 조회 비동기 처리 */
+	function find_reple(){
+			var url = "community_board_read_reple.do?com_board_no="+${vo.com_board_no};
+		 	ajaxGet(url,function(rt){
+			 	if(rt!=''){
+				 	var list = window.eval("("+rt+")");
+				 	var html = "<tr><th>NO</th><th>CONTENT</th><th>TIME</th><th>USERID</th></tr>";
+				 	for( var i = 0 ; i < list.data.length ; i++ ){
+				 		html += "<tr><td>"+list.data[i].com_board_reple_no+"</td>";
+				 		html += "<td> <span id='rb_"+list.data[i].com_board_reple_no+"'>"+list.data[i].com_board_reple_content+"</span>";
+						if('${user_id == list.data[i].user_id}'){
+				 			html += " <input type='button' class='modReple' value='수정' abcd='rb_"+list.data[i].com_board_reple_no+"' xyz='"+list.data[i].com_board_reple_no+"' />";
+					 		html += " <input type='button' class='delRe' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/></td></tr>";
+						}
+				 	}//end for
+	                $('#reple_tr').html(html);
+			 	}else{
+			 		$('#reple_tr').html("");
+			 	}
+		 	});
+		}
+	/* 댓글 조회 비동기 처리 */
 </script>
 
 
@@ -133,31 +215,15 @@ $(document).ready(function() {
 		<tr>
 		<td colspan="6" align="center"></td>
 		</tr>
-<!-- 댓글테이블 -->
-		<tr>
-			<th>NO</th>
-			<th>CONTENT</th>
-			<th>TIME</th>
-			<th>USERID</th>
-
-		</tr>
-
-		<jl:forEach var="vo2" items="${rl}">
-		<tr>
-			<td>${vo2.com_board_reple_no}</td>
-			<td> <span id="rb_${vo2.com_board_reple_no}"> ${vo2.com_board_reple_content} </span>
-														
-			<jl:if test="${user_id eq vo2.user_id}"> 
- 			 <input type="button" class="modReple" value="수정" abcd="rb_${vo2.com_board_reple_no}" xyz="${vo2.com_board_reple_no}" />	</jl:if>
-			
-			<jl:if test="${vo2.user_id eq user_id}"> 
-			<input type="button" class="delRe" value="삭제" aa="${vo2.com_board_reple_no}" bb="${vo2.com_board_no}"/> </jl:if>
-			
-			 </td>
-		</tr>
-		</jl:forEach>
+		
+		
+		
+		<!-- 댓글테이블 -->
+		<!-- 댓글 리스트가 추가될 영역 -->
+		<table class="table" id="reple_tr">
+		
+		</table>
 	</table>
-
 
 <!--  글수정-->
 	<form action="community_board_mod.do" method="POST">
@@ -184,18 +250,18 @@ $(document).ready(function() {
 	<input type="button" id="btnrecom"  class="btn btn-primary" value="추천버튼" />
 	
 <!--  댓글추가 -->
-	<form action="community_board_addreple.do" method="POST">
-	댓글: <input type="text" name="com_board_reple_content" size="30"/> 
-	<input type="hidden" name="com_board_no" value="${vo.com_board_no}"/> 
-	<input type="hidden" name="user_id" value="${vo.user_id}" /> 
-	<input type="submit" class="btn btn-primary" value="댓글달기!" />
+	<form id="add_reple_frm">
+		댓글: <input type="text" id="com_board_reple_content" name="com_board_reple_content" size="30"/> 
+		<input type="hidden" name="com_board_no" value="${vo.com_board_no}"/> 
+		<input type="hidden" name="user_id" value="${vo.user_id}" /> 
+		<input id="submit_btn" type="button" class="btn btn-primary" value="댓글달기!" />
 	</form>
 <!--  댓글추가끝 -->	
 	
 <!-- 모달부분 -->
 
 <!-- 리플수정모달폼 -->
-	<form method="POST" action="community_board_replemod.do" id="reple_form">
+	<form id="reple_form">
 		<div id="repleModal" class="modal" role="dialog">
 			<input type="hidden" id="com_board_no" value="${vo.com_board_no}"
 				name="com_board_no" /> <input id="com_board_reple_no" type="hidden" name="com_board_reple_no" />

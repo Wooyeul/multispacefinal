@@ -236,8 +236,9 @@
 						html += "<a class='delRe' reNo='"+list.data[i].c_notice_reple_no+"' noticeNo='"+list.data[i].c_notice_no+"' user_id='"+list.data[i].user_id+ 
 							"'href='#'><span class='glyphicon glyphicon-remove'></span></a>"+
 							"<a reNo='"+list.data[i].c_notice_reple_no+"'  reText='"+list.data[i].c_notice_reple_content+"' class='modRe' href='#'>"+
-							"<span class='glyphicon glyphicon-pencil'></span></a></label><br/><hr/>";
+							"<span class='glyphicon glyphicon-pencil'></span></a>";
 					}//end if
+					html += "</label><br/><hr/>";
 			 	}//end for
                    $('#reple_list').html(html);
 		 	});

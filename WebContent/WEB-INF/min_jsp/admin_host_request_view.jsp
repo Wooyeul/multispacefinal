@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,15 +19,15 @@ table {
 </script>
 </head>
 <body>
-<h1>íŒë§¤ìž ì‹ ì²­ ì •ë³´</h1>
+<h1>ÆÇ¸ÅÀÚ ½ÅÃ» Á¤º¸</h1>
 <table border="1">
 	<tr>
-		<td>ì‚¬ì—…ìž ë²ˆí˜¸</td>
-		<td>ìœ ì € ID</td>
-		<td>íŒë§¤ìž ì´ë¦„</td>
-		<td>íŒë§¤ìž ê³„ì¢Œ</td>
-		<td>ì£¼ì†Œ</td>
-		<td>ì°¸ê³ ì‚¬í•­(ê±°ì ˆ ì‚¬í•­)</td>
+		<td>»ç¾÷ÀÚ ¹øÈ£</td>
+		<td>À¯Àú ID</td>
+		<td>ÆÇ¸ÅÀÚ ÀÌ¸§</td>
+		<td>ÆÇ¸ÅÀÚ °èÁÂ</td>
+		<td>ÁÖ¼Ò</td>
+		<td>Âü°í»çÇ×(°ÅÀý »çÇ×)</td>
 	</tr>
 	<tr>
 		<td>${vo.crn}</td>
@@ -45,22 +45,22 @@ table {
 	<input type="hidden" name="host_name" value="${vo.host_name}"></input>
 	<input type="hidden" name="host_account" value="${vo.host_account}"></input>
 	<input type="hidden" name="zipcode" value="${vo.zipcode}"></input>
-	<button type="submit">íŒë§¤ìž ë“±ë¡ í•˜ê¸°</button>
+	<button type="submit">ÆÇ¸ÅÀÚ µî·Ï ÇÏ±â</button>
 </form>
 <br/>
 <form method="post" action="admin_host_user_refuse_write.do">
 	<input type="hidden" name="host_apply_no" value="${vo.host_apply_no}"></input>
 	<input type="hidden" name="etc" value="${vo.etc}"></input>
-	<button type="submit">ì°¸ê³  ì‚¬í•­(ê±°ì ˆ ì‚¬í•­) ìž‘ì„± í•˜ê¸°</button>
+	<button type="submit">Âü°í »çÇ×(°ÅÀý »çÇ×) ÀÛ¼º ÇÏ±â</button>
 </form>
 <br/>
 <form method="post" action="admin_host_user_remove_request.do">
 	<input type="hidden" name="host_apply_no" value="${vo.host_apply_no}"></input>
-	<button type="submit">íŒë§¤ìž ì‹ ì²­ ì‚¬í•­ ì‚­ì œ</button>
+	<button type="submit">ÆÇ¸ÅÀÚ ½ÅÃ» »çÇ× »èÁ¦</button>
 </form>
 <br/>
 <form method="post" action="admin_host_request.do">
-	<button type="submit">ì·¨ì†Œ í•˜ê¸°</button>
+	<button type="submit">Ãë¼Ò ÇÏ±â</button>
 </form>
 
 </body>

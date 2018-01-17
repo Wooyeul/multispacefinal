@@ -9,7 +9,6 @@ import multi.admin.vo.Admin_searchVO;
 public interface Admin_SpaceDAO {
 	public List<SpaceVO> findHostPlaces( SpaceVO svo ) throws Exception;
 	public List<SpaceVO> host_spaces_search(Admin_searchVO pvo) throws Exception;
-	public List<SpaceVO> host_spaces_search2(Admin_searchVO pvo) throws Exception;
 	public int removeSpace(SpaceVO svo) throws Exception;
 	public HostVO space_crn_check(SpaceVO svo) throws Exception;
 }

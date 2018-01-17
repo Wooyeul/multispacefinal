@@ -19,11 +19,18 @@
 		<result property="review_img" column="review_img"/>
 	</resultMap>
 	
-	
+	<!-- 후기찾기 -->
 	<select id="p_MPreview_find" parameterType="java.lang.String" resultMap="RM_p_review_find" statementType="CALLABLE">
 		{call p_MPreview_find(#{user_id})}
 	</select>
 	
+	<!-- 후기찾기 페이징 -->
+	<select id="mypage_search_review" parameterType="multi.mypage.vo.Mypage_searchVO" resultType="main.vo.ReviewVO">
+		SELECT * FROM reviewT where user_id = #{user_id} AND 0=0
+		<if test="start_no !=null">
+			ORDER BY user_id ASC LIMIT #{start_no},10
+		</if>
+	</select>
 	
 </mapper>
 
