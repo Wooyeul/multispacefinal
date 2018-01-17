@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.Space_qnaVO;
+import multi.space.vo.Space_qna_searchVO;
 
 public class Space_QnADAO_MySQLImpl implements Space_QnADAO{
 	
@@ -20,7 +21,7 @@ public class Space_QnADAO_MySQLImpl implements Space_QnADAO{
 	}
 
 	@Override
-	public List<Space_qnaVO> find_space_QnA_by_space_no(Space_qnaVO vo) throws Exception {
+	public List<Space_qnaVO> find_space_QnA_by_space_no(Space_qna_searchVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space_qna.find_spaceQnA_by_space_no",vo);
 	}

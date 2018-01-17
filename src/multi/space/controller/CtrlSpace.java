@@ -34,6 +34,7 @@ import main.vo.SpaceVO;
 import main.vo.Space_qnaVO;
 import main.vo.Space_qna_repleVO;
 import main.vo.UserVO;
+import multi.space.PaginationDTO_review;
 import multi.space.dao.BookingDAO;
 import multi.space.dao.BookmarkDAO;
 import multi.space.dao.HostDAO;
@@ -43,6 +44,8 @@ import multi.space.dao.Space_QnADAO;
 import multi.space.dao.Space_QnA_RepleDAO;
 import multi.space.dao.UserDAO;
 import multi.space.vo.ImageVO;
+import multi.space.vo.Review_searchVO;
+import multi.space.vo.Space_qna_searchVO;
 import multi.space.vo.Space_searchVO;
 
 @Controller
@@ -150,7 +153,7 @@ public class CtrlSpace {
 	public ModelAndView space_add2(HttpServletRequest request,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("redirect:/space_add_clear.jsp");
 		//String savePath = request.getServletContext().getRealPath("images");
-		String thumbnailSavePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\image";
+		String thumbnailSavePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\space_img";
 		int sizeLimit = 1024*1024*15;
 		MultipartRequest mpr = new MultipartRequest(request, thumbnailSavePath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
 		
@@ -193,7 +196,7 @@ public class CtrlSpace {
 		image.setImage_one(mpr.getFilesystemName("image_one"));
 		image.setImage_two(mpr.getFilesystemName("image_two"));
 		image.setImage_three(mpr.getFilesystemName("image_three"));
-		image.setImage_for(mpr.getFilesystemName("image_for"));
+		image.setImage_four(mpr.getFilesystemName("image_four"));
 		image.setImage_five(mpr.getFilesystemName("image_five"));
 		image.setImage_six(mpr.getFilesystemName("image_six"));
 		image.setImage_seven(mpr.getFilesystemName("image_seven"));
@@ -232,19 +235,46 @@ public class CtrlSpace {
 			return mnv;
 		}
 	
+		//리뷰 아이프레임
+	@RequestMapping("/review.do")
+	public ModelAndView review_find_by_space_no(@RequestParam("pg") String pg,@ModelAttribute Review_searchVO review,@CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code) throws Exception{
+		ModelAndView mnv = new ModelAndView("review_iframe");
+		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(review);
+		PaginationDTO_review pz_review =new PaginationDTO_review().init(pg, list_review.size());
+		review.setStart_no(pz_review.getSkip());
+		list_review = reviewDAO.find_review_by_space_no(review);
+		mnv.addObject("list_review", list_review);
+		mnv.addObject("pz_review", pz_review);
+		mnv.addObject("space_no", review.getSpace_no());
+		mnv.addObject("user_id", user_id);
+		mnv.addObject("space_code", space_code);
+		return mnv;
+	}
+	//qna 아이프레임
+	@RequestMapping("/space_qna.do")
+	public ModelAndView qna_find_by_space_no(@RequestParam("pg") String pg,@ModelAttribute Space_qna_searchVO space_qna,@CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code) throws Exception{
+		ModelAndView mnv = new ModelAndView("space_qna_iframe");
+		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_qna);
+		PaginationDTO_review pz_space_qna =new PaginationDTO_review().init(pg, list_space_qna.size());
+		space_qna.setStart_no(pz_space_qna.getSkip());
+		list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_qna);
+		mnv.addObject("list_space_qna", list_space_qna);
+		mnv.addObject("pz_space_qna", pz_space_qna);
+		mnv.addObject("space_no", space_qna.getSpace_no());
+		mnv.addObject("user_id", user_id);
+		mnv.addObject("space_code", space_code);
+		return mnv;
+	}
+		
 	//공간 상세
 	@RequestMapping("/space_detail.do")
-	public ModelAndView spacee_detail_find_by_pk(@ModelAttribute ImageVO image, @ModelAttribute SpaceVO spaceVO,@ModelAttribute Space_qnaVO space_QnAVO,
-			@ModelAttribute ReviewVO reviewVO,@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code
-			,HttpServletRequest request) throws Exception{
+	public ModelAndView space_detail_find_by_pk(@ModelAttribute ImageVO image, @ModelAttribute SpaceVO spaceVO,@ModelAttribute Review_searchVO review,@ModelAttribute Space_qna_searchVO space_qna,
+			@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code,@RequestParam("pg_review") String pg_review,@RequestParam("pg_qna") String pg_qna
+			,HttpServletRequest request,@RequestParam("review_flag") String review_flag,@RequestParam("qna_flag") String qna_flag
+			,@RequestParam("review_flag_imsi") String review_flag_imsi,@RequestParam("qna_flag_imsi") String qna_flag_imsi) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_detail");
-		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_QnAVO);
-		
 		ImageVO image2 = spaceDAO.find_image_by_space_no(image);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
-
-		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(reviewVO);
-
 		String s_category = spaceDAO.find_s_category_by_space_no(spaceVO);
 
 		List<HostVO> host = hostDAO.find_host_by_user_id(user_id);
@@ -252,15 +282,33 @@ public class CtrlSpace {
 		bookmark.setUser_id(user_id);
 		BookmarkVO return_bookmark = bookmarkDAO.find_bookmark(bookmark);
 		
+		//리뷰 페이지네이션,뽑아오기
+		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(review);
+		PaginationDTO_review pz_review =new PaginationDTO_review().init(pg_review, list_review.size());
+		review.setStart_no(pz_review.getSkip());
+		list_review = reviewDAO.find_review_by_space_no(review);
+		
+		//qna 페이지네이션,뽑아오기
+		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_qna);
+		PaginationDTO_review pz_space_qna =new PaginationDTO_review().init(pg_qna, list_space_qna.size());
+		space_qna.setStart_no(pz_space_qna.getSkip());
+		list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_qna);
+		
+		mnv.addObject("list_space_qna", list_space_qna);
+		mnv.addObject("pz_space_qna", pz_space_qna);
+		mnv.addObject("list_review", list_review);
+		mnv.addObject("pz_review", pz_review);
 		mnv.addObject("bookmark", return_bookmark);
 		mnv.addObject("space", space);
-		mnv.addObject("list_space_qna", list_space_qna);
-		mnv.addObject("list_review", list_review);
 		mnv.addObject("user_id", user_id);
 		mnv.addObject("space_code", space_code);
 		mnv.addObject("s_category", s_category);
 		mnv.addObject("host", host);
 		mnv.addObject("image", image2);
+		mnv.addObject("review_flag", review_flag);
+		mnv.addObject("qna_flag", qna_flag);
+		mnv.addObject("review_flag_imsi", review_flag_imsi);
+		mnv.addObject("qna_flag_imsi", qna_flag_imsi);
 		return mnv;
 	}
 	
@@ -302,7 +350,6 @@ public class CtrlSpace {
 		ModelAndView mnv = new ModelAndView("space_payment");
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		HostVO host = spaceDAO.find_host_by_space_no(spaceVO);
-		System.out.println(bookingVO.getBooking_date());
 		mnv.addObject("host", host);
 		mnv.addObject("space", space);
 		mnv.addObject("booking", bookingVO);
@@ -320,17 +367,12 @@ public class CtrlSpace {
 	
 	//space qna등록
 	@RequestMapping("/add_space_qna.do")
-	public String add_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id,HttpSession session,@RequestParam("cryptoLetter") String two) throws Exception{
-		String one = (String)session.getAttribute("cryptoLetter");
-		if( one == null || !( one.equals(two) ) ){
-			System.out.println("옳바르지 못한 코드를 입력했습니다");
-			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no();
-		}
+	public String add_space_qna(@ModelAttribute Space_qnaVO space_QnAVO,@CookieValue("user_id") String user_id) throws Exception{
 		if(user_id==null || user_id.length()<=1 ){
 			return "redirect:/home_moveLoginPage.do";
 		}
 		space_QnADAO.add_spaceQnA(space_QnAVO);
-		return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no()+"&space_code=20006";
+		return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no()+"&space_code=20006&qna_flag_imsi=1";
 	}
 	
 	//space qna삭제
@@ -344,10 +386,10 @@ public class CtrlSpace {
 		if(user_id.equals(qna.getUser_id())) {
 			space_QnADAO.delete_spaceQnA_by_spane_qna_no(space_QnAVO);
 			space_QnA_RepleDAO.delete_spaceQnA_by_space_qna_no(space_QnAVO);
-			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no()+"&space_code=20005";
+			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no()+"&space_code=20005&qna_flag_imsi=1";
 			
 		}
-		return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&space_code=20001";
+		return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&space_code=20001&qna_flag_imsi=1";
 	}
 	
 	//qna 수정
@@ -359,10 +401,10 @@ public class CtrlSpace {
 		Space_qnaVO qna = space_QnADAO.find_space_QnA_by_space_qna_no(space_QnAVO);
 		if(user_id.equals(qna.getUser_id())) {
 			space_QnADAO.mod_spaceQnA_by_spane_qna_no(space_QnAVO);
-			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no()+"&space_code=20004";
+			return "redirect:/space_detail.do?space_no="+space_QnAVO.getSpace_no()+"&space_code=20004&qna_flag_imsi=1";
 			
 		}
-		return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&space_code=20001";
+		return "redirect:/space_detail.do?space_no="+qna.getSpace_no()+"&space_code=20001&qna_flag_imsi=1";
 	}
 	
 	//space reple 등록
@@ -373,7 +415,7 @@ public class CtrlSpace {
 			return "redirect:/home_moveLoginPage.do";
 		}
 		space_QnA_RepleDAO.add_space_QnA_Reple_by_space_qna_no(space_QnA_RepleVO);
-		return "redirect:/space_detail.do?space_no="+space_QnA_RepleVO.getSpace_no();
+		return "redirect:/space_detail.do?space_no="+space_QnA_RepleVO.getSpace_no()+"&qna_flag_imsi=1";
 	}
 	
 	//qna_replw 뿌려주는 ajax
@@ -431,9 +473,8 @@ public class CtrlSpace {
 		reviewVO.setSpace_no(space_no);
 		reviewVO.setReview_img(review_img);
 		reviewVO.setReview_score(review_score);
-		
 		reviewDAO.add_review(reviewVO);
-		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&space_code=20003";
+		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&space_code=20003&review_flag_imsi=1";
 	}
 	
 	//후기 삭제
@@ -445,9 +486,9 @@ public class CtrlSpace {
 		ReviewVO review = reviewDAO.find_review_by_review_no(reviewVO);
 		if(user_id.equals(review.getUser_id())) {
 			reviewDAO.del_review(reviewVO);
-			return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&space_code=20002";
+			return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&space_code=20002&review_flag_imsi=1";
 		}
-		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&space_code=20001";
+		return "redirect:/space_detail.do?space_no="+reviewVO.getSpace_no()+"&space_code=20001&review_flag_imsi=1";
 		
 	}
 	

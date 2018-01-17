@@ -16,6 +16,7 @@
 			$("#pg").val($(this).attr("pg"));
 			$("#form_search").submit();
 		});
+		
 	});
  </script>
 

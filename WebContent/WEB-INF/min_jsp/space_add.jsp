@@ -258,7 +258,7 @@
 							<input type="file" name="image_one" class="form-control" id="image_1"/>
 							<input type="file" name="image_two" class="form-control" id="image_2" style="display: none;"/>
 							<input type="file" name="image_three" class="form-control" id="image_3" style="display: none;"/>
-							<input type="file" name="image_for" class="form-control" id="image_4" style="display: none;"/>
+							<input type="file" name="image_four" class="form-control" id="image_4" style="display: none;"/>
 							<input type="file" name="image_five" class="form-control" id="image_5" style="display: none;"/>
 							<input type="file" name="image_six" class="form-control" id="image_6" style="display: none;"/>
 							<input type="file" name="image_seven" class="form-control" id="image_7" style="display: none;"/>

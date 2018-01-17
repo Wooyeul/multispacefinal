@@ -13,8 +13,11 @@
 		#{review_content},NOW(),#{review_score},#{review_img})
 	</insert>
 	
-	<select id="find_review_by_space_no" parameterType="main.vo.ReviewVO" resultType="main.vo.ReviewVO">
+	<select id="find_review_by_space_no" parameterType="multi.space.vo.Review_searchVO" resultType="main.vo.ReviewVO">
 		SELECT * FROM ReviewT WHERE space_no=#{space_no}
+		<if test="start_no != null">
+			ORDER BY review_no ASC LIMIT #{start_no},5
+		</if>
 	</select>
 	
 	<delete id="del_review_by_review_no" parameterType="main.vo.ReviewVO">

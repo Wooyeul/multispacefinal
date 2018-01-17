@@ -39,7 +39,7 @@
 	
 	
 	<insert id="add_space_image" parameterType="multi.space.vo.ImageVO">
-		INSERT INTO ImageT VALUES (default,${space_no},'${image_one}','${image_two}','${image_three}','${image_for}','${image_five}','${image_six}','${image_seven}')
+		INSERT INTO ImageT VALUES (default,${space_no},'${image_one}','${image_two}','${image_three}','${image_four}','${image_five}','${image_six}','${image_seven}')
 	</insert>
 
 	<select id="find_space_by_pk" parameterType="main.vo.SpaceVO" resultType="main.vo.SpaceVO">

@@ -6,7 +6,7 @@ public class ImageVO {
 	public String image_one;
 	public String image_two;
 	public String image_three;
-	public String image_for;
+	public String image_four;
 	public String image_five;
 	public String image_six;
 	public String image_seven;
@@ -14,14 +14,14 @@ public class ImageVO {
 	public ImageVO(){}
 
 	public ImageVO(Integer image_no, Integer space_no, String image_one, String image_two, String image_three,
-			String image_for, String image_five, String image_six, String image_seven) {
+			String image_four, String image_five, String image_six, String image_seven) {
 		super();
 		this.image_no = image_no;
 		this.space_no = space_no;
 		this.image_one = image_one;
 		this.image_two = image_two;
 		this.image_three = image_three;
-		this.image_for = image_for;
+		this.image_four = image_four;
 		this.image_five = image_five;
 		this.image_six = image_six;
 		this.image_seven = image_seven;
@@ -67,12 +67,12 @@ public class ImageVO {
 		this.image_three = image_three;
 	}
 
-	public String getImage_for() {
-		return image_for;
+	public String getImage_four() {
+		return image_four;
 	}
 
-	public void setImage_for(String image_for) {
-		this.image_for = image_for;
+	public void setImage_four(String image_four) {
+		this.image_four = image_four;
 	}
 
 	public String getImage_five() {

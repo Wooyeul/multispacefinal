@@ -32,7 +32,7 @@
 		<table border="1">
 		<jl:forEach var="vo" items="${list2 }">
 			<tr>
-				<td><p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'"><img src="thumbnail/${vo.space_thumb_img }" alt="공간 사진 없음" width="100" height="130"/></p></td>
+				<td><p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'"><img src="space_img/${vo.space_thumb_img }" alt="공간 사진 없음" width="100" height="130"/></p></td>
 				<td>${vo.space_no }</td>
 				<td>${vo.space_title }</td>
 				<td>${vo.space_content }</td>

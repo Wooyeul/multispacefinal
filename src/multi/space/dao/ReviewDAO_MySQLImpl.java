@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.ReviewVO;
+import multi.space.vo.Review_searchVO;
 
 public class ReviewDAO_MySQLImpl implements ReviewDAO{
 	
@@ -19,7 +20,7 @@ public class ReviewDAO_MySQLImpl implements ReviewDAO{
 	}
 
 	@Override
-	public List<ReviewVO> find_review_by_space_no(ReviewVO vo) throws Exception {
+	public List<ReviewVO> find_review_by_space_no(Review_searchVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("review.find_review_by_space_no",vo);
 	}

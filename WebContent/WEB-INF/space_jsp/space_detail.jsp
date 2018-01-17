@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="UTF-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core" %><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +11,21 @@
  <script src="common.js" type="text/javascript"></script>
  	<script>
  		$(document).ready(function(){
+			if("${review_flag}"==1){
+				var review = $("#review").offset();
+		          $('html, body').animate({scrollTop:review.top-200}, 'slow');
+			}
+			if("${qna_flag}"==1){
+				var qna = $("#qna").offset();
+		          $('html, body').animate({scrollTop:qna.top-200}, 'slow');
+			}
+ 			
+ 			$(".img").on("click",function(){
+ 				var img = $(this).attr("src");
+ 				$("#main_img").attr("src",img);
+ 			});
+
+ 			
  			var scOffset = $( '.navbar-Menu' ).offset();
  	 		$( window ).scroll( function() {
  	 		if ( $( document ).scrollTop() > scOffset.top ) {
@@ -58,7 +73,7 @@
  				$("#status-modal").modal('show');
  			}
  			$("#status-modal").on("hidden.bs.modal",function(){
- 				location.replace("space_detail.do?space_no=${space.space_no}");
+ 				location.replace("space_detail.do?space_no=${space.space_no}&review_flag=${review_flag_imsi}&qna_flag=${qna_flag_imsi}");
  			});
  			
  		
@@ -175,7 +190,24 @@
 								
 								</form>
 							</th>
-							<th><a href="space_del.do?space_no=${space.space_no }">공간 삭제</a></th>
+							<th><a  data-toggle="modal" href="#space_del">공간 삭제</a></th>
+							<div class="modal fade" id="space_del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">
+													<span aria-hidden="true">&times;</span>
+													<span class="sr-only">Close</span>
+												</button>
+												<h4 class="modal-title">공간 삭제</h4>
+											</div>
+												<div class="modal-footer">
+													<a href="space_del.do?space_no=${space.space_no }"><button type="button" class="btn btn-defualt">삭제</button></a>
+													<button type="button" class="btn btn-defualt" data-dismiss="modal">닫기</button>
+												</div>
+										</div>
+									</div>
+								</div>
 						</jl:if>
 					</jl:forEach>
 				</tr>
@@ -188,7 +220,7 @@
 					<td>${s_category }</td>
 				</tr>
 				<tr>
-					<td><img src="thumbnail/${space.space_thumb_img }"/></td>
+					<td><img src="space_img/${space.space_thumb_img }"/></td>
 				</tr>
 				<tr>
 					<td>공간 소개</td>
@@ -202,11 +234,43 @@
 		</div>
 		
 		<hr/>
+			<div class="panel text-center">
+				<jl:if test="${fn:length(image.image_one) > 3}">
+					<div>
+						<img src="space_img/${image.image_one }" width="400" height="300" id="main_img">
+					</div>
+				</jl:if>
+				<hr/>
+				<div>
+						<jl:if test="${fn:length(image.image_one) > 3}">
+							<img src="space_img/${image.image_one }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${fn:length(image.image_two) > 3}">
+							<img src="space_img/${image.image_two }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${fn:length(image.image_three) > 3}">
+							<img src="space_img/${image.image_three }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${fn:length(image.image_four) > 3}">
+							<img src="space_img/${image.image_four }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${fn:length(image.image_five) > 3}">
+							<img src="space_img/${image.image_five }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${fn:length(image.image_six) > 3}">
+							<img src="space_img/${image.image_six }" width="100" height="130" class="img"/>
+						</jl:if>
+						<jl:if test="${fn:length(image.image_seven) > 3}">
+							<img src="space_img/${image.image_seven }" width="100" height="130" class="img"/>
+						</jl:if>
+				</div>
+			</div>
+		<hr/>
 		
 		<div>
 		
 		<!-- space q&a 부분 -->
-		<div class="col-xs-6">
+		<div class="col-xs-12" id="qna">
 			<h1>QnA</h1>
 			<jl:forEach var="space_qna" items="${list_space_qna }">
 				<div class="panel-group" id="accordion${space_qna.space_qna_no }">
@@ -324,13 +388,41 @@
 										</div>
 									</jl:if>
 								</jl:forEach>
+								
 					</div>
 				</div>
 				</div>
 			</jl:forEach>
+			<ul class="pagination pagination-sm">
+						<jl:if test="${pz_space_qna.hasPrevPagination }">
+							<li><a class="page" href="space_detail.do?pg_qna=${ pz_space_qna.paginationStart-1}&space_no=${space.space_no }&qna_flag=1">&lt;</a></li>
+						</jl:if>
+							<jl:if test="${pz_space_qna.hasPrevPage }">
+								<li><a class="page" href="space_detail.do?pg_qna=${ pz_space_qna.curPagination-1}&space_no=${space.space_no }&qna_flag=1">&lt;</a></li>
+							</jl:if>
+							<jl:forEach begin="${pz_space_qna.paginationStart }" end="${pz_space_qna.paginationEnd }" step="1" varStatus="vs">
+								<jl:choose>
+									<jl:when test="${vs.index!=pz_space_qna.curPagination }">
+										<li><a class="page" href="space_detail.do?pg_qna=${vs.index }&space_no=${space.space_no }&qna_flag=1">${vs.index }</a></li>
+									</jl:when>
+									<jl:otherwise>
+										<li class="active"><a class="page" href="space_detail.do?pg_qna=${vs.index }&space_no=${space.space_no }&qna_flag=1">${vs.index }</a></li>
+									</jl:otherwise>
+								</jl:choose>
+							</jl:forEach>
+							<jl:if test="${pz_space_qna.hasNextPage }">
+								<li><a class="page" href="space_detail.do?pg_qna=${pz_space_qna.curPagination+1}&space_no=${space.space_no}&qna_flag=1">&gt;</a></li>
+							</jl:if>
+						<jl:if test="${pz_space_qna.hasNextPagination }">
+							<li><a class="page" href="space_detail.do?pg_qna=${pz_space_qna.paginationEnd+1 }&space_no=${space.space_no }&qna_flag=1">&gt;&gt;</a></li>
+						</jl:if>
+					</ul>
 			<!-- space q&a 쓰는 곳 -->
+
 			<h3>질문하기</h3>
 			<form method="POST" action="add_space_qna.do">
+				<input type="hidden" name="space_no" value="${space.space_no }">
+				<input type="hidden" name="user_id" value="${user_id }">
 				<div class="form-group">
 					<label for="space_qna_title">제목</label>
 					<input type="text" name="space_qna_title" id="space_qna_title" class="form-control">
@@ -339,17 +431,17 @@
 					<label for="space_qna_content">내용</label>
 					<textarea name="space_qna_content" id="space_qna_content" class="form-control"></textarea>
 				</div>
-				<input type="hidden" name="user_id" value="${user_id }">
-				<input type="hidden" name="space_no" value="${space.space_no }">
-				<input type="submit"  class="btn btn-default" value="질문 제출">
+				<input type="submit"  class="btn btn-default" value="질문전송">
 			</form>
 		</div>
-			
+		<br/>
+		<br/>
+		<hr/>
 		
 		<!-- 후기 -->
-		<div class="col-xs-6">
+		<div class="col-xs-12" id="review">
 			<h1>후기</h1>
-			<jl:forEach var="review" items="${list_review }">
+				<jl:forEach var="review" items="${list_review }">
 				<div class="panel-group" id="accordion${review.review_no }">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -414,16 +506,37 @@
 				</div>
 				</div>
 			</jl:forEach>
-			
+				<ul class="pagination pagination-sm">
+						<jl:if test="${pz_review.hasPrevPagination }">
+							<li><a class="page" href="space_detail.do?pg_review=pz_review.paginationStart-1&space_no=${space.space_no }&review_flag=1">&lt;</a></li>
+						</jl:if>
+							<jl:if test="${pz_review.hasPrevPage }">
+								<li><a class="page" href="space_detail.do?pg_review=${ pz_review.curPagination-1}&space_no=${space.space_no }&review_flag=1">&lt;</a></li>
+							</jl:if>
+							<jl:forEach begin="${pz_review.paginationStart }" end="${pz_review.paginationEnd }" step="1" varStatus="vs">
+								<jl:choose>
+									<jl:when test="${vs.index!=pz_review.curPagination }">
+										<li><a class="page" href="space_detail.do?pg_review=${vs.index }&space_no=${space.space_no }&review_flag=1">${vs.index }</a></li>
+									</jl:when>
+									<jl:otherwise>
+										<li class="active"><a class="page" href="space_detail.do?pg_review=${vs.index }&space_no=${space.space_no }&review_flag=1">${vs.index }</a></li>
+									</jl:otherwise>
+								</jl:choose>
+							</jl:forEach>
+							<jl:if test="${pz_review.hasNextPage }">
+								<li><a class="page" href="space_detail.do?pg_review=${pz_review.curPagination+1}&space_no=${space.space_no}&review_flag=1 ">&gt;</a></li>
+							</jl:if>
+						<jl:if test="${pz_review.hasNextPagination }">
+							<li><a class="page" href="space_detail.do?pg_review=${pz_review.paginationEnd+1 }&space_no=${space.space_no }&review_flag=1">&gt;&gt;</a></li>
+						</jl:if>
+					</ul>
 			
 				<form method="POST" action="review_add.do">
 					<input type="hidden" name="user_id" value="${user_id }">
 					<input type="hidden" name="space_no" value="${space.space_no }">
 					<input type="submit" value="후기 작성" class="btn btn-default">
 				</form>
-
-			
-		</div>
+				
 		
 		<!--  모달들 모음  -->
 		
@@ -474,10 +587,11 @@
 		
 	</div>
 	</div>
+	</div>
 	<div class="col-xs-2">
 		<div class="panel">
 			공간 이름: <h1>${space.space_title }</h1>
-			<img src="thumbnail/${space.space_thumb_img }" width="100" height="100"/>
+			<img src="space_img/${space.space_thumb_img }" width="100" height="100"/>
 			<table>
 				<tr>
 					<td>예약 인원</td>
@@ -495,10 +609,5 @@
 	</div>
 	<div class="col-xs-1"></div>
 	</div>
-
-	
-	
-
-	
 </body>
 </html>
