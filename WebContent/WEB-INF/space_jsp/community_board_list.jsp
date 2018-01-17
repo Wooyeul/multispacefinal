@@ -119,7 +119,7 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 	<!-- 글쓰기 버튼-->
 	<div class="commask">
-	<input class="btn btn-primary btn-lg" type="button" value="글쓰기" id="write" xyz="${user_id}" />
+	<input class="btn btn-primary btn" type="button" value="글쓰기" id="write" xyz="${user_id}" />
 	</div>
 	
 	<!-- 모달폼 -->

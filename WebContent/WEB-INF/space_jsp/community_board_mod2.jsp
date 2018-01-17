@@ -52,17 +52,28 @@ text-align: center;
 <script>
 
 $(document).ready(function(){
-	$("#btnMod").on("click",function(){
-		$("#modtext").modal("show");
-			$("#success").on("click",function(){	
-				$("#modtext").modal("hide");	
-				$("#modalmod").modal("show");
-				$("#modalmod").on("hidden.bs.modal",function(){
-					$("#modform").submit();
-				});  
-		});
+	/* 기본 모달창 닫기 버튼 클릭시 이벤트 실행 */
+	$("#basic_modal_Yes").on("click",function(){
+		$("#basic_modal").modal("hide");
 	});
-});
+	
+	/* 수정 버튼 클릭 시 이벤트 실행 */
+	$("#btnMod").on("click",function(){
+		$("#text_mod_modal").modal("show");
+		$("#text_modal_Yes").on("click",function(){	
+			$("#text_mod_modal").modal("hide");	
+			$("#basic_mobody").html("<h4>글이 수정되었습니다.</h4>");
+			$("#basic_modal").modal("show");
+			$("#basic_modal").on("hidden.bs.modal",function(){
+				$("#modform").submit();
+			});
+		});//yes
+		$("#text_modal_No").on("click",function(){	
+			$("#text_mod_modal").modal("hide");	
+		});//No
+	});//btnMod
+	
+});//ready
 
 </script> 
 
@@ -87,6 +98,37 @@ $(document).ready(function(){
 		</form>
 	</div>
 	
+	
+	
+	<!-- 글 수정 modal창 시작 -->
+	<div id="text_mod_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
+				<div id="mobody" class="modal-body" align="center">
+				<h4>글을 수정 하시 겠습니까?</h4>
+				</div>
+				<div id="ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='text_modal_Yes'>수정</button>
+					<button type='button' class='btn btn-primary' id='text_modal_No'>취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 글 수정 modal창 끝 -->	
+	<!-- 기본 modal창 시작 -->
+	<div id="basic_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 기본 modal창 끝 -->
 	
 <!--글수정모달창 -->
 	<div class="modal fade" id="modtext" tabindex="-1" role="dialog"

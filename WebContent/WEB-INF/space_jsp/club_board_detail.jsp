@@ -124,7 +124,7 @@
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-					글을 수정 하시 겠습니까?
+					<h4>글을 수정 하시 겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='text_modal_Yes'>수정</button>
@@ -142,7 +142,7 @@
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
 				</div>
 			</div>
 		</div>

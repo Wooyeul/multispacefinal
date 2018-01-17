@@ -22,6 +22,15 @@ $(document).ready(function() {
 		/* 시작했을 때 find_reple() 이벤트 실행 */
 		find_reple();
 		
+		/* 기본 모달창 닫기 버튼 눌렀 을 때 */
+		$("#basic_modal_Yes").on("click",function(){
+			$("#modal").modal("hide");
+		});
+		/* 댓글 삭제 모달창 닫기 버튼 클릭 했을 때 */
+		$("#del_modal_No").on("click",function(){
+			$("#del_modal").modal("hide");
+		});
+		
 		//글삭제
 		$("#btnDel").on("click",function(){
 			$("#deltext").modal("show");
@@ -56,18 +65,16 @@ $(document).ready(function() {
 					success	: function(rt) {
 						$("#repleModal").modal("hide");
 						if(rt=="ok"){
-							$("#mobody").text("댓글이 수정 되었습니다.");
+							$("#basic_mobody").html("<h4>댓글이 수정 되었습니다.</h4>");
 							$("#modal").modal("show");
-							$("#ft").html("");
 							$("#modal").on("hidden.bs.modal",function(){
 								$("#modal").modal("hide");
 								$("#com_board_reple_content").val("");
 								find_reple();
 							});
 						}else if(rt=="no"){
-							$("#mobody").text("댓글 수정 처리가 실패 되었습니다.");
+							$("#basic_mobody").text("<h4>댓글 수정 처리가 실패 되었습니다.</h4>");
 							$("#modal").modal("show");
-							$("#ft").html("");
 							$("#modal").on("hidden.bs.modal",function(){
 								$("#modal").modal("hide");
 								find_reple();
@@ -87,24 +94,20 @@ $(document).ready(function() {
 		$(document).on("click",".delRe",function(){
  			var com_board_reple_no = $(this).attr("aa");
 			var com_board_no = $(this).attr("bb");
-			$("#mohead").html("<div class='modal-title'align='center'><h4>댓글삭제</h4></div>");
-			$("#mobody").html("<h3>댓글을 삭제하시겠습니까?</h3>");
-			$("#ft").html("<button type='button' class='btn btn-default' id='modal-del-Yes'>확인</button>"+
-					"<button type='button' class='btn btn-primary' id='modal-del-No'>취소</button>");
-			$("#modal").modal();
-			$("#modal-del-Yes").on("click",function(){
+			$("#del_modal").modal("show");
+			$("#del_modal_Yes").on("click",function(){
 				var url = "community_board_repledel.do?com_board_reple_no="+com_board_reple_no+"&com_board_no="+com_board_no;
 				ajaxGet(url,function(rt){
+					$("#del_modal").modal("hide");
 					if(rt=="ok"){
-						$("#mobody").text("댓글이 삭제 되었습니다.");
-						$("#ft").html("");
+						$("#basic_mobody").html("<h4>댓글이 삭제 되었습니다.</h4>");
 						$("#modal").modal("show");
 						$("#modal").on("hidden.bs.modal",function(){
 							$("#modal").modal("hide");
 							find_reple();
 						});
 					}else if(rt=="no"){
-						$("#mobody").text("댓글 삭제 처리가 실패 되었습니다.");
+						$("#basic_mobody").html("<h4>댓글 삭제 처리가 실패 되었습니다.</h4>");
 						$("#ft").html("");
 						$("#modal").modal("show");
 						$("#modal").on("hidden.bs.modal",function(){
@@ -142,8 +145,7 @@ $(document).ready(function() {
 				data : formData,
 				success	: function(rt) {
 					if(rt=="ok"){
-						$("#mobody").text("댓글이 등록 되었습니다.");
-						$("#ft").html("");
+						$("#basic_mobody").html("<h4>댓글이 등록 되었습니다.</h4>");
 						$("#modal").modal("show");
 						$("#modal").on("hidden.bs.modal",function(){
 							$("#modal").modal("hide");
@@ -151,8 +153,7 @@ $(document).ready(function() {
 							find_reple();
 						});
 					}else if(rt=="no"){
-						$("#mobody").text("댓글 처리가 실패 되었습니다.");
-						$("#ft").html("");
+						$("#basic_mobody").html("<h4>댓글 처리가 실패 되었습니다.</h4>");
 						$("#modal").modal("show");
 						$("#modal").on("hidden.bs.modal",function(){
 							$("#modal").modal("hide");
@@ -258,64 +259,61 @@ $(document).ready(function() {
 	</form>
 <!--  댓글추가끝 -->	
 	
+	
 <!-- 모달부분 -->
-
-<!-- 리플수정모달폼 -->
+			
+	<!-- 댓글 수정 modal창 시작 -->
 	<form id="reple_form">
-		<div id="repleModal" class="modal" role="dialog">
-			<input type="hidden" id="com_board_no" value="${vo.com_board_no}"
-				name="com_board_no" /> <input id="com_board_reple_no" type="hidden" name="com_board_reple_no" />
+		<div id="repleModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-body">
-						<div class="form-group">
-							<label id="lblContent" for="content"></label>
-							<textarea name ="com_board_reple_content" class="form-control" id="content" rows="7"></textarea>
-						</div>
-						<input type="button" class="btn btn-primary btn-sm" id="btnMod" value="수정"/>
-						<input type="button" class="btn btn-primary btn-sm" id="btnClose" value="닫기"/>
+					<div id="mohead" class="modal-header" align="center"><h4>댓글수정</h4></div>
+					<div id="mobody" class="modal-body" align="center">
+						<textarea id="content" name='com_board_reple_content'class='form-control' rows='7'></textarea>
+					</div>
+					<div id="ft" class="modal-footer">
+						<button type='button' class='btn btn-default' id='btnMod'>수정</button>
+						<button type='button' class='btn btn-primary' id='btnClose'>취소</button>
 					</div>
 				</div>
 			</div>
 		</div>
+		<input type="hidden" id="com_board_no" value="${vo.com_board_no}" name="com_board_no" />
+		<input id="com_board_reple_no" type="hidden" name="com_board_reple_no" />
 	</form>
-<!-- 리플수정모달폼끝-->
-
-
-<!-- 리플모달수정버튼_모달창 -->
-	<div class="modal fade" id="modalmod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
+	<!-- 댓글 수정 modal창 끝 -->
+	<!-- 댓글 삭제 modal창 시작 -->
+	<div id="del_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">알림</h4>
+				<div id="mohead" class="modal-header" align="center"><h4>댓글 삭제</h4></div>
+				<div id="mobody" class="modal-body" align="center">
+					댓글을 삭제하시겠습니까?
 				</div>
-				<div class="modal-body">당신의 훌륭한 댓글이 수정되었습니다 !</div>
-				<div class="modal-footer">
-					<button id="modalmodclose"type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				
+				<div id="ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='del_modal_Yes'>삭제</button>
+					<button type='button' class='btn btn-primary' id='del_modal_No'>취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-<!-- 리플모달수정버튼_모달창끝 -->
+	<input id="del_board_reple_no" name='c_board_reple_no' type='hidden'/>
+	<input id="del_board_no" name='c_board_no' type='hidden'/>
+	<!-- 댓글 삭제 modal창 끝 -->
 
-<!-- 모달창 리플-->
-<form id="frm" method="post" action="club_mod_board_reple.do">
-		<div id="modal" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div id="mohead" class="modal-header"></div>
-					<div id="mobody" class="modal-body" align="center"></div>
-					<div id="ft" class="modal-footer"></div>
+	<!-- 기본 modal창 시작 -->
+	<div id="modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
 				</div>
 			</div>
 		</div>
-	</form>
-<!-- 모달창 리플끝-->	
-
+	</div>
+	<!-- 기본 modal창 끝 -->
 	
 <!-- 추천모달창 -->
 	<div class="modal fade" id="modalrecom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -337,12 +335,9 @@ $(document).ready(function() {
 <!-- 추천모달창끝 -->
 	
 
-<!-- 글삭제모달부분 -->
 
-<!-- 글삭제모달폼 -->
-
-<div class="modal fade" id="deltext" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<!-- 글삭제모달폼 -->
+	<div class="modal fade" id="deltext" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -358,12 +353,11 @@ $(document).ready(function() {
 				</div>
 			</div>
 		</div>
-</div>
-	
-<!-- 글삭제모달폼-->
+	</div>
+	<!-- 글삭제모달폼-->
 
 
-<!-- 글삭제 모달 확인 폼 -->
+	<!-- 글삭제 모달 확인 폼 -->
 	<div class="modal fade" id="modaldel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
@@ -380,8 +374,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	
-<!-- 글삭제 모달 확인 폼끝 -->
+	<!-- 글삭제 모달 확인 폼끝 -->
 
 
 
