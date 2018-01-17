@@ -27,48 +27,45 @@
 	<!-- *********************  header  ************************ -->
          <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
-
+	<div align="center" style="background-color: #bfd9f2; color: white;">
+			<form id="frm" target="club_list" action="club_list.do" method="post">
+				<div style="display: inline;">
+				
+					<br/><h3>지역별 선택</h3>
+					<jl:forEach items="${lmap}" var="l" varStatus="i">
+						<input num="${i.count}" class="a" type="radio" value="${l.l_category_no}" name="l_category_no" />${l.l_category_name}
+					</jl:forEach>
+					<br/>
+					<br/><h3>분야별 선택</h3>
+					<jl:forEach items="${cmap}" var="c">
+						<input type="radio" value="${c.c_category_no}" name="c_category_no" />${c.c_category_name}
+					</jl:forEach>
+				</div><br/>
+				<select name="search_option">
+					<option value="0"></option>
+					<option value="1">제목</option>
+					<option value="2">내용</option>
+					<option value="3">제목+내용</option>
+					<option value="4">작성자</option>
+				</select>
+				<input type="text" name="search_content"/>
+				<input type="button" id="submitBtn" value="검색"><br/>
+				<input id="curPage" name="curPage" type="hidden" value="">
+			</form>
+		</div>
 	<section class="listings">
 		<div class="wrapper">
 			<div class="properties_list">
-			
-	<div class="container">
-		<h2>모임 페이지</h2>
-		
-		<form id="frm" target="club_list" action="club_list.do" method="post">
-			<div style="display: inline;">
-				<h4>지역별 선택</h4>
-				<jl:forEach items="${lmap}" var="l" varStatus="i">
-					<input num="${i.count}" class="a" type="radio" value="${l.l_category_no}" name="l_category_no" />${l.l_category_name}
-				</jl:forEach>
-				<br/>
-				<h4>분야별 선택</h4>
-				<jl:forEach items="${cmap}" var="c">
-					<input type="radio" value="${c.c_category_no}" name="c_category_no" />${c.c_category_name}
-				</jl:forEach>
-			</div><br/>
-			<select name="search_option">
-				<option value="0"></option>
-				<option value="1">제목</option>
-				<option value="2">내용</option>
-				<option value="3">제목+내용</option>
-				<option value="4">작성자</option>
-			</select>
-			<input type="text" name="search_content"/>
-			<br/><input type="button" id="submitBtn" value="검색">
-			<input id="curPage" name="curPage" type="hidden" value="">
-		</form>
-		<br/><br/>
-		
-		<div>
-			<iframe name="club_list" width="100%" height="100%"></iframe>
-		</div>
-		
-		<button id="btn" class="btn_square" type="button" >모임등록</button>
-	</div>
+				<div class="container">
+					<div>
+						<iframe name="club_list" width="100%" height="55%"></iframe>
+					</div>
 
+					<div align="right">
+						<button id="btn" class="btn_square" type="button">모임등록</button>
+					</div>
 				</div>
-
+			</div>
 		</div>
 	</section>
 	<!-- ******************************* footer ******************************* -->
