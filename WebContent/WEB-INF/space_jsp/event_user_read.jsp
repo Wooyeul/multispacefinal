@@ -55,7 +55,7 @@
 	else if(rt!=""){ 
 	$("#login_nav").show();
 	$("#non_login_nav").hide(); 
-	$("#user_name").text(rt+"님이 로그인하셨습니다.");
+	$("#user_name").text(rt+"님");
 		}
 	 });	
 		});

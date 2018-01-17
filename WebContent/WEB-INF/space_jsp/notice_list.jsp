@@ -26,13 +26,17 @@
 	body {
 		background-color: #bfd9f2;
 	}
-	.thetime {
-		text-align: right;
-	}
+	
 	.noticeB {
+		margin-top: 27px;
+		margin-bottom: 27px;
 		text-align: center;
+		font-size: 2em;
+		font-family: "lato-regular", Helvetica, Arial, sans-serif;
 	}
-
+	.panel-group {
+		margin-bottom: 40px;
+	}
 	</style>
 	
 <script>
@@ -60,7 +64,7 @@
 			else if (rt != "") {
 				$("#login_nav").show();
 				$("#non_login_nav").hide();
-				$("#user_name").text(rt + "님이 로그인하셨습니다.");
+				$("#user_name").text(rt + "님");
 			}
 		});
 	});
@@ -73,6 +77,7 @@
 	
 	<div class="container">
 		<div class="noticeB"><h2>NOTICE BOARD</h2></div>
+		
 		<div class="panel-group" id="accordion" role="tablist"
 			aria-multiselectable="true">
 			<jl:forEach var="vo" items="${rl}">

@@ -30,12 +30,17 @@
 		
 		.ask {
 			text-align: center;
+			margin-bottom: 27px;
 		}
 		body {
 			background-color: #bfd9f2;
 		}
 		.faqB {
+			margin-top: 27px;
+			margin-bottom: 27px;
 			text-align: center;
+			font-size: 2em;
+			font-family: "lato-regular", Helvetica, Arial, sans-serif;
 		}
 	</style>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -67,12 +72,10 @@
 	else if(rt!=""){ 
 	$("#login_nav").show();
 	$("#non_login_nav").hide(); 
-	$("#user_name").text(rt+"님이 로그인하셨습니다.");
+	$("#user_name").text(rt+"님");
 		}
-	 });	
-
-		
-		});
+	});	
+	});
 
 	</script>
 	
@@ -115,7 +118,7 @@
 
 		<div class="ask">
 			<a href="o2oQnA_add.do">
-				<input class="btn btn-primary" type="button" value="ASK">
+				<input class="btn btn-primary" type="button" value="1:1 문의하기">
 			</a>
 			
 		</div>

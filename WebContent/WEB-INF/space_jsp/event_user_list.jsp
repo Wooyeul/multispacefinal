@@ -116,7 +116,7 @@
 
 
 <div class="container">
-	<div class="eveb">EVENT BOARD</div>
+	<div class="eveb"><h2>EVENT BOARD</h2></div>
 	
 		<div class="wrapper">
 			<form action="event_user_list.do">
