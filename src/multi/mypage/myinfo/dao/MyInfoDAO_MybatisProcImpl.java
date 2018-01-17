@@ -41,4 +41,9 @@ public class MyInfoDAO_MybatisProcImpl implements MyInfoDAO{
 	public ZipcodeVO find_zipcode(String user_id) throws Exception {
 		return sqlSession.selectOne("myinfo.p_user_zipcode_find",user_id);
 	}
+
+	@Override
+	public ZipcodeVO find_zipcode1(String zipcode) throws Exception {
+		return sqlSession.selectOne("myinfo.zipcode_find",zipcode);
+	}
 }
