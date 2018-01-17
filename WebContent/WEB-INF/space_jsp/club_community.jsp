@@ -40,176 +40,187 @@
 		<input id="cur_board_page" type="hidden" name="cur_board_page" value="${board_pz.curPagination }">
 	</form>
 	<!-- paging 이용할 form -->
-	
+
 
 
 
 
 	<section class="listings">
 		<div class="wrapper">
-				<ul class="properties_list">
-				<li>
+			<div class="properties_list">
 			
-	<h2>모임 커뮤니티 페이지</h2>
-	<label>모임 이름 : ${vo.club_name}</label><br/>
-	<label>모임장 : ${master}</label><br/>
 
-	
-	<label><h3>공지사항</h3></label><br/>
-	<jl:if test="${noticeVO!=null}">
-		<table class="table">
-			<jl:forEach items="${noticeVO}" var="nvo" varStatus="i">
-				<jl:if test="${i.count==1 }">
-					<tr>
-						<td>글 번호</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>작성시간</td>
-					</tr>
-				</jl:if>
-				<tr>
-					<td>${i.count}</td>
-					<td><a href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}">${nvo.c_notice_title}</a></td>
-					<td>${nvo.user_name}</td>
-					<td>${nvo.the_time}</td>
-				</tr>
-			</jl:forEach>
-		</table>
-	</jl:if>
-	<div align="center">
-		<ul class="pagination pagination-sm">
-			<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
-			<jl:if test="${notice_pz.hasPrevPagination }">
-				<li><a class="page" href="javascript:notice_list('${notice_pz.paginationStart-1}')">&lt;</a></li>
-			</jl:if>
-			<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
-			<jl:if test="${notice_pz.hasPrevPage }">
-				<li><a class="page" href="javascript:notice_list('${notice_pz.curPagination-1 }')">&lt;</a></li>
-			</jl:if>
-				<!-- 페이지 번호 만들기 -->
-				<jl:forEach begin="${notice_pz.paginationStart }" end="${notice_pz.paginationEnd }" step="1" varStatus="vs">
-					<jl:choose>
-						<jl:when test="${vs.index!=notice_pz.curPagination }">
-							<li><a class="page" href="javascript:notice_list('${vs.index }')">${vs.index }</a></li>
-						</jl:when>
-						<jl:otherwise>
-							<li class="active"><a class="page" href="javascript:notice_list('${vs.index }')">${vs.index }</a></li>
-						</jl:otherwise>
-					</jl:choose>
-				</jl:forEach>
-			<!-- 다음 페이지로 이동 : 한페이지 이동 -->
-			<jl:if test="${notice_pz.hasNextPage }">
-				<li><a class="page" href="javascript:notice_list('${notice_pz.curPagination+1}')">&gt;</a></li>
-			</jl:if>
-			<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
-			<jl:if test="${notice_pz.hasNextPagination }">
-				<li><a class="page" href="javascript:notice_list('${notice_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
-			</jl:if>
-		</ul>
-	</div>
-	<input id="noticeBtn" type="button" value="공지쓰기"/><br/><br/>
+					<h2>모임 커뮤니티 페이지</h2> <label>모임 이름 : ${vo.club_name}</label><br /> <label>모임장
+						: ${master}</label><br /> <label><h3>공지사항</h3></label><br /> <jl:if
+						test="${noticeVO!=null}">
+						<table class="table">
+							<jl:forEach items="${noticeVO}" var="nvo" varStatus="i">
+								<jl:if test="${i.count==1 }">
+									<tr>
+										<td>글 번호</td>
+										<td>제목</td>
+										<td>작성자</td>
+										<td>작성시간</td>
+									</tr>
+								</jl:if>
+								<tr>
+									<td>${i.count}</td>
+									<td><a
+										href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}">${nvo.c_notice_title}</a></td>
+									<td>${nvo.user_name}</td>
+									<td>${nvo.the_time}</td>
+								</tr>
+							</jl:forEach>
+						</table>
+					</jl:if>
+					<div align="center">
+						<ul class="pagination pagination-sm">
+							<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
+							<jl:if test="${notice_pz.hasPrevPagination }">
+								<li><a class="page"
+									href="javascript:notice_list('${notice_pz.paginationStart-1}')">&lt;</a></li>
+							</jl:if>
+							<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
+							<jl:if test="${notice_pz.hasPrevPage }">
+								<li><a class="page"
+									href="javascript:notice_list('${notice_pz.curPagination-1 }')">&lt;</a></li>
+							</jl:if>
+							<!-- 페이지 번호 만들기 -->
+							<jl:forEach begin="${notice_pz.paginationStart }"
+								end="${notice_pz.paginationEnd }" step="1" varStatus="vs">
+								<jl:choose>
+									<jl:when test="${vs.index!=notice_pz.curPagination }">
+										<li><a class="page"
+											href="javascript:notice_list('${vs.index }')">${vs.index }</a></li>
+									</jl:when>
+									<jl:otherwise>
+										<li class="active"><a class="page"
+											href="javascript:notice_list('${vs.index }')">${vs.index }</a></li>
+									</jl:otherwise>
+								</jl:choose>
+							</jl:forEach>
+							<!-- 다음 페이지로 이동 : 한페이지 이동 -->
+							<jl:if test="${notice_pz.hasNextPage }">
+								<li><a class="page"
+									href="javascript:notice_list('${notice_pz.curPagination+1}')">&gt;</a></li>
+							</jl:if>
+							<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
+							<jl:if test="${notice_pz.hasNextPagination }">
+								<li><a class="page"
+									href="javascript:notice_list('${notice_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
+							</jl:if>
+						</ul>
+					</div> <input id="noticeBtn" type="button" value="공지쓰기" /><br />
+				<br /> <label><h3>커뮤니티 게시판</h3></label><br /> <jl:if
+						test="${noticeVO!=''}">
+						<table class="table">
+							<jl:forEach items="${boardVO}" var="bvo" varStatus="i">
+								<jl:if test="${i.count==1 }">
+									<tr>
+										<td>글 번호</td>
+										<td>말머리</td>
+										<td>제목</td>
+										<td>작성자</td>
+										<td>작성시간</td>
+									</tr>
+								</jl:if>
+								<tr>
+									<td>${i.count}</td>
+									<td>${bvo.c_board_subject }</td>
+									<td><a
+										href="club_board_detail.do?c_board_no=${bvo.c_board_no}">${bvo.c_board_title}</a></td>
+									<td>${bvo.user_name }</td>
+									<td>${bvo.the_time }</td>
+								</tr>
+							</jl:forEach>
+						</table>
+					</jl:if>
+					<div align="center">
+						<ul class="pagination pagination-sm">
+							<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
+							<jl:if test="${board_pz.hasPrevPagination }">
+								<li><a class="page"
+									href="javascript:board_list('${board_pz.paginationStart-1}')">&lt;</a></li>
+							</jl:if>
+							<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
+							<jl:if test="${board_pz.hasPrevPage }">
+								<li><a class="page"
+									href="javascript:board_list('${board_pz.curPagination-1 }')">&lt;</a></li>
+							</jl:if>
+							<!-- 페이지 번호 만들기 -->
+							<jl:forEach begin="${board_pz.paginationStart }"
+								end="${board_pz.paginationEnd }" step="1" varStatus="vs">
+								<jl:choose>
+									<jl:when test="${vs.index!=board_pz.curPagination }">
+										<li><a class="page"
+											href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
+									</jl:when>
+									<jl:otherwise>
+										<li class="active"><a class="page"
+											href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
+									</jl:otherwise>
+								</jl:choose>
+							</jl:forEach>
+							<!-- 다음 페이지로 이동 : 한페이지 이동 -->
+							<jl:if test="${board_pz.hasNextPage }">
+								<li><a class="page"
+									href="javascript:board_list('${board_pz.curPagination+1}')">&gt;</a></li>
+							</jl:if>
+							<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
+							<jl:if test="${board_pz.hasNextPagination }">
+								<li><a class="page"
+									href="javascript:board_list('${board_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
+							</jl:if>
+						</ul>
+					</div> <input id="boardBtn" type="button" value="글쓰기" /> <br />
+				<br /> <label><h3>회원 리스트</h3></label><br /> <jl:if
+						test="${userVO!=null}">
+						<table class="table">
+							<tr>${master}(모임장)</tr>
+							<br />
+							<jl:forEach items="${userVO}" var="uvo">
+								<tr>
+									<label class="user_name" user_id="${uvo.user_id}">${uvo.user_name}</label>
+									<jl:if test="${master eq user_id }">
+										<a class="release" user_id="${uvo.user_id }"
+											club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
+											<span class="glyphicon glyphicon-remove"></span>
+										</a>
+									</jl:if>
+									<br />
+							</jl:forEach>
+						</table>
+					</jl:if> <br />
+				<br />
+					<div id="applyList">
+						<label><h3>신청 현황 리스트</h3></label><br />
+						<table class="table">
+							<tr>
+								<td>이름</td>
+								<td>신청내용</td>
+								<td>신청승인</td>
+							</tr>
+							<jl:forEach items="${applyVO}" var="avo">
+								<tr>
+									<td>${avo.user_name}</td>
+									<td>${avo.apply_content}</td>
+									<td><span class="agree" club_name="${vo.club_name }"
+										club_no="${vo.club_no}" user_id="${avo.user_id}"">수락</span> <span
+										class="disagree" club_name="${vo.club_name }"
+										club_no="${vo.club_no}" user_id="${avo.user_id}">거절</span></td>
+								</tr>
+							</jl:forEach>
+						</table>
+					</div> <br /> <input id="prev" type="button" value="뒤로가기"> <input
+					id="delClub" type="button" value="해체하기" />
 
-	<label><h3>커뮤니티 게시판</h3></label><br/>
-	<jl:if test="${noticeVO!=''}">
-		<table class="table">
-			<jl:forEach items="${boardVO}" var="bvo" varStatus="i">
-				<jl:if test="${i.count==1 }">
-					<tr>
-						<td>글 번호</td>
-						<td>말머리</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>작성시간</td>
-					</tr>
-				</jl:if>
-				<tr>
-					<td>${i.count}</td>
-					<td>${bvo.c_board_subject }</td>
-					<td><a href="club_board_detail.do?c_board_no=${bvo.c_board_no}">${bvo.c_board_title}</a></td>
-					<td>${bvo.user_name }</td>
-					<td>${bvo.the_time }</td>
-				</tr>
-			</jl:forEach>
-		</table>
-	</jl:if>
-	<div align="center">
-		<ul class="pagination pagination-sm">
-			<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
-			<jl:if test="${board_pz.hasPrevPagination }">
-				<li><a class="page" href="javascript:board_list('${board_pz.paginationStart-1}')">&lt;</a></li>
-			</jl:if>
-			<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
-			<jl:if test="${board_pz.hasPrevPage }">
-				<li><a class="page" href="javascript:board_list('${board_pz.curPagination-1 }')">&lt;</a></li>
-			</jl:if>
-				<!-- 페이지 번호 만들기 -->
-				<jl:forEach begin="${board_pz.paginationStart }" end="${board_pz.paginationEnd }" step="1" varStatus="vs">
-					<jl:choose>
-						<jl:when test="${vs.index!=board_pz.curPagination }">
-							<li><a class="page" href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
-						</jl:when>
-						<jl:otherwise>
-							<li class="active"><a class="page" href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
-						</jl:otherwise>
-					</jl:choose>
-				</jl:forEach>
-			<!-- 다음 페이지로 이동 : 한페이지 이동 -->
-			<jl:if test="${board_pz.hasNextPage }">
-				<li><a class="page" href="javascript:board_list('${board_pz.curPagination+1}')">&gt;</a></li>
-			</jl:if>
-			<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
-			<jl:if test="${board_pz.hasNextPagination }">
-				<li><a class="page" href="javascript:board_list('${board_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
-			</jl:if>
-		</ul>
-	</div>
-	<input id="boardBtn" type="button" value="글쓰기"/>
-	<br/><br/>
-	<label><h3>회원 리스트</h3></label><br/>
-	<jl:if test="${userVO!=null}">
-		<table class="table">
-			<tr>${master}(모임장)</tr><br/>
-			<jl:forEach items="${userVO}" var="uvo">
-				<tr><label class="user_name" user_id="${uvo.user_id}">${uvo.user_name}</label>
-				<jl:if test="${master eq user_id }">
-					<a class="release" user_id="${uvo.user_id }" club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
-					<span class="glyphicon glyphicon-remove"></span></a>
-				</jl:if><br/>
-			</jl:forEach>
-		</table>
-	</jl:if>
-	<br/><br/>
-	<div id="applyList">
-		<label><h3>신청 현황 리스트</h3></label><br/>
-		<table class="table">
-			<tr>
-				<td>이름</td>
-				<td>신청내용</td>
-				<td>신청승인</td>
-			</tr>
-			<jl:forEach items="${applyVO}" var="avo">
-				<tr>
-					<td>${avo.user_name}</td>
-					<td>${avo.apply_content}</td>
-					<td><span class="agree" club_name="${vo.club_name }" club_no="${vo.club_no}" user_id="${avo.user_id}"">수락</span>
-					<span class="disagree" club_name="${vo.club_name }"club_no="${vo.club_no}" user_id="${avo.user_id}">거절</span>
-					</td>
-				</tr>
-			</jl:forEach>
-		</table>
-	</div>
-	<br/>
-	<input id="prev" type="button" value="뒤로가기">
-	<input id="delClub" type="button" value="해체하기"/>
-			
-			</li>
-			</ul>
-			
+				</div>
+
 		</div>
-	</section>	
+	</section>
 
 
-		<!-- ******************************* footer ******************************* -->
+	<!-- ******************************* footer ******************************* -->
 		  <%@include file="./jsp/footer.jsp"%>  
 		<!--  end footer  -->
 	

@@ -63,20 +63,142 @@
 
 	
 
-	<div class="container">
-
-		<!-- Main component for a primary marketing message or call to action -->
-		<div class="jumbotron">
-			<h1>Multi Space</h1>
-		<!-- <input type="text" id="i_top_nav_code" value="${top_nav_code}"/>  -->	
- <input type="hidden" id="i_top_nav_code" value="${top_nav_code}"/> 
+	<section class="listings">
+		<div class="wrapper">
+			<ul class="properties_list">
 			
-		</div>
+			<!-- **********************  i ************************* -->
+				<li>
+					<a href="#">
+						<img src="./Resources/img/property_1.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">서울</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<div class="property_details_box">
+							<div class="property_sub_details_left">
+								<h2>5000 원/시간 </h2>
+							</div>
+							<div class="property_sub_details_right">
+								<h2><span class="property_size">즐찾수 80</span></h2>
+							</div>
+						</div>
+					</div>
+				</li>
+				
+				
+				
+				<li>
+					<a href="#">
+						<img src="./Resources/img/property_2.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$1000</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<div class="property_details_box">
+							<div class="property_sub_details_left">
+								<h2>5000 원/시간 </h2>
+							</div>
+							<div class="property_sub_details_right">
+								<h2><span class="property_size">즐찾수 80</span></h2>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="./Resources/img/property_3.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<div class="property_details_box">
+							<div class="property_sub_details_left">
+								<h2>5000 원/시간 </h2>
+							</div>
+							<div class="property_sub_details_right">
+								<h2><span class="property_size">즐찾수 80</span></h2>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="./Resources/img/property_1.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$2500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<div class="property_details_box">
+							<div class="property_sub_details_left">
+								<h2>5000 원/시간 </h2>
+							</div>
+							<div class="property_sub_details_right">
+								<h2><span class="property_size">즐찾수 80</span></h2>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="./Resources/img/property_2.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$1000</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<div class="property_details_box">
+							<div class="property_sub_details_left">
+								<h2>5000 원/시간 </h2>
+							</div>
+							<div class="property_sub_details_right">
+								<h2><span class="property_size">즐찾수 80</span></h2>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="./Resources/img/property_3.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<div class="property_details_box">
+							<div class="property_sub_details_left">
+								<h2>5000 원/시간 </h2>
+							</div>
+							<div class="property_sub_details_right">
+								<h2><span class="property_size">즐찾수 80</span></h2>
+							</div>
+						</div>
+					</div>
+				</li>
 
-	</div>
-	<!-- /container -->
+				
+				
+			</ul>
+			
+
+	</section>	
 
 
+
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+		<!--  end footer  -->
+	
 
 </body>
 </html>
