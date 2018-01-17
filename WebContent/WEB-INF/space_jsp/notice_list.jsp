@@ -1,30 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="common.js"></script>
-<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	<title>Welcome to Multi Space</title>
 
-.jumbotron {
-	text-align: center;
-}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	<style type="text/css">
+	
+	body {
+		background-color: #bfd9f2;
+	}
+	.thetime {
+		text-align: right;
+	}
+	.noticeB {
+		text-align: center;
+	}
 
-th, td {
-	text-align: center;
-}
-</style>
+	</style>
+	
 <script>
 	$(document).ready(function() {
 
@@ -40,74 +49,144 @@ th, td {
 		var url = "chk_login.do";
 		ajaxGet(url, function(rt) {
 
-			// ·Î±×ÀÎ ½ÇÆĞ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
+			// ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
 			if (rt == "10002") {
 				$("#login_nav").hide();
 				$("#non_login_nav").show();
 			}
 
-			// ·Î±×ÀÎ ½Ã : rt°ª -> user_name
+			// ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
 			else if (rt != "") {
 				$("#login_nav").show();
 				$("#non_login_nav").hide();
-				$("#user_name").text(rt + "´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
+				$("#user_name").text(rt + "ë‹˜ì´ ë¡œê·¸ì¸í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			}
 		});
 	});
 </script>
 </head>
 <body>
-	<div class="jbTitle">
-		<h1>Multi Space</h1>
-	</div>
+	<section class="hero">
+		<header>
+			<div class="wrapper">
+				<!-- <a href="#"><img src="./Resources/img/logo.png" class="logo" alt="" titl=""/></a> -->
+				<a href="#" class="logo" alt="" titl="">Multi Space</a>
+				<nav class="navbar navbar-default">
 
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default ">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="main.html">multi space</a>
+					<div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+
+						<ul class="nav navbar-nav ">
+							<li><a href="space_home.do">ê³µê°„</a></li>
+							<li><a href="club_home.do">ëª¨ì„</a></li>
+							<li><a href="community_list.do">ì»¤ë®¤ë‹ˆí‹°</a></li>
+							<li><a href="event_user_list.do">ì´ë²¤íŠ¸</a></li>
+							<li><a href="notice_list.do">ê³µì§€ì‚¬í•­</a></li>
+							<li><a href="faq_list.do">FAQ</a></li>
+							<li><a href="admin_main.do">ê´€ë¦¬ì</a></li>
+						</ul>
+		
+
+						<ul id="login_nav" class="nav navbar-nav navbar-right">
+							<li><a href="#" id="user_name"></a></li>
+							<li><a href="mypage_moveMypageMainPage.do">ë§ˆì´í˜ì´ì§€</a></li>
+							<li><a href="home_logout.do">ë¡œê·¸ì•„ì›ƒ</a></li>
+						</ul>
+
+						<ul id="non_login_nav" class="nav navbar-nav navbar-right">
+							<li><a href="home_moveLoginPage.do">ë¡œê·¸ì¸</a></li>
+						</ul>
+
+
+					</div>
+				</nav>
 			</div>
-
-			<div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-				<ul class="nav navbar-nav ">
-					<li><a href="space_home.do">°ø°£</a></li>
-					<li><a href="club_home.do">¸ğÀÓ</a></li>
-					<li><a href="community_list.do">Ä¿¹Â´ÏÆ¼</a></li>
-					<li><a href="event_user_list.do">ÀÌº¥Æ®</a></li>
-					<li><a href="notice_list.do">°øÁö»çÇ×</a></li>
-					<li><a href="faq_list.do">FAQ</a></li>
-					<li><a href="admin_main.do">°ü¸®ÀÚ</a></li>
-				</ul>
-
-				<ul id="login_nav" class="nav navbar-nav navbar-right">
-					<li><a href="#" id="user_name"></a></li>
-					<li><a href="mypage_moveMypageMainPage.do">¸¶ÀÌÆäÀÌÁö</a></li>
-					<li><a href="home_logout.do">·Î±×¾Æ¿ô</a></li>
-				</ul>
-				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-					<li><a href="#">·Î±×ÀÎ</a></li>
-				</ul>
-
-			</div>
+		</header><!--  end header section  -->
+	</section><!--  end hero section  -->
+	
+	<div class="container">
+		<div class="noticeB"><h2>NOTICE BOARD</h2></div>
+		<div class="panel-group" id="accordion" role="tablist"
+			aria-multiselectable="true">
+			<jl:forEach var="vo" items="${rl}">
+				<div class="panel panel-info">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion"
+								href="#${vo.notice_no}" aria-expanded="true"
+								aria-controls="collapseOne">
+								<table>
+									<tr>
+									<th width="50">${vo.notice_no}</th>
+									<th width="800"> ${vo.notice_title}</th>
+									<th>${vo.the_time}</th>
+									</tr>
+								</table>
+								  </a> 
+						</h4>
+					</div>
+					<div id="${vo.notice_no}" class="panel-collapse collapse"
+						role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body"><h5>${vo.notice_content}</h5></div>
+					</div>
+				</div>
+			</jl:forEach>
 		</div>
-	</nav>
-	<!-- nav -->
-	<div id="i" class="jumbotron panel-primary">
-		<h1>°øÁö»çÇ×</h1>
 	</div>
-	<table border="1" cellspacing="0" cellpadding="8">
-		<tr>
-			<th width="40">°øÁö¹øÈ£</th>
-			<th width="200">Á¦¸ñ</th>
-			<th>³¯Â¥</th>
-		</tr>
-		<jl:forEach var="vo" items="${rl}">
-			<tr>
-				<td>${vo.notice_no}</td>
-				<td><a href="notice_read.do?notice_no=${vo.notice_no}">${vo.notice_title}</a></td>
-				<td>${vo.the_time}</td>
-			</tr>
-		</jl:forEach>
-	</table>
+	
+	<!-- ******************************* footer ******************************* -->
+
+	<footer>
+		<div class="wrapper footer">
+			<ul>
+			
+				<li class="about_multi">
+						<p>ìƒí˜¸ëª… : ë©€í‹°ìŠ¤í˜ì´ìŠ¤</p>
+						<p>í”„ë¡œì íŠ¸ ëª… : multi space</p>
+						<p>ê°œë°œì : í—ˆë¹›ì°¬ìƒ˜ | ì•ˆìˆ˜ì§„ | ê¹€ì„¸í™˜ | ë°°ìŠ¹í˜„ |</p>
+						<p>ì¡°ìš°ì—´ | ì´ì–‘ì¬ | ì„ìŠ¹ë²” | ê¹€ì†Œì˜</p>
+						<p>ê¸°  ê°„ : 17/12/22 - 18/01/24</p>
+						<p>ì´ë©”ì¼ : tnwls2274@naver.com</p>
+				 </li>
+			
+			
+				<li class="about_multi">
+						<p>ê³„ì¢Œë²ˆí˜¸ :</p>
+						<p>(êµ­ë¯¼ì€í–‰) 464801 - 01 - 061719</p>
+						<p>ê³ ê°ì„¼í„° :</p>
+						<p>AM 10: 00 ~ PM6 : 00</p>
+						<p>(ì˜¤ì „ 9ì‹œë¶€í„° ì˜¤í›„ 6ì‹œê¹Œì§€ ê°€ëŠ¥í•©ë‹ˆë‹¤.)</p>
+						<p>ê°œì¸ì •ë³´ê´€ë¦¬ ì±…ì„ì : </p>
+						<p>ì´ìˆ™í¬ (madhjh@redholic.com)</p>
+				 </li>
+			
+			
+				<li class="links">
+					<ul>
+						<li><a href="#">ê³µê°„ ì˜ˆì•½</a></li>
+						<li><a href="#">ëª¨ì„</a></li>
+						<li><a href="#">ì»¤ë®¤ë‹ˆí‹°</a></li>
+						<li><a href="#">ê³µì§€ì‚¬í•­</a></li>
+						<li><a href="#">ì´ë²¤íŠ¸</a></li>
+					</ul>
+				</li>
+				
+				<li class="about">
+					<ul>
+						<li><a href="http://facebook.com/pixelhint" class="facebook" target="_blank"></a></li>
+						<li><a href="http://twitter.com/pixelhint" class="twitter" target="_blank"></a></li>
+						<li><a href="http://plus.google.com/+Pixelhint" class="google" target="_blank"></a></li>
+						<li><a href="#" class="skype"></a></li>
+					</ul>
+				 </li>
+			
+
+	
+			</ul>
+		</div>
+
+		<div class="copyrights wrapper">
+			Copyright Â© 2015 <a href="http://pixelhint.com" target="_blank" class="ph_link" title="Download more free Templates">MultiSpace</a>. All Rights Reserved.
+		</div>
+	</footer><!--  end footer  -->
 </body>
 </html>
