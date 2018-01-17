@@ -3199,7 +3199,7 @@ select[multiple].input-lg, textarea.input-lg {
 		width: auto;
 		vertical-align: middle
 	}
-	.form-inline .form-control-static {
+	.form-inline .form-control-static { 
 		display: inline-block
 	}
 	.form-inline .input-group {

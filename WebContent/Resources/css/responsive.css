@@ -12,6 +12,7 @@
     - General CSS
     - Header
     - Hero
+    - Hero_page
     - Search
     - Listings
     - Footer
@@ -126,7 +127,7 @@ header{
 }
 
 header .logo{
-	font-size : 30px;
+	font-size : 25px;
     margin-top: 40px;
     float: left;
 }
@@ -247,6 +248,51 @@ header nav .login_btn:hover{
     left: 1px;
 }
 
+
+
+
+
+
+/*  Hero_page Section  */
+
+.hero_page{
+    width: 100%;
+    height: 450px;
+    position: relative;
+    background: url('../img/background_page_01.png') no-repeat bottom center;
+    background-position : 0% 30%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.hero_page .caption{
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    margin-top: -105px;
+    z-index: 10;
+}
+
+.hero_page .caption h2{
+    color: #fff;
+    font-family: "p22_corinthia", Helvetica, Arial, sans-serif;
+    font-size: 100px;
+    font-weight: lighter;
+    margin: 0;
+    position: relative;
+    display: block;
+}
+
+.hero_page .caption h3{
+    color: #fff;
+    font-family: "lato-regular", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin: -15px 0 0 25px;
+    left: 1px;
+}
 
 
 
@@ -783,6 +829,9 @@ footer .copyrights a.ph_link{
     .hero{
         height: 800px;
     }
+    .hero_page{
+        height: 800px;
+    }
 }
 
 
@@ -833,13 +882,27 @@ footer .copyrights a.ph_link{
     .hero{
         height: 600px;
     }
-
+    
     .hero .caption{
         width: 92.72727272727273%;
         padding: 0 3.636363636363636%; 
     }
 
     .hero .caption h3{
+        margin: 0;
+        left: 0;
+    }
+    
+     .hero_page{
+        height: 600px;
+    }
+    
+    .hero_page .caption{
+        width: 92.72727272727273%;
+        padding: 0 3.636363636363636%; 
+    }
+
+    .hero_page .caption h3{
         margin: 0;
         left: 0;
     }
@@ -994,6 +1057,14 @@ footer .copyrights a.ph_link{
     }
 
     .hero .caption h3{
+        font-size: 16px;
+    }
+    
+     .hero_page .caption h2{
+        font-size: 85px;
+    }
+
+    .hero_page .caption h3{
         font-size: 16px;
     }
 

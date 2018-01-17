@@ -4,7 +4,7 @@
 <html>
 
 <body>
-	<section class="hero_page">
+	<section class="hero">
 	<header>
 	<div class="wrapper">
 
