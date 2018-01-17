@@ -65,7 +65,10 @@
 		padding : 5px;
 		float: left;
 	}
-	
+	.selecdiv0 {
+		width: 600px;
+		margin:0 auto;
+	}
 	
 	</style>
 	<script>
@@ -114,23 +117,25 @@
 
 <div class="container">
 	<div class="eveb">EVENT BOARD</div>
-
+	
 		<div class="wrapper">
 			<form action="event_user_list.do">
-				<div class="selectdiv1">
-					<div class="selectdiv2">
-						<select class="form-control" name="eve_option">
-							<option value="0">선택하세요</option>
-							<option value="1">제목</option>
-							<option value="2">내용</option>
-							<option value="3">제목+내용</option>
-						</select>
-					</div>
-					<div class="selectdiv3">
-						<input class="form-control" type="text" name="eve_key" placeholder="카테고리 선택 -> 내용 입력" />
-					</div>
-					<div class="selectdiv4">
-						<input type="submit" class="btn btn-primary" value="검색"/>				
+				<div class="selecdiv0">
+					<div class="selectdiv1">
+						<div class="selectdiv2">
+							<select class="form-control" name="eve_option">
+								<option value="0">선택하세요</option>
+								<option value="1">제목</option>
+								<option value="2">내용</option>
+								<option value="3">제목+내용</option>
+							</select>
+						</div>
+						<div class="selectdiv3">
+							<input class="form-control" type="text" name="eve_key" placeholder="카테고리 선택 -> 내용 입력" />
+						</div>
+						<div class="selectdiv4">
+							<input type="submit" class="btn btn-primary" value="검색"/>				
+						</div>
 					</div>
 				</div>
 			</form>
@@ -138,7 +143,6 @@
 
 	<section class="listings">
 		<div class="wrapper">
-		<div class="~~~~" ></div>
 			<ul class="properties_list">
 			<jl:forEach var="vo" items="${rl}">
 			<li>
