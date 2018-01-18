@@ -35,8 +35,11 @@
 		<jl:forEach var="SendMessage" items="${sendMessage}">
 			<tr>
 				<td>${SendMessage.receive_user_id}</td>
-				<td><span class="s_msg_no" i="${SendMessage.msg_no}" >${SendMessage.msg_content}</span>
-					<input id="i_msg_no" type="hidden" name="msg_no" />
+				<td>
+				<a href="mypage_moveMypageSendMessageRead.do?msg_no=${SendMessage.msg_no}">${SendMessage.msg_content}
+				<%-- <span class="s_msg_no" i="${SendMessage.msg_no}" >${SendMessage.msg_content}</span>
+					<input id="i_msg_no" type="hidden" name="msg_no" />--%>
+					</a> 
 				</td>
 				<td>${SendMessage.the_time}</td>
 			</tr>

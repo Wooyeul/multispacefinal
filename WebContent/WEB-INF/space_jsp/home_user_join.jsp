@@ -5,29 +5,63 @@
 <head>
 	<script type="text/javascript" src="common.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
-		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-		
-
-	.user_join_form{
-		margin : 50px;
-	}
-	
-		
-		
-	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
 	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<style type="text/css">
+		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+		
+		.user_join_form {
+			width: 100%;
+			text-align: center;
+		}
+		
+		.user_join_form_div {
+			display: inline-block;
+		}
+		
+		.user_join_form_div table th {
+			padding :7px 0;
+		}
+		.user_join_form_div table td {
+			padding-left : 22px;
+			padding : 7px;
+		}
+		
+		.table {
+			text-align: center;
+			border-color: green;
+		}
+		
+		td {
+			margin-top: 20px;
+		}
+		
+		.ask {
+			text-align: center;
+			margin-bottom: 27px;
+			margin-top: 27px;
+		}
+		
+		body {
+			background-color: white;
+		}
+		
+		.faqB {
+			margin-top: 27px;
+			margin-bottom: 27px;
+			text-align: center;
+			font-size: 2em;
+			font-family: "lato-regular", Helvetica, Arial, sans-serif;
+		}
+		
+		.panel-title {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+	</style>
 	
 	
-	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
-	<script type="text/javascript" src="./Resources/js/main.js"></script>
-
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
@@ -201,146 +235,152 @@
 		
 	</script>
 
-	
+
 </head>
 <body>
+	<!-- *********************  header  ************************ -->
+	<%@include file="./jsp/header_page.jsp"%>
+	<!-- *********************  header - end  ************************ -->
 
-	
-	<div class="user_join_form">
-	<form action="home_user_join2.do" name=frm method="POST">
-		<table border="0" cellpadding="8" align="center">
 
-			<tr>
-				<th colspan="3" align="center"><h1>회원가입</h1></th>
-				<!-- <td></td>
-		<td></td> -->
-			</tr>
 
-			<tr>
-				<th align="right">아이디</th>
-				<td><input type="text" name="user_id" id="user_id" size="10" />
-					<input type="button" id="primary_id" value="중복확인" />
-					<div id="dvname"></div>
-					</td>
-				<td></td>
-			</tr>
+	<div class="faqB">
+		<h2>회원가입</h2>
+	</div>
+	<div class="container">
 
-			<tr>
-				<th align="right">비밀번호</th>
-				<td><input type="password" name="passwd" id="passwd" size="20"
-					maxlength="20" /></td>
-				<td></td>
-			</tr>
+		<div class="user_join_form">
+			<div class="user_join_form_div">
+				<form action="home_user_join2.do" name=frm method="POST">
+					<table border="0" cellpadding="8" align="center">
 
-			<tr>
-				<th align="right">비밀번호 확인</th>
-				<td><input type="password" name="passwd2" id="passwd2"
-					size="20" maxlength="20" /></td>
-				<td></td>
-			</tr>
+						<tr>
+							<th align="right">아이디</th>
+							<td><input type="text" name="user_id" id="user_id" size="10" />
+								<input type="button" id="primary_id" value="중복확인" class="btn btn-primary"/>
+								<div id="dvname"></div></td>
+							<td></td>
+						</tr>
 
-			<tr>
-				<th align="right">이름</th>
-				<td><input type="text" name="user_name" id="user_name1" size="10" maxlength="8" class="nameCk"/>
-					<div id="dv1"></div>
-				</td>
-				<td></td>
-			</tr>
+						<tr>
+							<th align="right">비밀번호</th>
+							<td><input type="password" name="passwd" id="passwd" size="20" maxlength="20" /></td>
+							<td></td>
+						</tr>
 
-			<tr>
-				<th align="right">닉네임</th>
-				<td><input type="text" name="nickname" id="nickname" size="10" maxlength="8" /></td>
-				<td></td>
-			</tr>
+						<tr>
+							<th align="right">비밀번호 확인</th>
+							<td><input type="password" name="passwd2" id="passwd2" size="20" maxlength="20" /></td>
+							<td></td>
+						</tr>
 
-			<tr>
-				<th align="right">전화번호</th>
-				<td><select name="num">
-						<option value="010">010</option>
-						<option value="011">011</option>
-						<option value="017">017</option>
-						<option value="018">018</option>
-						<option value="019">019</option>
-				</select> - <input type="text" name="phone_cen" size="5" maxlength="4" /> -
-					<input type="text" name="phone_end" size="5" maxlength="4" /></td>
-				<td></td>
-				<td></td>
-			</tr>
+						<tr>
+							<th align="right">이름</th>
+							<td><input type="text" name="user_name" id="user_name1" size="10" maxlength="8" class="nameCk" />
+								<div id="dv1"></div></td>
+							<td></td>
+						</tr>
 
-			<tr>
-				<th align="right">이메일</th>
-				<td><input type="text" name="email" id="email" size="10" />@ <select
-					name="home">
-						<option value="daum.net">daum.net</option>
-						<option value="naver.com">naver.com</option>
-						<option value="gmail.com">gmail.com</option>
-						<option value="hotmail.com">hotmail.com</option>
-						<option value="hanmail.net">hanmail.net</option>
-				</select></td>
-				<td></td>
-			</tr>
+						<tr>
+							<th align="right">닉네임</th>
+							<td><input type="text" name="nickname" id="nickname" size="10" maxlength="8" /></td>
+							<td></td>
+						</tr>
 
-			<tr>
-				<th>우편번호</th>
-				<td><input type="text" name="zipcode" size="8" id="zipcode"/>
-				<input type="button" name="findzip" value="찾기" class="btnzip" onclick="zipSearch()"/>
-				</td>
-			</tr>
-			
-			<tr>
-				<th align="right">주소</th>
-				<td><input type="text" size="40" name="addr1"/></td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<th align="right">상세주소</th>
-				<td><input type="text" size="20" name="zipdetail"/></td>
-				<td></td>
-			</tr>
+						<tr>
+							<th align="right">전화번호</th>
+							<td><select name="num">
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="017">017</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
+							</select> - <input type="text" name="phone_cen" size="5" maxlength="4" />
+								- <input type="text" name="phone_end" size="5" maxlength="4" /></td>
+							<td></td>
+							<td></td>
+						</tr>
 
-			<tr>
-				<th align="right">주민번호</th>
-				<td><input type="text" name="ssn1" id="ssn1" size="6" maxlength="6" /> - 
-					<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7" /> 
-					<input type="button" value="확인" class="btn_ssn" />
-					<div id="dv"></div></td>
-				<td></td>
-			</tr>
+						<tr>
+							<th align="right">이메일</th>
+							<td><input type="text" name="email" id="email" size="10" />@
+								<select name="home">
+									<option value="daum.net">daum.net</option>
+									<option value="naver.com">naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hotmail.com">hotmail.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+							</select></td>
+							<td></td>
+						</tr>
 
-			<tr>
-				<th align="right">성별</th>
-				<td><input type="radio" name="gender" value="M" checked="checked" /> 남 
-				<input type="radio" name="gender" value="F" /> 여 
-				<input type="hidden" name="grade" value="1" /></td>
-				<td></td>
-			</tr>
+						<tr>
+							<th>우편번호</th>
+							<td><input type="text" name="zipcode" size="8" id="zipcode" />
+								<input type="button" name="findzip" value="찾기" class="btnzip btn btn-primary" onclick="zipSearch()" /></td>
+						</tr>
 
-			<tr>
-				<td></td>
-				<td>
-				<input type="button" name="member_join" id="member_join" value="    회원가입    " /> 
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="      재설정      " /></td>
-				<td></td>
-			</tr>
-		</table>
-		
-	</form>
-	
-	<form id="ck_total">
-		<div id="repleModal" class="modal" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-							<label id="lblContent"></label><br/>
-							<button type="button" class="btn btn-primary btn-sm" id="btnClose" data-dismiss="modal">닫기</button>
+						<tr>
+							<th align="right">주소</th>
+							<td><input type="text" size="40" name="addr1" /></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th align="right">상세주소</th>
+							<td><input type="text" size="20" name="zipdetail" /></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th align="right">주민번호</th>
+							<td>
+							<input type="text" name="ssn1" id="ssn1" size="6" maxlength="6" /> - 
+							<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7" /> 
+							<input type="button" value="확인" class="btn_ssn btn btn-primary" />
+								<div id="dv"></div></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th align="right">성별</th>
+							<td>
+							<input type="radio" name="gender" value="M" checked="checked" /> 남 
+							<input type="radio" name="gender" value="F" /> 여 
+							<input type="hidden" name="grade" value="1" /></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<td></td>
+							<td>
+							<input type="button" name="member_join" id="member_join" value="    회원가입    " class="btn btn-primary"/> &nbsp;&nbsp;&nbsp;&nbsp; 
+							<input type="reset" value="      재설정      " class="btn btn-primary"/></td>
+							<td></td>
+						</tr>
+					</table>
+
+				</form>
+			</div>
+
+			<form id="ck_total">
+				<div id="repleModal" class="modal" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<label id="lblContent"></label><br />
+								<button type="button" class="btn btn-primary btn-sm"
+									id="btnClose" data-dismiss="modal">닫기</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
-	</form>
-</div>
-	
+	</div>
+	<!-- ******************************* footer ******************************* -->
+	<%@include file="./jsp/footer.jsp"%>
+	<!--  end footer  -->
+
 </body>
 </html>

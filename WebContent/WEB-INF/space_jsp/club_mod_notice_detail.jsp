@@ -4,24 +4,50 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="common.js"></script>
-	<style>
-	</style>
+<title>Welcome to Multi Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
+
+<style type="text/css">
+</style>
 </head>
 <body>
-	<form id="frm">
-		<label>작성시간 : ${vo.the_time}</label><label> 작성자 : ${vo.user_id}</label><br/>
-		<label>제목</label><input name="c_notice_title" type="text" value="${vo.c_notice_title}"/><br/>
-		<label>소개</label><textarea name="c_notice_content" rows="15" cols="30">${vo.c_notice_content}</textarea><br/>
-		<input name="c_notice_no" type="hidden" value="${vo.c_notice_no}">
-		<input id="textMod" type="button" value="수정하기">
-		<input id="textDel" type="button" value="삭제하기">
-		<input id="prev" type="button" value="취소">
-	</form>
-	
+
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
+	<section class="listings">
+		<div class="wrapper">
+			<div class="properties_list">
+				<form id="frm">
+					<div align="right"><label>작성시간 ${vo.the_time}</label><br/><label> 작성자 ${vo.user_id}</label><br/></div>
+					<label>제목</label><input name="c_notice_title" type="text" value="${vo.c_notice_title}" class="form-control"/><br/>
+					<label>소개</label><textarea name="c_notice_content" rows="15" cols="30" class="form-control">${vo.c_notice_content}</textarea><br/>
+					<input name="c_notice_no" type="hidden" value="${vo.c_notice_no}">
+					<div align="right">
+						<input id="textMod" type="button" value="수정하기" class="btn">
+						<input id="textDel" type="button" value="삭제하기" class="btn">
+						<input id="prev" type="button" value="취소" class="btn">
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- ******************************* footer ******************************* -->
+	  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 	
 	
 	
@@ -31,7 +57,7 @@
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-					글을 수정 하시 겠습니까?
+					<h4>글을 수정 하시 겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='text_modal_Yes'>수정</button>
@@ -48,7 +74,7 @@
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>글 삭제</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-					글을 삭제하시겠습니까?
+					<h4>글을 삭제하시겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='del_modal_Yes'>삭제</button>
@@ -67,7 +93,7 @@
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
 				</div>
 			</div>
 		</div>
@@ -93,7 +119,7 @@
 						success	: function(rt) {
 							 if(rt=="ok"){
 								$("#text_mod_modal").modal("hide");
-								$("#basic_mobody").text("글이 수정 되었습니다.");
+								$("#basic_mobody").html("<h4>글이 수정 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");
@@ -101,7 +127,7 @@
 								});
 							}else{
 								$("#mod_modal").modal("hide");
-								$("#basic_mobody").text("글 수정이 실패 되었습니다.");
+								$("#basic_mobody").html("<h4>글 수정이 실패 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");
@@ -124,7 +150,7 @@
 					ajaxGet(url,function(rt){
 						if(rt=="ok"){
 							$("#del_modal").modal("hide");
-							$("#basic_mobody").text("글이 삭제 되었습니다.");
+							$("#basic_mobody").html("<h4>글이 삭제 되었습니다.</h4>");
 							$("#basic_modal").modal("show");
 							$("#basic_modal_Yes").on("click",function(){
 								$("#basic_modal").modal("hide");
@@ -132,7 +158,7 @@
 							});
 						}else{
 							$("#del_modal").modal("hide");
-							$("#basic_mobody").text("글 삭제가 실패 되었습니다.");
+							$("#basic_mobody").html("<h4>글 삭제가 실패 되었습니다.</h4>");
 							$("#basic_modal").modal("show");
 							$("#basic_modal_Yes").on("click",function(){
 								$("#basic_modal").modal("hide");

@@ -75,43 +75,69 @@ text-align: center;
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
 <script>
-	$(document)
-			.ready(
-					function() {
-						$("#btnMod").on("click", function() {
-							$("#repleModal").modal("hide");
+$(document).ready(function() {
+	// QnA 댓글 수정시 모달
+	$("#btnClose").on("click",function(){
+		location.href = "admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
+	});
+	$("#btnreMod").on("click", function() {
+		$("#repleModal").modal("hide");
+		$("#basic_modal").modal("show");
+	});
+	$("#basic_mobody").html("<h4>댓글 수정이 완료 되었습니다.<h4>");
+	$("#basic_modal_yes").on("click",function(){
+		var reple_no = $("#com_qna_reple_no").val();		
+		var com_qna_reple_content = $("#content").val();
+		var url = "admin_community_qna_reple_mod.do?com_qna_reple_no="+reple_no
+				+"&com_qna_reple_content=" + com_qna_reple_content;
+		ajaxGet(url,function(rt){ });
+		location.reload();
+	});
+	$(".modReple").on("click", function() {
+		$("#com_qna_reple_no").val($(this).attr("xyz"));
+		$("#content").val($("#" + $(this).attr("abcd")).text());
+		$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
+		$("#repleModal").modal("show");
+	});
+	
+	// QnA 삭제시 모달
+	$(".qna_remove").on("click",function(){
+		$("#qna_No").val( $(this).attr("com_qna_no") );
+		$("#text_modal").modal("show");
+	});
+	$("#text_modal_yes").on("click",function(){
+		var del_qna_no = $("#qna_No").val();
+			location.href = "admin_community_qna_del.do?com_qna_no=" + del_qna_no;
+		$("#text_modal_modal").modal("hide");
+	});
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
+	
+	
+	// QnA 리플 삭제시 모달
+	// <a> 태그로 값을 불러 올 때 class 했을 때 동작 됨.
+	$(".remove_qna_re").on("click",function(){
+		$("#com_qna_No").val( $(this).attr("com_qna_no") );
+		$("#com_qna_reple_No").val( $(this).attr("com_qna_reple_no") );
+		
+		$("#re_modal").modal("show");
+	});
+	$("#re_modal_yes").on("click",function(){
+		var del_com_qna_no = $("#com_qna_No").val();
+		var del_com_qna_reple_no = $("#com_qna_reple_No").val();
+			location.href = "admin_community_qna_reple_del.do?com_qna_no=" + 
+			del_com_qna_no +"&com_qna_reple_no=" + del_com_qna_reple_no;
+		$("#re_modal_modal").modal("hide");
+	});
+	$("#re_modal_no").on("click",function(){
+		$("#re_modal").modal('hide');
+	});
 
-						});
-
-						$("#btnreMod").on("click", function() {
-							$("#reple_form").submit();
-
-						});
-
-						$(".modReple").on(
-								"click",
-								function() {
-									$("#com_board_reple_no").val(
-											$(this).attr("xyz"));
-									$("#content").val(
-											$("#" + $(this).attr("abcd"))
-													.text());
-									$("lblcontent").text(
-											"글번호 :" + $(this).attr("xyz"));
-									$("#repleModal").modal("show");
-								});
-
-						$("#btnClose")
-								.on(
-										"click",
-										function() {
-											document.frm.action = "admin_community_board_read.do?com_board_no=${vo.com_board_no}";
-											document.frm.submit();
-										});
-
-					});
+});
 
 	window.onload = function() {
 		e("btn").onclick = function() {

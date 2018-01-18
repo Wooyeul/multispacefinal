@@ -4,56 +4,48 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="common.js"></script>
+<title>Welcome to Multi Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
+
+<style type="text/css">
+</style>
 </head>
 <body>
-	<div class="jbTitle">
-		<h1>Multi Space</h1>
-	</div>
-	
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default ">
-		<div class="container">
-		 <div class="navbar-header">
-		   <a class="navbar-brand" href="main.html">multi space</a>
-		 </div>
-	
-	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-		<ul class="nav navbar-nav ">
-	 	 <li><a href="space_home.do">공간</a></li>
-		 <li><a href="club_home.do">모임</a></li>
-		 <li><a href="community_list.do">커뮤니티</a></li>
-		 <li><a href="event_user_list.do">이벤트</a></li>	
-		 <li><a href="notice_list.do">공지사항</a></li>
-		 <li><a href="faq_list.do">FAQ</a></li>			
-		 <li><a href="admin_main.do">관리자</a></li>			
-		</ul>
-				
-	<ul id="login_nav" class="nav navbar-nav navbar-right">
-	<li><a href="#" id="user_name"></a></li>
-		<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-		<li><a href="home_logout.do">로그아웃</a></li>	
-	</ul>
-		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-		     <li><a href="home_login.do">로그인</a></li>		
-		</ul>
-	
-		   </div>
+
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
+	<section class="listings">
+		<div class="wrapper">
+			<div class="properties_list">
+				<form id="add_frm">
+					<label>제목</label><input name="c_notice_title" type="text" class="form-control"/><br/>
+					<label>내용</label><textarea name="c_notice_content" rows="15" cols="25" class="form-control"></textarea><br/>
+					
+					<input name="club_no" type="hidden" value="${club_no}"/>
+					<input name="user_id" type="hidden" value="${user_id}"/>
+					<input id="text_submit"type="button" value="등록" class="btn"/>&nbsp<input id="cancel" type="button" value="취소" class="btn"/>
+				</form>
+			</div>
 		</div>
-	</nav>
-	<!-- nav -->
+	</section>
+	<!-- ******************************* footer ******************************* -->
+	  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 	
-	<form id="add_frm">
-		<label>제목 : </label><input name="c_notice_title" type="text"/><br/>
-		<label>내용 : </label><textarea name="c_notice_content" rows="15" cols="25"></textarea><br/>
-		
-		<input name="club_no" type="hidden" value="${club_no}"/>
-		<input name="user_id" type="hidden" value="${user_id}"/>
-		<input id="text_submit"type="button" value="등록"/><input id="cancel" type="button" value="취소"/>
-	</form>
 	
 	<!-- 글 등록 modal창 시작 -->
 	<div id="text_add_modal" class="modal fade" role="dialog">
@@ -61,7 +53,7 @@
 			<div class="modal-content">
 				<div id="text_add_head" class="modal-header" align="center"><h4>글 등록</h4></div>
 				<div id="text_add_body" class="modal-body" align="center">
-					글을 등록 하시 겠습니까?
+					<h4>글을 등록 하시 겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='text_add__Yes'>등록</button>
@@ -79,7 +71,7 @@
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
 				</div>
 			</div>
 		</div>
@@ -101,7 +93,7 @@
 						success	: function(rt) {
 							if(rt=="ok"){
 								$("#text_add_modal").modal("hide");
-								$("#basic_mobody").text("글이 등록 되었습니다.");
+								$("#basic_mobody").html("<h4>글이 등록 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");
@@ -109,7 +101,7 @@
 								});
 							}else{
 								$("#text_add_modal").modal("hide");
-								$("#basic_mobody").text("글 등록 처리가 실패 되었습니다.");
+								$("#basic_mobody").html("<h4>글 등록 처리가 실패 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");

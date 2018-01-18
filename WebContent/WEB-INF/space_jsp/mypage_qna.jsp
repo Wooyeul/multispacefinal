@@ -29,25 +29,21 @@
 	<form name="frm">
 		<table>
 			<tr>
-				<th width="40">qna_no</th>
-				<th width="40">space_no</th>
-				<th width="100">user_id</th>
-				<th width="100">space_qna_title</th>
-				<th width="100">space_qna_content</th>
-				<th width="100">the_time</th>
-				<th width="100">답변보기</th>
+				<th width="40">질문번호</th>
+				<th width="100">질문 제목</th>
+				<th width="100">질문 내용</th>
+				<th width="100">작성 시간</th>
+				<th width="100"></th>
 			</tr>
 			<jl:forEach var="QnAInfo" items="${qnaInfo}">
 				<tr>
 					<td>${QnAInfo.space_qna_no}</td>
-					<td><span class="s_space_no" i="${QnAInfo.space_no}">${QnAInfo.space_no}</span>
-					</td>
-					<td>${QnAInfo.user_id}</td>
 					<td>${QnAInfo.space_qna_title}</td>
 					<td>${QnAInfo.space_qna_content}</td>
 					<td>${QnAInfo.the_time}</td>
 					<td><input type="button" class="btn btn-primary btnspace_no" id="btn_anwer" value="답변보기" abc="${QnAInfo.space_qna_no}"/>
 				</tr>
+					<input type="hidden" class="s_space_no" i="${QnAInfo.space_no}"/>
 			</jl:forEach>
 		</table>
 	</form>

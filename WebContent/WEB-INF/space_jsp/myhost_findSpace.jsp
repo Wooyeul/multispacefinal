@@ -33,7 +33,9 @@
 	<table>
 		<jl:forEach var="ab" items="${rl}" >
 			<tr>
-				<td><img src="thumbnail/${ab.space_thumb_img}" width="100px" class="space_no" abc="${ab.space_no}"/></td>
+				<td>
+				<a href="space_detail.do?space_no=${ab.space_no}" target="_parent">
+				<img src="thumbnail/${ab.space_thumb_img}" width="100px" class="space_no" abc="${ab.space_no}"/></a></td>
 				<td>${ab.space_no}</td>
 				<td>${ab.space_title}</td>
 			</tr>

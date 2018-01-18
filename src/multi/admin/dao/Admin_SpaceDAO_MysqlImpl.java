@@ -33,4 +33,9 @@ public class Admin_SpaceDAO_MysqlImpl implements Admin_SpaceDAO{
 		return sqlSession.selectOne("admin_space.p_admin_space_crn_check",svo);
 	}
 
+	@Override
+	public List<SpaceVO> search_All_specific_host(Admin_searchVO search) throws Exception {
+		return sqlSession.selectList("admin_space.admin_search_All_specific_host",search);
+	}
+
 }

@@ -171,15 +171,18 @@ header nav ul li{
     margin-left: 10px;
 }
 
-header nav ul li a,
+header nav .top_nav li a, header nav .login_nav li a, header nav .non_login_nav li a,
 header nav .login_btn{
     text-decoration: none;
-    color: #fff;
+    color: #fff !important;
     font-family: "lato-regular", Helvetica, Arial, sans-serif;
     font-size: 16px;
     letter-spacing: 1px;
 
 }
+
+
+
 
 header nav .login_btn{
     float: right;
@@ -294,6 +297,44 @@ header nav .login_btn:hover{
     left: 1px;
 }
 
+
+.top_nav>li>a {
+	color: white;
+	position: relative;
+	display: block;
+	padding: 0px 15px
+}
+
+.top_nav>li>a:focus, .nav>li>a:hover {
+	text-decoration: none;
+}
+
+.top_nav>li.disabled>a {
+	color: #777
+}
+
+.top_nav>li.disabled>a:focus, .nav>li.disabled>a:hover {
+	color: #777;
+	text-decoration: none;
+	cursor: not-allowed;
+	background-color: transparent
+}
+
+.top_nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+	background-color: #eee;
+	border-color: #337ab7
+}
+
+.top_nav .nav-divider {
+	height: 1px;
+	margin: 9px 0;
+	overflow: hidden;
+	background-color: #e5e5e5
+}
+
+.top_nav>li>a>img {
+	max-width: none
+}
 
 
 
@@ -775,8 +816,10 @@ header nav .login_btn:hover{
 
 	}
 .listings .wrapper .c_wrapper{
-	max-width: 1100px;
-	height : 600px;
+	
+	
+	max-width: 1200px;
+	height : 800px;
     margin: 0 auto;
     margin-top:130px;
     position: relative;
@@ -784,6 +827,54 @@ header nav .login_btn:hover{
     vertical-align:middle;
 }	
 	
+.listings .wrapper .c_wrapper .c_wrapper_sub_title  {	
+	height : 42px;
+	max-width: 1200px;
+}
+
+.main_list_club_commu_left {
+	
+	float: left;
+	width: 517px;
+	font-weight: bold;
+	background-color: transparent !important;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: auto;
+	margin-bottom: 10px; 
+	color: black;
+	font-family: "lato-regular", Helvetica, Arial, sans-serif;
+	font-size: 20px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-align: center;
+	transition: all .2s linear;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+}
+
+.main_list_club_commu_right {
+	float: right;
+	width: 517px;
+	font-weight: bold;
+	background-color: transparent !important;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: auto;
+	margin-bottom: 10px;
+	color: black;
+	font-family: "lato-regular", Helvetica, Arial, sans-serif;
+	font-size: 20px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-align: center;
+	transition: all .2s linear;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+}
+
 .listings .wrapper .c_wrapper .main_club {
 	float: left; 
 	border : 1px solid #bfd9f1;
@@ -803,24 +894,84 @@ header nav .login_btn:hover{
     margin: 0 auto;
     position: relative;
     vertical-align:middle;
+    	border : 1px solid #bfd9f1;
+}
+
+.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper:hover{
+	float : left;
+	width: 100%;
+	height : 200px;
+    margin: 0 auto;
+    position: relative;
+    vertical-align:middle;
+    border : 3px solid #bfd9f1;
 }
 
 .listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_img{
 	float : left;
-	border : 1px solid #bfd9f1;
+
 	width: 30%;
 	height: 200px;
     position: relative;
 }
 
 .listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content{
+	color: #666464;
+    font-family: "lato-bold", Helvetica, Arial, sans-serif;
+    font-size: 20px!important;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 28px;
+	
 	float : left;
-	border : 1px solid #bfd9f1;
+
 	width: 70%;
 	height: 200px;
     position: relative;
 }
 
+.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_title{
+	float : left;
+
+	width: 100%;
+	height: 120px;
+	margin : 0 auto;
+    position: relative;
+}
+
+.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_title_content{
+	font-size : 20px;
+	width: 100%;
+	height: 95px;
+	margin : 0 auto;
+    position: relative;
+    padding-top : 40px;
+    padding-left : 15px;
+    padding-right : 15px;
+}
+
+
+
+.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_score{
+	font-size : 25px;
+	font-weight : bold;
+	text-align : center;
+	float : left;
+	margin-top : 5px;
+	width: 100%;
+	height: 25px;
+    position: relative;
+}
+
+.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_member{
+	float : left;
+
+	width: 100%;
+	height: 80px;
+    position: relative;
+    padding-left : 15px;
+}
+	
 
 .listings .wrapper .c_wrapper .main_community{
 	float : right;
@@ -832,7 +983,7 @@ header nav .login_btn:hover{
 }	
 		
 
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_community_wrapper{
+.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper{
 	float : left;
 	width: 100%;
 	height : 200px;
@@ -840,17 +991,52 @@ header nav .login_btn:hover{
     position: relative;
     vertical-align:middle;
 }
-
-
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_community_wrapper .main_club_content{
+.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content{
+	color: #666464;
+    font-family: "lato-bold", Helvetica, Arial, sans-serif;
+    font-size: 20px!important;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 28px;
+	
 	float : left;
 	border : 1px solid #bfd9f1;
 	width: 100%;
 	height: 200px;
     position: relative;
 }
+
+.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper:hover{
+	float : left;
+	width: 100%;
+	height : 200px;
+    margin: 0 auto;
+    position: relative;
+    vertical-align:middle;
+    border : 3px solid #bfd9f1;
+}
+
+.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content_title{
+	float : left;
+
+	width: 100%;
+	height: 120px;
+    position: relative;
+    font-size:20px;
+    padding-left : 15px;
+    padding-top : 15px;
+}
 	
-	
+
+.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content_view_recom {
+	float : left;
+
+	width: 100%;
+	height: 80px;
+    position: relative;
+    padding-left : 15px;
+}
+
 	
 	
 	
@@ -866,8 +1052,15 @@ header nav .login_btn:hover{
     list-style: none;
 }
 	
+.best_club_img{
+	width : 100%;
+	height : 100%;
 	
+}
 	
+.sh_a{
+	color : black;
+}
 	
 /* css√ﬂ∞° ≥° */
 

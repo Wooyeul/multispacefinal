@@ -4,60 +4,50 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="common.js"></script>
+<title>Welcome to Multi Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	
-	<style>
-	</style>
+
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
+
+<style type="text/css">
+</style>
 </head>
 <body>
-	<div class="jbTitle">
-		<h1>Multi Space</h1>
-	</div>
-	
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default ">
-		<div class="container">
-		 <div class="navbar-header">
-		   <a class="navbar-brand" href="main.html">multi space</a>
-		 </div>
-	
-	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-		<ul class="nav navbar-nav ">
-	 	 <li><a href="space_home.do">공간</a></li>
-		 <li><a href="club_home.do">모임</a></li>
-		 <li><a href="community_list.do">커뮤니티</a></li>
-		 <li><a href="event_user_list.do">이벤트</a></li>	
-		 <li><a href="notice_list.do">공지사항</a></li>
-		 <li><a href="faq_list.do">FAQ</a></li>			
-		 <li><a href="admin_main.do">관리자</a></li>			
-		</ul>
-				
-	<ul id="login_nav" class="nav navbar-nav navbar-right">
-	<li><a href="#" id="user_name"></a></li>
-		<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-		<li><a href="home_logout.do">로그아웃</a></li>	
-	</ul>
-		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-		     <li><a href="home_login.do">로그인</a></li>		
-		</ul>
-	
-		   </div>
-		</div>
-	</nav>
-	<!-- nav -->
 
-	<form id="frm">
-		<label>작성시간 : ${vo.the_time}</label><label> 작성자 : ${vo.user_id}</label><br/>
-		<label>제목</label><input name="c_board_title" type="text" value="${vo.c_board_title}"/><br/>
-		<label>소개</label><textarea name="c_board_content" rows="15" cols="30">${vo.c_board_content}</textarea><br/>
-		<input name="c_board_no" type="hidden" value="${vo.c_board_no}">
-		<input id="textMod" type="button" value="수정하기">
-		<input id="textDel" type="button" value="삭제하기">
-		<input id="cancel" type="button" value="취소">
-	</form>
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
+	<section class="listings">
+		<div class="wrapper">
+			<div class="properties_list">
+				<form id="frm">
+					<div align="right"><label>작성시간 ${vo.the_time}</label><br/><label> 작성자 ${vo.user_id}</label><br/></div>
+					<label>제목</label><input name="c_board_title" type="text" value="${vo.c_board_title}" class="form-control"/><br/>
+					<label>소개</label><textarea name="c_board_content" rows="15" cols="30" class="form-control">${vo.c_board_content}</textarea><br/>
+					<input name="c_board_no" type="hidden" value="${vo.c_board_no}">
+					<div align="right">
+						<input id="textMod" type="button" value="수정하기" class="btn">
+						<input id="textDel" type="button" value="삭제하기" class="btn">
+						<input id="cancel" type="button" value="취소" class="btn">
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- ******************************* footer ******************************* -->
+	  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 	
 	
 	
@@ -67,7 +57,7 @@
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-					글을 수정 하시 겠습니까?
+					<h4>글을 수정 하시 겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='text_modal_Yes'>수정</button>
@@ -103,7 +93,7 @@
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
 				</div>
 			</div>
 		</div>
@@ -135,7 +125,7 @@
 						success	: function(rt) {
 							if(rt=="ok"){
 								$("#text_mod_modal").modal("hide");
-								$("#basic_mobody").text("글이 수정 되었습니다.");
+								$("#basic_mobody").html("<h4>글이 수정 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");
@@ -143,7 +133,7 @@
 								});
 							}else{
 								$("#mod_modal").modal("hide");
-								$("#basic_mobody").text("글 수정이 실패 되었습니다.");
+								$("#basic_mobody").html("<h4>글 수정이 실패 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal").on("hidden.bs.modal",function(){
 									$("#basic_modal").modal("hide");
@@ -166,7 +156,7 @@
 					ajaxGet(url,function(rt){
 						if(rt=="ok"){
 							$("#del_modal").modal("hide");
-							$("#basic_mobody").text("글이 삭제 되었습니다.");
+							$("#basic_mobody").html("<h4>글이 삭제 되었습니다.</h4>");
 							$("#basic_modal").modal("show");
 							$("#basic_modal_Yes").on("click",function(){
 								$("#basic_modal").modal("hide");
@@ -174,7 +164,7 @@
 							});
 						}else{
 							$("#del_modal").modal("hide");
-							$("#basic_mobody").text("글 삭제가 실패 되었습니다.");
+							$("#basic_mobody").html("<h4>글 삭제가 실패 되었습니다.</h4>");
 							$("#basic_modal").modal("show");
 							$("#basic_modal_Yes").on("click",function(){
 								$("#basic_modal").modal("hide");

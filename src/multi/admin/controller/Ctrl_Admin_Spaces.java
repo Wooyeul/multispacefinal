@@ -119,11 +119,20 @@ public class Ctrl_Admin_Spaces {
 	
 	// 장소에 따른 판매자 정보 확인 페이지
 	@RequestMapping("/admin_host_spaces.do")
-	public ModelAndView admin_host_spaces( @ModelAttribute SpaceVO svo, @ModelAttribute HostVO hvo  ) throws Exception {
+	public ModelAndView admin_host_spaces( @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_host_spaces");
-		List<SpaceVO> ls = admin_SpaceDAO.findHostPlaces(svo);
+		/*List<SpaceVO> ls = admin_SpaceDAO.findHostPlaces(svo);
+		mnv.addObject("ls", ls);*/
+		List<SpaceVO> ls = admin_SpaceDAO.search_All_specific_host(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_SpaceDAO.search_All_specific_host(search);
 		mnv.addObject("ls", ls);
-		mnv.addObject("host_name", hvo.getHost_name());
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
+		mnv.addObject("crn", search.getCrn() );
+		mnv.addObject("host_name", search.getHost_name() );
 		return mnv;
 	}
 	

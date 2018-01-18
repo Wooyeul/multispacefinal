@@ -13,7 +13,7 @@
 
 		<div id="navbar">
 
-			<ul class="nav ">
+			<ul class="top_nav">
 				<li><a href="space_home.do">공간</a></li>
 				<li><a href="club_home.do">모임</a></li>
 				<li><a href="community_list.do">커뮤니티</a></li>

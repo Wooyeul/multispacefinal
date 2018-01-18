@@ -4,61 +4,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
-
-	.commask{
-		text-align:center;
-	}
-	th, td {
-		text-align: center;
-	}
-	</style>
-	<script src="common.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+		
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style type="text/css">
-
-	.commask {
-		margin-top:5px;
-		text-align: center;
-		float:left;
-	}
-
-	.selectdiv1{
-		vertical-align : middle;
-		width: 1200px;
-		float: left;
-	}
+	<script type="text/javascript" src="./common.js"></script>
+	<style type="text/css">
+		th, td {
+			text-align: center;
+		}
+		.commask {
+			margin-top:5px;
+			text-align: center;
+			float:left;
+		}
 	
-	.selectdiv2{
-		margin-top:5px;
-		width: 150px;
-		float: left;
-	}
-	
-	 .selectdiv3 {
-	 	width: 400px;
-		padding : 5px;
-		float: left;
-	}
-	 .selectdiv4 {
-		padding : 5px;
-		float: left;
-	}
-	.selectdiv5 {
-		width: 300px;
-		margin-top:5px;
-		float: left;
-	}
-	.selecdiv0 {
-		width: 600px;
-		margin:0 auto;
-	}
-</style>
-
+		.selectdiv1{
+			vertical-align : middle;
+			width: 1000px;
+			float: left;
+		}
+		
+		.selectdiv2{
+			margin-top:5px;
+			width: 150px;
+			float: left;
+		}
+		
+		 .selectdiv3 {
+		 	width: 400px;
+			padding : 5px;
+			float: left;
+		}
+		 .selectdiv4 {
+			padding : 5px;
+			float: left;
+		}
+		.selectdiv5 {
+			width: 300px;
+			margin-top:5px;
+			float: left;
+		}
+		.selecdiv0 {
+			width: 600px;
+			margin:0 auto;
+		}
+	</style>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -85,29 +85,27 @@
 </head>
 <body>
 
-	
-
 	<table class="table table-hover">
 		<tr>
-			<th>NO</th>
-			<th>TITLE</th>
-			<th>TIME</th>
-			<th>ID</th>
-			<th>VIEW</th>
-			<th>LIKE</th>
+			<th width="40"></th>
+			<th width="1000">제목</th>
+			<th width="100">글쓴이</th>
+			<th>작성일</th>
+			<th>조회</th>
+			<th>추천</th>
 			<jl:forEach var="vo" items="${board_list}">
 				<tr>
 					<td>${vo.com_board_no}</td>
-					<td><a
-						href="community_board_read.do?com_board_no=${vo.com_board_no}">${vo.com_board_title}</a></td>
-					<td>${vo.the_time}</td>
+					<td><a href="community_board_read.do?com_board_no=${vo.com_board_no}">${vo.com_board_title}</a></td>
 					<td>${vo.user_id}</td>
+					<td>${vo.the_time}</td>
 					<td>${vo.view_count}</td>
 					<td>${vo.recom_count}</td>
 				</tr>
 
 			</jl:forEach>
 	</table>
+	
 	<!-- 페이징 -->
 	<div align="center">
 		<ul class="pagination pagination-sm">
@@ -141,9 +139,7 @@
 		</ul>
 	</div>
 	<!-- 페이징 -->	
-	
-	
-	
+
 	
 	<!-- 모달폼 -->
 	<div class="modal fade" id="addwrite" tabindex="-1" role="dialog"
@@ -166,7 +162,7 @@
 	</div>
 	
 	<div class="wrapper">
-			<form action="community_board_list.do">
+			<form action="community_board_list.do" id="paging_frm">
 				<div class="selecdiv0">
 					<div class="selectdiv1">
 						<div class="selectdiv2">

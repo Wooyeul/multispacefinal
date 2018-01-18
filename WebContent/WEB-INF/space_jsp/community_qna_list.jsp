@@ -4,9 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+		
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
 
 		.commask{
@@ -18,39 +29,36 @@
 			text-align: center;
 		}
 		.selectdiv1{
-		vertical-align : middle;
-		width: 1200px;
-		float: left;
-	}
-	
-	.selectdiv2{
-		margin-top:5px;
-		width: 150px;
-		float: left;
-	}
-	
-	 .selectdiv3 {
-	 	width: 400px;
-		padding : 5px;
-		float: left;
-	}
-	 .selectdiv4 {
-		padding : 5px;
-		float: left;
-	}
-	.selectdiv5 {
-		width: 300px;
-		margin-top:5px;
-		float: left;
-	}
-	.selecdiv0 {
-		width: 600px;
-		margin:0 auto;
-	}
+			vertical-align : middle;
+			width: 1000px;
+			float: left;
+		}
+		
+		.selectdiv2{
+			margin-top:5px;
+			width: 150px;
+			float: left;
+		}
+		
+		 .selectdiv3 {
+		 	width: 400px;
+			padding : 5px;
+			float: left;
+		}
+		 .selectdiv4 {
+			padding : 5px;
+			float: left;
+		}
+		.selectdiv5 {
+			width: 300px;
+			margin-top:5px;
+			float: left;
+		}
+		.selecdiv0 {
+			width: 600px;
+			margin:0 auto;
+		}
 	</style>
-	<script src="common.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
 	  $(document).ready(function(){
 	      $("#write").on("click",function(){
@@ -74,25 +82,25 @@
 	</script>
 </head>
 <body>
-	
 	<table class="table table-hover">
 		<tr>
-			<th width="40">NO</th>
-			<th width="200">TITLE</th>
-			<th>TIME</th>
-			<th>ID</th>
-			<th>VIEW</th>
+			<th width="40"></th>
+			<th width="1000">제목</th>
+			<th>글쓴이</th>
+			<th>작성일</th>
+			<th>조회</th>
 		</tr>
 		<jl:forEach var="vo" items="${qna_list}">
 			<tr>
 				<td>${vo.com_qna_no}</td>
 				<td><a href="community_qna_read.do?com_qna_no=${vo.com_qna_no}">${vo.com_qna_title}</a></td>
-				<td>${vo.the_time}</td>
 				<td>${vo.user_id}</td>
+				<td>${vo.the_time}</td>
 				<td>${vo.view_count}</td>
 			</tr>
 		</jl:forEach>
 	</table>
+	
 	<!-- 페이징 -->
 	<div align="center">
 		<ul class="pagination pagination-sm">
@@ -128,7 +136,7 @@
 	<!-- 페이징 -->		
 	
 	<div class="wrapper">
-			<form action="community_qna_list.do">
+			<form action="community_qna_list.do" id="paging_frm" >
 				<div class="selecdiv0">
 					<div class="selectdiv1">
 						<div class="selectdiv2">

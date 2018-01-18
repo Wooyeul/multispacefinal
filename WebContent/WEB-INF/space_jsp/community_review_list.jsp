@@ -19,56 +19,52 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
-	<style type="text/css">
 		th,td,tr {
 			text-align: center;
 		}
 	</style>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".space_no").on("click",function(){
-			var temp = $(this).attr("abc");
-			
-			document.frm.method="POST";
-			document.frm.action="space_detail.do?space_no="+temp;
-			document.frm.submit();
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".space_no").on("click",function(){
+				var temp = $(this).attr("abc");
+				
+				document.frm.method="POST";
+				document.frm.action="space_detail.do?space_no="+temp;
+				document.frm.submit();
+			});
 		});
-	});
-	function board_list(page){
-		$("#cur_page").attr("value",page);
-		$("#paging_frm").submit();
-	}
-</script> 
-
-
-
+		function board_list(page){
+			$("#cur_page").attr("value",page);
+			$("#paging_frm").submit();
+		}
+	</script> 
 <body>
-
-
-<table class="table table-hover">
+	<table class="table table-hover">
 		<tr>
-			<th>번호</th>
-			<th>방번호</th>
-			<th>아이디</th>
-			<th>제목</th>
-			<th>내용</th>
-			<th>시간</th>
-			<th>별점</th>
-			<th>이미지</th>
+			<th width="40"></th>
+			<th width="80">방번호</th>
+			<th width="400">제목</th>
+			<th width="400">내용</th>
+			<th>공간사진</th>
+			<th width="100">글쓴이</th>
+			<th width="200">작성일</th>
+			<th width="50">별점</th>
+			
 		</tr>
-
-			<jl:forEach items="${rl}" var="rl">
+		
+		<jl:forEach items="${rl}" var="rl">
 		<tr>
-				<td>${rl.review_no}</td>
-				<td>${rl.space_no}</td>
-				<td>${rl.user_id}</td>
-				<td><a href="space_detail.do?space_no=${rl.space_no}">${rl.review_title}</a></td>
-				<td>${rl.review_content}</td>
-				<td>${rl.the_time}</td>
-				<td>${rl.review_score}</td>
-				<td><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></td>
+			<td>${rl.review_no}</td>
+			<td>${rl.space_no}</td>
+			<td><a href="space_detail.do?space_no=${rl.space_no}">${rl.review_title}</a></td>
+			<td><a href="space_detail.do?space_no=${rl.space_no}">${rl.review_content}</a></td>
+			<td><a href="space_detail.do?space_no=${rl.space_no}"><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
+			<td>${rl.user_id}</td>
+			<td>${rl.the_time}</td>
+			<td>${rl.review_score}</td>
 		</tr>
-			</jl:forEach>
+		</jl:forEach>
 	</table>
 	
 	<!-- 페이징 -->

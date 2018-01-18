@@ -32,12 +32,14 @@
 		<div class="wrapper">
 			<div class="properties_list">	
 				<div class="container">
-					<div align="center"><h1 style="font: bold;"><label>${vo.club_name}</label></h1><br/></div>
-					<label>인원</label><input type="text" value="${vo.user_count+1}" disabled="disabled"/><br/>
-					<label>소개</label><textarea rows="15" cols="30" disabled="disabled">소개글 : ${vo.club_title}
-내용 : ${vo.club_content}</textarea><br/>
-					<input id="clubApply" type="button" value="신청하기" style="display: none">
-					<input id="moveCommunity" type="button" value="모임커뮤니티 가기" style="display: none">
+				
+					<div align="center" style="display: inline;"><h1 style="font: bold; color: #026fac;"><label>${vo.club_name} : </label></h1><h3><label>${vo.club_title}</label></h3><br/></div>
+					<div align="right"><label><h3 style="font: bold;">#현재 인원 ${vo.user_count+1}</h3></label></div><br/>
+					<label><h2 style="font: bold;">소개</h2></label><textarea rows="5" cols="30" disabled="disabled" class="form-control" style="font-size: large;">${vo.club_content}</textarea><br/>
+					<div align="right">
+					<input id="clubApply" type="button" value="신청하기" style="display: none" class="btn">
+					<input id="moveCommunity" type="button" value="모임커뮤니티 가기" style="display: none" class="btn">
+					</div>
 					<br/><br/><br/>
 					
 					<h3>모임 장소 추천 페이지(이미지 슬라이딩으로 구현 예정)</h3>
