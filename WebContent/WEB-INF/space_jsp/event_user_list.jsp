@@ -38,7 +38,7 @@
 		font-family: "lato-regular", Helvetica, Arial, sans-serif;
 	}
 	body {
-		background-color: #bfd9f2;
+		background-color: white;
 	}
 	.property_details {
 		background-color: white;

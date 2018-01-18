@@ -34,7 +34,7 @@
 			margin-top: 27px;
 		}
 		body {
-			background-color: #bfd9f2;
+			background-color: white;
 		}
 		.faqB {
 			margin-top: 27px;

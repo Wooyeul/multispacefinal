@@ -24,7 +24,7 @@
 	<style type="text/css">
 	
 	body {
-		background-color: #bfd9f2;
+		background-color: white;
 	}
 	
 	.noticeB {
