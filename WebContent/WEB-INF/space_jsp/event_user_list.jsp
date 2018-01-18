@@ -100,7 +100,7 @@
 						$("#non_login_nav").hide();
 						$("#user_name").text(rt+"님");
 					}
-	 			});	
+	 		});	
 		});
 	</script>
 </head>

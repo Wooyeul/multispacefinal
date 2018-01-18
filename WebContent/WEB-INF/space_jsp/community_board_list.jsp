@@ -1,22 +1,63 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
-taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+
+	.commask{
+		text-align:center;
+	}
+	th, td {
+		text-align: center;
+	}
+	</style>
+	<script src="common.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-.commask {
-	text-align: center;
-}
+	.commask {
+		margin-top:5px;
+		text-align: center;
+		float:left;
+	}
+
+	.selectdiv1{
+		vertical-align : middle;
+		width: 1200px;
+		float: left;
+	}
+	
+	.selectdiv2{
+		margin-top:5px;
+		width: 150px;
+		float: left;
+	}
+	
+	 .selectdiv3 {
+	 	width: 400px;
+		padding : 5px;
+		float: left;
+	}
+	 .selectdiv4 {
+		padding : 5px;
+		float: left;
+	}
+	.selectdiv5 {
+		width: 300px;
+		margin-top:5px;
+		float: left;
+	}
+	.selecdiv0 {
+		width: 600px;
+		margin:0 auto;
+	}
 </style>
-
-<script src="common.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <script type="text/javascript">
@@ -44,22 +85,7 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 <body>
 
-	${user_id} ´Ô È¯¿µÇÕ´Ï´Ù
-	<jl:if test="${user_id ne ''}">
-		<a href="community_board_mytext.do"> <input type="button" value="³»°¡¾´±Ûº¸±â" /></a>
-	</jl:if>
-
-	<form id="paging_frm" action="community_board_list.do" name="frm">
-		<select name="commserch_option">
-			<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
-			<option value="1">Á¦¸ñ</option>
-			<option value="2">³»¿ë</option>
-			<option value="3">Á¦¸ñ+³»¿ë</option>
-			<option value="4">ÀÛ¼ºÀÚ</option>
-		</select> °Ë»ö : <input type="text" name="commserch_content"> 
-		<input id="cur_board_page" type="hidden" name="cur_board_page" value="${board_pz.curPagination }">
-		<input type="submit" value="°Ë»ö">
-	</form>
+	
 
 	<table class="table table-hover">
 		<tr>
@@ -82,18 +108,18 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 			</jl:forEach>
 	</table>
-	<!-- ÆäÀÌÂ¡ -->
+	<!-- í˜ì´ì§• -->
 	<div align="center">
 		<ul class="pagination pagination-sm">
-			<!-- ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿ : 10ÆäÀÌÁö ÀÌÀüÀ¸·Î(ºí·Ï ÀÌµ¿) -->
+			<!-- ì´ì „ í˜ì´ì§€ë¡œ ì´ë™ : 10í˜ì´ì§€ ì´ì „ìœ¼ë¡œ(ë¸”ë¡ ì´ë™) -->
 			<jl:if test="${board_pz.hasPrevPagination }">
 				<li><a class="page" href="javascript:board_list('${board_pz.paginationStart-1}')">&lt;</a></li>
 			</jl:if>
-			<!-- ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿ : ÇÑÆäÀÌÁö ÀÌÀüÀ¸·Î -->
+			<!-- ì´ì „ í˜ì´ì§€ë¡œ ì´ë™ : í•œí˜ì´ì§€ ì´ì „ìœ¼ë¡œ -->
 			<jl:if test="${board_pz.hasPrevPage }">
 				<li><a class="page" href="javascript:board_list('${board_pz.curPagination-1 }')">&lt;</a></li>
 			</jl:if>
-				<!-- ÆäÀÌÁö ¹øÈ£ ¸¸µé±â -->
+				<!-- í˜ì´ì§€ ë²ˆí˜¸ ë§Œë“¤ê¸° -->
 				<jl:forEach begin="${board_pz.paginationStart }" end="${board_pz.paginationEnd }" step="1" varStatus="vs">
 					<jl:choose>
 						<jl:when test="${vs.index!=board_pz.curPagination }">
@@ -104,48 +130,81 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 						</jl:otherwise>
 					</jl:choose>
 				</jl:forEach>
-			<!-- ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿ : ÇÑÆäÀÌÁö ÀÌµ¿ -->
+			<!-- ë‹¤ìŒ í˜ì´ì§€ë¡œ ì´ë™ : í•œí˜ì´ì§€ ì´ë™ -->
 			<jl:if test="${board_pz.hasNextPage }">
 				<li><a class="page" href="javascript:board_list('${board_pz.curPagination+1}')">&gt;</a></li>
 			</jl:if>
-			<!-- ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿ : 10ÆäÀÌÁö ÀÌÈÄ·Î(ºí·Ï ÀÌµ¿) -->
+			<!-- ë‹¤ìŒ í˜ì´ì§€ë¡œ ì´ë™ : 10í˜ì´ì§€ ì´í›„ë¡œ(ë¸”ë¡ ì´ë™) -->
 			<jl:if test="${board_pz.hasNextPagination }">
 				<li><a class="page" href="javascript:board_list('${board_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
 	</div>
-	<!-- ÆäÀÌÂ¡ -->	
+	<!-- í˜ì´ì§• -->	
 	
 	
-	<!-- ±Û¾²±â ¹öÆ°-->
-	<div class="commask">
-	<input class="btn btn-primary btn" type="button" value="±Û¾²±â" id="write" xyz="${user_id}" />
-	</div>
 	
-	<!-- ¸ğ´ŞÆû -->
+	
+	<!-- ëª¨ë‹¬í¼ -->
 	<div class="modal fade" id="addwrite" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">¡¿</span> <span class="sr-only">Close</span>
+						<span aria-hidden="true">Ã—</span> <span class="sr-only">Close</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">¾Ë¸²</h4>
+					<h4 class="modal-title" id="myModalLabel">ì•Œë¦¼</h4>
 				</div>
-				<div class="modal-body">·Î±×ÀÎÀ» ¸ÕÀú ÇØÁÖ¼¼¿ä</div>
+				<div class="modal-body">ë¡œê·¸ì¸ì„ ë¨¼ì € í•´ì£¼ì„¸ìš”</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">´İ±â</button>
-					<button type="button" class="btn btn-primary" id="success">È®ÀÎ</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
+					<button type="button" class="btn btn-primary" id="success">í™•ì¸</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- paging ÀÌ¿ëÇÒ form -->
+	
+	<div class="wrapper">
+			<form action="community_board_list.do">
+				<div class="selecdiv0">
+					<div class="selectdiv1">
+						<div class="selectdiv2">
+							<select class="form-control" name="commserch_option">
+								<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
+								<option value="1">ì œëª©</option>
+								<option value="2">ë‚´ìš©</option>
+								<option value="3">ì œëª©+ë‚´ìš©</option>
+								<option value="4">ì‘ì„±ì</option>
+							</select>
+						</div>
+						<div class="selectdiv3">
+							<input class="form-control" type="text" name="commserch_content" placeholder="ì¹´í…Œê³ ë¦¬ ì„ íƒ -> ë‚´ìš© ì…ë ¥" />
+							<input id="cur_board_page" type="hidden" name="cur_board_page" value="${board_pz.curPagination }">
+						</div>
+						<div class="selectdiv4">
+							<input type="submit" class="btn btn-primary" value="ê²€ìƒ‰"/>				
+						</div>
+						<div class="selectdiv5">
+							<jl:if test="${user_id ne ''}">
+								<a href="community_board_mytext.do"> <input type="button" class="btn btn-primary" value="My ê¸€ë³´ê¸°" /></a>
+							</jl:if>
+						</div>
+						<!-- ê¸€ì“°ê¸° ë²„íŠ¼-->
+						<div class="commask">
+							<input class="btn btn-primary btn" type="button" value="ê¸€ì“°ê¸°" id="write" xyz="${user_id}" />
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	
+	
+	
+	<!-- paging ì´ìš©í•  form -->
 	<form id="paging_frm" action="community_board_list.do" method="post">
 		
 	</form>
-	<!-- paging ÀÌ¿ëÇÒ form -->
+	<!-- paging ì´ìš©í•  form -->
 </body>
 </html>

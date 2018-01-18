@@ -1,22 +1,29 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
-taglib
-	prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-th,td,tr {
-text-align: center;
-}
-</style>
-<script src="common.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+		
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	<style type="text/css">
+	<style type="text/css">
+		th,td,tr {
+			text-align: center;
+		}
+	</style>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".space_no").on("click",function(){
@@ -40,14 +47,14 @@ text-align: center;
 
 <table class="table table-hover">
 		<tr>
-			<th>¹øÈ£</th>
-			<th>¹æ¹øÈ£</th>
-			<th>¾ÆÀÌµğ</th>
-			<th>Á¦¸ñ</th>
-			<th>³»¿ë</th>
-			<th>½Ã°£</th>
-			<th>º°Á¡</th>
-			<th>ÀÌ¹ÌÁö</th>
+			<th>ë²ˆí˜¸</th>
+			<th>ë°©ë²ˆí˜¸</th>
+			<th>ì•„ì´ë””</th>
+			<th>ì œëª©</th>
+			<th>ë‚´ìš©</th>
+			<th>ì‹œê°„</th>
+			<th>ë³„ì </th>
+			<th>ì´ë¯¸ì§€</th>
 		</tr>
 
 			<jl:forEach items="${rl}" var="rl">
@@ -64,18 +71,18 @@ text-align: center;
 			</jl:forEach>
 	</table>
 	
-	<!-- ÆäÀÌÂ¡ -->
+	<!-- í˜ì´ì§• -->
 	<div align="center">
 		<ul class="pagination pagination-sm">
-			<!-- ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿ : 10ÆäÀÌÁö ÀÌÀüÀ¸·Î(ºí·Ï ÀÌµ¿) -->
+			<!-- ì´ì „ í˜ì´ì§€ë¡œ ì´ë™ : 10í˜ì´ì§€ ì´ì „ìœ¼ë¡œ(ë¸”ë¡ ì´ë™) -->
 			<jl:if test="${board_pz.hasPrevPagination }">
 				<li><a class="page" href="javascript:board_list('${board_pz.paginationStart-1}')">&lt;</a></li>
 			</jl:if>
-			<!-- ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿ : ÇÑÆäÀÌÁö ÀÌÀüÀ¸·Î -->
+			<!-- ì´ì „ í˜ì´ì§€ë¡œ ì´ë™ : í•œí˜ì´ì§€ ì´ì „ìœ¼ë¡œ -->
 			<jl:if test="${board_pz.hasPrevPage }">
 				<li><a class="page" href="javascript:board_list('${board_pz.curPagination-1 }')">&lt;</a></li>
 			</jl:if>
-				<!-- ÆäÀÌÁö ¹øÈ£ ¸¸µé±â -->
+				<!-- í˜ì´ì§€ ë²ˆí˜¸ ë§Œë“¤ê¸° -->
 				<jl:forEach begin="${board_pz.paginationStart }" end="${board_pz.paginationEnd }" step="1" varStatus="vs">
 					<jl:choose>
 						<jl:when test="${vs.index!=board_pz.curPagination }">
@@ -86,17 +93,17 @@ text-align: center;
 						</jl:otherwise>
 					</jl:choose>
 				</jl:forEach>
-			<!-- ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿ : ÇÑÆäÀÌÁö ÀÌµ¿ -->
+			<!-- ë‹¤ìŒ í˜ì´ì§€ë¡œ ì´ë™ : í•œí˜ì´ì§€ ì´ë™ -->
 			<jl:if test="${board_pz.hasNextPage }">
 				<li><a class="page" href="javascript:board_list('${board_pz.curPagination+1}')">&gt;</a></li>
 			</jl:if>
-			<!-- ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿ : 10ÆäÀÌÁö ÀÌÈÄ·Î(ºí·Ï ÀÌµ¿) -->
+			<!-- ë‹¤ìŒ í˜ì´ì§€ë¡œ ì´ë™ : 10í˜ì´ì§€ ì´í›„ë¡œ(ë¸”ë¡ ì´ë™) -->
 			<jl:if test="${board_pz.hasNextPagination }">
 				<li><a class="page" href="javascript:board_list('${board_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
 	</div>
-	<!-- ÆäÀÌÂ¡ -->	
+	<!-- í˜ì´ì§• -->	
 
 <form id="paging_frm" action="community_review_list.do" method="post">
 	<input type="hidden" name="cur_page" id="cur_page" value=""/>
