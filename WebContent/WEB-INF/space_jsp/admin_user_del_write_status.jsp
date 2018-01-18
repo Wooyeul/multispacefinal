@@ -49,8 +49,11 @@
     <![endif]-->
 </head>
 <body>
-
+	<br/>
 <span class="glyphicon glyphicon-envelope">	 <label>이메일 전송 결과</label> </span>
+	<hr style="border: solid 0.5px black;">
+	<br/>
+	
 		 <label>${message}</label>
 
 	<a href="admin_users.do"><label>리스트로 돌아가기</label></a>

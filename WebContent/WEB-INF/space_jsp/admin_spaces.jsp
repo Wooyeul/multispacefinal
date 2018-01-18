@@ -107,7 +107,7 @@ text-align: right;
              </div>
 
 		<div class="select3">
-			<input type="text" name="content" class="form-control" style="width:300px;"  placeholder="search..">
+			<input type="text" name="content" class="form-control" style="width:300px;">
 		</div>
 			<input  class="btn"  type="submit" value="검색">
 

@@ -1,108 +1,146 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-.form-group {
-	text-align: center; 
-}
-
-.jumbotron {
+p {
 	text-align: center;
 }
 
-.btn {
-	text-align: center;
+.select {
+	float: left;
+	padding-right: 5px;
 }
-
-
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="common.js" type="text/javascript"></script>
+<!-- Bootstrap Core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="common.js"></script>
+<!-- MetisMenu CSS -->
+<link href="./Resouces_admin/vendor/metisMenu/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="./Resouces_admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 <script>
-	$(document).ready(function(){
-		$("#cancel").on("click",function(){
-			document.frm.method="POST";
-			document.frm.action="admin_message_write.do";
+	$(document).ready(function() {
+		$("#cancel").on("click", function() {
+			document.frm.method = "POST";
+			document.frm.action = "admin_message_write.do";
 			document.frm.submit();
 		});
-		
+
 		var flag = 0;
 		var user_id;
-		$("#primary_id").on("click",function(){
+		$("#primary_id").on("click", function() {
 			user_id = $("#receive_user_id").val();
-			var url ="overlap.do?user_id="+user_id;
-			
-			ajaxGet(url,function(rt){
-				if(rt==1){
-					$("#lblContent").text("ID°¡ Á¸ÀçÇÕ´Ï´Ù. ÂÊÁöº¸³»±â°¡ °¡´ÉÇÕ´Ï´Ù.");
+			var url = "overlap.do?user_id=" + user_id;
+
+			ajaxGet(url, function(rt) {
+				if (rt == 1) {
+					$("#lblContent").text("IDê°€ ì¡´ì¬í•©ë‹ˆë‹¤. ìª½ì§€ë³´ë‚´ê¸°ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 					$("#repleModal").modal("show");
 					flag = 1;
-				} else if(user_id==""){
-					$("#lblContent").text("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+				} else if (user_id == "") {
+					$("#lblContent").text("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 					$("#repleModal").modal("show");
-				} else if( rt == 0){
-					$("#lblContent").text("ID°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÂÊÁö º¸³»±â°¡ ºÒ°¡´É ÇÕ´Ï´Ù.");
+				} else if (rt == 0) {
+					$("#lblContent").text("IDê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ìª½ì§€ ë³´ë‚´ê¸°ê°€ ë¶ˆê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 					$("#repleModal").modal("show");
 					$("#user_id").val("");
-					
-				} 
+
+				}
 			});
 		});
-		$("#m_submit").on("click",function(){
-			var user_id_check = $("#receive_user_id").val();	
-			if(user_id_check==""){
-				$("#lblContent").text("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ°í Áßº¹°Ë»ç ÇØÁÖ¼¼¿ä.");
-			} else if(flag==0){
-				$("#lblContent").text("¾ÆÀÌµğ Ã¼Å© ÇØÁÖ¼¼¿ä.");
+		$("#m_submit").on("click", function() {
+			var user_id_check = $("#receive_user_id").val();
+			if (user_id_check == "") {
+				$("#lblContent").text("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ê³  ì¤‘ë³µê²€ì‚¬ í•´ì£¼ì„¸ìš”.");
+			} else if (flag == 0) {
+				$("#lblContent").text("ì•„ì´ë”” ì²´í¬ í•´ì£¼ì„¸ìš”.");
 			} else {
-				$("#m_submit").attr('type','submit');
+				$("#m_submit").attr('type', 'submit');
 			}
 			$("#repleModal").modal("show");
 		});
-		$("#btnClose").on("click",function(){
+		$("#btnClose").on("click", function() {
 			$("#repleModal").modal("hide");
 		});
 	});
-
 </script>
 </head>
 <body>
-	<div class="jumbotron" style="background-color: orange">
-		<h1>°ü¸®ÀÚ 1:1 ÂÊÁö º¸³»±â</h1>
-	</div>
-	<form action="admin_writing_message.do" class="form-group" method="POST" name="frm">
-		<input type="hidden" name="send_user_id" value="admin" />
-		¹Ş´Â »ç¶÷ : <input type="text" id="receive_user_id" name="receive_user_id" size="30" /> 
-					<input type="button" id="primary_id" value="ID Á¸Àç ¿©ºÎ È®ÀÎ" />
-					<div id="dvname"></div>
-					
-					<br>
-		<br> ÂÊÁö ³»¿ë:
-		<textarea id="msg_content" name="msg_content" rows="10" cols="60"></textarea>
-		<br> <input id="m_submit" class="btn btn-success" type="button" value="¸Ş½ÃÁö º¸³»±â" />
-		<input type="button"class="btn btn-success" id="cancel" value="Ãë¼ÒÇÏ±â"/>
+	<br />
+
+	<p>
+		<label> ê´€ë¦¬ì ì¼ëŒ€ì¼ ìª½ì§€ë³´ë‚´ê¸° </label>
+	</p>
+	<hr style="border: solid 0.5px black;">
+	<br />
+	<form action="admin_writing_message.do" class="form-group"
+		method="POST" name="frm">
+		<input type="hidden" name="send_user_id" value="admin" /> <label>ë°›ëŠ”ì‚¬ëŒ</label>
+		<br />
+		<div class="select">
+			<input type="text" class="form-control" id="receive_user_id"
+				name="receive_user_id" style="width: 300px;" />
+		</div>
+
+		<input type="button" class="btn" id="primary_id" value="ID ì¡´ì¬ ì—¬ë¶€ í™•ì¸" />
+
+
+		<br /> <label>ìª½ì§€ë‚´ìš©</label>
+		<textarea id="msg_content" name="msg_content" rows="15"
+			class="form-control"> </textarea>
+		<br> <input id="m_submit" class="btn" type="button"
+			value="ë©”ì‹œì§€ ë³´ë‚´ê¸°" /> <input type="button" class="btn" id="cancel"
+			value="ì·¨ì†Œí•˜ê¸°" />
 	</form>
-	
+
 	<form id="ck_total">
 		<div id="repleModal" class="modal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
-							<label id="lblContent"></label><br/>
-							<button type="button" class="btn btn-primary btn-sm" id="btnClose" data-dismiss="modal">´İ±â</button>
+						<label id="lblContent"></label><br />
+						<button type="button" class="btn btn-primary btn-sm" id="btnClose"
+							data-dismiss="modal">ë‹«ê¸°</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
-	
+
 </body>
 </html>

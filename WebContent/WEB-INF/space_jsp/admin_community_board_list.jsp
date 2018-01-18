@@ -16,9 +16,23 @@
 	float: left;
 }
 
+
 .commask {
+	float: left;
 	text-align: center;
+	padding-left: 10px;
+
 }
+.tabletitle{
+	width: 500px;
+	text-align:  center;
+}
+
+td,th{
+text-align:  center;
+}
+
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -59,15 +73,13 @@
 </head>
 <body>
 	<br>
-	<div class="row">
+
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					자유게시판
 
-
 					<form id="textsearch" action="admin_community_board_search.do">
-
 						<div class="select">
 							<select name="commsearch_option" class="form-control"
 								style="width: 200px;">
@@ -83,23 +95,33 @@
 							<input type="text" name="commsearch_content" class="form-control"
 								style="width: 300px;">
 						</div>
-
+						
+						<div>
 						<input class="btn" type="submit" value="검색">
+						</div>	
 					</form>
+					<form id="form_search" action="admin_community_board_list.do" method="post">
+					<input type="hidden" name="pg" value="" id="pg">
+					<input type="hidden" name="search_content" value="${search.search_content}">
+					<input type="hidden" name="search_option" value="${search.search_option}">
+					</form>
+					
 				</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
-					<table width="100%"
+				  <div class="table-responsive">
+                                <table class="table table-hover">
+					<!-- <table width="100%"
 						class="table table-striped table-bordered table-hover"
-						id="dataTables-example">
+						id="dataTables-example"> -->
 						<thead>
 							<tr>
 								<th>NO</th>
-								<th>TITLE</th>
-								<th>TIME</th>
+								<th class="tabletitle">TITLE</th>
 								<th>ID</th>
 								<th>VIEW</th>
-								<th>LIKE</th>
+						
+								<th>TIME</th>
 							</tr>
 						</thead>
 						<jl:forEach var="vo" items="${rl}">
@@ -107,10 +129,10 @@
 								<td>${vo.com_board_no}</td>
 								<td><a
 									href="admin_community_board_read.do?com_board_no=${vo.com_board_no}">${vo.com_board_title}</a></td>
-								<td>${vo.the_time}</td>
 								<td>${vo.user_id}</td>
 								<td>${vo.view_count}</td>
-								<td>${vo.recom_count}</td>
+							
+								<td>${vo.the_time}</td>
 							</tr>
 
 						</jl:forEach>
