@@ -30,7 +30,7 @@
 		}
 		.selectdiv1{
 			vertical-align : middle;
-			width: 1100px;
+			width: 1000px;
 			float: left;
 		}
 		
