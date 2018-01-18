@@ -24,8 +24,19 @@
 
 	$(document).ready(function(){
 		
+		ajaxGet("best_club.do",function(rt){
+			var best_club = eval("("+rt+")");
+			var html3 ="";
+			
+			 for(var i=0; i<best_club.data.length; i++){
+				 
+
+			 }
+			 
+		});
+		
 		ajaxGet("best_space.do",function(rt){
-			var seoul_best = eval("("+rt+")");
+			var seoul_best = eval("("+rt+")");			
 			var html ="";
 			
 			 for(var i=0; i<seoul_best.data.length; i++){
@@ -82,6 +93,9 @@
 			 }
 			 $("#partybest_properties_list").html(html2);
 		});
+		
+		
+		
 		var scOffset = $('.navbar-Menu').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > scOffset.top) {
@@ -158,24 +172,53 @@
 		<div class="wrapper">
 
 			<div class="c_cate_list">
-				<div>
-					<p>18px</p>
-				</div>
+				<div class="c_cate_list_name">서울 BEST</div>
 				<ul id="seoulbest_properties_list" class="properties_list">
-	
+
 				</ul>
 
-				<div>
-					<p>18px</p>
-				</div>
+				<div class="c_cate_list_name">파티룸 BEST</div>
 				<ul id="partybest_properties_list" class="properties_list">
 
 				</ul>
+			</div>
 
-			</div></section>	
+			<div class="c_wrapper">
+				<div class="c_wrapper_sub">
+					<div class="main_club">
+
+						<ul id="main_club_list" class="c_wrapper_ul">
+	
+							<li>
+								<div class="main_club_wrapper" >
+									<div class="main_club_img">
+										img
+									</div>
+									<div class="main_club_content">
+										content
+									</div>
+								</div>
+							</li>
+
+						</ul>
+
+					</div>
+					<div class="main_community">
+					
+						<ul id="main_community_list">
+						
+							<li>asdsagsdg</li>
+							
+						</ul>
+					</div>
+				</div>
 
 
-		<!-- ******************************* footer ******************************* -->
+			</div>
+	</section>
+
+
+	<!-- ******************************* footer ******************************* -->
 
 	<footer>
 		<div class="wrapper footer">
