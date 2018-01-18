@@ -171,10 +171,10 @@ header nav ul li{
     margin-left: 10px;
 }
 
-header nav ul li a,
+header nav .top_nav li a,
 header nav .login_btn{
     text-decoration: none;
-    color: #fff;
+    color: #fff !important;
     font-family: "lato-regular", Helvetica, Arial, sans-serif;
     font-size: 16px;
     letter-spacing: 1px;
@@ -294,6 +294,44 @@ header nav .login_btn:hover{
     left: 1px;
 }
 
+
+.top_nav>li>a {
+	color: white;
+	position: relative;
+	display: block;
+	padding: 0px 15px
+}
+
+.top_nav>li>a:focus, .nav>li>a:hover {
+	text-decoration: none;
+}
+
+.top_nav>li.disabled>a {
+	color: #777
+}
+
+.top_nav>li.disabled>a:focus, .nav>li.disabled>a:hover {
+	color: #777;
+	text-decoration: none;
+	cursor: not-allowed;
+	background-color: transparent
+}
+
+.top_nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+	background-color: #eee;
+	border-color: #337ab7
+}
+
+.top_nav .nav-divider {
+	height: 1px;
+	margin: 9px 0;
+	overflow: hidden;
+	background-color: #e5e5e5
+}
+
+.top_nav>li>a>img {
+	max-width: none
+}
 
 
 
