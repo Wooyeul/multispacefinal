@@ -79,38 +79,45 @@ text-align: center;
 </head>
 <script>
 $(document).ready(function() {
-	// QnA 댓글 수정시 모달
-	$("#btnClose").on("click",function(){
-		location.href = "admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
-	});
+	// 커뮤니티 댓글 수정 완료 모달 부분
 	$("#btnreMod").on("click", function() {
 		$("#repleModal").modal("hide");
 		$("#basic_modal").modal("show");
 	});
 	$("#basic_mobody").html("<h4>댓글 수정이 완료 되었습니다.<h4>");
 	$("#basic_modal_yes").on("click",function(){
-		var reple_no = $("#com_qna_reple_no").val();		
-		var com_qna_reple_content = $("#content").val();
-		var url = "admin_community_qna_reple_mod.do?com_qna_reple_no="+reple_no
-				+"&com_qna_reple_content=" + com_qna_reple_content;
+		var reple_no = $("#com_board_reple_no").val();		
+		var com_board_reple_content = $("#content").val();
+		var url = "admin_community_board_replemod.do?com_board_reple_no="+reple_no
+				+"&com_board_reple_content=" + com_board_reple_content;
 		ajaxGet(url,function(rt){ });
 		location.reload();
 	});
+
+	
+	// 댓글 수정 모달 뛰우기
 	$(".modReple").on("click", function() {
-		$("#com_qna_reple_no").val($(this).attr("xyz"));
+		$("#com_board_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
 		$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
 		$("#repleModal").modal("show");
 	});
+	// 댓글 수정 모달 종료시
+	$("#btnClose").on("click",function(){
+		location.href = "admin_community_board_read.do?com_board_no=${vo.com_board_no}";
+	});
 	
-	// QnA 삭제시 모달
-	$(".qna_remove").on("click",function(){
-		$("#qna_No").val( $(this).attr("com_qna_no") );
+	
+	// 커뮤니티 글 삭제 모달 부분
+	$("#remove_free").on("click",function(){
+		$("#free_No").val( $(this).attr("free_no") );
+		
 		$("#text_modal").modal("show");
 	});
 	$("#text_modal_yes").on("click",function(){
-		var del_qna_no = $("#qna_No").val();
-			location.href = "admin_community_qna_del.do?com_qna_no=" + del_qna_no;
+		var del_free_no = $("#free_No").val();
+			location.href = "admin_community_board_del.do?com_board_no=" + 
+			del_free_no;
 		$("#text_modal_modal").modal("hide");
 	});
 	$("#text_modal_no").on("click",function(){
@@ -118,41 +125,41 @@ $(document).ready(function() {
 	});
 	
 	
-	// QnA 리플 삭제시 모달
+	// 자유게시판 댓글 삭제 시 모달
 	// <a> 태그로 값을 불러 올 때 class 했을 때 동작 됨.
-	$(".remove_qna_re").on("click",function(){
-		$("#com_qna_No").val( $(this).attr("com_qna_no") );
-		$("#com_qna_reple_No").val( $(this).attr("com_qna_reple_no") );
+	$(".remove_free_re").on("click",function(){
+		$("#board_reple_No").val( $(this).attr("board_reple_no") );
+		$("#board_No").val( $(this).attr("board_no") );
 		
 		$("#re_modal").modal("show");
 	});
 	$("#re_modal_yes").on("click",function(){
-		var del_com_qna_no = $("#com_qna_No").val();
-		var del_com_qna_reple_no = $("#com_qna_reple_No").val();
-			location.href = "admin_community_qna_reple_del.do?com_qna_no=" + 
-			del_com_qna_no +"&com_qna_reple_no=" + del_com_qna_reple_no;
+		var del_board_reple_no = $("#board_reple_No").val();
+		var del_board_no = $("#board_No").val();
+			location.href = "admin_community_board_repledel.do?com_board_reple_no=" + 
+			del_board_reple_no +"&com_board_no=" + del_board_no;
 		$("#re_modal_modal").modal("hide");
 	});
 	$("#re_modal_no").on("click",function(){
 		$("#re_modal").modal('hide');
 	});
-
+	
 });
 
-	window.onload = function() {
-		e("btn").onclick = function() {
-			var dc = "?dc=" + new Date().getTime();
-			ajaxGet("admin_community_board_recom.do" + dc
-					+ "&user_id=aav&com_board_no=${vo.com_board_no}", function(
-					rt) {
-				if (rt == -1) {
-					alert('이미 이 글을 추천하셨습니다');
-				} else {
-					e("recomCount").innerHTML = rt;
-				}
-			});
-		};
+// 추천 뛰우기 모달
+window.onload = function() {
+	e("btn").onclick = function() {
+		var dc = "?dc=" + new Date().getTime();
+		ajaxGet("admin_community_board_recom.do" + dc
+				+ "&user_id=aav&com_board_no=${vo.com_board_no}", function(rt) {
+			if (rt == -1) {
+				alert('이미 이 글을 추천하셨습니다');
+			} else {
+				e("recomCount").innerHTML = rt;
+			}
+		});
 	};
+};
 </script>
 </head>
 <body>
@@ -203,23 +210,14 @@ $(document).ready(function() {
 					<thead>
 						<tr>
 							<td>
-								<form action="admin_community_board_mod.do" method="POST">
-							<input type="hidden" name="com_board_no" value="${vo.com_board_no}" />
-							<input type="hidden" name="com_board_title"	value="${vo.com_board_title}" />
-							<input type="hidden" name="user_id" value="${vo.user_id}" /> 
-							<input type="hidden" name="com_board_content" value="${vo.com_board_content}" /> 
-							<div class="select3">
-							<input type="submit" id="mod" class="btn" value="글 수정하기" />
-							</div>
+							<form action="admin_community_board_mod.do" method="POST">
+								<input type="hidden" name="com_board_no" value="${vo.com_board_no}" /> 
+								<input type="hidden" name="com_board_title" value="${vo.com_board_title}" /> 
+								<input type="hidden" name="user_id" value="${vo.user_id}" /> 
+								<input type="hidden" name="com_board_content" value="${vo.com_board_content}" /> 
+								<input type="submit" id="mod"  class="btn btn-primary" value="글 수정하기" /> &nbsp;
+								<input type="button" id="remove_free" free_no="${vo.com_board_no}" class="btn btn-primary" value="글 삭제하기" />
 							</form>
-							
-							
-							<form action="admin_community_board_del.do" method="POST">
-								<input type="hidden" name="com_board_no" value="${vo.com_board_no}" />
-								<div  class="select3">
-								<input type="submit" id="del" class="btn" value="글 삭제하기" />
-								</div>
-							</form>	
 							</td>
 						</tr>
 					<thead>
@@ -293,6 +291,55 @@ $(document).ready(function() {
 		</div>
 	</form>
 
+
+<!-- 글 삭제 모달 -->	
+<div id="text_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="board_reple_No" value="0"/>
+	<input type="hidden" id="board_No" value="0"/>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 댓글 삭제 모달 -->		
+<div id="re_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="free_No" value="0"/>
+	<input type="hidden" id="free_No" value="0"/>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="re_mohead" class="modal-header"align="center"><h4>댓글 삭제</h4></div>
+			<div id="re_mobody" class="modal-body" align="center">
+				<h4>댓글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="re_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' to-delete2="delete_${vs2.count}"  id='re_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='re_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 확인 완료용 모달 -->
+<div id="basic_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="basic_mobody" class="modal-body" align="center">
+			</div>
+			<div id="basic_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

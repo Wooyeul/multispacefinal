@@ -76,10 +76,9 @@ text-align:  center;
 			<div class="panel-heading">
 				Q&A게시판
 				<form id="form_search" action="admin_community_qna_list.do">
-					<input type="hidden" name="pg" value="" id="pg"> <input
-						type="hidden" name="search_content"
-						value="${search.search_content}"> <input type="hidden"
-						name="search_option" value="${search.search_option}">
+					<input type="hidden" name="pg" value="" id="pg"> 
+					<input type="hidden" name="search_content" value="${search.search_content}"> 
+					<input type="hidden" name="search_option" value="${search.search_option}">
 				</form>
 				<form id="textsearch" action="admin_community_qna_list.do">
 					<div class="select2">

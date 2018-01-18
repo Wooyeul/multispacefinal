@@ -149,7 +149,9 @@ window.onload = function() {
 		</tr>
 		</jl:forEach>
 	</table>
-
+	<br>
+	<input type="button" id="btn" class="btn" value="추천버튼" />
+	
 	<form method="POST" action="admin_community_board_replemod.do" id="reple_form" id="frm">
 		<div id="repleModal" class="modal" role="dialog">
 			<input type="hidden" id="com_board_no" value="${vo.com_board_no}"
@@ -227,7 +229,7 @@ window.onload = function() {
 	</div>
 </div>
 
-
+<!-- 확인 완료용 모달 -->
 <div id="basic_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">

@@ -80,24 +80,64 @@ text-align: center;
 <script>
 
 $(document).ready(function() {
-	$("#btnClose").on("click", function() {
-		$("#repleModal").modal("hide");
-		document.frm.action="admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
-		document.frm.submit();
-
+	// QnA 댓글 수정시 모달
+	$("#btnClose").on("click",function(){
+		location.href = "admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
 	});
-
 	$("#btnreMod").on("click", function() {
-		$("#reple_form").submit();
-
+		$("#repleModal").modal("hide");
+		$("#basic_modal").modal("show");
 	});
-
+	$("#basic_mobody").html("<h4>댓글 수정이 완료 되었습니다.<h4>");
+	$("#basic_modal_yes").on("click",function(){
+		var reple_no = $("#com_qna_reple_no").val();		
+		var com_qna_reple_content = $("#content").val();
+		var url = "admin_community_qna_reple_mod.do?com_qna_reple_no="+reple_no
+				+"&com_qna_reple_content=" + com_qna_reple_content;
+		ajaxGet(url,function(rt){ });
+		location.reload();
+	});
 	$(".modReple").on("click", function() {
 		$("#com_qna_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
 		$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
 		$("#repleModal").modal("show");
 	});
+	
+	// QnA 삭제시 모달
+	$(".qna_remove").on("click",function(){
+		$("#qna_No").val( $(this).attr("com_qna_no") );
+		$("#text_modal").modal("show");
+	});
+	$("#text_modal_yes").on("click",function(){
+		var del_qna_no = $("#qna_No").val();
+			location.href = "admin_community_qna_del.do?com_qna_no=" + del_qna_no;
+		$("#text_modal_modal").modal("hide");
+	});
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
+	
+	
+	// QnA 리플 삭제시 모달
+	// <a> 태그로 값을 불러 올 때 class 했을 때 동작 됨.
+	$(".remove_qna_re").on("click",function(){
+		$("#com_qna_No").val( $(this).attr("com_qna_no") );
+		$("#com_qna_reple_No").val( $(this).attr("com_qna_reple_no") );
+		
+		$("#re_modal").modal("show");
+	});
+	$("#re_modal_yes").on("click",function(){
+		var del_com_qna_no = $("#com_qna_No").val();
+		var del_com_qna_reple_no = $("#com_qna_reple_No").val();
+			location.href = "admin_community_qna_reple_del.do?com_qna_no=" + 
+			del_com_qna_no +"&com_qna_reple_no=" + del_com_qna_reple_no;
+		$("#re_modal_modal").modal("hide");
+	});
+	$("#re_modal_no").on("click",function(){
+		$("#re_modal").modal('hide');
+	});
+
 });
 
 </script>
@@ -149,29 +189,19 @@ $(document).ready(function() {
 							<td>
 							
 									
-							
 							<form action="admin_community_qna_mod.do" method="post">
-							
-						<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-						<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
-						<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
-							
-							<div class="select3">
-						<input type="submit"  class="btn"  value="QnA수정"/>
-							</div>
+								<input type="submit" value="QnA수정"/>
 							</form>
-								
-							
-								<form action="admin_community_qna_del.do" method="post">
-									<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-								<div  class="select3">
-									<input type="submit" class="btn"  value="QnA삭제"/>
-								</div>
-							</form>	
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<input type="button" class="qna_remove" com_qna_no="${vo.com_qna_no}"  value="QnA삭제"/>
 							</td>
 						</tr>
 					<thead>
-		
+					
 					
 					<jl:forEach var="rpl" items="${rp}">
 			<tr>
@@ -206,7 +236,7 @@ $(document).ready(function() {
 		<!-- /.col-lg-12 -->
 	</div>
 <hr style="border: solid 0.5px black;">
-	<form action="admin_community_qna_reple_add.do" method="POST">
+<form action="admin_community_qna_reple_add.do" method="POST">
 <div class="select1">
 		<label> 댓글달기 </label>
 </div>
@@ -218,7 +248,7 @@ $(document).ready(function() {
 <div class="select3">	
 		<input type="submit" class="btn" value="댓글달기" />
 </div>
-	</form>
+</form>
 
 
 
@@ -265,7 +295,55 @@ $(document).ready(function() {
 		
 		</form>
 <!-- 폼끝 -->		
+
+<!-- QnA 글 삭제시 모달 -->
+		<div id="text_modal" class="modal fade" role="dialog">
+			<input type="hidden" id="qna_No" value="0"/>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+					<div id="text_mobody" class="modal-body" align="center">
+						<h4>글을 삭제 하시겠습니까?</h4>
+					</div>
+					<div id="text_ft" class="modal-footer">
+						<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+						<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		
+		
+		<!-- QnA 리플 삭제시 모달 -->
+		<div id="re_modal" class="modal fade" role="dialog">
+			<input type="hidden" id="com_qna_No" value="0"/>
+			<input type="hidden" id="com_qna_reple_No" value="0"/>	
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div id="re_mohead" class="modal-header"align="center"><h4>댓글 삭제</h4></div>
+					<div id="re_mobody" class="modal-body" align="center">
+						<h4>댓글을 삭제 하시겠습니까?</h4>
+					</div>
+					<div id="re_ft" class="modal-footer">
+						<button type='button' class='btn btn-default' to-delete="delete_${vs2.count}"  id='re_modal_yes'>확인</button>
+						<button type='button' class='btn btn-primary' id='re_modal_no'>취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<!-- QnA 글, 댓글 수정 완료시 쓰는 모달 -->		
+<div id="basic_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="basic_mobody" class="modal-body" align="center">
+			</div>
+			<div id="basic_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+			</div>
+		</div>
+	</div>
+</div>		
 
 </body>
 </html>

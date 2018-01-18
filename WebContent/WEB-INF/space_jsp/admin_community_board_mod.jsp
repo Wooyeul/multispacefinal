@@ -56,6 +56,19 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+$(document).ready(function(){
+	// 커뮤니티 글 수정 완료 모달 부분
+	$("#basic_mobody").html("<h4>수정이 완료 되었습니다.<h4>");
+	$(".mod_complete").on("click",function(){
+		$("#basic_modal").modal("show");
+	});
+	$("#basic_modal_yes").on("click",function(){
+		$("#frm").submit();
+	});
+
+});
+</script>   
 </head>
 <body>
 	<br>
@@ -90,6 +103,19 @@
 			<!-- /.panel -->
 		</div>
 		<!-- /.col-lg-12 -->
-
+		
+<!-- 커뮤니티 글 수정 완료 모달 부분	 -->	
+	<div id="basic_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="basic_mobody" class="modal-body" align="center">
+				</div>
+				<div id="basic_ft" class="modal-footer">
+					<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>
