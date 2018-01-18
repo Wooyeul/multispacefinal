@@ -38,7 +38,13 @@
 .t1 {
 	text-align: left;
 }
-
+.o2oq {
+			margin-top: 27px;
+			margin-bottom: 27px;
+			text-align: center;
+			font-size: 2em;
+			font-family: "lato-regular", Helvetica, Arial, sans-serif;
+		}
 
 </style>
 
@@ -87,27 +93,25 @@
          <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
 	
-	<div class="jumbotron" style="background-color: #bfd9f2">
-		<h1>1:1 문의하기</h1>
-	</div>
+	<div class="o2oq"><h2>1:1 문의하기</h2></div>
 	
 	<div class="container">
 		<form action="admin_o2oQnA_add.do" class="form-group" method="POST" name="frm">
 			<table>
 			<tr>
-				<td class="t1"><strong>제목 : </strong></td> 
+				<td class="t1"><strong>제 &nbsp;&nbsp;&nbsp;목&nbsp;</strong></td> 
 				<td><input class="form-control" type="text" name="o2o_title" size="30" placeholder="제목을 입력해 주세요."/><br/></td>
 			<tr>
 			<tr>
-				<td class="t1"><strong>이메일 :</strong></td> 
+				<td class="t1"><strong>이메일&nbsp;</strong></td> 
 				<td><input class="form-control" type="text" name="o2o_email" size="30" placeholder="이메일로 답변이 가니 정확한 이메일 주소를 입력하세요."/><br/></td>
 			</tr>
 			<tr>
-				<td class="t1"><strong>핸드폰번호 :</strong></td> 
+				<td class="t1"><strong>휴대 전화&nbsp;</strong></td> 
 				<td><input class="form-control" type="text" name="o2o_phone" size="30" placeholder="핸드폰 번호를 입력해 주세요." /><br/></td>
 			</tr>
 			<tr>
-				<td class="t1"><strong>문의 내용 :</strong><br/></td> 
+				<td class="t1"><strong>문의 내용&nbsp;</strong><br/></td> 
 				<td><select class="form-control" name="o2o_type">
 						<option value="선택">문의 내용 선택</option>
 						<option value="회원">회원</option>
