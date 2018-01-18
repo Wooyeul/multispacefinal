@@ -1,75 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="common.js"></script>
+<title>Welcome to Multi Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+<link rel="stylesheet" href="./mypage_css/Myclub.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
 	
 </head>
+
 <body>
-	<div class="jbTitle">
-		<h1>Multi Space</h1>
-	</div>
+	<!-- *********************  header  ************************ -->
+      <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
 	
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default ">
-		<div class="container">
-		 <div class="navbar-header">
-		   <a class="navbar-brand" href="main.html">multi space</a>
-		 </div>
-	
-	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-		<ul class="nav navbar-nav ">
-	 	 <li><a href="space_home.do">공간</a></li>
-		 <li><a href="club_home.do">모임</a></li>
-		 <li><a href="community_list.do">커뮤니티</a></li>
-		 <li><a href="event_user_list.do">이벤트</a></li>	
-		 <li><a href="notice_list.do">공지사항</a></li>
-		 <li><a href="faq_list.do">FAQ</a></li>			
-		 <li><a href="admin_main.do">관리자</a></li>			
-		</ul>
-				
-	<ul id="login_nav" class="nav navbar-nav navbar-right">
-	<li><a href="#" id="user_name"></a></li>
-		<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-		<li><a href="home_logout.do">로그아웃</a></li>	
-	</ul>
-		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-		     <li><a href="home_login.do">로그인</a></li>		
-		</ul>
-	
-		   </div>
+	<section class="listings">
+		<div class="wrapper">
+			<div class="properties_list">
+				<div class="container">
+					<div align="center"><h1 style="color: #026fac;">모임 등록 페이지</h1></div><br/>
+					<form id="club_add_frm">
+						<label>클럽이름</label><input id="club_name" name="club_name" type="text" class="form-control"><br/>
+						<label>제목</label><input id="club_title" name="club_title" type="text" class="form-control"><br/>
+						<label>인원</label><input id="max_member" name="max_member"type="number" class="form-control"><br/>
+						<label>소개</label><textarea id="club_content" name="club_content" rows="8" cols="24" class="form-control"></textarea><br/>
+						<label>사진등록</label><input id="club_thumb_img" name="club_thumb_img" type="file" class="form-control"><br/>
+						<select id="l_category_no" name="l_category_no" class="form-control">
+							<option>지역선택</option>
+							<jl:forEach items="${lmap}" var="m">
+								<option value="${m.l_category_no}">${m.l_category_name}</option>
+							</jl:forEach>
+						</select><br/>
+						<select id="c_category_no" name="c_category_no" class="form-control">
+							<option>분야선택</option>
+							<jl:forEach items="${cmap}" var="c">
+								<option value="${c.c_category_no}">${c.c_category_name}</option>
+							</jl:forEach>
+						</select><br/>
+						<input name="user_id" type="hidden" value="${user_id}">
+						<div align="right"><input id="submit_btn" type="button" value="등록하기" class="btn">&nbsp<input id="cancel" type="button" value="취소하기" class="btn"></div>
+					</form>
+				</div>
+			</div>
 		</div>
-	</nav>
-	<!-- nav -->
+	</section>
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->	
 	
-	<div class="container">
-		<form id="club_add_frm">
-			<label>클럽이름</label><input id="club_name" name="club_name" type="text"><br/>
-			<label>제목</label><input id="club_title" name="club_title" type="text"><br/>
-			<label>인원</label><input id="max_member" name="max_member"type="number"><br/>
-			<label>소개</label><textarea id="club_content" name="club_content" rows="3" cols="24"></textarea><br/>
-			<label>사진등록</label><input id="club_thumb_img" name="club_thumb_img" type="file"><br/>
-			<select id="l_category_no" name="l_category_no">
-				<option>지역선택</option>
-				<jl:forEach items="${lmap}" var="m">
-					<option value="${m.l_category_no}">${m.l_category_name}</option>
-				</jl:forEach>
-			</select>
-			<select id="c_category_no" name="c_category_no">
-				<option>분야선택</option>
-				<jl:forEach items="${cmap}" var="c">
-					<option value="${c.c_category_no}">${c.c_category_name}</option>
-				</jl:forEach>
-			</select>
-			<input name="user_id" type="hidden" value="${user_id}">
-			<input id="submit_btn" type="button" value="등록하기"><input id="cancel" type="button" value="취소하기">
-		</form>
-	</div>
 	
 	<!-- 모임 등록 modal창 시작 -->
 	<div id="club_add_modal" class="modal fade" role="dialog">
@@ -95,7 +87,7 @@
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
 				</div>
 			</div>
 		</div>

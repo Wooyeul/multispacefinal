@@ -427,10 +427,10 @@ CREATE PROCEDURE p_find_best_community(
 BEGIN
    DROP TEMPORARY TABLE IF EXISTS temp;
    CREATE TEMPORARY TABLE IF NOT EXISTS temp
-	SELECT count(*) as count,c.com_board_no
+	SELECT c.recom_count,c.com_board_no
 	FROM Community_BoardT AS c
 	group by c.com_board_no
-	order by count desc limit 0,3;
+	order by c.recom_count desc limit 0,3;
    
    SELECT c.com_board_no, c.com_board_title, c.view_count, c.recom_count, u.user_name
    FROM Community_BoardT AS c, Usert AS u, temp AS t
