@@ -53,7 +53,7 @@
 			<div class="modal-content">
 				<div id="text_add_head" class="modal-header" align="center"><h4>글 등록</h4></div>
 				<div id="text_add_body" class="modal-body" align="center">
-					글을 등록 하시 겠습니까?
+					<h4>글을 등록 하시 겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='text_add__Yes'>등록</button>
@@ -71,7 +71,7 @@
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
 				</div>
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 						success	: function(rt) {
 							if(rt=="ok"){
 								$("#text_add_modal").modal("hide");
-								$("#basic_mobody").text("글이 등록 되었습니다.");
+								$("#basic_mobody").html("<h4>글이 등록 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");
@@ -101,7 +101,7 @@
 								});
 							}else{
 								$("#text_add_modal").modal("hide");
-								$("#basic_mobody").text("글 등록 처리가 실패 되었습니다.");
+								$("#basic_mobody").html("<h4>글 등록 처리가 실패 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");

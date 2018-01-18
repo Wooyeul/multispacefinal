@@ -60,14 +60,9 @@
 	<section class="listings">
 		<div class="wrapper">
 			<div class="properties_list">
-				<div class="container">
-					<div>
-						<iframe name="club_list" width="100%" height="55%"></iframe>
-					</div>
-
-					<div align="right">
-						<button id="btn" class="btn_square" type="button">모임등록</button>
-					</div>
+				<iframe id="boy" name="club_list" width="100%"></iframe>
+				<div align="right">
+					<button id="btn" class="btn_square" type="button">모임등록</button>
 				</div>
 			</div>
 		</div>
@@ -79,6 +74,12 @@
 	<!-- 자바스크립트 -->	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			/* 아이프레임 스크롤바 없애기 */
+			$('#boy').on("load",function(){
+	          var h = this.contentWindow.document.body.offsetHeight;
+	          $(this).height(h);
+	       });
 			
 			/* 로그인 안했으면 모임 등록 버튼 숨기기 */
 			if('${user_id}'==''){

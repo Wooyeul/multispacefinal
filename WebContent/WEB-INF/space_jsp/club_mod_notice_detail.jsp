@@ -57,7 +57,7 @@
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>글 수정</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-					글을 수정 하시 겠습니까?
+					<h4>글을 수정 하시 겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='text_modal_Yes'>수정</button>
@@ -74,7 +74,7 @@
 			<div class="modal-content">
 				<div id="mohead" class="modal-header" align="center"><h4>글 삭제</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-					글을 삭제하시겠습니까?
+					<h4>글을 삭제하시겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
 					<button type='button' class='btn btn-default' id='del_modal_Yes'>삭제</button>
@@ -93,7 +93,7 @@
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>닫기</button>
 				</div>
 			</div>
 		</div>
@@ -119,7 +119,7 @@
 						success	: function(rt) {
 							 if(rt=="ok"){
 								$("#text_mod_modal").modal("hide");
-								$("#basic_mobody").text("글이 수정 되었습니다.");
+								$("#basic_mobody").html("<h4>글이 수정 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");
@@ -127,7 +127,7 @@
 								});
 							}else{
 								$("#mod_modal").modal("hide");
-								$("#basic_mobody").text("글 수정이 실패 되었습니다.");
+								$("#basic_mobody").html("<h4>글 수정이 실패 되었습니다.</h4>");
 								$("#basic_modal").modal("show");
 								$("#basic_modal_Yes").on("click",function(){
 									$("#basic_modal").modal("hide");
@@ -150,7 +150,7 @@
 					ajaxGet(url,function(rt){
 						if(rt=="ok"){
 							$("#del_modal").modal("hide");
-							$("#basic_mobody").text("글이 삭제 되었습니다.");
+							$("#basic_mobody").html("<h4>글이 삭제 되었습니다.</h4>");
 							$("#basic_modal").modal("show");
 							$("#basic_modal_Yes").on("click",function(){
 								$("#basic_modal").modal("hide");
@@ -158,7 +158,7 @@
 							});
 						}else{
 							$("#del_modal").modal("hide");
-							$("#basic_mobody").text("글 삭제가 실패 되었습니다.");
+							$("#basic_mobody").html("<h4>글 삭제가 실패 되었습니다.</h4>");
 							$("#basic_modal").modal("show");
 							$("#basic_modal_Yes").on("click",function(){
 								$("#basic_modal").modal("hide");
