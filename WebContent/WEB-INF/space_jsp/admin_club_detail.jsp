@@ -105,9 +105,8 @@
 						</thead>
 						<jl:forEach var="ls" items="${ls}">
 							<tr>
-								<td>${ls.user_id}&nbsp;<a
-									href="admin_host_user_check.do?user_id=${ls.user_id}">유저 정보
-										확인하기</a></td>
+								<td>${ls.user_id}&nbsp;
+								<a href="admin_host_user_check.do?user_id=${ls.user_id}">유저 정보 확인하기</a></td>
 							</tr>
 						</jl:forEach>
 					</table>

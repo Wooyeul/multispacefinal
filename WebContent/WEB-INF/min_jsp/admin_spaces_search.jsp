@@ -15,7 +15,24 @@ table {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="common.js" type="text/javascript"></script>
 <script>
-
+$(document).ready(function(){
+	$(".remove_space").on("click",function(){
+		$("#space_No").val( $(this).attr("space_no") );
+		
+		$("#text_modal").modal("show");
+	});
+	
+	//yes버튼 클릭 했을 때 실행할 function
+	$("#text_modal_yes").on("click",function(){
+		var del_space_no = $("#space_No").val();
+			location.href = "admin_space_remove.do?space_no=" + del_space_no;
+		$("#text_modal_modal").modal("hide");
+	});
+	//no버튼 클릭 했을 때 실행할 function
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
+});
 </script>
 </head>
 <body>
@@ -91,39 +108,57 @@ table {
 				<td>${vo.s_category_no}</td>
 				<td>${vo.l_category_no}</td>
 				<td>${vo.the_time}</td>
-				<td><a href="admin_space_remove.do?space_no=${vo.space_no}">삭제</a></td>
+				<td><button class="remove_space" space_no="${vo.space_no}" >삭제하기</button></td>
 			</tr>
 		</jl:forEach>
 	</table>
 	
 <form id="form_search" action="admin_spaces_search.do">
 	<input type="hidden" name="pg" value="" id="pg">
+	<input type="hidden" name="search_content" value="${search.search_content}">
+	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
-
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
-				<li><a class="page" href="admin_spaces_search.do?pg=${pz.paginationStart-1}">&lt;</a></li>
+				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationStart-1}">&lt;</a></li>
 			</jl:if>
 				<jl:if test="${pz.hasPrevPage }">
-					<li><a class="page" href="admin_spaces_search.do?pg=${pz.curPagination-1 }">&lt;</a></li>
+					<li><a class="page" href="admin_spaces.do?pg=${pz.curPagination-1 }">&lt;</a></li>
 				</jl:if>
 				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
 					<jl:choose>
 						<jl:when test="${vs.index!=pz.curPagination }">
-							<li><a class="page" href="admin_spaces_search.do?pg=${vs.index }">${vs.index }</a></li>
+							<li><a class="page" href="admin_spaces.do?pg=${vs.index }">${vs.index }</a></li>
 						</jl:when>
 						<jl:otherwise>
-							<li class="active"><a class="page" href="admin_spaces_search.do?pg=${vs.index }">${vs.index }</a></li>
+							<li class="active"><a class="page" href="admin_spaces.do?pg=${vs.index }">${vs.index }</a></li>
 						</jl:otherwise>
 					</jl:choose>
 				</jl:forEach>
 				<jl:if test="${pz.hasNextPage }">
-					<li><a class="page" href="admin_spaces_search.do?pg=${pz.curPagination+1}">&gt;</a></li>
+					<li><a class="page" href="admin_spaces.do?pg=${pz.curPagination+1}">&gt;</a></li>
 				</jl:if>
 			<jl:if test="${pz.hasNextPagination }">
-				<li><a class="page" href="admin_spaces_search.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
+	
+<!-- 공간 삭제에 대한 모달 -->
+<div id="text_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="space_No" value="0"/>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

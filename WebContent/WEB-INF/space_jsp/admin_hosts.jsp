@@ -94,6 +94,24 @@ text-align: right;
 
 <!-- 페이징 -->
 <div class="paginationdiv">
+<br>
+<br>
+<form id="form_search" action="admin_hosts.do">
+	<input type="hidden" name="pg" value="" id="pg">
+</form>
+<form id="textsearch" action="admin_hosts.do" method="post">
+	<select name="search_option">
+		<option value="0">선택해주세요</option>
+		<option value="1">사업자 번호</option>
+		<option value="2">유저 ID</option>
+		<option value="3">호스트 이름</option>
+		<option value="4">호스트 계좌 번호</option>
+		<option value="5">호스트 우편 번호</option>
+	</select>
+	검색 : <input type="text" name="search_content">
+	<input type="submit" value="검색">
+</form>
+
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_hosts.do?pg=${pz.paginationStart-1}">&lt;</a></li>

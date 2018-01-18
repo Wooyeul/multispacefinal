@@ -145,10 +145,9 @@ $(document).ready(function(){
 			</jl:if>
 		</ul>
 	
-
+<!-- 공간 삭제에 대한 모달 -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="space_No" value="0"/>
-	
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>

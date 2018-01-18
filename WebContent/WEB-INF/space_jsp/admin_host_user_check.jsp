@@ -101,7 +101,7 @@ text-align: center;
 				
 				
 						<input type="hidden" name="user_id" value="${vo.user_id}" />
-						<button  class="btn" type="submit">수정</button>
+						<button  class="btn" type="submit">수정 하기</button>
 						<a href="admin_hosts.do">	<button  class="btn" type="submit">취소</button> </a>
 					</form>
 					

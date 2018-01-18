@@ -89,7 +89,6 @@
 									<option value="11">공간 카테고리</option>
 									<option value="12">장소 카테고리</option>
 									<option value="13">생성일</option>
-									<option value="14">공간 이름 + 내용</option>
 								</select>
 							</div>
 
@@ -103,29 +102,7 @@
 						</form>
 
 					</div>
-				</div> 
-
-				<div class="col-lg-6">
-					<br>
-					<div class="select">
-						<form id="textsearch" action="admin_spaces_search2.do">
-
-							<div class="select2">
-								<select name="search_option" class="form-control">
-									<option value="0">정렬을 선택해주세요</option>
-									<option value="1">최신 순</option>
-									<option value="2">오래된 순</option>
-									<option value="3">비싼 가격 순</option>
-									<option value="4">싼 가격 순</option>
-								</select>
-							</div>
-
-							<div class="select3">
-								<input type="submit" class="btn" value="전체 정렬하기">
-							</div>
-						</form>
-					</div>
-				</div> 
+				</div>
 
 
 			<div class="panel-body">
@@ -182,8 +159,32 @@
                 </div>
                 <!-- /.col-lg-12 -->
 </div>
-        
-
+<div class="paginationdiv">
+	<ul class="pagination pagination-sm">
+			<jl:if test="${pz.hasPrevPagination }">
+				<li><a class="page" href="admin_host_spaces.do?pg=${pz.paginationStart-1}&crn=${search.crn}&host_name=${host_name}">&lt;</a></li>
+			</jl:if>
+				<jl:if test="${pz.hasPrevPage }">
+					<li><a class="page" href="admin_host_spaces.do?pg=${pz.curPagination-1 }&crn=${search.crn}&host_name=${host_name}">&lt;</a></li>
+				</jl:if>
+				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
+					<jl:choose>
+						<jl:when test="${vs.index!=pz.curPagination }">
+							<li><a class="page" href="admin_host_spaces.do?pg=${vs.index }&crn=${search.crn}&host_name=${host_name}">${vs.index }</a></li>
+						</jl:when>
+						<jl:otherwise>
+							<li class="active"><a class="page" href="admin_host_spaces.do?pg=${vs.index }&crn=${search.crn}&host_name=${host_name}">${vs.index }</a></li>
+						</jl:otherwise>
+					</jl:choose>
+				</jl:forEach>
+				<jl:if test="${pz.hasNextPage }">
+					<li><a class="page" href="admin_host_spaces.do?pg=${pz.curPagination+1}">&gt;</a></li>
+				</jl:if>
+			<jl:if test="${pz.hasNextPagination }">
+				<li><a class="page" href="admin_host_spaces.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+			</jl:if>
+		</ul>        
+</div>
 
 </body>
 </html>

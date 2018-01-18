@@ -76,10 +76,12 @@ text-align: right;
 				<div class="select1">
 						<select name="search_option" class="form-control"style="width:200px;" >
 							<option value="0">선택해주세요</option>
-							<option value="1">제목</option>
-							<option value="2">내용</option>
-							<option value="3">제목 + 내용</option>
-							<option value="4">작성자</option>
+							<option value="1">사업자 번호</option>
+							<option value="2">유저 ID</option>
+							<option value="3">호스트 이름</option>
+							<option value="4">호스트 계좌 번호</option>
+							<option value="5">호스트 우편 번호</option>
+							<option value="6">참고사항(거절 사항)</option>
 						</select> 
 				</div>
 						<div class="select2">	

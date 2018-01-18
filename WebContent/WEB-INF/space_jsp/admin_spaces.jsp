@@ -18,17 +18,11 @@
 
 .select2 {
 	float: left;
-	
 }
 
 .select3 {
 	float: left;
 }
-
-.paginationdiv{
-text-align: right;
-}
-
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -66,57 +60,95 @@ text-align: right;
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+$(document).ready(function(){
+	$(".remove_space").on("click",function(){
+		$("#space_No").val( $(this).attr("space_no") );
+		
+		$("#text_modal").modal("show");
+	});
+	
+	//yes버튼 클릭 했을 때 실행할 function
+	$("#text_modal_yes").on("click",function(){
+		var del_space_no = $("#space_No").val();
+			location.href = "admin_space_remove.do?space_no=" + del_space_no;
+		$("#text_modal_modal").modal("hide");
+	});
+	//no버튼 클릭 했을 때 실행할 function
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
+});
+</script>
 </head>
 <body>
 	<br>
+
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">공간리스트<br>
-		<form id="textsearch" action="admin_spaces_search.do" method="post">
-		
-		<div class="select">
-			<select name="option" class="form-control"  style="width:200px;" >
-				<option value="crn">사업자 등록번호</option>
-				<option value="space_title">공간 이름</option>
-				<option value="space_content">공간 내용</option>
-				<option value="open_time">오픈 시간</option>
-				<option value="close_time">클로즈 시간</option>
-				<option value="price">가격</option>
-				<option value="max_people">최대 인원</option>
-				<option value="min_people">최소 인원</option>
-				<option value="space_call">공간 전화 번호</option>
-				<option value="zipcode">주소</option>
-				<option value="s_category_no">공간 카테고리</option>
-				<option value="l_category_no">장소 카테고리</option>
-				<option value="the_time">생성일</option>
-			</select>
-		</div>
-		
-		 <div class="select2">
-			<select name="option2"  class="form-control" style="width:200px;">
-				<option value="">정렬</option>
-				<option value="d_desc">최신순으로 정렬</option>
-				<option value="d_asc">오래된순으로 정렬</option>
-				<option value="p_desc">비싼 순으로 정렬</option>
-				<option value="p_asc">가격 싼 순으로 정렬</option>
-			</select>
-		</div>
-		 	<div class="select2" >
-              <input type="checkbox"name="re" value="Y" >상세 검색
-             </div>
+				<div class="panel-heading">공간상세검색결과<br></div><!-- /.panel-heading -->
 
-		<div class="select3">
-			<input type="text" name="content" class="form-control" style="width:300px;">
-		</div>
-			<input  class="btn"  type="submit" value="검색">
+			<div class="col-lg-6">
+					<br>
+					<div class="select">
+						<form id="textsearch" action="admin_spaces_search.do">
+							<div class="select1">
+								<select name="option" class="form-control">
+									<option value="crn">사업자 등록번호</option>
+									<option value="space_title">공간 이름</option>
+									<option value="space_content">공간 내용</option>
+									<option value="open_time">오픈 시간</option>
+									<option value="close_time">클로즈 시간</option>
+									<option value="price">가격</option>
+									<option value="max_people">최대 인원</option>
+									<option value="min_people">최소 인원</option>
+									<option value="space_call">공간 전화 번호</option>
+									<option value="zipcode">우편번호</option>
+									<option value="s_category_no">공간 카테고리</option>
+									<option value="l_category_no">장소 카테고리</option>
+									<option value="the_time">생성일</option>
+								</select>
+							</div>
+
+							<div class="select2">
+								<input class="form-control" type="text" name="content">
+							</div>
+
+							<div class="select3">
+								<input class="btn" type="submit" value="검색">
+							</div>
+						</form>
+
+					</div>
+				</div> 
+
+				<div class="col-lg-6">
+					<br>
+					<div class="select">
+						<form id="textsearch" action="admin_spaces_search2.do">
+
+							<div class="select2">
+								<select name="option" class="form-control">
+									<option value="">정렬을 선택해주세요</option>
+									<option value="d_desc">최신순으로 정렬</option>
+									<option value="d_asc">오래된순으로 정렬</option>
+									<option value="p_desc">비싼 순으로 정렬</option>
+									<option value="p_asc">가격 싼 순으로 정렬</option>
+								</select>
+							</div>
+
+							<div class="select3">
+								<input type="submit" class="btn" value="전체 정렬하기">
+							</div>
+							<input type="checkbox" name="re" value="Y">상세 검색 할려면 체크&nbsp;<br>
+						</form>
+					</div>
+				</div> 
 
 
-		</form>
-		
-			</div><!-- /.panel-heading -->
 			<div class="panel-body">
-				
+				<br> <br> <br>
 				<table width="100%"
 					class="table table-striped table-bordered table-hover"
 					id="dataTables-example">
@@ -169,10 +201,11 @@ text-align: right;
                 </div>
                 <!-- /.col-lg-12 -->
 </div>
-       
-
-<!-- 페이징 -->
-<div class="paginationdiv">
+<form id="form_search" action="admin_spaces_search.do">
+	<input type="hidden" name="pg" value="" id="pg">
+	<input type="hidden" name="search_content" value="${search.search_content}">
+	<input type="hidden" name="search_option" value="${search.search_option}">
+</form>
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -197,7 +230,24 @@ text-align: right;
 				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-</div>		
-<!-- 페이징 -->
+	
+<!-- 공간 삭제에 대한 모달 -->
+<div id="text_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="space_No" value="0"/>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>        
+
+
 </body>
 </html>

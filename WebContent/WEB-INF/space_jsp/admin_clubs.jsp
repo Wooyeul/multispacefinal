@@ -100,8 +100,7 @@ $(document).ready(function(){
 					모임리스트
 					<form id="textsearch" action="admin_clubs.do" method="post">
 					<div class="select"> 
-						<select name="search_option" class="form-control"
-								style="width: 200px;">
+						<select name="search_option" class="form-control" style="width: 200px;">
 							<option value="0">검색</option>
 							<option value="1">모임 이름</option>
 							<option value="2">모임장 유저 ID</option>
@@ -140,7 +139,7 @@ $(document).ready(function(){
 								<td>${vo.max_member}</td>
 								<td>${vo.create_time}</td>
 						
-								<td><button class="btn" id="remove_club" club_no="${vo.club_no}">삭제하기</button></td>
+								<td><button class="remove_club" club_no="${vo.club_no}" >삭제하기</button></td>
 							</tr>
 						</jl:forEach>
 					</table>
@@ -157,66 +156,54 @@ $(document).ready(function(){
 	</div>
 
 
-	<form id="form_search" action="admin_clubs.do" method="post">
-		<input type="hidden" name="pg" value="" id="pg"> <input
-			type="hidden" name="search_content" value="${search.search_content}">
-		<input type="hidden" name="search_option"
-			value="${search.search_option}">
-	</form>
-
-	<!-- 페이징 -->
-
+<form id="form_search" action="admin_clubs.do" method="post">
+	<input type="hidden" name="pg" value="" id="pg">
+	<input type="hidden" name="search_content" value="${search.search_content}">
+	<input type="hidden" name="search_option" value="${search.search_option}">
+</form>
 	<ul class="pagination pagination-sm">
-		<jl:if test="${pz.hasPrevPagination }">
-			<li><a class="page"
-				href="admin_clubs.do?pg=${pz.paginationStart-1}">&lt;</a></li>
-		</jl:if>
-		<jl:if test="${pz.hasPrevPage }">
-			<li><a class="page"
-				href="admin_clubs.do?pg=${pz.curPagination-1 }">&lt;</a></li>
-		</jl:if>
-		<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }"
-			step="1" varStatus="vs">
-			<jl:choose>
-				<jl:when test="${vs.index!=pz.curPagination }">
-					<li><a class="page" href="admin_clubs.do?pg=${vs.index }">${vs.index }</a></li>
-				</jl:when>
-				<jl:otherwise>
-					<li class="active"><a class="page"
-						href="admin_clubs.do?pg=${vs.index }">${vs.index }</a></li>
-				</jl:otherwise>
-			</jl:choose>
-		</jl:forEach>
-		<jl:if test="${pz.hasNextPage }">
-			<li><a class="page"
-				href="admin_clubs.do?pg=${pz.curPagination+1}">&gt;</a></li>
-		</jl:if>
-		<jl:if test="${pz.hasNextPagination }">
-			<li><a class="page"
-				href="admin_clubs.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
-		</jl:if>
-	</ul>
-	<!-- 페이징 -->
-
-	<!-- 클럽 삭제 모달 폼 -->
-	<div id="text_modal" class="modal fade" role="dialog">
-		<input type="hidden" id="club_No" value="0" />
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div id="text_mohead" class="modal-header" align="center">
-					<h4>글 삭제</h4>
-				</div>
-				<div id="text_mobody" class="modal-body" align="center">
-					<h4>글을 삭제 하시겠습니까?</h4>
-				</div>
-				<div id="text_ft" class="modal-footer">
-					<button type='button' class='btn btn-default'
-						to-delete="delete_${vs.count}" id='text_modal_yes'>확인</button>
-					<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
-				</div>
+			<jl:if test="${pz.hasPrevPagination }">
+				<li><a class="page" href="admin_clubs.do?pg=${pz.paginationStart-1}">&lt;</a></li>
+			</jl:if>
+				<jl:if test="${pz.hasPrevPage }">
+					<li><a class="page" href="admin_clubs.do?pg=${pz.curPagination-1 }">&lt;</a></li>
+				</jl:if>
+				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
+					<jl:choose>
+						<jl:when test="${vs.index!=pz.curPagination }">
+							<li><a class="page" href="admin_clubs.do?pg=${vs.index }">${vs.index }</a></li>
+						</jl:when>
+						<jl:otherwise>
+							<li class="active"><a class="page" href="admin_clubs.do?pg=${vs.index }">${vs.index }</a></li>
+						</jl:otherwise>
+					</jl:choose>
+				</jl:forEach>
+				<jl:if test="${pz.hasNextPage }">
+					<li><a class="page" href="admin_clubs.do?pg=${pz.curPagination+1}">&gt;</a></li>
+				</jl:if>
+			<jl:if test="${pz.hasNextPagination }">
+				<li><a class="page" href="admin_clubs.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+			</jl:if>
+		</ul>
+		
+		
+<!-- 클럽 삭제 모달 폼 -->
+<div id="text_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="club_No" value="0"/>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' 
+					to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
 			</div>
 		</div>
 	</div>
+</div>
 
 </body>
 </html>
