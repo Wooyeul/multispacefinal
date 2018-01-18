@@ -4,63 +4,53 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="common.js"></script>
+<title>Welcome to Multi Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
+
+<style type="text/css">
+</style>
 </head>
 <body>
-	<div class="jbTitle">
-		<h1>Multi Space</h1>
-	</div>
-	
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default ">
-		<div class="container">
-		 <div class="navbar-header">
-		   <a class="navbar-brand" href="main.html">multi space</a>
-		 </div>
-	
-	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-		<ul class="nav navbar-nav ">
-	 	 <li><a href="space_home.do">공간</a></li>
-		 <li><a href="club_home.do">모임</a></li>
-		 <li><a href="community_list.do">커뮤니티</a></li>
-		 <li><a href="event_user_list.do">이벤트</a></li>	
-		 <li><a href="notice_list.do">공지사항</a></li>
-		 <li><a href="faq_list.do">FAQ</a></li>			
-		 <li><a href="admin_main.do">관리자</a></li>			
-		</ul>
-				
-	<ul id="login_nav" class="nav navbar-nav navbar-right">
-	<li><a href="#" id="user_name"></a></li>
-		<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-		<li><a href="home_logout.do">로그아웃</a></li>	
-	</ul>
-		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-		     <li><a href="home_login.do">로그인</a></li>		
-		</ul>
-	
-		   </div>
-		</div>
-	</nav>
-	<!-- nav -->
 
-	<form id="add_frm">
-		<label>제목 : </label><input name="c_board_title" type="text"/><br/>
-		<label>말머리 : </label>
-		<select name="c_board_subject">
-			<option></option>	
-			<option value="일반">일반</option>	
-			<option value="유머">유머</option>	
-			<option value="질문/답변">질문/답변</option>	
-		</select>
-		<label>내용 : </label><textarea name="c_board_content" rows="15" cols="25"></textarea><br/>
-		<input name="club_no" type="hidden" value="${club_no}"/>
-		<input name="user_id" type="hidden" value="${user_id}"/>
-		<input id="textSubmit" type="button" value="등록"/><input id="cancel" type="button" value="취소"/>
-	</form>
-	
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
+	<section class="listings">
+		<div class="wrapper">
+			<div class="properties_list">
+				<form id="add_frm">
+					<label>말머리</label>
+					<select name="c_board_subject" class="input-sm">
+						<option></option>	
+						<option value="일반">일반</option>	
+						<option value="유머">유머</option>	
+						<option value="질문/답변">질문/답변</option>	
+					</select><br/><br/>
+					<label>제목</label><input name="c_board_title" type="text" class="form-control"/><br/>
+					<label>내용</label><br/><textarea name="c_board_content" rows="15" cols="25" class="form-control"></textarea><br/>
+					<input name="club_no" type="hidden" value="${club_no}"/>
+					<input name="user_id" type="hidden" value="${user_id}"/>
+					<div align="right"><input id="textSubmit" type="button" value="등록" class="btn"/>&nbsp<input id="cancel" type="button" value="취소" class="btn"/></div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- ******************************* footer ******************************* -->
+	  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 	
 	<!-- 글 등록 modal창 시작 -->
 	<div id="text_add_modal" class="modal fade" role="dialog">

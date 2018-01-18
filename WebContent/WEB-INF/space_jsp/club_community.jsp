@@ -152,7 +152,7 @@
 								<div align="center"><h4>등록된 글이 없습니다.</h4></div>
 							</jl:otherwise>
 						</jl:choose>
-						<div align="right"><input id="noticeBtn" type="button" class="button" value="공지쓰기" /><br /></div>
+						<div align="right"><input id="noticeBtn" type="button" class="btn" value="공지쓰기" /><br /></div>
 					
 						<br /> <label><h3>커뮤니티 게시판</h3></label><br /> 
 							<jl:if	test="${noticeVO!=''}">
@@ -228,7 +228,7 @@
 									<div align="center"><h4>등록된 글이 없습니다.</h4></div>
 							</jl:otherwise>
 						</jl:choose>
-						<div align="right"><input id="boardBtn" type="button" class="button" value="글쓰기" /></div><br />
+						<div align="right"><input id="boardBtn" type="button" class="btn" value="글쓰기" /></div><br />
 					<br /> 
 					<br />
 					<div id="applyList">
@@ -250,8 +250,11 @@
 								</tr>
 							</jl:forEach>
 						</table>
-					</div> <br /> <input id="prev" type="button" value="뒤로가기"> <input
-					id="delClub" type="button" value="해체하기" />
+					</div> <br /> 
+					<div align="right">
+						<input id="prev" type="button" value="뒤로가기" class="btn"> 
+						<input id="delClub" type="button" value="해체하기" class="btn" />
+					</div>
 
 			</div>
 		</div>
