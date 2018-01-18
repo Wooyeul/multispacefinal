@@ -52,7 +52,7 @@ text-align: right;
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            판매자 리스트
+                            유저 리스트
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
