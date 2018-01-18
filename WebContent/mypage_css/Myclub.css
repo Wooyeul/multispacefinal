@@ -30,6 +30,7 @@ input {
 }
 
 table {
+	width : 100%;
 	border-top: 2px solid #5B7CE5;
 	border-spacing: 0px;
 }

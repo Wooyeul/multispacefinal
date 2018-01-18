@@ -11,6 +11,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="common.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Myclub.css">
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".space_no").on("click",function(){
@@ -23,27 +24,21 @@
 <body>
 	<form name="frm">
 	<h3>Review</h3>
-	<table border="1" cellspacing="1" cellpadding="1">
+	<table>
 		<tr>
-			<th>리뷰번호</th>
-			<th>방번호</th>
-			<th>아이디</th>
-			<th>제목</th>
-			<th>내용</th>
-			<th>시간</th>
-			<th>별점</th>
-			<th>이미지</th>
+			<th width="13%">이미지</th>
+			<th width="13%">제목</th>
+			<th width="50%">내용</th>
+			<th width="12%">별점</th>
+			<th width="12%">시간</th>
 		</tr>
 		<jl:forEach items="${rl}" var="rl">
 			<tr>
-				<td>${rl.review_no}</td>
-				<td>${rl.space_no}</td>
-				<td>${rl.user_id}</td>
+				<td><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/>${rl.review_img}</td>
 				<td>${rl.review_title}</td>
 				<td>${rl.review_content}</td>
-				<td>${rl.the_time}</td>
 				<td>${rl.review_score}</td>
-				<td><img src="thumbnail/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></td>
+				<td>${rl.the_time}</td>
 			</tr>
 		</jl:forEach>
 	</table>
