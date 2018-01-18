@@ -3,9 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Compatible" content="no-cache"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -187,7 +192,7 @@
  	 		else if(rt!=""){ 
  	 		$("#login_nav").show();
  	 		$("#non_login_nav").hide(); 
- 	 		$("#user_name").text(rt+"님이 로그인하셨습니다.");
+ 	 		$("#user_name").text(rt+"님");
  	 			}
  	 		 });
  	 		
@@ -202,45 +207,17 @@
  	 	.active{
  	 		background: #449D44 !important;
  	 	}
+ 	 	#booking_people{
+ 	 		height: 35px;
+ 	 		border-radius:3px;
+ 	 	}
  	 </style>
 </head>
 <body>
-	<div class="jbTitle">
-		<h1>Multi Space</h1>
-	</div>
+			<!-- *********************  header  ************************ -->
+    <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
 	
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default ">
-		<div class="container">
-		 <div class="navbar-header">
-		   <a class="navbar-brand" href="main.html">multi space</a>
-		 </div>
-	
-	 <div id="navbar" class="navbar-collapse collapse navbar-Menu ">
-		<ul class="nav navbar-nav ">
-	 	 <li><a href="space_home.do">공간</a></li>
-		 <li><a href="club_home.do">모임</a></li>
-		 <li><a href="community_list.do">커뮤니티</a></li>
-		 <li><a href="event_user_list.do">이벤트</a></li>	
-		 <li><a href="notice_list.do">공지사항</a></li>
-		 <li><a href="faq_list.do">FAQ</a></li>			
-		 <li><a href="admin_main.do">관리자</a></li>			
-		</ul>
-				
-	<ul id="login_nav" class="nav navbar-nav navbar-right">
-		<li><a href="#" id="user_name"></a></li>
-		<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-		<li><a href="home_logout.do">로그아웃</a></li>	
-	</ul>
-					
-		<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-		     <li><a href="#">로그인</a></li>		
-		</ul>
-	
-		   </div>
-		</div>
-	</nav>
-	<!-- nav -->
 	<div class="container">
 	<h1>예약 페이지</h1>
 		<div class="text-center">
@@ -255,13 +232,13 @@
 
 		<div  id="date2" ></div>
 
-			<div class="form-group">
+			<div class="input-group">
 				<label for="booking_date">예약 날짜</label>
-				<input type="text"  id="booking_date" name="booking_date" disabled="disabled">
+				<input type="text"  id="booking_date" name="booking_date" disabled="disabled" class="form-control">
 			</div>
 			
 			<h4>시간</h4>
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			<div class="btn-group btn-group-toggle btn-lg" data-toggle="buttons">
 				<jl:forEach begin="${space.open_time }" end="${space.close_time }" varStatus="time">
 					  <label class="btn btn-secondary btn-success cb_time"  time="${time.index }" id="btn_time${time.index }">
 					    <input type="checkbox" autocomplete="off" id="input_time${time.index }"> ${time.index }
@@ -270,20 +247,20 @@
 			</div>
 				<input id="start_time" type="hidden" name="start_time"/>
 				<input id="end_time" type="hidden" name="end_time"/>
-				<div class="form-group">
-					<label for="people">대여 인원</label>
-					<button id="people_plus" type="button" class="btn btn-default btn-lg">
-						<span class="glyphicon glyphicon-plus"></span>
-					</button>
-					<input id="booking_people" name="booking_people" type="text" disabled="disabled">
-					<button id="people_minus" type="button" class="btn btn-default btn-lg">
-						<span class="glyphicon glyphicon-minus"></span>
-					</button>
+				<div class="input-group">
+					<label for="people">대여 인원</label><br/>
+						<button id="people_minus" type="button" class="btn btn-default btn-lg">
+							<span class="glyphicon glyphicon-minus"></span>
+						</button>
+						<input id="booking_people" name="booking_people" type="text" disabled="disabled">
+						<button id="people_plus" type="button" class="btn btn-default btn-lg">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</div>
 					
 						
-				</div>
-				<div class="form-group">
-					<label for="solo_and_club">개인회원/모임회원</label>
+				<div class="input-group">
+					<label for="solo_and_club">개인회원/모임회원</label><br/>
 					<label class="radio-inline"><input type="radio" name="solo_and_club" value="solo">개인 회원</label>
 					<label class="radio-inline"><input type="radio" name="solo_and_club" value="club">모임 회원</label>
 				</div>
@@ -326,7 +303,7 @@
 						</tr>
 						<tr>
 							<td>예약자*</td>
-							<td><input type="text" name="booking_user_name"></td>
+							<td><input type="text" name="booking_user_name" ></td>
 						</tr>
 						<tr>
 							<td>연락처*</td>
@@ -370,5 +347,9 @@
 				</div>
 			</div>
 		</div>
+		
+	<!-- ******************************* footer ******************************* -->
+	  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 </body>
 </html>

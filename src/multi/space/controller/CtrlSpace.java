@@ -21,7 +21,6 @@ import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
 import main.ModelAttribute;
-import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.ResponseBody;
@@ -35,6 +34,7 @@ import main.vo.Space_qnaVO;
 import main.vo.Space_qna_repleVO;
 import main.vo.UserVO;
 import multi.space.PaginationDTO_review;
+import multi.space.PaginationDTO_space;
 import multi.space.dao.BookingDAO;
 import multi.space.dao.BookmarkDAO;
 import multi.space.dao.HostDAO;
@@ -174,7 +174,7 @@ public class CtrlSpace {
 		/*
 		 * 처음 시작에는 검색이 되지 않은 전체 글 갯수가 리턴됩니당. 100개 글이면 처음 들어갈 땐 검색이 없기 때문에 100개가 리턴됨.
 		 */
-		PaginationDTO pz = new PaginationDTO().init(pg, list2.size()) ;
+		PaginationDTO_space pz = new PaginationDTO_space().init(pg, list2.size()) ;
 		/* pg값은 현재 페이지를 뜻합니다!
 		 * 처음 시작에는 pg 값이 없기 때문에 PaginationDTO에서 pg값이 null일 경우 1로 만들어주기 때문에 현재 페이지 1로 페이지네이션이 시작됩니다.
 		 * 
@@ -346,6 +346,7 @@ public class CtrlSpace {
 		ImageVO image2 = spaceDAO.find_image_by_space_no(image);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		String s_category = spaceDAO.find_s_category_by_space_no(spaceVO);
+		String l_category = spaceDAO.find_l_category_by_space_no(spaceVO);
 
 		List<HostVO> host = hostDAO.find_host_by_user_id(user_id);
 		
@@ -373,6 +374,7 @@ public class CtrlSpace {
 		mnv.addObject("user_id", user_id);
 		mnv.addObject("space_code", space_code);
 		mnv.addObject("s_category", s_category);
+		mnv.addObject("l_category", l_category);
 		mnv.addObject("host", host);
 		mnv.addObject("image", image2);
 		mnv.addObject("review_flag", review_flag);
@@ -412,7 +414,6 @@ public class CtrlSpace {
 	//공간 결제 페이지
 	@RequestMapping("/space_payment.do")
 	public ModelAndView space_payment(@ModelAttribute BookingVO bookingVO,@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id) throws Exception{
-		System.out.println(user_id);
 		if(user_id==null || user_id.length()<=1 ){
 			ModelAndView mnv = new ModelAndView("redirect:/home_moveLoginPage.do");
 			return mnv;
@@ -480,7 +481,6 @@ public class CtrlSpace {
 	//space reple 등록
 	@RequestMapping("/add_space_qna_reple.do")
 	public String add_space_qna_reple(@ModelAttribute Space_qna_repleVO space_QnA_RepleVO,@CookieValue("user_id") String user_id) throws Exception{
-		System.out.println("hi");
 		if(user_id==null|| user_id.length()<=1){
 			return "redirect:/home_moveLoginPage.do";
 		}

@@ -3,8 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1"> 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script>
@@ -21,8 +26,12 @@
  </script>
 </head>
 <body>
+
+	<!-- *********************  header  ************************ -->
+    <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
 	<div class="container">
-		<h1>review add</h1>
+		<h1>후기 작성</h1>
 		<form method="POST" action="review_add2.do" enctype="multipart/form-data">
 			<div class="form-group">
 			<label for="review_title">제목</label>
@@ -48,8 +57,13 @@
 			
 			<input type="hidden" name="user_id" value="${review.user_id }">
 			<input type="hidden" name="space_no" value="${review.space_no }">
-			<input type="submit">
+			<input type="submit" value="후기 작성" class="btn btn-default">
 		</form>
+		<br/>
+		<br/>
 	</div>
+			<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+		<!--  end footer  -->
 </body>
 </html>

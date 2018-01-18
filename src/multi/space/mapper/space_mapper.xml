@@ -71,6 +71,10 @@
 		SELECT s_category_name FROM S_categoryT WHERE s_category_no = ( SELECT s_category_no FROM SpaceT WHERE space_no=${space_no} )
 	</select>
 	
+	<select id="find_l_category_by_space_no" parameterType="main.vo.SpaceVO" resultType="java.lang.String">
+		SELECT l_category_name FROM L_categoryT WHERE l_category_no = ( SELECT l_category_no FROM SpaceT WHERE space_no=${space_no} )
+	</select>
+	
 	<select id="find_best_space" statementType="CALLABLE" resultType="multi.space.vo.Space2VO"> 
 		{call find_best_space()}
 	</select>
@@ -98,7 +102,7 @@
 			OR space_content like '%${search_content}%'
 		</if>
 		<if test="start_no != null">
-			ORDER BY space_no ASC LIMIT #{start_no},10
+			ORDER BY space_no ASC LIMIT #{start_no},9
 		</if>
 	</select>
 	

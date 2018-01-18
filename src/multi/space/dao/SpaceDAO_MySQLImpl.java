@@ -70,11 +70,19 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space.find_s_category");
 	}
-
+	
+	//하나의 스페이스에서 s_category가져오기
 	@Override
 	public String find_s_category_by_space_no(SpaceVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("space.find_s_category_by_space_no",vo);
+	}
+	
+	//하나의 스페이스에서 l_category 가져오기
+	@Override
+	public String find_l_category_by_space_no(SpaceVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("space.find_l_category_by_space_no",vo);
 	}
 
 	//공간 검색
@@ -130,6 +138,7 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space.find_best_space2");
 	}
+
 
 
 

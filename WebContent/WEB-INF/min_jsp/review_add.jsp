@@ -22,7 +22,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>review add</h1>
+		<h1>리뷰 작성하기</h1>
 		<form method="POST" action="review_add2.do" enctype="multipart/form-data">
 			<div class="form-group">
 			<label for="review_title">제목</label>
@@ -48,7 +48,7 @@
 			
 			<input type="hidden" name="user_id" value="${review.user_id }">
 			<input type="hidden" name="space_no" value="${review.space_no }">
-			<input type="submit">
+			<input type="submit" class="btn btn-default" value="리뷰 작성">
 		</form>
 	</div>
 </body>

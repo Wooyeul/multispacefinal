@@ -5,6 +5,14 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+	
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -18,6 +26,11 @@
 		});
 	});
  </script>
+ <style>
+ .listings{
+ 	padding-top: 10px;
+ }
+ </style>
 
 </head>
 <body>
@@ -29,17 +42,31 @@
 			<input type="hidden" name="search_option" value="${search.search_option }">
 		</form>
 		
-		<table border="1">
-		<jl:forEach var="vo" items="${list2 }">
-			<tr>
-				<td><p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'"><img src="space_img/${vo.space_thumb_img }" alt="공간 사진 없음" width="100" height="130"/></p></td>
-				<td>${vo.space_no }</td>
-				<td>${vo.space_title }</td>
-				<td>${vo.space_content }</td>
-			</tr>
-		</jl:forEach>
+		<section class="listings">
+				<div class="c_cate_list">
+					<ul class="properties_list">
+					<jl:forEach var="vo" items="${list2 }">
+					<li>
+						<p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'">
+									<img src="space_img/${vo.space_thumb_img }" alt="" title="" class="property_img"/>
+								</p>
+								<span class="price">지역</span>
+								<div class="property_details">
+									<h1 onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'">
+										${vo.space_title }
+									</h1>
+									<div class="property_details_box">
+										<div class="property_sub_details_left">
+											<h2>${vo.price } 원/시간 </h2>
+										</div>
+									</div>
+								</div>
+							</li>		
+					</jl:forEach>
 		
-		</table>
+				</ul>
+			</div>
+		</section>	
 		
 		<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">

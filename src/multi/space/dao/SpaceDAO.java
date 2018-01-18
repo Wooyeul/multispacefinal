@@ -51,6 +51,9 @@ public interface SpaceDAO {
 	//하나의 SPACE에서 S_CATEOGRY 불러오기
 	public String find_s_category_by_space_no(SpaceVO vo) throws Exception;
 	
+	//하나의 SPACE에서 L_CATEGORY 불러오기
+	public String find_l_category_by_space_no(SpaceVO vo) throws Exception;
+	
 	//공간 search
 	public List<SpaceVO> search_space(Space_searchVO vo) throws Exception;
 	
