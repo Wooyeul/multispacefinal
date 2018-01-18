@@ -16,22 +16,28 @@
 		td, th {
 			text-align:center;
 		}
-	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script>
+</style>
+<script src="common.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
 
 $(document).ready(function() {
-	$("#btnClose").on("click", function() {
-		$("#repleModal").modal("hide");
-		document.frm.action="admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
-		document.frm.submit();
-
+	$("#btnClose").on("click",function(){
+		location.href = "admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
 	});
-
 	$("#btnreMod").on("click", function() {
-		$("#reple_form").submit();
-
+		$("#repleModal").modal("hide");
+		$("#basic_modal").modal("show");
+	});
+	$("#basic_mobody").html("<h4>댓글 수정이 완료 되었습니다.<h4>");
+	$("#basic_modal_yes").on("click",function(){
+		var reple_no = $("#com_qna_reple_no").val();		
+		var com_qna_reple_content = $("#content").val();
+		var url = "admin_community_qna_reple_mod.do?com_qna_reple_no="+reple_no
+				+"&com_qna_reple_content=" + com_qna_reple_content;
+		ajaxGet(url,function(rt){ });
+		location.reload();
 	});
 
 	$(".modReple").on("click", function() {
@@ -56,6 +62,25 @@ $(document).ready(function() {
 	//no버튼 클릭 했을 때 실행할 function
 	$("#text_modal_no").on("click",function(){
 		$("#text_modal").modal('hide');
+	});
+	
+	
+	// <a> 태그로 값을 불러 올 때 class 했을 때 동작 됨.
+	$(".remove_qna_re").on("click",function(){
+		$("#com_qna_No").val( $(this).attr("com_qna_no") );
+		$("#com_qna_reple_No").val( $(this).attr("com_qna_reple_no") );
+		
+		$("#re_modal").modal("show");
+	});
+	$("#re_modal_yes").on("click",function(){
+		var del_com_qna_no = $("#com_qna_No").val();
+		var del_com_qna_reple_no = $("#com_qna_reple_No").val();
+			location.href = "admin_community_qna_reple_del.do?com_qna_no=" + 
+			del_com_qna_no +"&com_qna_reple_no=" + del_com_qna_reple_no;
+		$("#re_modal_modal").modal("hide");
+	});
+	$("#re_modal_no").on("click",function(){
+		$("#re_modal").modal('hide');
 	});
 
 });
@@ -93,7 +118,7 @@ $(document).ready(function() {
 			<th>추천하기</th>
 			<th>댓글삭제</th>
 		</tr>
-		<jl:forEach var="rpl" items="${rp}">
+		<jl:forEach var="rpl" items="${rp}" varStatus="vs2">
 			<tr>
 				<td>${rpl.user_id}</td>
 				<td>
@@ -107,7 +132,8 @@ $(document).ready(function() {
 				<td>
 					[<a href="admin_community_qna_reple_recom.do?user_id=${user_id}&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a>]
 				</td>
-				<td>[<a href="admin_community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">삭제</a>]</td>
+				<%-- <td>[<a href="admin_community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">삭제</a>]</td> --%>
+				<td>[<a href="#" class="remove_qna_re" com_qna_no="${rpl.com_qna_no }" com_qna_reple_no="${rpl.com_qna_reple_no}" >삭제</a>]</td>
 			</tr>
 		</jl:forEach>
 	</table>
@@ -123,8 +149,8 @@ $(document).ready(function() {
 							<label id="lblContent" for="content"></label>
 							<textarea name ="com_qna_reple_content" class="form-control" id="content" rows="7"></textarea>
 						</div>
-						<button class="btn btn-primary btn-sm" id="btnClose">닫기</button>
-						<button class="btn btn-primary btn-sm" id="btnreMod">수정</button>
+						<input type="button" class="btn btn-primary btn-sm" id="btnClose" value="닫기">
+						<input type="button" class="btn btn-primary btn-sm" id="btnreMod" value="수정">
 					</div>
 				</div>
 			</div>
@@ -170,6 +196,35 @@ $(document).ready(function() {
 			</div>
 		</div>
 		
+		<div id="re_modal" class="modal fade" role="dialog">
+			<input type="hidden" id="com_qna_No" value="0"/>
+			<input type="hidden" id="com_qna_reple_No" value="0"/>
+			
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div id="re_mohead" class="modal-header"align="center"><h4>댓글 삭제</h4></div>
+					<div id="re_mobody" class="modal-body" align="center">
+						<h4>댓글을 삭제 하시겠습니까?</h4>
+					</div>
+					<div id="re_ft" class="modal-footer">
+						<button type='button' class='btn btn-default' to-delete="delete_${vs2.count}"  id='re_modal_yes'>확인</button>
+						<button type='button' class='btn btn-primary' id='re_modal_no'>취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+<div id="basic_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="basic_mobody" class="modal-body" align="center">
+			</div>
+			<div id="basic_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+			</div>
+		</div>
+	</div>
+</div>		
 		
 	</div>
 </body>

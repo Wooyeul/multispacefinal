@@ -107,11 +107,16 @@ public class Ctrl_Admin_Qna {
 	}
 	
 	@RequestMapping("/admin_community_qna_reple_mod.do")
+	@ResponseBody
+	public String community_board_replemod(@ModelAttribute  Community_qna_repleVO  pvo) throws Exception {
+			admin_QnaDAO_MysqlImpl.modReple(pvo);
+		return null;
+	}
+/*	@RequestMapping("/admin_community_qna_reple_mod.do")
 	public String community_board_replemod(@ModelAttribute  Community_qna_repleVO  pvo) throws Exception {
 			admin_QnaDAO_MysqlImpl.modReple(pvo);
 		return  "redirect:/admin_community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
-	}
-	
+	}*/
 	@RequestMapping("/admin_community_qna_reple_recom.do")
 	public String community_board_recom(@ModelAttribute Community_qna_repleVO pvo)throws Exception {
 		admin_QnaDAO_MysqlImpl.incRecom(pvo);
