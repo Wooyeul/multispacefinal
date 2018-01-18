@@ -117,6 +117,7 @@
 			
 			 for(var i=0; i<best_community.data.length; i++){
 				 
+				 alert(best_community.data[i].com_board_title);
 				 html4 += "<div class='main_community_wrapper'>";
 				 html4 += "<div class='main_club_content'>";
 				 html4 += "<div class='main_club_content_title'>";

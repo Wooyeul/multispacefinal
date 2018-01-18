@@ -4283,7 +4283,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 
 .nav>li>a {
-	color: white;
+	color: black;
 	position: relative;
 	display: block;
 	padding: 0px 15px
