@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
 <link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+<link rel="stylesheet" href="./mypage_css/Myclub.css">
 	
 <script type="text/javascript" src="./Resources/js/jquery.js"></script>
 <script type="text/javascript" src="./Resources/js/main.js"></script>
@@ -21,28 +22,23 @@
 <script type="text/javascript" src="./common.js"></script>
 
 <style type="text/css">
-.container-table100 {
-  width: 100%;
-  min-height: 100vh;
-  background: #c850c0;
-  background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
-  background: -o-linear-gradient(45deg, #4158d0, #c850c0);
-  background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
-  background: linear-gradient(45deg, #4158d0, #c850c0);
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 33px 30px;
+.button {        
+    display: inline-block;
+    white-space: nowrap;
+    background-color: #ccc;
+    background-image: linear-gradient(top, #eee, #ccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+    border: 1px solid #777;
+    padding: 0 1.5em;
+    margin: 0.5em;
+    font: bold 1em/2em Arial, Helvetica;
+    text-decoration: none;
+    color: #333;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    border-radius: .2em;
+    box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
 }
-
 </style>
-
 </head>
 <body>
 	<!-- *********************  header  ************************ -->
@@ -60,9 +56,25 @@
 	<section class="listings">
 		<div class="wrapper">
 			<div class="properties_list">
-
 					<div align="center"><h1 style="color: #026fac;">${vo.club_name}</h1></div> 
-					<div align="right"><label>모임장 ${master}</label></div>
+					<div align="right">
+							<jl:if test="${userVO!=null}">
+									<p>${master}(모임장)</p>
+									<br/>
+									<jl:forEach items="${userVO}" var="uvo">
+										<p>
+											${uvo.user_name}
+											<jl:if test="${vo.user_id eq user_id }">
+												<a class="release" user_id="${uvo.user_id }" club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
+													<span class="glyphicon glyphicon-remove:before"></span>
+												</a>
+											</jl:if>
+											<span user_id="${uvo.user_id}" class="user_name glyphicon glyphicon-envelope"></span>
+											<br />
+										</p>
+									</jl:forEach>
+							</jl:if> <br />
+					</div>
 					<br/><br/><br/>
 					<div>
 						<label><h3>공지사항</h3></label><br /> 
@@ -70,19 +82,23 @@
 							<table class="table">
 								<jl:forEach items="${noticeVO}" var="nvo" varStatus="i">
 									<jl:if test="${i.count==1 }">
-										<tr>
-											<td>글 번호</td>
-											<td>제목</td>
-											<td>작성자</td>
-											<td>작성시간</td>
-										</tr>
+										<thead>
+											<tr>
+												<th>글 번호</th>
+												<th>제목</th>
+												<th>작성자</th>
+												<th>작성시간</th>
+											</tr>
+										</thead>
 									</jl:if>
-									<tr>
-										<td>${i.count}</td>
-										<td><a href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}" style="color: black;">${nvo.c_notice_title}</a></td>
-										<td>${nvo.user_name}</td>
-										<td>${nvo.the_time}</td>
-									</tr>
+									<tbody>
+										<tr>
+											<td>${i.count}</td>
+											<td><a href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}" style="color: black;">${nvo.c_notice_title}</a></td>
+											<td>${nvo.user_name}</td>
+											<td>${nvo.the_time}</td>
+										</tr>
+									</tbody>
 								</jl:forEach>
 							</table>
 						</jl:if>
@@ -130,7 +146,7 @@
 								<div align="center"><h4>등록된 글이 없습니다.</h4></div>
 							</jl:otherwise>
 						</jl:choose>
-						<input id="noticeBtn" type="button" value="공지쓰기" /><br />
+						<div align="right"><input id="noticeBtn" type="button" class="button" value="공지쓰기" /><br /></div>
 					
 						<br /> <label><h3>커뮤니티 게시판</h3></label><br /> 
 							<jl:if	test="${noticeVO!=''}">
@@ -199,25 +215,8 @@
 									<div align="center"><h4>등록된 글이 없습니다.</h4></div>
 							</jl:otherwise>
 						</jl:choose>
-						 <input id="boardBtn" type="button" value="글쓰기" /> <br />
-					<br /> <label><h3>회원 리스트</h3></label><br /> <jl:if
-							test="${userVO!=null}">
-							<table class="table">
-								<tr>${master}(모임장)</tr>
-								<br />
-								<jl:forEach items="${userVO}" var="uvo">
-									<tr>
-										<label class="user_name" user_id="${uvo.user_id}">${uvo.user_name}</label>
-										<jl:if test="${master eq user_id }">
-											<a class="release" user_id="${uvo.user_id }"
-												club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
-												<span class="glyphicon glyphicon-remove"></span>
-											</a>
-										</jl:if>
-										<br />
-								</jl:forEach>
-							</table>
-						</jl:if> <br />
+						<div align="right"><input id="boardBtn" type="button" class="button" value="글쓰기" /></div><br />
+					<br /> 
 					<br />
 					<div id="applyList">
 						<label><h3>신청 현황 리스트</h3></label><br />
@@ -241,10 +240,10 @@
 					</div> <br /> <input id="prev" type="button" value="뒤로가기"> <input
 					id="delClub" type="button" value="해체하기" />
 
-				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
 
 	<!-- ******************************* footer ******************************* -->
@@ -365,18 +364,6 @@
 		</div>
 	</div>
 	<!-- 유저 신청 거절 modal창 끝 -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-</div>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
