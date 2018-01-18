@@ -1,14 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css"> 
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<form action="mypage_mod_user.do" method="POST">
-		ÆÐ½º¿öµå¸¦ ÀÔ·ÂÇÏ¼¼¿ä : 
+		Password ìž…ë ¥í•˜ì„¸ìš” : 
 		<input type="password" name="passwd" size="20"/>
-		<input type="submit" value="È®ÀÎ"/>
+		<input type="submit" value="í™•ì¸" class="btn"/>
 	</form>
 
 </body>

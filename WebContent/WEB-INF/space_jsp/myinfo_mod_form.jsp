@@ -5,13 +5,64 @@
 <head>
 	<script type="text/javascript" src="common.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
-		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-	</style>
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+	
+	
+	<style type="text/css">
+		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+		
+		.user_mod_form {
+			width: 100%;
+			text-align: center;
+		}
+		
+		.user_mod_form_div {
+			display: inline-block;
+		}
+		
+		.user_mod_form_div table th {
+			padding :7px 0;
+		}
+		.user_mod_form_div table td {
+			padding-left : 22px;
+			padding : 7px;
+		}
+			
+		.table {
+			text-align: center;
+			border-color: green;
+		}
+		
+		td {
+			margin-top: 20px;
+		}
+		
+		body {
+			background-color: white;
+		}
+		
+		.usermod {
+			margin-top: 27px;
+			margin-bottom: 27px;
+			text-align: center;
+			font-size: 2em;
+			font-family: "lato-regular", Helvetica, Arial, sans-serif;
+		}
+		
+		.panel-title {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+		
+		
+	</style>
+	
+	<script type="text/javascript">
 	$(document).ready(function(){
 		
 		var flag_mod=0;
@@ -93,11 +144,16 @@
 </head>
 <body>
 	
+	<div class="usermod">
+		회원정보 수정
+	</div>
+	
+<div class="container">
+	<div class="user_mod_form">
+		<div class="user_mod_form_div">
+		
 	<form action="myinfo_mod_user2.do" method="POST" id="frm" name="frm">
-		<table border="0" cellpadding="8" align="center">
-			<tr>
-				<th colspan="3" align="center"><h1>회원정보수정</h1></th>
-			</tr>
+		<table class="">
 
 			<tr>
 				<th align="right">아이디</th>
@@ -156,26 +212,11 @@
 				</select> <!-- <input type="text" name="msg" size="7"/> --></td>
 				<td></td>
 			</tr>
-<%-- 
-			
-			<tr>
-				<th>우편번호</th>
-				<td><input type="text" id="sample4_postcode" name="zonecode" value="${zvo.zonecode}" disabled="disabled">
-				<input type="button" onclick="sample4_execDaumPostcode()"  value="우편번호 찾기"><br/>
-				<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address" value="${zvo.address}" disabled="disabled">
-				<input type="text" id="sample4_jibunAddress" placeholder="지번주소"  name="jibunAddress" value="${zvo.jibunAddress}" disabled="disabled">
-					<span id="guide" style="color:#999"></span></td>
-			</tr>
-			<tr>
-				<th align="right">상세주소</th>
-				<td><input type="text" size="20" name="detail" value="${zvo.detail}"/></td>
-				<td></td>
-			</tr> --%>
 			
 			<tr>
 				<th>우편번호</th>
 				<td><input type="text" name="zipcode" size="8" id="zipcode" value="${rvo.zipcode}"/>
-				<input type="button" name="findzip" value="찾기" class="btnzip" onclick="zipSearch()"/>
+				<input type="button" name="findzip" value="찾기" class="btnzip btn btn-primary" onclick="zipSearch()"/>
 				</td>
 			</tr>
 			
@@ -208,9 +249,10 @@
 		<div id="ck_modal" class="modal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-body" align="center">
-						<label id="lblC"></label><br/>
-					</div>
+				<div id="text_mohead" class="modal-header"align="center"><h4>정보 수정</h4></div>
+				<div id="text_mobody" class="modal-body" align="center">
+					<h4 id="lblC"></h4>
+				</div>
 					<div id="ft" class="modal-footer">
 							<button type='button' class='btn btn-default' id='modal-btn-Yes' ></button>
 							<button type='button' class='btn btn-primary' id='btnClose' data-dismiss="modal">취소</button>
@@ -219,19 +261,22 @@
 			</div>
 		</div>
 	</form>
-	
+	 </div>
+	 </div>
+	 </div>
 	<form id="ck_total">
 		<div id="repleModal" class="modal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
 							<label id="lblContent"></label><br/>
-							<button type="button" class="btn btn-primary btn-sm" id="btnClose1" data-dismiss="modal">닫기</button>
+							<button type="button" class="btn btn-primary btn-sm" id="btnClose1" data-dismiss="modal">확인</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
+	
 	
 </body>
 </html>

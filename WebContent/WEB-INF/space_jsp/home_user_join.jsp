@@ -5,9 +5,13 @@
 <head>
 	<script type="text/javascript" src="common.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 	<style type="text/css">
 		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 		
@@ -23,6 +27,7 @@
 		.user_join_form_div table th {
 			padding :7px 0;
 		}
+		
 		.user_join_form_div table td {
 			padding-left : 22px;
 			padding : 7px;
@@ -35,12 +40,6 @@
 		
 		td {
 			margin-top: 20px;
-		}
-		
-		.ask {
-			text-align: center;
-			margin-bottom: 27px;
-			margin-top: 27px;
 		}
 		
 		body {
@@ -362,7 +361,8 @@
 
 				</form>
 			</div>
-
+		</div>
+	</div>
 			<form id="ck_total">
 				<div id="repleModal" class="modal" role="dialog">
 					<div class="modal-dialog">
@@ -376,8 +376,7 @@
 					</div>
 				</div>
 			</form>
-		</div>
-	</div>
+	
 	<!-- ******************************* footer ******************************* -->
 	<%@include file="./jsp/footer.jsp"%>
 	<!--  end footer  -->
