@@ -75,7 +75,7 @@
 				 html2 += "<h2>"+party_best.data[i].price+"원/시간 </h2>";	
 				 html2 += "</div>";	
 				 html2 += "<div class='property_sub_details_right'>";	
-				 html2 += "<h2><span class='property_size'>즐찾수 "+party_best.data[i].count+"</span></h2>";	
+				 html2 += "<h2><span class='property_size'>즐겨찾기 "+party_best.data[i].count+"</span></h2>";	
 				 html2 += "</div>";	
 				 html2 += "</div>";	
 				 html2 += "</div>";	
@@ -92,14 +92,17 @@
 				 
 				 html3 += "<div class='main_club_wrapper'>";
 				 html3 += "<div class='main_club_img'>";
-				 html3 += best_club.data[i].club_thumb_img;
+				 html3 += "<img src='./Resources/img/property_1.jpg' class='best_club_img'/>";
 				 html3 += "</div>";
 				 html3 += "<div class='main_club_content'>";
 				 html3 += "<div class='main_club_content_title'>";
-				 html3 += best_club.data[i].club_name+" / "+best_club.data[i].club_title;			 
+				 html3 += "<div class='main_club_content_score'>";
+				 html3 += i+1+"위";
+				 html3 += "</div>";
+				 html3 += "<div class='main_club_content_title_content'>[ "+best_club.data[i].club_name+" ] "+best_club.data[i].club_title+"</div>";			 
 				 html3 += "</div>";
 				 html3 += "<div class='main_club_content_member'>";
-				 html3 += best_club.data[i].count;
+				 html3 += "회원수 : " + best_club.data[i].count;
 				 html3 += "</div>";
 				 html3 += "</div>";
 				 html3 += "</div>";
@@ -116,18 +119,14 @@
 			var html4 ="";
 			
 			 for(var i=0; i<best_community.data.length; i++){
-				 
-				 alert(best_community.data[i].com_board_title);
 				 html4 += "<div class='main_community_wrapper'>";
-				 html4 += "<div class='main_club_content'>";
-				 html4 += "<div class='main_club_content_title'>";
+				 html4 += "<div class='main_community_content'>";
+				 html4 += "<div class='main_community_content_title'>";
 				 html4 += best_community.data[i].com_board_title;			 
 				 html4 += "</div>";
-				 html4 += "<div class='main_club_content_writer'>";
-				 html4 += best_community.data[i].user_name;
-				 html4 += "</div>";
-				 html4 += "<div class='main_club_content_view_recom'>";
-				 html4 += "조회수 :" + best_community.data[i].view_count + "/ 추천수 : "+ best_community.data[i].recom_count;
+				 html4 += "<div class='main_community_content_view_recom'>";
+				 html4 += "<span>작성자 :" +best_community.data[i].user_name+
+				 " | 조회수 :" + best_community.data[i].view_count + " | 추천수 : "+ best_community.data[i].recom_count+"</span>";
 				 html4 += "</div>";			 
 				 html4 += "</div>";
 				 html4 += "</div>";
@@ -136,7 +135,7 @@
 			 $("#main_community_list").html(html4);
 			 
 		});
-		
+			
 		
 		var scOffset = $('.navbar-Menu').offset();
 		$(window).scroll(function() {
@@ -228,11 +227,16 @@
 			<div class="c_wrapper">
 				<div class="c_wrapper_sub">
 				
+				<div class="c_wrapper_sub_title">
+				<div class="main_list_club_commu_left">( 클럽 BEST )</div>
+				<div class="main_list_club_commu_right">( 인기글 BEST )</div>
+				</div>
 					<div class="main_club">
 
 						<div id="main_club_list" class="c_wrapper_ul"></div>
 
 					</div>
+				
 					<div class="main_community">
 
 						<div id="main_community_list" class="c_wrapper_ul"></div>
