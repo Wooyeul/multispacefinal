@@ -62,12 +62,12 @@
     <![endif]-->
 <script>
 $(document).ready(function(){
+	// 공간 삭제에 대한 모달
 	$(".remove_space").on("click",function(){
 		$("#space_No").val( $(this).attr("space_no") );
 		
 		$("#text_modal").modal("show");
 	});
-	
 	//yes버튼 클릭 했을 때 실행할 function
 	$("#text_modal_yes").on("click",function(){
 		var del_space_no = $("#space_No").val();

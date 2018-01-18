@@ -62,12 +62,12 @@
     <![endif]-->
 <script>
 $(document).ready(function(){
+	// 공간 삭제에 대한 모달
 	$(".remove_space").on("click",function(){
 		$("#space_No").val( $(this).attr("space_no") );
 		
 		$("#text_modal").modal("show");
 	});
-	
 	//yes버튼 클릭 했을 때 실행할 function
 	$("#text_modal_yes").on("click",function(){
 		var del_space_no = $("#space_No").val();
@@ -189,7 +189,7 @@ $(document).ready(function(){
 							<td>${vo.s_category_no}</td>
 							<td>${vo.l_category_no}</td>
 							<td>${vo.the_time}</td>
-							<td><a href="admin_space_remove.do?space_no=${vo.space_no}">삭제</a></td>
+							<td><button class="remove_space" space_no="${vo.space_no}" >삭제하기</button></td>
 						</tr>
 					</jl:forEach>
 				</table>
