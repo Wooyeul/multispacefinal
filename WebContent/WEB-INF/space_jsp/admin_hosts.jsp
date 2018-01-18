@@ -1,5 +1,6 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,60 +8,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
-table {
-	text-align: center;
+
+.paginationdiv{
+text-align: right;
 }
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="common.js" type="text/javascript"></script>
-<script>
+<!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-</script>
+    <!-- MetisMenu CSS -->
+    <link href="./Resouces_admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="./Resouces_admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="./Resouces_admin/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./Resouces_admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body>
-<h1>ÆÇ¸ÅÀÚ ¸®½ºÆ®</h1> 
-<table border="1">
-	<tr>
-		<td>»ç¾÷ÀÚ ¹øÈ£</td>
-		<td>À¯Àú ID</td>
-		<td>È£½ºÆ® ÀÌ¸§</td>
-		<td>È£½ºÆ® °èÁÂ ¹øÈ£</td>
-		<td>ÁÖ¼Ò</td>
-		<td>ÆÇ¸ÅÀÚ °ø°£</td>
-		<td>»ç¿ëÀÚ·Î °­µî</td>
-		<td>Å»Åð ½ÃÅ°±â</td>
-	</tr>
-	<jl:forEach var="vo" items="${ls}">
-		<tr> 
-			<td>${vo.crn}</td>
-			<td><a href="admin_host_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
-			<td>${vo.host_name}</td>
-			<td>${vo.host_account}</td>
-			<td>${vo.zipcode}</td>
-			<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">ÆÇ¸ÅÀÚ °ø°£ È®ÀÎ ÇÏ±â</a></td>
-			<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">°­µî½ÃÅ°±â</a></td>
-			<td><a href="admin_user_del_write.do?crn=${vo.crn}&user_id=${vo.user_id}">Å»Åð½ÃÅ°±â</a></td>
-		</tr>
-	</jl:forEach>
-</table>
-<br>
-<br>
-<form id="form_search" action="admin_hosts.do">
-	<input type="hidden" name="pg" value="" id="pg">
-</form>
-<form id="textsearch" action="admin_hosts.do">
-	<select name="search_option">
-		<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
-		<option value="1">Á¦¸ñ</option>
-		<option value="2">³»¿ë</option>
-		<option value="3">Á¦¸ñ + ³»¿ë</option>
-		<option value="4">ÀÛ¼ºÀÚ</option>
-	</select>
-	°Ë»ö : <input type="text" name="search_content">
-	<input type="submit" value="°Ë»ö">
-</form>
 
+<body>
+<br>
+ <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          íŒë§¤ìž ë¦¬ìŠ¤íŠ¸
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>ì‚¬ì—…ìž ë²ˆí˜¸</th>
+										<th>ìœ ì € ID</th>
+										<th>í˜¸ìŠ¤íŠ¸ ì´ë¦„</th>
+										<th>í˜¸ìŠ¤íŠ¸ ê³„ì¢Œ ë²ˆí˜¸</th>
+										<th>ì£¼ì†Œ</th>
+										<th>íŒë§¤ìž ê³µê°„</th>
+										<th>ì‚¬ìš©ìžë¡œ ê°•ë“±</th>
+										<th>íƒˆí‡´ ì‹œí‚¤ê¸°</th>
+                                    </tr>
+                                </thead>
+								
+								<jl:forEach var="vo" items="${ls}">
+										<tr> 
+											<td>${vo.crn}</td>
+											<td><a href="admin_host_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
+											<td>${vo.host_name}</td>
+											<td>${vo.host_account}</td>
+											<td>${vo.zipcode}</td>
+											<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">íŒë§¤ìž ê³µê°„ í™•ì¸ í•˜ê¸°</a></td>
+											<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">ê°•ë“±ì‹œí‚¤ê¸°</a></td>
+											<td><a href="admin_user_del_write.do?crn=${vo.crn}&user_id=${vo.user_id}">íƒˆí‡´ì‹œí‚¤ê¸°</a></td>
+										</tr>
+								</jl:forEach>
+							
+                            </table>
+                            <!-- /.table-responsive -->
+                       
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+<!-- íŽ˜ì´ì§• -->
+<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_hosts.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -85,6 +118,7 @@ table {
 				<li><a class="page" href="admin_hosts.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-
+</div>
+<!-- íŽ˜ì´ì§• -->
 </body>
 </html>

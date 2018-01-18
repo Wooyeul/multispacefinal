@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head></head>

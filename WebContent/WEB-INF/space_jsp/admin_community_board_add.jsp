@@ -1,45 +1,76 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-
+.paginationdiv{
+text-align: right;
+}
+.select {
+	float: left;
+}
 
 </style>
-
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="common.js" type="text/javascript"></script>
+<!-- Bootstrap Core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+<!-- MetisMenu CSS -->
+<link href="./Resouces_admin/vendor/metisMenu/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="./Resouces_admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-	<div class="jumbotron" style="background-color: orange">
-		<h1>ÀÚÀ¯°Ô½ÃÆÇ ±Û¾²±â °ø°£</h1>
-	</div>
+	<br>
+	<label>ê¸€ì“°ê¸° </label> <br>
 	<form action="admin_community_board_add2.do" class="form-group" method="POST" name="frm">
-		Á¦¸ñ : <input type="text" name="com_board_title" size="30" /> <br>
-		¸»¸Ó¸® : <select name="com_board_type">
-			<option value="¼±ÅÃ">¼±ÅÃÇÏ¼¼¿ä</option>
-			<option value="À¯¸Ó">À¯¸Ó</option>
-			<option value="¸ÀÁı">¸ÀÁı</option>
-			<option value="Ãë¹Ì">Ãë¹Ì</option>
-			<option value="°¨¼º">°¨¼º±Û</option>
-			<option value="°øÀ¯">°øÀ¯</option>
+		ì œëª© : <input type="text"  class="form-control" name="com_board_title" size="30" /> <br>
+		ë§ë¨¸ë¦¬ : <select name="com_board_type"  class="form-control">
+			<option value="ì„ íƒ">ì„ íƒí•˜ì„¸ìš”</option>
+			<option value="ìœ ë¨¸">ìœ ë¨¸</option>
+			<option value="ë§›ì§‘">ë§›ì§‘</option>
+			<option value="ì·¨ë¯¸">ì·¨ë¯¸</option>
+			<option value="ê°ì„±">ê°ì„±ê¸€</option>
+			<option value="ê³µìœ ">ê³µìœ </option>
 		</select> <br>
 		
-		³»¿ë:
-		<textarea name="com_board_content" rows="10" cols="60"></textarea>
+		ë‚´ìš© :
+		<textarea name="com_board_content" rows="10" cols="60"  class="form-control"></textarea>
 		<br> 
-		<input class="btn btn-success" type="submit" value="µî·Ï" />
-		<input type="button"class="btn btn-success" id="cancel" value="Ãë¼Ò"/>
+		<input class="btn" type="submit" value="ë“±ë¡" />
+		<input type="button"class="btn" id="cancel" value="ì·¨ì†Œ"/>
 	</form>
 	
 

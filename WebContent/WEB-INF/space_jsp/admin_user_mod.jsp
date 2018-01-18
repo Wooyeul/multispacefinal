@@ -1,56 +1,138 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
+.btn {
+	color: $F5F5F5
+}
 
+.mc {
+	text-align: center;
+}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="common.js" type="text/javascript"></script>
-<script>
+<!-- Bootstrap Core CSS -->
+<link href="./Resouces_admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-</script>
+<!-- MetisMenu CSS -->
+<link href="./Resouces_admin/vendor/metisMenu/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="./Resouces_admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
 </head>
-<body>
-<h1>∞≥∫∞ ¿Ø¿˙ ªÛºº ¡§∫∏ ºˆ¡§«œ±‚</h1>
-<table border="1">
-	<tr>
-		<td>¿Ã∏ß</td>
-		<td>¿Ø¿˙ ID</td>
-		<td>¿¸»≠π¯»£</td>
-		<td>¥–≥◊¿”</td>
-		<td>¡÷º“</td>
-		<td>¿Ã∏ﬁ¿œ</td>
-	</tr>
-	<tr>
-		<td>${vo.user_name}</td>
-		<td>${vo.user_id}</td>
-		<td>${vo.phone}</td>
-		<td>${vo.nickname}</td>
-		<td>${vo.zipcode}</td>
-		<td>${vo.email}</td>
-	</tr>
-</table>
-<br/>
-<br/>
-<form method="POST" action="admin_user_mod2.do">
-		<input type ="hidden" name="user_id" value="${vo.user_id}"></input>
-		¿Ã∏ß : <input type="text" name="user_name" value="${vo.user_name}" /> <br/>
-		¿¸»≠π¯»£ : <input type="text" name="phone" value="${vo.phone}" /> <br/>
-		¥–≥◊¿” : <input type="text" name="nickname" value="${vo.nickname}" /> <br/>
-		¡÷º“ : <input type="text" name="zipcode" value="${vo.zipcode}" /> <br/>
-		¿Ã∏ﬁ¿œ : <input type="text" name="email" value="${vo.email}" /> <br/>
-	<button type="submit">ºˆ¡§«œ±‚</button>
-</form>
 
-<form method="POST" action="admin_users.do">
-	<button type="submit">√Îº“«œ±‚</button>
-</form>
+<body>
+	<br>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Í∞úÎ≥ÑÏú†Ï†ÄÏÉÅÏÑ∏Ï†ïÎ≥¥</div>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+		
+						<table width="100%"
+							class="table table-striped table-bordered table-hover"
+							id="dataTables-example">
+							<thead>
+								<tr>
+									<td>Ïù¥Î¶Ñ</td>
+									<td>Ïú†Ï†Ä ID</td>
+									<td>Ï†ÑÌôîÎ≤àÌò∏</td>
+									<td>ÎãâÎÑ§ÏûÑ</td>
+									<td>Ï£ºÏÜå</td>
+									<td>Ïù¥Î©îÏùº</td>
+								</tr>
+								</thead>
+								<tr>
+									<td>${vo.user_name}</td>
+									<td>${vo.user_id}</td>
+									<td>${vo.phone}</td>
+									<td>${vo.nickname}</td>
+									<td>${vo.zipcode}</td>
+									<td>${vo.email}</td>
+								</tr>
+						</table>
+						<br /> <br />
+					
+						 <p class="fa fa-pencil"> ÏàòÏ†ïÌïòÍ∏∞ </p>
+						
+						 <br /><br />
+					
+						 <form role="form" method="POST" action="admin_user_mod2.do">
+                                        <div class="form-group">
+                                        	<input type="hidden" name="user_id" value="${vo.user_id}" /> 
+                                        	
+                                            <label>Ïù¥Î¶Ñ</label>
+                                            <input class="form-control" value="${vo.user_name}" name="user_name" >
+                                            <label>Ï†ÑÌôîÎ≤àÌò∏</label>
+                                            <input class="form-control" value="${vo.phone}" name="phone" >
+                                            <label>ÎãâÎÑ§ÏûÑ</label>
+                                            <input class="form-control" value="${vo.nickname}" name="nickname" >
+                                            <label>Ï£ºÏÜå</label>
+                                            <input class="form-control" value="${vo.zipcode}" name="zipcode" >
+                                            <label>Ïù¥Î©îÏùº</label>
+                                            <input class="form-control" value="${vo.email}" name="email" >
+                                            <br>
+                                            <button type="submit" class="btn" >ÏàòÏ†ï</button>
+                                         	<a href="admin_users.do"> <button type="button" class="btn" >Ï∑®ÏÜå</button></a> 
+                                        </div>
+                                        </form>
+                            <!-- /.table-responsive -->
+                       
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+             <!-- jQuery -->
+    <script src="./Resouces_admin/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./Resouces_admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="./Resouces_admin/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="./Resouces_admin/dist/js/sb-admin-2.js"></script>
 
 </body>
 </html>

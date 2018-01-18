@@ -1,115 +1,178 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="euc-kr"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
-table {
-	text-align: center;
+.select {
+	float: left;
 }
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="common.js" type="text/javascript"></script>
-<script>
 
-</script>
+.select1 {
+	float: left;
+}
+
+.select2 {
+	float: left;
+	
+}
+
+.select3 {
+	float: left;
+}
+
+.paginationdiv{
+text-align: right;
+}
+
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="common.js" type="text/javascript"></script>
+<!-- Bootstrap Core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="./Resouces_admin/vendor/metisMenu/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="./Resouces_admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-	<div class="jumbotron" style="background-color: orange">
-		<h1>°ø°£ ¸ðÀ½</h1>
-	</div> 
-	°Ë»öÇÒ °ÍÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.
-	<form id="textsearch" action="admin_spaces_search.do" method="post">
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">ê³µê°„ë¦¬ìŠ¤íŠ¸<br>
+		<form id="textsearch" action="admin_spaces_search.do" method="post">
 		
-		<select name="option">
-			<option value="crn">»ç¾÷ÀÚ µî·Ï¹øÈ£</option>
-			<option value="space_title">°ø°£ ÀÌ¸§</option>
-			<option value="space_content">°ø°£ ³»¿ë</option>
-			<option value="open_time">¿ÀÇÂ ½Ã°£</option>
-			<option value="close_time">Å¬·ÎÁî ½Ã°£</option>
-			<option value="price">°¡°Ý</option>
-			<option value="max_people">ÃÖ´ë ÀÎ¿ø</option>
-			<option value="min_people">ÃÖ¼Ò ÀÎ¿ø</option>
-			<option value="space_call">°ø°£ ÀüÈ­ ¹øÈ£</option>
-			<option value="zipcode">ÁÖ¼Ò</option>
-			<option value="s_category_no">°ø°£ Ä«Å×°í¸®</option>
-			<option value="l_category_no">Àå¼Ò Ä«Å×°í¸®</option>
-			<option value="the_time">»ý¼ºÀÏ</option>
-		</select>
-		<select name="option2">
-			<option value="">Á¤·ÄÀ» ¼±ÅÃÇØÁÖ¼¼¿ä</option>
-			<option value="d_desc">ÃÖ½Å¼øÀ¸·Î Á¤·Ä</option>
-			<option value="d_asc">¿À·¡µÈ¼øÀ¸·Î Á¤·Ä</option>
-			<option value="p_desc">ºñ½Ñ ¼øÀ¸·Î Á¤·Ä</option>
-			<option value="p_asc">°¡°Ý ½Ñ ¼øÀ¸·Î Á¤·Ä</option>
-		</select>
-		&nbsp;<input type="text" name="content">
-		<input type="checkbox" name="re" value="Y">»ó¼¼ °Ë»ö ÇÒ·Á¸é Ã¼Å©&nbsp;<br>
-		<input type="submit" value="°Ë»ö">
-	</form>
-	
-	<br>
-	<br>
-<!-- 	<form id="textsearch" action="admin_spaces_search2.do">
-		<select name="search_option2">
-			<option value="1">ÃÖ½Å ¼ø</option>
-			<option value="2">¿À·¡µÈ ¼ø</option>
-			<option value="3">ºñ½Ñ °¡°Ý ¼ø</option>
-			<option value="4">½Ñ °¡°Ý ¼ø</option>
-		</select>
-		<input type="submit" value="ÀüÃ¼ Á¤·ÄÇÏ±â">
-	</form> -->
-	<br>
-	<br>
-		<table border="1">
-		<tr>
-			<td>»ç¾÷ÀÚ µî·Ï ¹øÈ£</td>
-			<td>°ø°£ ÀÌ¸§</td>
-			<td>°ø°£ ³»¿ë</td>
-			<td>°ø°£ ½æºê³×ÀÏ ÀÌ¹ÌÁö</td>
-			<td>¿ÀÇÂ ½Ã°£</td>
-			<td>Å¬·ÎÁî ½Ã°£</td>
-			<td>°¡°Ý</td>
-			<td>ÃÖ´ë ÀÎ¿ø</td>
-			<td>ÃÖ¼Ò ÀÎ¿ø</td>
-			<td>°ø°£ ¹øÈ£</td>
-			<td>ÁÖ¼Ò</td>
-			<td>°ø°£ Ä«Å×°í¸®</td>
-			<td>Àå¼Ò Ä«Å×°í¸®</td>
-			<td>»ý¼ºÀÏ</td>
-			<td>»èÁ¦ÇÏ±â</td>
-		</tr>
-		<jl:forEach var="vo" items="${ls}">
-			<tr>
-				<td><a href="admin_space_crn_check.do?crn=${vo.crn}">${vo.crn}</a></td>
-				<td>${vo.space_title}</td>
-				<td>${vo.space_content}</td>
-				<td><a href="space_detail.do?space_no=${vo.space_no}"><img src="thumbnail/${vo.space_thumb_img}" style="width:128px;height:128px;"></img></a></td>
-				<td>${vo.open_time}</td>
-				<td>${vo.close_time}</td>
-				<td>${vo.price}</td>
-				<td>${vo.max_people}</td>
-				<td>${vo.min_people}</td>
-				<td>${vo.space_call}</td>
-				<td>${vo.zipcode}</td>
-				<td>${vo.s_category_no}</td>
-				<td>${vo.l_category_no}</td>
-				<td>${vo.the_time}</td>
-				<td><a href="admin_space_remove.do?space_no=${vo.space_no}">»èÁ¦</a></td>
-			</tr>
-		</jl:forEach>
-	</table>
-	
-<form id="form_search" action="admin_spaces_search.do">
-	<input type="hidden" name="pg" value="" id="pg">
-	<input type="hidden" name="search_content" value="${search.search_content}">
-	<input type="hidden" name="search_option" value="${search.search_option}">
-</form>
+		<div class="select">
+			<select name="option" class="form-control"  style="width:200px;" >
+				<option value="crn">ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸</option>
+				<option value="space_title">ê³µê°„ ì´ë¦„</option>
+				<option value="space_content">ê³µê°„ ë‚´ìš©</option>
+				<option value="open_time">ì˜¤í”ˆ ì‹œê°„</option>
+				<option value="close_time">í´ë¡œì¦ˆ ì‹œê°„</option>
+				<option value="price">ê°€ê²©</option>
+				<option value="max_people">ìµœëŒ€ ì¸ì›</option>
+				<option value="min_people">ìµœì†Œ ì¸ì›</option>
+				<option value="space_call">ê³µê°„ ì „í™” ë²ˆí˜¸</option>
+				<option value="zipcode">ì£¼ì†Œ</option>
+				<option value="s_category_no">ê³µê°„ ì¹´í…Œê³ ë¦¬</option>
+				<option value="l_category_no">ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</option>
+				<option value="the_time">ìƒì„±ì¼</option>
+			</select>
+		</div>
+		
+		 <div class="select2">
+			<select name="option2"  class="form-control" style="width:200px;">
+				<option value="">ì •ë ¬</option>
+				<option value="d_desc">ìµœì‹ ìˆœìœ¼ë¡œ ì •ë ¬</option>
+				<option value="d_asc">ì˜¤ëž˜ëœìˆœìœ¼ë¡œ ì •ë ¬</option>
+				<option value="p_desc">ë¹„ì‹¼ ìˆœìœ¼ë¡œ ì •ë ¬</option>
+				<option value="p_asc">ê°€ê²© ì‹¼ ìˆœìœ¼ë¡œ ì •ë ¬</option>
+			</select>
+		</div>
+		 	<div class="select2" >
+              <input type="checkbox"name="re" value="Y" >ìƒì„¸ ê²€ìƒ‰
+             </div>
+
+		<div class="select3">
+			<input type="text" name="content" class="form-control" style="width:300px;"  placeholder="search..">
+		</div>
+			<input  class="btn"  type="submit" value="ê²€ìƒ‰">
+
+
+		</form>
+		
+			</div><!-- /.panel-heading -->
+			<div class="panel-body">
+				
+				<table width="100%"
+					class="table table-striped table-bordered table-hover"
+					id="dataTables-example">
+					<thead>
+						<tr>
+							<th>ì‚¬ì—…ìž ë“±ë¡ ë²ˆí˜¸</th>
+							<th>ê³µê°„ ì´ë¦„</th>
+							<th>ê³µê°„ ë‚´ìš©</th>
+							<th>ê³µê°„ ì¸ë¸Œë„¤ì¼ ì´ë¯¸ì§€</th>
+							<th>ì˜¤í”ˆ ì‹œê°„</th>
+							<th>í´ë¡œì¦ˆ ì‹œê°„</th>
+							<th>ê°€ê²©</th>
+							<th>ìµœëŒ€ ì¸ì›</th>
+							<th>ìµœì†Œ ì¸ì›</th>
+							<th>ê³µê°„ ë²ˆí˜¸</th>
+							<th>ì£¼ì†Œ</th>
+							<th>ê³µê°„ ì¹´í…Œê³ ë¦¬</th>
+							<th>ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</th>
+							<th>ìƒì„±ì¼</th>
+							<th>ì‚­ì œí•˜ê¸°</th>
+						</tr>
+					</thead>
+					<jl:forEach var="vo" items="${ls}">
+						<tr>
+							<td><a href="admin_space_crn_check.do?crn=${vo.crn}">${vo.crn}</a></td>
+							<td>${vo.space_title}</td>
+							<td>${vo.space_content}</td>
+							<td><a href="space_detail.do?space_no=${vo.space_no}"><img
+									src="thumbnail/${vo.space_thumb_img}"
+									style="width: 128px; height: 128px;"></img></a></td>
+							<td>${vo.open_time}</td>
+							<td>${vo.close_time}</td>
+							<td>${vo.price}</td>
+							<td>${vo.max_people}</td>
+							<td>${vo.min_people}</td>
+							<td>${vo.space_call}</td>
+							<td>${vo.zipcode}</td>
+							<td>${vo.s_category_no}</td>
+							<td>${vo.l_category_no}</td>
+							<td>${vo.the_time}</td>
+							<td><a href="admin_space_remove.do?space_no=${vo.space_no}">ì‚­ì œ</a></td>
+						</tr>
+					</jl:forEach>
+				</table>
+				<!-- /.table-responsive -->
+                    </div>
+                      		  <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+</div>
+       
+
+<!-- íŽ˜ì´ì§• -->
+<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -134,6 +197,7 @@ table {
 				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-
+</div>		
+<!-- íŽ˜ì´ì§• -->
 </body>
 </html>
