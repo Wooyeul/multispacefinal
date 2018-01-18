@@ -52,7 +52,19 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+$(document).ready(function(){
+	// 유저 정보 수정 완료시 모달
+	$("#basic_mobody").html("<h4>수정이 완료 되었습니다.<h4>");
+	$(".mod_complete").on("click",function(){
+		$("#basic_modal").modal("show");
+	});
+	$("#basic_modal_yes").on("click",function(){
+		$("#frm").submit();
+	});
 
+});
+</script>
 
 </head>
 
@@ -109,7 +121,7 @@
                                             <label>이메일</label>
                                             <input class="form-control" value="${vo.email}" name="email" >
                                             <br>
-                                            <button type="submit" class="btn" >수정</button>
+                                            <input type="button" class="btn mod_complete" value="수정 완료 하기"/>
                                          	<a href="admin_users.do"> <button type="button" class="btn" >취소</button></a> 
                                         </div>
                                         </form>
@@ -134,5 +146,17 @@
     <!-- Custom Theme JavaScript -->
     <script src="./Resouces_admin/dist/js/sb-admin-2.js"></script>
 
+<!-- 유저 정보 수정 완료시 모달 -->
+<div id="basic_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="basic_mobody" class="modal-body" align="center">
+			</div>
+			<div id="basic_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>

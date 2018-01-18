@@ -98,6 +98,9 @@ text-align: right;
 
 <!-- 페이징 -->
 <div class="paginationdiv">
+<form id="form_search" action="admin_user_del_write_list.do">
+	<input type="hidden" name="pg" value="" id="pg">
+</form>
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_user_del_write_list.do?pg=${pz.paginationStart-1}">&lt;</a></li>

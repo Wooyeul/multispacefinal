@@ -88,7 +88,22 @@ text-align: right;
             </div>
 
 <!-- 페이징 -->
-<div class="paginationdiv">
+<br>
+<br>
+<form id="textsearch" action="admin_users.do" method="post">
+	<select name="search_option">
+		<option value="0">선택해주세요</option>
+		<option value="1">이름</option>
+		<option value="2">유저 ID</option>
+		<option value="3">닉네임</option>
+		<option value="4">성별</option>
+		<option value="5">이메일</option>
+		<option value="6">우편 번호</option>
+		<option value="7">상세 주소</option>
+	</select>
+	검색 : <input type="text" name="search_content">
+	<input type="submit" value="검색">
+</form>
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_users.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -113,8 +128,6 @@ text-align: right;
 				<li><a class="page" href="admin_users.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-		
-</div>		
 <!-- 페이징 -->
 </body>
 </html>
