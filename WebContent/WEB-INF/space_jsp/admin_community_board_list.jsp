@@ -12,10 +12,10 @@
 	text-align: right;
 }
 
-.select {
+.select2 {
 	float: left;
+	padding-right: 5px;
 }
-
 
 .commask {
 	float: left;
@@ -75,12 +75,18 @@ text-align:  center;
 	<br>
 
 		<div class="col-lg-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
+		<div class="panel panel-default">
+			<div class="panel-heading">
 					자유게시판
-
+				
+					<form id="form_search" action="admin_community_board_list.do" method="post">
+					<input type="hidden" name="pg" value="" id="pg">
+					<input type="hidden" name="search_content" value="${search.search_content}">
+					<input type="hidden" name="search_option" value="${search.search_option}">
+					</form>
+					
 					<form id="textsearch" action="admin_community_board_search.do">
-						<div class="select">
+						<div class="select2">
 							<select name="commsearch_option" class="form-control"
 								style="width: 200px;">
 								<option value="0">선택해주세요</option>
@@ -91,20 +97,23 @@ text-align:  center;
 							</select>
 						</div>
 
-						<div class="select">
+						<div class="select2">
 							<input type="text" name="commsearch_content" class="form-control"
 								style="width: 300px;">
 						</div>
 						
-						<div>
+						<div class="select2">
 						<input class="btn" type="submit" value="검색">
 						</div>	
+						
+						
 					</form>
-					<form id="form_search" action="admin_community_board_list.do" method="post">
-					<input type="hidden" name="pg" value="" id="pg">
-					<input type="hidden" name="search_content" value="${search.search_content}">
-					<input type="hidden" name="search_option" value="${search.search_option}">
-					</form>
+				
+						<a href="admin_community_board_add.do"> <input class="btn"
+							type="button" value="글쓰기">
+						</a>
+			
+				
 					
 				</div>
 				<!-- /.panel-heading -->

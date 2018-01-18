@@ -1,25 +1,83 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%><%@taglib
+	prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<style type="text/css">
-		.jumbotron{
-			text-align:center;
-		}
-		.content{
-			height : 100px;
-		}
-		td, th {
-			text-align:center;
-		}
-	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css"
+	href="./Resources/css/bootstrap.css">
+<style type="text/css">
+.paginationdiv {
+	text-align: right;
+}
+
+.select1 {
+	float: left;
+	padding : 15px;
+}
+
+.select2 {
+	float: left;
+
+}
+
+.select3 {
+	float: left;
+	padding : 8px;
+}
+
+.btnheart{
+	float: left;
+	
+}
+
+p{
+text-align: center;
+
+}
+
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="common.js" type="text/javascript"></script>
+<!-- Bootstrap Core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="./Resouces_admin/vendor/metisMenu/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="./Resouces_admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<script>
 
 $(document).ready(function() {
 	$("#btnClose").on("click", function() {
@@ -37,7 +95,7 @@ $(document).ready(function() {
 	$(".modReple").on("click", function() {
 		$("#com_qna_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
-		$("lblcontent").text("±Û¹øÈ£ :" + $(this).attr("xyz"));
+		$("lblcontent").text("ê¸€ë²ˆí˜¸ :" + $(this).attr("xyz"));
 		$("#repleModal").modal("show");
 	});
 });
@@ -46,54 +104,125 @@ $(document).ready(function() {
 	
 </head>
 <body>
-	<div id="i" class="jumbotron panel-primary">
-		<h1>QnA</h1>
-	</div>
+
 	
-	<div class="container">
-		<div class="title">
-			<label>Á¦¸ñ:</label>
-			<span>${vo.com_qna_title}</span><br>
-		</div>
+		<br>
+	<div class="row">
+		<div class="col-lg-12">
+		 <p> <label> QnA ê¸€ë³´ê¸° </label></p> 
+<hr style="border: solid 0.5px black;">
+			<!-- í…Œì´ë¸” -->
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>SUBJECT</th>
+							<th>ID</th>
+							<th>VIEW</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr>
+							<td>${vo.com_qna_no}</td>
+							<td>${vo.com_qna_title}</td>
+							<td>${vo.user_id}</td>
+							<td>${vo.view_count}</td>
+						</tr>
+						
+						<tr>
+							<td class="table_content" colspan="4">
+								<div class="pre"
+									style="padding: 10px; height: auto; min-height: 100px; overflow: auto;">
+									<pre style="white-space: pre-wrap;">${vo.com_qna_content}</pre>
+								</div>
+								
+						
+								
+							</td>
+						</tr>
+					<thead>
+						<tr>
+							<td>
+							
+									
+							
+							<form action="admin_community_qna_mod.do" method="post">
+							
+						<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+						<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
+						<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
+							
+							<div class="select3">
+						<input type="submit"  class="btn"  value="QnAìˆ˜ì •"/>
+							</div>
+							</form>
+								
+							
+								<form action="admin_community_qna_del.do" method="post">
+									<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+								<div  class="select3">
+									<input type="submit" class="btn"  value="QnAì‚­ì œ"/>
+								</div>
+							</form>	
+							</td>
+						</tr>
+					<thead>
 		
-		<div class="user_id">
-			<label>¾ÆÀÌµð:</label>
-			<span>${vo.user_id}</span><br>
-		</div>
-		
-		<div class="content">
-			<label>³»¿ë</label><br/>
-			<span>${vo.com_qna_content}</span><br/>
-		</div>
-		
-		<table border="1" cellspacing="0" cellpadding="8">
-		<tr>
-			<th>À¯Àú</th>
-			<th width="200">´ñ±Û³»¿ë</th>
-			<th>½Ã°£</th>
-			<th>ÃßÃµ¼ö</th>
-			<th>ÃßÃµÇÏ±â</th>
-			<th>´ñ±Û»èÁ¦</th>
-		</tr>
-		<jl:forEach var="rpl" items="${rp}">
+					
+					<jl:forEach var="rpl" items="${rp}">
 			<tr>
 				<td>${rpl.user_id}</td>
 				<td>
 				<span id="rb_${rpl.com_qna_reple_no}"> ${rpl.com_qna_reple_content} </span>
-				<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple" href="#">¼öÁ¤</a>
+				<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple" href="#">ìˆ˜ì •</a>
 				</td>
 				<td>${rpl.the_time}</td>
 				<td>
 					<div id="recom_count">${rpl.recom_count}</div>
 				</td>
 				<td>
-					[<a href="admin_community_qna_reple_recom.do?user_id=${user_id}&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">ÃßÃµ</a>]
+					[<a href="admin_community_qna_reple_recom.do?user_id=${user_id}&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">ì¶”ì²œ</a>]
 				</td>
-				<td>[<a href="admin_community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">»èÁ¦</a>]</td>
+				<td>[<a href="admin_community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">ì‚­ì œ</a>]</td>
 			</tr>
 		</jl:forEach>
-	</table>
-	
+					</tbody>
+					
+				</table>
+			</div>
+
+
+
+			<!-- /.table-responsive -->
+
+
+
+
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+<hr style="border: solid 0.5px black;">
+	<form action="admin_community_qna_reple_add.do" method="POST">
+<div class="select1">
+		<label> ëŒ“ê¸€ë‹¬ê¸° </label>
+</div>
+<div class="select2">	
+		<input type="text" name="com_board_reple_content" style="width: 600px; height:50px;" class="form-control"/>
+		<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" /> 
+		<input type="hidden" name="user_id" value="${user_id}" /> 
+	</div>	
+<div class="select3">	
+		<input type="submit" class="btn" value="ëŒ“ê¸€ë‹¬ê¸°" />
+</div>
+	</form>
+
+
+
+<!-- ëª¨ë‹¬ì‹œìž‘ -->
 		<form method="POST" action="admin_community_qna_reple_mod.do" id="reple_form" name="frm">
 		<div id="repleModal" class="modal" role="dialog">
 			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}"
@@ -105,38 +234,38 @@ $(document).ready(function() {
 							<label id="lblContent" for="content"></label>
 							<textarea name ="com_qna_reple_content" class="form-control" id="content" rows="7"></textarea>
 						</div>
-						<button class="btn btn-primary btn-sm" id="btnClose">´Ý±â</button>
-						<button class="btn btn-primary btn-sm" id="btnreMod">¼öÁ¤</button>
+						<button class="btn btn-primary btn-sm" id="btnClose">ë‹«ê¸°</button>
+						<button class="btn btn-primary btn-sm" id="btnreMod">ìˆ˜ì •</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
-	
+<!-- ëª¨ë‹¬ë -->	
+
+<!-- í¼-->
 		<form action="admin_community_qna_reple_add.do" method="post">
-			<input type="text" name="com_qna_reple_content" />
+		
 			<input type="hidden" name="user_id" value="${user_id}"/>
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-			<input type="submit" value="´ñ±ÛÀÛ¼º"/>
+			
 		</form>
 		
-		<form action="admin_community_qna_list.do" method="post">
-			<input type="submit" value="QnA¸ñ·Ï"/>
-		</form>
+
 		
 		<form action="admin_community_qna_mod.do" method="post">
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
 			<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
-			<input type="submit" value="QnA¼öÁ¤"/>
+
 		</form>
 		
 		<form action="admin_community_qna_del.do" method="post">
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-			<input type="submit" value="QnA»èÁ¦"/>
+		
 		</form>
+<!-- í¼ë -->		
 		
-		
-	</div>
+
 </body>
 </html>

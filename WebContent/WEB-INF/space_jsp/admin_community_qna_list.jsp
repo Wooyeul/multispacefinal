@@ -83,7 +83,7 @@ text-align:  center;
 				</form>
 				<form id="textsearch" action="admin_community_qna_list.do">
 					<div class="select2">
-					<select name="search_option" class="form-control">
+					<select name="search_option" class="form-control" style="width: 200px;">
 						<option value="0">선택</option>
 						<option value="1">제목</option>
 						<option value="2">내용</option>
@@ -138,11 +138,7 @@ text-align:  center;
 		<!-- /.col-lg-12 -->
 	</div>
 
-	<form action="admin_community_qna_add.do" method="post">
-		<input type="submit" value="글쓰기" class="btn btn-success" type="button" />
-	</form>
-	<br>
-	<br>
+	
 
 	<!-- 페이징 -->
 	<div class="paginationdiv">

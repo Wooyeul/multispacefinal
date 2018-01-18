@@ -189,9 +189,7 @@ window.onload = function() {
 
 	<br/>
 	<br/>
-	<input type="button" id="btn"  class="btn btn-primary" value="추천버튼" />
-	<br>
-	
+
 	
 <!-- 글 삭제 모달 -->	
 <div id="text_modal" class="modal fade" role="dialog">
