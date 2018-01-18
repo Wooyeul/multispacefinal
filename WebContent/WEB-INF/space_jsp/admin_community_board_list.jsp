@@ -8,16 +8,17 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
-.paginationdiv{
-text-align: right;
+.paginationdiv {
+	text-align: right;
 }
+
 .select {
 	float: left;
 }
-.commask{
-text-align: center;
-}
 
+.commask {
+	text-align: center;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -61,27 +62,29 @@ text-align: center;
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">자유게시판	
-				
-			
-						<form id="textsearch" action="admin_community_board_search.do">
-							
-						<div class="select"> 
-						<select name="commsearch_option" class="form-control"
+				<div class="panel-heading">
+					자유게시판
+
+
+					<form id="textsearch" action="admin_community_board_search.do">
+
+						<div class="select">
+							<select name="commsearch_option" class="form-control"
 								style="width: 200px;">
-							<option value="0">선택해주세요</option>
-							<option value="1">제목</option>
-							<option value="2">내용</option>
-							<option value="3">제목 + 내용</option>
-							<option value="4">작성자</option>
-						</select> 
+								<option value="0">선택해주세요</option>
+								<option value="1">제목</option>
+								<option value="2">내용</option>
+								<option value="3">제목 + 내용</option>
+								<option value="4">작성자</option>
+							</select>
 						</div>
-						
-						<div class="select">  
-						<input type="text" name="commsearch_content" class="form-control" style="width: 300px;" >
+
+						<div class="select">
+							<input type="text" name="commsearch_content" class="form-control"
+								style="width: 300px;">
 						</div>
-						
-						 <input class="btn" type="submit" value="검색">
+
+						<input class="btn" type="submit" value="검색">
 					</form>
 				</div>
 				<!-- /.panel-heading -->
@@ -98,28 +101,28 @@ text-align: center;
 								<th>VIEW</th>
 								<th>LIKE</th>
 							</tr>
-							</thead>	
-								<jl:forEach var="vo" items="${rl}">
-									<tr>
-										<td>${vo.com_board_no}</td>
-										<td><a
-											href="admin_community_board_read.do?com_board_no=${vo.com_board_no}">${vo.com_board_title}</a></td>
-										<td>${vo.the_time}</td>
-										<td>${vo.user_id}</td>
-										<td>${vo.view_count}</td>
-										<td>${vo.recom_count}</td>
-									</tr>
+						</thead>
+						<jl:forEach var="vo" items="${rl}">
+							<tr>
+								<td>${vo.com_board_no}</td>
+								<td><a
+									href="admin_community_board_read.do?com_board_no=${vo.com_board_no}">${vo.com_board_title}</a></td>
+								<td>${vo.the_time}</td>
+								<td>${vo.user_id}</td>
+								<td>${vo.view_count}</td>
+								<td>${vo.recom_count}</td>
+							</tr>
 
-								</jl:forEach>
-						</table>
-						
-						
+						</jl:forEach>
+					</table>
+
+
 					<!-- /.table-responsive -->
-				<div class="commask">
-			<a href="admin_community_board_add.do">
-				<input class="btn" type="button" value="글쓰기">
-			</a>
-	</div>
+					<div class="commask">
+						<a href="admin_community_board_add.do"> <input class="btn"
+							type="button" value="글쓰기">
+						</a>
+					</div>
 
 				</div>
 				<!-- /.panel-body -->
@@ -129,37 +132,45 @@ text-align: center;
 		<!-- /.col-lg-12 -->
 	</div>
 	<form id="form_search" action="admin_community_board_list.do">
-				<input type="hidden" name="pg" value="" id="pg">
-				<input type="hidden" name="search_content" value="${search.search_content}">
-				<input type="hidden" name="search_option" value="${search.search_option}">
-				</form>
-						
-<div class="paginationdiv">
-	<ul class="pagination pagination-sm">
+		<input type="hidden" name="pg" value="" id="pg"> <input
+			type="hidden" name="search_content" value="${search.search_content}">
+		<input type="hidden" name="search_option"
+			value="${search.search_option}">
+	</form>
+
+	<div class="paginationdiv">
+		<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
-				<li><a class="page" href="admin_community_board_list.do?pg=${pz.paginationStart-1}">&lt;</a></li>
+				<li><a class="page"
+					href="admin_community_board_list.do?pg=${pz.paginationStart-1}">&lt;</a></li>
 			</jl:if>
-				<jl:if test="${pz.hasPrevPage }">
-					<li><a class="page" href="admin_community_board_list.do?pg=${pz.curPagination-1 }">&lt;</a></li>
-				</jl:if>
-				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
-					<jl:choose>
-						<jl:when test="${vs.index!=pz.curPagination }">
-							<li><a class="page" href="admin_community_board_list.do?pg=${vs.index }">${vs.index }</a></li>
-						</jl:when>
-						<jl:otherwise>
-							<li class="active"><a class="page" href="admin_community_board_list.do?pg=${vs.index }">${vs.index }</a></li>
-						</jl:otherwise>
-					</jl:choose>
-				</jl:forEach>
-				<jl:if test="${pz.hasNextPage }">
-					<li><a class="page" href="admin_community_board_list.do?pg=${pz.curPagination+1}">&gt;</a></li>
-				</jl:if>
+			<jl:if test="${pz.hasPrevPage }">
+				<li><a class="page"
+					href="admin_community_board_list.do?pg=${pz.curPagination-1 }">&lt;</a></li>
+			</jl:if>
+			<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }"
+				step="1" varStatus="vs">
+				<jl:choose>
+					<jl:when test="${vs.index!=pz.curPagination }">
+						<li><a class="page"
+							href="admin_community_board_list.do?pg=${vs.index }">${vs.index }</a></li>
+					</jl:when>
+					<jl:otherwise>
+						<li class="active"><a class="page"
+							href="admin_community_board_list.do?pg=${vs.index }">${vs.index }</a></li>
+					</jl:otherwise>
+				</jl:choose>
+			</jl:forEach>
+			<jl:if test="${pz.hasNextPage }">
+				<li><a class="page"
+					href="admin_community_board_list.do?pg=${pz.curPagination+1}">&gt;</a></li>
+			</jl:if>
 			<jl:if test="${pz.hasNextPagination }">
-				<li><a class="page" href="admin_community_board_list.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+				<li><a class="page"
+					href="admin_community_board_list.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-</div>
+	</div>
 
 </body>
 </html>
