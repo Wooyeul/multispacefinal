@@ -61,7 +61,7 @@ text-align: right;
 										<th>유저 ID</th>
 										<th>호스트 이름</th>
 										<th>호스트 계좌 번호</th>
-										<th>주소</th>
+										<th>우편 번호</th>
 										<th>판매자 공간</th>
 										<th>사용자로 강등</th>
 										<th>탈퇴 시키기</th>

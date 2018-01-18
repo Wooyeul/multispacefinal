@@ -87,7 +87,8 @@ $(document).ready(function(){
 									<td>유저 ID</td>
 									<td>전화번호</td>
 									<td>닉네임</td>
-									<td>주소</td>
+									<td>우편 번호</td>
+									<td>상세 주소</td>
 									<td>이메일</td>
 								</tr>
 								</thead>
@@ -97,6 +98,7 @@ $(document).ready(function(){
 									<td>${vo.phone}</td>
 									<td>${vo.nickname}</td>
 									<td>${vo.zipcode}</td>
+									<td>${vo.zipdetail}</td>
 									<td>${vo.email}</td>
 								</tr>
 						</table>
@@ -116,8 +118,10 @@ $(document).ready(function(){
                                             <input class="form-control" value="${vo.phone}" name="phone" >
                                             <label>닉네임</label>
                                             <input class="form-control" value="${vo.nickname}" name="nickname" >
-                                            <label>주소</label>
+                                            <label>우편 번호</label>
                                             <input class="form-control" value="${vo.zipcode}" name="zipcode" >
+                                            <label>상세 주소</label>
+                                            <input class="form-control" value="${vo.zipdetail}" name="zipdetail" >
                                             <label>이메일</label>
                                             <input class="form-control" value="${vo.email}" name="email" >
                                             <br>

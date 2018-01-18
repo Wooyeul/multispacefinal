@@ -78,7 +78,8 @@ text-align: center;
 								<td>성별</td>
 								<td>전화번호</td>
 								<td>닉네임</td>
-								<td>주소</td>
+								<td>우편 번호</td>
+								<td>상세 주소</td>
 								<td>이메일</td>
 							</tr>
 						</thead>
@@ -98,6 +99,7 @@ text-align: center;
 								<td>${vo.phone}</td>
 								<td>${vo.nickname}</td>
 								<td>${vo.zipcode}</td>
+								<td>${vo.zipdetail}</td>
 								<td>${vo.email}</td>
 							</tr>
 					</table>
