@@ -32,20 +32,18 @@
 <script src="common.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
+	// FAQ 삭제 시 모달
 	$(".remove_faq").on("click",function(){
 		$("#faq_No").val( $(this).attr("faq_no") );
 		
 		$("#text_modal").modal("show");
 	});
-	
-	//yes버튼 클릭 했을 때 실행할 function
 	$("#text_modal_yes").on("click",function(){
 		var del_faq_no = $("#faq_No").val();
 			location.href = "admin_faq_remove.do?faq_no=" + 
 			del_faq_no;
 		$("#text_modal_modal").modal("hide");
 	});
-	//no버튼 클릭 했을 때 실행할 function
 	$("#text_modal_no").on("click",function(){
 		$("#text_modal").modal('hide');
 	});
@@ -142,10 +140,9 @@ $(document).ready(function(){
 			</jl:if>
 		</ul>
 
-
+<!-- FAQ 삭제 시 모달 -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="faq_No" value="0"/>
-	
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>

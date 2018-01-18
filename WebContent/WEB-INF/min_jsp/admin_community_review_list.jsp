@@ -18,22 +18,20 @@ text-align: center;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script type="text/javascript">
 $(document).ready(function(){
+		// 해당 공간으로 이동
 		$(".space_no").on("click",function(){
 			var temp = $(this).attr("abc");
-			
 			document.frm.method="POST";
 			document.frm.action="space_detail.do?space_no="+temp;
 			document.frm.submit();
 		});
 		
+		// 리뷰 삭제시의 모달
 		$(".remove_review").on("click",function(){
 			$("#review_No").val( $(this).attr("review_no") );
 			$("#space_No").val( $(this).attr("space_no") );
-			
 			$("#text_modal").modal("show");
 		});
-		
-		//yes버튼 클릭 했을 때 실행할 function
 		$("#text_modal_yes").on("click",function(){
 			var del_review_no = $("#review_No").val();
 			var del_space_no = $("#space_No").val();
@@ -41,7 +39,6 @@ $(document).ready(function(){
 				del_review_no + "&space_no=" + del_space_no;
 			$("#text_modal_modal").modal("hide");
 		});
-		//no버튼 클릭 했을 때 실행할 function
 		$("#text_modal_no").on("click",function(){
 			$("#text_modal").modal('hide');
 		});
@@ -125,7 +122,8 @@ $(document).ready(function(){
 				<li><a class="page" href="admin_community_review_list.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-	
+
+<!-- 리뷰 삭제시의 모달 -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="review_No" value="0"/>
 	<input type="hidden" id="space_No" value="0"/>

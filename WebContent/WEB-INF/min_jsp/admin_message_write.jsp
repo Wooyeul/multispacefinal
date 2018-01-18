@@ -34,12 +34,12 @@
 			document.frm.submit();
 		});
 		
+		// ID 중복 체크. ID 존재 시 전송 시도
 		var flag = 0;
 		var user_id;
 		$("#primary_id").on("click",function(){
 			user_id = $("#receive_user_id").val();
 			var url ="overlap.do?user_id="+user_id;
-			
 			ajaxGet(url,function(rt){
 				if(rt==1){
 					$("#lblContent").text("ID가 존재합니다. 쪽지보내기가 가능합니다.");
@@ -56,15 +56,13 @@
 			});
 		});
 		$("#basic_mobody").html("<h4>메세지 전송이 완료 되었습니다.<h4>");
-		
 		$("#m_submit").on("click",function(){
 			$("#text_modal").modal("show");
 			$("#text_modal_yes").on("click",function(){
 				$("#text_modal").modal("hide");
 				var user_id_check = $("#receive_user_id").val();
 				var send_user_id = $("#send_user_id").val();
-				var msg_content = $("#msg_content").val();
-				
+				var msg_content = $("#msg_content").val();			
 				if(user_id_check==""){
 					$("#lblContent").text("아이디를 입력하고 중복검사 해주세요.");
 					$("#repleModal").modal("show");
@@ -73,16 +71,12 @@
 					$("#repleModal").modal("show");
 				} else {
 					var wrting_url = "admin_writing_message.do?send_user_id="+send_user_id 
-					+"&receive_user_id="+user_id_check +"&msg_content="+msg_content;
-					
-					ajaxGet(wrting_url,function(rt){ });
-					
+					+"&receive_user_id="+user_id_check +"&msg_content="+msg_content;		
+					ajaxGet(wrting_url,function(rt){ });	
 					$("#basic_modal").modal("show");
-					
 					$("#basic_modal").on("hidden.bs.modal",function(){
 						location.reload();
 					});
-
 				}
 			});			
 		});

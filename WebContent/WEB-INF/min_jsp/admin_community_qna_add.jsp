@@ -21,7 +21,7 @@
 			$("#qna_submit").submit();
 
 		});
-		});
+	});
 	</script>
 </head>
 <body>

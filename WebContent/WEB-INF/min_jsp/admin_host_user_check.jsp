@@ -17,7 +17,7 @@
 </script>
 </head>
 <body>
-<h1>개별 유저 상세 정보</h1>
+<h1>판매자 유저 상세 정보</h1>
 <table border="1" width="500">
 	<tr>
 		<td>이름</td>
@@ -51,10 +51,12 @@
 		<td>${vo.email}</td>
 	</tr>
 </table>
+<br>
 <form method="POST" action="admin_user_mod.do">
 	<input type="hidden" name="user_id" value="${vo.user_id}" />
 	<button type="submit">수정하기</button>
 </form>
+<br>
 <form method="POST" action="admin_hosts.do">
 	<button type="submit">취소하기</button>
 </form>

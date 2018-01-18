@@ -17,6 +17,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
+	// 커뮤니티 댓글 수정 완료 모달 부분
 	$("#btnreMod").on("click", function() {
 		$("#repleModal").modal("hide");
 		$("#basic_modal").modal("show");
@@ -32,38 +33,37 @@ $(document).ready(function() {
 	});
 
 	
-	
+	// 댓글 수정 모달 뛰우기
 	$(".modReple").on("click", function() {
 		$("#com_board_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
 		$("lblcontent").text("글번호 :" + $(this).attr("xyz"));
 		$("#repleModal").modal("show");
 	});
+	// 댓글 수정 모달 종료시
 	$("#btnClose").on("click",function(){
 		location.href = "admin_community_board_read.do?com_board_no=${vo.com_board_no}";
 	});
 	
 	
-	
+	// 커뮤니티 글 삭제 모달 부분
 	$("#remove_free").on("click",function(){
 		$("#free_No").val( $(this).attr("free_no") );
 		
 		$("#text_modal").modal("show");
 	});
-	//yes버튼 클릭 했을 때 실행할 function
 	$("#text_modal_yes").on("click",function(){
 		var del_free_no = $("#free_No").val();
 			location.href = "admin_community_board_del.do?com_board_no=" + 
 			del_free_no;
 		$("#text_modal_modal").modal("hide");
 	});
-	//no버튼 클릭 했을 때 실행할 function
 	$("#text_modal_no").on("click",function(){
 		$("#text_modal").modal('hide');
 	});
 	
 	
-	
+	// 자유게시판 댓글 삭제 시 모달
 	// <a> 태그로 값을 불러 올 때 class 했을 때 동작 됨.
 	$(".remove_free_re").on("click",function(){
 		$("#board_reple_No").val( $(this).attr("board_reple_no") );
@@ -84,7 +84,7 @@ $(document).ready(function() {
 	
 });
 
-
+// 추천 뛰우기 모달
 window.onload = function() {
 	e("btn").onclick = function() {
 		var dc = "?dc=" + new Date().getTime();
@@ -186,24 +186,17 @@ window.onload = function() {
 		<input type="submit" id="mod"  class="btn btn-primary" value="글 수정하기" />
 		<input type="button" id="remove_free" free_no="${vo.com_board_no}" class="btn btn-primary" value="글 삭제하기" />
 	</form>
-	
 
-	
-<%-- 	<form action="admin_community_board_del.do" method="POST">
-		<input type="hidden" name="com_board_no" value="${vo.com_board_no}" /> 
-		<input type="submit" id="del"  class="btn btn-primary" value="글 삭제하기" />
-	</form> --%>
 	<br/>
 	<br/>
 	<input type="button" id="btn"  class="btn btn-primary" value="추천버튼" />
 	<br>
 	
 	
-	
+<!-- 글 삭제 모달 -->	
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="board_reple_No" value="0"/>
 	<input type="hidden" id="board_No" value="0"/>
-	
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
@@ -217,11 +210,11 @@ window.onload = function() {
 		</div>
 	</div>
 </div>
-	
+
+<!-- 댓글 삭제 모달 -->		
 <div id="re_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="free_No" value="0"/>
 	<input type="hidden" id="free_No" value="0"/>
-	
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="re_mohead" class="modal-header"align="center"><h4>댓글 삭제</h4></div>
