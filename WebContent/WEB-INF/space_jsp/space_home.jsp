@@ -24,10 +24,10 @@
  			$("#add_space").css("display","block");
  		}
  		
-/*  		$('#boy').on("load",function(){
+ 		$('#boy').on("load",function(){
  			var h = this.contentWindow.document.body.offsetHeight;
  			$(this).height(h);
- 		}); */
+ 		});
  		
 
  		if("${space_code }"=="20007"){
@@ -108,7 +108,7 @@
 					<input type="submit" value="제출">
 				</form>
 				<hr/>
-				<iframe id="boy" name="boy" src="space_home_iframe.do" width="100%" frameborder="0"></iframe>
+				<iframe id="boy" name="boy" src="space_home_iframe.do" width="100%" height="1100px" frameborder="0"></iframe>
 				<a href="space_add.do" class="sh_a" id="add_space" style="display: none;">공간 등록</a>
 			</div>
 				<!-- 상태 모달 -->
