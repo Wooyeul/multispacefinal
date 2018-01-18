@@ -10,7 +10,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" src="common.js"></script>
-	
+	<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Myclub.css">	
 	<script>
 	$(document).ready(function(){
 		
@@ -26,7 +26,7 @@
 	</script>
 </head>
 <body>
-	<table border="1" cellspacing="1" cellpadding="1">
+	<table>
 		<tr>
 			<th width="100">받는사람</th>
 			<th width="200">내용</th>

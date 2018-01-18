@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+	<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Myclub.css">
 	<script>
 
 	$(document).ready(function(){
@@ -27,7 +27,7 @@
 </head>
 <body>
 	<form name="frm">
-		<table border="1" cellspacing="0" cellpadding="8">
+		<table>
 			<tr>
 				<th width="40">qna_no</th>
 				<th width="40">space_no</th>
