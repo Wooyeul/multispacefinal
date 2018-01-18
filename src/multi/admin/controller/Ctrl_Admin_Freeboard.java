@@ -121,10 +121,18 @@ public class Ctrl_Admin_Freeboard {
 	}
 	
 	@RequestMapping("/admin_community_board_replemod.do")
+	@ResponseBody
+	public String admin_community_board_replemod(@ModelAttribute  Community_board_repleVO  pvo) throws Exception {
+		System.out.println(pvo.getCom_board_reple_no());
+		System.out.println(pvo.getCom_board_reple_content());
+		admin_FreeboardDAO.modReple(pvo);
+		return  null;
+	}
+	/*@RequestMapping("/admin_community_board_replemod.do")
 	public String admin_community_board_replemod(@ModelAttribute  Community_board_repleVO  pvo) throws Exception {
 		admin_FreeboardDAO.modReple(pvo);
 		return  "redirect:/admin_community_board_read.do?com_board_no="+pvo.getCom_board_no();
-	}
+	}*/
 	
 	@RequestMapping("/admin_community_board_repledel.do")
 	public String admin_community_board_repledel(@ModelAttribute  Community_board_repleVO  pvo) throws Exception {

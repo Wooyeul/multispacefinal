@@ -13,21 +13,26 @@
 </style>
 
 <script src="common.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-
-
-
 $(document).ready(function() {
-	$("#btnMod").on("click", function() {
-		$("#repleModal").modal("hide");
-	});
 	$("#btnreMod").on("click", function() {
-		$("#reple_form").submit();
+		$("#repleModal").modal("hide");
+		$("#basic_modal").modal("show");
 	});
+	$("#basic_mobody").html("<h4>댓글 수정이 완료 되었습니다.<h4>");
+	$("#basic_modal_yes").on("click",function(){
+		var reple_no = $("#com_board_reple_no").val();		
+		var com_board_reple_content = $("#content").val();
+		var url = "admin_community_board_replemod.do?com_board_reple_no="+reple_no
+				+"&com_board_reple_content=" + com_board_reple_content;
+		ajaxGet(url,function(rt){ });
+		location.reload();
+	});
+
+	
+	
 	$(".modReple").on("click", function() {
 		$("#com_board_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
@@ -35,9 +40,9 @@ $(document).ready(function() {
 		$("#repleModal").modal("show");
 	});
 	$("#btnClose").on("click",function(){
-		document.frm.action ="admin_community_board_read.do?com_board_no=${vo.com_board_no}";
-		document.frm.submit();
+		location.href = "admin_community_board_read.do?com_board_no=${vo.com_board_no}";
 	});
+	
 	
 	
 	$("#remove_free").on("click",function(){
@@ -57,6 +62,8 @@ $(document).ready(function() {
 		$("#text_modal").modal('hide');
 	});
 	
+	
+	
 	// <a> 태그로 값을 불러 올 때 class 했을 때 동작 됨.
 	$(".remove_free_re").on("click",function(){
 		$("#board_reple_No").val( $(this).attr("board_reple_no") );
@@ -64,7 +71,6 @@ $(document).ready(function() {
 		
 		$("#re_modal").modal("show");
 	});
-	//yes버튼 클릭 했을 때 실행할 function
 	$("#re_modal_yes").on("click",function(){
 		var del_board_reple_no = $("#board_reple_No").val();
 		var del_board_no = $("#board_No").val();
@@ -72,12 +78,10 @@ $(document).ready(function() {
 			del_board_reple_no +"&com_board_no=" + del_board_no;
 		$("#re_modal_modal").modal("hide");
 	});
-	//no버튼 클릭 했을 때 실행할 function
 	$("#re_modal_no").on("click",function(){
 		$("#re_modal").modal('hide');
 	});
-
-
+	
 });
 
 
@@ -146,7 +150,7 @@ window.onload = function() {
 		</jl:forEach>
 	</table>
 
-	<form method="POST" action="admin_community_board_replemod.do" id="reple_form" name="frm">
+	<form method="POST" action="admin_community_board_replemod.do" id="reple_form" id="frm">
 		<div id="repleModal" class="modal" role="dialog">
 			<input type="hidden" id="com_board_no" value="${vo.com_board_no}"
 				name="com_board_no" /> <input id="com_board_reple_no" type="hidden" name="com_board_reple_no" />
@@ -158,8 +162,8 @@ window.onload = function() {
 							<textarea name ="com_board_reple_content" class="form-control" id="content" rows="7"></textarea>
 						</div>
 
-						<button class="btn btn-primary btn-sm" id="btnClose">닫기</button>
-						<button class="btn btn-primary btn-sm" id="btnreMod">수정</button>
+						<input type="button" class="btn btn-primary btn-sm" id="btnClose" value="닫기"/>
+						<input type="button" class="btn btn-primary btn-sm" id="btnreMod" value="수정"/>
 					</div>
 				</div>
 			</div>
@@ -231,6 +235,20 @@ window.onload = function() {
 		</div>
 	</div>
 </div>
+
+
+<div id="basic_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="basic_mobody" class="modal-body" align="center">
+			</div>
+			<div id="basic_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>
 
