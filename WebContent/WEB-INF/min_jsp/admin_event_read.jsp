@@ -41,10 +41,10 @@ $(document).ready(function(){
 			내용 :<textarea name="eve_content" rows="7" cols="40" readonly >${text.eve_content}</textarea><br/>
 				<input type="hidden" name="eve_no" value="${text.eve_no}" />
 				<img src="thumbnail/${text.eve_thumb_img}" height="100" width="100"/><br/>
-			<input type="submit" value="수정" />
+			<input type="submit" value="수정 하기" /> &nbsp;&nbsp;
 			<%-- <a href="admin_event_del2.do?eve_no=${text.eve_no}">삭제</a> --%>
-			<input type="button" id="remove_eve" eve_no="${text.eve_no}" value="삭제하기" />
-			<input type="button" value="취소" onclick= "window.location.href='admin_event_list.do'">
+			<input type="button" id="remove_eve" eve_no="${text.eve_no}" value="삭제하기" />&nbsp;&nbsp;
+			<input type="button" value="취소 하기" onclick= "window.location.href='admin_event_list.do'">
 		</form>
 		
 
