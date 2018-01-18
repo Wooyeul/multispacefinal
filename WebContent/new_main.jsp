@@ -23,18 +23,64 @@
 <script>
 
 	$(document).ready(function(){
+		
 		ajaxGet("best_space.do",function(rt){
 			var seoul_best = eval("("+rt+")");
-			//alert(seoul_best);
-			/* for(var i=0; i<seoul_best.length; i++){
-				alert(seoul_best[i].space_title);
-			} */
+			var html ="";
+			
+			 for(var i=0; i<seoul_best.data.length; i++){
+				 html += "<li>";
+				 html += "<a href='#'>";
+				 html += "<img src='./Resources/img/property_1.jpg'  class='property_img'/>";
+				 html += "</a>";
+				 html += "<span class='price'>서울</span>";
+				 html += "<div class='property_details'>";
+				 html += "<h1>";	
+				 html += "<a href='#'>"+seoul_best.data[i].space_title+"</a>";	
+				 html += "</h1>";	
+				 html += "<div class='property_details_box'>";	
+				 html += "<div class='property_sub_details_left'>";	
+				 html += "<h2>"+seoul_best.data[i].price+"원/시간 </h2>";	
+				 html += "</div>";	
+				 html += "<div class='property_sub_details_right'>";	
+				 html += "<h2><span class='property_size'>즐찾수 "+seoul_best.data[i].count+"</span></h2>";	
+				 html += "</div>";	
+				 html += "</div>";	
+				 html += "</div>";	
+				 html += "</li>";	
+					
+				// alert(seoul_best.data[i].space_title);
+			} 
+			 $("#seoulbest_properties_list").html(html);
 			
 		});
 		
 		ajaxGet("best_space2.do",function(rt){
 			var party_best = eval("("+rt+")");
-			//alert(party_best);
+			var html2 ="";
+			
+			 for(var i=0; i<party_best.data.length; i++){
+				 html2 += "<li>";
+				 html2 += "<a href='#'>";
+				 html2 += "<img src='./Resources/img/property_1.jpg'  class='property_img'/>";
+				 html2 += "</a>";
+				 html2 += "<span class='price'>서울</span>";
+				 html2 += "<div class='property_details'>";
+				 html2 += "<h1>";	
+				 html2 += "<a href='#'>"+party_best.data[i].space_title+"</a>";	
+				 html2 += "</h1>";	
+				 html2 += "<div class='property_details_box'>";	
+				 html2 += "<div class='property_sub_details_left'>";	
+				 html2 += "<h2>"+party_best.data[i].price+"원/시간 </h2>";	
+				 html2 += "</div>";	
+				 html2 += "<div class='property_sub_details_right'>";	
+				 html2 += "<h2><span class='property_size'>즐찾수 "+party_best.data[i].count+"</span></h2>";	
+				 html2 += "</div>";	
+				 html2 += "</div>";	
+				 html2 += "</div>";	
+				 html2 += "</li>";	
+			 }
+			 $("#partybest_properties_list").html(html2);
 		});
 		var scOffset = $('.navbar-Menu').offset();
 		$(window).scroll(function() {
@@ -110,36 +156,23 @@
 
 	<section class="listings">
 		<div class="wrapper">
-		
-		<div class="c_cate_list">
-			<ul class="properties_list">
-			
-			<!-- **********************  i ************************* -->
-				<li>
-					<a href="#">
-						<img src="./Resources/img/property_1.jpg" alt="" title="" class="property_img"/>
-					</a>
-					<span class="price">서울</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<div class="property_details_box">
-							<div class="property_sub_details_left">
-								<h2>5000 원/시간 </h2>
-							</div>
-							<div class="property_sub_details_right">
-								<h2><span class="property_size">즐찾수 80</span></h2>
-							</div>
-						</div>
-					</div>
-				</li>		
-					
-			</ul>
-		</div>
-			
 
-	</section>	
+			<div class="c_cate_list">
+				<div>
+					<p>18px</p>
+				</div>
+				<ul id="seoulbest_properties_list" class="properties_list">
+	
+				</ul>
+
+				<div>
+					<p>18px</p>
+				</div>
+				<ul id="partybest_properties_list" class="properties_list">
+
+				</ul>
+
+			</div></section>	
 
 
 		<!-- ******************************* footer ******************************* -->
