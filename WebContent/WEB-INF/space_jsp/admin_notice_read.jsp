@@ -21,6 +21,27 @@
 		}
 	
 	</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="common.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){ 
+	// 공지 삭제시 모달
+	$("#remove_notice").on("click",function(){
+		$("#notice_No").val( $(this).attr("notice_no") );
+		$("#text_modal").modal("show");
+	});
+	$("#text_modal_yes").on("click",function(){
+		var del_notice_no = $("#notice_No").val();
+			location.href = "admin_notice_del.do?notice_no=" + del_notice_no;
+		$("#text_modal_modal").modal("hide");
+	});
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
+
+});
+</script>
 </head>
 <body>
 
@@ -45,13 +66,29 @@
 			<input type="hidden" name="notice_no" value="${vo.notice_no}"/>
 			<input type="hidden" name="notice_title" value="${vo.notice_title}"/>
 			<input type="hidden" name="notice_content" value="${vo.notice_content}"/>
-			<input type="submit" value="공지수정"/>
+			<input type="submit" value="공지수정"/> &nbsp;&nbsp;&nbsp;
+			<input type="button" id="remove_notice" notice_no="${vo.notice_no}" value="공지삭제"/>
 		</form>
-		<form action="admin_notice_del.do" method="post">
-			<input type="hidden" name="notice_no" value="${vo.notice_no}"/>
-			<input type="submit" value="공지삭제"/>
-		</form>
-		
+
 	</div>
+	
+	
+<!-- 공지 삭제시 모달 -->
+<div id="text_modal" class="modal fade" role="dialog">
+	<input type="hidden" id="notice_No" value="0"/>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>글을 삭제 하시겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+	
 </body>
 </html>
