@@ -19,7 +19,8 @@
 			//해당 space_no 클릭시 
 			$("#i_space_no").attr("value",$(this).attr("s_spaceNo")); 
 			space_no = $("#i_space_no").val();
-			location.href="mypage_moveSpaceinfo.do?space_no="+space_no;
+			
+			window.parent.location.href="space_detail.do?space_no="+space_no;
 		})
 	});
 	</script>
@@ -27,24 +28,20 @@
 <body>
 	<table>
 		<tr>
-			<th width="40">#</th>
 			<th width="40">space_no</th>
-			<th width="100">user_id</th>
 			<th width="100">du_time</th>
 			<th width="100">booking_date</th>
-			<th width="100">club_no</th>
 			<th width="100">booking_message</th>
 		</tr>
 		<jl:forEach var="bkInfo" items="${bookingInfo}">
 			<tr>
-				<td>${bkInfo.booking_no}</td>
-				<td><span class="s_space_no" s_spaceNo="${bkInfo.space_no}">${bkInfo.space_no}</span>
-					<input id="i_space_no" type="hidden" name="space_no" />
+				<td>
+				<a href="space_detail.do?space_no=${bkInfo.space_no}" target="_parent">${bkInfo.space_no}</a>
+				<%-- <span class="s_space_no" s_spaceNo="${bkInfo.space_no}">${bkInfo.space_no}</span>
+					<input id="i_space_no" type="hidden" name="space_no" /> --%>
 				</td>
-				<td>${bkInfo.user_id}</td>
 				<td>${bkInfo.du_time}</td>
 				<td>${bkInfo.booking_date}</td>
-				<td>${bkInfo.club_no}</td>
 				<td>${bkInfo.booking_message}</td>
 			</tr>
 		</jl:forEach>

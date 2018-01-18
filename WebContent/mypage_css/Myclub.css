@@ -38,7 +38,7 @@ table {
 th {
 	background-color: #FCFCFC;
 	border-bottom: 1px solid #F0F0F0;
-	font-size: 11px;
+	font-size: 20px;
 	color: #838383;
 	font-weight: bold;
 }
@@ -49,6 +49,6 @@ tr:HOVER {
 
 td {
 	border-bottom: 1px solid #F0F0F0;
-	font-size: 12px;
+	font-size: 15px;
 	height: 25px
 }

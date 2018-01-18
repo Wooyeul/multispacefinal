@@ -39,7 +39,8 @@
 				<td>${rl.club_name}</td>
 				<td>${rl.club_title}</td>
 				<td>${rl.club_content}</td>
-				<td><img src="img/${rl.club_thumb_img}" width="80px" height="100px" class="thumb_img" abc="${rl.club_no}"/></td>
+				<td><a href="club_community.do?club_no=${rl.club_no}"><img src="img/${rl.club_thumb_img}" width="80px" height="100px" class="thumb_img" abc="${rl.club_no}"/></a>
+				</td>
 				<td>${rl.max_member}</td>
 			</tr>
 		</jl:forEach>
