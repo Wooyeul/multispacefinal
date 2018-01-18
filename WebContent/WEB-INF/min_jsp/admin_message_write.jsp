@@ -52,24 +52,45 @@
 					$("#lblContent").text("ID가 존재하지 않아 쪽지 보내기가 불가능 합니다.");
 					$("#repleModal").modal("show");
 					$("#user_id").val("");
-					
 				} 
 			});
 		});
+		$("#basic_mobody").html("<h4>메세지 전송이 완료 되었습니다.<h4>");
+		
 		$("#m_submit").on("click",function(){
-			var user_id_check = $("#receive_user_id").val();	
-			if(user_id_check==""){
-				$("#lblContent").text("아이디를 입력하고 중복검사 해주세요.");
-			} else if(flag==0){
-				$("#lblContent").text("아이디 체크 해주세요.");
-			} else {
-				$("#m_submit").attr('type','submit');
-			}
-			$("#repleModal").modal("show");
+			$("#text_modal").modal("show");
+			$("#text_modal_yes").on("click",function(){
+				$("#text_modal").modal("hide");
+				var user_id_check = $("#receive_user_id").val();
+				var send_user_id = $("#send_user_id").val();
+				var msg_content = $("#msg_content").val();
+				
+				if(user_id_check==""){
+					$("#lblContent").text("아이디를 입력하고 중복검사 해주세요.");
+					$("#repleModal").modal("show");
+				} else if(flag==0){
+					$("#lblContent").text("아이디 체크 해주세요.");
+					$("#repleModal").modal("show");
+				} else {
+					//$("#m_submit").attr('type','submit');
+					$("#basic_modal").modal("show");
+					$("#basic_modal_yes").on("click",function(){
+						location.href="admin_writing_message.do?send_user_id="+send_user_id 
+						+"&receive_user_id="+user_id_check +"&msg_content="+msg_content;
+					});
+				}
+			});			
 		});
+		
 		$("#btnClose").on("click",function(){
 			$("#repleModal").modal("hide");
 		});
+
+		//no버튼 클릭 했을 때 실행할 function
+		$("#text_modal_no").on("click",function(){
+			$("#text_modal").modal('hide');
+		});
+
 	});
 
 </script>
@@ -79,7 +100,7 @@
 		<h1>관리자 1:1 쪽지 보내기</h1>
 	</div>
 	<form action="admin_writing_message.do" class="form-group" method="POST" name="frm">
-		<input type="hidden" name="send_user_id" value="admin" />
+		<input type="hidden" name="send_user_id" value="admin" id="send_user_id"/>
 		받는 사람 : <input type="text" id="receive_user_id" name="receive_user_id" size="30" /> 
 					<input type="button" id="primary_id" value="ID 존재 여부 확인" />
 					<div id="dvname"></div>
@@ -103,6 +124,36 @@
 			</div>
 		</div>
 	</form>
+	
+	
+	<div id="text_modal" class="modal fade" role="dialog">
+	
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="text_mohead" class="modal-header"align="center"><h4>메세지 보내기</h4></div>
+			<div id="text_mobody" class="modal-body" align="center">
+				<h4>메세지를 보내겠습니까?</h4>
+			</div>
+			<div id="text_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="basic_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="basic_mobody" class="modal-body" align="center">
+			</div>
+			<div id="basic_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+	
 	
 </body>
 </html>

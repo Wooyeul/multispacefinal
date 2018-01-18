@@ -27,7 +27,8 @@
 		<td>성별</td>
 		<td>전화번호</td>
 		<td>닉네임</td>
-		<td>주소</td>
+		<td>우편번호</td>
+		<td>상세주소</td>
 		<td>이메일</td>
 	</tr>
 	<tr>
@@ -46,6 +47,7 @@
 		<td>${vo.phone}</td>
 		<td>${vo.nickname}</td>
 		<td>${vo.zipcode}</td>
+		<td>${vo. zipdetail}</td>
 		<td>${vo.email}</td>
 	</tr>
 </table>

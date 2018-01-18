@@ -29,7 +29,7 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="common.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
 	$(".remove_faq").on("click",function(){
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	
 	//yes버튼 클릭 했을 때 실행할 function
 	$("#text_modal_yes").on("click",function(){
-		var del_faq_no = $("#review_No").val();
+		var del_faq_no = $("#faq_No").val();
 			location.href = "admin_faq_remove.do?faq_no=" + 
 			del_faq_no;
 		$("#text_modal_modal").modal("hide");
@@ -65,7 +65,7 @@ $(document).ready(function(){
 		<h2>FAQ Board</h2>
 		<div class="panel-group" id="accordion" role="tablist"
 			aria-multiselectable="true">
-			<jl:forEach var="vo" items="${rl}">
+			<jl:forEach var="vo" items="${rl}" varStatus="vs">
 				<div class="panel panel-default">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title">

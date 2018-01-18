@@ -53,7 +53,7 @@ $(document).ready(function(){
 			<option value="max_people">최대 인원</option>
 			<option value="min_people">최소 인원</option>
 			<option value="space_call">공간 전화 번호</option>
-			<option value="zipcode">주소</option>
+			<option value="zipcode">우편번호</option>
 			<option value="s_category_no">공간 카테고리</option>
 			<option value="l_category_no">장소 카테고리</option>
 			<option value="the_time">생성일</option>
@@ -87,7 +87,7 @@ $(document).ready(function(){
 			<td>최대 인원</td>
 			<td>최소 인원</td>
 			<td>공간 번호</td>
-			<td>주소</td>
+			<td>우편번호</td>
 			<td>공간 카테고리</td>
 			<td>장소 카테고리</td>
 			<td>생성일</td>
