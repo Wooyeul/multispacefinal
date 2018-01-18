@@ -56,14 +56,14 @@
 	<section class="listings">
 		<div class="wrapper">
 			<div class="properties_list">
-					<div align="center"><h1 style="color: #026fac;">${vo.club_name}</h1></div> 
+					<div align="center"><h1 style="color: #026fac;">${vo.club_name}</h1></div><br/><br/> 
 					<div align="right">
 							<jl:if test="${userVO!=null}">
-									<p>${master}(모임장)</p>
+									<p style="font: bold;font-size: large;"><span class="glyphicon glyphicon-user"></span>&nbsp${master}(모임장)</p>
 									<br/>
 									<jl:forEach items="${userVO}" var="uvo">
 										<p>
-											${uvo.user_name}
+											<span class="glyphicon glyphicon-user"></span>&nbsp${uvo.user_name}
 											<jl:if test="${vo.user_id eq user_id }">
 												<a class="release" user_id="${uvo.user_id }" club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
 													<span class="glyphicon glyphicon-remove:before"></span>
@@ -81,22 +81,28 @@
 						<jl:if test="${noticeVO!=null}">
 							<table class="table">
 								<jl:forEach items="${noticeVO}" var="nvo" varStatus="i">
+									<colgroup>
+										<col width="10%"/>
+										<col width="50%"/>
+										<col width="23%"/>
+										<col width="15%"/>
+									</colgroup>
 									<jl:if test="${i.count==1 }">
 										<thead>
 											<tr>
-												<th>글 번호</th>
-												<th>제목</th>
-												<th>작성자</th>
-												<th>작성시간</th>
+												<th style="text-align: center;">글 번호</th>
+												<th style="text-align: center;">제목</th>
+												<th style="text-align: center;">작성자</th>
+												<th style="text-align: center;">작성시간</th>
 											</tr>
 										</thead>
 									</jl:if>
 									<tbody>
 										<tr>
-											<td>${i.count}</td>
+											<td align="center">${i.count}</td>
 											<td><a href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}" style="color: black;">${nvo.c_notice_title}</a></td>
-											<td>${nvo.user_name}</td>
-											<td>${nvo.the_time}</td>
+											<td  align="center">${nvo.user_name}</td>
+											<td  align="center">${nvo.the_time}</td>
 										</tr>
 									</tbody>
 								</jl:forEach>
@@ -152,21 +158,28 @@
 							<jl:if	test="${noticeVO!=''}">
 							<table class="table">
 								<jl:forEach items="${boardVO}" var="bvo" varStatus="i">
+									<colgroup>
+										<col width="8%"/>
+										<col width="14%"/>
+										<col width="43%"/>
+										<col width="20%"/>
+										<col width="20%"/>
+									</colgroup>
 									<jl:if test="${i.count==1 }">
 										<tr>
-											<td>글 번호</td>
-											<td>말머리</td>
-											<td>제목</td>
-											<td>작성자</td>
-											<td>작성시간</td>
+											<td style="text-align: center">글 번호</td>
+											<td style="text-align: center">말머리</td>
+											<td style="text-align: center">제목</td>
+											<td style="text-align: center">작성자</td>
+											<td style="text-align: center">작성시간</td>
 										</tr>
 									</jl:if>
 									<tr>
-										<td>${i.count}</td>
-										<td>${bvo.c_board_subject }</td>
+										<td style="text-align: center">${i.count}</td>
+										<td style="text-align: center">${bvo.c_board_subject }</td>
 										<td><a href="club_board_detail.do?c_board_no=${bvo.c_board_no}" style="color: black;">${bvo.c_board_title}</a></td>
-										<td>${bvo.user_name }</td>
-										<td>${bvo.the_time }</td>
+										<td style="text-align: center">${bvo.user_name }</td>
+										<td style="text-align: center">${bvo.the_time }</td>
 									</tr>
 								</jl:forEach>
 							</table>
