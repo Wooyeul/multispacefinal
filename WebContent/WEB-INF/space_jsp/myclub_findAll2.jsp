@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
+
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -27,18 +28,18 @@
 	<h3>Myclub</h3>
 	<table>
 		<tr>
-			<th width="100">이미지</th>
-			<th width="100">클럽이름</th>
-			<th width="100">제목</th>
-			<th width="200">내용</th>
-			<th width="100">최대인원</th>
+			<th width="13%">클럽이름</th>
+			<th width="12%">글제목</th>
+			<th width="50%">내용</th>
+			<th width="13%">이미지</th>
+			<th width="12%">최대인원</th>
 		</tr>
 		<jl:forEach items="${rl}" var="rl">
 			<tr>
-				<td><img src="img/${rl.club_thumb_img}" width="60px" height="80px" class="thumb_img" abc="${rl.club_no}"/></td>
 				<td>${rl.club_name}</td>
 				<td>${rl.club_title}</td>
 				<td>${rl.club_content}</td>
+				<td><img src="img/${rl.club_thumb_img}" width="80px" height="100px" class="thumb_img" abc="${rl.club_no}"/></td>
 				<td>${rl.max_member}</td>
 			</tr>
 		</jl:forEach>

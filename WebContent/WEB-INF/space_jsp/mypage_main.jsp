@@ -183,7 +183,7 @@ li a:hover {
 
 	<div class="tab-content col-sm-10" >
 		<div id="myInfo"  class="tab-pane active fade in">	
-			<iframe src="myinfo_ckpass.do"  align="center"></iframe>
+			<iframe src="myinfo_ckpass.do"  align="center" ></iframe>
 		</div>
 		<div id="myBooking" class="tab-pane fade">
 			<iframe src="mypage_moveMypageBookingPage.do"  align="center"></iframe>
@@ -195,10 +195,10 @@ li a:hover {
 			<iframe src="mypage_moveMypageQnAPage.do"  align="center"></iframe>
 		</div>
 		<div id="myClub"   class="tab-pane fade">
-			<iframe src="myclub_findAll.do"  align="center"></iframe>
+			<iframe src="myclub_findAll.do"  align="center" ></iframe>
 		</div>
 		<div id="myReview"   class="tab-pane fade">
-			<iframe src="mypage_review_findAll.do"  align="center"></iframe>
+			<iframe src="mypage_review_findAll.do"  align="center" onload=""></iframe>
 		</div>
 		<div id="myReceiveMessageBox"   class="tab-pane fade">
 			<iframe src="mypage_moveMypageReceiveMessagePage.do"  align="center"></iframe>

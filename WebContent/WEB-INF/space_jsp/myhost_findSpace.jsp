@@ -13,6 +13,7 @@
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Myclub.css">
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$(".space_no").on("click",function(){
@@ -29,12 +30,12 @@
 	</form>
 
 	<form name="frm">
-	<table border="1">
+	<table>
 		<jl:forEach var="ab" items="${rl}" >
 			<tr>
+				<td><img src="thumbnail/${ab.space_thumb_img}" width="100px" class="space_no" abc="${ab.space_no}"/></td>
 				<td>${ab.space_no}</td>
 				<td>${ab.space_title}</td>
-				<td><img src="thumbnail/${ab.space_thumb_img}" width="100px" class="space_no" abc="${ab.space_no}"/></td>
 			</tr>
 		</jl:forEach>
 	</table>
