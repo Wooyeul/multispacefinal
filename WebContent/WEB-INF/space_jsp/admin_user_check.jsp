@@ -110,8 +110,9 @@ text-align: center;
 					<input type="hidden" name="nickname" value="${vo.nickname}"/>
 					<input type="hidden" name="zipcode" value="${vo.zipcode}"/>
 					<input type="hidden" name="email" value="${vo.email}"/>
-					 <button type="submit" class="btn" id="btnmod" ">수정</button>
-					<a href="admin_users.do"> <button type="button" class="btn" >취소</button></a> 
+					 <button type="submit" class="btn" id="btnmod" ">수정 하기</button>
+					<!-- <a href="admin_users.do"> <button type="button" class="btn" >취소</button></a>  -->
+					<a href="admin_users.do"><input type="button" class="btn" value="취소 하기"/></a>
 					 </div>
 				</form>
 

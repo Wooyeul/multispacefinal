@@ -72,7 +72,7 @@
 <script>
 $(document).ready(function(){
 	// 클럽 삭제 모달 부분
-   $("#remove_club").on("click",function(){
+   $(".remove_club").on("click",function(){
       $("#club_No").val( $(this).attr("club_no") );
       $("#text_modal").modal("show");
    });
