@@ -5,18 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
-	
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="common.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".thumb_img").on("click",function(){
-		var club_no = $(this).attr("abc");
-		window.parent.location.href="club_community.do?club_no="+club_no;
+	<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Myclub.css">
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".thumb_img").on("click",function(){
+			var club_no = $(this).attr("abc");
+			window.parent.location.href="club_community.do?club_no="+club_no;
+		});
 	});
-})
 </script>
 </head>
 <body>
@@ -25,24 +25,20 @@ $(document).ready(function(){
 	</form>
 	<form name="frm">
 	<h3>Myclub</h3>
-	<table border="1" cellspacing="1" cellpadding="1">
+	<table>
 		<tr>
-			<th width="100">클럽번호</th>
-			<th width="100">아이디</th>
+			<th width="100">이미지</th>
 			<th width="100">클럽이름</th>
 			<th width="100">제목</th>
 			<th width="200">내용</th>
-			<th width="100">이미지</th>
 			<th width="100">최대인원</th>
 		</tr>
 		<jl:forEach items="${rl}" var="rl">
 			<tr>
-				<td>${rl.club_no}</td>
-				<td>${rl.user_id}</td>
+				<td><img src="img/${rl.club_thumb_img}" width="60px" height="80px" class="thumb_img" abc="${rl.club_no}"/></td>
 				<td>${rl.club_name}</td>
 				<td>${rl.club_title}</td>
 				<td>${rl.club_content}</td>
-				<td><img src="img/${rl.club_thumb_img}" width="100px" class="thumb_img" abc="${rl.club_no}"/></td>
 				<td>${rl.max_member}</td>
 			</tr>
 		</jl:forEach>

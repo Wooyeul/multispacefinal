@@ -7,11 +7,42 @@
 	<script type="text/javascript" src="common.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	
 	<style type="text/css">
-		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-	</style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.bookmark_chkbox {
+	width: 160px;
+	margin : 10px;
+	padding : 0px;
+}
+
+.bookmark_img {
+	width: 160px;
+	margin : 10px;
+	
+}
+
+.totaldiv {
+	margin-left: 0px;
+}
+
+.bookmark_div {
+	width: 300px;
+	float: left;
+	margin-left: 40px;
+	margin-top: 20px;
+}
+
+.mybookmarkdiv {
+	margin: 0 auto;
+	overflow: auto;
+}
+</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Mybookmark.css">
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
@@ -53,8 +84,9 @@
 </head>
 <body>
 	<h3>즐겨찾기</h3>
+	<div class="totaldiv">
 	<form name="frm">
-		<table border="1" cellspacing="1" cellpadding="1">
+		<%-- <table border="1" cellspacing="1" cellpadding="1">
 			<jl:forEach var="ab" items="${rl}" varStatus="i" begin="0">
 			<jl:if test="${(i.count-1) % 3 eq 0}">
 				<tr>
@@ -66,24 +98,48 @@
 				<a href="space_detail.do?space_no=${ab.space_no}" target="_parent">${ab.space_title}</a><br/>
 				</td>
 			</jl:forEach>
-		</table>
+		</table> --%>
 		<div id="dv"></div>
-		<input type="button" value="삭제하기" id="del" class="btn btn-default"/>
+		
+		
+		
+		<div class="mybookmarkdiv">
+		 <ul>
+		<jl:forEach var="ab" items="${rl}" varStatus="i" begin="0">
+
+		    <li>
+			<div class="bookmark_chkbox">
+		    <input type="checkbox" class="space_no" name="check" value="${ab.space_no}" abc="${ab.space_no}"/>
+		    </div>
+		    <div class="bookmark_img">
+		    <a href="space_detail.do?space_no=${ab.space_no}" target="_parent"><img src="img/${ab.space_thumb_img}" width="140px" height="140px"></a>
+		    </div>
+		    
+		    </li>
+		</jl:forEach>
+		</ul>
+		</div>
+		<div class="bookmark_div">
+			<input type="button" value="삭제하기" id="del" class="btn btn-default"/>
+		</div>
 	</form>
+	</div>
 	
 	<div id="modal" class="modal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-body">
-					<label id="lblContent"></label>
+				<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+				<div id="text_mobody" class="modal-body" align="center">
+					<h4 id="lblContent"></h4>
 				</div>
-				<div class="modal-footer">
+				<div id="text_ft" class="modal-footer">
 					<button class="btn btn-default" data-dismiss="modal" id="success">확인</button>
-					<button class="btn btn-default" data-dismiss="modal" id="close">닫기</button>
+					<button class="btn btn-default" data-dismiss="modal" id="close">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	
 	<div id="modalSuccess" class="modal" role="dialog">
 		<div class="modal-dialog">
@@ -97,8 +153,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
 	
 </body>
 </html>
