@@ -118,15 +118,6 @@ public class Ctrl_Admin_Qna {
 		
 		return "redirect:/admin_community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
     }
-	
-	@RequestMapping("/admin_community_qna_search.do")
-	public ModelAndView admin_community_qna_search( @ModelAttribute Admin_community_searchVO pvo ) throws Exception{
-		ModelAndView mnv = new ModelAndView("admin_community_qna_search");
-		List<Community_qnaVO> rl= admin_QnaDAO_MysqlImpl.comm_qna_search(pvo);
-		
-		mnv.addObject("rl", rl);
-		return mnv;
-	}
 }
 
 
