@@ -24,17 +24,7 @@
 
 	$(document).ready(function(){
 		
-		ajaxGet("best_club.do",function(rt){
-			var best_club = eval("("+rt+")");
-			var html3 ="";
-			
-			 for(var i=0; i<best_club.data.length; i++){
-				 
 
-			 }
-			 
-		});
-		
 		ajaxGet("best_space.do",function(rt){
 			var seoul_best = eval("("+rt+")");			
 			var html ="";
@@ -94,6 +84,57 @@
 			 $("#partybest_properties_list").html(html2);
 		});
 		
+		ajaxGet("best_club.do",function(rt){
+			var best_club = eval("("+rt+")");
+			var html3 ="";
+			
+			 for(var i=0; i<best_club.data.length; i++){
+				 
+				 html3 += "<div class='main_club_wrapper'>";
+				 html3 += "<div class='main_club_img'>";
+				 html3 += best_club.data[i].club_thumb_img;
+				 html3 += "</div>";
+				 html3 += "<div class='main_club_content'>";
+				 html3 += "<div class='main_club_content_title'>";
+				 html3 += best_club.data[i].club_name+" / "+best_club.data[i].club_title;			 
+				 html3 += "</div>";
+				 html3 += "<div class='main_club_content_member'>";
+				 html3 += best_club.data[i].count;
+				 html3 += "</div>";
+				 html3 += "</div>";
+				 html3 += "</div>";
+				 
+
+
+			 }
+			 $("#main_club_list").html(html3);
+			 
+		});
+		
+		ajaxGet("best_community.do",function(rt){
+			var best_community = eval("("+rt+")");
+			var html4 ="";
+			
+			 for(var i=0; i<best_community.data.length; i++){
+				 
+				 html4 += "<div class='main_community_wrapper'>";
+				 html4 += "<div class='main_club_content'>";
+				 html4 += "<div class='main_club_content_title'>";
+				 html4 += best_community.data[i].com_board_title;			 
+				 html4 += "</div>";
+				 html4 += "<div class='main_club_content_writer'>";
+				 html4 += best_community.data[i].user_name;
+				 html4 += "</div>";
+				 html4 += "<div class='main_club_content_view_recom'>";
+				 html4 += "조회수 :" + best_community.data[i].view_count + "/ 추천수 : "+ best_community.data[i].recom_count;
+				 html4 += "</div>";			 
+				 html4 += "</div>";
+				 html4 += "</div>";
+				 
+			 }
+			 $("#main_community_list").html(html4);
+			 
+		});
 		
 		
 		var scOffset = $('.navbar-Menu').offset();
@@ -185,35 +226,19 @@
 
 			<div class="c_wrapper">
 				<div class="c_wrapper_sub">
+				
 					<div class="main_club">
 
-						<ul id="main_club_list" class="c_wrapper_ul">
-	
-							<li>
-								<div class="main_club_wrapper" >
-									<div class="main_club_img">
-										img
-									</div>
-									<div class="main_club_content">
-										content
-									</div>
-								</div>
-							</li>
-
-						</ul>
+						<div id="main_club_list" class="c_wrapper_ul"></div>
 
 					</div>
 					<div class="main_community">
-					
-						<ul id="main_community_list">
+
+						<div id="main_community_list" class="c_wrapper_ul"></div>
 						
-							<li>asdsagsdg</li>
-							
-						</ul>
 					</div>
+					
 				</div>
-
-
 			</div>
 	</section>
 
