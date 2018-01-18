@@ -51,9 +51,10 @@ public interface ClubDAO {
 	public Club_applyVO club_find_apply_detail(Club_applyVO pvo) throws Exception;
 	public List<Map<Integer, Object>> club_find_l_category()throws Exception;
 	public List<Map<Integer, Object>> club_find_c_category()throws Exception;
-	public List<ClubVO> club_search(Club_searchVO pvo)throws Exception;
+	public List<Map<String, Object>> club_search(Club_searchVO pvo)throws Exception;
 	public User_clubVO club_find_user_byId(User_clubVO pvo) throws Exception;
 	public int club_del_user(User_clubVO pvo) throws Exception;
 	public int club_del_club(User_clubVO pvo) throws Exception;
 	public int club_user_release(Club_applyVO pvo) throws Exception;
+	public List<Map<String, Object>> find_best_club() throws Exception;
 }

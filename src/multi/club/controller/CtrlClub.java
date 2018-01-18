@@ -34,6 +34,7 @@ import multi.club.vo.Club_boardVO;
 import multi.club.vo.Club_community_listVO;
 import multi.club.vo.Club_noticeVO;
 import multi.club.vo.Club_searchVO;
+import multi.space.vo.Space2VO;
 
 @Controller
 public class CtrlClub {
@@ -60,7 +61,7 @@ public class CtrlClub {
 	public ModelAndView club_list(@ModelAttribute Club_searchVO svo, @RequestParam("curPage") String curPage ,@CookieValue("user_id") String user_id) throws Exception {
 		ModelAndView mnv = new ModelAndView("club_list");
 		// start, end이용해서 데이터 뽑아오기 
-		List<ClubVO> vo = clubDAO.club_search(svo);
+		List<Map<String, Object>> vo = clubDAO.club_search(svo);
 
 		// 페이지 레코드의 개수 계산
 		// 페이지 나누기 관련 처리
@@ -106,7 +107,7 @@ public class CtrlClub {
 	@ResponseBody
 	public String club_add_submit(HttpServletRequest request) throws Exception {
 		try{
-			String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\thumbnail";
+			String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\club_img";
 		    int sizeLimit = 1024*1024*15;
 		    MultipartRequest mpr = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 		    ClubVO pvo = new ClubVO();	      
@@ -269,6 +270,47 @@ public class CtrlClub {
 			return "ok";
 		}catch(Exception e){
 			return "no";
+		}
+	}
+	
+	//main.html에 best_club
+	@RequestMapping("/best_club.do")
+	@ResponseBody
+	public String find_best_space() throws Exception{
+		List<Map<String, Object>> list = clubDAO.find_best_club();
+		
+		StringBuffer sb = new StringBuffer();
+		try{
+			sb.append("{ 'data' :[ ");
+			int flag=0;
+			for(Map<String, Object> vo : list){
+				flag++;
+				sb.append("{");
+				sb.append("'club_no'");
+				sb.append(":");
+				sb.append("'"+vo.get("club_no")+"',");
+				sb.append("'club_name'");
+				sb.append(":");
+				sb.append("'"+vo.get("club_name")+"',");
+				sb.append("'club_title'");
+				sb.append(":");
+				sb.append("'"+vo.get("club_title")+"',");
+				sb.append("'club_thumb_img'");
+				sb.append(":");
+				sb.append("'"+vo.get("club_thumb_img")+"',");
+				sb.append("'count'");
+				sb.append(":");
+				sb.append("'"+vo.get("count")+"'");
+				sb.append("}");
+				if(flag==list.size()){} 
+				else {
+					sb.append(",");
+				}
+			}
+			sb.append("]}");
+			return sb.toString();
+		} catch(Exception e){
+			return null;
 		}
 	}
 

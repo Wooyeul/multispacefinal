@@ -77,45 +77,52 @@
 								</jl:forEach>
 							</table>
 						</jl:if>
-						<div align="center">
-							<ul class="pagination pagination-sm">
-								<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
-								<jl:if test="${notice_pz.hasPrevPagination }">
-									<li><a class="page"
-										href="javascript:notice_list('${notice_pz.paginationStart-1}')">&lt;</a></li>
-								</jl:if>
-								<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
-								<jl:if test="${notice_pz.hasPrevPage }">
-									<li><a class="page"
-										href="javascript:notice_list('${notice_pz.curPagination-1 }')">&lt;</a></li>
-								</jl:if>
-								<!-- 페이지 번호 만들기 -->
-								<jl:forEach begin="${notice_pz.paginationStart }"
-									end="${notice_pz.paginationEnd }" step="1" varStatus="vs">
-									<jl:choose>
-										<jl:when test="${vs.index!=notice_pz.curPagination }">
+						<jl:choose>
+							<jl:when test="${noticeVO ne '[]'}">
+								<div align="center">
+									<ul class="pagination pagination-sm">
+										<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
+										<jl:if test="${notice_pz.hasPrevPagination }">
 											<li><a class="page"
-												href="javascript:notice_list('${vs.index }')">${vs.index }</a></li>
-										</jl:when>
-										<jl:otherwise>
-											<li class="active"><a class="page"
-												href="javascript:notice_list('${vs.index }')">${vs.index }</a></li>
-										</jl:otherwise>
-									</jl:choose>
-								</jl:forEach>
-								<!-- 다음 페이지로 이동 : 한페이지 이동 -->
-								<jl:if test="${notice_pz.hasNextPage }">
-									<li><a class="page"
-										href="javascript:notice_list('${notice_pz.curPagination+1}')">&gt;</a></li>
-								</jl:if>
-								<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
-								<jl:if test="${notice_pz.hasNextPagination }">
-									<li><a class="page"
-										href="javascript:notice_list('${notice_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
-								</jl:if>
-							</ul>
-						</div> <input id="noticeBtn" type="button" value="공지쓰기" /><br />
-					</div>
+												href="javascript:notice_list('${notice_pz.paginationStart-1}')">&lt;</a></li>
+										</jl:if>
+										<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
+										<jl:if test="${notice_pz.hasPrevPage }">
+											<li><a class="page"
+												href="javascript:notice_list('${notice_pz.curPagination-1 }')">&lt;</a></li>
+										</jl:if>
+										<!-- 페이지 번호 만들기 -->
+										<jl:forEach begin="${notice_pz.paginationStart }"
+											end="${notice_pz.paginationEnd }" step="1" varStatus="vs">
+											<jl:choose>
+												<jl:when test="${vs.index!=notice_pz.curPagination }">
+													<li><a class="page"
+														href="javascript:notice_list('${vs.index }')">${vs.index }</a></li>
+												</jl:when>
+												<jl:otherwise>
+													<li class="active"><a class="page"
+														href="javascript:notice_list('${vs.index }')">${vs.index }</a></li>
+												</jl:otherwise>
+											</jl:choose>
+										</jl:forEach>
+										<!-- 다음 페이지로 이동 : 한페이지 이동 -->
+										<jl:if test="${notice_pz.hasNextPage }">
+											<li><a class="page"
+												href="javascript:notice_list('${notice_pz.curPagination+1}')">&gt;</a></li>
+										</jl:if>
+										<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
+										<jl:if test="${notice_pz.hasNextPagination }">
+											<li><a class="page"
+												href="javascript:notice_list('${notice_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
+										</jl:if>
+									</ul>
+								</div> <input id="noticeBtn" type="button" value="공지쓰기" /><br />
+							</div>
+							</jl:when>
+							<jl:otherwise>
+									<div align="center"><h4>등록된 글이 없습니다.</h4></div>
+							</jl:otherwise>
+					</jl:choose>
 						<br /> <label><h3>커뮤니티 게시판</h3></label><br /> 
 							<jl:if	test="${noticeVO!=''}">
 							<table class="table">

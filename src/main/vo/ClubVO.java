@@ -5,7 +5,6 @@ public class ClubVO {
 	public ClubVO(Integer club_no, String user_id, String club_name, String club_title, String club_content,
 			String club_thumb_img, Integer max_member, String create_time, Integer l_category_no, Integer c_category_no,
 			Integer user_count) {
-		super();
 		this.club_no = club_no;
 		this.user_id = user_id;
 		this.club_name = club_name;
@@ -30,6 +29,7 @@ public class ClubVO {
 	public Integer l_category_no;
 	public Integer c_category_no;
 	public Integer user_count;
+	
 	public ClubVO(){}
 	
 	public Integer getClub_no() {

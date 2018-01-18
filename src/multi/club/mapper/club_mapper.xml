@@ -40,8 +40,17 @@
 	
 	<!-- search 해서 리스트 찾기 시작 -->
 		<!-- 지역, 분야 검색-->
-		<select id="club_search" parameterType="multi.club.vo.Club_searchVO" resultType="main.vo.ClubVO">
-			SELECT * FROM ClubT WHERE 0 = 0
+		<select id="club_search" parameterType="multi.club.vo.Club_searchVO" resultType="hashmap">
+			SELECT c.club_no, c.user_id, c.club_name, c.club_title, c.club_content,
+				   c.club_thumb_img, c.max_member, c.create_time, c.l_category_no, c.c_category_no,
+				   l.l_category_name, cc.c_category_name, 
+				   (
+				   	SELECT COUNT(*) FROM User_ClubT WHERE club_no=c.club_no
+				   ) AS user_count
+			  FROM ClubT AS c, L_CategoryT AS l, C_CategoryT AS cc
+			 WHERE 0 = 0
+			   AND c.l_category_no = l.l_category_no
+			   AND c.c_category_no = cc.c_category_no
 			<if test="l_category_no != null">
 				AND l_category_no =${l_category_no}
 			</if>
@@ -68,8 +77,13 @@
 			</if>
     	</select>
 	<!-- search 해서 리스트 찾기 끝 -->
-	
-	
+
+	<!-- club best 조회 -->
+	<select id="find_best_club" statementType="CALLABLE" resultType="hashmap"> 
+		{call p_find_best_club()}
+	</select>
+	<!-- club best 조회 -->
+
 	<!-- club 디테일 찾기 시작 -->
 	<select id="club_find_detail" parameterMap="PM_club_find_detail" resultMap="RM_club_findAll" statementType="CALLABLE" >
 		{call p_club_find_detail(?,?)}
@@ -213,6 +227,8 @@
 		{call p_club_user_release(#{club_no},#{user_id},#{apply_content})}
 	</update>
 	<!-- 모임의 유저 방출 끝-->
+	
+	
 	
 </mapper>
 
@@ -648,3 +664,24 @@ BEGIN
 END$$
 DELIMITER ;
 p_club_user_release 프로시저 끝 -->
+
+<!--p_find_best_club 프로시저
+DROP PROCEDURE IF EXISTS p_find_best_club;
+DELIMITER $$
+
+CREATE PROCEDURE p_find_best_club()
+BEGIN
+	DROP TEMPORARY TABLE IF EXISTS temp;
+    CREATE TEMPORARY TABLE IF NOT EXISTS temp
+		SELECT count(*) as count,c.club_no
+		  FROM ClubT AS c, User_clubT AS u
+		 WHERE c.club_no=u.club_no
+		 group by c.club_no
+		 order by count desc limit 0,3;
+   
+   SELECT c.club_no, c.club_name, c.club_title, t.count, c.club_thumb_img
+     FROM ClubT AS c, temp AS t 
+    WHERE c.club_no=t.club_no;		
+END$$
+DELIMITER ;
+p_find_best_club 프로시저 끝 -->

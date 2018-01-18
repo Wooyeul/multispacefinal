@@ -20,6 +20,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 
+<style type="text/css">
+</style>
 </head>
 <body>
 
@@ -27,29 +29,31 @@
 	<!-- *********************  header  ************************ -->
          <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
-	<div align="center" style="background-color: #bfd9f2; color: white;">
+	<div align="center" style="background-color: #bfd9f2;">
 			<form id="frm" target="club_list" action="club_list.do" method="post">
 				<div style="display: inline;">
 				
 					<br/><h3>지역별 선택</h3>
 					<jl:forEach items="${lmap}" var="l" varStatus="i">
-						<input num="${i.count}" class="a" type="radio" value="${l.l_category_no}" name="l_category_no" />${l.l_category_name}
+						<input num="${i.count}" class="a" type="radio" value="${l.l_category_no}" name="l_category_no" /><span style="color: white;">${l.l_category_name}</span>
 					</jl:forEach>
 					<br/>
 					<br/><h3>분야별 선택</h3>
 					<jl:forEach items="${cmap}" var="c">
-						<input type="radio" value="${c.c_category_no}" name="c_category_no" />${c.c_category_name}
+						<input type="radio" value="${c.c_category_no}" name="c_category_no" /><span style="color: white;">${c.c_category_name}</span>
 					</jl:forEach>
 				</div><br/>
-				<select name="search_option">
+				<select name="search_option" >
 					<option value="0"></option>
 					<option value="1">제목</option>
 					<option value="2">내용</option>
 					<option value="3">제목+내용</option>
 					<option value="4">작성자</option>
-				</select>
-				<input type="text" name="search_content"/>
-				<input type="button" id="submitBtn" value="검색"><br/>
+				</select> <br/>
+				<div style="display: inline;">
+					<input type="text" name="search_content" />
+					<input type="button" id="submitBtn" value="검색"><br/>
+				</div>
 				<input id="curPage" name="curPage" type="hidden" value="">
 			</form>
 		</div>

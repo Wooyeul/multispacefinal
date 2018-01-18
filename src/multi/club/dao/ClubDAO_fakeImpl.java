@@ -223,7 +223,7 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 
 	//검색 기능
 	@Override
-	public List<ClubVO> club_search(Club_searchVO pvo) throws Exception {
+	public List<Map<String, Object>> club_search(Club_searchVO pvo) throws Exception {
 		return sqlSession.selectList("club.club_search",pvo);
 	}
 
@@ -249,6 +249,12 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 	@Override
 	public int club_user_release(Club_applyVO pvo) throws Exception {
 		return sqlSession.update("club.club_user_release",pvo);
+	}
+
+	// 클럽 베스트 조회
+	@Override
+	public List<Map<String, Object>> find_best_club() throws Exception {
+		return sqlSession.selectList("club.find_best_club");
 	}
 
 }
