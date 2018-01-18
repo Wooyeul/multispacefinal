@@ -13,7 +13,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="common.js" type="text/javascript"></script>
 <script>
+$(document).ready(function(){
+	// 유저 정보 수정 완료시 모달
+	$("#basic_mobody").html("<h4>수정이 완료 되었습니다.<h4>");
+	$(".mod_complete").on("click",function(){
+		$("#basic_modal").modal("show");
+	});
+	$("#basic_modal_yes").on("click",function(){
+		$("#frm").submit();
+	});
 
+});
 </script>
 </head>
 <body>
@@ -40,20 +50,35 @@
 </table>
 <br/>
 <br/>
-<form method="POST" action="admin_user_mod2.do" method="post">
+<form method="POST" action="admin_user_mod2.do" method="post" id="frm">
 		<input type ="hidden" name="user_id" value="${vo.user_id}"></input>
 		이름 : <input type="text" name="user_name" value="${vo.user_name}" /> <br/>
 		전화번호 : <input type="text" name="phone" value="${vo.phone}" /> <br/>
 		닉네임 : <input type="text" name="nickname" value="${vo.nickname}" /> <br/>
 		우편 번호 : <input type="text" name="zipcode" value="${vo.zipcode}" /> <br/>
 		상세 주소 : <input type="text" name="zipdetail" value="${vo.zipdetail}" /> <br/>
-		이메일 : <input type="text" name="email" value="${vo.email}" /> <br/>
-	<button type="submit">수정하기</button>
+		이메일 : <input type="text" name="email" value="${vo.email}" /> <br/><br/>
+	<input type="button" class="mod_complete" value="수정 완료 하기"/>
 </form>
+<br>
 
 <form method="POST" action="admin_users.do">
 	<button type="submit">취소하기</button>
 </form>
+
+<!-- 유저 정보 수정 완료시 모달 -->
+<div id="basic_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="basic_mobody" class="modal-body" align="center">
+			</div>
+			<div id="basic_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 </body>
 </html>

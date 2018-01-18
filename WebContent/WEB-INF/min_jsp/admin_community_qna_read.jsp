@@ -23,6 +23,7 @@
 <script>
 
 $(document).ready(function() {
+	// QnA 댓글 수정시 모달
 	$("#btnClose").on("click",function(){
 		location.href = "admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
 	});
@@ -39,7 +40,6 @@ $(document).ready(function() {
 		ajaxGet(url,function(rt){ });
 		location.reload();
 	});
-
 	$(".modReple").on("click", function() {
 		$("#com_qna_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
@@ -47,24 +47,22 @@ $(document).ready(function() {
 		$("#repleModal").modal("show");
 	});
 	
-	
+	// QnA 삭제시 모달
 	$(".qna_remove").on("click",function(){
 		$("#qna_No").val( $(this).attr("com_qna_no") );
-		
 		$("#text_modal").modal("show");
 	});
-	//yes버튼 클릭 했을 때 실행할 function
 	$("#text_modal_yes").on("click",function(){
 		var del_qna_no = $("#qna_No").val();
 			location.href = "admin_community_qna_del.do?com_qna_no=" + del_qna_no;
 		$("#text_modal_modal").modal("hide");
 	});
-	//no버튼 클릭 했을 때 실행할 function
 	$("#text_modal_no").on("click",function(){
 		$("#text_modal").modal('hide');
 	});
 	
 	
+	// QnA 리플 삭제시 모달
 	// <a> 태그로 값을 불러 올 때 class 했을 때 동작 됨.
 	$(".remove_qna_re").on("click",function(){
 		$("#com_qna_No").val( $(this).attr("com_qna_no") );
@@ -178,10 +176,9 @@ $(document).ready(function() {
 		
 		
 		
-		
+	<!-- QnA 글 삭제시 모달 -->
 		<div id="text_modal" class="modal fade" role="dialog">
 			<input type="hidden" id="qna_No" value="0"/>
-	
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
@@ -196,10 +193,11 @@ $(document).ready(function() {
 			</div>
 		</div>
 		
+		
+		<!-- QnA 리플 삭제시 모달 -->
 		<div id="re_modal" class="modal fade" role="dialog">
 			<input type="hidden" id="com_qna_No" value="0"/>
-			<input type="hidden" id="com_qna_reple_No" value="0"/>
-			
+			<input type="hidden" id="com_qna_reple_No" value="0"/>	
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div id="re_mohead" class="modal-header"align="center"><h4>댓글 삭제</h4></div>
@@ -213,7 +211,8 @@ $(document).ready(function() {
 				</div>
 			</div>
 		</div>
-		
+
+<!-- QnA 글, 댓글 수정 완료시 쓰는 모달 -->		
 <div id="basic_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">

@@ -21,15 +21,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
-	// 텍스트 지정.
+	// QnA 수정 완료시 모달
 	$("#basic_mobody").html("<h4>수정이 완료 되었습니다.<h4>");
 	$(".mod_complete").on("click",function(){
 		$("#basic_modal").modal("show");
-	});
-	//
-	// 창이 닫히면 페이지 reload. 필요한 사람은 사용하세요.
-	$("#basic_modal").on("hidden.bs.modal",function(){
-		//location.reload();
 	});
 	$("#basic_modal_yes").on("click",function(){
 		$("#frm").submit();
@@ -45,7 +40,8 @@ $(document).ready(function() {
 		<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 		<input type="button" class="mod_complete" value="수정완료"/>
 	</form>
-	
+
+<!-- QnA 수정 완료시 모달 -->
 <div id="basic_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">

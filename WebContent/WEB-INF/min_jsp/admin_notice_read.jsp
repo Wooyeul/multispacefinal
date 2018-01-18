@@ -26,19 +26,16 @@
 <script src="common.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){ 
+	// 공지 삭제시 모달
 	$("#remove_notice").on("click",function(){
 		$("#notice_No").val( $(this).attr("notice_no") );
-		
 		$("#text_modal").modal("show");
 	});
-	
-	//yes버튼 클릭 했을 때 실행할 function
 	$("#text_modal_yes").on("click",function(){
 		var del_notice_no = $("#notice_No").val();
 			location.href = "admin_notice_del.do?notice_no=" + del_notice_no;
 		$("#text_modal_modal").modal("hide");
 	});
-	//no버튼 클릭 했을 때 실행할 function
 	$("#text_modal_no").on("click",function(){
 		$("#text_modal").modal('hide');
 	});
@@ -76,10 +73,9 @@ $(document).ready(function(){
 	</div>
 	
 	
-
+<!-- 공지 삭제시 모달 -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="notice_No" value="0"/>
-	
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>

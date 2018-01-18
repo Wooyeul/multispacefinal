@@ -13,6 +13,7 @@
 <script src="common.js" type="text/javascript"></script>
 <script>
 $("document").ready(function(){
+	// 이벤트 수정 완료시 모달
 	$("#basic_mobody").html("<h4>수정이 완료 되었습니다.<h4>");
 	$(".mod_complete").on("click",function(){
 		$("#basic_modal").modal("show");
@@ -39,7 +40,8 @@ $("document").ready(function(){
 		<input type="button" class="mod_complete" value="수정 완료 하기"/> &nbsp;&nbsp;
 		<input type="button" value="취소 하기" onclick="window.history.back()"/>
 	</form>
-
+	
+<!-- 이벤트 수정 완료시 모달 -->
 <div id="basic_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">

@@ -51,10 +51,12 @@
 		<td>${vo.email}</td>
 	</tr>
 </table>
+<br>
 <form method="POST" action="admin_user_mod.do">
 	<input type="hidden" name="user_id" value="${vo.user_id}" />
 	<button type="submit">수정하기</button>
 </form>
+<br>
 <form method="POST" action="admin_users.do">
 	<button type="submit">취소하기</button>
 </form>

@@ -16,12 +16,12 @@ table {
 <script src="common.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){ 
+	// 클럽 삭제 모달 부분
 	$(".remove_club").on("click",function(){
 		$("#club_No").val( $(this).attr("club_no") );
 		
 		$("#text_modal").modal("show");
 	});
-	
 	//yes버튼 클릭 했을 때 실행할 function
 	$("#text_modal_yes").on("click",function(){
 		var del_club_no = $("#club_No").val();
@@ -109,10 +109,9 @@ $(document).ready(function(){
 		</ul>
 		
 		
-
+<!-- 클럽 삭제 모달 부분 -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="club_No" value="0"/>
-	
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
