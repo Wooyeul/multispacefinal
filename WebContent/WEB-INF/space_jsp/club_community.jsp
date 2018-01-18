@@ -20,18 +20,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 
+<style type="text/css">
+.container-table100 {
+  width: 100%;
+  min-height: 100vh;
+  background: #c850c0;
+  background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+  background: -o-linear-gradient(45deg, #4158d0, #c850c0);
+  background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+  background: linear-gradient(45deg, #4158d0, #c850c0);
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+}
+
+</style>
+
 </head>
 <body>
-
-
 	<!-- *********************  header  ************************ -->
          <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
-
-
-	
-	
-	
 	
 	<!-- paging 이용할 form -->
 	<form id="paging_frm" action="club_community.do" method="post">
@@ -41,22 +57,16 @@
 	</form>
 	<!-- paging 이용할 form -->
 
-
-
-
-
 	<section class="listings">
 		<div class="wrapper">
 			<div class="properties_list">
-			
 
-					<div align="center"><h2>모임 커뮤니티 페이지</h2></div> 
-					<div align="right"><label>모임 ${vo.club_name}</label><br/>
-					<label>모임장 ${master}</label></div>
+					<div align="center"><h1 style="color: #026fac;">${vo.club_name}</h1></div> 
+					<div align="right"><label>모임장 ${master}</label></div>
 					<br/><br/><br/>
 					<div>
-						<label><h3>공지사항</h3></label><br /> <jl:if
-							test="${noticeVO!=null}">
+						<label><h3>공지사항</h3></label><br /> 
+						<jl:if test="${noticeVO!=null}">
 							<table class="table">
 								<jl:forEach items="${noticeVO}" var="nvo" varStatus="i">
 									<jl:if test="${i.count==1 }">
@@ -69,8 +79,7 @@
 									</jl:if>
 									<tr>
 										<td>${i.count}</td>
-										<td><a
-											href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}">${nvo.c_notice_title}</a></td>
+										<td><a href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}" style="color: black;">${nvo.c_notice_title}</a></td>
 										<td>${nvo.user_name}</td>
 										<td>${nvo.the_time}</td>
 									</tr>
@@ -107,8 +116,7 @@
 										</jl:forEach>
 										<!-- 다음 페이지로 이동 : 한페이지 이동 -->
 										<jl:if test="${notice_pz.hasNextPage }">
-											<li><a class="page"
-												href="javascript:notice_list('${notice_pz.curPagination+1}')">&gt;</a></li>
+											<li><a class="page"	href="javascript:notice_list('${notice_pz.curPagination+1}')">&gt;</a></li>
 										</jl:if>
 										<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
 										<jl:if test="${notice_pz.hasNextPagination }">
@@ -116,13 +124,14 @@
 												href="javascript:notice_list('${notice_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
 										</jl:if>
 									</ul>
-								</div> <input id="noticeBtn" type="button" value="공지쓰기" /><br />
-							</div>
+								</div> 
 							</jl:when>
 							<jl:otherwise>
-									<div align="center"><h4>등록된 글이 없습니다.</h4></div>
+								<div align="center"><h4>등록된 글이 없습니다.</h4></div>
 							</jl:otherwise>
-					</jl:choose>
+						</jl:choose>
+						<input id="noticeBtn" type="button" value="공지쓰기" /><br />
+					
 						<br /> <label><h3>커뮤니티 게시판</h3></label><br /> 
 							<jl:if	test="${noticeVO!=''}">
 							<table class="table">
@@ -139,52 +148,58 @@
 									<tr>
 										<td>${i.count}</td>
 										<td>${bvo.c_board_subject }</td>
-										<td><a
-											href="club_board_detail.do?c_board_no=${bvo.c_board_no}">${bvo.c_board_title}</a></td>
+										<td><a href="club_board_detail.do?c_board_no=${bvo.c_board_no}" style="color: black;">${bvo.c_board_title}</a></td>
 										<td>${bvo.user_name }</td>
 										<td>${bvo.the_time }</td>
 									</tr>
 								</jl:forEach>
 							</table>
 						</jl:if>
-						<div align="center">
-							<ul class="pagination pagination-sm">
-								<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
-								<jl:if test="${board_pz.hasPrevPagination }">
-									<li><a class="page"
-										href="javascript:board_list('${board_pz.paginationStart-1}')">&lt;</a></li>
-								</jl:if>
-								<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
-								<jl:if test="${board_pz.hasPrevPage }">
-									<li><a class="page"
-										href="javascript:board_list('${board_pz.curPagination-1 }')">&lt;</a></li>
-								</jl:if>
-								<!-- 페이지 번호 만들기 -->
-								<jl:forEach begin="${board_pz.paginationStart }"
-									end="${board_pz.paginationEnd }" step="1" varStatus="vs">
-									<jl:choose>
-										<jl:when test="${vs.index!=board_pz.curPagination }">
+						<jl:choose>
+							<jl:when test="${boardVO ne '[]'}">
+								<div align="center">
+									<ul class="pagination pagination-sm">
+										<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
+										<jl:if test="${board_pz.hasPrevPagination }">
 											<li><a class="page"
-												href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
-										</jl:when>
-										<jl:otherwise>
-											<li class="active"><a class="page"
-												href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
-										</jl:otherwise>
-									</jl:choose>
-								</jl:forEach>
-								<!-- 다음 페이지로 이동 : 한페이지 이동 -->
-								<jl:if test="${board_pz.hasNextPage }">
-									<li><a class="page"
-										href="javascript:board_list('${board_pz.curPagination+1}')">&gt;</a></li>
-								</jl:if>
-								<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
-								<jl:if test="${board_pz.hasNextPagination }">
-									<li><a class="page"
-										href="javascript:board_list('${board_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
-								</jl:if>
-							</ul>
-						</div> <input id="boardBtn" type="button" value="글쓰기" /> <br />
+												href="javascript:board_list('${board_pz.paginationStart-1}')">&lt;</a></li>
+										</jl:if>
+										<!-- 이전 페이지로 이동 : 한페이지 이전으로 -->
+										<jl:if test="${board_pz.hasPrevPage }">
+											<li><a class="page"
+												href="javascript:board_list('${board_pz.curPagination-1 }')">&lt;</a></li>
+										</jl:if>
+										<!-- 페이지 번호 만들기 -->
+										<jl:forEach begin="${board_pz.paginationStart }"
+											end="${board_pz.paginationEnd }" step="1" varStatus="vs">
+											<jl:choose>
+												<jl:when test="${vs.index!=board_pz.curPagination }">
+													<li><a class="page"
+														href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
+												</jl:when>
+												<jl:otherwise>
+													<li class="active"><a class="page" href="javascript:board_list('${vs.index }')">${vs.index }</a></li>
+												</jl:otherwise>
+											</jl:choose>
+										</jl:forEach>
+										<!-- 다음 페이지로 이동 : 한페이지 이동 -->
+										<jl:if test="${board_pz.hasNextPage }">
+											<li><a class="page"
+												href="javascript:board_list('${board_pz.curPagination+1}')">&gt;</a></li>
+										</jl:if>
+										<!-- 다음 페이지로 이동 : 10페이지 이후로(블록 이동) -->
+										<jl:if test="${board_pz.hasNextPagination }">
+											<li><a class="page"
+												href="javascript:board_list('${board_pz.paginationEnd+1 }')">&gt;&gt;</a></li>
+										</jl:if>
+									</ul>
+								</div>
+							</jl:when>
+							<jl:otherwise>
+									<div align="center"><h4>등록된 글이 없습니다.</h4></div>
+							</jl:otherwise>
+						</jl:choose>
+						 <input id="boardBtn" type="button" value="글쓰기" /> <br />
 					<br /> <label><h3>회원 리스트</h3></label><br /> <jl:if
 							test="${userVO!=null}">
 							<table class="table">
@@ -227,7 +242,7 @@
 					id="delClub" type="button" value="해체하기" />
 
 				</div>
-
+			</div>
 		</div>
 	</section>
 

@@ -38,7 +38,7 @@
 		  cursor: pointer;
 		}
 		.category {
-			border-radius: 15px;   
+			border-radius: 15px;
 		}
 		
 	</style>
@@ -51,9 +51,9 @@
 					<img src="club_img/${pvo.club_thumb_img }">
 					<h3>${pvo.club_name}</h3>
 					<p>${pvo.club_title}</p>
-					<button class="btn btn-default category">#${pvo.l_category_name}</button>
-					<button class="btn btn-default category">#${pvo.c_category_name }</button>
-					<button class="btn btn-default category">#${pvo.user_count}/${pvo.max_member}명</button>
+					<button class="btn btn-default category" disabled="disabled">#${pvo.l_category_name}</button>
+					<button class="btn btn-default category" disabled="disabled">#${pvo.c_category_name }</button>
+					<button class="btn btn-default category" disabled="disabled">#${pvo.user_count}/${pvo.max_member}명</button>
 				</li>
 			</jl:forEach>
 		</ul>
