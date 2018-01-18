@@ -27,69 +27,69 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="common.js"></script>
 <script>
-	$(document).ready(function(){
-		$("#cancel").on("click",function(){
-			document.frm.method="POST";
-			document.frm.action="admin_message_write.do";
-			document.frm.submit();
-		});
-		
-		// ID 중복 체크. ID 존재 시 전송 시도
-		var flag = 0;
-		var user_id;
-		$("#primary_id").on("click",function(){
-			user_id = $("#receive_user_id").val();
-			var url ="overlap.do?user_id="+user_id;
-			ajaxGet(url,function(rt){
-				if(rt==1){
-					$("#lblContent").text("ID가 존재합니다. 쪽지보내기가 가능합니다.");
-					$("#repleModal").modal("show");
-					flag = 1;
-				} else if(user_id==""){
-					$("#lblContent").text("아이디를 입력하세요");
-					$("#repleModal").modal("show");
-				} else if( rt == 0){
-					$("#lblContent").text("ID가 존재하지 않아 쪽지 보내기가 불가능 합니다.");
-					$("#repleModal").modal("show");
-					$("#user_id").val("");
-				} 
-			});
-		});
-		$("#basic_mobody").html("<h4>메세지 전송이 완료 되었습니다.<h4>");
-		$("#m_submit").on("click",function(){
-			$("#text_modal").modal("show");
-			$("#text_modal_yes").on("click",function(){
-				$("#text_modal").modal("hide");
-				var user_id_check = $("#receive_user_id").val();
-				var send_user_id = $("#send_user_id").val();
-				var msg_content = $("#msg_content").val();			
-				if(user_id_check==""){
-					$("#lblContent").text("아이디를 입력하고 중복검사 해주세요.");
-					$("#repleModal").modal("show");
-				} else if(flag==0){
-					$("#lblContent").text("아이디 체크 해주세요.");
-					$("#repleModal").modal("show");
-				} else {
-					var wrting_url = "admin_writing_message.do?send_user_id="+send_user_id 
-					+"&receive_user_id="+user_id_check +"&msg_content="+msg_content;		
-					ajaxGet(wrting_url,function(rt){ });	
-					$("#basic_modal").modal("show");
-					$("#basic_modal_yes").on("click",function(){
-						$("#text_modal").modal('hide');
-						location.reload();
-					});
-				}
-			});			
-		});
-		$("#btnClose").on("click",function(){
-			$("#repleModal").modal("hide");
-		});
-		$("#text_modal_no").on("click",function(){
-			$("#text_modal").modal('hide');
-		});
-		
-
+$(document).ready(function(){
+	$("#cancel").on("click",function(){
+		document.frm.method="POST";
+		document.frm.action="admin_message_write.do";
+		document.frm.submit();
 	});
+	
+	// ID 중복 체크. ID 존재 시 전송 시도
+	var flag = 0;
+	var user_id;
+	$("#primary_id").on("click",function(){
+		user_id = $("#send_user_id").val();
+		var url ="overlap.do?user_id="+user_id;
+		ajaxGet(url,function(rt){
+			if(rt==1){
+				$("#lblContent").text("ID가 존재합니다. 쪽지보내기가 가능합니다.");
+				$("#repleModal").modal("show");
+				flag = 1;
+			} else if(user_id==""){
+				$("#lblContent").text("아이디를 입력하세요");
+				$("#repleModal").modal("show");
+			} else if( rt == 0){
+				$("#lblContent").text("ID가 존재하지 않아 쪽지 보내기가 불가능 합니다.");
+				$("#repleModal").modal("show");
+				$("#user_id").val("");
+			} 
+		});
+	});
+	$("#basic_mobody").html("<h4>메세지 전송이 완료 되었습니다.<h4>");
+	$("#m_submit").on("click",function(){
+		$("#text_modal").modal("show");
+		$("#text_modal_yes").on("click",function(){
+			$("#text_modal").modal("hide");
+			var user_id_check = $("#receive_user_id").val();
+			var send_user_id = $("#send_user_id").val();
+			var msg_content = $("#msg_content").val();			
+			if(user_id_check==""){
+				$("#lblContent").text("아이디를 입력하고 중복검사 해주세요.");
+				$("#repleModal").modal("show");
+			} else if(flag==0){
+				$("#lblContent").text("아이디 체크 해주세요.");
+				$("#repleModal").modal("show");
+			} else {
+				var wrting_url = "admin_writing_message.do?send_user_id="+send_user_id 
+				+"&receive_user_id="+user_id_check +"&msg_content="+msg_content;		
+				ajaxGet(wrting_url,function(rt){ });	
+				$("#basic_modal").modal("show");
+				$("#basic_modal_yes").on("click",function(){
+					$("#text_modal").modal('hide');
+					location.reload();
+				});
+			}
+		});			
+	});
+	$("#btnClose").on("click",function(){
+		$("#repleModal").modal("hide");
+	});
+	$("#text_modal_no").on("click",function(){
+		$("#text_modal").modal('hide');
+	});
+	
+
+});
 
 </script>
 </head>

@@ -49,6 +49,19 @@ text-align: center;
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+$(document).ready(function() {
+	// QnA 수정 완료시 모달
+	$("#basic_mobody").html("<h4>수정이 완료 되었습니다.<h4>");
+	$(".mod_complete").on("click",function(){
+		$("#basic_modal").modal("show");
+	});
+	$("#basic_modal_yes").on("click",function(){
+		$("#frm").submit();
+	});
+
+});
+</script>
 </head>
 
 
@@ -57,12 +70,25 @@ text-align: center;
  <p> <label> 글수정하기  </label> </p>
 <hr style="border: solid 0.5px black;">
 
-	<form action="admin_community_qna_mod2.do" method="POST">
+	<form action="admin_community_qna_mod2.do" method="POST" id="frm">
 	<label>제목 </label>
 	 <input type="text"   class="form-control"  name="com_qna_title" value="${vo.com_qna_title}"/><br/>
 		내용 :<textarea  class="form-control"  name="com_qna_content" rows="20" >${vo.com_qna_content}</textarea>
 		<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-		<input type="submit" class="btn" value="수정완료"/>
-	</form>		
+		<input type="button" class="mod_complete" class="btn" value="수정완료"/>
+	</form>
+
+<!-- QnA 수정 완료시 모달 -->
+<div id="basic_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="basic_mobody" class="modal-body" align="center">
+			</div>
+			<div id="basic_ft" class="modal-footer">
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>닫기</button>
+			</div>
+		</div>
+	</div>
+</div>		
 </body>
 </html>

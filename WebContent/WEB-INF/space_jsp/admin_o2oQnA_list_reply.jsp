@@ -87,7 +87,11 @@ text-align: center;
 			<option value="1">제목</option>
 			<option value="2">내용</option>
 			<option value="3">제목 + 내용</option>
-			<option value="4">작성자</option>
+			<option value="4">고객님 이메일</option>
+			<option value="5">문의 타입</option>
+			<option value="6">전화 번호</option>
+			<option value="7">문의 시간</option>
+			<option value="8">답변 내용</option>
 		</select>
 		</div>
 		<div class="select">

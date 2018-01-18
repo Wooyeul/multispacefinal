@@ -88,10 +88,9 @@ p {
 				<div class="select">
 					<select name="search_option" class="form-control" style="width: 200px;">
 						<option value="0">선택해주세요</option>
-						<option value="1">제목</option>
-						<option value="2">내용</option>
-						<option value="3">제목 + 내용</option>
-						<option value="4">작성자</option>
+						<option value="1">받은 유저 ID</option>
+						<option value="2">쪽지 내용</option>
+						<option value="3">작성 시간</option>
 					</select> 
 					</div>
 						<div class="select2">
