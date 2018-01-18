@@ -77,10 +77,19 @@ table {
 <form id="textsearch" action="admin_host_spaces.do">
 	<select name="search_option">
 		<option value="0">선택해주세요</option>
-		<option value="1">제목</option>
-		<option value="2">내용</option>
-		<option value="3">제목 + 내용</option>
-		<option value="4">작성자</option>
+		<option value="1">사업자 등록번호</option>
+		<option value="2">공간 이름</option>
+		<option value="3">공간 내용</option>
+		<option value="4">오픈 시간</option>
+		<option value="5">클로즈 시간</option>
+		<option value="6">가격</option>
+		<option value="7">최대 인원</option>
+		<option value="8">최소 인원</option>
+		<option value="9">공간 전화 번호</option>
+		<option value="10">우편번호</option>
+		<option value="11">공간 카테고리</option>
+		<option value="12">장소 카테고리</option>
+		<option value="13">생성일</option>
 	</select>
 	검색 : <input type="text" name="search_content">
 	<input type="submit" value="검색">

@@ -209,17 +209,43 @@
 
 	SELECT * FROM SpaceT WHERE crn = #{crn} AND 0 = 0
 	<if test="search_option == 1">
-	AND com_board_title like '%${search_content}%'
+	AND crn like '%${search_content}%'
 	</if>
 	<if test="search_option == 2">
-	AND com_board_content like '%${search_content}%'
+	AND space_title like '%${search_content}%'
 	</if>
 	<if test="search_option == 3">
-	AND com_board_title like '%${search_content}%'
-	OR com_board_content like '%${search_content}%'
+	AND space_content like '%${search_content}%'
 	</if>
 	<if test="search_option == 4">
-	AND user_id like '%${search_content}%'
+	AND open_time like '%${search_content}%'
+	</if>
+	<if test="search_option == 5">
+	AND close_time like '%${search_content}%'
+	</if>
+	<if test="search_option == 6">
+	AND price like '%${search_content}%'
+	</if>
+	<if test="search_option == 7">
+	AND max_people like '%${search_content}%'
+	</if>
+	<if test="search_option == 8">
+	AND min_people like '%${search_content}%'
+	</if>
+	<if test="search_option == 9">
+	AND space_call like '%${search_content}%'
+	</if>
+	<if test="search_option == 10">
+	AND zipcode like '%${search_content}%'
+	</if>
+	<if test="search_option == 11">
+	AND s_category_no like '%${search_content}%'
+	</if>
+	<if test="search_option == 12">
+	AND l_category_no like '%${search_content}%'
+	</if>
+	<if test="search_option == 13">
+	AND the_time like '%${search_content}%'
 	</if>
 	<if test="start_no != null">
 		ORDER BY space_no DESC LIMIT #{start_no},10
