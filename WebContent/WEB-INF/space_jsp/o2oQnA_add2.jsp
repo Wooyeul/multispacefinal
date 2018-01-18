@@ -28,6 +28,7 @@
 		margin:0 auto;
 }
 .jumbotron {
+	margin-top:-20px;
 	text-align: center;
 }
 
@@ -94,20 +95,20 @@
 			<table>
 			<tr>
 				<td class="t1"><strong>제목 : </strong></td> 
-				<td><input class="form-control" type="text" name="o2o_title" size="30" /></td>
+				<td><input class="form-control" type="text" name="o2o_title" size="30" placeholder="제목을 입력해 주세요."/></td>
 			<tr>
 			<tr>
 				<td class="t1"><strong>이메일 :</strong></td> 
-				<td><input class="form-control" type="text" name="o2o_email" size="30" /></td>
+				<td><input class="form-control" type="text" name="o2o_email" size="30" placeholder="이메일로 답변이 가니 정확한 이메일 주소를 입력하세요."/></td>
 			</tr>
 			<tr>
 				<td class="t1"><strong>핸드폰번호 :</strong></td> 
-				<td><input class="form-control" type="text" name="o2o_phone" size="30" /></td>
+				<td><input class="form-control" type="text" name="o2o_phone" size="30" placeholder="핸드폰 번호를 입력해 주세요." /></td>
 			</tr>
 			<tr>
 				<td class="t1"><strong>서비스분류 :</strong></td> 
 				<td><select class="form-control" name="o2o_type">
-						<option value="선택">선택하세요</option>
+						<option value="선택">서비스분류 선택</option>
 						<option value="회원">회원</option>
 						<option value="예약 및 결제">예약 및 결제</option>
 						<option value="취소 및 환불">취소 및 환불</option>
@@ -123,6 +124,7 @@
 			<tr>
 			<td></td>
 			<td class="button">
+			<br/>
 			<a href="faq_list.do"><input type="button"class="btn btn-primary" id="cancel" value="취소하기"/></a>
 			<input class="btn btn-default" type="submit" value="문의하기" />
 			</tr>

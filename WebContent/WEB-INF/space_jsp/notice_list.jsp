@@ -71,6 +71,7 @@
 				$("#user_name").text(rt + "님");
 			}
 		});
+
 	});
 	
 </script>
@@ -85,7 +86,7 @@
 		
 		<div class="panel-group" id="accordion" role="tablist"
 			aria-multiselectable="true">
-			<jl:forEach var="vo" items="${rl}">
+			<jl:forEach var="vo" items="${rl}" varStatus="vs">
 				<div class="panel panel-info">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title">
