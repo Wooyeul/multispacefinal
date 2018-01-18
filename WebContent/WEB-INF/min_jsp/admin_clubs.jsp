@@ -109,7 +109,7 @@ $(document).ready(function(){
 		</ul>
 		
 		
-<!-- 클럽 삭제 모달 부분 -->
+<!-- 클럽 삭제 모달 폼 -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="club_No" value="0"/>
 	<div class="modal-dialog">
@@ -119,7 +119,8 @@ $(document).ready(function(){
 				<h4>글을 삭제 하시겠습니까?</h4>
 			</div>
 			<div id="text_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
+				<button type='button' class='btn btn-default' 
+					to-delete="delete_${vs.count}"  id='text_modal_yes'>확인</button>
 				<button type='button' class='btn btn-primary' id='text_modal_no'>취소</button>
 			</div>
 		</div>

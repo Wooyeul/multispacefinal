@@ -74,21 +74,20 @@
 					+"&receive_user_id="+user_id_check +"&msg_content="+msg_content;		
 					ajaxGet(wrting_url,function(rt){ });	
 					$("#basic_modal").modal("show");
-					$("#basic_modal").on("hidden.bs.modal",function(){
+					$("#basic_modal_yes").on("click",function(){
+						$("#text_modal").modal('hide');
 						location.reload();
 					});
 				}
 			});			
 		});
-		
 		$("#btnClose").on("click",function(){
 			$("#repleModal").modal("hide");
 		});
-
-		//no버튼 클릭 했을 때 실행할 function
 		$("#text_modal_no").on("click",function(){
 			$("#text_modal").modal('hide');
 		});
+		
 
 	});
 
@@ -124,9 +123,8 @@
 		</div>
 	</form>
 	
-	
-	<div id="text_modal" class="modal fade" role="dialog">
-	
+<!-- 메세지 전송 부분 모달 -->	
+<div id="text_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="text_mohead" class="modal-header"align="center"><h4>메세지 보내기</h4></div>
@@ -140,7 +138,7 @@
 		</div>
 	</div>
 </div>
-
+<!-- 메세지 전송 완료 부분 모달-->
 <div id="basic_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
