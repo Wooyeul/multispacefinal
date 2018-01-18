@@ -24,10 +24,10 @@
  			$("#add_space").css("display","block");
  		}
  		
- 		$('#boy').on("load",function(){
+/*  		$('#boy').on("load",function(){
  			var h = this.contentWindow.document.body.offsetHeight;
  			$(this).height(h);
- 		});
+ 		}); */
  		
 
  		if("${space_code }"=="20007"){

@@ -60,6 +60,8 @@
  	 								$("#start_time").val(second_click_time);
  	 								$("#end_time").val(first_click_time);
  	 								$("#booking_price").val("${space.price}"*(first_click_time-second_click_time));
+ 	 								$("#table_price").html("${space.price}"*(first_click_time-second_click_time));
+ 	
  	 							}
  	 						}
  	 						
@@ -78,6 +80,7 @@
  	 								$("#start_time").val(first_click_time);
  	 								$("#end_time").val(second_click_time);
  	 								$("#booking_price").val("${space.price}"*(second_click_time-first_click_time));
+ 	 								$("#table_price").html("${space.price}"*(second_click_time-first_click_time));
  	 							}
  	 						}
 	 	 				}
@@ -156,7 +159,7 @@
  			 	 	 var booking_list = eval("("+rt+")");
  			 	 	 $(".cb_time").removeClass("active");
  			 	 	 for(var z = 1 ; z <=24 ; z++ ) {
- 			 	 		$("#btn_time"+[z]).css("background","#5CB85C");
+ 			 	 		$("#btn_time"+[z]).css("background","#337AB7");
  	 	 				$("#btn_time"+[z]).html(z);
  			 	 	 }
  			 	 	 for(var g = 0 ; g < booking_list.data.length; g++){
@@ -205,11 +208,24 @@
  	 </script>
  	 <style>
  	 	.active{
- 	 		background: #449D44 !important;
+ 	 		background: #95BADF !important;
  	 	}
  	 	#booking_people{
  	 		height: 35px;
  	 		border-radius:3px;
+ 	 	}
+ 	 	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active
+ 	 	{
+ 	 		height: 60px;
+ 	 	}
+ 	 	.ui-datepicker{
+ 	 		width: 50em;
+ 	 	}
+ 	 	.ui-widget-header{
+ 	 		background-color: #95BADF;
+ 	 	}
+ 	 	.btn{
+ 	 		border-radius:2px;
  	 	}
  	 </style>
 </head>
@@ -220,12 +236,52 @@
 	
 	<div class="container">
 	<h1>예약 페이지</h1>
-		<div class="text-center">
-			<img src="thumbnail/${space.space_thumb_img }"/>
-			<h2>공간 이름 : ${space.space_title }</h2>
-			<h2>공간 소개 : ${space.space_content }</h2>
-		</div>
-		 
+	 <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">주문 내역</h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th class="text-center">공간 이름</th>
+                    <th class="text-center">예약 날짜</th>
+                    <th class="text-center">예약 시간</th>
+                    <th class="text-right">가격</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>DLBP-114</td>
+                    <td class="text-center">100,000원</td>
+                    <td class="text-center">1</td>
+                    <td class="text-right">100,000원</td>
+                  </tr>
+   
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th width="50%">공간 이름</th>
+						<th width="15%">예약 날짜</th>
+						<th width="15%">예약 시간</th>
+						<th width="20%">가격</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${space.space_title }</td>
+						<td id="reserve_day"></td>
+						<td id="table_booking_time"><label id="start"></label>시 ~ <label id="end"></label>시</td>
+						<td id="table_price"></td>
+					</tr>
+				</tbody>
+			</table>
 		
 
 		<form method="POST" action="space_payment.do">
@@ -240,7 +296,7 @@
 			<h4>시간</h4>
 			<div class="btn-group btn-group-toggle btn-lg" data-toggle="buttons">
 				<jl:forEach begin="${space.open_time }" end="${space.close_time }" varStatus="time">
-					  <label class="btn btn-secondary btn-success cb_time"  time="${time.index }" id="btn_time${time.index }">
+					  <label class="btn btn-secondary btn-primary cb_time"  time="${time.index }" id="btn_time${time.index }">
 					    <input type="checkbox" autocomplete="off" id="input_time${time.index }"> ${time.index }
 					  </label>
 			  </jl:forEach>
@@ -259,70 +315,46 @@
 					</div>
 					
 						
-				<div class="input-group">
-					<label for="solo_and_club">개인회원/모임회원</label><br/>
-					<label class="radio-inline"><input type="radio" name="solo_and_club" value="solo">개인 회원</label>
-					<label class="radio-inline"><input type="radio" name="solo_and_club" value="club">모임 회원</label>
-				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="club_list">모임 목록</label>
-					<select name="club_list" id="club_list">
+					<select name="club_list" id="club_list" class="form-control">
 						<option value="null">개인 회원</option>
 						<jl:forEach var="club" items="${club_list }">
-						<option value="${club.club_no }">${club.club_name }</option>
+							<option value="${club.club_no }">${club.club_name }</option>
 						</jl:forEach>
 					</select>
 				</div>
 				
 				<div>
-					<table>
-						<tr>
-							<td colspan="3">결제 예정 금액</td>
-						</tr>
-						<tr>
-							<td>예약 날짜</td>
-							<td colspan="2" ><div id="reserve_day"></div></td> 
-						</tr>
-						<tr>
-							<td>예약 시간</td>
-							<td><label id="start"></label>시 ~ <label id="end"></label>시</td>
-						</tr>
-						<tr>
-							<td colspan="2"><input type="text" name="booking_price" id="booking_price" disabled="disabled"></td>
-							<td>원</td>
-						</tr>
-					</table>
 
 					
 					<hr/>
 					
-					<table>
-						<tr>
-							<th>예약자 정보</th>
-						</tr>
-						<tr>
-							<td>예약자*</td>
-							<td><input type="text" name="booking_user_name" ></td>
-						</tr>
-						<tr>
-							<td>연락처*</td>
-							<td><input type="text" name="booking_phone"></td>
-						</tr>
-						<tr>
-							<td>이메일</td>
-							<td><input type="text" name="booking_email"></td>
-						</tr>
-						<tr>
-							<td>요청사항</td>
-							<td><textarea name="booking_message"></textarea></td>
-						</tr>
-					</table>
+					<H1>예약자 정보</H1>
+						<div class="form-group">
+							<label>예약자</label>
+							<input type="text" name="booking_user_name"  class="form-control">
+						</div>
+						<div class="form-group">
+							<label>연락처</label>
+							<input type="text" name="booking_phone"  class="form-control">
+						</div>
+						<div class="form-group">
+							<label>이메일</label>
+							<input type="text" name="booking_email" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>요청사항</label>
+							<textarea name="booking_message" class="form-control"></textarea>
+						</div>
 					
 					<input type="hidden" value="${user_id }" id="user_id" name="user_id"/>
 					<input type="hidden" value="${space.space_no }" name="space_no"/>
 				
-					<input id="pay" type="button" value="결제하기"/>
+					<input id="pay" type="button" class="btn btn-default" value="결제하기"/>
+					<br/>
+		<br/>
 					
 				</div>
 		</form>
@@ -347,6 +379,7 @@
 				</div>
 			</div>
 		</div>
+		
 		
 	<!-- ******************************* footer ******************************* -->
 	  <%@include file="./jsp/footer.jsp"%>  

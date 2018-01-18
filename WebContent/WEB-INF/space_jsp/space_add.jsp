@@ -257,7 +257,7 @@
 			</div>
 			<div class="form-group">
 				<label for="space_thumb_img">썸네일 이미지</label> <input type="file"
-					id="space_thumb_img" name="space_thumb_img" class="form-control-file" />
+					id="space_thumb_img" name="space_thumb_img" class="form-control" />
 			</div>
 
 
@@ -278,7 +278,7 @@
 							<h4 class="modal-title">사진 첨부</h4>
 						</div>
 						<div class="modal-body">
-							<input type="file" name="image_one" class="form-control-file"
+							<input type="file" name="image_one" class="form-control"
 								id="image_1" /> <input type="file" name="image_two"
 								class="form-control-file" id="image_2" style="display: none;" /> <input
 								type="file" name="image_three" class="form-control-file" id="image_3"

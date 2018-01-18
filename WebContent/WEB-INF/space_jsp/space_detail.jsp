@@ -687,7 +687,7 @@
 										title="" class="img-thumbnail" width="100%" height="100%"/>
 									</div>
 									<div class="col-xs-6 col-xs-offset-1">
-										공간 소개 내용이 간략하게 들어갈 곳 입니다.
+										${space.space_content }
 									</div>
 									</div>
 									
