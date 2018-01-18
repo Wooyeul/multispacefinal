@@ -23,7 +23,10 @@
 	<script type="text/javascript" src="./common.js"></script>
 <style type="text/css">
 
-
+.container {
+	width: 600px;
+		margin:0 auto;
+}
 .jumbotron {
 	text-align: center;
 }
@@ -32,7 +35,7 @@
 	text-align: center;
 }
 .t1 {
-	text-align: right;
+	text-align: left;
 }
 
 </style>
