@@ -131,13 +131,5 @@ public class Ctrl_Admin_Freeboard {
 		admin_FreeboardDAO.delReple(pvo);
 		return "redirect:/admin_community_board_read.do?com_board_no="+pvo.getCom_board_no();
 	}
-	
-	@RequestMapping("/admin_community_board_search.do")
-	public ModelAndView admin_community_board_search(@ModelAttribute  Admin_community_searchVO  pvo) throws Exception {
-		ModelAndView mnv = new ModelAndView("admin_community_board_search");
-		List<Community_boardVO> ls = admin_FreeboardDAO.comm_board_search(pvo);
-		mnv.addObject("ls", ls);
-		return mnv;
-	}
 
 }
