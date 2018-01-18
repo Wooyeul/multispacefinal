@@ -419,10 +419,10 @@ parameterMap ="PM_p_comm_boradrepleFindAllTexts">
 	<!-- community best 조회 -->
 	
 	<!-- community best 조회 프로시저
-DROP PROCEDURE IF EXISTS find_best_community;
+DROP PROCEDURE IF EXISTS p_find_best_community;
 DELIMITER $$
 
-CREATE PROCEDURE find_best_community(
+CREATE PROCEDURE p_find_best_community(
 )
 BEGIN
    DROP TEMPORARY TABLE IF EXISTS temp;
