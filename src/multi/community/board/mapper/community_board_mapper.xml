@@ -354,11 +354,7 @@ DROP PROCEDURE IF EXISTS p_comm_boardDelByPK;
 	<delete id="p_comm_boardrepleDel" parameterMap="PM_p_comm_boardrepleDel" statementType="CALLABLE">
 		{call p_comm_boardrepleDel(?,?)}	
 	</delete>
-
-   
-   
-   
-   
+	
 <!-- 
 	프로시져 p_comm_boradrepleFindAllTexts  
 	DROP PROCEDURE IF EXISTS p_comm_boradrepleFindAllTexts;
@@ -415,7 +411,36 @@ parameterMap ="PM_p_comm_boradrepleFindAllTexts">
 	</if>
 
 </select>
+	<!-- ***************************community best 조회*************************** -->
+	<!-- community best 조회 -->
+	<select id="find_best_community" statementType="CALLABLE" resultType="hashmap"> 
+		{call p_find_best_community()}
+	</select>
+	<!-- community best 조회 -->
+	
+	<!-- community best 조회 프로시저
+DROP PROCEDURE IF EXISTS find_best_community;
+DELIMITER $$
 
+CREATE PROCEDURE find_best_community(
+)
+BEGIN
+   DROP TEMPORARY TABLE IF EXISTS temp;
+   CREATE TEMPORARY TABLE IF NOT EXISTS temp
+	SELECT count(*) as count,c.com_board_no
+	FROM Community_BoardT AS c
+	group by c.com_board_no
+	order by count desc limit 0,3;
+   
+   SELECT c.com_board_no, c.com_board_title, c.view_count, c.recom_count, u.user_name
+   FROM Community_BoardT AS c, Usert AS u, temp AS t
+   WHERE c.user_id=u.user_id
+     AND t.com_board_no = c.com_board_no;
+END$$
 
+DELIMITER ;
+	community best 조회 프로시저 -->
+	<!-- ***************************community best 조회*************************** -->
+	
 </mapper>
 

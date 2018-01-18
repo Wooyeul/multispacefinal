@@ -276,7 +276,7 @@ public class CtrlClub {
 	//main.html¿¡ best_club
 	@RequestMapping("/best_club.do")
 	@ResponseBody
-	public String find_best_space() throws Exception{
+	public String best_club() throws Exception{
 		List<Map<String, Object>> list = clubDAO.find_best_club();
 		
 		StringBuffer sb = new StringBuffer();

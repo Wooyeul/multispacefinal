@@ -1,6 +1,7 @@
 package multi.community.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,13 @@ public class Community_boardDAO_MybatisProcImpl implements Community_boardDAO{
 	public int incViewLogic(Community_boardVO pvo) throws Exception {
 		
 		return sqlSession.update("community_board.p_comm_boardIncViewLogic",pvo);
+	}
+
+
+	// best community ±Û
+	@Override
+	public List<Map<String, Object>> find_best_community() throws Exception {
+		return sqlSession.selectList("community_board.find_best_community");
 	}
 
 

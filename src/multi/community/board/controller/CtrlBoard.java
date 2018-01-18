@@ -1,6 +1,7 @@
 package multi.community.board.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -212,7 +213,46 @@ public class CtrlBoard {
 		}
 	}
 	
-	
+	//main.html¿¡ best_club
+	@RequestMapping("/best_community.do")
+	@ResponseBody
+	public String best_community() throws Exception{
+		List<Map<String, Object>> list = community_boardDAO.find_best_community();
+		
+		StringBuffer sb = new StringBuffer();
+		try{
+			sb.append("{ 'data' :[ ");
+			int flag=0;
+			for(Map<String, Object> vo : list){
+				flag++;
+				sb.append("{");
+				sb.append("'com_board_no'");
+				sb.append(":");
+				sb.append("'"+vo.get("com_board_no")+"',");
+				sb.append("'com_board_title'");
+				sb.append(":");
+				sb.append("'"+vo.get("com_board_title")+"',");
+				sb.append("'view_count'");
+				sb.append(":");
+				sb.append("'"+vo.get("view_count")+"',");
+				sb.append("'recom_count'");
+				sb.append(":");
+				sb.append("'"+vo.get("recom_count")+"',");
+				sb.append("'user_name'");
+				sb.append(":");
+				sb.append("'"+vo.get("user_name")+"'");
+				sb.append("}");
+				if(flag==list.size()){} 
+				else {
+					sb.append(",");
+				}
+			}
+			sb.append("]}");
+			return sb.toString();
+		} catch(Exception e){
+			return null;
+		}
+	}
 
 
 }
