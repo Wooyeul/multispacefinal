@@ -72,12 +72,17 @@
 					$("#lblContent").text("아이디 체크 해주세요.");
 					$("#repleModal").modal("show");
 				} else {
-					//$("#m_submit").attr('type','submit');
+					var wrting_url = "admin_writing_message.do?send_user_id="+send_user_id 
+					+"&receive_user_id="+user_id_check +"&msg_content="+msg_content;
+					
+					ajaxGet(wrting_url,function(rt){ });
+					
 					$("#basic_modal").modal("show");
-					$("#basic_modal_yes").on("click",function(){
-						location.href="admin_writing_message.do?send_user_id="+send_user_id 
-						+"&receive_user_id="+user_id_check +"&msg_content="+msg_content;
+					
+					$("#basic_modal").on("hidden.bs.modal",function(){
+						location.reload();
 					});
+
 				}
 			});			
 		});

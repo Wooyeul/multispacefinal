@@ -11,6 +11,7 @@ import main.ModelAttribute;
 import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
+import main.ResponseBody;
 import main.vo.MessageVO;
 import multi.admin.dao.Admin_MessageDAO;
 import multi.admin.vo.Admin_searchVO;
@@ -39,19 +40,19 @@ public class Ctrl_Admin_Message {
 	
 	// 메시지 보내기
 	@RequestMapping("/admin_writing_message.do")
+	@ResponseBody
+	public String admin_writing_message( @ModelAttribute MessageVO mvo ) throws Exception {
+		
+		admin_MessageDAO.writing_message(mvo);
+		
+		return null;
+	}
+/*	@RequestMapping("/admin_writing_message.do")
 	public ModelAndView admin_writing_message( @ModelAttribute MessageVO mvo ) throws Exception {
 		ModelAndView mnv = new ModelAndView();
 		admin_MessageDAO.writing_message(mvo);
 		mnv.setViewName("redirect:/admin_message_write.do");
 		
-		return mnv;
-	}
-
-/*	@RequestMapping("/admin_message_read_get.do")
-	public ModelAndView admin_message_read_get( @ModelAttribute MessageVO mvo ) throws Exception {
-		ModelAndView mnv = new ModelAndView("admin_message_read_get");
-		List<MessageVO> ls = admin_MessageDAO.findAllGetMessages();
-		mnv.addObject("ls", ls);
 		return mnv;
 	}*/
 	
