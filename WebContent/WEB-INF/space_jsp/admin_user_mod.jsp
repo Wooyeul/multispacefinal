@@ -106,7 +106,7 @@ $(document).ready(function(){
 						
 						 <br /><br />
 					
-						 <form role="form" method="POST" action="admin_user_mod2.do">
+						 <form role="form" method="POST" action="admin_user_mod2.do" id="frm">
                                         <div class="form-group">
                                         	<input type="hidden" name="user_id" value="${vo.user_id}" /> 
                                         	
