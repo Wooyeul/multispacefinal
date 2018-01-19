@@ -4,44 +4,84 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="common.js"></script>
+<title>Welcome to Multi Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	
-	<style>
-	</style>
+
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
+
+<style type="text/css">
+	.textarea_h{
+		padding: 10px;
+		padding-top: 50px;
+	}
+	.label_reple{
+		padding-bottom: 18px;
+	}
+</style>
 </head>
 <body>
-<div class="container">
 
-	<label>${vo.c_notice_title}</label><br/>
-	<label>작성시간 : ${vo.the_time}	</label><label>작성자 : ${vo.user_id}</label>
-	<label>조회수 : ${vo.view_count}</label><br/>
-	<label>소개</label><textarea rows="15" cols="30" disabled="disabled">${vo.c_notice_content}</textarea><br/>
-	<input id=textMod type="button" value="수정하기" style="display: none"><input id="prev" type="button" value="뒤로가기">
-	<br/><hr>
-	
-	<form id="add_reple_frm">
-		<div class="form-group" align="left">
-			<label id="reple" class="l" style="width: 100px; font-size: 100%">의견쓰기 </label>
-			<div class="input-group">
-				<input id="c_notice_reple_content" name="c_notice_reple_content" type="text" style="height: 80px;" class="form-control"/>
-				<span class="input-group-addon" style="background-color: #00C73C;">
-				<input id="add_reple_btn" type="button" class="btn" value="등록" style="color:white; font-weight: bold; background-color: #00C73C;"/></span>
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
+	<section class="listings">
+		<div class="container">
+			<div class="wrapper">
+				<div>
+					<label><h3>${vo.c_notice_title}</h3></label>
+				</div><hr>
+				<div class="col-sm-6" align="left">
+					<label><span class="glyphicon glyphicon-user"></span> ${vo.user_id}</label>
+				</div>
+				<div class="col-sm-6" align="right">
+					<label>${vo.the_time}</label><label>조회수 : ${vo.view_count }</label>
+				</div>
+				<div class="textarea_h">
+					<textarea rows="15" cols="30" disabled="disabled" class="form-control">${vo.c_notice_content}</textarea><br/>
+				</div>
+				<div align="right">
+					<input id="textMod" type="button" value="수정하기" style="display: none" class="btn">&nbsp<input id="prev" type="button" value="뒤로가기" class="btn"/>
+					<br/>
+				</div>
+				<hr>
+				
+				<!-- 댓글 등록 창 구현 -->
+				<form id="add_reple_frm">
+					<div class="form-group" align="left">
+						<div class="label_reple">
+							<label id="reple" class="l" style="width: 100px; font-size: 100%">의견쓰기 </label>
+						</div>
+						<div class="input-group">
+							<input id="c_notice_reple_content" name="c_notice_reple_content" type="text" style="height: 80px;" class="form-control"/>
+							<span class="input-group-addon" style="background-color: #00C73C;">
+							<input id="add_reple_btn" type="button" class="btn" value="등록" style="color:white; font-weight: bold; background-color: #00C73C;"/></span>
+						</div>
+						<input type="hidden" name="user_id" value="${user_id}">
+						<input type="hidden" name="c_notice_no" value="${vo.c_notice_no}">
+					</div>
+				</form>
+				<br/>
+				<hr/>
+				<div id="reple_list" class="form-group" align="left">
+				</div>	
 			</div>
-			<input type="hidden" name="user_id" value="${user_id}">
-			<input type="hidden" name="c_notice_no" value="${vo.c_notice_no}">
 		</div>
-	</form>
-	<br/>
-	<hr/>
-	<div id="reple_list" class="form-group" align="left">
-	</div>	
+	</section>
 	
-</div>
-
-
+	<!-- ******************************* footer ******************************* -->
+	  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 
 	<!-- 댓글 수정 modal창 시작 -->
 	<form id="mod_frm" method="post" action="club_mod_notice_reple.do">
@@ -226,21 +266,23 @@
 		function find_reple(){
 			var url = "club_find_notice_reple.do?c_notice_no="+${vo.c_notice_no};
 		 	ajaxGet(url,function(rt){
-			 	var list = window.eval("("+rt+")");
-			 	var html = "";
-			 	for( var i = 0 ; i < list.data.length ; i++ ){
-			 		html += "<label id='repleId' class='l' style='font-size: 120%; font-weight: bold;'>"+list.data[i].user_id +"</label><br/>";
-			 		html += "<label id='repleContent' class='l' style='font-size: 100%;'>"+list.data[i].c_notice_reple_content +"</label><br/>";
-					html += "<label id='repletime' class='l' style='font-size: 100%; color: gray;'>"+list.data[i].the_time ;
-					if(list.data[i].user_id=='${user_id}'){
-						html += "<a class='delRe' reNo='"+list.data[i].c_notice_reple_no+"' noticeNo='"+list.data[i].c_notice_no+"' user_id='"+list.data[i].user_id+ 
-							"'href='#'><span class='glyphicon glyphicon-remove'></span></a>"+
-							"<a reNo='"+list.data[i].c_notice_reple_no+"'  reText='"+list.data[i].c_notice_reple_content+"' class='modRe' href='#'>"+
-							"<span class='glyphicon glyphicon-pencil'></span></a>";
-					}//end if
-					html += "</label><br/><hr/>";
-			 	}//end for
-                   $('#reple_list').html(html);
+		 		if(rt!=''){
+				 	var list = window.eval("("+rt+")");
+				 	var html = "";
+				 	for( var i = 0 ; i < list.data.length ; i++ ){
+				 		html += "<label id='repleId' class='l' style='font-size: 120%; font-weight: bold;'><span class='glyphicon glyphicon-user'></span>"+list.data[i].user_id +"</label><br/>";
+				 		html += "<label id='repleContent' class='l' style='font-size: 100%;'>"+list.data[i].c_notice_reple_content +"</label><br/>";
+						html += "<label id='repletime' class='l' style='font-size: 100%; color: gray;'>"+list.data[i].the_time ;
+						if(list.data[i].user_id=='${user_id}'){
+							html += "<a class='delRe' reNo='"+list.data[i].c_notice_reple_no+"' noticeNo='"+list.data[i].c_notice_no+"' user_id='"+list.data[i].user_id+ 
+								"'href='#'><span class='glyphicon glyphicon-remove'></span></a>"+
+								"<a reNo='"+list.data[i].c_notice_reple_no+"'  reText='"+list.data[i].c_notice_reple_content+"' class='modRe' href='#'>"+
+								"<span class='glyphicon glyphicon-pencil'></span></a>";
+						}//end if
+						html += "</label><br/><hr/>";
+				 	}//end for
+	                   $('#reple_list').html(html);
+		 		}
 		 	});
 		}
 	</script>

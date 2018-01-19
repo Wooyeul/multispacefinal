@@ -154,7 +154,7 @@
 						</jl:choose>
 						<div align="right"><input id="noticeBtn" type="button" class="btn" value="공지쓰기" /><br /></div>
 					
-						<br /> <label><h3>커뮤니티 게시판</h3></label><br /> 
+						<br /> <label><h3>커뮤니티</h3></label><br /> 
 							<jl:if	test="${noticeVO!=''}">
 							<table class="table">
 								<jl:forEach items="${boardVO}" var="bvo" varStatus="i">
@@ -167,11 +167,11 @@
 									</colgroup>
 									<jl:if test="${i.count==1 }">
 										<tr>
-											<td style="text-align: center">글 번호</td>
-											<td style="text-align: center">말머리</td>
-											<td style="text-align: center">제목</td>
-											<td style="text-align: center">작성자</td>
-											<td style="text-align: center">작성시간</td>
+											<th style="text-align: center">글 번호</th>
+											<th style="text-align: center">말머리</th>
+											<th style="text-align: center">제목</th>
+											<th style="text-align: center">작성자</th>
+											<th style="text-align: center">작성시간</th>
 										</tr>
 									</jl:if>
 									<tr>
@@ -233,23 +233,30 @@
 					<br />
 					<div id="applyList">
 						<label><h3>신청 현황 리스트</h3></label><br />
-						<table class="table">
-							<tr>
-								<td>이름</td>
-								<td>신청내용</td>
-								<td>신청승인</td>
-							</tr>
-							<jl:forEach items="${applyVO}" var="avo">
-								<tr>
-									<td>${avo.user_name}</td>
-									<td>${avo.apply_content}</td>
-									<td><span class="agree" club_name="${vo.club_name }"
-										club_no="${vo.club_no}" user_id="${avo.user_id}"">수락</span> <span
-										class="disagree" club_name="${vo.club_name }"
-										club_no="${vo.club_no}" user_id="${avo.user_id}">거절</span></td>
-								</tr>
-							</jl:forEach>
-						</table>
+						<jl:choose>
+							<jl:when test="${applyVO ne '[]'}">
+								<table class="table">
+									<tr>
+										<td>이름</td>
+										<td>신청내용</td>
+										<td>신청승인</td>
+									</tr>
+									<jl:forEach items="${applyVO}" var="avo">
+										<tr>
+											<td>${avo.user_name}</td>
+											<td>${avo.apply_content}</td>
+											<td><span class="agree" club_name="${vo.club_name }"
+												club_no="${vo.club_no}" user_id="${avo.user_id}"">수락</span> <span
+												class="disagree" club_name="${vo.club_name }"
+												club_no="${vo.club_no}" user_id="${avo.user_id}">거절</span></td>
+										</tr>
+									</jl:forEach>
+								</table>
+							</jl:when>
+						<jl:otherwise>
+							<div align="center"><h4>신청 내역이 없습니다.</h4></div>
+						</jl:otherwise>
+					</jl:choose>
 					</div> <br /> 
 					<div align="right">
 						<input id="prev" type="button" value="뒤로가기" class="btn"> 

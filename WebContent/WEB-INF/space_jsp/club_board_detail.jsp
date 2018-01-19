@@ -39,7 +39,8 @@
 		<div class="container">
 			<div class="wrapper">
 				<div>
-					<label><h3>${vo.c_board_title}</h3></label>
+					<label><h3>${vo.c_board_title}</h3></label><label style="margin: 20px;">::</label>
+					<label>${vo.c_board_subject}</label>
 				</div>
 				<hr>
 				<div class="col-sm-6" align="left">
@@ -74,7 +75,6 @@
 				</form>
 				<br/>
 				<hr/>
-				
 				<div id="reple_list" class="form-group" align="left">
 				</div>	
 			</div>
@@ -323,22 +323,23 @@
 		function find_reple(){
 			var url = "club_find_board_reple.do?c_board_no="+${vo.c_board_no};
 		 	ajaxGet(url,function(rt){
-			 	var list = window.eval("("+rt+")");
-			 	var html = "";
-			 	for( var i = 0 ; i < list.data.length ; i++ ){
-			 		html += "<label id='repleId' class='l' style='font-size: 120%; font-weight: bold;'><h4>"+list.data[i].user_id +"</h4></label><br/>";
-			 		html += "<label id='repleContent' class='l' style='font-size: 100%;'><h3>"+list.data[i].c_board_reple_content +"</h3></label><br/>";
-					html += "<label id='repletime' class='l' style='font-size: 100%; color: gray;'>"+list.data[i].the_time;
-					if(list.data[i].user_id=='${user_id}'){
-						html += " <a class='delRe' reNo='"+list.data[i].c_board_reple_no+"' boardNo='"+list.data[i].c_board_no+"'user_id='"+list.data[i].user_id+ 
-						"'href='#'><span class='glyphicon glyphicon-remove'></span></a>"+
-						"<a reNo='"+list.data[i].c_board_reple_no+"'reText='"+list.data[i].c_board_reple_content+"'class='modRe' href='#'>"+
-						"<span class='glyphicon glyphicon-pencil'></span></a>";
-					}//end if
-					html += "</label><br/><hr/>";
-			 	}//end for
-				alert(html);
-                $('#reple_list').html(html);
+		 		if(rt!=''){
+				 	var list = window.eval("("+rt+")");
+				 	var html = "";
+				 	for( var i = 0 ; i < list.data.length ; i++ ){
+				 		html += "<label id='repleId' class='l' style='font-size: 120%; font-weight: bold;'><span class='glyphicon glyphicon-user'></span>"+list.data[i].user_id +"</label><br/>";
+				 		html += "<label id='repleContent' class='l' style='font-size: 100%;'>"+list.data[i].c_board_reple_content +"</label><br/>";
+						html += "<label id='repletime' class='l' style='font-size: 100%; color: gray;'>"+list.data[i].the_time;
+						if(list.data[i].user_id=='${user_id}'){
+							html += " <a class='delRe' reNo='"+list.data[i].c_board_reple_no+"' boardNo='"+list.data[i].c_board_no+"'user_id='"+list.data[i].user_id+ 
+							"'href='#'><span class='glyphicon glyphicon-remove'></span></a>"+
+							"<a reNo='"+list.data[i].c_board_reple_no+"'reText='"+list.data[i].c_board_reple_content+"'class='modRe' href='#'>"+
+							"<span class='glyphicon glyphicon-pencil'></span></a>";
+						}//end if
+						html += "</label><br/><hr/>";
+				 	}//end for
+	                $('#reple_list').html(html);
+		 		}
 		 	});
 		}
 	</script>
