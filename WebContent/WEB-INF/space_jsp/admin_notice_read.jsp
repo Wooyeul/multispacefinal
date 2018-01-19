@@ -39,38 +39,64 @@ $(document).ready(function(){
 	$("#text_modal_no").on("click",function(){
 		$("#text_modal").modal('hide');
 	});
+	
+	$("#notice_list").on("click",function(){
+		location.href="admin_notice_list.do";
+	});
 
 });
 </script>
 </head>
 <body>
 
-	<div id="i" class="jumbotron panel-primary">
-		<h1>공지사항</h1>
-	</div>
-	<div class="container">
-		<div class="title">
-			<label>제목:</label>
-			<span>${vo.notice_title}</span><br>
-		</div>
-		
-		<div class="content">
-			<label>내용</label><br/>
-			<span>${vo.notice_content}</span><br/>
-		</div>
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+		 <p> <label> 공지사항 글보기 </label></p> 
+			<hr style="border: solid 0.5px black;">
+			
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>SUBJECT</th>
+						</tr>
+					</thead>
+					<tr>
+						<td>${vo.notice_no}</td>
+						<td>${vo.notice_title}</td>
+					</tr>
+					<tr>
+						<td class="table_content" colspan="2">
+							<div class="pre" style="padding: 10px; height: auto; min-height: 100px; overflow: auto;">
+								<pre style="white-space: pre-wrap;">${vo.notice_content}}</pre>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form action="admin_notice_mod.do" method="post">
+								<input type="hidden" name="notice_no" value="${vo.notice_no}"/>
+								<input type="hidden" name="notice_title" value="${vo.notice_title}"/>
+								<input type="hidden" name="notice_content" value="${vo.notice_content}"/>
+								<input type="button" id="notice_list" value="공지목록"/> &nbsp;&nbsp;&nbsp;
+								<input type="submit" value="공지수정"/> &nbsp;&nbsp;&nbsp;
+								<input type="button" id="remove_notice" notice_no="${vo.notice_no}" value="공지삭제"/>
+							</form>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+				</table>
+			</div>
 	
-		<form action="admin_notice_list.do" method="post">
-			<input type="submit" value="공지목록"/>
-		</form>
-		<form action="admin_notice_mod.do" method="post">
-			<input type="hidden" name="notice_no" value="${vo.notice_no}"/>
-			<input type="hidden" name="notice_title" value="${vo.notice_title}"/>
-			<input type="hidden" name="notice_content" value="${vo.notice_content}"/>
-			<input type="submit" value="공지수정"/> &nbsp;&nbsp;&nbsp;
-			<input type="button" id="remove_notice" notice_no="${vo.notice_no}" value="공지삭제"/>
-		</form>
+		
+		
 
-	</div>
 	
 	
 <!-- 공지 삭제시 모달 -->

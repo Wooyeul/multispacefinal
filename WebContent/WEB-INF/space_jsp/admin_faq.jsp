@@ -10,7 +10,7 @@
 	href="./Resources/css/bootstrap.css">
 <style type="text/css">
 .paginationdiv {
-	text-align: right;
+	text-align: center;
 }
 
 .select1 {
@@ -97,69 +97,77 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
-	<div class="jumbotron">
-		<div class="FAQ">
-			<h1>F A Q</h1>
-		</div>
-	</div>
-
-	<div class="container">
-		<h2>FAQ Board</h2>
-		<div class="panel-group" id="accordion" role="tablist"
-			aria-multiselectable="true">
-			<jl:forEach var="vo" items="${rl}" varStatus="vs">
-				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="headingOne">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion"
-								href="#${vo.faq_no}" aria-expanded="true"
-								aria-controls="collapseOne">${vo.faq_no} . ${vo.faq_title} </a>
-						</h4>
-					</div>
-					<div id="${vo.faq_no}" class="panel-collapse collapse"
-						role="tabpanel" aria-labelledby="headingOne">
-						<div class="panel-body">${vo.faq_content}</div>
-						
-						<form method="post" action="admin_faq_read.do" name="frm" >
-							<input type="hidden" name="faq_no" value="${vo.faq_no}" />
-							<input type="hidden" name="faq_title" value="${vo.faq_title}" />
-							<input type="hidden" name="faq_content" value="${vo.faq_content}" />
-							<button type="submit">수정 하기</button>&nbsp;&nbsp;&nbsp;
-							<input type="button"  class="remove_faq" faq_no="${vo.faq_no}" value="삭제 하기"/>
-						</form>
-						<br>
-						
-					</div>
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+					FAQ
+			<form id="form_search" action="admin_faq.do" method="post">
+				<input type="hidden" name="pg" value="" id="pg">
+				<input type="hidden" name="search_content" value="${search.search_content}">
+				<input type="hidden" name="search_option" value="${search.search_option}">
+			</form>
+			
+			<form id="textsearch" action="admin_faq.do" method="post">
+				<div class="select2">
+					<select name="search_option">
+						<option value="0">선택해주세요</option>
+						<option value="1">제목</option>
+						<option value="2">내용</option>
+						<option value="3">제목 + 내용</option>
+					</select>
 				</div>
-			</jl:forEach>
+			<div class="select2">
+				<input type="text" name="search_content" class="form-control" style="width: 300px;">
+						</div>
+					<div class="select2">
+						<input class="btn" type="submit" value="검색">
+					</div>						
+				</form>
+				&nbsp;&nbsp;
+				<a href="admin_faq_add.do"> 
+					<input class="btn" type="button" value="FAQ 작성">
+				</a>
+			</div>
+			<!-- /.panel-heading -->
+				<div class="panel-body">
+				  <div class="table-responsive">
+				  	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						<jl:forEach var="vo" items="${rl}" varStatus="vs">
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingOne">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion"
+											href="#${vo.faq_no}" aria-expanded="true"
+											aria-controls="collapseOne">${vo.faq_no} . ${vo.faq_title} </a>
+									</h4>
+								</div>
+								<div id="${vo.faq_no}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+								<div class="panel-body">${vo.faq_content}</div>
+						
+								<form method="post" action="admin_faq_read.do" name="frm" >
+									<input type="hidden" name="faq_no" value="${vo.faq_no}" />
+									<input type="hidden" name="faq_title" value="${vo.faq_title}" />
+									<input type="hidden" name="faq_content" value="${vo.faq_content}" />
+									<button type="submit">수정 하기</button>&nbsp;&nbsp;&nbsp;
+									<input type="button"  class="remove_faq" faq_no="${vo.faq_no}" value="삭제 하기"/>
+								</form>
+								<br>
+								</div>
+							</div>
+							</jl:forEach>
+						</div>
+                   </div>
+				<!-- /.panel-body -->
+			</div>
+			<!-- /.panel -->
 		</div>
-
-		<div class="write">
-			<a href="admin_faq_add.do">
-				<input class="btn btn-success" type="button" value="write FAQ">
-			</a>
-		</div>
-		
+		<!-- /.col-lg-12 -->
 	</div>
 	
 <br>
 <br>
-<form id="form_search" action="admin_faq.do" method="post">
-	<input type="hidden" name="pg" value="" id="pg">
-	<input type="hidden" name="search_content" value="${search.search_content}">
-	<input type="hidden" name="search_option" value="${search.search_option}">
-</form>
-<form id="textsearch" action="admin_faq.do" method="post">
-	<select name="search_option">
-		<option value="0">선택해주세요</option>
-		<option value="1">제목</option>
-		<option value="2">내용</option>
-		<option value="3">제목 + 내용</option>
-	</select>
-	검색 : <input type="text" name="search_content">
-	<input type="submit" value="검색">
-</form>
+
+<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_faq.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -184,7 +192,7 @@ $(document).ready(function(){
 				<li><a class="page" href="admin_faq.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-
+</div>
 <!-- FAQ 삭제 시 모달 -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="faq_No" value="0"/>

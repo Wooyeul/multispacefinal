@@ -92,18 +92,17 @@ text-align: center;
 						<option value="1">제목</option>
 						<option value="2">내용</option>
 						<option value="3">제목 + 내용</option>
-						<option value="4">작성자</option>
 					</select>
 				</div>
 					<div class="select2">
-							<input type="text" name="commsearch_content" class="form-control"
-								style="width: 300px;">
+					<input type="text" name="search_content" class="form-control" style="width: 300px;">
 						</div>
 						
 						<div class="select2">
 						<input class="btn" type="submit" value="검색">
 						</div>						
 				</form>
+				&nbsp;&nbsp;
 				<a href="admin_notice_add.do"> 
 					<input class="btn" type="button" value="공지사항 작성">
 				</a>

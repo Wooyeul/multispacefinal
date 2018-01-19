@@ -7,9 +7,12 @@
 </head>
 <body>
 	<form action="admin_notice_add2.do" method="POST">
-		제목 : <input type="text" name="notice_title"/><br/>
-		내용 : <textarea name="notice_content" rows="7" cols="63"></textarea>
-		<input type="submit" value="작성"/>
+		<label>공지사항 제목</label><br/><br/>
+		<input type="text" name="notice_title" style="width:400px;" class="form-control"/><br/><br/>
+		
+		<label>공지사항 내용</label>
+		<pre><textarea name="notice_content" rows="25" cols="60"class="form-control"></textarea></pre>
+		<button class="btn btn-primary" type="submit">작성</button>
 	</form>
 </body>
 </html>

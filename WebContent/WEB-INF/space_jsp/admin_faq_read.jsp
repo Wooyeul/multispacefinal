@@ -59,7 +59,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
+	
 	<form method="post" action="admin_faq_mod.do" name="frm">
 		<input type="hidden" name="faq_no" value="${vo.faq_no}" >
 		<label>FAQ 제목 :</label> 

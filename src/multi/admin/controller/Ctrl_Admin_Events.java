@@ -35,8 +35,6 @@ public class Ctrl_Admin_Events {
 		mnv.addObject("rl",rl);*/
 		
 		List<EventVO> rl = admin_EventDAO.search_All(search);
-		System.out.println(search.getSearch_option());
-		System.out.println(search.getSearch_content());
 		PaginationDTO pz = new PaginationDTO().init(pg, rl.size()) ;
 		search.setStart_no(pz.getSkip());
 		rl = admin_EventDAO.search_All(search);

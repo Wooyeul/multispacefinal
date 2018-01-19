@@ -85,14 +85,12 @@ $(document).ready(function() {
 		var dc = "?dc=" + new Date().getTime();
 		var reple_no = $("#com_board_reple_no").val();		
 		var com_board_reple_contents =  $("#content").val();
-		alert(com_board_reple_contents);
 		var url = "admin_community_board_replemod.do"+dc+"&com_board_reple_no="+reple_no
-		+"&com_board_reple_content=" + encodeURIComponent(com_board_reple_contents);
+		+"&com_board_reple_content=" + com_board_reple_contents;
 		ajaxGet(url,function(rt){ });
 		/*{com_board_reple_no : reple_no,
 			com_board_reple_content : com_board_reple_contents }
-			encodeURIComponent(com_board_reple_contents)
-		*/
+			encodeURIComponent(com_board_reple_contents) */
 		/* var url = "admin_community_board_replemod.do";
 		$.post(url,
 				{com_board_reple_no : reple_no,
@@ -176,7 +174,7 @@ window.onload = function() {
 	<div class="row">
 		<div class="col-lg-12">
 		 <p> <label> 글보기 </label></p> 
-<hr style="border: solid 0.5px black;">
+			<hr style="border: solid 0.5px black;">
 			<!-- 테이블 -->
 
 			<div class="table-responsive">

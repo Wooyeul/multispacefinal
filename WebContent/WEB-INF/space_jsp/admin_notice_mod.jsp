@@ -27,10 +27,12 @@ $(document).ready(function(){
 </head>
 <body>
 	<form action="admin_notice_mod2.do" method="POST" id="frm" >
-		제목 : <input type="text" name="notice_title" value="${vo.notice_title}"/><br/>
-		내용 :<textarea name="notice_content" rows="7" cols="63">${vo.notice_content}</textarea>
-		<input type="hidden" name="notice_no" value="${vo.notice_no}"/>
-		<input type="button" class="mod_complete" value="수정완료"/>
+		<label>공지 제목</label> 
+			<input type="text" name="notice_title" value="${vo.notice_title}" class="form-control"/><br/>
+		<label>내용</label> 
+		<pre><textarea name="notice_content" rows="7" cols="63" class="form-control">${vo.notice_content}</textarea></pre>
+			<input type="hidden" name="notice_no" value="${vo.notice_no}"/><br>
+			<input type="button" class="mod_complete" value="수정완료"/>
 	</form>
 	
 <!-- 공지 수정 완료시 모달 -->

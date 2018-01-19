@@ -5,12 +5,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" type="text/css"
-	href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
 <style type="text/css">
 .paginationdiv {
-	text-align: right;
+	text-align: center;
 }
 
 .select1 {
@@ -76,54 +74,65 @@ text-align: center;
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <body>
-	<div class="container">
-
-		<!-- Main component for a primary marketing message or call to action -->
-		<div class="jumbotron">
-			<h1>Multi Event</h1>
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+					이벤트
+			<form id="form_search" action="admin_event_list.do" method="post">
+				<input type="hidden" name="pg" value="" id="pg">
+				<input type="hidden" name="search_content" value="${search.search_content}">
+				<input type="hidden" name="search_option" value="${search.search_option}">
+			</form>
+			
+			<form id="textsearch" action="admin_event_list.do" method="post">
+				<div class="select2">
+					<select name="search_option">
+						<option value="0">선택해주세요</option>
+						<option value="1">제목</option>
+						<option value="2">내용</option>
+						<option value="3">제목 + 내용</option>
+					</select>
+				</div>
+			<div class="select2">
+				<input type="text" name="search_content" class="form-control" style="width: 300px;">
+						</div>
+						
+						<div class="select2">
+						<input class="btn" type="submit" value="검색">
+						</div>						
+				</form>
+				&nbsp;&nbsp;
+				<a href="admin_event_add.do"> 
+					<input class="btn" type="button" value="이벤트 작성">
+				</a>
+			</div>
+			<!-- /.panel-heading -->
+				<div class="panel-body">
+				  <div class="table-responsive">
+                     <table class="table table-hover">
+						<jl:forEach var="vo" items="${rl}">
+							<tr>
+								<td>${vo.eve_no}</td>
+								<td><a href="admin_event_read.do?eve_no=${vo.eve_no}"><img src="thumbnail/${vo.eve_thumb_img}" height="100" width="100"/></a></td>
+								<td>
+									<a href="admin_event_read.do?eve_no=${vo.eve_no}">${vo.eve_title}</a>
+								</td>
+								<td>${vo.the_time} </td>
+							</tr>
+						</jl:forEach>
+					</table>
+                   </div>
+				<!-- /.panel-body -->
+			</div>
+			<!-- /.panel -->
 		</div>
-
+		<!-- /.col-lg-12 -->
 	</div>
-	
 	<br/>
 	
-	<table border="1" cellspacing="0" cellpadding="8">
-	
-		<jl:forEach var="vo" items="${rl}">
-			<tr>
-				<td>${vo.eve_no}</td>
-				<td><a href="admin_event_read.do?eve_no=${vo.eve_no}"><img src="thumbnail/${vo.eve_thumb_img}" height="100" width="100"/></a></td>
-				<td>
-					<a href="admin_event_read.do?eve_no=${vo.eve_no}">${vo.eve_title}</a>
-				</td>
-				<td>${vo.the_time} </td>
-			</tr>
-		</jl:forEach>
-	</table>
-		
-		
-	<br/>
-	<form action="admin_event_add.do" method="post">
-		<input type="submit" value="이벤트 등록">
-	</form>
 	<br>
 <br>
-<form id="form_search" action="admin_event_list.do" method="post">
-	<input type="hidden" name="pg" value="" id="pg">
-	<input type="hidden" name="search_content" value="${search.search_content}">
-	<input type="hidden" name="search_option" value="${search.search_option}">
-</form>
-<form id="textsearch" action="admin_event_list.do" method="post">
-	<select name="search_option">
-		<option value="0">선택해주세요</option>
-		<option value="1">제목</option>
-		<option value="2">내용</option>
-		<option value="3">제목 + 내용</option>
-		<option value="4">작성자</option>
-	</select>
-	검색 : <input type="text" name="search_content">
-	<input type="submit" value="검색">
-</form>
+<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_event_list.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -148,5 +157,6 @@ text-align: center;
 				<li><a class="page" href="admin_event_list.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
+	</div>
 </body>
 </html>
