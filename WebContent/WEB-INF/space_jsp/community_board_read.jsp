@@ -251,14 +251,16 @@ $(document).ready(function() {
 				 	var list = window.eval("("+rt+")");
 				 	var html = "";
 				 	for( var i = 0 ; i < list.data.length ; i++ ){
-				 		html += "<tr><td><h4>"+list.data[i].user_id+"</h4></td>";
-				 		html += "<td><span id='rb_"+list.data[i].com_board_reple_no+"'><h4>"+list.data[i].com_board_reple_content+"</h4></span>";
-				 		html += "<td><h4>"+list.data[i].the_time+"</h4>";
+				 		html +="<table class='"+"table-hover'"+">";
+				 		html += "<tr><td width="+"150"+"><h4>"+list.data[i].user_id+"</h4></td>";
+				 		html += "<td width="+"1000"+"><span id='rb_"+list.data[i].com_board_reple_no+"'><h4>"+list.data[i].com_board_reple_content+"</h4></span>";
+				 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5>";
 						if('${user_id == list.data[i].user_id}'){
 				 			html += " <td><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_board_reple_no+"' xyz='"+list.data[i].com_board_reple_no+"' /></td>";
 					 		html += " <td><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/>";
 						}
 						html +="</td></tr>";
+						html +="</table>";
 				 	}//end for
 	                $('#reple_tr').html(html);
 			 	}else{
@@ -308,25 +310,28 @@ $(document).ready(function() {
 						<tr>
 							<td class="table_content" colspan="5">
 								<div class="pre"
-									style="padding: 10px; height: auto; min-height: 100px; overflow: auto;">
+									style="padding: 10px; height: auto; min-height: 200px; overflow: auto;">
 									<pre style="white-space: pre-wrap;"><h4>${vo.com_board_content}</h4></pre>
 								</div>
 							</td>
 						</tr>
+						</tbody>
 					</table>
 					<!-- 댓글 리스트가 추가될 영역 -->
-					<table class="table table-hover" id="reple_tr">
-						<hr style="border: solid 0.5px black;">
-						
-					</tbody>
+					<table>
+					<hr style="border: solid 0.5px black;">
 				</table>
+				<div id="reple_tr" style=" height: auto; min-height: 5px; overflow: auto;">
+				
+
+				</div>
 			</div>
 			<!-- /.table-responsive -->
 			
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
-	
+	</br>
 	<div class="replecontent">
 		<form id="add_reple_frm">
 			<jl:if test="${user_id ne ''}">

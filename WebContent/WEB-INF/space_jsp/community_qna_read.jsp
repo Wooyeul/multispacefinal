@@ -205,7 +205,7 @@
 			var dc = "?dc=" + new Date().getTime();
 			var url ="community_qna_reple_recom.do" + dc +"&com_qna_reple_no="+com_qna_reple_no+"&user_id="+user_id;
 			ajaxGet(url, function(rt) {
-				$("#recom_count"+com_qna_reple_no).html(rt);
+				$("#recom_count"+com_qna_reple_no).html("<h5>"+rt+"</h5>");
 			});
 		});
 	
@@ -243,7 +243,7 @@
 						<tr>
 							<td class="table_content" colspan="5">
 								<div class="pre"
-									style="padding: 10px; height: auto; min-height: 100px; overflow: auto;">
+									style="padding: 10px; height: auto; min-height: 200px; overflow: auto;">
 									<pre style="white-space: pre-wrap;"><h4>${vo.com_qna_content}</h4></pre>
 								</div>
 							</td>
@@ -279,16 +279,19 @@
 						</tr>
 					</thead> --%>
 					</table>
-					<table class="table table-hover">
+					<table class="table table-hover" style=" height: auto; min-height: 5px; overflow: auto;">
+					<hr style="border: solid 0.5px black;">
 						<jl:forEach var="rpl" items="${rp}" varStatus="vs">
 							<tr>
-								<td width="200"><h4>${rpl.user_id}</h4></td>
+								<td width="150">
+									<h4>${rpl.user_id}</h4>
+								</td>
 								<td width="1000">
 									<span id="rb_${rpl.com_qna_reple_no}"><h4>${rpl.com_qna_reple_content}</h4></span>
 								</td>
-								<td widht="250"><h4>${rpl.the_time}</h4></td>
+								<td widht="250"><h5>${rpl.the_time}</h5></td>
 								<td>
-									<div id="recom_count${rpl.com_qna_reple_no}">${rpl.recom_count}</div>
+									<div id="recom_count${rpl.com_qna_reple_no}"><h5>${rpl.recom_count}</h5></div>
 								</td>
 								<td>
 								<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
@@ -309,9 +312,7 @@
 								</jl:if>	
 								</td>
 							</tr>
-							
 						</jl:forEach>
-						
 					</tbody>
 				</table>
 			</div>
@@ -320,7 +321,7 @@
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
-	
+	</br>
 	<div class="replecontent">
 		<form action="community_qna_reple_add.do" method="post" id="reple_submit">
 			<jl:if test="${user_id ne ''}">
