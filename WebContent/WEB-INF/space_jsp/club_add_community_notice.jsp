@@ -43,7 +43,7 @@
 					
 					<input name="club_no" type="hidden" value="${club_no}"/>
 					<input name="user_id" type="hidden" value="${user_id}"/>
-					<input id="text_submit"type="button" value="등록" class="btn"/>&nbsp<input id="cancel" type="button" value="취소" class="btn"/>
+					<div align="right"><input id="text_submit" type="button" value="등록" class="btn"/>&nbsp<input id="cancel" type="button" value="취소" class="btn"/></div>
 				</form>
 			</div>
 	</section>
@@ -61,8 +61,8 @@
 					<h4>글을 등록 하시 겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='text_add__Yes'>등록</button>
-					<button type='button' class='btn btn-primary' id='text_add__No'>취소</button>
+					<button type='button' class='btn btn-default' id='text_add_Yes'>등록</button>
+					<button type='button' class='btn btn-primary' id='text_add_No'>취소</button>
 				</div>
 			</div>
 		</div>
@@ -90,39 +90,51 @@
 			$("#basic_modal_Yes").on("click",function(){
 				$("#basic_modal").modal("hide");
 			});
+			
+			/* 글 등록 모달 Yes or No */
+			$("#text_add_Yes").on("click",function(){
+				okBtnClick();
+			});
+			$("#text_add_No").on("click",function(){
+				cancelBtnClick();
+			});			
+			/* 글 등록 모달 Yes or No */
+			
+			var okBtnClick = function () {
+				var formData = $("#add_frm").serialize();
+				$.ajax({
+					type : "POST",
+					url : "club_add_community_notice_submit.do",
+					data : formData,
+					success	: function(rt) {
+						if(rt=="ok"){
+							$("#text_add_modal").modal("hide");
+							$("#basic_mobody").html("<h4>글이 등록 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").modal("hide");
+								location.href="club_community.do?club_no="+${club_no};
+							});
+						}else{
+							$("#text_add_modal").modal("hide");
+							$("#basic_mobody").html("<h4>글 등록 처리가 실패 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal_Yes").on("click",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							}); 
+						}
+				    }
+				});
+			}
+			var cancelBtnClick = function () {
+				$("#text_add_modal").modal("hide");
+			}
+			
+			
 			//글 등록 하기 버튼 클릭 시 이벤트 발생
 			$("#text_submit").on("click",function(){
 				$("#text_add_modal").modal("show");
-				$("#text_add__Yes").on("click",function(){
-					var formData = $("#add_frm").serialize();
-					$.ajax({
-						type : "POST",
-						url : "club_add_community_notice_submit.do",
-						data : formData,
-						success	: function(rt) {
-							if(rt=="ok"){
-								$("#text_add_modal").modal("hide");
-								$("#basic_mobody").html("<h4>글이 등록 되었습니다.</h4>");
-								$("#basic_modal").modal("show");
-								$("#basic_modal_Yes").on("click",function(){
-									$("#basic_modal").modal("hide");
-									location.href="club_community.do?club_no="+${club_no};
-								});
-							}else{
-								$("#text_add_modal").modal("hide");
-								$("#basic_mobody").html("<h4>글 등록 처리가 실패 되었습니다.</h4>");
-								$("#basic_modal").modal("show");
-								$("#basic_modal_Yes").on("click",function(){
-									$("#basic_modal").modal("hide");
-									location.reload();
-								}); 
-							}
-					    }
-					});
-				});
-				$("#mod_modal_No").on("click",function(){
-					$("#mod_modal").modal("hide");
-				});
 			});
 			
 			//취소 버튼 클릭 시 이벤트 발생
