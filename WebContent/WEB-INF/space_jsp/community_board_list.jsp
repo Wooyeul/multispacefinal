@@ -106,19 +106,19 @@
 	<table class="table table-hover cb_table">
 		<tr>
 			<th width="40"></th>
-			<th width="1000">제목</th>
-			<th width="100">글쓴이</th>
-			<th>작성일</th>
-			<th>조회</th>
-			<th>추천</th>
+			<th width="1000"><h4>제목</h4></th>
+			<th width="100"><h4>글쓴이</h4></th>
+			<th><h4>작성일</h4></th>
+			<th><h4>조회</h4></th>
+			<th><h4>추천</h4></th>
 			<jl:forEach var="vo" items="${board_list}">
 				<tr>
-					<td>${vo.com_board_no}</td>
-					<td><a href="community_board_read.do?com_board_no=${vo.com_board_no}">${vo.com_board_title}</a></td>
-					<td>${vo.user_id}</td>
-					<td>${vo.the_time}</td>
-					<td>${vo.view_count}</td>
-					<td>${vo.recom_count}</td>
+					<td><h4>${vo.com_board_no}</h4></td>
+					<td><a href="community_board_read.do?com_board_no=${vo.com_board_no}"><h4>${vo.com_board_title}</h4></a></td>
+					<td><h4>${vo.user_id}</h4></td>
+					<td><h4>${vo.the_time}</h4></td>
+					<td><h4>${vo.view_count}</h4></td>
+					<td><h4>${vo.recom_count}</h4></td>
 				</tr>
 
 			</jl:forEach>

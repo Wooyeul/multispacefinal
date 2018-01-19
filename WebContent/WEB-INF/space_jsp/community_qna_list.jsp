@@ -93,18 +93,18 @@
 	<table class="table table-hover">
 		<tr>
 			<th width="40"></th>
-			<th width="1000">제목</th>
-			<th>글쓴이</th>
-			<th>작성일</th>
-			<th>조회</th>
+			<th width="1000"><h4>제목</h4></th>
+			<th><h4>글쓴이</h4></th>
+			<th><h4>작성일</h4></th>
+			<th><h4>조회</h4></th>
 		</tr>
 		<jl:forEach var="vo" items="${qna_list}">
 			<tr>
-				<td>${vo.com_qna_no}</td>
-				<td><a href="community_qna_read.do?com_qna_no=${vo.com_qna_no}">${vo.com_qna_title}</a></td>
-				<td>${vo.user_id}</td>
-				<td>${vo.the_time}</td>
-				<td>${vo.view_count}</td>
+				<td><h4>${vo.com_qna_no}</h4></td>
+				<td><a href="community_qna_read.do?com_qna_no=${vo.com_qna_no}"><h4>${vo.com_qna_title}</h4></a></td>
+				<td><h4>${vo.user_id}</h4></td>
+				<td><h4>${vo.the_time}</h4></td>
+				<td><h4>${vo.view_count}</h4></td>
 			</tr>
 		</jl:forEach>
 	</table>
