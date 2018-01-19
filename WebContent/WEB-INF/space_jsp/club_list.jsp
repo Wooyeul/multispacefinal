@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<style>
-		ul {
+		.img_ul {
 		  list-style-type: none;
 		  width: 980px;
 		}
@@ -40,12 +40,15 @@
 		.category {
 			border-radius: 15px;
 		}
-		
+		.page_r{
+		width : 300px;
+		margin : 0 auto;
+		}
 	</style>
 </head>
 <body>
 	<div style="width: 1000px; margin: 20px;">
-		<ul>
+		<ul class="img_ul">
 			<jl:forEach  var="pvo" items="${map.vo}" varStatus="vs">
 				<li onclick="parent.location.href='club_detail.do?club_no=${pvo.club_no}'">
 					<img src="club_img/${pvo.club_thumb_img }">
@@ -59,7 +62,7 @@
 		</ul>
 	</div>
 	
-	<div align="right">
+	<div class="page_r">
 		<ul class="pagination pagination-sm">
 			<!-- 이전 페이지로 이동 : 10페이지 이전으로(블록 이동) -->
 			<jl:if test="${map.pz.hasPrevPagination }">

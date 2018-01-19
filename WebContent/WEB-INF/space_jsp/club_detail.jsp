@@ -28,22 +28,38 @@
 	<!-- *********************  header  ************************ -->
          <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
-<section class="listings">
-		<div class="wrapper">
-			<div class="properties_list">	
-				<div class="container">
-				
-					<div align="center" style="display: inline;"><h1 style="font: bold; color: #026fac;"><label>${vo.club_name} : </label></h1><h3><label>${vo.club_title}</label></h3><br/></div>
-					<div align="right"><label><h3 style="font: bold;">#현재 인원 ${vo.user_count+1}</h3></label></div><br/>
-					<label><h2 style="font: bold;">소개</h2></label><textarea rows="5" cols="30" disabled="disabled" class="form-control" style="font-size: large;">${vo.club_content}</textarea><br/>
-					<div align="right">
-					<input id="clubApply" type="button" value="신청하기" style="display: none" class="btn">
-					<input id="moveCommunity" type="button" value="모임커뮤니티 가기" style="display: none" class="btn">
-					</div>
-					<br/><br/><br/>
-					
-					<h3>모임 장소 추천 페이지(이미지 슬라이딩으로 구현 예정)</h3>
-					<%-- <div class="cycle-slideshow" align="center"
+	<section class="listings">
+		<div class="container">
+			<div class="wrapper">
+				<div align="center" style="display: inline;">
+					<h1 style="font: bold; color: #026fac;">
+						<label>${vo.club_name} : </label>
+					</h1>
+					<h3>
+						<label>${vo.club_title}</label>
+					</h3>
+					<br />
+				</div>
+				<div align="right">
+					<label><h3 style="font: bold;">#현재 인원
+							${vo.user_count+1}</h3></label>
+				</div>
+				<br /> <label><h2 style="font: bold;">소개</h2></label>
+				<textarea rows="5" cols="30" disabled="disabled"
+					class="form-control" style="font-size: large;">${vo.club_content}</textarea>
+				<br />
+				<div align="right">
+					<input id="clubApply" type="button" value="신청하기"
+						style="display: none" class="btn"> <input
+						id="moveCommunity" type="button" value="모임커뮤니티 가기"
+						style="display: none" class="btn">
+				</div>
+				<br />
+				<br />
+				<br />
+
+				<h3>모임 장소 추천 페이지(이미지 슬라이딩으로 구현 예정)</h3>
+				<%-- <div class="cycle-slideshow" align="center"
 						data-cycle-fx="scrollHorz"
 						data-cycle-pause-on-hover="true"
 						data-cycle-speed="200">
@@ -55,55 +71,60 @@
 					    <img src="thumbnail/Penguins.jpg"/>
 					    <img src="thumbnail/Tulips.jpg"/>
 				    </div> --%>
-				    <div id="img_slide">
-						<jl:forEach items="${sVO}" var="svo">
-							<a href="space_detail.do?space_no=${svo.space_no}">
-							<img src="thumbnail/${svo.space_thumb_img}" alt="공간 사진 없음"/></a>
-						</jl:forEach>
-				    </div>
-					
-					<!-- modal창 시작 -->
-					<form id="frm" action="club_apply.do" method="post">
-						<div id="modal" class="modal fade" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-head" align="center">
-										<h4>모임 신청</h4>
-									</div>
-									<div class="modal-body" align="center"><h3 id="modalbody">
-										<textarea name="apply_content" id="apply_content" class='form-control' rows="7" placeholder="자기소개를 입력하세요"></textarea>
-										<input name="user_id" type="hidden"value="${user_id}"/>
-										<input name="club_no" type="hidden"value="${vo.club_no}"/>
-									</h3></div>
-									<div id="ft" class="modal-footer">
-										<button type='button' class='btn btn-default' id='modal-btn-Yes'>등록</button>
-										<button type='button' class='btn btn-primary' id='modal-btn-No'>취소</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
-					<!-- modal창 끝 -->
-					
-					<!-- 모임커뮤니티 이동페이지 post방식으로 설정 -->
-					<div style="display: none">
-						<form id="move_frm" action="club_community.do" method="post">
-							<input name="club_no" type="hidden" value="${vo.club_no}"/>
-						</form>
-					</div>
-					<!-- 기본 modal창 시작 -->
-					<div id="basic_modal" class="modal fade" role="dialog">
+				<div id="img_slide">
+					<jl:forEach items="${sVO}" var="svo">
+						<a href="space_detail.do?space_no=${svo.space_no}"> <img
+							src="thumbnail/${svo.space_thumb_img}" alt="공간 사진 없음" /></a>
+					</jl:forEach>
+				</div>
+
+				<!-- modal창 시작 -->
+				<form id="frm" action="club_apply.do" method="post">
+					<div id="modal" class="modal fade" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div id="basic_mobody" class="modal-body" align="center"></div>
-								<div id="basic_ft" class="modal-footer">
-									<button type='button' class='btn btn-default' id='basic_modal_Yes'>확인</button>
+								<div class="modal-head" align="center">
+									<h4>모임 신청</h4>
+								</div>
+								<div class="modal-body" align="center">
+									<h3 id="modalbody">
+										<textarea name="apply_content" id="apply_content"
+											class='form-control' rows="7" placeholder="자기소개를 입력하세요"></textarea>
+										<input name="user_id" type="hidden" value="${user_id}" /> <input
+											name="club_no" type="hidden" value="${vo.club_no}" />
+									</h3>
+								</div>
+								<div id="ft" class="modal-footer">
+									<button type='button' class='btn btn-default'
+										id='modal-btn-Yes'>등록</button>
+									<button type='button' class='btn btn-primary' id='modal-btn-No'>취소</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- 기본 modal창 끝 -->
-				</div>	
+				</form>
+				<!-- modal창 끝 -->
+
+				<!-- 모임커뮤니티 이동페이지 post방식으로 설정 -->
+				<div style="display: none">
+					<form id="move_frm" action="club_community.do" method="post">
+						<input name="club_no" type="hidden" value="${vo.club_no}" />
+					</form>
+				</div>
+				<!-- 기본 modal창 시작 -->
+				<div id="basic_modal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div id="basic_mobody" class="modal-body" align="center"></div>
+							<div id="basic_ft" class="modal-footer">
+								<button type='button' class='btn btn-default'
+									id='basic_modal_Yes'>확인</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 기본 modal창 끝 -->
+
 			</div>
 		</div>
 	</section>

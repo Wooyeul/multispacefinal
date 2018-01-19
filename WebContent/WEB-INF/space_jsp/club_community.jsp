@@ -66,7 +66,7 @@
 											<span class="glyphicon glyphicon-user"></span>&nbsp${uvo.user_name}
 											<jl:if test="${vo.user_id eq user_id }">
 												<a class="release" user_id="${uvo.user_id }" club_no="${vo.club_no }" club_name="${vo.club_name}" href="#">
-													<span class="glyphicon glyphicon-remove:before"></span>
+													<span class="glyphicon glyphicon-remove"></span>
 												</a>
 											</jl:if>
 											<span user_id="${uvo.user_id}" class="user_name glyphicon glyphicon-envelope"></span>
