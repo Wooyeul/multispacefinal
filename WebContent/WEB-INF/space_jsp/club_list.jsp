@@ -4,9 +4,16 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
 	<style>
 		.img_ul {
 		  list-style-type: none;
@@ -93,12 +100,19 @@
 			</jl:if>
 		</ul>
 	</div>
-	
+	<div align="right">
+		<button id="btn" class="btn_square" type="button">모임등록</button>
+	</div>
 	<!-- 자바스크립트 -->
 	<script type="text/javascript">
-
+		$(document).ready(function(){
+			$("#btn").on("click",function(){
+				location.href="club_add_page.do";
+			});
+		});
 		function list(page){
 			parent.setCurpage(page);
+			
 		}
 	</script>
 </body>

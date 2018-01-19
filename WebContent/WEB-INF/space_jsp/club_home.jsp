@@ -21,14 +21,32 @@
 <script type="text/javascript" src="./common.js"></script>
 
 <style type="text/css">
-	 .selectdiv3 {
+	 .select_div3 {
 	 	width: 400px;
-		padding : 5px;
+		float: left;
+		margin-right: 5px;
+		margin-left: 5px;
 	}
 	.selectdiv1{
+		vertical-align : middle;
+		width: 800px;
+		float: left;
+	}
+	.select_div2{
+		width: 150px;
+		float: left;
+	}
+	.select_div1{
+		float: left;
+	}
+	.select_div4 {
+	 	width: 100px;
+		float: left;
+	}
+	.selecdiv0 {
 		width: 600px;
 		margin:0 auto;
-	}
+	}	
 	input[type="radio"] { 
 		display: none; 
 	} 
@@ -75,9 +93,9 @@
 
 	}
 	.form_back{
-	align :center;
-	background-color: #bfd9f2;
-	height : 300px;
+		align :center;
+		background-color: #bfd9f2;
+		height : 300px;
 	}
 	
 		
@@ -85,6 +103,18 @@
 		text-align : center;
 	}
 	
+	.iframe-design{
+		overflow-x:hidden; 
+		overflow-y:hidden;
+	}
+	.iframe-design2{
+		width :100%; 
+		height :220%;
+	}
+	.category_label{
+		margin-right: 20px;
+		margin-bottom: 10px;
+	}
 </style>
 </head>
 <body>
@@ -102,10 +132,10 @@
 						<div class="c_div" >
 							<jl:forEach items="${lmap}" var="l" varStatus="i">
 								<%-- <input num="${i.count}" class="a" type="radio" value="${l.l_category_no}" name="l_category_no" /><span style="color: gray;">${l.l_category_name}</span> --%>
-										<input id="l_${i.count}" name="l_category_no" value="${l.l_category_no}" type="radio"> 
-										<label for="l_${i.count}" style="margin-right: 20px;"><span></span>
-											${l.l_category_name}
-										</label>
+									<input id="l_${i.count}" name="l_category_no" value="${l.l_category_no}" type="radio"> 
+									<label for="l_${i.count}" class="category_label"><span></span>
+										${l.l_category_name}
+									</label>
 							</jl:forEach>
 						</div>
 					<br/>
@@ -120,26 +150,33 @@
 							</jl:forEach>
 						</div>
 				</div><br/>
-				<div class="selectdiv1">
-					<select name="search_option" class="input-sm">
-						<option value="0"></option>
-						<option value="5">클럽 이름</option>
-						<option value="1">제목</option>
-						<option value="2">내용</option>
-						<option value="3">제목+내용</option>
-						<option value="4">작성자 ID</option>
-					</select>
-						<input type="text" name="search_content" class="selectdiv3"/>
-						<input type="button" id="submitBtn" value="검색" class="btn"><br/>
+				<div class="selecdiv0">
+					<div class="selectdiv1">
+						<div class="select_div2">
+							<select name="search_option" class="form-control">
+								<option value="0"></option>
+								<option value="5">클럽 이름</option>
+								<option value="1">제목</option>
+								<option value="2">내용</option>
+								<option value="3">제목+내용</option>
+								<option value="4">작성자 ID</option>
+							</select>
+						</div>
+						<div class="select_div3">
+							<input type="text" name="search_content" class="form-control selectdiv3"/>
+						</div>
+						<div class="select_div4">
+							<input type="button" id="submitBtn" value="검색" class="btn">
+						</div>
+					</div>
 				</div>
 				<input id="curPage" name="curPage" type="hidden" value="">
 			</form>
 		</div>
 	<section class="listings">
 		<div class="wrapper">
-			<iframe id="boy" name="club_list" width="100%"></iframe>
-			<div align="right">
-				<button id="btn" class="btn_square" type="button">모임등록</button>
+			<div class="iframe-design">
+				<iframe id="boy" name="club_list" scrolling="no" class="iframe-design2"></iframe>
 			</div>
 		</div>
 	</section>
@@ -150,12 +187,6 @@
 	<!-- 자바스크립트 -->	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
-			/* 아이프레임 스크롤바 없애기 */
-			$('#boy').on("load",function(){
-	          var h = this.contentWindow.document.body.offsetHeight;
-	          $(this).height(h);
-	       });
 			
 			/* 로그인 안했으면 모임 등록 버튼 숨기기 */
 			if('${user_id}'==''){
@@ -169,9 +200,6 @@
 			
 			$("#frm").submit();
 			
-			$("#btn").on("click",function(){
-				location.href="club_add_page.do";
-			});
 			
 			$("#submitBtn").on("click",function(){
 				$("#curPage").attr("value",1);

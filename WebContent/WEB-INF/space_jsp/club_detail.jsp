@@ -52,10 +52,9 @@
 					class="form-control" style="font-size: large;">${vo.club_content}</textarea>
 				<br />
 				<div align="right">
-					<input id="clubApply" type="button" value="신청하기"
-						style="display: none" class="btn"> <input
-						id="moveCommunity" type="button" value="모임커뮤니티 가기"
-						style="display: none" class="btn">
+					<input id="clubApply" type="button" value="신청하기" style="display: none" class="btn"> 
+					<input id="club_mod_club" type="button" value="모임 수정하기" style="display: none" class="btn">
+					<input id="moveCommunity" type="button" value="모임커뮤니티 가기" style="display: none" class="btn">
 				</div>
 				<br />
 				<br />
@@ -75,6 +74,9 @@
 					    <img src="thumbnail/Tulips.jpg"/>
 				    </div> --%>
 				<div id="img_slide" align="center">
+					<jl:if test="${sVO eq '[]'}">
+						<h4>해당 지역에 등록된 공간이 없습니다.</h4>
+					</jl:if>
 					<jl:forEach items="${sVO}" var="svo">
 						<a href="space_detail.do?space_no=${svo.space_no}"> 
 						<img src="thumbnail/${svo.space_thumb_img}" alt="공간 사진 없음" /></a>
@@ -146,6 +148,7 @@
 			//flag와 user_id를 이용해서 신청버튼과 모임커뮤니티 버튼 조정.
 			if('${user_id}'=='${vo.user_id}'||'${user_id}'=='admin'||'${flag}'==''){
 				$("#moveCommunity").attr("style","display:inline;");
+				$("#club_mod_club").attr("style","display:inline;");
 			}else{
 				if('${flag}'=='10001'){
 					$("#clubApply").attr("style","display:inline;");
@@ -193,6 +196,10 @@
 			/* 모임커뮤니티 이동하는 이벤트 */
 			$("#moveCommunity").on("click",function(){
 				$("#move_frm").submit();
+			});
+			/* 모임 수정 페이지로 이동하는 이벤트 */
+			$("#club_mod_club").on("click",function(){
+				location.href="club_mod_club.do?club_no="+${vo.club_no};
 			});
 
 			/* 네비바 관련 script */
