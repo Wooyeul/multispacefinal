@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
@@ -35,16 +34,16 @@
 	 var url = "chk_login.do";
 	 	ajaxGet(url,function(rt){
 	 			
-	 // ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
+	 // ·Î±×ÀÎ ½ÇÆÐ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
 	 if(rt =="10002"){ 
 		$("#login_nav").hide();				$("#non_login_nav").show();
 	}
 	 					
-	 // ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
+	 // ·Î±×ÀÎ ½Ã : rt°ª -> user_name
 	else if(rt!=""){ 
 	$("#login_nav").show();
 	$("#non_login_nav").hide(); 
-	$("#user_name").text(rt+"ë‹˜ì´ ë¡œê·¸ì¸í•˜ì…¨ìŠµë‹ˆë‹¤.");
+	$("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
 		}
 	 });
  });
@@ -90,7 +89,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" target="iframe1"  href="admin_main.html"> <!-- <i class="fa fa-heart"></i>  --> ê´€ë¦¬ìž íŽ˜ì´ì§€ </a>
+                <a class="navbar-brand" target="iframe1"  href="admin_main.html"> <!-- <i class="fa fa-heart"></i>  --> °ü¸®ÀÚ ÆäÀÌÁö </a>
                 
                 
             </div>
@@ -102,70 +101,70 @@
                     <ul class="nav" id="side-menu">
                         
                         
-                        <!-- left ë°”  -->
+                        <!-- left ¹Ù  -->
                        
 
                         <li>
-                            <a target="iframe1" href="admin_users.do"> <i class="fa fa-user fa-fw"></i> íšŒì› ê´€ë¦¬ í•­ëª©<span class="fa arrow"></span></a>
+                            <a target="iframe1" href="admin_users.do"> <i class="fa fa-user fa-fw"></i> È¸¿ø °ü¸® Ç×¸ñ<span class="fa arrow"></span></a>
                             <ul class="nav nav-2-level">
                                 <li>
-                                    <a id="admin_users.do" target="iframe1" href="admin_users.do">ì¼ë°˜ íšŒì› ê´€ë¦¬</a>
+                                    <a id="admin_users.do" target="iframe1" href="admin_users.do">ÀÏ¹Ý È¸¿ø °ü¸®</a>
                                 </li>
                                 <li>
-                                    <a target="iframe1" href="admin_user_stastic.do">ë°©ë¬¸ìž í†µê³„</a>
+                                    <a target="iframe1" href="admin_user_stastic.do">¹æ¹®ÀÚ Åë°è</a>
                                 </li>
                             </ul>
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> íŒë§¤ìž ê´€ë¦¬ í•­ëª© <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> ÆÇ¸ÅÀÚ °ü¸® Ç×¸ñ <span class="fa arrow"></span></a>
                             <ul class="nav nav-2-level">
                                 <li>
-                                    <a target="iframe1" href="admin_hosts.do">íŒë§¤ìž íšŒì› ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_hosts.do">ÆÇ¸ÅÀÚ È¸¿ø °ü¸®</a>
                                 </li>
                                 <li>
-                                    <a target="iframe1" href="admin_host_request.do">ì‹ ì²­ ë¦¬ìŠ¤íŠ¸</a>
+                                    <a target="iframe1" href="admin_host_request.do">½ÅÃ» ¸®½ºÆ®</a>
                                 </li>
                             </ul>
                         </li>
                         
                           
                         <li>
-                            <a target="iframe1" href="admin_spaces.do"><i class="fa  fa-list-alt fa-fw"></i> ê³µê°„ ê´€ë¦¬ </a>
+                            <a target="iframe1" href="admin_spaces.do"><i class="fa  fa-list-alt fa-fw"></i> °ø°£ °ü¸® </a>
                         </li>
                         
                         
                         <li>
-                            <a target="iframe1" href="admin_clubs.do"><i class="fa fa-gamepad   fa-fw"></i> ëª¨ìž„ ê´€ë¦¬ </a>
+                            <a target="iframe1" href="admin_clubs.do"><i class="fa fa-gamepad   fa-fw"></i> ¸ðÀÓ °ü¸® </a>
                         </li>
                         
                         
                         <li>
-                            <a href="#"><i class="fa  fa-comments fa-fw"></i> ì»¤ë®¤ë‹ˆí‹° ê´€ë¦¬ í•­ëª© <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-comments fa-fw"></i> Ä¿¹Â´ÏÆ¼ °ü¸® Ç×¸ñ <span class="fa arrow"></span></a>
                             <ul class="nav nav-2-level">
                                 <li>
-                                    <a target="iframe1" href="admin_community_board_list.do">ìžìœ ê²Œì‹œíŒ ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_community_board_list.do">ÀÚÀ¯°Ô½ÃÆÇ °ü¸®</a>
                                 </li>
                                 <li>
-                                    <a target="iframe1" href="admin_community_qna_list.do">Q&Aê²Œì‹œíŒ ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_community_qna_list.do">Q&A°Ô½ÃÆÇ °ü¸®</a>
                                 </li>
                                  <li>
-                                    <a target="iframe1" href="admin_community_review_list.do">í›„ê¸°ê²Œì‹œíŒ ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_community_review_list.do">ÈÄ±â°Ô½ÃÆÇ °ü¸®</a>
                                 </li>
                             </ul>
                         </li>
                         
                        <li>
-                            <a href="#"><i class="fa fa-warning   fa-fw"></i> ê³µì§€ í•­ëª© ê´€ë¦¬ <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-warning   fa-fw"></i> °øÁö Ç×¸ñ °ü¸® <span class="fa arrow"></span></a>
                             <ul class="nav nav-2-level">
                                 <li>
-                                   <a target="iframe1" href="admin_notice_list.do">ê³µì§€ê´€ë¦¬ ê´€ë¦¬</a>
+                                   <a target="iframe1" href="admin_notice_list.do">°øÁö°ü¸® °ü¸®</a>
                                 </li>
                                 <li>
-                                    <a target="iframe1" href="admin_event_list.do">ì´ë²¤íŠ¸ ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_event_list.do">ÀÌº¥Æ® °ü¸®</a>
                                 </li>
                                  <li>
-                                    <a target="iframe1" href="admin_faq.do">FAQ ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_faq.do">FAQ °ü¸®</a>
                                 </li>
                             </ul>
                         </li>
@@ -173,28 +172,28 @@
                         
                         
                          <li>
-                            <a href="#"><i class="fa fa-question-circle  fa-fw"></i> ì¼ëŒ€ì¼ ê´€ë¦¬<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-question-circle  fa-fw"></i> ÀÏ´ëÀÏ °ü¸®<span class="fa arrow"></span></a>
                             <ul class="nav nav-2-level">
                                 <li>
-                                    <a target="iframe1" href="admin_o2oQnA.do">ì¼ëŒ€ì¼ ë¬¸ì˜ ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_o2oQnA.do">ÀÏ´ëÀÏ ¹®ÀÇ °ü¸®</a>
                                 </li>
                                 <li>
-                                    <a target="iframe1" href="admin_o2oQnA_list.do">ë¬¸ì˜ ë¯¸ ë‹µë³€ ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_o2oQnA_list.do">¹®ÀÇ ¹Ì ´äº¯ °ü¸®</a>
                                 </li>
                                  <li>
-                                    <a target="iframe1" href="admin_o2oQnA_list_reply.do">ë¬¸ì˜ ë‹µë³€ ê´€ë¦¬</a>
+                                    <a target="iframe1" href="admin_o2oQnA_list_reply.do">¹®ÀÇ ´äº¯ °ü¸®</a>
                                 </li>
                             </ul>
                         </li>
                         
                          <li>
-                            <a href="#"><i class="fa  fa-envelope-o  fa-fw"></i> ìª½ì§€ ê´€ë¦¬<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-envelope-o  fa-fw"></i> ÂÊÁö °ü¸®<span class="fa arrow"></span></a>
                             <ul class="nav nav-2-level">
                                 <li>
-                                    <a target="iframe1" href="admin_message_write.do">ìª½ì§€ë³´ë‚´ê¸°</a>
+                                    <a target="iframe1" href="admin_message_write.do">ÂÊÁöº¸³»±â</a>
                                 </li>
                                  <li>
-                                    <a target="iframe1" href="admin_message_read_to.do">ë³´ë‚¸ìª½ì§€í•¨</a>
+                                    <a target="iframe1" href="admin_message_read_to.do">º¸³½ÂÊÁöÇÔ</a>
                                 </li>
                             </ul>
                         </li>

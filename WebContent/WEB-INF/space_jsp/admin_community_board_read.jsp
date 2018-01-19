@@ -37,10 +37,8 @@ text-align: center;
 }
 
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="common.js" type="text/javascript"></script>
 <!-- Bootstrap Core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -86,12 +84,20 @@ $(document).ready(function() {
 	$("#basic_modal_yes").on("click",function(){
 		var dc = "?dc=" + new Date().getTime();
 		var reple_no = $("#com_board_reple_no").val();		
-		var com_board_reple_content =  $("#content").val() ;
-		alert(reple_no);
-		alert(com_board_reple_content);
-		var url = "admin_community_board_replemod.do?"+dc+"&com_board_reple_no="+reple_no
-				+"&com_board_reple_content=" + com_board_reple_content;
+		var com_board_reple_contents =  $("#content").val();
+		alert(com_board_reple_contents);
+		var url = "admin_community_board_replemod.do"+dc+"&com_board_reple_no="+reple_no
+		+"&com_board_reple_content=" + encodeURIComponent(com_board_reple_contents);
 		ajaxGet(url,function(rt){ });
+		/*{com_board_reple_no : reple_no,
+			com_board_reple_content : com_board_reple_contents }
+			encodeURIComponent(com_board_reple_contents)
+		*/
+		/* var url = "admin_community_board_replemod.do";
+		$.post(url,
+				{com_board_reple_no : reple_no,
+				 com_board_reple_content : encodeURIComponent(com_board_reple_contents) },
+			function(rt){ }); */
 		location.reload();
 	});
 
@@ -99,7 +105,7 @@ $(document).ready(function() {
 	// 댓글 수정 모달 뛰우기
 	$(".modReple").on("click", function() {
 		$("#com_board_reple_no").val($(this).attr("xyz"));
-		$("#content").val($("#" + $(this).attr("abcd")).text());
+		$("#content").val($("#" + $(this).attr("abcd")).text() );
 		$("#lblContent").text("글번호 :" + $(this).attr("xyz"));
 		$("#repleModal").modal("show");
 	});

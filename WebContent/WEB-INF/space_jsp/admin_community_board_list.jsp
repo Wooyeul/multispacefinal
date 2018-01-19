@@ -5,8 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 .paginationdiv {
 	text-align: center;
@@ -79,11 +78,11 @@ text-align:  center;
 			<div class="panel-heading">
 					자유게시판
 				
-					<form id="form_search" action="admin_community_board_list.do" method="post">
+				<form id="form_search" action="admin_community_board_list.do" method="post">
 					<input type="hidden" name="pg" value="" id="pg">
 					<input type="hidden" name="search_content" value="${search.search_content}">
 					<input type="hidden" name="search_option" value="${search.search_option}">
-					</form>
+				</form>
 					
 					<form id="textsearch" action="admin_community_board_search.do">
 						<div class="select2">
@@ -104,9 +103,7 @@ text-align:  center;
 						
 						<div class="select2">
 						<input class="btn" type="submit" value="검색">
-						</div>	
-						
-						
+						</div>						
 					</form>
 				
 						<a href="admin_community_board_add.do"> <input class="btn"
@@ -162,12 +159,7 @@ text-align:  center;
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
-	<form id="form_search" action="admin_community_board_list.do">
-		<input type="hidden" name="pg" value="" id="pg"> <input
-			type="hidden" name="search_content" value="${search.search_content}">
-		<input type="hidden" name="search_option"
-			value="${search.search_option}">
-	</form>
+
 
 	<div class="paginationdiv">
 		<ul class="pagination pagination-sm">

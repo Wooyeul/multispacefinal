@@ -1,6 +1,8 @@
 package multi.admin.controller;
 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -123,10 +125,12 @@ public class Ctrl_Admin_Freeboard {
 	
 	@RequestMapping("/admin_community_board_replemod.do")
 	@ResponseBody
-	public String admin_community_board_replemod(@ModelAttribute Community_board_repleVO  pvo) throws Exception {
-		System.out.println(pvo.getCom_board_reple_no());
-		System.out.println(pvo.getCom_board_reple_content());
-		System.out.println(BeanUtil.utf2kr(pvo.getCom_board_reple_content()));
+	public String admin_community_board_replemod(HttpServletRequest request) throws Exception {
+		
+		Community_board_repleVO  pvo = new Community_board_repleVO();
+		pvo.setCom_board_no( request.getParameter("com_board_no") );
+		pvo.setCom_board_reple_no( request.getParameter("com_board_reple_no") );
+		pvo.setCom_board_reple_content( request.getParameter("com_board_reple_content") );
 		admin_FreeboardDAO.modReple(pvo);
 		return  null;
 	}

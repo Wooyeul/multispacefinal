@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
@@ -64,7 +63,7 @@ text-align: center;
 <body>
 
 <br>
-<a href="admin_user_del_write_list.do">íƒˆí‡´ ì‹œí‚¨ ìœ ì € ë¦¬ìŠ¤íŠ¸ ë³´ê¸°(íŒë§¤ìž í¬í•¨)</a>
+<a href="admin_user_del_write_list.do">Å»Åð ½ÃÅ² À¯Àú ¸®½ºÆ® º¸±â(ÆÇ¸ÅÀÚ Æ÷ÇÔ)</a>
 <br>
 <br>
 
@@ -72,26 +71,26 @@ text-align: center;
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            ìœ ì € ë¦¬ìŠ¤íŠ¸
+                            À¯Àú ¸®½ºÆ®
                             <form id="textsearch" action="admin_users.do" method="post">
                             <div class="select">
                             
 								<select name="search_option"  class="form-control" style="width: 200px;">
-									<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-									<option value="1">ì´ë¦„</option>
-									<option value="2">ìœ ì € ID</option>
-									<option value="3">ë‹‰ë„¤ìž„</option>
-									<option value="4">ì„±ë³„</option>
-									<option value="5">ì´ë©”ì¼</option>
-									<option value="6">ìš°íŽ¸ ë²ˆí˜¸</option>
-									<option value="7">ìƒì„¸ ì£¼ì†Œ</option>
+									<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+									<option value="1">ÀÌ¸§</option>
+									<option value="2">À¯Àú ID</option>
+									<option value="3">´Ð³×ÀÓ</option>
+									<option value="4">¼ºº°</option>
+									<option value="5">ÀÌ¸ÞÀÏ</option>
+									<option value="6">¿ìÆí ¹øÈ£</option>
+									<option value="7">»ó¼¼ ÁÖ¼Ò</option>
 								</select>
 						
 								</div>
 								<div class="select">
 									<input type="text" name="search_content" class="form-control" style="width: 300px;" >
 								</div>
-								<input type="submit" class="btn" value="ê²€ìƒ‰" >
+								<input type="submit" class="btn" value="°Ë»ö" >
 							</form>
                         </div>
                         
@@ -100,10 +99,10 @@ text-align: center;
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>ì´ë¦„</th>
-                                        <th>ì‚¬ìš©ìž ì•„ì´ë””</th>
-                                        <th>ì´ë©”ì¼</th>
-                                        <th>íƒˆí‡´ì‹œí‚¤ê¸°</th>
+                                        <th>ÀÌ¸§</th>
+                                        <th>»ç¿ëÀÚ ¾ÆÀÌµð</th>
+                                        <th>ÀÌ¸ÞÀÏ</th>
+                                        <th>Å»Åð½ÃÅ°±â</th>
                                     </tr>
                                 </thead>
 								
@@ -112,8 +111,8 @@ text-align: center;
 										<td>${vo.user_name}</td>
 										<td><a href="admin_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 										<td>${vo.email}</td>
-										<td><a href="admin_user_del_write.do?user_id=${vo.user_id}&user_name=${vo.user_name}&email=${vo.email}">íƒˆí‡´
-												ì‹œí‚¤ê¸°</a></td>
+										<td><a href="admin_user_del_write.do?user_id=${vo.user_id}&user_name=${vo.user_name}&email=${vo.email}">Å»Åð
+												½ÃÅ°±â</a></td>
 									</tr>
 								</jl:forEach>
 							
@@ -128,22 +127,22 @@ text-align: center;
                 <!-- /.col-lg-12 -->
             </div>
 
-<!-- íŽ˜ì´ì§• -->
+<!-- ÆäÀÌÂ¡ -->
 <br>
 <br>
 <!-- <form id="textsearch" action="admin_users.do" method="post">
 	<select name="search_option">
-		<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-		<option value="1">ì´ë¦„</option>
-		<option value="2">ìœ ì € ID</option>
-		<option value="3">ë‹‰ë„¤ìž„</option>
-		<option value="4">ì„±ë³„</option>
-		<option value="5">ì´ë©”ì¼</option>
-		<option value="6">ìš°íŽ¸ ë²ˆí˜¸</option>
-		<option value="7">ìƒì„¸ ì£¼ì†Œ</option>
+		<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+		<option value="1">ÀÌ¸§</option>
+		<option value="2">À¯Àú ID</option>
+		<option value="3">´Ð³×ÀÓ</option>
+		<option value="4">¼ºº°</option>
+		<option value="5">ÀÌ¸ÞÀÏ</option>
+		<option value="6">¿ìÆí ¹øÈ£</option>
+		<option value="7">»ó¼¼ ÁÖ¼Ò</option>
 	</select>
-	ê²€ìƒ‰ : <input type="text" name="search_content">
-	<input type="submit" value="ê²€ìƒ‰">
+	°Ë»ö : <input type="text" name="search_content">
+	<input type="submit" value="°Ë»ö">
 </form> -->
 <div class="paginationdiv">
 	<ul class="pagination pagination-sm">
@@ -171,6 +170,6 @@ text-align: center;
 			</jl:if>
 		</ul>
 	</div>
-<!-- íŽ˜ì´ì§• -->
+<!-- ÆäÀÌÂ¡ -->
 </body>
 </html>

@@ -1,6 +1,8 @@
 package multi.admin.controller;
  
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -107,8 +109,13 @@ public class Ctrl_Admin_Qna {
 	
 	@RequestMapping("/admin_community_qna_reple_mod.do")
 	@ResponseBody
-	public String community_board_replemod(@ModelAttribute  Community_qna_repleVO  pvo) throws Exception {
-			admin_QnaDAO_MysqlImpl.modReple(pvo);
+	public String community_board_replemod(HttpServletRequest request) throws Exception {
+		Community_qna_repleVO pvo = new Community_qna_repleVO();
+		
+		pvo.setCom_qna_reple_no( Integer.parseInt(request.getParameter("com_qna_reple_no")) );
+		pvo.setCom_qna_reple_content( request.getParameter("com_qna_reple_content") );
+		
+		admin_QnaDAO_MysqlImpl.modReple(pvo);
 		return null;
 	}
 /*	@RequestMapping("/admin_community_qna_reple_mod.do")
