@@ -57,4 +57,5 @@ public interface ClubDAO {
 	public int club_del_club(User_clubVO pvo) throws Exception;
 	public int club_user_release(Club_applyVO pvo) throws Exception;
 	public List<Map<String, Object>> find_best_club() throws Exception;
+	public int club_mod_club_submit(ClubVO pvo) throws Exception;
 }

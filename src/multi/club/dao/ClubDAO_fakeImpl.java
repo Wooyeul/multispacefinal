@@ -257,4 +257,9 @@ public class ClubDAO_fakeImpl implements ClubDAO{
 		return sqlSession.selectList("club.find_best_club");
 	}
 
+	@Override
+	public int club_mod_club_submit(ClubVO pvo) throws Exception {
+		return sqlSession.update("club.club_mod_club",pvo);
+	}
+
 }

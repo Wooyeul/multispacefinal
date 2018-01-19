@@ -128,6 +128,47 @@ public class CtrlClub {
 			return e.toString();
 		}
 	}
+	//모임 수정 실행
+	@RequestMapping("/club_mod_club_submit.do")
+	@ResponseBody
+	public String club_mod_club_submit(HttpServletRequest request) throws Exception {
+		try{
+			String savePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\club_img";
+			int sizeLimit = 1024*1024*15;
+			MultipartRequest mpr = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+			ClubVO pvo = new ClubVO();	      
+			pvo.setClub_name(mpr.getParameter("club_name"));
+			pvo.setClub_title(mpr.getParameter("club_title"));
+			pvo.setMax_member(Integer.parseInt(mpr.getParameter("max_member")));
+			pvo.setClub_content(mpr.getParameter("club_content"));
+			pvo.setClub_thumb_img(mpr.getFilesystemName("club_thumb_img"));
+			pvo.setL_category_no(Integer.parseInt(mpr.getParameter("l_category_no")));
+			pvo.setC_category_no(Integer.parseInt(mpr.getParameter("c_category_no")));
+			pvo.setUser_id(mpr.getParameter("user_id"));
+			pvo.setClub_no(BeanUtil.pInt(mpr.getParameter("club_no")));
+			pvo.setCreate_time(mpr.getParameter("create_time"));
+			clubDAO.club_mod_club_submit(pvo);
+			
+			return "ok";
+		}catch(Exception e){
+			e.printStackTrace();
+			return e.toString();
+		}
+	}
+	//모임 수정
+	@RequestMapping("/club_mod_club.do")
+	public ModelAndView club_mod_club(@ModelAttribute ClubVO pvo) throws Exception {
+		ModelAndView mnv = new ModelAndView("club_mod_club");
+		List<Map<Integer, Object>> lmap = clubDAO.club_find_l_category();
+		List<Map<Integer, Object>> cmap = clubDAO.club_find_c_category();
+		ClubVO vo = clubDAO.club_find_detail(pvo);
+
+		mnv.addObject("lmap", lmap);
+		mnv.addObject("cmap", cmap);
+		mnv.addObject("vo", vo);
+		
+		return mnv;
+	}
 	
 	//모임 디테일 페이지 호출
 	@RequestMapping("/club_detail.do")

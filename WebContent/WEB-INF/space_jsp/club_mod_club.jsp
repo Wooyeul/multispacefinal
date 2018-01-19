@@ -42,26 +42,42 @@
 		<div class="wrapper">
 			<div class="properties_list">
 				<div class="container">
-					<div align="center"><h1 class="h1_design">모임 등록 페이지</h1></div><br/>
-					<form id="club_add_frm">
-						<label class="label_design">클럽이름</label><input id="club_name" name="club_name" type="text" class="form-control"><br/>
-						<label class="label_design">제목</label><input id="club_title" name="club_title" type="text" class="form-control"><br/>
-						<label class="label_design">인원</label><input id="max_member" name="max_member"type="number" class="form-control"><br/>
-						<label class="label_design">소개</label><textarea id="club_content" name="club_content" rows="8" cols="24" class="form-control"></textarea><br/>
-						<label class="label_design">사진등록</label><input id="club_thumb_img" name="club_thumb_img" type="file" class="form-control"><br/>
-						<select id="l_category_no" name="l_category_no" class="input-sm">
+					<div align="center"><h1 class="h1_design">모임 수정 페이지</h1></div><br/>
+					<form id="club_mod_frm">
+						<label class="label_design">클럽이름</label><input id="club_name" name="club_name" type="text" class="form-control" value="${vo.club_name }"><br/>
+						<label class="label_design">제목</label><input id="club_title" name="club_title" type="text" class="form-control" value="${vo.club_title }"><br/>
+						<label class="label_design">인원</label><input id="max_member" name="max_member"type="number" class="form-control" value="${vo.max_member}"><br/>
+						<label class="label_design">소개</label><textarea id="club_content" name="club_content" rows="8" cols="24" class="form-control" >${vo.club_content}</textarea><br/>
+						<label class="label_design">사진등록</label><input id="club_thumb_img" name="club_thumb_img" type="file" class="form-control" value="${vo.club_thumb_img}"><br/>
+						<select id="l_category_no" name="l_category_no" class="input-sm" >
 							<option>지역선택</option>
 							<jl:forEach items="${lmap}" var="m">
-								<option value="${m.l_category_no}">${m.l_category_name}</option>
+								<jl:choose>
+									<jl:when test="${vo.l_category_no eq m.l_category_no}">
+										<option value="${m.l_category_no}" selected="selected">${m.l_category_name}</option>
+									</jl:when>
+									<jl:otherwise>
+										<option value="${m.l_category_no}">${m.l_category_name}</option>
+									</jl:otherwise>
+								</jl:choose>
 							</jl:forEach>
 						</select>
 						<select id="c_category_no" name="c_category_no" class="input-sm">
 							<option>분야선택</option>
 							<jl:forEach items="${cmap}" var="c">
-								<option value="${c.c_category_no}">${c.c_category_name}</option>
+								<jl:choose>
+									<jl:when test="${vo.c_category_no eq c.c_category_no}">
+										<option value="${c.c_category_no}" selected="selected">${c.c_category_name}</option>
+									</jl:when>
+									<jl:otherwise>
+										<option value="${c.c_category_no}">${c.c_category_name}</option>
+									</jl:otherwise>
+								</jl:choose>
 							</jl:forEach>
 						</select>
-						<input name="user_id" type="hidden" value="${user_id}">
+						<input name="user_id" type="hidden" value="${vo.user_id}">
+						<input name="club_no" type="hidden" value="${vo.club_no}">
+						<input name="create_time" type="hidden" value="${vo.create_time}">
 						<div align="right"><input id="submit_btn" type="button" value="등록하기" class="btn">&nbsp<input id="cancel" type="button" value="취소하기" class="btn"></div>
 					</form>
 				</div>
@@ -121,18 +137,18 @@
 			});			
 			/* 글 등록 모달 Yes or No */			
 			var okBtnClick = function () {
-				var frm = $("#club_add_frm")[0];
+				var frm = $("#club_mod_frm")[0];
 				var formData = new FormData(frm);
 				$.ajax({
 					type : "POST",
-					url : "club_add_page_submit.do",
+					url : "club_mod_club_submit.do",
 					data : formData,
 					processData: false,
                     contentType: false,
 					success	: function(rt) {
 						if(rt=="ok"){
 							$("#club_add_modal").modal("hide");
-							$("#basic_mobody").html("<h4>모임이 등록 되었습니다.</h4>");
+							$("#basic_mobody").html("<h4>모임이 수정 되었습니다.</h4>");
 							$("#basic_modal").modal("show");
 							$("#basic_modal").on("hidden.bs.modal",function(){
 								$("#basic_modal").modal("hide");
@@ -140,7 +156,7 @@
 							});
 						}else{
 							$("#club_add_modal").modal("hide");
-							$("#basic_mobody").html("<h4>모임 등록 처리가 실패 되었습니다.</h4>");
+							$("#basic_mobody").html("<h4>모임 수정 처리가 실패 되었습니다.</h4>");
 							$("#basic_modal").modal("show");
 							$("#basic_modal").on("hidden.bs.modal",function(){
 								$("#basic_modal").modal("hide");

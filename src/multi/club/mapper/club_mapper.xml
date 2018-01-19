@@ -131,6 +131,12 @@
 		{call p_club_addClub(#{user_id},#{club_name},#{club_title},#{club_content},#{club_thumb_img},#{max_member},#{l_category_no},#{c_category_no})}
 	</update>
 	<!-- club 등록 끝 -->
+	
+	<!-- club 등록 시작 -->
+	<update id="club_mod_club" parameterType="main.vo.ClubVO" statementType="CALLABLE">
+		{call p_club_mod_club(#{club_no},#{user_id},#{club_name},#{club_title},#{club_content},#{club_thumb_img},#{max_member},#{l_category_no},#{c_category_no},#{create_time})}
+	</update>
+	<!-- club 등록 끝 -->
 
 	<!-- 모임 신청 시작 -->
 	<update id="club_add_apply" parameterMap="PM_club_add_apply" statementType="CALLABLE">
@@ -343,6 +349,31 @@ BEGIN
 END$$
 DELIMITER ;
 p_club_addClub 프로시저 끝-->
+
+<!--p_club_mod_club 프로시저 시작
+DROP PROCEDURE IF EXISTS p_club_mod_club;
+DELIMITER $$
+
+CREATE PROCEDURE p_club_mod_club(
+	IN v_club_no INT,
+	IN v_user_id VARCHAR(20),
+	IN v_club_name VARCHAR(50),
+	IN v_club_title VARCHAR(100),
+	IN v_club_content VARCHAR(500),
+	IN v_club_thumb_img VARCHAR(100),
+	IN v_max_member INT,
+	IN v_l_category_no INT,
+	IN v_c_category_no INT,
+	IN v_create_time DATETIME
+)
+BEGIN
+	UPDATE ClubT SET club_name= v_club_name, club_title = v_club_title, 
+					club_content= v_club_content, club_thumb_img= v_club_thumb_img, max_member = v_max_member, create_time = v_create_time, 
+					l_category_no = v_l_category_no, c_category_no = v_c_category_no 
+				WHERE club_no = v_club_no;
+END$$
+DELIMITER ;
+p_club_mod_club 프로시저 끝-->
 
 <!--p_club_find_detail 프로시저 시작
 DROP PROCEDURE IF EXISTS p_club_find_detail;
