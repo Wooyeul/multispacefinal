@@ -27,10 +27,6 @@
 	width: 600px;
 		margin:0 auto;
 }
-.jumbotron {
-	margin-top:-20px;
-	text-align: center;
-}
 
 .button {
 	text-align: center;

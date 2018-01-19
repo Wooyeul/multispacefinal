@@ -1,97 +1,118 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
+	<title>Welcome to Multi Space</title>
 	
-		.jumbotron{
-			text-align:center;
-		}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
 		
-	</style>
-	<script src="common.js"></script>
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	<style type="text/css">
+	
+		.qnamod {
+			margin-top: 27px;
+			margin-bottom: 27px;
+			text-align: center;
+			font-size: 2em;
+			font-family: "lato-regular", Helvetica, Arial, sans-serif;
+		}
+		.container {
+			width: 600px;
+		}
+		.modbtn {
+			text-align:center;
+		}
+	</style>
 	<script>
 	$(document).ready(function() {
 		
-		/* ±âº» ¸ğ´Ş Ã¢ ´İ±â ¹öÆ° Å¬¸¯ ½Ã ¸ğ´Ş ¼û±è */
+		/* ê¸°ë³¸ ëª¨ë‹¬ ì°½ ë‹«ê¸° ë²„íŠ¼ í´ë¦­ ì‹œ ëª¨ë‹¬ ìˆ¨ê¹€ */
 		$("#basic_modal_Yes").on("click", function() {
 			$("#basic_modal").modal("hide");
 		});
-		/* ±âº» ¸ğ´Ş Ã¢ ´İ±â ¹öÆ° Å¬¸¯ ½Ã ¸ğ´Ş ¼û±è */
+		/* ê¸°ë³¸ ëª¨ë‹¬ ì°½ ë‹«ê¸° ë²„íŠ¼ í´ë¦­ ì‹œ ëª¨ë‹¬ ìˆ¨ê¹€ */
 		
 		
-		/* ¸ğ´ŞÃ¢ ¼û°ÜÁö¸é ¼öÁ¤ submit ½ÇÇà */
+		/* ëª¨ë‹¬ì°½ ìˆ¨ê²¨ì§€ë©´ ìˆ˜ì • submit ì‹¤í–‰ */
 		$("#basic_modal").on("hidden.bs.modal",function(){
 			$("#qna_mod").submit();
 		});
-		/* ¸ğ´ŞÃ¢ ¼û°ÜÁö¸é ¼öÁ¤ submit ½ÇÇà */
+		/* ëª¨ë‹¬ì°½ ìˆ¨ê²¨ì§€ë©´ ìˆ˜ì • submit ì‹¤í–‰ */
 		
-		/* ¼öÁ¤ ¸ğ´Ş Ã¢ yes or no ¹öÆ° Å¬¸¯ ½Ã */
+		/* ìˆ˜ì • ëª¨ë‹¬ ì°½ yes or no ë²„íŠ¼ í´ë¦­ ì‹œ */
 			$("#text_modal_Yes").on("click", function() {
 				$("#text_mod_modal").modal("hide");
-				$("#basic_mobody").html("<h4>±ÛÀÌ ¼öÁ¤ µÇ¾ú½À´Ï´Ù.</h4>");
+				$("#basic_mobody").html("<h4>ê¸€ì´ ìˆ˜ì • ë˜ì—ˆìŠµë‹ˆë‹¤.</h4>");
 				$("#basic_modal").modal("show");
 			});
 			$("#text_modal_No").on("click", function() {
 				$("#text_mod_modal").modal("hide");
 			});
 		
-		/* ¼öÁ¤ ¸ğ´Ş Ã¢ yes or no ¹öÆ° Å¬¸¯ ½Ã */
+		/* ìˆ˜ì • ëª¨ë‹¬ ì°½ yes or no ë²„íŠ¼ í´ë¦­ ì‹œ */
 	});
 	</script>
 </head>
 <body>
-	<div id="i" class="jumbotron panel-primary">
-		<h1>QnA</h1>
+	<div class="qnamod"><h2>QnA ìˆ˜ì •í•˜ê¸°</h2></div>
+	<div class="container">
+		<form action="community_qna_mod2.do" method="POST" id="qna_mod">
+			ì œëª© : <input class="form-control" type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
+			ë‚´ìš© :<textarea class="form-control" name="com_qna_content" rows="10" cols="100">${vo.com_qna_content}</textarea>
+			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+			<div class="modbtn">
+				<input type="button" value="QnAìˆ˜ì •" class="btn btn-info btn-lg" data-toggle="modal" data-target="#text_mod_modal"/>
+			</div>
+		</form>
 	</div>
 	
-	<form action="community_qna_mod2.do" method="POST" id="qna_mod">
-		Á¦¸ñ : <input type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
-		³»¿ë :<textarea name="com_qna_content" rows="7" cols="63">${vo.com_qna_content}</textarea>
-		<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-		<input type="button" value="QnA¼öÁ¤" class="btn btn-info btn-sm" data-toggle="modal" data-target="#text_mod_modal"/>
-	</form>
 	
 	
+	<!-- ëª¨ë‹¬ ì°½ ë¶€ë¶„ -->
 	
-	<!-- ¸ğ´Ş Ã¢ ºÎºĞ -->
-	
-	<!-- ±Û ¼öÁ¤ modalÃ¢ ½ÃÀÛ -->
+	<!-- ê¸€ ìˆ˜ì • modalì°½ ì‹œì‘ -->
 	<div id="text_mod_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header" align="center"><h4>±Û ¼öÁ¤</h4></div>
+				<div id="mohead" class="modal-header" align="center"><h4>ê¸€ ìˆ˜ì •</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-				<h4>±ÛÀ» ¼öÁ¤ ÇÏ½Ã °Ú½À´Ï±î?</h4>
+				<h4>ê¸€ì„ ìˆ˜ì • í•˜ì‹œ ê² ìŠµë‹ˆê¹Œ?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='text_modal_Yes'>¼öÁ¤</button>
-					<button type='button' class='btn btn-primary' id='text_modal_No'>Ãë¼Ò</button>
+					<button type='button' class='btn btn-default' id='text_modal_Yes'>ìˆ˜ì •</button>
+					<button type='button' class='btn btn-primary' id='text_modal_No'>ì·¨ì†Œ</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ±Û ¼öÁ¤ modalÃ¢ ³¡ -->	
-	<!-- ±âº» modalÃ¢ ½ÃÀÛ -->
+	<!-- ê¸€ ìˆ˜ì • modalì°½ ë -->	
+	<!-- ê¸°ë³¸ modalì°½ ì‹œì‘ -->
 	<div id="basic_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>´İ±â</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>ë‹«ê¸°</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ±âº» modalÃ¢ ³¡ -->
+	<!-- ê¸°ë³¸ modalì°½ ë -->
 	
 	
 	
@@ -103,11 +124,11 @@
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		        <div class="modal-body">
-		          <p>QnA¸¦ ¼öÁ¤ ÇÏ½Ã°Ú½À´Ï±î?</p>
+		          <p>QnAë¥¼ ìˆ˜ì • í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</p>
 		        </div>
 		        <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnClose" value="´İ±â">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnQnASub" value="¼öÁ¤">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnClose" value="ë‹«ê¸°">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnQnASub" value="ìˆ˜ì •">
 		        </div>
 		      </div>
 		    </div>
@@ -120,10 +141,10 @@
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		        <div class="modal-body">
-		          <p>QnA ¼öÁ¤ ¿Ï·á!</p>
+		          <p>QnA ìˆ˜ì • ì™„ë£Œ!</p>
 		        </div>
 		         <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="È®ÀÎ">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="í™•ì¸">
 		        </div>
 		      </div>
 	    </div>

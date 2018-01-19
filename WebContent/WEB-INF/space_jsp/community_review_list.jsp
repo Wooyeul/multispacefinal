@@ -48,7 +48,6 @@
 <hr style="border: solid 0.5px black;">
 	<table class="table table-hover">
 		<tr>
-			<th width="40"></th>
 			<th width="80"><h4>방번호</h4></th>
 			<th width="200"><h4>제목</h4></th>
 			<th width="600"><h4>내용</h4></th>
@@ -61,7 +60,6 @@
 		
 		<jl:forEach items="${rl}" var="rl">
 		<tr>
-			<td>${rl.review_no}</td>
 			<td>${rl.space_no}</td>
 			<td>${rl.review_title}</td>
 			<td>${rl.review_content}</td>
