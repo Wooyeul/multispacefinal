@@ -138,8 +138,8 @@ $(document).ready(function() {
 	
 		<form method="POST" action="admin_community_qna_reple_mod.do" id="reple_form" name="frm">
 		<div id="repleModal" class="modal" role="dialog">
-			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}"
-				name="com_qna_no" /> <input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
+			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}" name="com_qna_no" />
+			<input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">

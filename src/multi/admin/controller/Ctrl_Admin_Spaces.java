@@ -104,7 +104,6 @@ public class Ctrl_Admin_Spaces {
 
 		List<SpaceVO> ls = spring().getBean("sqlSession",SqlSession.class).
 			selectList("admin_space_search_All", new Admin_search2VO(searchs) );
-		mnv.addObject("ls", ls);
 		
 		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
 		search.setStart_no(pz.getSkip());

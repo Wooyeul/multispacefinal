@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%><%@taglib
-	prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,7 +80,7 @@ text-align: center;
 <script>
 
 $(document).ready(function() {
-	// QnA ëŒ“ê¸€ ìˆ˜ì •ì‹œ ëª¨ë‹¬
+	// QnA ´ñ±Û ¼öÁ¤½Ã ¸ğ´Ş
 	$("#btnClose").on("click",function(){
 		location.href = "admin_community_qna_read.do?com_qna_no=${vo.com_qna_no}";
 	});
@@ -88,7 +88,7 @@ $(document).ready(function() {
 		$("#repleModal").modal("hide");
 		$("#basic_modal").modal("show");
 	});
-	$("#basic_mobody").html("<h4>ëŒ“ê¸€ ìˆ˜ì •ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.<h4>");
+	$("#basic_mobody").html("<h4>´ñ±Û ¼öÁ¤ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.<h4>");
 	$("#basic_modal_yes").on("click",function(){
 		var reple_no = $("#com_qna_reple_no").val();		
 		var com_qna_reple_content = $("#content").val();
@@ -100,11 +100,11 @@ $(document).ready(function() {
 	$(".modReple").on("click", function() {
 		$("#com_qna_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
-		$("lblcontent").text("ê¸€ë²ˆí˜¸ :" + $(this).attr("xyz"));
+		$("lblcontent").text("±Û¹øÈ£ :" + $(this).attr("xyz"));
 		$("#repleModal").modal("show");
 	});
 	
-	// QnA ì‚­ì œì‹œ ëª¨ë‹¬
+	// QnA »èÁ¦½Ã ¸ğ´Ş
 	$(".qna_remove").on("click",function(){
 		$("#qna_No").val( $(this).attr("com_qna_no") );
 		$("#text_modal").modal("show");
@@ -119,8 +119,8 @@ $(document).ready(function() {
 	});
 	
 	
-	// QnA ë¦¬í”Œ ì‚­ì œì‹œ ëª¨ë‹¬
-	// <a> íƒœê·¸ë¡œ ê°’ì„ ë¶ˆëŸ¬ ì˜¬ ë•Œ class í–ˆì„ ë•Œ ë™ì‘ ë¨.
+	// QnA ¸®ÇÃ »èÁ¦½Ã ¸ğ´Ş
+	// <a> ÅÂ±×·Î °ªÀ» ºÒ·¯ ¿Ã ¶§ class ÇßÀ» ¶§ µ¿ÀÛ µÊ.
 	$(".remove_qna_re").on("click",function(){
 		$("#com_qna_No").val( $(this).attr("com_qna_no") );
 		$("#com_qna_reple_No").val( $(this).attr("com_qna_reple_no") );
@@ -149,9 +149,9 @@ $(document).ready(function() {
 		<br>
 	<div class="row">
 		<div class="col-lg-12">
-		 <p> <label> QnA ê¸€ë³´ê¸° </label></p> 
+		 <p> <label> QnA ±Ûº¸±â </label></p> 
 <hr style="border: solid 0.5px black;">
-			<!-- í…Œì´ë¸” -->
+			<!-- Å×ÀÌºí -->
 
 			<div class="table-responsive">
 				<table class="table">
@@ -190,14 +190,17 @@ $(document).ready(function() {
 							
 									
 							<form action="admin_community_qna_mod.do" method="post">
-								<input type="submit" value="QnAìˆ˜ì •"/>
+								<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+								<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
+								<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
+								<input type="submit" value="QnA¼öÁ¤"/>
 							</form>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-								<input type="button" class="qna_remove" com_qna_no="${vo.com_qna_no}"  value="QnAì‚­ì œ"/>
+								<input type="button" class="qna_remove" com_qna_no="${vo.com_qna_no}"  value="QnA»èÁ¦"/>
 							</td>
 						</tr>
 					<thead>
@@ -208,16 +211,16 @@ $(document).ready(function() {
 				<td>${rpl.user_id}</td>
 				<td>
 				<span id="rb_${rpl.com_qna_reple_no}"> ${rpl.com_qna_reple_content} </span>
-				<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple" href="#">ìˆ˜ì •</a>
+				<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple" href="#">¼öÁ¤</a>
 				</td>
 				<td>${rpl.the_time}</td>
 				<td>
 					<div id="recom_count">${rpl.recom_count}</div>
 				</td>
 				<td>
-					[<a href="admin_community_qna_reple_recom.do?user_id=${user_id}&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">ì¶”ì²œ</a>]
+					[<a href="admin_community_qna_reple_recom.do?user_id=${user_id}&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">ÃßÃµ</a>]
 				</td>
-				<td>[<a href="admin_community_qna_reple_del.do?com_qna_no=${rpl.com_qna_no }&com_qna_reple_no=${rpl.com_qna_reple_no}">ì‚­ì œ</a>]</td>
+				<td>[<a href="#" class="remove_qna_re" com_qna_no="${rpl.com_qna_no }" com_qna_reple_no="${rpl.com_qna_reple_no}" >»èÁ¦</a>]</td>
 			</tr>
 		</jl:forEach>
 					</tbody>
@@ -238,25 +241,25 @@ $(document).ready(function() {
 <hr style="border: solid 0.5px black;">
 <form action="admin_community_qna_reple_add.do" method="POST">
 <div class="select1">
-		<label> ëŒ“ê¸€ë‹¬ê¸° </label>
+		<label> ´ñ±Û´Ş±â </label>
 </div>
 <div class="select2">	
-		<input type="text" name="com_board_reple_content" style="width: 600px; height:50px;" class="form-control"/>
+		<input type="text" name="com_qna_reple_content" style="width: 600px; height:50px;" class="form-control"/>
 		<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" /> 
 		<input type="hidden" name="user_id" value="${user_id}" /> 
 	</div>	
 <div class="select3">	
-		<input type="submit" class="btn" value="ëŒ“ê¸€ë‹¬ê¸°" />
+		<input type="submit" class="btn" value="´ñ±Û´Ş±â" />
 </div>
 </form>
 
 
 
-<!-- ëª¨ë‹¬ì‹œì‘ -->
-		<form method="POST" action="admin_community_qna_reple_mod.do" id="reple_form" name="frm">
+<!-- ¸ğ´Ş½ÃÀÛ -->
+	<form method="POST" action="admin_community_qna_reple_mod.do" id="reple_form" name="frm">
 		<div id="repleModal" class="modal" role="dialog">
-			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}"
-				name="com_qna_no" /> <input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
+			<input type="hidden" id="com_qna_no" value="${vo.com_qna_no}" name="com_qna_no" /> 
+			<input id="com_qna_reple_no" type="hidden" name="com_qna_reple_no" />
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
@@ -264,16 +267,16 @@ $(document).ready(function() {
 							<label id="lblContent" for="content"></label>
 							<textarea name ="com_qna_reple_content" class="form-control" id="content" rows="7"></textarea>
 						</div>
-						<button class="btn btn-primary btn-sm" id="btnClose">ë‹«ê¸°</button>
-						<button class="btn btn-primary btn-sm" id="btnreMod">ìˆ˜ì •</button>
+						<input type="button" class="btn btn-primary btn-sm" id="btnClose" value="´İ±â">
+						<input type="button" class="btn btn-primary btn-sm" id="btnreMod" value="¼öÁ¤">
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
-<!-- ëª¨ë‹¬ë -->	
+<!-- ¸ğ´Ş³¡ -->	
 
-<!-- í¼-->
+<!-- Æû-->
 		<form action="admin_community_qna_reple_add.do" method="post">
 		
 			<input type="hidden" name="user_id" value="${user_id}"/>
@@ -294,52 +297,52 @@ $(document).ready(function() {
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 		
 		</form>
-<!-- í¼ë -->		
+<!-- Æû³¡ -->		
 
-<!-- QnA ê¸€ ì‚­ì œì‹œ ëª¨ë‹¬ -->
+<!-- QnA ±Û »èÁ¦½Ã ¸ğ´Ş -->
 		<div id="text_modal" class="modal fade" role="dialog">
 			<input type="hidden" id="qna_No" value="0"/>
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="text_mohead" class="modal-header"align="center"><h4>ê¸€ ì‚­ì œ</h4></div>
+					<div id="text_mohead" class="modal-header"align="center"><h4>±Û »èÁ¦</h4></div>
 					<div id="text_mobody" class="modal-body" align="center">
-						<h4>ê¸€ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+						<h4>±ÛÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 					</div>
 					<div id="text_ft" class="modal-footer">
-						<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>í™•ì¸</button>
-						<button type='button' class='btn btn-primary' id='text_modal_no'>ì·¨ì†Œ</button>
+						<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>È®ÀÎ</button>
+						<button type='button' class='btn btn-primary' id='text_modal_no'>Ãë¼Ò</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		
-		<!-- QnA ë¦¬í”Œ ì‚­ì œì‹œ ëª¨ë‹¬ -->
+		<!-- QnA ¸®ÇÃ »èÁ¦½Ã ¸ğ´Ş -->
 		<div id="re_modal" class="modal fade" role="dialog">
 			<input type="hidden" id="com_qna_No" value="0"/>
 			<input type="hidden" id="com_qna_reple_No" value="0"/>	
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="re_mohead" class="modal-header"align="center"><h4>ëŒ“ê¸€ ì‚­ì œ</h4></div>
+					<div id="re_mohead" class="modal-header"align="center"><h4>´ñ±Û »èÁ¦</h4></div>
 					<div id="re_mobody" class="modal-body" align="center">
-						<h4>ëŒ“ê¸€ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+						<h4>´ñ±ÛÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 					</div>
 					<div id="re_ft" class="modal-footer">
-						<button type='button' class='btn btn-default' to-delete="delete_${vs2.count}"  id='re_modal_yes'>í™•ì¸</button>
-						<button type='button' class='btn btn-primary' id='re_modal_no'>ì·¨ì†Œ</button>
+						<button type='button' class='btn btn-default' to-delete="delete_${vs2.count}"  id='re_modal_yes'>È®ÀÎ</button>
+						<button type='button' class='btn btn-primary' id='re_modal_no'>Ãë¼Ò</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
-<!-- QnA ê¸€, ëŒ“ê¸€ ìˆ˜ì • ì™„ë£Œì‹œ ì“°ëŠ” ëª¨ë‹¬ -->		
+<!-- QnA ±Û, ´ñ±Û ¼öÁ¤ ¿Ï·á½Ã ¾²´Â ¸ğ´Ş -->		
 <div id="basic_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="basic_mobody" class="modal-body" align="center">
 			</div>
 			<div id="basic_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' id='basic_modal_yes'>ë‹«ê¸°</button>
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>´İ±â</button>
 			</div>
 		</div>
 	</div>

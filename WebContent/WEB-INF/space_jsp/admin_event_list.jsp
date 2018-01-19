@@ -103,17 +103,17 @@ text-align: center;
 		
 		
 	<br/>
-	<form action="event_add.do" method="GET">
+	<form action="admin_event_add.do" method="post">
 		<input type="submit" value="이벤트 등록">
 	</form>
 	<br>
 <br>
-<form id="form_search" action="admin_event_list.do">
+<form id="form_search" action="admin_event_list.do" method="post">
 	<input type="hidden" name="pg" value="" id="pg">
 	<input type="hidden" name="search_content" value="${search.search_content}">
 	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
-<form id="textsearch" action="admin_event_list.do">
+<form id="textsearch" action="admin_event_list.do" method="post">
 	<select name="search_option">
 		<option value="0">선택해주세요</option>
 		<option value="1">제목</option>

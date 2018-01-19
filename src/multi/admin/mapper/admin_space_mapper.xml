@@ -158,25 +158,25 @@
 						price like '%${vo.content}%'
 					</when>
 					<when test="vo.option=='max_people'">
-						price like '%${vo.content}%'
+						max_people like '%${vo.content}%'
 					</when>
 					<when test="vo.option=='min_people'">
-						price like '%${vo.content}%'
+						min_people like '%${vo.content}%'
 					</when>
 					<when test="vo.option=='space_call'">
-						price like '%${vo.content}%'
+						space_call like '%${vo.content}%'
 					</when>
 					<when test="vo.option=='zipcode'">
-						price like '%${vo.content}%'
+						zipcode like '%${vo.content}%'
 					</when>
 					<when test="vo.option=='s_category_no'">
-						price like '%${vo.content}%'
+						s_category_no like '%${vo.content}%'
 					</when>
 					<when test="vo.option=='l_category_no'">
-						price like '%${vo.content}%'
+						l_category_no like '%${vo.content}%'
 					</when>
 					<when test="vo.option=='the_time'">
-						price like '%${vo.content}%'
+						the_time like '%${vo.content}%'
 					</when>
 				</choose>
 			</foreach>

@@ -75,24 +75,20 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-lg-12">
 								<div class="container">
-						<form action="admin_community_board_mod2.do" method="POST">
+						<form action="admin_community_board_mod2.do" method="POST" id="frm">
 
 							<div class="form-group">
 							<br/>
 								<label> ${mvo.user_id} 님 글 수정  <p class="fa fa-pencil"> </p></label> <br/><br/>
 								
 								 <label>제목</label> 
-								 <input	type="text" size="30" class="form-control"
-								name="com_board_title" value="${mvo.com_board_title}" />
-								
-									<input type="hidden" size="30" name="user_id"
-									value="${mvo.user_id}" /><br/>
+								 <input	type="text" size="30" class="form-control" name="com_board_title" value="${mvo.com_board_title}" />
+									<input type="hidden" size="30" name="user_id" value="${mvo.user_id}" /><br/>
 									 <label>내용</label> 
 								<textarea name="com_board_content" rows="25" 
 									class="form-control">${mvo.com_board_content}</textarea>
-								<input type="hidden" name="com_board_no"
-									value="${mvo.com_board_no}" /> <br /> <input
-									class="btn" type="submit" value="수정" />
+								<input type="hidden" name="com_board_no" value="${mvo.com_board_no}" /> <br /> 
+								<input class="btn mod_complete" type="button" value="수정" />
 							</div>
 						</form>
 

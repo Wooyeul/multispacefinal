@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="euc-kr"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
@@ -17,6 +16,7 @@ table {
 <script src="common.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
+	// 공간 삭제에 대한 모달
 	$(".remove_space").on("click",function(){
 		$("#space_No").val( $(this).attr("space_no") );
 		

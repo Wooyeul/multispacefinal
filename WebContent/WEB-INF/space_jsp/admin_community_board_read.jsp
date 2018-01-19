@@ -228,9 +228,8 @@ window.onload = function() {
 										${vo2.com_board_reple_content} </span>
 										<a abcd="rb_${vo2.com_board_reple_no}"
 									xyz="${vo2.com_board_reple_no}" class="modReple" href="#">수정</a>
-									<a
-									href="admin_community_board_repledel.do?com_board_reple_no=${vo2.com_board_reple_no}&com_board_no=${vo2.com_board_no}">[x]
-								</a></td>
+								
+									<a class="remove_free_re" board_reple_no="${vo2.com_board_reple_no}" board_no="${vo2.com_board_no}" href="#" >[x] </a></td>
 								<td>${vo2.the_time}</td>
 							</tr>
 						</jl:forEach>
@@ -283,8 +282,8 @@ window.onload = function() {
 								id="content" rows="7"></textarea>
 						</div>
 
-						<button class="btn btn-primary btn-sm" id="btnClose">닫기</button>
-						<button class="btn btn-primary btn-sm" id="btnreMod">수정</button>
+						<input type="button"  class="btn btn-primary btn-sm" id="btnClose" value="닫기">
+						<input type="button" class="btn btn-primary btn-sm" id="btnreMod" value="수정">
 					</div>
 				</div>
 			</div>

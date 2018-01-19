@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -62,19 +62,19 @@
     <![endif]-->
 <script>
 $(document).ready(function(){
-	// ê³µê°„ ì‚­ì œì— ëŒ€í•œ ëª¨ë‹¬
+	// °ø°£ »èÁ¦¿¡ ´ëÇÑ ¸ð´Þ
 	$(".remove_space").on("click",function(){
 		$("#space_No").val( $(this).attr("space_no") );
 		
 		$("#text_modal").modal("show");
 	});
-	//yesë²„íŠ¼ í´ë¦­ í–ˆì„ ë•Œ ì‹¤í–‰í•  function
+	//yes¹öÆ° Å¬¸¯ ÇßÀ» ¶§ ½ÇÇàÇÒ function
 	$("#text_modal_yes").on("click",function(){
 		var del_space_no = $("#space_No").val();
 			location.href = "admin_space_remove.do?space_no=" + del_space_no;
 		$("#text_modal_modal").modal("hide");
 	});
-	//noë²„íŠ¼ í´ë¦­ í–ˆì„ ë•Œ ì‹¤í–‰í•  function
+	//no¹öÆ° Å¬¸¯ ÇßÀ» ¶§ ½ÇÇàÇÒ function
 	$("#text_modal_no").on("click",function(){
 		$("#text_modal").modal('hide');
 	});
@@ -87,27 +87,27 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">ê³µê°„ìƒì„¸ê²€ìƒ‰ê²°ê³¼<br></div><!-- /.panel-heading -->
-
+				<div class="panel-heading">°ø°£»ó¼¼°Ë»ö°á°ú<br></div><!-- /.panel-heading -->
+			
+		<form id="textsearch" action="admin_spaces_search.do" method="post">
 			<div class="col-lg-6">
 					<br>
 					<div class="select">
-						<form id="textsearch" action="admin_spaces_search.do">
 							<div class="select1">
 								<select name="option" class="form-control">
-									<option value="crn">ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸</option>
-									<option value="space_title">ê³µê°„ ì´ë¦„</option>
-									<option value="space_content">ê³µê°„ ë‚´ìš©</option>
-									<option value="open_time">ì˜¤í”ˆ ì‹œê°„</option>
-									<option value="close_time">í´ë¡œì¦ˆ ì‹œê°„</option>
-									<option value="price">ê°€ê²©</option>
-									<option value="max_people">ìµœëŒ€ ì¸ì›</option>
-									<option value="min_people">ìµœì†Œ ì¸ì›</option>
-									<option value="space_call">ê³µê°„ ì „í™” ë²ˆí˜¸</option>
-									<option value="zipcode">ìš°íŽ¸ë²ˆí˜¸</option>
-									<option value="s_category_no">ê³µê°„ ì¹´í…Œê³ ë¦¬</option>
-									<option value="l_category_no">ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</option>
-									<option value="the_time">ìƒì„±ì¼</option>
+									<option value="crn">»ç¾÷ÀÚ µî·Ï¹øÈ£</option>
+									<option value="space_title">°ø°£ ÀÌ¸§</option>
+									<option value="space_content">°ø°£ ³»¿ë</option>
+									<option value="open_time">¿ÀÇÂ ½Ã°£</option>
+									<option value="close_time">Å¬·ÎÁî ½Ã°£</option>
+									<option value="price">°¡°Ý</option>
+									<option value="max_people">ÃÖ´ë ÀÎ¿ø</option>
+									<option value="min_people">ÃÖ¼Ò ÀÎ¿ø</option>
+									<option value="space_call">°ø°£ ÀüÈ­ ¹øÈ£</option>
+									<option value="zipcode">¿ìÆí¹øÈ£</option>
+									<option value="s_category_no">°ø°£ Ä«Å×°í¸®</option>
+									<option value="l_category_no">Àå¼Ò Ä«Å×°í¸®</option>
+									<option value="the_time">»ý¼ºÀÏ</option>
 								</select>
 							</div>
 
@@ -116,9 +116,8 @@ $(document).ready(function(){
 							</div>
 
 							<div class="select3">
-								<input class="btn" type="submit" value="ê²€ìƒ‰">
+								<input class="btn" type="submit" value="°Ë»ö">
 							</div>
-						</form>
 
 					</div>
 				</div> 
@@ -126,26 +125,22 @@ $(document).ready(function(){
 				<div class="col-lg-6">
 					<br>
 					<div class="select">
-						<form id="textsearch" action="admin_spaces_search2.do">
 
 							<div class="select2">
-								<select name="option" class="form-control">
-									<option value="">ì •ë ¬ì„ ì„ íƒí•´ì£¼ì„¸ìš”</option>
-									<option value="d_desc">ìµœì‹ ìˆœìœ¼ë¡œ ì •ë ¬</option>
-									<option value="d_asc">ì˜¤ëž˜ëœìˆœìœ¼ë¡œ ì •ë ¬</option>
-									<option value="p_desc">ë¹„ì‹¼ ìˆœìœ¼ë¡œ ì •ë ¬</option>
-									<option value="p_asc">ê°€ê²© ì‹¼ ìˆœìœ¼ë¡œ ì •ë ¬</option>
+								<select name="option2" class="form-control">
+									<option value="">Á¤·ÄÀ» ¼±ÅÃÇØÁÖ¼¼¿ä</option>
+									<option value="d_desc">ÃÖ½Å¼øÀ¸·Î Á¤·Ä</option>
+									<option value="d_asc">¿À·¡µÈ¼øÀ¸·Î Á¤·Ä</option>
+									<option value="p_desc">ºñ½Ñ ¼øÀ¸·Î Á¤·Ä</option>
+									<option value="p_asc">°¡°Ý ½Ñ ¼øÀ¸·Î Á¤·Ä</option>
 								</select>
 							</div>
-
-							<div class="select3">
-								<input type="submit" class="btn" value="ì „ì²´ ì •ë ¬í•˜ê¸°">
-							</div>
-							<input type="checkbox" name="re" value="Y">ìƒì„¸ ê²€ìƒ‰ í• ë ¤ë©´ ì²´í¬&nbsp;<br>
-						</form>
+							
+							<input type="checkbox" name="re" value="Y">»ó¼¼ °Ë»ö ÇÒ·Á¸é Ã¼Å©&nbsp;<br>
+						
 					</div>
 				</div> 
-
+			</form>
 
 			<div class="panel-body">
 				<br> <br> <br>
@@ -154,21 +149,21 @@ $(document).ready(function(){
 					id="dataTables-example">
 					<thead>
 						<tr>
-							<th>ì‚¬ì—…ìž ë“±ë¡ ë²ˆí˜¸</th>
-							<th>ê³µê°„ ì´ë¦„</th>
-							<th>ê³µê°„ ë‚´ìš©</th>
-							<th>ê³µê°„ ì¸ë¸Œë„¤ì¼ ì´ë¯¸ì§€</th>
-							<th>ì˜¤í”ˆ ì‹œê°„</th>
-							<th>í´ë¡œì¦ˆ ì‹œê°„</th>
-							<th>ê°€ê²©</th>
-							<th>ìµœëŒ€ ì¸ì›</th>
-							<th>ìµœì†Œ ì¸ì›</th>
-							<th>ê³µê°„ ë²ˆí˜¸</th>
-							<th>ì£¼ì†Œ</th>
-							<th>ê³µê°„ ì¹´í…Œê³ ë¦¬</th>
-							<th>ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</th>
-							<th>ìƒì„±ì¼</th>
-							<th>ì‚­ì œí•˜ê¸°</th>
+							<th>»ç¾÷ÀÚ µî·Ï ¹øÈ£</th>
+							<th>°ø°£ ÀÌ¸§</th>
+							<th>°ø°£ ³»¿ë</th>
+							<th>°ø°£ ½æºê³×ÀÏ ÀÌ¹ÌÁö</th>
+							<th>¿ÀÇÂ ½Ã°£</th>
+							<th>Å¬·ÎÁî ½Ã°£</th>
+							<th>°¡°Ý</th>
+							<th>ÃÖ´ë ÀÎ¿ø</th>
+							<th>ÃÖ¼Ò ÀÎ¿ø</th>
+							<th>°ø°£ ¹øÈ£</th>
+							<th>ÁÖ¼Ò</th>
+							<th>°ø°£ Ä«Å×°í¸®</th>
+							<th>Àå¼Ò Ä«Å×°í¸®</th>
+							<th>»ý¼ºÀÏ</th>
+							<th>»èÁ¦ÇÏ±â</th>
 						</tr>
 					</thead>
 					<jl:forEach var="vo" items="${ls}">
@@ -189,7 +184,7 @@ $(document).ready(function(){
 							<td>${vo.s_category_no}</td>
 							<td>${vo.l_category_no}</td>
 							<td>${vo.the_time}</td>
-							<td><button class="remove_space" space_no="${vo.space_no}" >ì‚­ì œí•˜ê¸°</button></td>
+							<td><button class="remove_space" space_no="${vo.space_no}" >»èÁ¦ÇÏ±â</button></td>
 						</tr>
 					</jl:forEach>
 				</table>
@@ -208,41 +203,41 @@ $(document).ready(function(){
 </form>
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
-				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationStart-1}">&lt;</a></li>
+				<li><a class="page" href="admin_spaces_search.do?pg=${pz.paginationStart-1}">&lt;</a></li>
 			</jl:if>
 				<jl:if test="${pz.hasPrevPage }">
-					<li><a class="page" href="admin_spaces.do?pg=${pz.curPagination-1 }">&lt;</a></li>
+					<li><a class="page" href="admin_spaces_search.do?pg=${pz.curPagination-1 }">&lt;</a></li>
 				</jl:if>
 				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
 					<jl:choose>
 						<jl:when test="${vs.index!=pz.curPagination }">
-							<li><a class="page" href="admin_spaces.do?pg=${vs.index }">${vs.index }</a></li>
+							<li><a class="page" href="admin_spaces_search.do?pg=${vs.index }">${vs.index }</a></li>
 						</jl:when>
 						<jl:otherwise>
-							<li class="active"><a class="page" href="admin_spaces.do?pg=${vs.index }">${vs.index }</a></li>
+							<li class="active"><a class="page" href="admin_spaces_search.do?pg=${vs.index }">${vs.index }</a></li>
 						</jl:otherwise>
 					</jl:choose>
 				</jl:forEach>
 				<jl:if test="${pz.hasNextPage }">
-					<li><a class="page" href="admin_spaces.do?pg=${pz.curPagination+1}">&gt;</a></li>
+					<li><a class="page" href="admin_spaces_search.do?pg=${pz.curPagination+1}">&gt;</a></li>
 				</jl:if>
 			<jl:if test="${pz.hasNextPagination }">
-				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+				<li><a class="page" href="admin_spaces_search.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
 	
-<!-- ê³µê°„ ì‚­ì œì— ëŒ€í•œ ëª¨ë‹¬ -->
+<!-- °ø°£ »èÁ¦¿¡ ´ëÇÑ ¸ð´Þ -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="space_No" value="0"/>
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div id="text_mohead" class="modal-header"align="center"><h4>ê¸€ ì‚­ì œ</h4></div>
+			<div id="text_mohead" class="modal-header"align="center"><h4>±Û »èÁ¦</h4></div>
 			<div id="text_mobody" class="modal-body" align="center">
-				<h4>ê¸€ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+				<h4>±ÛÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 			</div>
 			<div id="text_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>í™•ì¸</button>
-				<button type='button' class='btn btn-primary' id='text_modal_no'>ì·¨ì†Œ</button>
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>È®ÀÎ</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>Ãë¼Ò</button>
 			</div>
 		</div>
 	</div>

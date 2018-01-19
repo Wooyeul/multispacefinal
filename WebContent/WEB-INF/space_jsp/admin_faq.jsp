@@ -145,7 +145,7 @@ $(document).ready(function(){
 	
 <br>
 <br>
-<form id="form_search" action="admin_faq.do">
+<form id="form_search" action="admin_faq.do" method="post">
 	<input type="hidden" name="pg" value="" id="pg">
 	<input type="hidden" name="search_content" value="${search.search_content}">
 	<input type="hidden" name="search_option" value="${search.search_option}">

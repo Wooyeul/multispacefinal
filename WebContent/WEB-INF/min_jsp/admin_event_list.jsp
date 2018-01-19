@@ -1,12 +1,26 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
 <head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style type="text/css">
+table {
+	text-align: center;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="common.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+	$("#admin_eve_add").on("click",function(){
+		alert();
+	});
+});
+</script>
 </head>
 <body>
 	<div class="container">
@@ -33,13 +47,13 @@
 			</tr>
 		</jl:forEach>
 	</table>
-		
-		
+
 	<br/>
-	<form action="event_add.do" method="GET">
+	<form action="admin_event_add.do" method="POST">
 		<input type="submit" value="이벤트 등록">
 	</form>
-	<br>
+	<input type="button" id="admin_eve_add" value="이벤트 등록""/>
+<br>
 <br>
 <form id="form_search" action="admin_event_list.do">
 	<input type="hidden" name="pg" value="" id="pg">

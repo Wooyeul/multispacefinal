@@ -141,7 +141,7 @@ $(document).ready(function(){
 								<th>삭제</th>
 							</tr>
 						</thead>
-						<jl:forEach items="${rl}" var="rl">
+						<jl:forEach items="${ls}" var="rl" varStatus="vs">
 							<tr>
 								<td>${rl.review_no}</td>
 								<td>${rl.space_no}</td>
@@ -152,8 +152,8 @@ $(document).ready(function(){
 								<td>${rl.review_score}</td>
 								<td><img src="img/${rl.review_img}" width="100px"
 									class="space_no" abc="${rl.space_no}" /></td>
-								<td><a
-									href="admin_community_review_remove.do?review_no=${rl.review_no}&space_no=${rl.space_no}">삭제하기</a></td>
+								<%-- <td><a href="admin_community_review_remove.do?review_no=${rl.review_no}&space_no=${rl.space_no}">삭제하기</a></td> --%>
+								<td><button class="remove_review" review_no="${rl.review_no}" space_no="${rl.space_no}" >삭제하기</button></td>
 							</tr>
 						</jl:forEach>
 					</table>

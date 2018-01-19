@@ -95,7 +95,6 @@ public class Ctrl_Admin_Qna {
 	@RequestMapping("/admin_community_qna_reple_add.do")
 	public String admin_community_qna_reple_add( @CookieValue("user_id") String user_id, @ModelAttribute Community_qna_repleVO pvo) throws Exception{
 		pvo.setUser_id(user_id);
-		System.out.println(pvo.getCom_qna_reple_no());
 		admin_QnaDAO_MysqlImpl.addReple(pvo);
 		return "redirect:/admin_community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 	}
