@@ -37,54 +37,69 @@
 	<link href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 	<style type="text/css">
-		.content{
-			height : 100px;
-		}
-		.paginationdiv {
-			text-align: right;
-		}
-		
-		.select1 {
-			float: left;
-			padding : 15px;
-		}
-		
-		.select2 {
-			float: left;
-		
-		}
-		
-		.select3 {
-			float: left;
-			padding : 8px;
-		}
-		.row {
-			margin-left:10px;
-			margin-right:10px;
-		}
-		.replecontent {
-			width: 1600px;
-			margin-left:20px;
-			float: left;
-		}
-		.repsumbtn{
-			width: 400px;
-			float: left;
-		}
-		.replesumtext {
-			float:left;
-			width: 800px;
-		}
-		.btnclass {
-			width: 600px;
-		}
-		.btnclass1,.btnclass2{
-			float: right;
-		}
-		.btnclass3 {
-			float: right;
-		}
-	</style>
+.content {
+	height: 100px;
+}
+
+.paginationdiv {
+	text-align: right;
+}
+
+.select1 {
+	float: left;
+	padding: 15px;
+}
+
+.select2 {
+	float: left;
+}
+
+.select3 {
+	float: left;
+	padding: 8px;
+}
+
+.row {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.replecontent {
+	width:98%;
+	margin-left: 20px;
+	float: left;
+}
+
+.repsumbtn {
+	width: 100px;
+	float: left;
+}
+
+.replesumtext {
+	float: left;
+	width: 800px;
+}
+
+
+
+.btnclass_mod {
+	width: 300px;
+	float: right;
+}
+
+.btnclass_mod .btnclass1, .btnclass_mod .btnclass2, .btnclass_mod .btnclass3
+	{
+	width: 100px;
+	float: left;
+}
+
+.table_qna_read>tbody>tr>td {
+	padding: 1px;
+	line-height: 1.42857143;
+	vertical-align: middle;
+	border-top: 1px solid #ddd;
+}
+</style>
 	
 	<script>
 
@@ -232,7 +247,7 @@
 							
 						</tr>
 					</thead>
-					<tbody>
+					
 						<tr>
 							<td><h4>${vo.com_qna_no}</h4></td>
 							<td><h4>${vo.com_qna_title}</h4></td>
@@ -248,38 +263,8 @@
 								</div>
 							</td>
 						</tr>
-						
-					<%-- <thead>
-						<tr>
-							<div class="btnclass">
-									<div class="btnclass1">
-										<form action="community_qna_list.do" method="post">
-											<input type="submit" value="QnA목록" class="btn btn-basic btn-sm"/>
-										</form>
-									</div>
-									<div class="btnclass2">
-										<form action="community_qna_del.do.do" method="POST" id="Qna_delete">
-											<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
-											<jl:if test="${vo.user_id eq user_id}">
-												<input type="button" class="btn btn-danger btn-sm" value="QnA삭제" data-toggle="modal" data-target="#text_del_modal"/>
-											</jl:if>
-										</form>
-									</div>
-									<div class="btnclass3">
-										<form action="community_qna_mod.do" method="post">
-											<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-											<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
-											<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
-										<jl:if test="${vo.user_id eq user_id}"> 
-											<input type="submit" class="btn btn-info btn-sm" value="글 수정하기" />
-										</jl:if>
-										</form>
-									</div>
-							</div>
-						</tr>
-					</thead> --%>
 					</table>
-					<table class="table table-hover" style=" height: auto; min-height: 5px; overflow: auto;">
+					<table class="table table-hover table_qna_read" >
 					<hr style="border: solid 0.5px black;">
 						<jl:forEach var="rpl" items="${rp}" varStatus="vs">
 							<tr>
@@ -289,9 +274,9 @@
 								<td width="1000">
 									<span id="rb_${rpl.com_qna_reple_no}"><h4>${rpl.com_qna_reple_content}</h4></span>
 								</td>
-								<td widht="250"><h5>${rpl.the_time}</h5></td>
+								<td width="250"><h5>${rpl.the_time}</h5></td>
 								<td>
-									<div id="recom_count${rpl.com_qna_reple_no}"><h5>${rpl.recom_count}</h5></div>
+									<span id="recom_count${rpl.com_qna_reple_no}"><h5>${rpl.recom_count}</h5></span>
 								</td>
 								<td>
 								<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
@@ -313,7 +298,6 @@
 								</td>
 							</tr>
 						</jl:forEach>
-					</tbody>
 				</table>
 			</div>
 			<!-- /.table-responsive -->
@@ -335,29 +319,33 @@
 				</div>
 			</jl:if>
 		</form>
-		<div class="btnclass1">
-			<form action="community_qna_list.do" method="post">
-				<input type="submit" value="QnA목록" class="btn btn-basic"/>
-			</form>
+		<div class="btnclass_mod">
+			<div class="btnclass1">
+				<form action="community_qna_list.do" method="post">
+					<input type="submit" value="QnA목록" class="btn btn-basic" />
+				</form>
+			</div>
+			<div class="btnclass2">
+				<form action="community_qna_del.do." method="POST" id="Qna_delete">
+					<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
+					<jl:if test="${vo.user_id eq user_id}">
+						<input type="button" class="btn btn-danger" value="QnA삭제"
+							data-toggle="modal" data-target="#text_del_modal" />
+					</jl:if>
+				</form>
+			</div>
+			<div class="btnclass3">
+				<form action="community_qna_mod.do" method="post">
+					<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
+					<input type="hidden" name="com_qna_title"
+						value="${vo.com_qna_title}" /> <input type="hidden"
+						name="com_qna_content" value="${vo.com_qna_content}" />
+					<jl:if test="${vo.user_id eq user_id}">
+						<input type="submit" class="btn btn-info" value="글수정" />
+					</jl:if>
+				</form>
+			</div>
 		</div>
-		<div class="btnclass2">
-			<form action="community_qna_del.do.do" method="POST" id="Qna_delete">
-				<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
-				<jl:if test="${vo.user_id eq user_id}">
-					<input type="button" class="btn btn-danger" value="QnA삭제" data-toggle="modal" data-target="#text_del_modal"/>
-				</jl:if>
-			</form>
-		</div>
-		<div class="btnclass3">
-			<form action="community_qna_mod.do" method="post">
-				<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-				<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
-				<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
-				<jl:if test="${vo.user_id eq user_id}"> 
-					<input type="submit" class="btn btn-info" value="글수정" />
-				</jl:if>
-			</form>
-		</div>	
 	</div>
 	
 	<div class="modal fade" id="repledeletecompleteModal" role="dialog">

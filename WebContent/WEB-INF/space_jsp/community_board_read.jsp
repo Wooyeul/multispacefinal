@@ -61,28 +61,34 @@
 			margin-left:10px;
 			margin-right:10px;
 		}
-		.replecontent {
-			width: 1600px;
-			margin-left:20px;
-			float: left;
-		}
-		.repsumbtn{
-			width: 400px;
-			float: left;
-		}
-		.replesumtext {
-			float:left;
-			width: 800px;
-		}
-		.btnclass {
-			width: 600px;
-		}
-		.btnclass1,.btnclass2{
-			float: right;
-		}
-		.btnclass3 {
-			float: right;
-		}
+	.replecontent {
+		width:98%;
+		margin-left: 20px;
+		float: left;
+	}
+	
+	.repsumbtn {
+		width: 100px;
+		float: left;
+	}
+	
+	.replesumtext {
+		float: left;
+		width: 800px;
+	}
+	
+	
+	
+	.btnclass_mod {
+		width: 300px;
+		float: right;
+	}
+	
+	.btnclass_mod .btnclass1, .btnclass_mod .btnclass2, .btnclass_mod .btnclass3
+		{
+		width: 100px;
+		float: left;
+	}
 	</style>
 
 
@@ -254,12 +260,12 @@ $(document).ready(function() {
 				 		html +="<table class='"+"table-hover'"+">";
 				 		html += "<tr><td width="+"150"+"><h4>"+list.data[i].user_id+"</h4></td>";
 				 		html += "<td width="+"1000"+"><span id='rb_"+list.data[i].com_board_reple_no+"'><h4>"+list.data[i].com_board_reple_content+"</h4></span>";
-				 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5>";
+				 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5></td>";
 						if('${user_id == list.data[i].user_id}'){
 				 			html += " <td><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_board_reple_no+"' xyz='"+list.data[i].com_board_reple_no+"' /></td>";
-					 		html += " <td><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/>";
+					 		html += " <td><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/></td>";
 						}
-						html +="</td></tr>";
+						html +="</tr>";
 						html +="</table>";
 				 	}//end for
 	                $('#reple_tr').html(html);
@@ -276,7 +282,6 @@ $(document).ready(function() {
 <body>
 	
 	<div class="row">
-
 		<div class="col-lg-12">
 		<hr style="border: solid 0.5px black;">
 			<!-- 테이블 -->
@@ -317,17 +322,16 @@ $(document).ready(function() {
 						</tr>
 						</tbody>
 					</table>
-					<!-- 댓글 리스트가 추가될 영역 -->
+					
 					<table>
-					<hr style="border: solid 0.5px black;">
-				</table>
+						<hr style="border: solid 0.5px black;">
+					</table>
+					<!-- 댓글 리스트가 추가될 영역 -->
 				<div id="reple_tr" style=" height: auto; min-height: 5px; overflow: auto;">
-				
-
+			
 				</div>
 			</div>
 			<!-- /.table-responsive -->
-			
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
@@ -345,6 +349,7 @@ $(document).ready(function() {
 				</div>
 			</jl:if>
 		</form>
+		<div class="btnclass_mod">
 		<div class="btnclass1">
 			<form action="community_board_list.do" method="post">
 				<input type="submit" value="글목록" class="btn btn-basic"/>
@@ -369,6 +374,7 @@ $(document).ready(function() {
 				</jl:if>
 			</form>
 		</div>	
+		</div>
 	</div>
 	
 <!-- 모달부분 -->
