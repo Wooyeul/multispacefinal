@@ -86,6 +86,10 @@
 	<!-- 자바스크립트 -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			// 기본 모달창 확인 버튼 클릭 시 이벤트 발생
+			$("#basic_modal_Yes").on("click",function(){
+				$("#basic_modal").modal("hide");
+			});
 			//글 등록 하기 버튼 클릭 시 이벤트 발생
 			$("#text_submit").on("click",function(){
 				$("#text_add_modal").modal("show");

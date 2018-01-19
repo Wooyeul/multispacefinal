@@ -95,14 +95,12 @@
 			// 기본 모달창 확인 버튼 클릭 시 이벤트 발생
 			$("#basic_modal_Yes").on("click",function(){
 				$("#basic_modal").modal("hide");
-				location.href="club_community.do?club_no="+${club_no};
 			});
 			//글 등록 하기 버튼 클릭 시 이벤트 발생
 			$("#textSubmit").on("click",function(){
 				$("#text_add_modal").modal("show");
 				$("#text_add_Yes").on("click",function(){
 					var formData = $("#add_frm").serialize();
-					alert(formData);
 					$.ajax({
 						type : "POST",
 						url : "club_add_community_board_submit.do",
