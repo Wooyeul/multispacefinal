@@ -137,6 +137,7 @@ $(document).ready(function() {
 								find_reple();
 							});
 						}else if(rt=="no"){
+							$("#mohead").html("<div class='modal-title'align='center'><h4>댓글수정</h4></div>");
 							$("#mobody").text("댓글 수정 처리가 실패 되었습니다.");
 							$("#modal").modal("show");
 							$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
@@ -168,6 +169,7 @@ $(document).ready(function() {
 				var url = "community_board_repledel.do?com_board_reple_no="+com_board_reple_no+"&com_board_no="+com_board_no;
 				ajaxGet(url,function(rt){
 					if(rt=="ok"){
+						$("#mohead").html("<div class='modal-title'align='center'><h4>댓글삭제</h4></div>");
 						$("#mobody").text("댓글이 삭제 되었습니다.");
 						$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 						$("#modal").modal("show");
@@ -176,6 +178,7 @@ $(document).ready(function() {
 							find_reple();
 						});
 					}else if(rt=="no"){
+						$("#mohead").html("<div class='modal-title'align='center'><h4>댓글삭제</h4></div>");
 						$("#mobody").text("댓글 삭제 처리가 실패 되었습니다.");
 						$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 						$("#modal").modal("show");
@@ -225,6 +228,7 @@ $(document).ready(function() {
 							find_reple();
 						});
 					}else if(rt=="no"){
+						$("#mohead").html("<div class='modal-title'align='center'><h4>댓글등록</h4></div>");
 						$("#mobody").text("댓글 처리가 실패 되었습니다.");
 						$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 						$("#modal").modal("show");
@@ -270,11 +274,13 @@ $(document).ready(function() {
 <body>
 	
 	<div class="row">
+
 		<div class="col-lg-12">
 		<hr style="border: solid 0.5px black;">
 			<!-- 테이블 -->
-
 			<div class="table-responsive">
+						</br>
+
 				<table class="table">
 					<thead>
 						<tr>

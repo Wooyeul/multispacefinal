@@ -10,6 +10,7 @@ import main.vo.BookmarkVO;
 import main.vo.ClubVO;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
+import main.vo.ZipcodeVO;
 import multi.space.vo.ImageVO;
 import multi.space.vo.Space2VO;
 import multi.space.vo.Space_searchVO;
@@ -137,6 +138,13 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 	public List<Space2VO> find_best_space2() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("space.find_best_space2");
+	}
+
+	@Override
+	public ZipcodeVO find_space_addr(String zipcode) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println(zipcode);
+		return sqlSession.selectOne("space.find_space_addr",zipcode);
 	}
 
 

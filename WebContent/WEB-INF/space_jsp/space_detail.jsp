@@ -20,6 +20,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="common.js" type="text/javascript"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae&libraries=services,clusterer,drawing"></script>				
 <style>
 .a {
 	color: black;
@@ -45,10 +46,10 @@
 	width: 100%;
 }
 </style>
+
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
+						
 						if ("${review_flag}" == 1) {
 							var review = $("#review").offset();
 							$('html, body').animate({
@@ -189,6 +190,11 @@
 						});
 					});
 </script>
+<style>
+	html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video{
+		margin-bottom: 10px;
+	}
+</style>
 </head>
 <body>
 	<!-- *********************  header  ************************ -->
@@ -254,7 +260,7 @@
 				</p>
 				<br/>
 				<br/>
-			
+				<hr/>
 				<div class="text-center">
 					<jl:if test="${fn:length(image.image_one) > 3}">
 						<div>
@@ -262,7 +268,7 @@
 								id="main_img">
 						</div>
 					</jl:if>
-					<hr />
+					<hr width="100%" size="10" color="#95BADF"/>
 					<div class="row">
 						<jl:if test="${fn:length(image.image_one) > 3}">
 							<img src="space_img/${image.image_one }" width="20%" height="20%"
@@ -294,22 +300,55 @@
 						</jl:if>
 					</div>
 				</div>
-
+				<hr/>
+				<br/>
+				
 				<div>
-				<div id="map" style="width:100%;height:600;"></div>
-				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae"></script>
+				<!-- 지도 -->
+				<div id="map" style="width:100%;height:400px;"></div>
 				<script>
-					var container = document.getElementById('map');
-					var options = {
-						center: new daum.maps.LatLng(33.450701, 126.570667),
-						level: 3
-					};
-			
-					var map = new daum.maps.Map(container, options);
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				    mapOption = {
+				        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+				        level: 3 // 지도의 확대 레벨
+				    };  
+		
+					// 지도를 생성합니다    
+					var map = new daum.maps.Map(mapContainer, mapOption); 
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new daum.maps.services.Geocoder();
+					// 주소로 좌표를 검색합니다
+					geocoder.addressSearch('${juso}', function(result, status) {
+					    // 정상적으로 검색이 완료됐으면 
+					     if (status === daum.maps.services.Status.OK) {
+							
+					        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+		
+					        // 결과값으로 받은 위치를 마커로 표시합니다
+					        var marker = new daum.maps.Marker({
+					            map: map,
+					            position: coords
+					        });
+		
+					        // 인포윈도우로 장소에 대한 설명을 표시합니다
+					        var infowindow = new daum.maps.InfoWindow({
+					            content: '<div style="width:150px;text-align:center;padding:6px 0;">${space.space_title}</div>'
+					        });
+					        infowindow.open(map, marker);
+		
+					        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+					        map.setCenter(coords);
+					    } 
+					});    
 				</script>
+				
+				<!-- 지도 끝 -->
+				<br/>
+				<hr width="100%" size="10" color="#95BADF"/>
 					<!-- space q&a 부분 -->
 					<div class="col-xs-12" id="qna">
-						<h1>QnA</h1>
+						<h1>QnAㅇㅇ</h1>
+						<hr width="20%" size="10" color="#95BADF"/>
 						<jl:forEach var="space_qna" items="${list_space_qna }">
 							<div class="panel-group" id="accordion${space_qna.space_qna_no }">
 								<div class="panel panel-default">
@@ -492,7 +531,7 @@
 							</jl:if>
 						</ul>
 						<!-- space q&a 쓰는 곳 -->
-
+		
 						<h3>질문하기</h3>
 						<form method="POST" action="add_space_qna.do">
 							<input type="hidden" name="space_no" value="${space.space_no }">
@@ -510,12 +549,12 @@
 							<input type="submit" class="btn btn-default" value="질문전송">
 						</form>
 					</div>
-					<br /> <br />
-					<hr />
-
+					<br/> <br/>
+					<hr/>
 					<!-- 후기 -->
 					<div class="col-xs-12" id="review">
 						<h1>후기</h1>
+						<hr width="20%" size="10" color="#95BADF"/>
 						<jl:forEach var="review" items="${list_review }">
 							<div class="panel-group" id="accordion${review.review_no }">
 								<div class="panel panel-default">
@@ -677,6 +716,7 @@
 
 					</div>
 				</div>
+				
 			</div>
 
 			<div class="col-xs-3">

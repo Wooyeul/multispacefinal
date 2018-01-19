@@ -19,6 +19,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
+		label {
+			margin-left:500px;
+		}
 		th, td {
 			text-align: center;
 		}
@@ -95,7 +98,9 @@
 </script>
 </head>
 <body>
-
+</br>
+	<label><h3>자유롭게 글을 작성 할 수 있는 자유게시판입니다. 자유롭게 글을 써보세요!</h3></label>
+	<hr style="border: solid 0.5px black;">
 	<table class="table table-hover cb_table">
 		<tr>
 			<th width="40"></th>

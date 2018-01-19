@@ -52,7 +52,7 @@
 		function useZipcode(){
 			var addr = $("#zz").attr("addr");
 			var zonecode = $("#zz").attr("zonecode");
-			var parent = opener.window.document.frm;
+			var parent = opener.window;
 			parent.addr1.value = addr;
 			parent.zipcode.value = zonecode;
 			self.close();
