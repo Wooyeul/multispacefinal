@@ -22,6 +22,9 @@
 		th,td,tr {
 			text-align: center;
 		}
+		label {
+			margin-left:400px;
+		}
 	</style>
 	
 	<script type="text/javascript">
@@ -40,16 +43,19 @@
 		}
 	</script> 
 <body>
+</br>
+<label><h3>공간 사진을 클릭하면 해당 공간 페이지로 이동됩니다. 공간의 상세 내용 및 후기를 확인해보세요!</h3></label>
+<hr style="border: solid 0.5px black;">
 	<table class="table table-hover">
 		<tr>
 			<th width="40"></th>
-			<th width="80">방번호</th>
-			<th width="400">제목</th>
-			<th width="400">내용</th>
-			<th>공간사진</th>
-			<th width="100">글쓴이</th>
-			<th width="200">작성일</th>
-			<th width="50">별점</th>
+			<th width="80"><h4>방번호</h4></th>
+			<th width="200"><h4>제목</h4></th>
+			<th width="600"><h4>내용</h4></th>
+			<th><h4>공간사진</h4></th>
+			<th width="100"><h4>글쓴이</h4></th>
+			<th width="200"><h4>작성일</h4></th>
+			<th width="50"><h4>별점</h4></th>
 			
 		</tr>
 		
@@ -57,7 +63,7 @@
 		<tr>
 			<td>${rl.review_no}</td>
 			<td>${rl.space_no}</td>
-			<td><a href="space_detail_no_header.do?space_no=${rl.space_no}">${rl.review_title}</a></td>
+			<td>${rl.review_title}</td>
 			<td>${rl.review_content}</td>
 			<td><a href="space_detail.do_no_header.do?space_no=${rl.space_no}"><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
 			<td>${rl.user_id}</td>

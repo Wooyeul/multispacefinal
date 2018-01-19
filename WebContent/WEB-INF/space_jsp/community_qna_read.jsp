@@ -225,26 +225,26 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>글쓴이</th>
-							<th>조회</th>
+							<th><h4>번호</h4></th>
+							<th><h4>제목</h4></th>
+							<th><h4>글쓴이</h4></th>
+							<th><h4>조회</h4></th>
 							
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>${vo.com_qna_no}</td>
-							<td>${vo.com_qna_title}</td>
-							<td>${vo.user_id}</td>
-							<td>${vo.view_count}</td>
+							<td><h4>${vo.com_qna_no}</h4></td>
+							<td><h4>${vo.com_qna_title}</h4></td>
+							<td><h4>${vo.user_id}</h4></td>
+							<td><h4>${vo.view_count}</h4></td>
 							
 						</tr>
 						<tr>
 							<td class="table_content" colspan="5">
 								<div class="pre"
 									style="padding: 10px; height: auto; min-height: 100px; overflow: auto;">
-									<pre style="white-space: pre-wrap;">${vo.com_qna_content}</pre>
+									<pre style="white-space: pre-wrap;"><h4>${vo.com_qna_content}</h4></pre>
 								</div>
 							</td>
 						</tr>
@@ -288,7 +288,7 @@
 								</td>
 								<td widht="250"><h4>${rpl.the_time}</h4></td>
 								<td>
-									<div id="recom_count${rpl.com_qna_reple_no}"><h4>${rpl.recom_count}</h4></div>
+									<div id="recom_count${rpl.com_qna_reple_no}">${rpl.recom_count}</div>
 								</td>
 								<td>
 								<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
