@@ -73,11 +73,11 @@ $(document).ready(function(){
 	<div class="head" id="header">
 	
 		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist">
-			<li class="active"><a href="#community"  data-toggle="tab"><h3>FREE BOARD</h3></a></li>
+			<li class="active"><a href="#community"  data-toggle="tab"><h2>FREE BOARD</h2></a></li>
 
-			<li><a href="#qna" data-toggle="tab" ><h3>QnA BOARD</h3></a></li>
+			<li><a href="#qna" data-toggle="tab" ><h2>QnA BOARD</h2></a></li>
 
-			<li><a href="#review" data-toggle="tab"><h3>REVIEW BOARD</h3></a></li>
+			<li><a href="#review" data-toggle="tab"><h2>REVIEW BOARD</h2></a></li>
 		</ul>
 	</div>
 
