@@ -199,7 +199,8 @@ $(document).ready(function() {
 				if (rt == -1) {
 					$("#modalrecom").modal("show");
 				} 
-				else {e("recomCount").innerHTML = rt;}
+				else 
+				{e("recomCount").innerHTML = "<button type="+"'button'"+"id='btnrecom'"+ "class='"+"btn btn-default btn-circle'"+"><i class='"+"fa fa-heart'"+"></i></button>&emsp;"+rt;}
 			});
 		});
 		//추천끝
@@ -292,7 +293,7 @@ $(document).ready(function() {
 							<td>
 							<div id="recomCount">
 								<button type="button" id="btnrecom" class="btn btn-default btn-circle" ><i class="fa fa-heart"></i>
-								</button>&emsp; ${vo.recom_count}				
+								</button>&emsp;${vo.recom_count}				
 							</div>
 							</td>
 						</tr>
@@ -307,7 +308,7 @@ $(document).ready(function() {
 					</table>
 					<!-- 댓글 리스트가 추가될 영역 -->
 					<table class="table table-hover" id="reple_tr">
-						
+						<hr style="border: solid 0.5px black;">
 						
 					</tbody>
 				</table>
