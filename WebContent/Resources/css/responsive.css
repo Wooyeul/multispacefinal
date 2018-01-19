@@ -82,6 +82,8 @@ body{
     position: relative;
 }
 
+
+
 h1, h2, h3, h4, h5 ,h6{
     color: #626262;
     font-family: "lato-regular", Helvetica, Arial, sans-serif;
@@ -169,10 +171,10 @@ header nav ul{
 
 header nav ul li{
     float: left;
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
-header nav .top_nav li a, header nav .login_nav li a, header nav .non_login_nav li a,
+header nav .top_nav li a, header nav .navbar-right li a, header nav .navbar-right li a,
 header nav .login_btn{
     text-decoration: none;
     color: #fff !important;
@@ -551,6 +553,7 @@ header nav .login_btn:hover{
 /*  listings section  */
 .listings{
     padding: 100px 0;
+    height : 100%;
 }
 
 .listings ul.properties_list{
@@ -761,8 +764,25 @@ header nav .login_btn:hover{
 }
 
 
-
 /* css추가 */
+
+.loginform1_head .loginform1_body {
+	padding : 30px;
+	
+}
+
+
+
+
+
+.login_form2{
+	display: inline-block;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
 	.sel_box{
 		margin-top:5px;
 		width: 150px;
@@ -816,22 +836,62 @@ header nav .login_btn:hover{
     -o-transition: all .2s linear;
 
 	}
-.listings .wrapper .c_wrapper{
+	.listings .c_cover{
 	
+		
+		background : rgba(28, 54, 85, .2);
+		
+	}
+	
+.listings .c_wrapper{
 	
 	max-width: 1200px;
 	height : 800px;
     margin: 0 auto;
-    margin-top:130px;
+    margin-top:80px;
+    padding-top:50px;
+
     position: relative;
     align : center;
     vertical-align:middle;
 }	
 	
-.listings .wrapper .c_wrapper .c_wrapper_sub_title  {	
+.listings  .c_wrapper .c_wrapper_sub_title  {	
 	height : 42px;
 	max-width: 1200px;
 }
+
+.listings  .c_wrapper .c_wrapper_sub_main_left {
+	float: left; 
+	border : 2px solid #b1b8b0;
+	width: 47%;
+	height: 620px;
+	margin: 0 auto;
+	padding : 10px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.listings  .c_wrapper .c_wrapper_sub_main_right {
+	float: right; 
+	border : 2px solid #b1b8b0;
+	width: 47%;
+	height: 620px;
+	margin: 0 auto;
+	padding : 10px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.listings  .c_wrapper .main_club {
+	float: left; 
+
+	width: 100%;
+	height: 600px;
+	margin: 0 auto;
+	position: relative;
+}
+
 
 .main_list_club_commu_left {
 	
@@ -876,52 +936,80 @@ header nav .login_btn:hover{
 	-o-transition: all .2s linear;
 }
 
-.listings .wrapper .c_wrapper .main_club {
-	float: left; 
-	border : 1px solid #bfd9f1;
-	width: 47%;
-	height: 600px;
-	margin: 0 auto;
-	position: relative;
-}
 
 
 
 
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper{
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper{
 	float : left;
 	width: 100%;
 	height : 200px;
     margin: 0 auto;
     position: relative;
     vertical-align:middle;
-    	border : 1px solid #bfd9f1;
+    font-size : 30px;
+    
 }
-
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper:hover{
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper1{
+	border-top : 1px solid #b1b8b0;
+	border-bottom : 1px solid #b1b8b0;
 	float : left;
 	width: 100%;
 	height : 200px;
     margin: 0 auto;
     position: relative;
     vertical-align:middle;
-    border : 3px solid #bfd9f1;
+    
 }
 
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_img{
-	float : left;
 
+
+
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper0:hover{
+	float : left;
+	width: 100%;
+	height : 200px;
+    margin: 0 auto;
+    position: relative;
+    vertical-align:middle;
+    border : 1px solid #666464;
+}
+
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper1:hover{
+	float : left;
+	width: 100%;
+	height : 200px;
+    margin: 0 auto;
+    position: relative;
+    vertical-align:middle;
+    border : 1px solid #666464;
+}
+
+
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper2:hover{
+	float : left;
+	width: 100%;
+	height : 200px;
+    margin: 0 auto;
+    position: relative;
+    vertical-align:middle;
+    border : 1px solid #666464;
+}
+
+
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_img{
+	float : left;
+	padding-top : 15px;
 	width: 30%;
-	height: 200px;
+	height: 180px;
     position: relative;
 }
 
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content{
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content{
 	color: #666464;
     font-family: "lato-bold", Helvetica, Arial, sans-serif;
     font-size: 20px!important;
     font-weight: bold;
-    margin-bottom: 5px;
     line-height: 28px;
 	
 	float : left;
@@ -931,7 +1019,7 @@ header nav .login_btn:hover{
     position: relative;
 }
 
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_title{
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_title{
 	float : left;
 
 	width: 100%;
@@ -940,7 +1028,7 @@ header nav .login_btn:hover{
     position: relative;
 }
 
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_title_content{
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_title_content{
 	font-size : 20px;
 	width: 100%;
 	height: 95px;
@@ -953,7 +1041,7 @@ header nav .login_btn:hover{
 
 
 
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_score{
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_score{
 	font-size : 25px;
 	font-weight : bold;
 	text-align : center;
@@ -964,7 +1052,7 @@ header nav .login_btn:hover{
     position: relative;
 }
 
-.listings .wrapper .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_member{
+.listings  .c_wrapper .main_club .c_wrapper_ul .main_club_wrapper .main_club_content_member{
 	float : left;
 
 	width: 100%;
@@ -974,17 +1062,16 @@ header nav .login_btn:hover{
 }
 	
 
-.listings .wrapper .c_wrapper .main_community{
+.listings  .c_wrapper .main_community{
 	float : right;
-	border : 1px solid #bfd9f1;
-	width: 47%;
+	width: 100%;
 	height: 600px;
     margin: 0 auto;
     position: relative;
 }	
 		
 
-.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper{
+.listings  .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper{
 	float : left;
 	width: 100%;
 	height : 200px;
@@ -992,7 +1079,7 @@ header nav .login_btn:hover{
     position: relative;
     vertical-align:middle;
 }
-.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content{
+.listings  .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content0,.listings  .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content2{
 	color: #666464;
     font-family: "lato-bold", Helvetica, Arial, sans-serif;
     font-size: 20px!important;
@@ -1001,23 +1088,40 @@ header nav .login_btn:hover{
     line-height: 28px;
 	
 	float : left;
-	border : 1px solid #bfd9f1;
 	width: 100%;
 	height: 200px;
     position: relative;
 }
 
-.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper:hover{
+
+.listings  .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content1{
+	color: #666464;
+    font-family: "lato-bold", Helvetica, Arial, sans-serif;
+    font-size: 20px!important;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 28px;
+	
+	float : left;
+	border-top : 1px solid #b1b8b0;
+	border-bottom : 1px solid #b1b8b0;
+	width: 100%;
+	height: 200px;
+    position: relative;
+}
+
+
+.listings  .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper:hover{
 	float : left;
 	width: 100%;
 	height : 200px;
     margin: 0 auto;
     position: relative;
     vertical-align:middle;
-    border : 3px solid #bfd9f1;
+    border : 1px solid #666464;
 }
 
-.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content_title{
+.listings  .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content_title{
 	float : left;
 
 	width: 100%;
@@ -1029,7 +1133,7 @@ header nav .login_btn:hover{
 }
 	
 
-.listings .wrapper .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content_view_recom {
+.listings  .c_wrapper .main_community .c_wrapper_ul .main_community_wrapper .main_community_content_view_recom {
 	float : left;
 
 	width: 100%;
@@ -1041,13 +1145,13 @@ header nav .login_btn:hover{
 	
 	
 	
-.listings .wrapper .c_wrapper .main_club  ul{
+.listings  .c_wrapper .main_club  ul{
 	color:black;
     float: left;
     list-style: none;
 }
 		
-.listings .wrapper .c_wrapper .main_community  ul{
+.listings  .c_wrapper .main_community  ul{
 	color:black;
     float: left;
     list-style: none;
@@ -1062,7 +1166,7 @@ header nav .login_btn:hover{
 	
 	
 .sh_a{
-	color : #666464;
+	color : #333;
 }
 	
 /* css추가 끝 */
@@ -1075,7 +1179,13 @@ footer{
     padding-top: 100px;
     background: #95badf;
 }
+footer .wrapper{
+    max-width: 1500px;
+    margin: 0 auto;
+    padding-left : 8%;
+    position: relative;
 
+}
 footer .footer > ul{
     overflow: hidden;
 }
@@ -1093,7 +1203,7 @@ footer .footer > ul > li:last-child{
 
 
 footer .footer > ul > li.links{
-    width: 200px;
+    width: 10%;
 }
 
 footer ul li.links > ul > li{
@@ -1118,8 +1228,10 @@ footer .footer > ul > li.links li a{
 }
 
 footer .footer > ul > li.about_multi{
-    width: 350px;
+    width: 25%;
 }
+
+
 
 footer ul li.about_multi p{
     color: #fff;
@@ -1137,7 +1249,7 @@ footer ul li.about_multi > ul > li{
 }
 
 footer .footer > ul > li.about{
-    width: 350px;
+   	width: 15%;
 }
 
 footer ul li.about p{
@@ -1200,10 +1312,14 @@ footer .copyrights{
     border-top: 1px solid #82abd4;
 }
 
+
+
+
 footer .copyrights a.ph_link{
     font-family: "lato-bold", Helvetica, Arial, sans-serif;
     font-weight: bold;
     text-decoration: none;
+    color : #fff;
 }
 
 
