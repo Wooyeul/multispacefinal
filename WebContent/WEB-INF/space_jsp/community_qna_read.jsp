@@ -59,11 +59,11 @@
 			padding : 8px;
 		}
 		.row {
-		margin-left:10px;
-		margin-right:10px;
+			margin-left:10px;
+			margin-right:10px;
 		}
 		.replecontent {
-			width: 1000px;
+			width: 1200px;
 			margin-left:20px;
 			float: left;
 		}
@@ -73,6 +73,15 @@
 		.replesumtext {
 			float:left;
 			width: 800px;
+		}
+		.btnclass {
+			width: 600px;
+		}
+		.btnclass1,.btnclass2{
+			float: right;
+		}
+		.btnclass3 {
+			float: right;
 		}
 	</style>
 	
@@ -277,7 +286,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th></th>
+							<th>번호</th>
 							<th>제목</th>
 							<th>글쓴이</th>
 							<th>조회</th>
@@ -300,53 +309,62 @@
 								</div>
 							</td>
 						</tr>
-					<thead>
+						
+					<%-- <thead>
 						<tr>
-							<td>
-							<form action="community_qna_list.do" method="post">
-								<input type="submit" value="QnA목록" class="btn btn-info btn-sm"/>
-							</form>
-							<form action="community_qna_del.do.do" method="POST" id="Qna_delete">
-								<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
-								<jl:if test="${vo.user_id eq user_id}">
-									<input type="button" class="btn btn-primary btn-sm" value="QnA삭제" data-toggle="modal" data-target="#text_del_modal"/>
-								</jl:if>
-							</form>
-							<form action="community_qna_mod.do" method="post">
-								<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-								<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
-								<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
-							<jl:if test="${vo.user_id eq user_id}"> 
-								<input type="submit" class="btn btn-primary btn-sm" value="글 수정하기" />
-							</jl:if>
-							</form>
-							</td>
+							<div class="btnclass">
+									<div class="btnclass1">
+										<form action="community_qna_list.do" method="post">
+											<input type="submit" value="QnA목록" class="btn btn-basic btn-sm"/>
+										</form>
+									</div>
+									<div class="btnclass2">
+										<form action="community_qna_del.do.do" method="POST" id="Qna_delete">
+											<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
+											<jl:if test="${vo.user_id eq user_id}">
+												<input type="button" class="btn btn-danger btn-sm" value="QnA삭제" data-toggle="modal" data-target="#text_del_modal"/>
+											</jl:if>
+										</form>
+									</div>
+									<div class="btnclass3">
+										<form action="community_qna_mod.do" method="post">
+											<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+											<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
+											<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
+										<jl:if test="${vo.user_id eq user_id}"> 
+											<input type="submit" class="btn btn-info btn-sm" value="글 수정하기" />
+										</jl:if>
+										</form>
+									</div>
+							</div>
 						</tr>
-					</thead>
+					</thead> --%>
+					</table>
+					<table class="table table-hover">
 						<jl:forEach var="rpl" items="${rp}" varStatus="vs">
 							<tr>
-								<td width="200">${rpl.user_id}</td>
+								<td width="200"><h4>${rpl.user_id}</h4></td>
 								<td width="1000">
-									<span id="rb_${rpl.com_qna_reple_no}"> ${rpl.com_qna_reple_content} </span>
+									<span id="rb_${rpl.com_qna_reple_no}"><h4>${rpl.com_qna_reple_content}</h4></span>
 								</td>
-								<td widht="250">${rpl.the_time}</td>
+								<td widht="250"><h4>${rpl.the_time}</h4></td>
 								<td>
-									<div id="recom_count${rpl.com_qna_reple_no}">${rpl.recom_count}</div>
+									<div id="recom_count${rpl.com_qna_reple_no}"><h4>${rpl.recom_count}</h4></div>
 								</td>
 								<td>
 								<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
 								<jl:if test="${user_id ne ''}">
-									<a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" class="btn btn-primary btn-sm recom"">추천</a>
+									<a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" class="btn btn-warning btn-xs recom"">추천</a>
 								</jl:if>
 								</td>
 								<td> 
 								<jl:if test="${rpl.user_id eq user_id}"> 
-									<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple btn btn-primary btn-sm" href="#">수정</a>
+									<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple btn btn-info btn-xs" href="#">수정</a>
 								</jl:if>
 								</td>
 								<td>
 								<jl:if test="${rpl.user_id eq user_id}"> 
-								<input type="button" class="btn btn-primary btn-sm showDelModal" 
+								<input type="button" class="btn btn-danger btn-xs showDelModal" 
 									del_com_qna_no="${rpl.com_qna_no}"
 									del_com_qna_reple_no="${rpl.com_qna_reple_no}" value="삭제"/>		
 								</jl:if>	
@@ -376,7 +394,30 @@
 				<input id="reple_submit_btn" type="button" value="댓글작성" class="btn btn-info">
 			</div>
 		</jl:if>
-	</form>	
+	</form>
+		<div class="btnclass1">
+			<form action="community_qna_list.do" method="post">
+				<input type="submit" value="QnA목록" class="btn btn-basic"/>
+			</form>
+		</div>
+		<div class="btnclass2">
+			<form action="community_qna_del.do.do" method="POST" id="Qna_delete">
+				<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
+				<jl:if test="${vo.user_id eq user_id}">
+					<input type="button" class="btn btn-danger" value="QnA삭제" data-toggle="modal" data-target="#text_del_modal"/>
+				</jl:if>
+			</form>
+			</div>
+		<div class="btnclass3">
+			<form action="community_qna_mod.do" method="post">
+				<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+				<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}"/>
+				<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}"/>
+				<jl:if test="${vo.user_id eq user_id}"> 
+					<input type="submit" class="btn btn-info" value="글 수정하기" />
+				</jl:if>
+			</form>
+		</div>	
 	</div>
 	
 	<div class="modal fade" id="repledeletecompleteModal" role="dialog">
