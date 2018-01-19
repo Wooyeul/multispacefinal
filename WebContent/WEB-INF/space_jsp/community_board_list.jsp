@@ -58,6 +58,17 @@
 			width: 600px;
 			margin:0 auto;
 		}
+		.cb_table>tbody>tr>th{
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: top;
+	border-top: 0px !important;
+}
+
+		.cb_table{
+	border-spacing: 0px !important;
+}
+		
 	</style>
 
 <script type="text/javascript">
@@ -85,7 +96,7 @@
 </head>
 <body>
 
-	<table class="table table-hover">
+	<table class="table table-hover cb_table">
 		<tr>
 			<th width="40"></th>
 			<th width="1000">제목</th>

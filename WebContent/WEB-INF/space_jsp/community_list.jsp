@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	
 	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css"> -->
 	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
 	
 		
@@ -23,7 +23,14 @@
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
 	
-	</style>
+	
+.commu_nav-tabs {
+	border: 0 !important;
+	font-size: 100% !important;
+}
+
+
+</style>
 <script>
 $(document).ready(function(){
 	
@@ -65,7 +72,7 @@ $(document).ready(function(){
 
 	<div class="head" id="header">
 	
-		<ul id="Navtab" class="nav nav-tabs" role="tablist">
+		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist">
 			<li class="active"><a href="#community"  data-toggle="tab"><h3>FREE BOARD</h3></a></li>
 
 			<li><a href="#qna" data-toggle="tab" ><h3>QnA BOARD</h3></a></li>
