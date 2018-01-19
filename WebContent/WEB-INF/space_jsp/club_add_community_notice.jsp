@@ -21,6 +21,12 @@
 <script type="text/javascript" src="./common.js"></script>
 
 <style type="text/css">
+	.h1_design{
+		color: #026fac;
+	}
+	.label_design{
+		margin-bottom: 5px;
+	}
 </style>
 </head>
 <body>
@@ -30,17 +36,16 @@
 	<!-- *********************  header - end  ************************ -->
 	<section class="listings">
 		<div class="wrapper">
-			<div class="properties_list">
+			<div align="center"><h1 class="h1_design">글 작성</h1></div><br/>
 				<form id="add_frm">
-					<label>제목</label><input name="c_notice_title" type="text" class="form-control"/><br/>
-					<label>내용</label><textarea name="c_notice_content" rows="15" cols="25" class="form-control"></textarea><br/>
+					<label class="label_design">제목</label><input name="c_notice_title" type="text" class="form-control"/><br/>
+					<label class="label_design">내용</label><textarea name="c_notice_content" rows="15" cols="25" class="form-control"></textarea><br/>
 					
 					<input name="club_no" type="hidden" value="${club_no}"/>
 					<input name="user_id" type="hidden" value="${user_id}"/>
 					<input id="text_submit"type="button" value="등록" class="btn"/>&nbsp<input id="cancel" type="button" value="취소" class="btn"/>
 				</form>
 			</div>
-		</div>
 	</section>
 	<!-- ******************************* footer ******************************* -->
 	  <%@include file="./jsp/footer.jsp"%>  

@@ -52,22 +52,25 @@
 			   AND c.l_category_no = l.l_category_no
 			   AND c.c_category_no = cc.c_category_no
 			<if test="l_category_no != null">
-				AND l_category_no =${l_category_no}
+				AND c.l_category_no =${l_category_no}
 			</if>
 			<if test="c_category_no != null">
-				AND c_category_no =${c_category_no}
+				AND c.c_category_no =${c_category_no}
 			</if>
 			<if test="search_option == 1">
-				AND club_title like '%${search_content}%'
+				AND c.club_title like '%${search_content}%'
 			</if>
 			<if test="search_option == 2">
-				AND club_content like'%${search_content}%'
+				AND c.club_content like'%${search_content}%'
 			</if>
 			<if test="search_option == 3">
-				AND ( club_title like '%${search_content}%' OR club_content like '%${search_content}%' )
+				AND ( c.club_title like '%${search_content}%' OR c.club_content like '%${search_content}%' )
 			</if>
 			<if test="search_option == 4">
-				AND user_id = ${search_content}
+				AND c.user_id like '%${search_content}%'
+			</if>
+			<if test="search_option == 5">
+				AND c.club_name like '%${search_content}%'
 			</if>
 			<if test="start!=null">
 				ORDER BY club_no DESC LIMIT #{start},10
