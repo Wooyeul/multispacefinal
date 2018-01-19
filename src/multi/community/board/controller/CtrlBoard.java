@@ -115,7 +115,7 @@ public class CtrlBoard {
 						sb.append(",");
 					}
 					sb.append("{'com_board_reple_no' :'").append(vo.getCom_board_reple_no()).append("', 'com_board_reple_content' : '").append(vo.getCom_board_reple_content())
-					.append("', 'user_id' : '").append(vo.getUser_id()).append("', 'com_board_no' : '").append(vo.getCom_board_no()).append("'}");
+					.append("', 'user_id' : '").append(vo.getUser_id()).append("', 'com_board_no' : '").append(vo.getCom_board_no()).append("', 'the_time' : '").append(vo.getThe_time()).append("'}");
 					
 				}
 				sb.append("]}");

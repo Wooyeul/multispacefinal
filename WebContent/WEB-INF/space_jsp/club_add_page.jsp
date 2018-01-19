@@ -112,44 +112,52 @@
 				$("#basic_modal").modal("hide");
 			});
 			
+			/* 글 등록 모달 Yes or No */
+			$("#club_add_yes").on("click",function(){
+				okBtnClick();
+			});
+			$("#club_add_no").on("click",function(){
+				cancelBtnClick();
+			});			
+			/* 글 등록 모달 Yes or No */			
+			var okBtnClick = function () {
+				var frm = $("#club_add_frm")[0];
+				var formData = new FormData(frm);
+				$.ajax({
+					type : "POST",
+					url : "club_add_page_submit.do",
+					data : formData,
+					processData: false,
+                    contentType: false,
+					success	: function(rt) {
+						if(rt=="ok"){
+							$("#club_add_modal").modal("hide");
+							$("#basic_mobody").html("<h4>모임이 등록 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.href="club_home.do";
+							});
+						}else{
+							$("#club_add_modal").modal("hide");
+							$("#basic_mobody").html("<h4>모임 등록 처리가 실패 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							}); 
+						}
+				    }
+				});
+			}
+			var cancelBtnClick = function () {
+				$("#club_add_modal").modal("hide");
+			}
+			
 			// 모임 등록 버튼 클릭 시 이벤트 발생
 			$("#submit_btn").on("click",function(){
 				$("#club_add_modal").modal("show");
-				$("#club_add_yes").on("click",function(){
-					var frm = $("#club_add_frm")[0];
-					var formData = new FormData(frm);
-					$.ajax({
-						type : "POST",
-						url : "club_add_page_submit.do",
-						data : formData,
-						processData: false,
-	                    contentType: false,
-						success	: function(rt) {
-							if(rt=="ok"){
-								$("#club_add_modal").modal("hide");
-								$("#basic_mobody").html("<h4>모임이 등록 되었습니다.</h4>");
-								$("#basic_modal").modal("show");
-								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
-									location.href="club_home.do";
-								});
-							}else{
-								$("#club_add_modal").modal("hide");
-								$("#basic_mobody").html("<h4>모임 등록 처리가 실패 되었습니다.</h4>");
-								$("#basic_modal").modal("show");
-								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
-									location.reload();
-								}); 
-							}
-					    }
-					});
-				});
-				$("#club_add_no").on("click",function(){
-					$("#club_add_modal").modal("hide");
-				});
-			});//submit.on click
-			
+			});//submit_btn.on click
 			
 			
 			$("#cancel").on("click",function(){

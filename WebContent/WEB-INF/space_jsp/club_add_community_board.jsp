@@ -92,47 +92,56 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
+			$("#text_add_Yes").on("click",function(){
+				okBtnClick();
+			});
+			
+			$("#text_add_No").on("click",function(){
+				cancelBtnClick();
+			});
+			var okBtnClick = function () {
+				var formData = $("#add_frm").serialize();
+				$.ajax({
+					type : "POST",
+					url : "club_add_community_board_submit.do",
+					data : formData,
+					success	: function(rt) {
+						if(rt=="ok"){
+							alert(rt);
+							$("#text_add_modal").modal("hide");
+							$("#basic_mobody").html("<h4>글이 등록 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.href="club_community.do?club_no="+${club_no};
+							});
+						}else{
+							$("#text_add_modal").modal("hide");
+							$("#basic_mobody").html("<h4>글 등록 처리가 실패 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							});
+						}
+				    }
+				});
+			}
+			
+			var cancelBtnClick = function () {
+				$("#text_add_modal").modal("hide");
+			}
+			
 			// 기본 모달창 확인 버튼 클릭 시 이벤트 발생
 			$("#basic_modal_Yes").on("click",function(){
 				$("#basic_modal").modal("hide");
-				location.href="club_community.do?club_no="+${club_no};
 			});
 			//글 등록 하기 버튼 클릭 시 이벤트 발생
 			$("#textSubmit").on("click",function(){
 				$("#text_add_modal").modal("show");
-				$("#text_add_Yes").on("click",function(){
-					var formData = $("#add_frm").serialize();
-					alert(formData);
-					$.ajax({
-						type : "POST",
-						url : "club_add_community_board_submit.do",
-						data : formData,
-						success	: function(rt) {
-							if(rt=="ok"){
-								alert(rt);
-								$("#text_add_modal").modal("hide");
-								$("#basic_mobody").html("<h4>글이 등록 되었습니다.</h4>");
-								$("#basic_modal").modal("show");
-								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
-									location.href="club_community.do?club_no="+${club_no};
-								});
-							}else{
-								$("#text_add_modal").modal("hide");
-								$("#basic_mobody").html("<h4>글 등록 처리가 실패 되었습니다.</h4>");
-								$("#basic_modal").modal("show");
-								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
-									location.reload();
-								});
-							}
-					    }
-					});
-				});
-				$("#text_add_No").on("click",function(){
-					$("#text_add_modal").modal("hide");
-				});
 			});
+			
+			
 			// 취소 하기 버튼 클릭 시 이벤트 발생
 			$("#cancel").on("click",function(){
 				location.href="club_community.do?club_no="+${club_no};

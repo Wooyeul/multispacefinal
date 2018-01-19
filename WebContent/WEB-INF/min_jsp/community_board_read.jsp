@@ -177,8 +177,9 @@ $(document).ready(function() {
 				 		html += "<td> <span id='rb_"+list.data[i].com_board_reple_no+"'>"+list.data[i].com_board_reple_content+"</span>";
 						if('${user_id == list.data[i].user_id}'){
 				 			html += " <input type='button' class='modReple' value='수정' abcd='rb_"+list.data[i].com_board_reple_no+"' xyz='"+list.data[i].com_board_reple_no+"' />";
-					 		html += " <input type='button' class='delRe' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/></td></tr>";
+					 		html += " <input type='button' class='delRe' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/>";
 						}
+						html +="</td></tr>";
 				 	}//end for
 	                $('#reple_tr').html(html);
 			 	}else{

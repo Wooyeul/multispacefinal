@@ -21,6 +21,12 @@
 <script type="text/javascript" src="./common.js"></script>
 
 <style type="text/css">
+	.h1_design{
+		color: #026fac;
+	}
+	.label_design{
+		margin-bottom: 5px;
+	}
 </style>
 </head>
 <body>
@@ -30,19 +36,18 @@
 	<!-- *********************  header - end  ************************ -->
 	<section class="listings">
 		<div class="wrapper">
-			<div class="properties_list">
-				<form id="frm">
-					<div align="right"><label>작성시간 ${vo.the_time}</label><br/><label> 작성자 ${vo.user_id}</label><br/></div>
-					<label>제목</label><input name="c_board_title" type="text" value="${vo.c_board_title}" class="form-control"/><br/>
-					<label>소개</label><textarea name="c_board_content" rows="15" cols="30" class="form-control">${vo.c_board_content}</textarea><br/>
-					<input name="c_board_no" type="hidden" value="${vo.c_board_no}">
-					<div align="right">
-						<input id="textMod" type="button" value="수정하기" class="btn">
-						<input id="textDel" type="button" value="삭제하기" class="btn">
-						<input id="cancel" type="button" value="취소" class="btn">
-					</div>
-				</form>
-			</div>
+			<div align="center"><h1 class="h1_design">글 수정</h1></div><br/>
+			<form id="frm">
+				<div align="right"><label>작성시간 ${vo.the_time}</label><br/><label> 작성자 ${vo.user_id}</label><br/></div>
+				<label class="label_design">제목</label><input name="c_board_title" type="text" value="${vo.c_board_title}" class="form-control"/><br/>
+				<label class="label_design">소개</label><textarea name="c_board_content" rows="15" cols="30" class="form-control">${vo.c_board_content}</textarea><br/>
+				<input name="c_board_no" type="hidden" value="${vo.c_board_no}">
+				<div align="right">
+					<input id="textMod" type="button" value="수정하기" class="btn">
+					<input id="textDel" type="button" value="삭제하기" class="btn">
+					<input id="cancel" type="button" value="취소" class="btn">
+				</div>
+			</form>
 		</div>
 	</section>
 	<!-- ******************************* footer ******************************* -->
