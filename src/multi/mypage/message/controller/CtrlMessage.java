@@ -1,18 +1,9 @@
 package multi.mypage.message.controller;
 
 import java.util.List;
-import static main.Single.*;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import main.Controller;
 import main.CookieValue;
@@ -22,13 +13,13 @@ import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.ResponseBody;
+import main.vo.MessageVO;
+import main.vo.UserVO;
+import main.vo.User_clubVO;
 import multi.mypage.message.dao.MessageDAO;
 import multi.mypage.message.dao.UserDAO;
 import multi.mypage.message.dao.User_clubDAO;
 import multi.mypage.vo.Mypage_searchVO;
-import main.vo.MessageVO;
-import main.vo.UserVO;
-import main.vo.User_clubVO;
 
 @Controller
 public class CtrlMessage {
@@ -224,5 +215,18 @@ public class CtrlMessage {
 		}
 
 	}
+	
+	@RequestMapping("/del_msg.do")
+	public String del_msg(@RequestParam("msg_no") String msg_no,
+			@RequestParam("flag") int flag) throws Exception{
+		
+		MessageDAO.del_msg(msg_no);
+		if(flag==0){
+			return "redirect:/mypage_moveMypageSendMessagePage.do";
+		} else {
+			return "redirect:/mypage_moveMypageReceiveMessagePage.do";
+		}
+	}
+	
 
 }

@@ -48,6 +48,11 @@ public class MessageDAO_MybatisImpl implements MessageDAO{
 	public List<MessageVO> search_sendmsg(Mypage_searchVO search) throws Exception {
 		return sqlSession.selectList("apple.mypage_search_send_msg",search);
 	}
+
+	@Override
+	public int del_msg(String msg_no) throws Exception {
+		return sqlSession.delete("apple.mypage_del_msg",msg_no);
+	}
 	
 
 	

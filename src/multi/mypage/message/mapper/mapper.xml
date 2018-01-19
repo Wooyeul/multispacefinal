@@ -80,6 +80,11 @@
    		</if>
    </select>
    
+   <delete id="mypage_del_msg" parameterType="java.lang.String">
+   		DELETE FROM messageT where msg_no = #{msg_no}
+   </delete>
+   
+   
 </mapper>
 <!--
 

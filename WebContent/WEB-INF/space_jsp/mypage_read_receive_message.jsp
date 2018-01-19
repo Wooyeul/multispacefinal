@@ -25,6 +25,20 @@
 			padding-bottom: 18px;
 		}
 	</style>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#del").on("click",function(){
+			$("#lblContent").text("삭제하시겠습니까?");
+			$("#modal").modal("show");
+		});
+		
+		$("#success").on("click",function(){
+			$("#frm").submit();
+		});
+	});
+	</script>
+	
 </head>
 <body>
 
@@ -40,6 +54,27 @@
 		<textarea rows="15" cols="30" disabled="disabled" class="form-control">${receiveMessageRead.msg_content}</textarea>
 		<br />
 	</div>
+	<form action="del_msg.do" method="POST" id="frm">
+		<input type="hidden" value="${receiveMessageRead.msg_no}" name="msg_no"/>
+		<input type="hidden" value="1" name="flag"/>
+		<input type="button" value="삭제" class="btn" id="del"/>
+	</form>	
 	<hr>
+	
+	<div id="modal" class="modal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="text_mohead" class="modal-header"align="center"><h4>글 삭제</h4></div>
+				<div id="text_mobody" class="modal-body" align="center">
+					<h4 id="lblContent"></h4>
+				</div>
+				<div id="text_ft" class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal" id="success">확인</button>
+					<button class="btn btn-default" data-dismiss="modal" id="close">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>

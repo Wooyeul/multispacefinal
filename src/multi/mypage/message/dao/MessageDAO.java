@@ -16,4 +16,6 @@ public interface MessageDAO {
 	public List<MessageVO> search_receivemsg(Mypage_searchVO search) throws Exception;
 	public List<MessageVO> search_sendmsg(Mypage_searchVO search) throws Exception;
 	
+	public int del_msg(String msg_no) throws Exception;	
+	
 }
