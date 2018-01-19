@@ -285,7 +285,6 @@ DROP PROCEDURE IF EXISTS p_admin_comm_boardDelByPK;
 	CREATE PROCEDURE p_admin_comm_boardrepleMod(
 	
 		IN v_com_board_reple_no INT(11),
-		
 		IN v_com_board_reple_content TEXT
 	)
 	BEGIN

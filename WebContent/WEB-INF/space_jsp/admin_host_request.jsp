@@ -9,7 +9,7 @@
 <style type="text/css">
 
 .paginationdiv{
-text-align: right;
+text-align: center;
 }
 
 .select {

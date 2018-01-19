@@ -9,7 +9,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 .paginationdiv {
-	text-align: right;
+	text-align: center;
 }
 
 .select {
@@ -101,7 +101,7 @@ $(document).ready(function(){
 					<form id="textsearch" action="admin_clubs.do" method="post">
 					<div class="select"> 
 						<select name="search_option" class="form-control" style="width: 200px;">
-							<option value="0">검색</option>
+							<option value="0">선택해주세요</option>
 							<option value="1">모임 이름</option>
 							<option value="2">모임장 유저 ID</option>
 							<option value="3">모임 최대 인원</option>
@@ -134,7 +134,7 @@ $(document).ready(function(){
 							<tr>
 								<td><a href="admin_club_detail.do?club_no=${vo.club_no}">${vo.club_name}</a></td>
 								<td>${vo.user_id}</td>
-								<td><img src="club_thumb_images/${vo.club_thumb_img}"
+								<td><img src="club_img/${vo.club_thumb_img}"
 									style="width: 128px; height: 128px;" /></td>
 								<td>${vo.max_member}</td>
 								<td>${vo.create_time}</td>
@@ -161,6 +161,7 @@ $(document).ready(function(){
 	<input type="hidden" name="search_content" value="${search.search_content}">
 	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
+<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_clubs.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -185,7 +186,7 @@ $(document).ready(function(){
 				<li><a class="page" href="admin_clubs.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-		
+	</div>
 		
 <!-- 클럽 삭제 모달 폼 -->
 <div id="text_modal" class="modal fade" role="dialog">

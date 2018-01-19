@@ -20,7 +20,7 @@
 }
 
 .paginationdiv {
-	text-align: right;
+	text-align: center;
 }
 </style>
 <script

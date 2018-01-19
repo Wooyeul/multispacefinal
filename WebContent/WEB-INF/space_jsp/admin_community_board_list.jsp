@@ -9,7 +9,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 .paginationdiv {
-	text-align: right;
+	text-align: center;
 }
 
 .select2 {
@@ -149,11 +149,11 @@ text-align:  center;
 
 
 					<!-- /.table-responsive -->
-					<div class="commask">
-						<a href="admin_community_board_add.do"> <input class="btn"
-							type="button" value="글쓰기">
+<!-- 					<div class="commask">
+						<a href="admin_community_board_add.do"> 
+						<input class="btn" type="button" value="글쓰기">
 						</a>
-					</div>
+					</div> -->
 
 				</div>
 				<!-- /.panel-body -->

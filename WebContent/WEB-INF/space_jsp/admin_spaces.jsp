@@ -5,13 +5,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
+.paginationdiv{
+text-align: center;
+}
 .select {
 	float: left;
+	padding-right: 5px;
 }
-
 .select1 {
 	float: left;
 }
@@ -21,6 +23,10 @@
 }
 
 .select3 {
+	float: left;
+}
+
+.select4 {
 	float: left;
 }
 </style>
@@ -133,7 +139,7 @@ $(document).ready(function(){
 								</select>
 							</div>
 							
-							<input type="checkbox" name="re" value="Y">상세 검색 할려면 체크&nbsp;<br>
+							&nbsp;&nbsp;<input type="checkbox" name="re" value="Y">상세 검색 할려면 체크<br>
 					</div>
 				</div> 
 		</form>
@@ -154,7 +160,7 @@ $(document).ready(function(){
 							<th>가격</th>
 							<th>최대 인원</th>
 							<th>최소 인원</th>
-							<th>공간 번호</th>
+							<th>공간 전화 번호</th>
 							<th>주소</th>
 							<th>공간 카테고리</th>
 							<th>장소 카테고리</th>
@@ -168,7 +174,7 @@ $(document).ready(function(){
 							<td>${vo.space_title}</td>
 							<td>${vo.space_content}</td>
 							<td><a href="space_detail.do?space_no=${vo.space_no}"><img
-									src="thumbnail/${vo.space_thumb_img}"
+									src="space_img/${vo.space_thumb_img}"
 									style="width: 128px; height: 128px;"></img></a></td>
 							<td>${vo.open_time}</td>
 							<td>${vo.close_time}</td>
@@ -180,7 +186,7 @@ $(document).ready(function(){
 							<td>${vo.s_category_no}</td>
 							<td>${vo.l_category_no}</td>
 							<td>${vo.the_time}</td>
-							<td><button class="remove_space" space_no="${vo.space_no}" >삭제하기</button></td>
+							<td><button class="remove_space" space_no="${vo.space_no}" >삭제</button></td>
 						</tr>
 					</jl:forEach>
 				</table>
@@ -197,6 +203,7 @@ $(document).ready(function(){
 	<input type="hidden" name="search_content" value="${search.search_content}">
 	<input type="hidden" name="search_option" value="${search.search_option}">
 </form>
+<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -221,7 +228,7 @@ $(document).ready(function(){
 				<li><a class="page" href="admin_spaces.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
-	
+	</div>
 <!-- 공간 삭제에 대한 모달 -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="space_No" value="0"/>

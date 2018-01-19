@@ -19,7 +19,7 @@
 }
 
 .paginationdiv {
-	text-align: right;
+	text-align: center;
 }
 
 .tabletitle{

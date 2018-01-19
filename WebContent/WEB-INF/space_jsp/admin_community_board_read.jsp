@@ -1,13 +1,11 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%><%@taglib
-	prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" type="text/css"
-	href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
 <style type="text/css">
 .paginationdiv {
 	text-align: right;
@@ -79,36 +77,39 @@ text-align: center;
 </head>
 <script>
 $(document).ready(function() {
-	// ì»¤ë®¤ë‹ˆí‹° ëŒ“ê¸€ ìˆ˜ì • ì™„ë£Œ ëª¨ë‹¬ ë¶€ë¶„
+	// Ä¿¹Â´ÏÆ¼ ´ñ±Û ¼öÁ¤ ¿Ï·á ¸ğ´Ş ºÎºĞ
 	$("#btnreMod").on("click", function() {
 		$("#repleModal").modal("hide");
 		$("#basic_modal").modal("show");
 	});
-	$("#basic_mobody").html("<h4>ëŒ“ê¸€ ìˆ˜ì •ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.<h4>");
+	$("#basic_mobody").html("<h4>´ñ±Û ¼öÁ¤ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.<h4>");
 	$("#basic_modal_yes").on("click",function(){
+		var dc = "?dc=" + new Date().getTime();
 		var reple_no = $("#com_board_reple_no").val();		
-		var com_board_reple_content = $("#content").val();
-		var url = "admin_community_board_replemod.do?com_board_reple_no="+reple_no
+		var com_board_reple_content =  $("#content").val() ;
+		alert(reple_no);
+		alert(com_board_reple_content);
+		var url = "admin_community_board_replemod.do?"+dc+"&com_board_reple_no="+reple_no
 				+"&com_board_reple_content=" + com_board_reple_content;
 		ajaxGet(url,function(rt){ });
 		location.reload();
 	});
 
 	
-	// ëŒ“ê¸€ ìˆ˜ì • ëª¨ë‹¬ ë›°ìš°ê¸°
+	// ´ñ±Û ¼öÁ¤ ¸ğ´Ş ¶Ù¿ì±â
 	$(".modReple").on("click", function() {
 		$("#com_board_reple_no").val($(this).attr("xyz"));
 		$("#content").val($("#" + $(this).attr("abcd")).text());
-		$("lblcontent").text("ê¸€ë²ˆí˜¸ :" + $(this).attr("xyz"));
+		$("#lblContent").text("±Û¹øÈ£ :" + $(this).attr("xyz"));
 		$("#repleModal").modal("show");
 	});
-	// ëŒ“ê¸€ ìˆ˜ì • ëª¨ë‹¬ ì¢…ë£Œì‹œ
+	// ´ñ±Û ¼öÁ¤ ¸ğ´Ş Á¾·á½Ã
 	$("#btnClose").on("click",function(){
 		location.href = "admin_community_board_read.do?com_board_no=${vo.com_board_no}";
 	});
 	
 	
-	// ì»¤ë®¤ë‹ˆí‹° ê¸€ ì‚­ì œ ëª¨ë‹¬ ë¶€ë¶„
+	// Ä¿¹Â´ÏÆ¼ ±Û »èÁ¦ ¸ğ´Ş ºÎºĞ
 	$("#remove_free").on("click",function(){
 		$("#free_No").val( $(this).attr("free_no") );
 		
@@ -125,8 +126,8 @@ $(document).ready(function() {
 	});
 	
 	
-	// ììœ ê²Œì‹œíŒ ëŒ“ê¸€ ì‚­ì œ ì‹œ ëª¨ë‹¬
-	// <a> íƒœê·¸ë¡œ ê°’ì„ ë¶ˆëŸ¬ ì˜¬ ë•Œ class í–ˆì„ ë•Œ ë™ì‘ ë¨.
+	// ÀÚÀ¯°Ô½ÃÆÇ ´ñ±Û »èÁ¦ ½Ã ¸ğ´Ş
+	// <a> ÅÂ±×·Î °ªÀ» ºÒ·¯ ¿Ã ¶§ class ÇßÀ» ¶§ µ¿ÀÛ µÊ.
 	$(".remove_free_re").on("click",function(){
 		$("#board_reple_No").val( $(this).attr("board_reple_no") );
 		$("#board_No").val( $(this).attr("board_no") );
@@ -146,14 +147,14 @@ $(document).ready(function() {
 	
 });
 
-// ì¶”ì²œ ë›°ìš°ê¸° ëª¨ë‹¬
+// ÃßÃµ ¶Ù¿ì±â ¸ğ´Ş
 window.onload = function() {
 	e("btn").onclick = function() {
 		var dc = "?dc=" + new Date().getTime();
 		ajaxGet("admin_community_board_recom.do" + dc
 				+ "&user_id=aav&com_board_no=${vo.com_board_no}", function(rt) {
 			if (rt == -1) {
-				alert('ì´ë¯¸ ì´ ê¸€ì„ ì¶”ì²œí•˜ì…¨ìŠµë‹ˆë‹¤');
+				alert('ÀÌ¹Ì ÀÌ ±ÛÀ» ÃßÃµÇÏ¼Ì½À´Ï´Ù');
 			} else {
 				e("recomCount").innerHTML = rt;
 			}
@@ -168,9 +169,9 @@ window.onload = function() {
 	<br>
 	<div class="row">
 		<div class="col-lg-12">
-		 <p> <label> ê¸€ë³´ê¸° </label></p> 
+		 <p> <label> ±Ûº¸±â </label></p> 
 <hr style="border: solid 0.5px black;">
-			<!-- í…Œì´ë¸” -->
+			<!-- Å×ÀÌºí -->
 
 			<div class="table-responsive">
 				<table class="table">
@@ -215,8 +216,8 @@ window.onload = function() {
 								<input type="hidden" name="com_board_title" value="${vo.com_board_title}" /> 
 								<input type="hidden" name="user_id" value="${vo.user_id}" /> 
 								<input type="hidden" name="com_board_content" value="${vo.com_board_content}" /> 
-								<input type="submit" id="mod"  class="btn btn-primary" value="ê¸€ ìˆ˜ì •í•˜ê¸°" /> &nbsp;
-								<input type="button" id="remove_free" free_no="${vo.com_board_no}" class="btn btn-primary" value="ê¸€ ì‚­ì œí•˜ê¸°" />
+								<input type="submit" id="mod"  class="btn btn-primary" value="±Û ¼öÁ¤ÇÏ±â" /> &nbsp;
+								<input type="button" id="remove_free" free_no="${vo.com_board_no}" class="btn btn-primary" value="±Û »èÁ¦ÇÏ±â" />
 							</form>
 							</td>
 						</tr>
@@ -224,12 +225,9 @@ window.onload = function() {
 						<jl:forEach var="vo2" items="${rl}">
 							<tr>
 								<td>ID : ${vo2.user_id}</td>
-								<td colspan="3"> <span id="rb_${vo2.com_board_reple_no}">
-										${vo2.com_board_reple_content} </span>
-										<a abcd="rb_${vo2.com_board_reple_no}"
-									xyz="${vo2.com_board_reple_no}" class="modReple" href="#">ìˆ˜ì •</a>
-								
-									<a class="remove_free_re" board_reple_no="${vo2.com_board_reple_no}" board_no="${vo2.com_board_no}" href="#" >[x] </a></td>
+								<td colspan="3"><span id="rb_${vo2.com_board_reple_no}">${vo2.com_board_reple_content}</span>
+								<a abcd="rb_${vo2.com_board_reple_no}" xyz="${vo2.com_board_reple_no}" class="modReple" href="#">¼öÁ¤</a>
+								<a class="remove_free_re" board_reple_no="${vo2.com_board_reple_no}" board_no="${vo2.com_board_no}" href="#" >[x] </a></td>
 								<td>${vo2.the_time}</td>
 							</tr>
 						</jl:forEach>
@@ -251,7 +249,7 @@ window.onload = function() {
 <hr style="border: solid 0.5px black;">
 	<form action="admin_community_board_addreple.do" method="POST">
 <div class="select1">
-		<label> ëŒ“ê¸€ë‹¬ê¸° </label>
+		<label> ´ñ±Û´Ş±â </label>
 </div>
 <div class="select2">	
 		<input type="text" name="com_board_reple_content" style="width: 600px; height:50px;" class="form-control"/>
@@ -259,31 +257,28 @@ window.onload = function() {
 		<input type="hidden" name="user_id" value="${user_id}" /> 
 	</div>	
 <div class="select3">	
-		<input type="submit" class="btn" value="ëŒ“ê¸€ë‹¬ê¸°" />
+		<input type="submit" class="btn" value="´ñ±Û´Ş±â" />
 </div>
 	</form>
-<div class="select3">	
-	<input type="button" id="btn" class="btn" value="ì¶”ì²œë²„íŠ¼" />
-</div>	
+<!-- <div class="select3">	
+	<input type="button" id="btn" class="btn" value="ÃßÃµ¹öÆ°" />
+</div>	 -->
 	
-<!-- ëª¨ë‹¬ -->	
-	<form method="POST" action="admin_community_board_replemod.do"
-		id="reple_form" name="frm">
+<!-- ¸ğ´Ş -->	
+	<form action="admin_community_board_replemod.do" id="reple_form" method="post" id="frm">
 		<div id="repleModal" class="modal" role="dialog">
-			<input type="hidden" id="com_board_no" value="${vo.com_board_no}"
-				name="com_board_no" /> <input id="com_board_reple_no" type="hidden"
-				name="com_board_reple_no" />
+			<input type="hidden" id="com_board_no" value="${vo.com_board_no}" name="com_board_no" /> 
+			<input id="com_board_reple_no" type="hidden" name="com_board_reple_no" />
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
 						<div class="form-group">
 							<label id="lblContent" for="content"></label>
-							<textarea name="com_board_reple_content" class="form-control"
-								id="content" rows="7"></textarea>
+							<textarea name="com_board_reple_content" class="form-control" id="content" rows="7"></textarea>
 						</div>
 
-						<input type="button"  class="btn btn-primary btn-sm" id="btnClose" value="ë‹«ê¸°">
-						<input type="button" class="btn btn-primary btn-sm" id="btnreMod" value="ìˆ˜ì •">
+						<input type="button"  class="btn btn-primary btn-sm" id="btnClose" value="´İ±â">
+						<input type="button" class="btn btn-primary btn-sm" id="btnreMod" value="¼öÁ¤">
 					</div>
 				</div>
 			</div>
@@ -291,50 +286,50 @@ window.onload = function() {
 	</form>
 
 
-<!-- ê¸€ ì‚­ì œ ëª¨ë‹¬ -->	
+<!-- ±Û »èÁ¦ ¸ğ´Ş -->	
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="board_reple_No" value="0"/>
 	<input type="hidden" id="board_No" value="0"/>
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div id="text_mohead" class="modal-header"align="center"><h4>ê¸€ ì‚­ì œ</h4></div>
+			<div id="text_mohead" class="modal-header"align="center"><h4>±Û »èÁ¦</h4></div>
 			<div id="text_mobody" class="modal-body" align="center">
-				<h4>ê¸€ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+				<h4>±ÛÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 			</div>
 			<div id="text_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' id='text_modal_yes'>í™•ì¸</button>
-				<button type='button' class='btn btn-primary' id='text_modal_no'>ì·¨ì†Œ</button>
+				<button type='button' class='btn btn-default' id='text_modal_yes'>È®ÀÎ</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>Ãë¼Ò</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- ëŒ“ê¸€ ì‚­ì œ ëª¨ë‹¬ -->		
+<!-- ´ñ±Û »èÁ¦ ¸ğ´Ş -->		
 <div id="re_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="free_No" value="0"/>
 	<input type="hidden" id="free_No" value="0"/>
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div id="re_mohead" class="modal-header"align="center"><h4>ëŒ“ê¸€ ì‚­ì œ</h4></div>
+			<div id="re_mohead" class="modal-header"align="center"><h4>´ñ±Û »èÁ¦</h4></div>
 			<div id="re_mobody" class="modal-body" align="center">
-				<h4>ëŒ“ê¸€ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+				<h4>´ñ±ÛÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 			</div>
 			<div id="re_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' to-delete2="delete_${vs2.count}"  id='re_modal_yes'>í™•ì¸</button>
-				<button type='button' class='btn btn-primary' id='re_modal_no'>ì·¨ì†Œ</button>
+				<button type='button' class='btn btn-default' to-delete2="delete_${vs2.count}"  id='re_modal_yes'>È®ÀÎ</button>
+				<button type='button' class='btn btn-primary' id='re_modal_no'>Ãë¼Ò</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- í™•ì¸ ì™„ë£Œìš© ëª¨ë‹¬ -->
+<!-- È®ÀÎ ¿Ï·á¿ë ¸ğ´Ş -->
 <div id="basic_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="basic_mobody" class="modal-body" align="center">
 			</div>
 			<div id="basic_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' id='basic_modal_yes'>ë‹«ê¸°</button>
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>´İ±â</button>
 			</div>
 		</div>
 	</div>

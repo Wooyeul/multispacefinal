@@ -9,8 +9,28 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 .paginationdiv{
-text-align: right;
+text-align: center;
 }
+.select {
+	float: left;
+	padding-right: 5px;
+}
+.select1 {
+	float: left;
+}
+
+.select2 {
+	float: left;
+}
+
+.select3 {
+	float: left;
+}
+
+.select4 {
+	float: left;
+}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -48,12 +68,33 @@ text-align: right;
 <br>
 <br>
 
-  <div class="row">
+  			<div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             유저 리스트
+                            <form id="textsearch" action="admin_users.do" method="post">
+                            <div class="select">
+                            
+								<select name="search_option"  class="form-control" style="width: 200px;">
+									<option value="0">선택해주세요</option>
+									<option value="1">이름</option>
+									<option value="2">유저 ID</option>
+									<option value="3">닉네임</option>
+									<option value="4">성별</option>
+									<option value="5">이메일</option>
+									<option value="6">우편 번호</option>
+									<option value="7">상세 주소</option>
+								</select>
+						
+								</div>
+								<div class="select">
+									<input type="text" name="search_content" class="form-control" style="width: 300px;" >
+								</div>
+								<input type="submit" class="btn" value="검색" >
+							</form>
                         </div>
+                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -90,7 +131,7 @@ text-align: right;
 <!-- 페이징 -->
 <br>
 <br>
-<form id="textsearch" action="admin_users.do" method="post">
+<!-- <form id="textsearch" action="admin_users.do" method="post">
 	<select name="search_option">
 		<option value="0">선택해주세요</option>
 		<option value="1">이름</option>
@@ -103,7 +144,8 @@ text-align: right;
 	</select>
 	검색 : <input type="text" name="search_content">
 	<input type="submit" value="검색">
-</form>
+</form> -->
+<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page" href="admin_users.do?pg=${pz.paginationStart-1}">&lt;</a></li>
@@ -128,6 +170,7 @@ text-align: right;
 				<li><a class="page" href="admin_users.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
+	</div>
 <!-- 페이징 -->
 </body>
 </html>
