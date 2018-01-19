@@ -19,8 +19,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
-		label {
-			margin-left:500px;
+		.container {
+			text-align: center;
 		}
 		th, td {
 			text-align: center;
@@ -62,11 +62,11 @@
 			margin:0 auto;
 		}
 		.cb_table>tbody>tr>th{
-	padding: 8px;
-	line-height: 1.42857143;
-	vertical-align: top;
-	border-top: 0px !important;
-}
+			padding: 8px;
+			line-height: 1.42857143;
+			vertical-align: top;
+			border-top: 0px !important;
+		}
 
 		.cb_table{
 	border-spacing: 0px !important;
@@ -99,7 +99,9 @@
 </head>
 <body>
 </br>
-	<label><h3>자유롭게 글을 작성 할 수 있는 자유게시판입니다. 자유롭게 글을 써보세요!</h3></label>
+	<div class="container">
+		<label><h3>자유롭게 글을 작성 할 수 있는 자유게시판입니다. 자유롭게 글을 써보세요!</h3></label>
+	</div>
 	<hr style="border: solid 0.5px black;">
 	<table class="table table-hover cb_table">
 		<tr>

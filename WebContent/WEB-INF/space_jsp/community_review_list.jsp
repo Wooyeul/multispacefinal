@@ -22,8 +22,8 @@
 		th,td,tr {
 			text-align: center;
 		}
-		label {
-			margin-left:400px;
+		.container {
+			text-align:center;
 		}
 	</style>
 	
@@ -44,7 +44,9 @@
 	</script> 
 <body>
 </br>
-<label><h3>공간 사진을 클릭하면 해당 공간 페이지로 이동됩니다. 공간의 상세 내용 및 후기를 확인해보세요!</h3></label>
+<div class="container">
+	<label><h3>공간 사진을 클릭하면 해당 공간 페이지로 이동됩니다. 공간의 상세 내용 및 후기를 확인해보세요!</h3></label>
+</div>
 <hr style="border: solid 0.5px black;">
 	<table class="table table-hover">
 		<tr>
@@ -60,13 +62,13 @@
 		
 		<jl:forEach items="${rl}" var="rl">
 		<tr>
-			<td>${rl.space_no}</td>
-			<td>${rl.review_title}</td>
-			<td>${rl.review_content}</td>
+			<td><h4>${rl.space_no}</h4></td>
+			<td><h4>${rl.review_title}</h4></td>
+			<td><h4>${rl.review_content}</h4></td>
 			<td><a href="space_detail.do_no_header.do?space_no=${rl.space_no}"><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
-			<td>${rl.user_id}</td>
-			<td>${rl.the_time}</td>
-			<td>${rl.review_score}</td>
+			<td><h4>${rl.user_id}</h4></td>
+			<td><h4>${rl.the_time}</h4></td>
+			<td><h4>${rl.review_score}</h4></td>
 		</tr>
 		</jl:forEach>
 	</table>

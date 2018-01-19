@@ -58,8 +58,8 @@
 			width: 600px;
 			margin:0 auto;
 		}
-		label {
-			margin-left:470px;
+		.container {
+			text-align:center;
 		}
 	</style>
 	<script>
@@ -86,7 +86,9 @@
 </head>
 <body>
 </br>
-<label><h3>질문을 주고 받을 수 있는 질문 답변 게시판입니다. 궁금하신 점들을 물어보세요!</h3></label>
+<div class="container">
+	<label><h3>질문을 주고 받을 수 있는 질문 답변 게시판입니다. 궁금하신 점들을 물어보세요!</h3></label>
+</div>
 	<hr style="border: solid 0.5px black;">
 	<table class="table table-hover">
 		<tr>
