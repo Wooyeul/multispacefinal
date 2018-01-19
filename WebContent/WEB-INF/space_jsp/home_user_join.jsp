@@ -234,7 +234,6 @@
 		
 	</script>
 
-
 </head>
 <body>
 	<!-- *********************  header  ************************ -->
@@ -369,8 +368,10 @@
 						<div class="modal-content">
 							<div class="modal-body">
 								<label id="lblContent"></label><br />
+							</div>
+							<div class="modal-footer">
 								<button type="button" class="btn btn-primary btn-sm"
-									id="btnClose" data-dismiss="modal">닫기</button>
+									id="btnClose" data-dismiss="modal">확인</button>
 							</div>
 						</div>
 					</div>

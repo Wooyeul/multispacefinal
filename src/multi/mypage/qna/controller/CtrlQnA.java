@@ -89,7 +89,6 @@ public class CtrlQnA {
 		Space_qna_repleVO qna_repleInfo = Space_qna_repleDAO.find_qna_repleInfo(space_qna_no);
 		Space_qnaVO qnaInfo = Space_qnaDAO.find_qnaByspace_no(space_qna_no);
 		
-		System.out.println(qna_repleInfo);
 		if(qna_repleInfo==null){
 			qna_repleInfo = new Space_qna_repleVO();
 			qna_repleInfo.setSpace_qna_reple_content("답변내용없음");
