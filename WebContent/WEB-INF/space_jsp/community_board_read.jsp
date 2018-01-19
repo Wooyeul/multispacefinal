@@ -127,9 +127,10 @@ $(document).ready(function() {
 					success	: function(rt) {
 						$("#repleModal").modal("hide");
 						if(rt=="ok"){
+							$("#mohead").html("<div class='modal-title'align='center'><h4>댓글수정</h4></div>");
 							$("#mobody").text("댓글이 수정 되었습니다.");
 							$("#modal").modal("show");
-							$("#ft").html("");
+							$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 							$("#modal").on("hidden.bs.modal",function(){
 								$("#modal").modal("hide");
 								$("#com_board_reple_content").val("");
@@ -138,7 +139,7 @@ $(document).ready(function() {
 						}else if(rt=="no"){
 							$("#mobody").text("댓글 수정 처리가 실패 되었습니다.");
 							$("#modal").modal("show");
-							$("#ft").html("");
+							$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 							$("#modal").on("hidden.bs.modal",function(){
 								$("#modal").modal("hide");
 								find_reple();
@@ -159,7 +160,7 @@ $(document).ready(function() {
  			var com_board_reple_no = $(this).attr("aa");
 			var com_board_no = $(this).attr("bb");
 			$("#mohead").html("<div class='modal-title'align='center'><h4>댓글삭제</h4></div>");
-			$("#mobody").html("<h3>댓글을 삭제하시겠습니까?</h3>");
+			$("#mobody").html("댓글을 삭제하시겠습니까?");
 			$("#ft").html("<button type='button' class='btn btn-default' id='modal-del-Yes'>확인</button>"+
 					"<button type='button' class='btn btn-primary' id='modal-del-No'>취소</button>");
 			$("#modal").modal();
@@ -168,7 +169,7 @@ $(document).ready(function() {
 				ajaxGet(url,function(rt){
 					if(rt=="ok"){
 						$("#mobody").text("댓글이 삭제 되었습니다.");
-						$("#ft").html("");
+						$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 						$("#modal").modal("show");
 						$("#modal").on("hidden.bs.modal",function(){
 							$("#modal").modal("hide");
@@ -176,7 +177,7 @@ $(document).ready(function() {
 						});
 					}else if(rt=="no"){
 						$("#mobody").text("댓글 삭제 처리가 실패 되었습니다.");
-						$("#ft").html("");
+						$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 						$("#modal").modal("show");
 						$("#modal").on("hidden.bs.modal",function(){
 							$("#modal").modal("hide");
@@ -214,8 +215,9 @@ $(document).ready(function() {
 				data : formData,
 				success	: function(rt) {
 					if(rt=="ok"){
+						$("#mohead").html("<div class='modal-title'align='center'><h4>댓글등록</h4></div>");
 						$("#mobody").text("댓글이 등록 되었습니다.");
-						$("#ft").html("");
+						$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 						$("#modal").modal("show");
 						$("#modal").on("hidden.bs.modal",function(){
 							$("#modal").modal("hide");
@@ -224,7 +226,7 @@ $(document).ready(function() {
 						});
 					}else if(rt=="no"){
 						$("#mobody").text("댓글 처리가 실패 되었습니다.");
-						$("#ft").html("");
+						$("#ft").html("<button type="+"'button"+"' class="+"'btn btn-default"+"' data-dismiss="+"'modal"+"'>닫기</button>");
 						$("#modal").modal("show");
 						$("#modal").on("hidden.bs.modal",function(){
 							$("#modal").modal("hide");
