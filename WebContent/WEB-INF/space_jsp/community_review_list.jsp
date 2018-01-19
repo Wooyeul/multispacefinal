@@ -57,9 +57,9 @@
 		<tr>
 			<td>${rl.review_no}</td>
 			<td>${rl.space_no}</td>
-			<td><a href="space_detail.do?space_no=${rl.space_no}">${rl.review_title}</a></td>
-			<td><a href="space_detail.do?space_no=${rl.space_no}">${rl.review_content}</a></td>
-			<td><a href="space_detail.do?space_no=${rl.space_no}"><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
+			<td><a href="space_detail_no_header.do?space_no=${rl.space_no}">${rl.review_title}</a></td>
+			<td>${rl.review_content}</td>
+			<td><a href="space_detail.do_no_header.do?space_no=${rl.space_no}"><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
 			<td>${rl.user_id}</td>
 			<td>${rl.the_time}</td>
 			<td>${rl.review_score}</td>

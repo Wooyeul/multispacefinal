@@ -63,11 +63,12 @@
 			margin-right:10px;
 		}
 		.replecontent {
-			width: 1200px;
+			width: 1600px;
 			margin-left:20px;
 			float: left;
 		}
-		.repsumbtn,{
+		.repsumbtn{
+			width: 400px;
 			float: left;
 		}
 		.replesumtext {
@@ -214,72 +215,10 @@
 	
 </head>
 <body>
-	<%-- <div class="container">
-	<table class="table-hover">
-		<tr>
-			<th><label>제목</label></th>
-			<th><label>글쓴이</label></th>
-		</tr>
-		<tr><label>내용</label></tr>
-		
-		<tr><td>${vo.com_qna_title}</td>
-		<td>${vo.user_id}</td>
-		</tr>
-		<tr>${vo.com_qna_content}</tr>
-		
-		
-		
-	</table>
-		
-		<table class="table-hover">
-		<tr>
-			<th>#</th>		
-			<th>ID</th>
-			<th width="400">CONTENT</th>
-			<th>TIME</th>
-			<th>RECOM</th>
-			<th>추천</th>
-			<th>수정</th>
-			<th>삭제</th>
-		</tr>
-		<jl:forEach var="rpl" items="${rp}" varStatus="vs">
-			<tr>
-				<td>${rpl.com_qna_reple_no}</td>
-				<td>${rpl.user_id}</td>
-				<td>
-					<span id="rb_${rpl.com_qna_reple_no}"> ${rpl.com_qna_reple_content} </span>
-				</td>
-				<td>${rpl.the_time}</td>
-				<td>
-					<div id="recom_count${rpl.com_qna_reple_no}">${rpl.recom_count}</div>
-				</td>
-				<td>
-					<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
-					<jl:if test="${user_id ne ''}">
-					<a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" class="btn btn-primary btn-sm recom"">추천</a>
-					</jl:if>
-				</td>
-				<td> 
-					<jl:if test="${rpl.user_id eq user_id}"> 
-					<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple btn btn-primary btn-sm" href="#">수정</a>
-					</jl:if>
-				</td>
-				<td>
-				<jl:if test="${rpl.user_id eq user_id}"> 
-					<input type="button" class="btn btn-primary btn-sm showDelModal" 
-						del_com_qna_no="${rpl.com_qna_no}"
-						del_com_qna_reple_no="${rpl.com_qna_reple_no}"
-						value="삭제"/>		
-				</jl:if>	
-				</td>
-			</tr>
-		</jl:forEach>
-
-	</table> --%>
 	
-		<div class="row">
+	<div class="row">
 		<div class="col-lg-12">
-<hr style="border: solid 0.5px black;">
+		<hr style="border: solid 0.5px black;">
 			<!-- 테이블 -->
 
 			<div class="table-responsive">
@@ -383,18 +322,18 @@
 	</div>
 	
 	<div class="replecontent">
-	<form action="community_qna_reple_add.do" method="post" id="reple_submit">
-		<jl:if test="${user_id ne ''}">
-			<div class="replesumtext">
-				<input class="form-control" type="text" name="com_qna_reple_content" placeholder="댓글을 입력하세요."/>
-				<input type="hidden" name="user_id" value="${user_id}"/>
-				<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-			</div>
-			<div class="repsumbtn">
-				<input id="reple_submit_btn" type="button" value="댓글작성" class="btn btn-info">
-			</div>
-		</jl:if>
-	</form>
+		<form action="community_qna_reple_add.do" method="post" id="reple_submit">
+			<jl:if test="${user_id ne ''}">
+				<div class="replesumtext">
+					<input class="form-control" type="text" name="com_qna_reple_content" placeholder="댓글을 입력하세요."/>
+					<input type="hidden" name="user_id" value="${user_id}"/>
+					<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+				</div>
+				<div class="repsumbtn">
+					<input id="reple_submit_btn" type="button" value="댓글작성" class="btn btn-primary">
+				</div>
+			</jl:if>
+		</form>
 		<div class="btnclass1">
 			<form action="community_qna_list.do" method="post">
 				<input type="submit" value="QnA목록" class="btn btn-basic"/>
@@ -407,7 +346,7 @@
 					<input type="button" class="btn btn-danger" value="QnA삭제" data-toggle="modal" data-target="#text_del_modal"/>
 				</jl:if>
 			</form>
-			</div>
+		</div>
 		<div class="btnclass3">
 			<form action="community_qna_mod.do" method="post">
 				<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
