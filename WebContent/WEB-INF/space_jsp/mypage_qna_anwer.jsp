@@ -27,39 +27,43 @@
 	</style>
 </head>
 <body>
+	<div>
+		<label><h3>제목</h3></label><label style="margin: 20px;">::</label> <label>${qnaInfo.space_qna_title}</label>
+	</div>
+	<hr>
+	<div class="col-sm-6" align="left">
+		<label><span class="glyphicon glyphicon-user"></span>
+			${qnaInfo.user_id}</label>
+	</div>
+	<div class="textarea_h">
+		<textarea rows="15" cols="30" disabled="disabled" class="form-control">${qnaInfo.space_qna_content}</textarea>
+		<br />
+	</div>
+
+	<form id="add_reple_frm">
+		<div class="label_reple">
+			<label id="reple" class="l" style="width: 100px; font-size: 100%">답변</label>
+		</div>
+		<div class="form-group" align="left">
+			<div class="input-group">
+				<label id="c_board_reple_content" name="c_board_reple_content"
+					style="height: 80px;" class="form-control">
+					${Space_qna_repleVO.space_qna_reple_content } </label> 
+					<span class="input-group-addon" style="background-color: #00C73C;"></span>
+			</div>
+		</div>
+	</form>
+	
+	<form action="del_space_qna.do" method="POST">
+		<input type="hidden" value="${space_qna_no}" name="space_qna_no"/>
+		<input type="submit" value="삭제"/>
+	</form>
+	
+	
+	<br />
+	<hr />
+	<div id="reple_list" class="form-group" align="left"></div>
 
 
-
-				<div>
-					<label><h3>제목 </h3></label><label style="margin: 20px;">::</label>
-					<label>${qnaInfo.space_qna_title}</label>
-				</div>
-				<hr>
-				<div class="col-sm-6" align="left">
-					<label><span class="glyphicon glyphicon-user"></span> ${qnaInfo.user_id}</label>
-				</div>
-				<div class="textarea_h">
-					<textarea rows="15" cols="30" disabled="disabled" class="form-control">${qnaInfo.space_qna_content}</textarea><br/>
-				</div>
-				<hr>
-				
-				<form id="add_reple_frm">
-					<div class="label_reple">
-						<label id="reple" class="l" style="width: 100px; font-size: 100%">답변</label>
-					</div>
-					<div class="form-group" align="left">
-						<div class="input-group">
-							<label id="c_board_reple_content" name="c_board_reple_content" style="height: 80px;" class="form-control">
-							${Space_qna_repleVO.space_qna_reple_content }
-							</label>
-							<span class="input-group-addon" style="background-color: #00C73C;"></span>
-						</div>
-					</div>
-				</form>
-				<br/>
-				<hr/>
-				<div id="reple_list" class="form-group" align="left">
-				</div>	
-				
 </body>
 </html>

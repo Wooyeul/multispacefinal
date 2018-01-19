@@ -94,14 +94,18 @@ public class CtrlQnA {
 			qna_repleInfo.setSpace_qna_reple_content("답변내용없음");
 		}
 		
-		
+		mnv.addObject("space_qna_no", space_qna_no);
 		mnv.addObject("userInfo", userInfo);
 		mnv.addObject("Space_qna_repleVO", qna_repleInfo);
 		mnv.addObject("qnaInfo", qnaInfo);
 		return mnv;
 	}
 	
-	
-	
-
+	@RequestMapping("/del_space_qna.do")
+	public String del_space_qna(@RequestParam("space_qna_no") String space_qna_no)throws Exception{
+		
+		Space_qnaDAO.del_space_qna(space_qna_no);
+		
+		return "redirect:/mypage_moveMypageQnAPage.do";
+	}
 }

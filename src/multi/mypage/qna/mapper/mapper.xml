@@ -65,6 +65,9 @@
    		</if>
    </select>
    
+   <delete id="del_space_qna" parameterType="java.lang.String">
+   		delete from space_qnat where space_qna_no = #{space_qna_no};
+   </delete>
    
    
 </mapper>

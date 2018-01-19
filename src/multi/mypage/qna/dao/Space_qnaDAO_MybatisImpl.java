@@ -28,4 +28,9 @@ public class Space_qnaDAO_MybatisImpl implements Space_qnaDAO{
 		return sqlSession.selectList("apple.mypage_search_QnA",search);
 	}
 
+	@Override
+	public int del_space_qna(String space_qna_no) throws Exception {
+		return sqlSession.delete("apple.del_space_qna",space_qna_no);
+	}
+
 }

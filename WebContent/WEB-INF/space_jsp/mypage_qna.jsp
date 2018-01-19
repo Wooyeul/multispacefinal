@@ -23,7 +23,20 @@
 	
 	
 	</script>
+	<style type="text/css">
+	table td{
+		 overflow: hidden; 
+		  text-overflow: ellipsis;
+		  white-space: nowrap; 
+		  width: 100px;
+		  height: 20px;
+		}
+	#con {
+		display: block;
+	}
 
+		
+	</style>
 </head>
 <body>
 	<form name="frm">
@@ -39,7 +52,7 @@
 				<tr>
 					<td>${QnAInfo.space_qna_no}</td>
 					<td>${QnAInfo.space_qna_title}</td>
-					<td>${QnAInfo.space_qna_content}</td>
+					<td id="con">${QnAInfo.space_qna_content}</td>
 					<td>${QnAInfo.the_time}</td>
 					<td><input type="button" class="btn btn-primary btnspace_no" id="btn_anwer" value="답변보기" abc="${QnAInfo.space_qna_no}"/>
 				</tr>

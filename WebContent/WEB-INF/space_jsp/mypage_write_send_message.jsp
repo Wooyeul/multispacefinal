@@ -49,30 +49,35 @@
 		/* ************************** 쪽지 보내기 버튼 클릭시 ************************** */	
 		$("#submitBtn").on("click",function(e){
 			
+			var flag = $("#i_msg_content").val()
+			
+			if( flag != ""){
+				
+				
 			var sel_receive_user_id = $("#select_club_member option:selected").val();
 			$("#i_receive_user_id").attr("value",sel_receive_user_id);
-			
-		    var formMData = $("#form_sendMessage").serialize();	
-		       $.ajax({
-			           type : "POST",
-			           url : "mypage_sendMessage.do",
-			           data : formMData,
-			           success   : function(rt) {
-			             	if(rt=="30003"){
-			             		$("#messageModal").modal('show');         		
-			             	}
-						 },
-					   error : function(xhr, option, error){
-						   alert(error);
-			            }
-			        }); 
-		});// end function
-		
-		
-		$("#move_sendMessageBox").on("click",function(e){
-			location.href="mypage_moveMypageSendMessagePage.do";
-		})
 				
+			var formMData = $("#form_sendMessage").serialize();	
+			$.ajax({
+			         type : "POST",
+			         url : "mypage_sendMessage.do",
+			         data : formMData,
+			         success   : function(rt) {
+			           	if(rt=="30003"){
+			           		$("#lblCon").text("쪽지가 성공적으로 보내졌습니다.");
+			           		$("#messageModal").modal('show');
+			           		$("#i_msg_content").val("");
+			           	}
+				 },
+			   error : function(xhr, option, error){
+				   alert(error);
+				            }
+			      });
+			} else{
+				$("#lblCon").text("보내실 메시지를 입력해주세요.");
+           		$("#messageModal").modal('show');         		
+			}
+		});// end function
 		
 	}); //end$(document)
 	
@@ -114,16 +119,16 @@
 	<div id="messageModal" class="modal " role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-body">쪽지가 성공적으로 보내졌습니다.</div>
+				<div id="text_mohead" class="modal-header"align="center"><h4>쪽지</h4></div>
+				<div id="text_mobody" class="modal-body" align="center">
+				<label id="lblCon"></label></div>
 				<div class="modal-footer">
-					<button class="btn btn-default" id="move_sendMessageBox">보낸쪽지함 가기</button>
-					<button class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button class="btn btn-default" data-dismiss="modal" id="btnck">확인</button>
 				</div>
 			</div>
 		</div>
 	</div> 
-
-
+	
 
 </body>
 </html>
