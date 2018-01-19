@@ -203,8 +203,9 @@ $(document).ready(function() {
 	
 		//추천
 		$("#btnrecom").on("click",function(){
+			var user_id=$(this).attr("user_id");
 			var dc = "?dc=" + new Date().getTime();
-			ajaxGet("community_board_recom.do" + dc	+ "&user_id=aav&com_board_no=${vo.com_board_no}", 
+			ajaxGet("community_board_recom.do" + dc	+ "&user_id="+user_id+"&com_board_no=${vo.com_board_no}", 
 					function(rt) {
 				if (rt == -1) {
 					$("#modalrecom").modal("show");
@@ -307,7 +308,7 @@ $(document).ready(function() {
 							<td><h4>${vo.view_count}</h4></td>
 							<td>
 							<div id="recomCount">
-								<button type="button" id="btnrecom" class="btn btn-default btn-circle" ><i class="fa fa-heart"></i>
+								<button user_id="${user_id}" type="button" id="btnrecom" class="btn btn-default btn-circle" ><i class="fa fa-heart"></i>
 								</button>&emsp;${vo.recom_count}				
 							</div>
 							</td>
