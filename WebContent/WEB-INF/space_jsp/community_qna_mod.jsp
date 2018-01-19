@@ -68,14 +68,16 @@
 	</script>
 </head>
 <body>
-	<div class="qnamod"><h2>QnA 수정하기</h2></div>
+	<div class="qnamod"><h2>QnA 글 수정</h2></div>
 	<div class="container">
 		<form action="community_qna_mod2.do" method="POST" id="qna_mod">
-			제목 : <input class="form-control" type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
-			내용 :<textarea class="form-control" name="com_qna_content" rows="10" cols="100">${vo.com_qna_content}</textarea>
+			<label><h3>제목 입력</h3></label>
+				<input class="form-control" type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
+			<label><h3>내용 입력</h3></label>
+				<textarea class="form-control" name="com_qna_content" rows="10" cols="100">${vo.com_qna_content}</textarea>
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<div class="modbtn">
-				<input type="button" value="QnA수정" class="btn btn-info btn-lg" data-toggle="modal" data-target="#text_mod_modal"/>
+				<input type="button" value="수정" class="btn btn-info btn-lg" data-toggle="modal" data-target="#text_mod_modal"/>
 			</div>
 		</form>
 	</div>
