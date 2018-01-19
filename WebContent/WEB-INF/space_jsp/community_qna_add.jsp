@@ -8,10 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
-	
-		.jumbotron{
-			text-align:center;
-		}
+
 		
 	</style>
 	<script src="common.js"></script>
@@ -19,10 +16,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
 	$(document).ready(function() {
-	$("#btnClose").on("click", function() {
-		$("#QnaModal").modal("hide");
-
+	/* 기본 모달 창 닫기 버튼 눌렀을 때 이벤트 발생 */
+	$("#basic_modal_Yes").on("click",function(){
+		$("#basic_modal").modal("hide");
 	});
+		
+
 
 	$("#ee").on("click",function(){
 		$("#text_add_modal").modal("show");
@@ -39,21 +38,22 @@
 			$("#text_add_modal").modal("hide");
 		});
 	});
-	
-/* 	$("#status-modal").on("hidden.bs.modal",function(){
-        location.href="space_detail.do?space_no="+${space.space_no};
-     }); */
-	
-	$("#btnQnASub").on("click", function() {
-		$("#completeModal").modal("show");
+	/* 	$("#btnClose").on("click", function() {
+			$("#QnaModal").modal("hide");
+		}); */
+	/* 	$("#status-modal").on("hidden.bs.modal",function(){
+	        location.href="space_detail.do?space_no="+${space.space_no};
+	     }); */
 		
-	});
-	
-	$("#completeModal").on("hidden.bs.modal",function(){
-		location.href="community_qna_list.do";
-		$("#qna_submit").submit();
-	});
-	
+		/* $("#btnQnASub").on("click", function() {
+			$("#completeModal").modal("show");
+			
+		}); */
+		
+	/* 	$("#completeModal").on("hidden.bs.modal",function(){
+			location.href="community_qna_list.do";
+			$("#qna_submit").submit();
+		}); */
 	});
 	</script>
 </head>
