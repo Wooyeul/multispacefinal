@@ -1,17 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+		
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	
+	<style type="text/css">
+		.textarea_h{
+			padding: 10px;
+			padding-top: 50px;
+		}
+		.label_reple{
+			padding-bottom: 18px;
+		}
+	</style>
 </head>
 <body>
 
-${receiveMessageRead.msg_no}<br/>
-${receiveMessageRead.msg_content}
-
-
-
+	<div>
+		<label><h3>받은쪽지함</h3></label><label style="margin: 20px;">::</label>
+	</div>
+	<hr>
+	<div class="col-sm-6" align="left">
+		<label><span class="glyphicon glyphicon-user"></span>
+			보낸 사람 : ${receiveMessageRead.send_user_id}</label>
+	</div>
+	<div class="textarea_h">
+		<textarea rows="15" cols="30" disabled="disabled" class="form-control">${receiveMessageRead.msg_content}</textarea>
+		<br />
+	</div>
+	<hr>
 </body>
 </html>

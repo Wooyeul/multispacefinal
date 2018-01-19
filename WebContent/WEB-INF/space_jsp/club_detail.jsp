@@ -21,6 +21,9 @@
 <script type="text/javascript" src="./common.js"></script>
 
 <style type="text/css">
+	.bold_degisn{
+		font: bold;
+	}
 </style>
 </head>
 <body>
@@ -31,9 +34,9 @@
 	<section class="listings">
 		<div class="container">
 			<div class="wrapper">
-				<div align="center" style="display: inline;">
+				<div align="center">
 					<h1 style="font: bold; color: #026fac;">
-						<label>${vo.club_name} : </label>
+						<label>${vo.club_name}</label>
 					</h1>
 					<h3>
 						<label>${vo.club_title}</label>
@@ -41,10 +44,10 @@
 					<br />
 				</div>
 				<div align="right">
-					<label><h3 style="font: bold;">#현재 인원
-							${vo.user_count+1}</h3></label>
+					<h3 class="bold_degisn"><label>#현재 인원
+							${vo.user_count+1}</label></h3>
 				</div>
-				<br /> <label><h2 style="font: bold;">소개</h2></label>
+				<br /> <h2 class="bold_degisn"><label>소개</label></h2>
 				<textarea rows="5" cols="30" disabled="disabled"
 					class="form-control" style="font-size: large;">${vo.club_content}</textarea>
 				<br />
@@ -58,7 +61,7 @@
 				<br />
 				<br />
 
-				<h3>모임 장소 추천 페이지(이미지 슬라이딩으로 구현 예정)</h3>
+				<h2 class="bold_degisn">모임 장소 추천 페이지</h2>
 				<%-- <div class="cycle-slideshow" align="center"
 						data-cycle-fx="scrollHorz"
 						data-cycle-pause-on-hover="true"
@@ -71,10 +74,10 @@
 					    <img src="thumbnail/Penguins.jpg"/>
 					    <img src="thumbnail/Tulips.jpg"/>
 				    </div> --%>
-				<div id="img_slide">
+				<div id="img_slide" align="center">
 					<jl:forEach items="${sVO}" var="svo">
-						<a href="space_detail.do?space_no=${svo.space_no}"> <img
-							src="thumbnail/${svo.space_thumb_img}" alt="공간 사진 없음" /></a>
+						<a href="space_detail.do?space_no=${svo.space_no}"> 
+						<img src="thumbnail/${svo.space_thumb_img}" alt="공간 사진 없음" /></a>
 					</jl:forEach>
 				</div>
 

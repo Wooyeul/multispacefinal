@@ -127,9 +127,10 @@ header{
 }
 
 header .logo{
-	font-size :  25px;
+	font-size :  30px;
     margin-top: 40px;
     float: left;
+    color : #f2f3f3;
 }
 
 header .logo:hover{
@@ -298,11 +299,11 @@ header nav .login_btn:hover{
 }
 
 
-.top_nav>li>a {
+.top_nav>li>a , .navbar-right>li>a  , .navbar-right>li>a {
 	color: white;
 	position: relative;
 	display: block;
-	padding: 0px 15px
+	padding: 0px 12px
 }
 
 .top_nav>li>a:focus, .nav>li>a:hover {
@@ -1058,8 +1059,10 @@ header nav .login_btn:hover{
 	
 }
 	
+	
+	
 .sh_a{
-	color : black;
+	color : #666464;
 }
 	
 /* css√ﬂ∞° ≥° */

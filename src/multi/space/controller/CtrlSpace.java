@@ -305,7 +305,7 @@ public class CtrlSpace {
 			return mnv;
 		}
 	
-		//리뷰 아이프레임
+		//리뷰 
 	@RequestMapping("/review.do")
 	public ModelAndView review_find_by_space_no(@RequestParam("pg") String pg,@ModelAttribute Review_searchVO review,@CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code) throws Exception{
 		ModelAndView mnv = new ModelAndView("review_iframe");
@@ -320,7 +320,7 @@ public class CtrlSpace {
 		mnv.addObject("space_code", space_code);
 		return mnv;
 	}
-	//qna 아이프레임
+	//qna 
 	@RequestMapping("/space_qna.do")
 	public ModelAndView qna_find_by_space_no(@RequestParam("pg") String pg,@ModelAttribute Space_qna_searchVO space_qna,@CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_qna_iframe");
@@ -348,6 +348,54 @@ public class CtrlSpace {
 		String s_category = spaceDAO.find_s_category_by_space_no(spaceVO);
 		String l_category = spaceDAO.find_l_category_by_space_no(spaceVO);
 
+		List<HostVO> host = hostDAO.find_host_by_user_id(user_id);
+		
+		bookmark.setUser_id(user_id);
+		BookmarkVO return_bookmark = bookmarkDAO.find_bookmark(bookmark);
+		
+		//리뷰 페이지네이션,뽑아오기
+		List<ReviewVO> list_review = reviewDAO.find_review_by_space_no(review);
+		PaginationDTO_review pz_review =new PaginationDTO_review().init(pg_review, list_review.size());
+		review.setStart_no(pz_review.getSkip());
+		list_review = reviewDAO.find_review_by_space_no(review);
+		
+		//qna 페이지네이션,뽑아오기
+		List<Space_qnaVO> list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_qna);
+		PaginationDTO_review pz_space_qna =new PaginationDTO_review().init(pg_qna, list_space_qna.size());
+		space_qna.setStart_no(pz_space_qna.getSkip());
+		list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_qna);
+		
+		mnv.addObject("list_space_qna", list_space_qna);
+		mnv.addObject("pz_space_qna", pz_space_qna);
+		mnv.addObject("list_review", list_review);
+		mnv.addObject("pz_review", pz_review);
+		mnv.addObject("bookmark", return_bookmark);
+		mnv.addObject("space", space);
+		mnv.addObject("user_id", user_id);
+		mnv.addObject("space_code", space_code);
+		mnv.addObject("s_category", s_category);
+		mnv.addObject("l_category", l_category);
+		mnv.addObject("host", host);
+		mnv.addObject("image", image2);
+		mnv.addObject("review_flag", review_flag);
+		mnv.addObject("qna_flag", qna_flag);
+		mnv.addObject("review_flag_imsi", review_flag_imsi);
+		mnv.addObject("qna_flag_imsi", qna_flag_imsi);
+		return mnv;
+	}
+	
+	//공간 상세 노 헤더
+	@RequestMapping("/space_detail_no_header.do")
+	public ModelAndView space_detail_no_header_find_by_pk(@ModelAttribute ImageVO image, @ModelAttribute SpaceVO spaceVO,@ModelAttribute Review_searchVO review,@ModelAttribute Space_qna_searchVO space_qna,
+			@ModelAttribute BookmarkVO bookmark, @CookieValue("user_id") String user_id,@RequestParam("space_code") String space_code,@RequestParam("pg_review") String pg_review,@RequestParam("pg_qna") String pg_qna
+			,HttpServletRequest request,@RequestParam("review_flag") String review_flag,@RequestParam("qna_flag") String qna_flag
+			,@RequestParam("review_flag_imsi") String review_flag_imsi,@RequestParam("qna_flag_imsi") String qna_flag_imsi) throws Exception{
+		ModelAndView mnv = new ModelAndView("space_detail_no_header");
+		ImageVO image2 = spaceDAO.find_image_by_space_no(image);
+		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
+		String s_category = spaceDAO.find_s_category_by_space_no(spaceVO);
+		String l_category = spaceDAO.find_l_category_by_space_no(spaceVO);
+		
 		List<HostVO> host = hostDAO.find_host_by_user_id(user_id);
 		
 		bookmark.setUser_id(user_id);
@@ -429,10 +477,15 @@ public class CtrlSpace {
 	
 	//공간 결제 완료 페이지
 	@RequestMapping("/space_payment_clear.do")
-	public ModelAndView space_payment_clear(@ModelAttribute BookingVO bookingVO) throws Exception{
+	public ModelAndView space_payment_clear(@ModelAttribute SpaceVO spaceVO,@ModelAttribute BookingVO bookingVO,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_payment_clear");
+		HostVO host = spaceDAO.find_host_by_space_no(spaceVO);
 		bookingDAO.add_booking(bookingVO);
+		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		mnv.addObject("booking", bookingVO);
+		mnv.addObject("user_id", user_id);
+		mnv.addObject("space", space);
+		mnv.addObject("host", host);
 		return mnv;
 	}
 	
@@ -577,16 +630,7 @@ public class CtrlSpace {
 		bookmarkDAO.del_bookmark(bookmark);
 		return null;
 	}
-	
-	@RequestMapping("/captcha.do")
-	@ResponseBody
-	public void captcha(HttpServletResponse response,
-		HttpSession session ) throws Exception 
-	{
-		String l = CaptchaUtil.writeImage(response);
-		session.setAttribute("cryptoLetter", l );
-	}
-	
+		
 	@RequestMapping("/reserve_change_day.do")
 	@ResponseBody
 	public String reserve_change_day(@ModelAttribute BookingVO bookingVO) throws Exception{

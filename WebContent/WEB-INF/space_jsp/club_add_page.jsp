@@ -21,6 +21,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 	
+	
+<style type="text/css">
+	.h1_design{
+		color: #026fac;
+	}
+	.label_design{
+		margin-bottom: 5px;
+	}
+
+</style>
 </head>
 
 <body>
@@ -32,25 +42,25 @@
 		<div class="wrapper">
 			<div class="properties_list">
 				<div class="container">
-					<div align="center"><h1 style="color: #026fac;">모임 등록 페이지</h1></div><br/>
+					<div align="center"><h1 class="h1_design">모임 등록 페이지</h1></div><br/>
 					<form id="club_add_frm">
-						<label>클럽이름</label><input id="club_name" name="club_name" type="text" class="form-control"><br/>
-						<label>제목</label><input id="club_title" name="club_title" type="text" class="form-control"><br/>
-						<label>인원</label><input id="max_member" name="max_member"type="number" class="form-control"><br/>
-						<label>소개</label><textarea id="club_content" name="club_content" rows="8" cols="24" class="form-control"></textarea><br/>
-						<label>사진등록</label><input id="club_thumb_img" name="club_thumb_img" type="file" class="form-control"><br/>
-						<select id="l_category_no" name="l_category_no" class="form-control">
+						<label class="label_design">클럽이름</label><input id="club_name" name="club_name" type="text" class="form-control"><br/>
+						<label class="label_design">제목</label><input id="club_title" name="club_title" type="text" class="form-control"><br/>
+						<label class="label_design">인원</label><input id="max_member" name="max_member"type="number" class="form-control"><br/>
+						<label class="label_design">소개</label><textarea id="club_content" name="club_content" rows="8" cols="24" class="form-control"></textarea><br/>
+						<label class="label_design">사진등록</label><input id="club_thumb_img" name="club_thumb_img" type="file" class="form-control"><br/>
+						<select id="l_category_no" name="l_category_no" class="input-sm">
 							<option>지역선택</option>
 							<jl:forEach items="${lmap}" var="m">
 								<option value="${m.l_category_no}">${m.l_category_name}</option>
 							</jl:forEach>
-						</select><br/>
-						<select id="c_category_no" name="c_category_no" class="form-control">
+						</select>
+						<select id="c_category_no" name="c_category_no" class="input-sm">
 							<option>분야선택</option>
 							<jl:forEach items="${cmap}" var="c">
 								<option value="${c.c_category_no}">${c.c_category_name}</option>
 							</jl:forEach>
-						</select><br/>
+						</select>
 						<input name="user_id" type="hidden" value="${user_id}">
 						<div align="right"><input id="submit_btn" type="button" value="등록하기" class="btn">&nbsp<input id="cancel" type="button" value="취소하기" class="btn"></div>
 					</form>
