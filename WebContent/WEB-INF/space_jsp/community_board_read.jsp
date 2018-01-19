@@ -274,10 +274,13 @@ $(document).ready(function() {
 <body>
 	
 	<div class="row">
+
 		<div class="col-lg-12">
 		<hr style="border: solid 0.5px black;">
 			<!-- 테이블 -->
 			<div class="table-responsive">
+						</br>
+
 				<table class="table">
 					<thead>
 						<tr>
