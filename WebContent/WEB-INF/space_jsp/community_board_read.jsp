@@ -206,7 +206,7 @@ $(document).ready(function() {
 	<div class="jumbotron" style="background-color: green"> 
 		<h1>자유게시판 글보기 </h1>
 	</div>
-	<table class="table ">
+	<table class="table table-border">
 <!--  글테이블-->
 		<tr>
 			<td >NO : ${vo.com_board_no} </td>

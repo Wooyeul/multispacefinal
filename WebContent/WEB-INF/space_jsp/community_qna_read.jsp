@@ -172,7 +172,7 @@
 			<span>${vo.com_qna_content}</span><br/>
 		</div>
 		
-		<table border="1" cellspacing="0" cellpadding="8">
+		<table class="table-hover">
 		<tr>
 			<th>#</th>		
 			<th>ID</th>
@@ -372,7 +372,7 @@
 				<h4>글을 삭제 하시겠습니까?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='text_del_Yes'>수정</button>
+					<button type='button' class='btn btn-default' id='text_del_Yes'>삭제</button>
 					<button type='button' class='btn btn-primary' id='text_del_No'>취소</button>
 				</div>
 			</div>
