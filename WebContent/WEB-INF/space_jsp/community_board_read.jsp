@@ -246,7 +246,7 @@ $(document).ready(function() {
 				 	for( var i = 0 ; i < list.data.length ; i++ ){
 				 		html += "<tr><td><h4>"+list.data[i].user_id+"</h4></td>";
 				 		html += "<td><span id='rb_"+list.data[i].com_board_reple_no+"'><h4>"+list.data[i].com_board_reple_content+"</h4></span>";
-	
+				 		html += "<td><h4>"+list.data[i].the_time+"</h4>";
 						if('${user_id == list.data[i].user_id}'){
 				 			html += " <td><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_board_reple_no+"' xyz='"+list.data[i].com_board_reple_no+"' /></td>";
 					 		html += " <td><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/>";
@@ -290,9 +290,10 @@ $(document).ready(function() {
 							<td><h4>${vo.user_id}</h4></td>
 							<td><h4>${vo.view_count}</h4></td>
 							<td>
-							
-							<button type="button" id="btnrecom" class="btn btn-default btn-circle" ><i class="fa fa-heart"></i>
-							</button>&emsp; ${vo.recom_count}						
+							<div id="recomCount">
+								<button type="button" id="btnrecom" class="btn btn-default btn-circle" ><i class="fa fa-heart"></i>
+								</button>&emsp; ${vo.recom_count}				
+							</div>
 							</td>
 						</tr>
 						<tr>
