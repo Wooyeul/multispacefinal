@@ -42,8 +42,8 @@
 	border-radius: 15px;
 }
 .sub_img{
-	height: 100%;
-	width: 100%;
+	width:15%;
+	height: 80px;
 }
 </style>
 
@@ -63,7 +63,7 @@
 							}, 'slow');
 						}
 
-						$(".img").on("click", function() {
+						$(".sub_img").on("click", function() {
 							var img = $(this).attr("src");
 							$("#main_img").attr("src", img);
 						});
@@ -264,39 +264,35 @@
 				<div class="text-center">
 					<jl:if test="${fn:length(image.image_one) > 3}">
 						<div>
-							<img src="space_img/${image.image_one }" width="100%" height="100%"
+							<img src="space_img/${image.image_one }" width="100%" height="500px"
 								id="main_img">
 						</div>
 					</jl:if>
 					<hr width="100%" size="10" color="#95BADF"/>
 					<div class="row">
 						<jl:if test="${fn:length(image.image_one) > 3}">
-							<img src="space_img/${image.image_one }" width="20%" height="20%"
-								class="img" />
+							<img src="space_img/${image.image_one }"
+								class="sub_img" />
 						</jl:if>
 						<jl:if test="${fn:length(image.image_two) > 3}">
-							<img src="space_img/${image.image_two }" width="20%" height="20%"
-								class="img" />
+							<img src="space_img/${image.image_two }" 
+								class="sub_img" />
 						</jl:if>
 						<jl:if test="${fn:length(image.image_three) > 3}">
-							<img src="space_img/${image.image_three }" width="20%"
-								height="20%" class="img" />
+							<img src="space_img/${image.image_three }"  class="sub_img" />
 						</jl:if>
 						<jl:if test="${fn:length(image.image_four) > 3}">
-							<img src="space_img/${image.image_four }" width="20%"
-								height="20%" class="img" />
+							<img src="space_img/${image.image_four }" class="sub_img" />
 						</jl:if>
 						<jl:if test="${fn:length(image.image_five) > 3}">
-							<img src="space_img/${image.image_five }" width="20%"
-								height="20%" class="img" />
+							<img src="space_img/${image.image_five }" class="sub_img" />
 						</jl:if>
 						<jl:if test="${fn:length(image.image_six) > 3}">
-							<img src="space_img/${image.image_six }" width="20%" height="20%"
-								class="img" />
+							<img src="space_img/${image.image_six }" 
+								class="sub_img" />
 						</jl:if>
 						<jl:if test="${fn:length(image.image_seven) > 3}">
-							<img src="space_img/${image.image_seven }" width="20%"
-								height="20%" class="img" />
+							<img src="space_img/${image.image_seven }" class="sub_img" />
 						</jl:if>
 					</div>
 				</div>
@@ -347,7 +343,7 @@
 				<hr width="100%" size="10" color="#95BADF"/>
 					<!-- space q&a 부분 -->
 					<div class="col-xs-12" id="qna">
-						<h1>QnAㅇㅇ</h1>
+						<h1>QnA</h1>
 						<hr width="20%" size="10" color="#95BADF"/>
 						<jl:forEach var="space_qna" items="${list_space_qna }">
 							<div class="panel-group" id="accordion${space_qna.space_qna_no }">
@@ -731,16 +727,7 @@
 						<div style="border: thin; border-bottom-color: blue;">
 							<ul class="properties_list">
 								
-								<li><div class="col-xs-12" style="padding-bottom: 20px">
-									<div class="col-xs-5">
-										<img src="space_img/${space.space_thumb_img }" alt=""
-										title="" class="img-thumbnail" width="100%" height="100%"/>
-									</div>
-									<div class="col-xs-6 col-xs-offset-1">
-										${space.space_content }
-									</div>
-									</div>
-									
+								<li>						
 									<div class="property_details">
 										<h1 style="margin-top: 0px;">${space.space_title }</h1>
 										<div class="property_details_box">

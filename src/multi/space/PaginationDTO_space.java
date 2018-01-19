@@ -52,7 +52,7 @@ public class PaginationDTO_space {
 	public boolean getHasNextPage(){return curPagination != numPages;}
 	
 	public int getSkip(){
-		return ( curPagination == 1 ) ? 0 : (curPagination -1 ) * paginationSize;
+		return ( curPagination == 1 ) ? 0 : (curPagination -1 ) * pageSize;
 	}
 	
 }

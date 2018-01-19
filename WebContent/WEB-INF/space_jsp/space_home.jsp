@@ -74,6 +74,9 @@
  	.sh_a{
  	color : black;
  	}
+ 	.form-wrapper{
+		text-align : center;
+	}
  </style>
 </head>
 <body>
@@ -85,31 +88,33 @@
 		<section class="listings">
 			<div class="wrapper">
 				<div class="properties_list">
-				<form target="boy" action="space_home_iframe.do">
-					<div class="form-group">
-						<label for="s_category_no">카테고리</label>
-						<jl:forEach var="category" items="${category_list }">
-							<label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
-						</jl:forEach>
+					<div class="form-wrapper">
+						<form target="boy" action="space_home_iframe.do">
+							<div class="form-group">
+								<label for="s_category_no">카테고리</label>
+								<jl:forEach var="category" items="${category_list }">
+									<label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
+								</jl:forEach>
+							</div>
+							<div class="form-group">
+								<label for="l_category_no">지역</label>
+								<jl:forEach var="local" items="${local_list }">
+									<label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
+								</jl:forEach>
+							</div>
+							<select name="search_option">
+								<option value="0"></option>
+								<option value="1">제목</option>
+								<option value="2">내용</option>
+								<option value="3">제목+내용</option>
+							</select>
+							<input type="text" name="search_content"/>
+							<input type="submit" value="제출">
+						</form>
 					</div>
-					<div class="form-group">
-						<label for="l_category_no">지역</label>
-						<jl:forEach var="local" items="${local_list }">
-							<label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
-						</jl:forEach>
-					</div>
-					<select name="search_option">
-						<option value="0"></option>
-						<option value="1">제목</option>
-						<option value="2">내용</option>
-						<option value="3">제목+내용</option>
-					</select>
-					<input type="text" name="search_content"/>
-					<input type="submit" value="제출">
-				</form>
 				<hr/>
 				<iframe id="boy" name="boy" src="space_home_iframe.do" width="100%" height="1100px" frameborder="0"></iframe>
-				<a href="space_add.do" class="sh_a" id="add_space" style="display: none;">공간 등록</a>
+				<a href="space_add.do" class="sh_a" id="add_space" style="display: none;"><button class="btn_square">공간 등록</button></a>
 			</div>
 				<!-- 상태 모달 -->
 				<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

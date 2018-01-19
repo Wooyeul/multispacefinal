@@ -159,7 +159,7 @@
  			 	 	 var booking_list = eval("("+rt+")");
  			 	 	 $(".cb_time").removeClass("active");
  			 	 	 for(var z = 1 ; z <=24 ; z++ ) {
- 			 	 		$("#btn_time"+[z]).css("background","#337AB7");
+ 			 	 		$("#btn_time"+[z]).css("background","#5BC0DE");
  	 	 				$("#btn_time"+[z]).html(z);
  			 	 	 }
  			 	 	 for(var g = 0 ; g < booking_list.data.length; g++){
@@ -224,10 +224,6 @@
  	 	.ui-widget-header{
  	 		background-color: #95BADF;
  	 	}
- 	 	.btn{
- 	 		border-radius:2px;
- 	 		width: 4%;
- 	 	}
  	 </style>
 </head>
 <body>
@@ -239,7 +235,7 @@
 	<h1>예약 페이지</h1>
 	 <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">주문 내역</h3>
+            <h3 class="panel-title">주문 내역DD</h3>
           </div>
           <div class="panel-body">
             <div class="table-responsive">
@@ -278,11 +274,20 @@
 			
 			<h4>시간</h4>
 			<div class="btn-group btn-group-toggle btn-lg" data-toggle="buttons">
-				<jl:forEach begin="${space.open_time }" end="${space.close_time }" varStatus="time">
-					  <label class="btn btn-secondary btn-primary cb_time"  time="${time.index }" id="btn_time${time.index }">
+			<jl:forEach begin="0" end="24" varStatus="time">
+			<jl:choose>
+				<jl:when test="${space.open_time <= time.index && space.close_time >= time.index}">
+				  <label class="btn btn-secondary btn-info cb_time"  time="${time.index }" id="btn_time${time.index }">
 					    <input type="checkbox" autocomplete="off" id="input_time${time.index }"> ${time.index }
 					  </label>
-			  </jl:forEach>
+				</jl:when>
+				<jl:otherwise>
+					<label class="btn btn-secondary"  time="${time.index }" id="btn_time${time.index }">
+					    <input type="hidden" autocomplete="off" id="input_time${time.index }" > X
+					  </label>
+				</jl:otherwise>
+			</jl:choose>
+	  		</jl:forEach>
 			</div>
 				<input id="start_time" type="hidden" name="start_time"/>
 				<input id="end_time" type="hidden" name="end_time"/>
@@ -291,7 +296,7 @@
 						<button id="people_minus" type="button" class="btn btn-default btn-lg">
 							<span class="glyphicon glyphicon-minus"></span>
 						</button>
-						<input id="booking_people" name="booking_people" type="text" disabled="disabled">
+						<input id="booking_people" name="booking_people" type="text" disabled="disabled" class="text-center">
 						<button id="people_plus" type="button" class="btn btn-default btn-lg">
 							<span class="glyphicon glyphicon-plus"></span>
 						</button>

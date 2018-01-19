@@ -54,8 +54,8 @@
 	<div class="container">
 		<h1>결제페이지</h1>
 		<hr>
-
-		<p>아래의 정보로 예약하시겠습니까?</p>
+		
+		<p class="text-center">아래의 정보로 예약하시겠습니까?</p>
 		<hr>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -119,15 +119,15 @@
 					<table class="table table-bordered">
 						<tbody>
 							<tr>
-								<td class="text-center gr"><strong>예약자</strong></td>
+								<td class="text-center gr" width="20%"><strong>예약자</strong></td>
 								<td>${booking.booking_user_name }</td>
 							</tr>
 							<tr>
-								<td class="text-center gr"><strong>전화번호 </strong></td>
+								<td class="text-center gr" width="20%"><strong>전화번호 </strong></td>
 								<td>${booking.booking_phone }</td>
 							</tr>
 							<tr>
-								<td class="text-center gr"><strong>요청사항 </strong></td>
+								<td class="text-center gr" width="20%"><strong>요청사항 </strong></td>
 								<td>${booking.booking_message }</td>
 							</tr>
 						</tbody>
@@ -159,7 +159,6 @@
 				name="booking_message"> <input type="submit" value="결제"
 				class="btn btn-primary btn-lg">
 		</form>
-	</div>
 	</div>
 	<!-- ******************************* footer ******************************* -->
 	<%@include file="./jsp/footer.jsp"%>

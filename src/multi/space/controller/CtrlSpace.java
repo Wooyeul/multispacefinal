@@ -182,6 +182,7 @@ public class CtrlSpace {
 		 */
 		search.setStart_no(pz.getSkip());
 		list2 = spaceDAO.search_space(search);
+		System.out.println(search.getStart_no());
 		
 		
 		

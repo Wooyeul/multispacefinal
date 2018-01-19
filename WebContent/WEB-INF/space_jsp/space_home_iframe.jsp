@@ -30,6 +30,9 @@
  .listings{
  	padding-top: 10px;
  }
+ .listings ul.properties_list li img.property_img{
+ 	height: 185px !important;
+ }
  </style>
 
 </head>
@@ -48,7 +51,9 @@
 					<jl:forEach var="vo" items="${list2 }">
 					<li>
 						<p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'">
-									<img src="space_img/${vo.space_thumb_img }" alt="" title="" class="property_img"/>
+									<img src="space_img/${vo.space_thumb_img }" alt="" title="" 
+									class="property_img" onerror="this.src='defualt/defualt.jpg'">
+
 								</p>
 								<span class="price">지역</span>
 								<div class="property_details">
