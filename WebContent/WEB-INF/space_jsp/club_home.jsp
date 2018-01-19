@@ -43,9 +43,10 @@
 	 	width: 100px;
 		float: left;
 	}
-	.selecdiv0 {
+	.select_div0 {
 		width: 600px;
 		margin:0 auto;
+		margin-top: 40px;
 	}	
 	input[type="radio"] { 
 		display: none; 
@@ -80,8 +81,6 @@
 		 transition: background-color 0.24s linear; 
 	}
 	
-	
-	
 	.c_div{
 		margin: 0 auto;
 	}
@@ -89,7 +88,6 @@
 	.l_cate{
 		text-align : center;
 		line-height: 30px;
-
 
 	}
 	.form_back{
@@ -150,11 +148,11 @@
 							</jl:forEach>
 						</div>
 				</div><br/>
-				<div class="selecdiv0">
+				<div class="select_div0">
 					<div class="selectdiv1">
 						<div class="select_div2">
 							<select name="search_option" class="form-control">
-								<option value="0"></option>
+								<option value="0">검색조건</option>
 								<option value="5">클럽 이름</option>
 								<option value="1">제목</option>
 								<option value="2">내용</option>

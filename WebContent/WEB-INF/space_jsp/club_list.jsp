@@ -22,17 +22,19 @@
 		 
 		h3 {
 		  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+		  margin-top: 0px;
 		}
 		 
 		li img {
-			width: 100px;
-			height: 100px;
+			width: 110px;
+			height: 110px;
 			float: left;
 			margin: 0 15px 0 0;
 		}
 		 
 		li p {
 		  font: 200 14px/1.5 Georgia, Times New Roman, serif;
+		  margin-bottom: 13px;
 		}
 		 
 		li {
