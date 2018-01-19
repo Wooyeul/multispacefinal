@@ -216,16 +216,17 @@
  	 	}
  	 	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active
  	 	{
- 	 		height: 60px;
+ 	 		height: 75px;
  	 	}
  	 	.ui-datepicker{
- 	 		width: 50em;
+ 	 		width: 100%;
  	 	}
  	 	.ui-widget-header{
  	 		background-color: #95BADF;
  	 	}
  	 	.btn{
  	 		border-radius:2px;
+ 	 		width: 4%;
  	 	}
  	 </style>
 </head>
@@ -269,7 +270,7 @@
 		<form method="POST" action="space_payment.do">
 
 		<div  id="date2" ></div>
-
+		<br/>
 			<div class="form-group">
 				<label for="booking_date">예약 날짜</label>
 				<input type="text"  id="booking_date" name="booking_date" disabled="disabled" class="form-control text-center">

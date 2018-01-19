@@ -12,7 +12,6 @@
 <link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
 <link rel="stylesheet" type="text/css"
 	href="./Resources/css/responsive.css">
-
 <script type="text/javascript" src="./Resources/js/jquery.js"></script>
 <script type="text/javascript" src="./Resources/js/main.js"></script>
 
@@ -198,6 +197,7 @@
 
 	<!-- 제목 부분 -->
 	<div class="container-fluid">
+	
 		<div class="col-xs-12">
 			<div class="col-xs-2"></div>
 			<div class="col-xs-6">
@@ -296,7 +296,17 @@
 				</div>
 
 				<div>
-
+				<div id="map" style="width:100%;height:600;"></div>
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae"></script>
+				<script>
+					var container = document.getElementById('map');
+					var options = {
+						center: new daum.maps.LatLng(33.450701, 126.570667),
+						level: 3
+					};
+			
+					var map = new daum.maps.Map(container, options);
+				</script>
 					<!-- space q&a 부분 -->
 					<div class="col-xs-12" id="qna">
 						<h1>QnA</h1>
