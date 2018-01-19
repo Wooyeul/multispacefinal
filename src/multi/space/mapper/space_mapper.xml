@@ -30,7 +30,7 @@
 	
 	<insert id="add_space" parameterType="main.vo.SpaceVO">
 		INSERT INTO SpaceT VALUES (default,'${crn}','${space_title}','${space_content}','${space_thumb_img}', '${open_time}',
-		'${close_time}',${price},${max_people},${min_people},'${space_call}','null',${s_category_no},${l_category_no},NOW())
+		'${close_time}',${price},${max_people},${min_people},'${space_call}','${zipcode}',${s_category_no},${l_category_no},NOW())
 	</insert>
 	
 	<select id="find_space_no" resultType="java.lang.Integer">
@@ -116,6 +116,9 @@
 		s_category_no=${s_category_no} WHERE space_no=${space_no}
 	</update>
 	
+	<select id="find_space_addr" parameterType="java.lang.String" resultType="main.vo.ZipcodeVO">
+		SELECT * FROM ZipcodeT WHERE zipcode=#{zipcode} ORDER BY zipcode LIMIT 0,1
+	</select>
 	<!--
 	
 	-->

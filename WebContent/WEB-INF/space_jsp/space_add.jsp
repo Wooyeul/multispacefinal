@@ -82,7 +82,11 @@
 			}, 500);
 		}
 	}
-
+	
+	function zipSearch(){
+		window.open("find_space_zipcode.html", "zip", "width=600,height=450");
+	}
+	
 	function openTimeChange() {
 		var x = document.getElementById("open_time_range");
 		var y = document.getElementById("open_time");
@@ -218,6 +222,7 @@
 				$("#image_" + [ imageAddFlag ]).show();
 			}
 		});
+		
 
 	});
 </script>
@@ -342,7 +347,18 @@
 				<label for="space_call">연락 받을 전화번호</label> <input id="space_call"
 					type="tel" name="space_call" class="form-control" />
 			</div>
+				
+			
+			<div class="form-group">
+				<label>우편번호</label>
+				<input type="text" name="zipcode" size="8" id="zipcode" class="form-control"/>
+				<input type="button" name="findzip" value="찾기" class="btnzip btn btn-primary" onclick="zipSearch()"/>
+			</div>
 
+			<div class="from-group">
+				<label>주소</label>
+				<input type="text" size="40" name="addr1" class="form-control" id="addr1"/>
+			</div>
 			<div class="form-group">
 				<label for="l_category_no">지역</label>
 				<jl:forEach var="local" items="${local_list }">
