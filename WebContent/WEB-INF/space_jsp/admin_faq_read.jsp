@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -62,13 +62,13 @@ $(document).ready(function(){
 	
 	<form method="post" action="admin_faq_mod.do" name="frm">
 		<input type="hidden" name="faq_no" value="${vo.faq_no}" >
-		<label>FAQ ì œëª© :</label> 
+		<label>FAQ Á¦¸ñ :</label> 
 		<input type="text" name="faq_title" value="${vo.faq_title}"  class="form-control"/> <br/>
-		<label>FAQ ë‚´ìš© : </label>
+		<label>FAQ ³»¿ë : </label>
 
 	<pre><input type="text" name="faq_content" value="${vo.faq_content}" class="form-control"  style="width:100%; height: 300px;" /></pre>	 <br/> 
-		<button type="submit" class="btn"> ìˆ˜ì • í•˜ê¸°</button>&nbsp;&nbsp;
-		<button id="faq_can" class="btn" type="submit"> ì·¨ì†Œ í•˜ê¸°</button>
+		<button type="submit" class="btn"> ¼öÁ¤ ÇÏ±â</button>&nbsp;&nbsp;
+		<button id="faq_can" class="btn" type="submit"> Ãë¼Ò ÇÏ±â</button>
 	</form>
 
 </body>
