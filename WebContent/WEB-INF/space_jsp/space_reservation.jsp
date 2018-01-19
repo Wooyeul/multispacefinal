@@ -253,10 +253,10 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>DLBP-114</td>
-                    <td class="text-center">100,000원</td>
-                    <td class="text-center">1</td>
-                    <td class="text-right">100,000원</td>
+                    <td class="text-center">${space.space_title }</td>
+					<td id="reserve_day" class="text-center"></td>
+					<td id="table_booking_time" class="text-center"><label id="start"></label>시 ~ <label id="end"></label>시</td>
+					<td id="table_price" class="text-right"></td>
                   </tr>
    
                 </tbody>
@@ -264,33 +264,15 @@
             </div>
           </div>
         </div>
-			<table class="table table-condensed">
-				<thead>
-					<tr>
-						<th width="50%">공간 이름</th>
-						<th width="15%">예약 날짜</th>
-						<th width="15%">예약 시간</th>
-						<th width="20%">가격</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>${space.space_title }</td>
-						<td id="reserve_day"></td>
-						<td id="table_booking_time"><label id="start"></label>시 ~ <label id="end"></label>시</td>
-						<td id="table_price"></td>
-					</tr>
-				</tbody>
-			</table>
 		
 
 		<form method="POST" action="space_payment.do">
 
 		<div  id="date2" ></div>
 
-			<div class="input-group">
+			<div class="form-group">
 				<label for="booking_date">예약 날짜</label>
-				<input type="text"  id="booking_date" name="booking_date" disabled="disabled" class="form-control">
+				<input type="text"  id="booking_date" name="booking_date" disabled="disabled" class="form-control text-center">
 			</div>
 			
 			<h4>시간</h4>
@@ -348,7 +330,7 @@
 							<label>요청사항</label>
 							<textarea name="booking_message" class="form-control"></textarea>
 						</div>
-					
+					<input type="hidden" id="booking_price" name="booking_price"/>
 					<input type="hidden" value="${user_id }" id="user_id" name="user_id"/>
 					<input type="hidden" value="${space.space_no }" name="space_no"/>
 				

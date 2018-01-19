@@ -429,10 +429,15 @@ public class CtrlSpace {
 	
 	//공간 결제 완료 페이지
 	@RequestMapping("/space_payment_clear.do")
-	public ModelAndView space_payment_clear(@ModelAttribute BookingVO bookingVO) throws Exception{
+	public ModelAndView space_payment_clear(@ModelAttribute SpaceVO spaceVO,@ModelAttribute BookingVO bookingVO,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_payment_clear");
+		HostVO host = spaceDAO.find_host_by_space_no(spaceVO);
 		bookingDAO.add_booking(bookingVO);
+		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		mnv.addObject("booking", bookingVO);
+		mnv.addObject("user_id", user_id);
+		mnv.addObject("space", space);
+		mnv.addObject("host", host);
 		return mnv;
 	}
 	
@@ -577,16 +582,7 @@ public class CtrlSpace {
 		bookmarkDAO.del_bookmark(bookmark);
 		return null;
 	}
-	
-	@RequestMapping("/captcha.do")
-	@ResponseBody
-	public void captcha(HttpServletResponse response,
-		HttpSession session ) throws Exception 
-	{
-		String l = CaptchaUtil.writeImage(response);
-		session.setAttribute("cryptoLetter", l );
-	}
-	
+		
 	@RequestMapping("/reserve_change_day.do")
 	@ResponseBody
 	public String reserve_change_day(@ModelAttribute BookingVO bookingVO) throws Exception{
