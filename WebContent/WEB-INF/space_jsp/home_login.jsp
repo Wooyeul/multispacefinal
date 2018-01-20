@@ -30,18 +30,7 @@
 <script type="text/javascript" src="./common.js"></script>
 <style type="text/css">
 
-.login_div {
-	margin: auto;
-	width: 600px;
-	height : 600px;
-	padding-top : 150px;
-}
 
-
-.sub-btn {
-	width: 180px;
-	margin: auto;
-}
 </style>
 
 
@@ -49,6 +38,7 @@
 	$(document).ready(function(){
 		
 		//ctrlLogin에서 chkcode 받아와서 조건에 맞으면 모달 show
+		   
 		
 		var chkcode = ${chkcode};
 		if(chkcode=="10001"){
@@ -85,20 +75,32 @@
 							placeholder="Password" />
 					</div>
 					<div class="loginform1_body">
-					<button class="btn btn-lg btn-success btn-block" type="submit">Login</button>					
+						<button class="btn btn-lg btn-blue btn-block" type="submit">Login</button>
 					</div>
 				</form>
 			</div>
 
 			<div class="login_form2">
-				<a id="sub-btn" class="btn btn-lg btn-success sub-btn"
-					href="home_user_join.do" role="button">회원가입</a> <a id="sub-btn"
-					class="btn btn-lg btn-success" href="home_moveFindIdPage.do"
-					role="button">ID 찾기</a> <a id="sub-btn"
-					class="btn btn-lg btn-success" href="home_moveFindPasswdPage.do"
-					role="button">Passward 찾기</a>
+
+				<div class="loginform2_body_join">
+					<a id="sub-btn" class="btn btn-lg btn-blue sub-btn"
+						href="home_user_join.do" role="button">회원가입
+					</a>
+				</div>
+				<div class="loginform2_body_findId">
+					<a id="sub-btn"
+						class="btn btn-lg btn-blue sub-btn" href="home_moveFindIdPage.do"
+						role="button">ID 찾기
+					</a>
+				</div>
+				<div class="loginform2_body_findPasswd">
+					<a id="sub-btn"
+						class="btn btn-lg btn-blue sub-btn" href="home_moveFindPasswdPage.do"
+						role="button">Passward 찾기
+					</a>
+				</div>
 			</div>
-</div>
+		</div>
 	</div>
 
 

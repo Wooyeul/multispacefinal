@@ -766,15 +766,51 @@ header nav .login_btn:hover{
 
 /* css√ﬂ∞° */
 
-.loginform1_head .loginform1_body {
-	padding : 30px;
-	
+.login_div {
+	margin: auto;
+	width: 600px;
+	height : 600px;
+	padding-top : 3%;
+	padding-bottom : 8%;
+}
+.btn-blue {
+	color: #fff;
+	background-color: #95badf;
+	border-color: #95badf
 }
 
+.sub-btn {
+	width: 190px;
+	margin: auto;
+}
 
+.login_form1 .loginform1_head {
+	padding : 10px;
+}
 
+.login_form1 .loginform1_head h2{
+	text-align : center;
+	font-size : 35px;
+}
+.login_form1 .loginform1_body {
+	padding : 5px;
+	
+}
+.loginform2_body_join , .loginform2_body_findId , .loginform2_body_findPasswd {
+	padding: 5px;
+	float: left;
+}
 
+.loginform2_body_join {
+	padding-right : 5px; 
+}
 
+.loginform2_body_findId {
+		align : center;
+}
+.loginform2_body_findPasswd {
+		align : right;
+}
 .login_form2{
 	display: inline-block;
     max-width: 1100px;
@@ -1348,6 +1384,12 @@ footer .copyrights a.ph_link{
         padding: 0 40px;
         max-width: 1020px;
     }
+    
+    .sub-btn {
+	width: 163px;
+	margin: auto;
+}
+
     .search .advanced_search .arrow{
         top: -8px;
         right: 46px;
