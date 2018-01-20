@@ -72,12 +72,6 @@
 			</ul>
 
 
-			<ul id="login_nav" class="nav navbar-right">
-				<li><a href="#" id="user_name"></a></li>
-				<li><a href="mypage_moveMypageMainPage.do">마이페이지</a></li>
-				<li><a href="home_logout.do">로그아웃</a></li>
-			</ul>
-
 			<ul id="non_login_nav" class="nav navbar-right">
 				<li><a href="home_moveLoginPage.do">로그인</a></li>
 			</ul>

@@ -50,6 +50,121 @@
 				}
 			});
 			
+			
+
+			ajaxGet("best_space.do",function(rt){
+				var seoul_best = eval("("+rt+")");			
+				var html ="";
+				
+				 for(var i=0; i<seoul_best.data.length; i++){
+					 html += "<li>";
+					 html += "<a href='#'>";
+					 html += "<img src='./Resources/img/property_1.jpg'  class='property_img'/>";
+					 html += "</a>";
+					 html += "<span class='price'>서울</span>";
+					 html += "<div class='property_details'>";
+					 html += "<h1>";	
+					 html += "<a href='#'>"+seoul_best.data[i].space_title+"</a>";	
+					 html += "</h1>";	
+					 html += "<div class='property_details_box'>";	
+					 html += "<div class='property_sub_details_left'>";	
+					 html += "<h2>"+seoul_best.data[i].price+"원/시간 </h2>";	
+					 html += "</div>";	
+					 html += "<div class='property_sub_details_right'>";	
+					 html += "<h2><span class='property_size'>즐찾수 "+seoul_best.data[i].count+"</span></h2>";	
+					 html += "</div>";	
+					 html += "</div>";	
+					 html += "</div>";	
+					 html += "</li>";	
+						
+					// alert(seoul_best.data[i].space_title);
+				} 
+				 $("#seoulbest_properties_list").html(html);
+				
+			});
+			
+			ajaxGet("best_space2.do",function(rt){
+				var party_best = eval("("+rt+")");
+				var html2 ="";
+				
+				 for(var i=0; i<party_best.data.length; i++){
+					 html2 += "<li>";
+					 html2 += "<a href='#'>";
+					 html2 += "<img src='./Resources/img/property_1.jpg'  class='property_img'/>";
+					 html2 += "</a>";
+					 html2 += "<span class='price'>서울</span>";
+					 html2 += "<div class='property_details'>";
+					 html2 += "<h1>";	
+					 html2 += "<a href='#'>"+party_best.data[i].space_title+"</a>";	
+					 html2 += "</h1>";	
+					 html2 += "<div class='property_details_box'>";	
+					 html2 += "<div class='property_sub_details_left'>";	
+					 html2 += "<h2>"+party_best.data[i].price+"원/시간 </h2>";	
+					 html2 += "</div>";	
+					 html2 += "<div class='property_sub_details_right'>";	
+					 html2 += "<h2><span class='property_size'>즐겨찾기 "+party_best.data[i].count+"</span></h2>";	
+					 html2 += "</div>";	
+					 html2 += "</div>";	
+					 html2 += "</div>";	
+					 html2 += "</li>";	
+				 }
+				 $("#partybest_properties_list").html(html2);
+			});
+			
+			ajaxGet("best_club.do",function(rt){
+				var best_club = eval("("+rt+")");
+				var html3 ="";
+				
+				 for(var i=0; i<best_club.data.length; i++){
+					 
+					 html3 += "<div class='main_club_wrapper main_club_wrapper"+[i]+"'>";
+					 html3 += "<div class='main_club_wrapper_content'>";
+					 html3 += "<div class='main_club_img'>";
+					 html3 += "<img src='./Resources/img/property_1.jpg' class='best_club_img'/>";
+					 html3 += "</div>";
+					 html3 += "<div class='main_club_content'>";
+					 html3 += "<div class='main_club_content_title'>";
+					 html3 += "<div class='main_club_content_score'>";
+					 html3 += i+1+"위";
+					 html3 += "</div>";
+					 html3 += "<div class='main_club_content_title_content'><a href='club_detail.do?club_no="+best_club.data[i].club_no+"'>[ "+best_club.data[i].club_name+" ] "+best_club.data[i].club_title+"</a></div>";			 
+					 html3 += "</div>";
+					 html3 += "<div class='main_club_content_member'>";
+					 html3 += "회원수 : " + best_club.data[i].count;
+					 html3 += "</div>";
+					 html3 += "</div>";
+					 html3 += "</div>";
+					 html3 += "</div>";
+					 
+
+
+				 }
+				 $("#main_club_list").html(html3);
+				 
+			});
+			
+			ajaxGet("best_community.do",function(rt){
+				var best_community = eval("("+rt+")");
+				var html4 ="";
+				
+				 for(var i=0; i<best_community.data.length; i++){
+					 html4 += "<div class='main_community_wrapper'>";
+					 html4 += "<div class='main_community_content"+[i]+"'>";
+					 html4 += "<div class='main_community_content_title'><a href='community_board_read.do?com_board_no="+best_community.data[i].com_board_no+"'>";
+					 html4 += best_community.data[i].com_board_title;			 
+					 html4 += "</a></div>";
+					 html4 += "<div class='main_community_content_view_recom'>";
+					 html4 += "<span>작성자 :" +best_community.data[i].user_name+
+					 " | 조회수 :" + best_community.data[i].view_count + " | 추천수 : "+ best_community.data[i].recom_count+"</span>";
+					 html4 += "</div>";			 
+					 html4 += "</div>";
+					 html4 += "</div>";
+					 
+				 }
+				 $("#main_community_list").html(html4);
+				 
+			});
+				
 
 		});
 	</script>
@@ -63,135 +178,49 @@
 
 	
 
+
 	<section class="listings">
 		<div class="wrapper">
-			<ul class="properties_list">
-			
-			<!-- **********************  i ************************* -->
-				<li>
-					<a href="#">
-						<img src="./Resources/img/property_1.jpg" alt="" title="" class="property_img"/>
-					</a>
-					<span class="price">서울</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<div class="property_details_box">
-							<div class="property_sub_details_left">
-								<h2>5000 원/시간 </h2>
-							</div>
-							<div class="property_sub_details_right">
-								<h2><span class="property_size">즐찾수 80</span></h2>
-							</div>
-						</div>
-					</div>
-				</li>
-				
-				
-				
-				<li>
-					<a href="#">
-						<img src="./Resources/img/property_2.jpg" alt="" title="" class="property_img"/>
-					</a>
-					<span class="price">$1000</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<div class="property_details_box">
-							<div class="property_sub_details_left">
-								<h2>5000 원/시간 </h2>
-							</div>
-							<div class="property_sub_details_right">
-								<h2><span class="property_size">즐찾수 80</span></h2>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="./Resources/img/property_3.jpg" alt="" title="" class="property_img"/>
-					</a>
-					<span class="price">$500</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<div class="property_details_box">
-							<div class="property_sub_details_left">
-								<h2>5000 원/시간 </h2>
-							</div>
-							<div class="property_sub_details_right">
-								<h2><span class="property_size">즐찾수 80</span></h2>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="./Resources/img/property_1.jpg" alt="" title="" class="property_img"/>
-					</a>
-					<span class="price">$2500</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<div class="property_details_box">
-							<div class="property_sub_details_left">
-								<h2>5000 원/시간 </h2>
-							</div>
-							<div class="property_sub_details_right">
-								<h2><span class="property_size">즐찾수 80</span></h2>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="./Resources/img/property_2.jpg" alt="" title="" class="property_img"/>
-					</a>
-					<span class="price">$1000</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<div class="property_details_box">
-							<div class="property_sub_details_left">
-								<h2>5000 원/시간 </h2>
-							</div>
-							<div class="property_sub_details_right">
-								<h2><span class="property_size">즐찾수 80</span></h2>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="./Resources/img/property_3.jpg" alt="" title="" class="property_img"/>
-					</a>
-					<span class="price">$500</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<div class="property_details_box">
-							<div class="property_sub_details_left">
-								<h2>5000 원/시간 </h2>
-							</div>
-							<div class="property_sub_details_right">
-								<h2><span class="property_size">즐찾수 80</span></h2>
-							</div>
-						</div>
-					</div>
-				</li>
 
-				
-				
-			</ul>
-			
+			<div class="c_cate_list">
+				<div class="c_cate_list_name">서울 BEST</div>
+				<ul id="seoulbest_properties_list" class="properties_list">
 
-	</section>	
+				</ul>
+
+				<div class="c_cate_list_name">파티룸 BEST</div>
+				<ul id="partybest_properties_list" class="properties_list">
+
+				</ul>
+			</div>
+		</div>
+		<div class="c_cover">
+			<div class="c_wrapper">
+				<div class="c_wrapper_sub">
+
+					<div class="c_wrapper_sub_title">
+						<div class="main_list_club_commu_left">( 클럽 BEST )</div>
+						<div class="main_list_club_commu_right">( 인기글 BEST )</div>
+					</div>
+
+					<div class="c_wrapper_sub_main_left">
+						<div class="main_club">
+
+							<div id="main_club_list" class="c_wrapper_ul"></div>
+
+						</div>
+					</div>
+					<div class="c_wrapper_sub_main_right">
+						<div class="main_community">
+
+							<div id="main_community_list" class="c_wrapper_ul"></div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 

@@ -6,10 +6,11 @@
 <body>
 	<section class="hero">
 	<header>
-	<div class="wrapper">
+	<div class="container-flude">
+	<div class="wrapper header_wrapper">
 
-		<a href="#" class="logo" alt="" titl="">Multi Space</a>
-			<nav class="navbar navbar-default">
+		<a href="main.html" class="logo" alt="" titl="">Multi Space</a>
+			<nav class="navbar navbar-default navbar-Menu">
 
 		<div id="navbar">
 
@@ -37,6 +38,7 @@
 
 		</div>
 		</nav>
+	</div>
 	</div>
 	</header><!--  end header section  --> 
 	</section>

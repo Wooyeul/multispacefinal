@@ -27,7 +27,7 @@ $(document).ready(function(){
 		
 		 for(var i=0; i<seoul_best.data.length; i++){
 			 html += "<li>";
-			 html += "<a href='#'>";
+			 html += "<a href='space_detail.do?space_no="+seoul_best.data[i].space_no+"'>";
 			 html += "<img src='./Resources/img/property_1.jpg'  class='property_img'/>";
 			 html += "</a>";
 			 html += "<span class='price'>서울</span>";
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		
 		 for(var i=0; i<party_best.data.length; i++){
 			 html2 += "<li>";
-			 html2 += "<a href='#'>";
+			 html2 += "<a href='space_detail.do?space_no="+party_best.data[i].space_no+"'>";
 			 html2 += "<img src='./Resources/img/property_1.jpg'  class='property_img'/>";
 			 html2 += "</a>";
 			 html2 += "<span class='price'>서울</span>";
@@ -96,7 +96,7 @@ $(document).ready(function(){
 			 html3 += "<div class='main_club_content_score'>";
 			 html3 += i+1+"위";
 			 html3 += "</div>";
-			 html3 += "<div class='main_club_content_title_content'>[ "+best_club.data[i].club_name+" ] "+best_club.data[i].club_title+"</div>";			 
+			 html3 += "<div class='main_club_content_title_content'><a href='club_detail.do?club_no="+best_club.data[i].club_no+"'>[ "+best_club.data[i].club_name+" ] "+best_club.data[i].club_title+"</a></div>";			 
 			 html3 += "</div>";
 			 html3 += "<div class='main_club_content_member'>";
 			 html3 += "회원수 : " + best_club.data[i].count;
@@ -119,9 +119,9 @@ $(document).ready(function(){
 		 for(var i=0; i<best_community.data.length; i++){
 			 html4 += "<div class='main_community_wrapper'>";
 			 html4 += "<div class='main_community_content"+[i]+"'>";
-			 html4 += "<div class='main_community_content_title'>";
+			 html4 += "<div class='main_community_content_title'><a href='community_board_read.do?com_board_no="+best_community.data[i].com_board_no+"'>";
 			 html4 += best_community.data[i].com_board_title;			 
-			 html4 += "</div>";
+			 html4 += "</a></div>";
 			 html4 += "<div class='main_community_content_view_recom'>";
 			 html4 += "<span>작성자 :" +best_community.data[i].user_name+
 			 " | 조회수 :" + best_community.data[i].view_count + " | 추천수 : "+ best_community.data[i].recom_count+"</span>";
