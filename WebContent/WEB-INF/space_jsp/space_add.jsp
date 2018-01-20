@@ -231,6 +231,9 @@
 	display: none;
 	color: red;
 }
+.active{
+	 		background: #95BADF !important;
+	 	}
 </style>
 </head>
 <body>
@@ -310,7 +313,7 @@
 			<label>운영 시간</label><br/>
 			<div class="btn-group btn-group-toggle btn-lg" data-toggle="buttons">
 				<jl:forEach begin="0" end="24" varStatus="time">
-					  <label class="btn btn-secondary btn-success cb_time"  time="${time.index }" id="btn_time${time.index }">
+					  <label class="btn btn-secondary btn-info cb_time"  time="${time.index }" id="btn_time${time.index }">
 					    <input type="checkbox" autocomplete="off" id="input_time${time.index }"> ${time.index }
 					  </label>
 			  </jl:forEach>

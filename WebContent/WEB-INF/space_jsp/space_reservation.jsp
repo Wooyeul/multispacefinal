@@ -222,7 +222,7 @@
  	 		width: 100%;
  	 	}
  	 	.ui-widget-header{
- 	 		background-color: #95BADF;
+ 	 		background-color: #D9EDF7;
  	 	}
  	 </style>
 </head>
@@ -233,9 +233,9 @@
 	
 	<div class="container">
 	<h1>예약 페이지</h1>
-	 <div class="panel panel-primary">
+	 <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">주문 내역DD</h3>
+            <h3 class="panel-title">주문 내역</h3>
           </div>
           <div class="panel-body">
             <div class="table-responsive">
@@ -340,7 +340,7 @@
 					<input type="hidden" value="${user_id }" id="user_id" name="user_id"/>
 					<input type="hidden" value="${space.space_no }" name="space_no"/>
 				
-					<input id="pay" type="button" class="btn btn-default" value="결제하기"/>
+					<input id="pay" type="button" class="btn btn-info" value="결제하기"/>
 					<br/>
 		<br/>
 					

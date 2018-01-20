@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%><%@taglib prefix="jl"
-	uri="http://java.sun.com/jsp/jstl/core"%><%@ taglib prefix="fn"
-	uri="http://java.sun.com/jsp/jstl/functions"%>
+	uri="http://java.sun.com/jsp/jstl/core"%><%@ taglib prefix="fn" 	uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -194,6 +193,10 @@
 	html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video{
 		margin-bottom: 10px;
 	}
+	.nothing{
+		font-size: 30px;
+		color: gray;
+	}
 </style>
 </head>
 <body>
@@ -260,7 +263,7 @@
 				</p>
 				<br/>
 				<br/>
-				<hr/>
+				<hr width="100%" size="10" color="#95BADF"/>
 				<div class="text-center">
 					<jl:if test="${fn:length(image.image_one) > 3}">
 						<div>
@@ -296,7 +299,7 @@
 						</jl:if>
 					</div>
 				</div>
-				<hr/>
+				<hr width="100%" size="10" color="#95BADF"/>
 				<br/>
 				
 				<div>
@@ -345,6 +348,7 @@
 					<div class="col-xs-12" id="qna">
 						<h1>QnA</h1>
 						<hr width="20%" size="10" color="#95BADF"/>
+						<jl:if test="${fn:length(list_space_qna) == 0}"> <div class="text-center"><p class="nothing text-center">등록된 질문이 없습니다.</p></div></jl:if>
 						<jl:forEach var="space_qna" items="${list_space_qna }">
 							<div class="panel-group" id="accordion${space_qna.space_qna_no }">
 								<div class="panel panel-default">
@@ -551,6 +555,7 @@
 					<div class="col-xs-12" id="review">
 						<h1>후기</h1>
 						<hr width="20%" size="10" color="#95BADF"/>
+						<jl:if test="${fn:length(list_review) == 0}"> <div class="text-center"><p class="nothing text-center">등록된 후기가 없습니다.</p></div></jl:if>
 						<jl:forEach var="review" items="${list_review }">
 							<div class="panel-group" id="accordion${review.review_no }">
 								<div class="panel panel-default">
@@ -741,11 +746,11 @@
 												</h2>
 											</div>
 											<div class="btn-group btn-group-justified">
-												<a><button class="btn btn-primary" data-toggle="modal"
+												<a><button class="btn btn-info" data-toggle="modal"
 													data-target="#call">전화</button></a>
 												<a href="space_reservation.do?space_no=${space.space_no }"><button
-														class="btn btn-primary">예약하기</button></a>
-												<a><button class="btn btn-primary" id="btn_bookmark"
+														class="btn btn-info">예약하기</button></a>
+												<a><button class="btn btn-info" id="btn_bookmark"
 													add="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"
 													del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">
 													북마크등록</button></a>
