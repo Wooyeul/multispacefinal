@@ -88,7 +88,6 @@
 	.l_cate{
 		text-align : center;
 		line-height: 30px;
-
 	}
 	.form_back{
 		align :center;
@@ -171,15 +170,17 @@
 				<input id="curPage" name="curPage" type="hidden" value="">
 			</form>
 		</div>
-	<section class="listings">
+	
+	<section class="listing-s">
 		<div class="wrapper">
 			<div class="iframe-design">
 				<iframe id="boy" name="club_list" scrolling="no" class="iframe-design2"></iframe>
 			</div>
 		</div>
 	</section>
+	
 	<!-- ******************************* footer ******************************* -->
-	  <%@include file="./jsp/footer.jsp"%>  
+	  <%@include file="./jsp/footer.jsp"%>   
 	<!--  end footer  -->
 
 	<!-- 자바스크립트 -->	
@@ -239,7 +240,6 @@
 			 $("#user_name").text(rt+"님이 로그인하셨습니다.");
 		 }
 		});	
-
 	</script>
 </body>
 </html>
