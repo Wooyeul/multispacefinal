@@ -554,7 +554,7 @@ header nav .login_btn:hover{
 /*  listings section  */
 .listings{
     padding: 100px 0;
-    height : 100%;
+    /* height : 100%; */
 }
 
 .listings ul.properties_list{
