@@ -125,10 +125,11 @@ CREATE TABLE Community_QnA_RepleT
 CREATE TABLE Community_QnA_Reple_RecomT
 (
     `user_id`       VARCHAR(20)    NOT NULL, 
-    `com_qna_reple_no`  INT        NOT NULL, 
+    `com_qna_reple_no`  INT        NOT NULL
 );
 
 #오후 2:39 2018-01-04 컬럼 명 변경
+#zipcode zipdetail 추가
 CREATE TABLE UserT
 (
     `user_id`    VARCHAR(20)     NOT NULL, 
@@ -139,10 +140,10 @@ CREATE TABLE UserT
     `gender`     CHAR(1)         NOT NULL, 
     `phone`      VARCHAR(11)     NOT NULL, 
     `nickname`   VARCHAR(20)     NOT NULL, 
-    `zipcode`    VARCHAR(200)    NOT NULL, 
+    `zipcode`    VARCHAR(20)     NOT NULL, 
     `email`      VARCHAR(50)     NOT NULL, 
     `grade`      INT             NOT NULL,
-    `zipdetail`    VARCHAR(200)    NOT NULL,
+    zipdetail VARCHAR(20) NOT NULL,
     PRIMARY KEY (user_id)
 );
 
@@ -383,13 +384,16 @@ CREATE TABLE Review_RepleT
 
 
 #오후 7:01 2018-01-15 수정
-create table zipcodet(
-	user_id varchar(20),
-	zonecode varchar(100),
-	address varchar(100),
-	jibunAddress varchar(100),
-	detail varchar(100)
+CREATE TABLE zipcodeT (
+zipcode_no INT NOT NULL  NOT NULL    AUTO_INCREMENT,
+zipcode	CHAR(7) NULL,
+sido	VARCHAR(4) NULL,
+gugun 	VARCHAR(15) NULL,
+dong 	VARCHAR(52) NULL,
+bunji	VARCHAR(17) NULL,
+ PRIMARY KEY (zipcode_no)
 );
+
 
 CREATE TABLE BookmarkT
 (

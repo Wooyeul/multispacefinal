@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -72,23 +72,21 @@
 
 <br><br>
 	<form action="admin_user_del.do"  method="POST" name="frm">
-			
-
 
 	 <div class="form-group" >
-			<p class="fa fa-frown-o"> <label>   ${vo.user_id} М ▄Л⌡░К▀≤ М┐┬М┤╢ Л┌╛Л°═ Л·▒Л└╠М∙≤Й╦╟</label> </p><br><br>
+			<p class="fa fa-frown-o"> <label>   ${vo.user_id} х╦©Ь╢т е╩еП ╩Гю╞ юш╪╨го╠Б</label> </p><br><br>
 			<input type="hidden" name="user_id" value="${vo.user_id}" /> 
 			<input type="hidden" name="user_name" value="${vo.user_name}"/>
 			<input type="hidden" name="email" value="${vo.email}"/>
 			
-			<label>Л═°К╙╘</label>
-			<input class="form-control" name="subject">
+			<label>а╕╦Я</label>
+			<input name="subject" class="form-control" name="subject">
 			
-			<label>К┌╢Л ╘</label>
+			<label>Ё╩©К</label>
             <textarea class="form-control" name="mail_content" rows="20"></textarea>
           
-			<input class="btn" type="submit" value="Л·▒Л└╠ К╟▐ М┐┬М┤╢ Л▀°М┌╓Й╦╟" />
-			<input type="button"class="btn" id="cancel" value="Л╥╗Л├▄М∙≤Й╦╟"/>
+			<input class="btn" type="submit" value="юш╪╨ ╧в е╩еП ╫це╟╠Б" />
+			<input type="button"class="btn" id="cancel" value="цК╪рго╠Б"/>
 		</div> 
             
 

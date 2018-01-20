@@ -120,7 +120,13 @@ public class Ctrl_Admin_Users {
         String port = "587";
         String mailFrom = "multipro2018@gmail.com";
         String password = "rmfnpdlxm2";
-
+        
+        System.out.println( uvo.getUser_id() );
+        System.out.println( uvo.getUser_name() );
+        System.out.println( uvo.getEmail() );
+        System.out.println( uvo.getSubject() );
+        System.out.println( uvo.getMail_content() );
+        
         String customer_email = uvo.getEmail();
         String admin_subject = uvo.getSubject();
         String admin_opinion = uvo.getMail_content();
@@ -132,12 +138,11 @@ public class Ctrl_Admin_Users {
         
         String result_message = null;
         try {
-        	admin_UserDAO.user_del(uvo);
             EmailUtility.sendEmail(host, port, mailFrom, password, customer_email, subject,
             		message);
             result_message = "The e-mail was sent successfully";
             uvo.setMail_content(message);
-            //admin_UserDAO.user_del(uvo);
+            admin_UserDAO.user_del(uvo);
         } catch (Exception e) {
             e.printStackTrace();
             result_message = "There were an error: " + e.getMessage();

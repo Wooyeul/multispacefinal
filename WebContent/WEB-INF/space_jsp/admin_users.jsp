@@ -111,8 +111,16 @@ text-align: center;
 										<td>${vo.user_name}</td>
 										<td><a href="admin_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 										<td>${vo.email}</td>
-										<td><a href="admin_user_del_write.do?user_id=${vo.user_id}&user_name=${vo.user_name}&email=${vo.email}">Ε»Επ
-												½ΓΕ°±β</a></td>
+										<%-- <td><a href="admin_user_del_write.do?user_id=${vo.user_id}&user_name=${vo.user_name}&email=${vo.email}">Ε»Επ
+												½ΓΕ°±β</a></td> --%>
+										<td>
+											<form method="post" action="admin_user_del_write.do">
+												<input type="hidden" name="user_id" value="${vo.user_id}"/>
+												<input type="hidden" name="user_name" value="${vo.user_name}"/>
+												<input type="hidden" name="email" value="${vo.email}"/>
+												<button type="submit" >Ε»Επ ½ΓΕ°±β</button>
+											</form>
+										</td>
 									</tr>
 								</jl:forEach>
 							

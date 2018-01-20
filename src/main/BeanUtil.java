@@ -115,7 +115,9 @@ public class BeanUtil
 			pn.equals("jibunAddress")||
 			pn.equals("detail") ||
 			pn.equals("search_content") ||
-			pn.equals("zipdetail") ); 
+			pn.equals("zipdetail") ||
+			pn.equals("subject") || 
+			pn.equals("mail_content") ); 
 	}
 	
 	//	String l2 = BeanUtil.toPropName( l );
