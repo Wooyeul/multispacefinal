@@ -93,12 +93,12 @@
 	float: left;
 }
 
-.table_qna_read>tbody>tr>td {
-	padding: 1px;
+/* .table_qna_read>tbody>tr>td {
+	padding: 0px;
 	line-height: 1.42857143;
 	vertical-align: middle;
 	border-top: 1px solid #ddd;
-}
+} */
 </style>
 	
 	<script>
@@ -264,7 +264,7 @@
 							</td>
 						</tr>
 					</table>
-					<table class="table table-hover table_qna_read" >
+					<table class="table-hover table_qna_read" >
 					<hr style="border: solid 0.5px black;">
 						<jl:forEach var="rpl" items="${rp}" varStatus="vs">
 							<tr>
@@ -275,21 +275,21 @@
 									<span id="rb_${rpl.com_qna_reple_no}"><h4>${rpl.com_qna_reple_content}</h4></span>
 								</td>
 								<td width="250"><h5>${rpl.the_time}</h5></td>
-								<td>
+								<td width="30">
 									<span id="recom_count${rpl.com_qna_reple_no}"><h5>${rpl.recom_count}</h5></span>
 								</td>
-								<td>
+								<td width="50">
 								<!-- <a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" id="recom" class="btn btn-primary btn-sm" href="community_qna_reple_recom.do?user_id=${user_id }&com_qna_reple_no=${rpl.com_qna_reple_no}&com_qna_no=${rpl.com_qna_no}">추천</a> -->	
 								<jl:if test="${user_id ne ''}">
 									<a user_id="${user_id}" com_qna_reple_no="${rpl.com_qna_reple_no}" class="btn btn-warning btn-xs recom"">추천</a>
 								</jl:if>
 								</td>
-								<td> 
+								<td width="50"> 
 								<jl:if test="${rpl.user_id eq user_id}"> 
 									<a abcd="rb_${rpl.com_qna_reple_no}" xyz="${rpl.com_qna_reple_no}" class="modReple btn btn-info btn-xs" href="#">수정</a>
 								</jl:if>
 								</td>
-								<td>
+								<td width="50">
 								<jl:if test="${rpl.user_id eq user_id}"> 
 								<input type="button" class="btn btn-danger btn-xs showDelModal" 
 									del_com_qna_no="${rpl.com_qna_no}"

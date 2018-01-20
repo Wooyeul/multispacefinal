@@ -165,12 +165,12 @@
 						</div>
 						<div class="selectdiv5">
 							<jl:if test="${user_id ne ''}">
-								<a href="community_qna_mytext.do"> <input type="button" class="btn btn-primary" value="My QnA보기" /></a>
+								<a href="community_qna_mytext.do"> <input type="button" class="btn btn-info" value="My QnA보기" /></a>
 							</jl:if>
 						</div>
 						<!-- 글쓰기 버튼-->
 						<div class="commask">
-							<input class="btn btn-primary btn" type="button" value="글쓰기" id="write" xyz="${user_id}" />
+							<input class="btn btn-basic" type="button" value="글쓰기" id="write" xyz="${user_id}" />
 						</div>
 					</div>
 				</div>

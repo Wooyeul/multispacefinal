@@ -103,7 +103,7 @@
 		<label><h3>자유롭게 글을 작성 할 수 있는 자유게시판입니다. 자유롭게 글을 써보세요!</h3></label>
 	</div>
 	<hr style="border: solid 0.5px black;">
-	<table class="table table-hover cb_table">
+	<table class="table table-hover">
 		<tr>
 			<th width="40"></th>
 			<th width="1000"><h3>제&nbsp;목</h3></th>
@@ -201,12 +201,12 @@
 						</div>
 						<div class="selectdiv5">
 							<jl:if test="${user_id ne ''}">
-								<a href="community_board_mytext.do"> <input type="button" class="btn btn-primary" value="My 글보기" /></a>
+								<a href="community_board_mytext.do"> <input type="button" class="btn btn-info" value="My 글보기" /></a>
 							</jl:if>
 						</div>
 						<!-- 글쓰기 버튼-->
 						<div class="commask">
-							<input class="btn btn-primary btn" type="button" value="글쓰기" id="write" xyz="${user_id}" />
+							<input class="btn btn-basic" type="button" value="글쓰기" id="write" xyz="${user_id}" />
 						</div>
 					</div>
 				</div>
