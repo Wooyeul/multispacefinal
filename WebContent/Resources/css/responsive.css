@@ -564,6 +564,7 @@ header nav .login_btn:hover{
 }
 
 .listings ul.properties_list li{
+	list-style: none;
     display: block;
     width: 30.90909090909091%;
     position: relative;
@@ -1206,6 +1207,11 @@ header nav .login_btn:hover{
 	color : #333;
 }
 	
+ul.properties_list{
+    list-style: none;
+    overflow: hidden;
+    margin : 30px;
+}
 /* css√ﬂ∞° ≥° */
 
 
