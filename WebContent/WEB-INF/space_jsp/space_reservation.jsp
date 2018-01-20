@@ -224,6 +224,12 @@
  	 	.ui-widget-header{
  	 		background-color: #D9EDF7;
  	 	}
+ 	 	.btn-time{
+ 	 		padding-left: 10%;
+ 	 	}
+ 	 	.reserve-label{
+ 	 		margin-bottom: 10px;
+ 	 	}
  	 </style>
 </head>
 <body>
@@ -268,12 +274,12 @@
 		<div  id="date2" ></div>
 		<br/>
 			<div class="form-group">
-				<label for="booking_date">예약 날짜</label>
+				<label for="booking_date" class="reserve-label">예약 날짜</label>
 				<input type="text"  id="booking_date" name="booking_date" disabled="disabled" class="form-control text-center">
 			</div>
 			
 			<h4>시간</h4>
-			<div class="btn-group btn-group-toggle btn-lg" data-toggle="buttons">
+			<div class="btn-group btn-group-toggle btn-lg btn-time" data-toggle="buttons">
 			<jl:forEach begin="0" end="24" varStatus="time">
 			<jl:choose>
 				<jl:when test="${space.open_time <= time.index && space.close_time >= time.index}">
@@ -292,7 +298,7 @@
 				<input id="start_time" type="hidden" name="start_time"/>
 				<input id="end_time" type="hidden" name="end_time"/>
 				<div class="input-group">
-					<label for="people">대여 인원</label><br/>
+					<label for="people" class="reserve-label">대여 인원</label><br/>
 						<button id="people_minus" type="button" class="btn btn-default btn-lg">
 							<span class="glyphicon glyphicon-minus"></span>
 						</button>
@@ -305,7 +311,7 @@
 						
 				<br/>
 				<div class="form-group">
-					<label for="club_list">모임 목록</label>
+					<label for="club_list" class="reserve-label">모임 목록</label>
 					<select name="club_list" id="club_list" class="form-control">
 						<option value="null">개인 회원</option>
 						<jl:forEach var="club" items="${club_list }">
@@ -321,26 +327,27 @@
 					
 					<H1>예약자 정보</H1>
 						<div class="form-group">
-							<label>예약자</label>
+							<label class="reserve-label">예약자</label>
 							<input type="text" name="booking_user_name"  class="form-control">
 						</div>
 						<div class="form-group">
-							<label>연락처</label>
+							<label class="reserve-label">연락처</label>
 							<input type="text" name="booking_phone"  class="form-control">
 						</div>
 						<div class="form-group">
-							<label>이메일</label>
+							<label class="reserve-label">이메일</label>
 							<input type="text" name="booking_email" class="form-control">
 						</div>
 						<div class="form-group">
-							<label>요청사항</label>
+							<label class="reserve-label">요청사항</label>
 							<textarea name="booking_message" class="form-control"></textarea>
 						</div>
 					<input type="hidden" id="booking_price" name="booking_price"/>
 					<input type="hidden" value="${user_id }" id="user_id" name="user_id"/>
 					<input type="hidden" value="${space.space_no }" name="space_no"/>
-				
-					<input id="pay" type="button" class="btn btn-info" value="결제하기"/>
+					<div class="text-center">
+						<input id="pay" type="button" class="btn btn-info btn-lg" value="결제하기"/>
+					</div>
 					<br/>
 		<br/>
 					

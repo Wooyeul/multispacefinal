@@ -103,11 +103,19 @@
 		$("#sub").on("click", function() {
 			if(titleCheckFlag == 0 ) {
 				alert("제목을 입력해주세요.");
-			} else {
-				
-			
+			}else if(contentCheckFlag == 0){
+				alert("내용을 입력해주세요.");
+			}else if(priceCheckFlag == 0 ) {
+				alert("가격을 입력해주세요.");
+			}else if($("#space_thumb_img").val().length == 0){
+				alert("썸네일 이미지를 등록해주세요.");
+			}else if($("#zipcode").val().length == 0){
+				alert("주소를 등록해주세요.");
+			}else {
 			$("#open_time").removeAttr("disabled");
 			$("#close_time").removeAttr("disabled");
+			$("#addr1").removeAttr("disabled");
+			$("#zipcode").removeAttr("disabled");
 			$("#sub").attr("type", "submit");
 			
 			}
@@ -131,7 +139,6 @@
 	 				if(parseInt(first_click_time) > parseInt(second_click_time)){
 	 					for(var a = parseInt(second_click_time) ; a < parseInt(first_click_time) ; a ++ ) {
 	 						if($("#btn_time"+[a]).html()=="X"){
-	 							alert("불가능해");
 	 							$(".cb_time").removeClass("active");
 	 							break;
 	 						} else {
@@ -146,7 +153,6 @@
 	 				} else if(parseInt(first_click_time) < parseInt(second_click_time)){
 	 					for(var b = parseInt(first_click_time) ; b < parseInt(second_click_time) ; b++ ) {
 	 						if($("#btn_time"+[b]).html()=="X"){
-	 							alert("불가능해");
 	 							$(".cb_time").removeClass("active");
 	 							break;
 	 						} else {
@@ -218,6 +224,8 @@
 		$("#price").on("focusout", function() {
 			priceTimeFlag = 0;
 		});
+		
+		$("#")
 
 		$("#btn_add_image").on("click", function() {
 
@@ -345,29 +353,29 @@
 
 			<div class="form-group">
 				<label for="min_people">최소 인원</label> <input id="min_people"
-					type="number" name="min_people" class="form-control" value="0" />
+					type="number" name="min_people" class="form-control" placeholder="미입력시 최소인원 0명입니다."/>
 			</div>
 
 			<div class="form-group">
 				<label for="max_people">최대 인원</label> <input id="max_people"
-					type="number" name="max_people" class="form-control" />
+					type="number" name="max_people" class="form-control" placeholder="미입력시 최대인원 1000명입니다."/>
 			</div>
 
 			<div class="form-group">
 				<label for="space_call">연락 받을 전화번호</label> <input id="space_call"
-					type="tel" name="space_call" class="form-control" />
+					type="tel" name="space_call" class="form-control" placeholder="미입력시 회원정보의 연락처로 등록됩니다."/>
 			</div>
 				
 			
 			<div class="form-group">
 				<label>우편번호</label>
-				<input type="text" name="zipcode" size="8" id="zipcode" class="form-control"/>
+				<input type="text" name="zipcode" size="8" id="zipcode" class="form-control"  disabled="disabled"/>
 				<input type="button" name="findzip" value="찾기" class="btnzip btn btn-primary" onclick="zipSearch()"/>
 			</div>
 
 			<div class="from-group">
 				<label>주소</label>
-				<input type="text" size="40" name="addr1" class="form-control" id="addr1"/>
+				<input type="text" size="40" name="addr1" class="form-control" id="addr1" disabled="disabled"/>
 			</div>
 			<div class="form-group">
 				<label for="l_category_no">지역</label>
@@ -383,7 +391,7 @@
 						name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
 				</jl:forEach>
 			</div>
-			<button id="sub" class="btn btn-default">등록</button>
+			<input type="button" id="sub" class="btn btn-default" value="등록"/>
 		</form>
 		<br/>
 		<br/>

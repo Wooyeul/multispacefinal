@@ -57,8 +57,8 @@
 		
 		<p class="text-center">아래의 정보로 예약하시겠습니까?</p>
 		<hr>
-		<div class="panel panel-primary">
-			<div class="panel-heading">
+		<div class="panel panel-info">
+			<div class="panel-heading pay_color">
 				<h3 class="panel-title">호스트&공간 정보</h3>
 			</div>
 			<div class="panel-body">
@@ -83,7 +83,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-primary">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">예약 정보</h3>
 			</div>
@@ -110,7 +110,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-primary">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">예약자 정보</h3>
 			</div>
@@ -156,9 +156,11 @@
 				value="${booking.booking_phone }" name="booking_phone"> <input
 				type="hidden" value="${booking.booking_email }" name="booking_email">
 			<input type="hidden" value="${booking.booking_message }"
-				name="booking_message"> <input type="submit" value="결제"
-				class="btn btn-primary btn-lg">
+				name="booking_message"> <input type="submit" value="예약하기"
+				class="btn btn-info btn-lg">
 		</form>
+		<br/>
+		<br/>
 	</div>
 	<!-- ******************************* footer ******************************* -->
 	<%@include file="./jsp/footer.jsp"%>

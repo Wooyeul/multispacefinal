@@ -20,31 +20,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="common.js" type="text/javascript"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae&libraries=services,clusterer,drawing"></script>				
-<style>
-.a {
-	color: black;
-}
-#space_title{
-	font-size: 40px;
-	 color: black;
-}
-#space_content{
-	font-size: 20px;
-	 color: graytext;
-}
-.nav-img{
-	height: 20%;
-	width: 20%;
-}
 
-.category {
-	border-radius: 15px;
-}
-.sub_img{
-	width:15%;
-	height: 80px;
-}
-</style>
 
 <script>
 	$(document).ready(function() {
@@ -197,6 +173,47 @@
 		font-size: 30px;
 		color: gray;
 	}
+	.btn-reserve{
+		width: 33%;
+		border-radius:0px;
+		margin-top:15px;
+	}
+	.sh_list{
+		list-style: none;
+	}
+	.space_title{
+		margin-top: 0px;
+		 font-size: 25px;
+	}
+	.a {
+	color: black;
+}
+#space_title{
+	font-size: 40px;
+	 color: black;
+}
+#space_content{
+	font-size: 20px;
+	 color: graytext;
+}
+.nav-img{
+	height: 20%;
+	width: 20%;
+}
+
+.category {
+	border-radius: 15px;
+}
+.sub_img{
+	width:15%;
+	height: 80px;
+}
+.reserve{
+	margin-top: 0px;
+	 color: black;
+	  font-size: 35px; 
+	  padding-bottom: 10px;
+}
 </style>
 </head>
 <body>
@@ -302,6 +319,8 @@
 				
 				<div>
 				<!-- 지도 -->
+				<h1>Map</h1>
+				<hr width="9%" size="10" color="#95BADF"/>
 				<div id="map" style="width:100%;height:400px;"></div>
 				<script>
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -345,7 +364,7 @@
 					<!-- space q&a 부분 -->
 					<div class="col-xs-12" id="qna">
 						<h1>QnA</h1>
-						<hr width="20%" size="10" color="#95BADF"/>
+						<hr width="9%" size="10" color="#95BADF"/>
 						<jl:if test="${fn:length(list_space_qna) == 0}"> <div class="text-center"><p class="nothing text-center">등록된 질문이 없습니다.</p></div></jl:if>
 						<jl:forEach var="space_qna" items="${list_space_qna }">
 							<div class="panel-group" id="accordion${space_qna.space_qna_no }">
@@ -530,7 +549,7 @@
 						</ul>
 						<!-- space q&a 쓰는 곳 -->
 		
-						<h3>질문하기</h3>
+						<h3>질문작성</h3>
 						<form method="POST" action="add_space_qna.do">
 							<input type="hidden" name="space_no" value="${space.space_no }">
 							<input type="hidden" name="user_id" value="${user_id }">
@@ -552,7 +571,7 @@
 					<!-- 후기 -->
 					<div class="col-xs-12" id="review">
 						<h1>후기</h1>
-						<hr width="20%" size="10" color="#95BADF"/>
+						<hr width="9%" size="10" color="#95BADF"/>
 						<jl:if test="${fn:length(list_review) == 0}"> <div class="text-center"><p class="nothing text-center">등록된 후기가 없습니다.</p></div></jl:if>
 						<jl:forEach var="review" items="${list_review }">
 							<div class="panel-group" id="accordion${review.review_no }">
@@ -724,7 +743,7 @@
 						<div class="panel"
 							style="border-bottom: solid; border-bottom-color: #95BADF;">
 							<p
-								style="margin-top: 0px; color: black; font-size: 22px; padding-bottom: 10px;">예약하기</p>
+								class="reserve">예약하기</p>
 						</div>
 						<br />
 						<div style="border: thin; border-bottom-color: blue;">
@@ -732,7 +751,7 @@
 								
 								<li>						
 									<div class="property_details">
-										<h1 style="margin-top: 0px;">${space.space_title }</h1>
+										<p class="space_title">${space.space_title }</p>
 										<div class="property_details_box">
 											<div class="property_sub_details_left">
 												<h2>${space.price }원/시간</h2>
@@ -744,11 +763,11 @@
 												</h2>
 											</div>
 											<div class="btn-group btn-group-justified">
-												<a><button class="btn btn-info" data-toggle="modal"
+												<a><button class="btn btn-info btn-reserve btn-reserve" data-toggle="modal"
 													data-target="#call">전화</button></a>
 												<a href="space_reservation.do?space_no=${space.space_no }"><button
-														class="btn btn-info">예약하기</button></a>
-												<a><button class="btn btn-info" id="btn_bookmark"
+														class="btn btn-info btn-reserve">예약하기</button></a>
+												<a><button class="btn btn-info btn-reserve" id="btn_bookmark"
 													add="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"
 													del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">
 													북마크등록</button></a>

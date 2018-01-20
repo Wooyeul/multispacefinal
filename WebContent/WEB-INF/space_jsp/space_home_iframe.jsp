@@ -33,6 +33,9 @@
  .listings ul.properties_list li img.property_img{
  	height: 185px !important;
  }
+ .space_list_iframe{
+ 	margin:0px;
+ }
  </style>
 
 </head>
@@ -50,7 +53,7 @@
 					<ul class="properties_list">
 					<jl:forEach var="vo" items="${list2 }">
 					<li>
-						<p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'">
+						<p onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'" class="space_list_iframe">
 									<img src="space_img/${vo.space_thumb_img }" alt="" title="" 
 									class="property_img" onerror="this.src='defualt/defualt.jpg'">
 
@@ -72,30 +75,31 @@
 				</ul>
 			</div>
 		</section>	
-		
-		<ul class="pagination pagination-sm">
-			<jl:if test="${pz.hasPrevPagination }">
-				<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.paginationStart-1}">&lt;</a></li>
-			</jl:if>
-				<jl:if test="${pz.hasPrevPage }">
-					<li><a class="page" hredf="space_home_iframe.do" pg="${pz.curPagination-1 }">&lt;</a></li>
+		<div class="text-center">
+			<ul class="pagination pagination-sm">
+				<jl:if test="${pz.hasPrevPagination }">
+					<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.paginationStart-1}">&lt;</a></li>
 				</jl:if>
-				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
-					<jl:choose>
-						<jl:when test="${vs.index!=pz.curPagination }">
-							<li><a class="page" hrefd="space_home_iframe.do" pg="${vs.index }">${vs.index }</a></li>
-						</jl:when>
-						<jl:otherwise>
-							<li class="active"><a class="page" hrefd="space_home_iframe.do" pg="${vs.index }">${vs.index }</a></li>
-						</jl:otherwise>
-					</jl:choose>
-				</jl:forEach>
-				<jl:if test="${pz.hasNextPage }">
-					<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.curPagination+1}">&gt;</a></li>
+					<jl:if test="${pz.hasPrevPage }">
+						<li><a class="page" hredf="space_home_iframe.do" pg="${pz.curPagination-1 }">&lt;</a></li>
+					</jl:if>
+					<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
+						<jl:choose>
+							<jl:when test="${vs.index!=pz.curPagination }">
+								<li><a class="page" hrefd="space_home_iframe.do" pg="${vs.index }">${vs.index }</a></li>
+							</jl:when>
+							<jl:otherwise>
+								<li class="active"><a class="page" hrefd="space_home_iframe.do" pg="${vs.index }">${vs.index }</a></li>
+							</jl:otherwise>
+						</jl:choose>
+					</jl:forEach>
+					<jl:if test="${pz.hasNextPage }">
+						<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.curPagination+1}">&gt;</a></li>
+					</jl:if>
+				<jl:if test="${pz.hasNextPagination }">
+					<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 				</jl:if>
-			<jl:if test="${pz.hasNextPagination }">
-				<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.paginationEnd+1 }">&gt;&gt;</a></li>
-			</jl:if>
-		</ul>
+			</ul>
+		</div>
 </body>
 </html>

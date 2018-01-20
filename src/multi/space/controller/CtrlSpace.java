@@ -242,6 +242,7 @@ public class CtrlSpace {
 		String close_time= mpr.getParameter("close_time");
 		
 		String price_str = mpr.getParameter("price");
+		System.out.println(price_str);
 		Integer price = StringToInteger(price_str);
 		
 		String min_people_str = mpr.getParameter("min_people");

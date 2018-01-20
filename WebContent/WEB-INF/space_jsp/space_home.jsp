@@ -64,9 +64,16 @@
 	 	 	$("#user_name").text(rt+"님");
 	 	 		}
  	 	 });
+	 	 	
+	 	 	
  	});
  </script>
  <style>
+    .iframe-design{
+      overflow-x:hidden; 
+      overflow-y:hidden;
+      width: 100%;
+   }
  	.listings{
  		padding-top: 20px;
  	}
@@ -84,7 +91,6 @@
     <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
 	<div class="container">
-		<H1>공간 홈</H1>
 		<section class="listings">
 			<div class="wrapper">
 				<div class="properties_list">
@@ -113,8 +119,10 @@
 						</form>
 					</div>
 				<hr/>
-				<iframe id="boy" name="boy" src="space_home_iframe.do" width="100%" height="1100px" frameborder="0"></iframe>
-				<a href="space_add.do" class="sh_a" id="add_space" style="display: none;"><button class="btn_square">공간 등록</button></a>
+				<iframe name="boy" src="space_home_iframe.do" class="iframe-design" scrolling="no" frameborder="0"></iframe>
+				<div class="text-right">
+					<a href="space_add.do" class="sh_a" id="add_space" style="display: none;"><button class="btn_square">공간 등록</button></a>
+				</div>
 			</div>
 				<!-- 상태 모달 -->
 				<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

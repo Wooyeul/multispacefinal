@@ -61,7 +61,7 @@
 	          <p>${user_id } 고객님 저희 MSSPACE를 이용해 주셔서 대단히 감사드립니다. <br>
 	            고객님께서 <strong>${booking.du_time }</strong> 구매하신 상품에 대한 금액 <strong>${booking.booking_price }</strong> 원이 예약완료 되었습니다.</p>
 	        <hr>
-	   	<div class="panel panel-primary">
+	   	<div class="panel panel-info">
           <div class="panel-heading">
             <h3 class="panel-title">호스트&공간 정보</h3>
           </div>
@@ -87,7 +87,7 @@
           </div>
         </div>
 
-        <div class="panel panel-primary">
+        <div class="panel panel-info">
           <div class="panel-heading">
             <h3 class="panel-title">예약 정보</h3>
           </div>
@@ -114,7 +114,7 @@
           </div>
         </div>
 
-        <div class="panel panel-primary">
+        <div class="panel panel-info">
           <div class="panel-heading">
             <h3 class="panel-title">예약자 정보</h3>
           </div>
@@ -140,7 +140,7 @@
           </div>
           </div>
           
-           <div class="panel panel-primary">
+           <div class="panel panel-info">
           <div class="panel-heading">
             <h3 class="panel-title">환불 안내</h3>
           </div>
