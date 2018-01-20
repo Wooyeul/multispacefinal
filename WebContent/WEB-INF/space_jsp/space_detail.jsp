@@ -263,7 +263,6 @@
 				</p>
 				<br/>
 				<br/>
-				<hr width="100%" size="10" color="#95BADF"/>
 				<div class="text-center">
 					<jl:if test="${fn:length(image.image_one) > 3}">
 						<div>
@@ -271,7 +270,6 @@
 								id="main_img">
 						</div>
 					</jl:if>
-					<hr width="100%" size="10" color="#95BADF"/>
 					<div class="row">
 						<jl:if test="${fn:length(image.image_one) > 3}">
 							<img src="space_img/${image.image_one }"

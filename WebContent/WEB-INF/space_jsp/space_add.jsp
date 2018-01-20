@@ -101,9 +101,16 @@
 
 	$("document").ready(function() {
 		$("#sub").on("click", function() {
+			if(titleCheckFlag == 0 ) {
+				alert("제목을 입력해주세요.");
+			} else {
+				
+			
 			$("#open_time").removeAttr("disabled");
 			$("#close_time").removeAttr("disabled");
 			$("#sub").attr("type", "submit");
+			
+			}
 		});
 	});
 
@@ -376,7 +383,7 @@
 						name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
 				</jl:forEach>
 			</div>
-			<input type="button" id="sub" value="등록" class="btn btn-default"/>
+			<button id="sub" class="btn btn-default">등록</button>
 		</form>
 		<br/>
 		<br/>
