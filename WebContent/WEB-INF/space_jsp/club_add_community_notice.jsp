@@ -38,8 +38,8 @@
 		<div class="wrapper">
 			<div align="center"><h1 class="h1_design">글 작성</h1></div><br/>
 				<form id="add_frm">
-					<label class="label_design">제목</label><input name="c_notice_title" type="text" class="form-control"/><br/>
-					<label class="label_design">내용</label><textarea name="c_notice_content" rows="15" cols="25" class="form-control"></textarea><br/>
+					<label class="label_design">제목</label><input id="c_notice_title" name="c_notice_title" type="text" class="form-control"/><br/>
+					<label class="label_design">내용</label><textarea id="c_notice_content" name="c_notice_content" rows="15" cols="25" class="form-control"></textarea><br/>
 					
 					<input name="club_no" type="hidden" value="${club_no}"/>
 					<input name="user_id" type="hidden" value="${user_id}"/>
@@ -93,7 +93,17 @@
 			
 			/* 글 등록 모달 Yes or No */
 			$("#text_add_Yes").on("click",function(){
-				okBtnClick();
+				if($("#c_notice_title").val()==''){
+					$("#basic_mobody").html("<h4>글 제목을 등록해주세요.</h4>");
+				}else if($("#c_notice_content").val()==''){
+					$("#basic_mobody").html("<h4>글 내용을 등록해주세요.</h4>");
+				}else if($("#c_notice_title").val().length>199){
+					$("#basic_mobody").html("<h4>글 제목을 200자 이하로 등록해주세요.</h4>");
+				}else{
+					okBtnClick();
+				}
+				$("#text_add_modal").modal("hide");
+				$("#basic_modal").modal("show");
 			});
 			$("#text_add_No").on("click",function(){
 				cancelBtnClick();

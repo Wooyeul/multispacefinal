@@ -130,7 +130,27 @@
 			
 			/* 글 등록 모달 Yes or No */
 			$("#club_add_yes").on("click",function(){
-				okBtnClick();
+				if($("#club_name").val()==''){
+					$("#basic_mobody").html("<h4>모임이름을 등록해주세요.</h4>");
+				}else if($("#club_title").val()==''){
+					$("#basic_mobody").html("<h4>글 제목을 등록해주세요.</h4>");
+				}else if($("#max_member").val()==''){
+					$("#basic_mobody").html("<h4>모임 최대인원을 등록해주세요.</h4>");
+				}else if($("#club_content").val()==''){
+					$("#basic_mobody").html("<h4>모임 소개를 등록해주세요.</h4>");
+				}else if($("#l_category_no").val()=='0'){
+					$("#basic_mobody").html("<h4>지역카테고리를 선택해주세요.</h4>");
+				}else if($("#c_category_no").val()=='0'){
+					$("#basic_mobody").html("<h4>분류카테고리를 선택해주세요.</h4>");
+				}else if($("#club_name").val().length>49){
+					$("#basic_mobody").html("<h4>모임이름을 50자 이하로 등록해주세요.</h4>");
+				}else if($("#club_title").val().length>99){
+					$("#basic_mobody").html("<h4>글 제목을 100자 이하로 등록해주세요.</h4>");
+				}else{
+					okBtnClick();
+				}
+				$("#club_add_modal").modal("hide");
+				$("#basic_modal").modal("show");
 			});
 			$("#club_add_no").on("click",function(){
 				cancelBtnClick();
@@ -176,7 +196,7 @@
 			});//submit_btn.on click
 			
 			$("#cancel").on("click",function(){
-				location.href="club_home.do";
+				location.href="club_detail.do?club_no="+${vo.club_no};
 			});
 			
 			var scOffset = $( '.navbar-Menu' ).offset();

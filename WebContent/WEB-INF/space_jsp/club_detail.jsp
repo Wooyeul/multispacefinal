@@ -10,7 +10,7 @@
 	
 
 <link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css"> 
 <link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
 	
 <script type="text/javascript" src="./Resources/js/jquery.js"></script>
@@ -31,8 +31,9 @@
 	<!-- *********************  header  ************************ -->
          <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
+	
 	<section class="listings">
-		<div class="container">
+<!-- 		<div class="container"> -->
 			<div class="wrapper">
 				<div align="center">
 					<h1 style="font: bold; color: #026fac;">
@@ -130,7 +131,7 @@
 				<!-- 기본 modal창 끝 -->
 
 			</div>
-		</div>
+<!-- 		</div> -->
 	</section>
 	<!-- ******************************* footer ******************************* -->
 	  <%@include file="./jsp/footer.jsp"%>  

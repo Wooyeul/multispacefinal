@@ -50,13 +50,13 @@
 						<label class="label_design">소개</label><textarea id="club_content" name="club_content" rows="8" cols="24" class="form-control"></textarea><br/>
 						<label class="label_design">사진등록</label><input id="club_thumb_img" name="club_thumb_img" type="file" class="form-control"><br/>
 						<select id="l_category_no" name="l_category_no" class="input-sm">
-							<option>지역선택</option>
+							<option value="0">지역선택</option>
 							<jl:forEach items="${lmap}" var="m">
 								<option value="${m.l_category_no}">${m.l_category_name}</option>
 							</jl:forEach>
 						</select>
 						<select id="c_category_no" name="c_category_no" class="input-sm">
-							<option>분야선택</option>
+							<option value="0">분야선택</option>
 							<jl:forEach items="${cmap}" var="c">
 								<option value="${c.c_category_no}">${c.c_category_name}</option>
 							</jl:forEach>
@@ -114,7 +114,27 @@
 			
 			/* 글 등록 모달 Yes or No */
 			$("#club_add_yes").on("click",function(){
-				okBtnClick();
+				if($("#club_name").val()==''){
+					$("#basic_mobody").html("<h4>모임이름을 등록해주세요.</h4>");
+				}else if($("#club_title").val()==''){
+					$("#basic_mobody").html("<h4>글 제목을 등록해주세요.</h4>");
+				}else if($("#max_member").val()==''){
+					$("#basic_mobody").html("<h4>모임 최대인원을 등록해주세요.</h4>");
+				}else if($("#club_content").val()==''){
+					$("#basic_mobody").html("<h4>모임 소개를 등록해주세요.</h4>");
+				}else if($("#l_category_no").val()=='0'){
+					$("#basic_mobody").html("<h4>지역카테고리를 선택해주세요.</h4>");
+				}else if($("#c_category_no").val()=='0'){
+					$("#basic_mobody").html("<h4>분류카테고리를 선택해주세요.</h4>");
+				}else if($("#club_name").val().length>49){
+					$("#basic_mobody").html("<h4>모임이름을 50자 이하로 등록해주세요.</h4>");
+				}else if($("#club_title").val().length>99){
+					$("#basic_mobody").html("<h4>글 제목을 100자 이하로 등록해주세요.</h4>");
+				}else{
+					okBtnClick();
+				}
+				$("#club_add_modal").modal("hide");
+				$("#basic_modal").modal("show");
 			});
 			$("#club_add_no").on("click",function(){
 				cancelBtnClick();

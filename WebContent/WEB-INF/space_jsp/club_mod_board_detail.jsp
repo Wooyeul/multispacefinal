@@ -39,8 +39,16 @@
 			<div align="center"><h1 class="h1_design">글 수정</h1></div><br/>
 			<form id="frm">
 				<div align="right"><label>작성시간 ${vo.the_time}</label><br/><label> 작성자 ${vo.user_id}</label><br/></div>
-				<label class="label_design">제목</label><input name="c_board_title" type="text" value="${vo.c_board_title}" class="form-control"/><br/>
-				<label class="label_design">소개</label><textarea name="c_board_content" rows="15" cols="30" class="form-control">${vo.c_board_content}</textarea><br/>
+				
+				<label>말머리</label>
+				<select id="c_board_subject" name="c_board_subject" class="input-sm">
+					<option value="0"></option>	
+					<option value="일반">일반</option>	
+					<option value="유머">유머</option>	
+					<option value="질문/답변">질문/답변</option>	
+				</select><br/><br/>
+				<label class="label_design">제목</label><input id="c_board_title" name="c_board_title" type="text" value="${vo.c_board_title}" class="form-control"/><br/>
+				<label class="label_design">소개</label><textarea id="c_board_content" name="c_board_content" rows="15" cols="30" class="form-control">${vo.c_board_content}</textarea><br/>
 				<input name="c_board_no" type="hidden" value="${vo.c_board_no}">
 				<div align="right">
 					<input id="textMod" type="button" value="수정하기" class="btn">
@@ -122,36 +130,53 @@
 			$("#textMod").on("click",function(){
 				$("#text_mod_modal").modal("show");
 				$("#text_modal_Yes").on("click",function(){
-					var formData = $("#frm").serialize();
-					$.ajax({
-						type : "POST",
-						url : "club_mod_board_detail_submit.do",
-						data : formData,
-						success	: function(rt) {
-							if(rt=="ok"){
-								$("#text_mod_modal").modal("hide");
-								$("#basic_mobody").html("<h4>글이 수정 되었습니다.</h4>");
-								$("#basic_modal").modal("show");
-								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
-									location.href="club_board_detail.do?c_board_no="+${vo.c_board_no};
-								});
-							}else{
-								$("#mod_modal").modal("hide");
-								$("#basic_mobody").html("<h4>글 수정이 실패 되었습니다.</h4>");
-								$("#basic_modal").modal("show");
-								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
-									location.reload();
-								});
-							}
-					    }
-					});
+					if($("#c_board_title").val()==''){
+						$("#basic_mobody").html("<h4>글 제목을 등록해주세요.</h4>");
+					}else if($("#c_board_content").val()==''){
+						$("#basic_mobody").html("<h4>글 내용을 등록해주세요.</h4>");
+					}else if($("#c_board_title").val().length>199){
+						$("#basic_mobody").html("<h4>글 제목을 200자 이하로 등록해주세요.</h4>");
+					}else if($("#c_board_subject").val()=='0'){
+						$("#basic_mobody").html("<h4>말머리를 선택해주세요.</h4>");
+					}else{
+						okBtnClick();
+					}
+					$("#text_add_modal").modal("hide");
+					$("#basic_modal").modal("show");
+					
 				});
 				$("#text_modal_No").on("click",function(){
 					$("#text_mod_modal").modal("hide");
 				});
 			});
+			
+			var okBtnClick = function () {
+				var formData = $("#frm").serialize();
+				$.ajax({
+					type : "POST",
+					url : "club_mod_board_detail_submit.do",
+					data : formData,
+					success	: function(rt) {
+						if(rt=="ok"){
+							$("#text_mod_modal").modal("hide");
+							$("#basic_mobody").html("<h4>글이 수정 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.href="club_board_detail.do?c_board_no="+${vo.c_board_no};
+							});
+						}else{
+							$("#mod_modal").modal("hide");
+							$("#basic_mobody").html("<h4>글 수정이 실패 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								location.reload();
+							});
+						}
+				    }
+				});
+			};
 			
 			// 글 삭제 버튼 클릭 시 이벤트 실행
 			$("#textDel").on("click",function(){

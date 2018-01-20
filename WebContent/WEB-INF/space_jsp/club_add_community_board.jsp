@@ -39,14 +39,14 @@
 			<div align="center"><h1 class="h1_design">글 작성</h1></div><br/>
 				<form id="add_frm">
 					<label>말머리</label>
-					<select name="c_board_subject" class="input-sm">
-						<option></option>	
+					<select id="c_board_subject" name="c_board_subject" class="input-sm">
+						<option value="0"></option>	
 						<option value="일반">일반</option>	
 						<option value="유머">유머</option>	
 						<option value="질문/답변">질문/답변</option>	
 					</select><br/><br/>
-					<label class="label_design">제목</label><input name="c_board_title" type="text" class="form-control"/><br/>
-					<label class="label_design">내용</label><br/><textarea name="c_board_content" rows="15" cols="25" class="form-control"></textarea><br/>
+					<label class="label_design">제목</label><input id="c_board_title" name="c_board_title" type="text" class="form-control"/><br/>
+					<label class="label_design">내용</label><br/><textarea id="c_board_content" name="c_board_content" rows="15" cols="25" class="form-control"></textarea><br/>
 					<input name="club_no" type="hidden" value="${club_no}"/>
 					<input name="user_id" type="hidden" value="${user_id}"/>
 					<div align="right"><input id="textSubmit" type="button" value="등록" class="btn"/>&nbsp<input id="cancel" type="button" value="취소" class="btn"/></div>
@@ -93,7 +93,19 @@
 		$(document).ready(function(){
 			
 			$("#text_add_Yes").on("click",function(){
-				okBtnClick();
+				if($("#c_board_title").val()==''){
+					$("#basic_mobody").html("<h4>글 제목을 등록해주세요.</h4>");
+				}else if($("#c_board_content").val()==''){
+					$("#basic_mobody").html("<h4>글 내용을 등록해주세요.</h4>");
+				}else if($("#c_board_title").val().length>199){
+					$("#basic_mobody").html("<h4>글 제목을 200자 이하로 등록해주세요.</h4>");
+				}else if($("#c_board_subject").val()=='0'){
+					$("#basic_mobody").html("<h4>말머리를 선택해주세요.</h4>");
+				}else{
+					okBtnClick();
+				}
+				$("#text_add_modal").modal("hide");
+				$("#basic_modal").modal("show");
 			});
 			
 			$("#text_add_No").on("click",function(){
@@ -107,7 +119,6 @@
 					data : formData,
 					success	: function(rt) {
 						if(rt=="ok"){
-							alert(rt);
 							$("#text_add_modal").modal("hide");
 							$("#basic_mobody").html("<h4>글이 등록 되었습니다.</h4>");
 							$("#basic_modal").modal("show");

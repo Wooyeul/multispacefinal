@@ -49,7 +49,7 @@
 	
 	<!-- club 커뮤니티 글 수정 시작 -->
 	<update id="club_mod_board_detail" parameterType="multi.club.vo.Club_boardVO" statementType="CALLABLE">
-		{call p_club_mod_board_detail(#{c_board_no},#{c_board_title},#{c_board_content})}
+		{call p_club_mod_board_detail(#{c_board_no},#{c_board_title},#{c_board_content},#{c_board_subject})}
 	</update>
 	<!-- club 커뮤니티 글 수정 끝 -->
 	
@@ -137,12 +137,14 @@ DELIMITER $$
 CREATE PROCEDURE p_club_mod_board_detail(
 	IN v_c_board_no INT,
 	IN v_c_board_title VARCHAR(200),
-	IN v_c_board_content TEXT
+	IN v_c_board_content TEXT,
+	IN v_c_board_subject VARCHAR(15)
 )
 BEGIN
 	UPDATE Club_BoardT
 	   SET c_board_title = v_c_board_title,
-	       c_board_content = v_c_board_content
+	       c_board_content = v_c_board_content,
+	       c_board_subject = v_c_board_subject
 	 WHERE c_board_no = v_c_board_no;
 END$$
 DELIMITER ;

@@ -107,6 +107,7 @@ public class CtrlClub_board {
 			pvo.setC_board_no(BeanUtil.pInt(request.getParameter("c_board_no")));
 			pvo.setC_board_title(request.getParameter("c_board_title"));
 			pvo.setC_board_content(request.getParameter("c_board_content"));
+			pvo.setC_board_subject(request.getParameter("c_board_subject"));
 			try {
 				clubDAO.club_mod_board_detail(pvo);
 				return "ok";

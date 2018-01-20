@@ -46,7 +46,7 @@
 	.select_div0 {
 		width: 600px;
 		margin:0 auto;
-		margin-top: 40px;
+		margin-top: 5px;
 	}	
 	input[type="radio"] { 
 		display: none; 
@@ -103,6 +103,7 @@
 	.iframe-design{
 		overflow-x:hidden; 
 		overflow-y:hidden;
+		width: 100%;
 	}
 	.iframe-design2{
 		width :100%; 
@@ -171,7 +172,7 @@
 			</form>
 		</div>
 	
-	<section class="listing-s">
+	<section class="listings">
 		<div class="wrapper">
 			<div class="iframe-design">
 				<iframe id="boy" name="club_list" scrolling="no" class="iframe-design2"></iframe>
