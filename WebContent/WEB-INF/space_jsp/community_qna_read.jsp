@@ -338,7 +338,7 @@
 				<form action="community_qna_mod.do" method="post">
 					<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
 					<input type="hidden" name="com_qna_title" value="${vo.com_qna_title}" /> 
-					<input type="hidden" name="com_qna_content" value="${vo.com_qna_content}" />
+					<input type="hidden" name="com_qna_content" value= ' ${vo.com_qna_content}' />
 					<jl:if test="${vo.user_id eq user_id}">
 						<input type="submit" class="btn btn-info" value="글수정" />
 					</jl:if>

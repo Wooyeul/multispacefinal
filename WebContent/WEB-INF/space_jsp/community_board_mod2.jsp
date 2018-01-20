@@ -1,57 +1,54 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
+taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Welcome to Multi Space</title>
-	
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-	
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.p{
+text-align: center;
+}
+
+</style>
 	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
 	
-		
 	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
 	<script type="text/javascript" src="./Resources/js/main.js"></script>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="./common.js"></script>
+	<script src="common.js"></script>
+	
+
+<!-- ¿¡µğÅÍ 3ÁÙ -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+	
 	<style type="text/css">
 	
-		.freemod {
-			margin-top: 27px;
-			margin-bottom: 27px;
-			text-align: center;
-			font-size: 2em;
-			font-family: "lato-regular", Helvetica, Arial, sans-serif;
-		}
-		.container {
-			width: 600px;
-		}
-		.modbtn {
-			text-align:center;
-		}
+		
 	</style>
 
 <script>
 
 $(document).ready(function(){
-	/* ê¸°ë³¸ ëª¨ë‹¬ì°½ ë‹«ê¸° ë²„íŠ¼ í´ë¦­ì‹œ ì´ë²¤íŠ¸ ì‹¤í–‰ */
+	/* ±âº» ¸ğ´ŞÃ¢ ´İ±â ¹öÆ° Å¬¸¯½Ã ÀÌº¥Æ® ½ÇÇà */
 	$("#basic_modal_Yes").on("click",function(){
 		$("#basic_modal").modal("hide");
 	});
 	
-	/* ìˆ˜ì • ë²„íŠ¼ í´ë¦­ ì‹œ ì´ë²¤íŠ¸ ì‹¤í–‰ */
+	/* ¼öÁ¤ ¹öÆ° Å¬¸¯ ½Ã ÀÌº¥Æ® ½ÇÇà */
 	$("#btnMod").on("click",function(){
 		$("#text_mod_modal").modal("show");
 		$("#text_modal_Yes").on("click",function(){	
 			$("#text_mod_modal").modal("hide");	
-			$("#basic_mobody").html("<h4>ê¸€ì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.</h4>");
+			$("#basic_mobody").html("<h4>±ÛÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù.</h4>");
 			$("#basic_modal").modal("show");
 			$("#basic_modal").on("hidden.bs.modal",function(){
 				$("#modform").submit();
@@ -65,94 +62,109 @@ $(document).ready(function(){
 });//ready
 
 </script> 
-
+<script>
+$(document).ready(function() {
+	$("#summernote").summernote({
+        lang: 'ko-KR',
+		height : 300, // set editor height
+		minHeight : null, // set minimum height of editor
+		maxHeight : null, // set maximum height of editor
+		focus : true // set focus to editable area after initializing summernote 
+	
+	});
+});
+</script>
 
 
 </head>
 <body>
-	<div class="freemod"><h2>ììœ ê²Œì‹œíŒ ê¸€ ìˆ˜ì •</h2></div>
-	<div class="container">
+<br/>
+	<p class="p"><label>±Û¼öÁ¤</label></p>
+	<hr style="border: solid 0.5px black;">
+		<div class="col-lg-12">
+		<div class="container">
 		<form action="community_board_mod2.do" method="POST" id="modform">
-			<div class="form-group" id="modal_content">
-			<label><h3>ì œëª© ì…ë ¥</h3></label>
+		
+			<label>Á¦¸ñ</label>
 				<input class="form-control" type="text" name="com_board_title" value="${mvo.com_board_title}"/><br/>
-				<input type="hidden"  size="30" name="user_id" value="${mvo.user_id}" />
-			<label><h3>ë‚´ìš© ì…ë ¥</h3></label>
-			<textarea class="form-control" name="com_board_content" rows="10" cols="100">${mvo.com_board_content}</textarea>
-			<input type="hidden" name="com_board_no" value="${mvo.com_board_no}"/>
-			</div>
-			<div class="modbtn">
-				<input type="button" value="ìˆ˜ì •" class="btn btn-info btn-lg" id="btnMod"/>
-			</div>
+				<input type="hidden"  name="user_id" value="${mvo.user_id}" />
+			<label>³»¿ë</label>
+				<textarea id="summernote" name="com_board_content">${mvo.com_board_content}</textarea>
+				<input type="hidden" name="com_board_no" value="${mvo.com_board_no}"/>
+	
+				<input type="button" value="¼öÁ¤" class="btn" id="btnMod"/>
+			
 		</form>
+		</div>
 	</div>
+
 	
 	
 	
-	<!-- ê¸€ ìˆ˜ì • modalì°½ ì‹œì‘ -->
+	<!-- ±Û ¼öÁ¤ modalÃ¢ ½ÃÀÛ -->
 	<div id="text_mod_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header" align="center"><h4>ê¸€ ìˆ˜ì •</h4></div>
+				<div id="mohead" class="modal-header" align="center"><h4>±Û ¼öÁ¤</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-				<h4>ê¸€ì„ ìˆ˜ì • í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+				<h4>±ÛÀ» ¼öÁ¤ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='text_modal_Yes'>ìˆ˜ì •</button>
-					<button type='button' class='btn btn-primary' id='text_modal_No'>ì·¨ì†Œ</button>
+					<button type='button' class='btn btn-default' id='text_modal_Yes'>¼öÁ¤</button>
+					<button type='button' class='btn btn-primary' id='text_modal_No'>Ãë¼Ò</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ê¸€ ìˆ˜ì • modalì°½ ë -->	
-	<!-- ê¸°ë³¸ modalì°½ ì‹œì‘ -->
+	<!-- ±Û ¼öÁ¤ modalÃ¢ ³¡ -->	
+	<!-- ±âº» modalÃ¢ ½ÃÀÛ -->
 	<div id="basic_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>ë‹«ê¸°</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>´İ±â</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ê¸°ë³¸ modalì°½ ë -->
+	<!-- ±âº» modalÃ¢ ³¡ -->
 	
-	<!--ê¸€ìˆ˜ì •ëª¨ë‹¬ì°½ -->
+	<!--±Û¼öÁ¤¸ğ´ŞÃ¢ -->
 	<div class="modal fade" id="modtext" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">Ã—</span> <span class="sr-only">Close</span>
+						<span aria-hidden="true">¡¿</span> <span class="sr-only">Close</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">ì•Œë¦¼</h4>
+					<h4 class="modal-title" id="myModalLabel">¾Ë¸²</h4>
 				</div>
-				<div class="modal-body">ê¸€ì„ ì •ë§ë¡œ ì •ë§ë¡œ ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹¡?</div>
+				<div class="modal-body">±ÛÀ» Á¤¸»·Î Á¤¸»·Î ¼öÁ¤ÇÏ½Ã°Ú½À´Ï±ø?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
-					<button type="button" class="btn btn-primary" id="success">í™•ì¸</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">´İ±â</button>
+					<button type="button" class="btn btn-primary" id="success">È®ÀÎ</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 
-	<!-- ê¸€ìˆ˜ì •ëª¨ë‹¬ì°½_ìˆ˜ì •ë²„íŠ¼ëˆ„ë¥´ë©´ -->
+	<!-- ±Û¼öÁ¤¸ğ´ŞÃ¢_¼öÁ¤¹öÆ°´©¸£¸é -->
 	<div class="modal fade" id="modalmod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">Ã—</span> <span class="sr-only">Close</span>
+						<span aria-hidden="true">¡¿</span> <span class="sr-only">Close</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">ì•Œë¦¼</h4>
+					<h4 class="modal-title" id="myModalLabel">¾Ë¸²</h4>
 				</div>
-				<div class="modal-body">ë‹¹ì‹ ì˜ í›Œë¥­í•œ ê¸€ì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤ !</div>
+				<div class="modal-body">´ç½ÅÀÇ ÈÇ¸¢ÇÑ ±ÛÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù !</div>
 				<div class="modal-footer">
-					<button id="modalmodclose"type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
+					<button id="modalmodclose"type="button" class="btn btn-default" data-dismiss="modal">´İ±â</button>
 				
 				</div>
 			</div>

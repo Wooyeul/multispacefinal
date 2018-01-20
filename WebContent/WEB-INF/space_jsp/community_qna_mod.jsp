@@ -21,21 +21,18 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
-	<style type="text/css">
+	<!-- 에디터 3줄 -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
 	
-		.qnamod {
-			margin-top: 27px;
-			margin-bottom: 27px;
-			text-align: center;
-			font-size: 2em;
-			font-family: "lato-regular", Helvetica, Arial, sans-serif;
-		}
-		.container {
-			width: 600px;
-		}
-		.modbtn {
-			text-align:center;
-		}
+	
+	<style type="text/css">
+	.p{
+	text-align: center;
+	}
+	
+	
 	</style>
 	<script>
 	$(document).ready(function() {
@@ -66,20 +63,40 @@
 		/* 수정 모달 창 yes or no 버튼 클릭 시 */
 	});
 	</script>
+	
+<!--에디터 -->	
+	<script>
+$(document).ready(function() {
+	$("#summernote").summernote({
+        lang: 'ko-KR',
+		height : 300, // set editor height
+		minHeight : null, // set minimum height of editor
+		maxHeight : null, // set maximum height of editor
+		focus : true // set focus to editable area after initializing summernote 
+	
+	});
+});
+</script>
+	
 </head>
 <body>
-	<div class="qnamod"><h2>QnA 글 수정</h2></div>
-	<div class="container">
+	
+<br/>
+		<p class="p"><label>QnA</label></p>
+	<hr style="border: solid 0.5px black;">
+		<div class="col-lg-12">
+		<div class="container">
 		<form action="community_qna_mod2.do" method="POST" id="qna_mod">
-			<label><h3>제목 입력</h3></label>
-				<input class="form-control" type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
-			<label><h3>내용 입력</h3></label>
-				<textarea class="form-control" name="com_qna_content" rows="10" cols="100">${vo.com_qna_content}</textarea>
+			<label>제목</label>
+				<input class="form-control" class="form-control"  type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
+			<label>제목</label>
+				<textarea  id="summernote"   class="form-control" name="com_qna_content" rows="10" cols="100">${vo.com_qna_content}</textarea>
 			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 			<div class="modbtn">
 				<input type="button" value="수정" class="btn btn-info btn-lg" data-toggle="modal" data-target="#text_mod_modal"/>
 			</div>
 		</form>
+	</div>
 	</div>
 	
 	

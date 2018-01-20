@@ -8,13 +8,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
-
+.p{
+text-align: center;
+}
 		
+.write{
+float: left;
+	padding-right: 5px;
+}	
 	</style>
 	<script src="common.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<!-- 에디터 3줄 -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+	
 	<script>
+	
 	$(document).ready(function() {
 	/* 기본 모달 창 닫기 버튼 눌렀을 때 이벤트 발생 */
 	$("#basic_modal_Yes").on("click",function(){
@@ -56,24 +69,41 @@
 		}); */
 	});
 	</script>
+<!--에디터 -->	
+	<script>
+$(document).ready(function() {
+	$("#summernote").summernote({
+        lang: 'ko-KR',
+		height : 300, // set editor height
+		minHeight : null, // set minimum height of editor
+		maxHeight : null, // set maximum height of editor
+		focus : true // set focus to editable area after initializing summernote 
+	
+	});
+});
+</script>
 </head>
 <body>
-	<div id="i" class="jumbotron panel-primary">
-		<h1>QnA</h1>
-	</div>
-	
+<br/>
+		<p class="p"><label>QnA</label></p>
+	<hr style="border: solid 0.5px black;">
+		<div class="col-lg-12">
+		<div class="container">
 	<form action="community_qna_add2.do" method="POST" id="qna_submit">
 		<input type="hidden" name="user_id" value="${user_id}"/>
-		제목 : <input type="text" name="com_qna_title"/><br/>
-		내용 : <textarea name="com_qna_content" rows="7" cols="63"></textarea>
+		<label>제목</label><input  class="form-control" type="text" name="com_qna_title"/><br/>
+		<label>내용</label><textarea  id="summernote"  name="com_qna_content" ></textarea>
 		<br/>
+		<div class="write">
 		<input type="button" value="QnA작성" class="btn btn-info btn-sm" data-toggle="modal"  id="ee"/>
+		</div>
 	</form>
 	
 	<form action="community_qna_list.do" method="POST">
 		<input type="submit" value="취소" class="btn btn-info btn-sm"/>
 	</form>
-	
+	</div>
+	</div>
 	<!-- 기본 modal창 시작 -->
 	<div id="basic_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">

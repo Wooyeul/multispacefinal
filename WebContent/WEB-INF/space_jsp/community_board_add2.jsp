@@ -3,15 +3,30 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Welcome to Multi Space</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
+.p{
+text-align: center;
+}
+
 </style>
-<script src="common.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="common.js"></script>
+	
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -37,29 +52,51 @@ taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 </script>
 
+<script>
+	$(document).ready(function() {
+		$("#summernote").summernote({
+	        lang: 'ko-KR',
+			height : 300, // set editor height
+			minHeight : null, // set minimum height of editor
+			maxHeight : null, // set maximum height of editor
+			focus : true // set focus to editable area after initializing summernote 
+		
+		});
+	});
+</script>
 
 </head>
 <body>
-	<div class="jumbotron" style="background-color: orange">
-		<h1>자유게시판 글쓰기 공간</h1>
-	</div>
-	<form action="community_board_add2.do" class="form-group" method="POST" name="frm" id="text_addform">
-		제목 : <input type="text" name="com_board_title" size="30" /> <br>
-		말머리 : <select name="com_board_type">
-			<option value="선택">선택하세요</option>
-			<option value="유머">유머</option>
-			<option value="맛집">맛집</option>
-			<option value="취미">취미</option>
-			<option value="감성">감성글</option>
-			<option value="공유">공유</option>
-		</select> <br>
+
+<br>
+	<p class="p"><label>글쓰기</label></p>
+		<hr style="border: solid 0.5px black;">
+		<div class="col-lg-12">
+		<div class="container">
+		<form action="community_board_add2.do" class="form-group" method="POST" name="frm" id="text_addform">
+		<label>제목 </label>	
+		<input type="text" name="com_board_title" class="form-control" /> <br>
 		
-		내용:
-		<textarea name="com_board_content" rows="10" cols="60"></textarea>
+		<label>내용</label>
+		<textarea id="summernote" name="com_board_content" ></textarea>
 		<br> 
-		<input id="myAlert" class="btnAdd btn-success" type="button" value="등록" />
-		<input type="button"class="btn btn-success" id="cancel" value="취소"/>
+		<input id="myAlert" class="btn" type="button" value="등록" />
+		<input type="button" class="btn" id="cancel" value="취소"/>
 	</form>
+	</div>
+	</div>
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<!--alert 모달폼  -->
 	<!-- 글등록 modal창 시작 -->
