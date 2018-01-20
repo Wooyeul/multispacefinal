@@ -273,9 +273,9 @@ $(document).ready(function() {
 				 		html += "<tr><td width="+"150"+"><h4>"+list.data[i].user_id+"</h4></td>";
 				 		html += "<td width="+"1000"+"><span id='rb_"+list.data[i].com_board_reple_no+"'><h4>"+list.data[i].com_board_reple_content+"</h4></span>";
 				 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5></td>";
-						if('${user_id == list.data[i].user_id}'){
+						if('${user_id}' == list.data[i].user_id){
 				 			html += " <td width="+"50"+"><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_board_reple_no+"' xyz='"+list.data[i].com_board_reple_no+"' /></td>";
-					 		html += " <td width="+"50"+"><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/></td>";
+					 		html += " <td width="+"50"+"><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/></td>";	
 						}
 						html +="</tr>";
 						html +="</table>";
@@ -357,7 +357,7 @@ $(document).ready(function() {
 					<input type="hidden" name="com_board_no" value="${vo.com_board_no}"/>
 				</div>
 				<div class="repsumbtn">
-					<input id="submit_btn" type="button" value="댓글작성" class="btn btn-primary">
+					<input id="submit_btn" type="button" value="댓글작성" class="btn btn-primary" user_id="${user_id}">
 				</div>
 			</jl:if>
 		</form>
