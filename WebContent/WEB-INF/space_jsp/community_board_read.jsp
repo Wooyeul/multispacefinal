@@ -218,7 +218,14 @@ $(document).ready(function() {
 		
 		/* 댓글 등록 부분 비동기 처리 */
 		$("#submit_btn").on("click",function(){
-			var formData = $("#add_reple_frm").serialize();
+			$("#mohead").html("<div class='modal-title'align='center'><h4>댓글등록</h4></div>");
+			$("#mobody").html("댓글을 등록하시겠습니까?");
+			$("#ft").html("<button type='button' class='btn btn-default' id='modal-del-Yes'>등록</button>"+
+					"<button type='button' class='btn btn-primary' id='modal-del-No'>취소</button>");
+			$("#modal").modal();
+			
+			$("#modal-del-Yes").on("click",function(){
+		var formData = $("#add_reple_frm").serialize();
 			$.ajax({
 				type : "POST",
 				url : "community_board_addreple.do",
@@ -245,7 +252,11 @@ $(document).ready(function() {
 						});
 					}
 			    }
-			});	
+			});
+			});
+			$("#modal-del-No").on("click",function(){
+				$("#modal").modal("hide");
+			}); 
 		});
 		/* 댓글 등록 부분 비동기 처리 */
 	})
@@ -393,7 +404,7 @@ $(document).ready(function() {
 							<textarea name ="com_board_reple_content" class="form-control" id="content" rows="7"></textarea>
 						</div>
 						<input type="button" class="btn btn-default" id="btnMod" value="수정"/>
-						<input type="button" class="btn btn-primary" id="btnClose" value="닫기"/>
+						<input type="button" class="btn btn-primary" id="btnClose" value="취소"/>
 					</div>
 				</div>
 			</div>
@@ -473,8 +484,8 @@ $(document).ready(function() {
 				</div>
 				<div class="modal-body">글을 정말로 정말로 삭제하시겠습니깡?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary" id="delsuccess">확인</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+					<button type="button" class="btn btn-primary" id="delsuccess">취소</button>
 				</div>
 			</div>
 		</div>

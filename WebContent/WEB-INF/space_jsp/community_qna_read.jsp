@@ -358,7 +358,7 @@
 		          <p>댓글 삭제 완료!</p>
 		        </div>
 		         <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="닫기">
 		        </div>
 		      </div>
 	    </div>
@@ -375,7 +375,7 @@
 		          <p>QnA 삭제 완료!</p>
 		        </div>
 		         <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="닫기">
 		        </div>
 		      </div>
 	    </div>
@@ -392,7 +392,7 @@
 		          <p>댓글 수정 완료!</p>
 		        </div>
 		         <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="닫기">
 		        </div>
 		      </div>
 	    </div>
@@ -409,7 +409,7 @@
 		          <p>댓글 작성 완료!</p>
 		        </div>
 		         <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="확인">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="닫기">
 		        </div>
 		      </div>
 	    </div>

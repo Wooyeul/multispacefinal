@@ -50,13 +50,13 @@
 <hr style="border: solid 0.5px black;">
 	<table class="table table-hover">
 		<tr>
-			<th width="80"><h4>방번호</h4></th>
-			<th width="300"><h4>제목</h4></th>
-			<th width="600"><h4>내용</h4></th>
-			<th><h4>공간사진</h4></th>
-			<th width="100"><h4>글쓴이</h4></th>
-			<th width="200"><h4>작성일</h4></th>
-			<th width="50"><h4>별점</h4></th>
+			<th width="80"><h3>방번호</h3></th>
+			<th width="300"><h3>제목</h3></th>
+			<th width="600"><h3>내용</h3></th>
+			<th><h3>공간사진</h3></th>
+			<th width="100"><h3>글쓴이</h3></th>
+			<th width="200"><h3>작성일</h3></th>
+			<th width="60"><h3>별점</h3></th>
 			
 		</tr>
 		

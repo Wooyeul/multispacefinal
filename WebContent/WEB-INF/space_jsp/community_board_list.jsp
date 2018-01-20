@@ -106,11 +106,11 @@
 	<table class="table table-hover cb_table">
 		<tr>
 			<th width="40"></th>
-			<th width="1000"><h4>제목</h4></th>
-			<th width="100"><h4>글쓴이</h4></th>
-			<th><h4>작성일</h4></th>
-			<th><h4>조회</h4></th>
-			<th><h4>추천</h4></th>
+			<th width="1000"><h3>제&nbsp;목</h3></th>
+			<th width="100"><h3>글쓴이</h3></th>
+			<th><h3>작성일</h3></th>
+			<th><h3>조회</h3></th>
+			<th><h3>추천</h3></th>
 			<jl:forEach var="vo" items="${board_list}">
 				<tr>
 					<td><h4>${vo.com_board_no}</h4></td>
@@ -178,7 +178,7 @@
 			</div>
 		</div>
 	</div>
-	
+	</br></br>
 	<div class="wrapper">
 			<form action="community_board_list.do" id="paging_frm">
 				<div class="selecdiv0">

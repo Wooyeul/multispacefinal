@@ -83,15 +83,15 @@ $(document).ready(function(){
 
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane fade active in iframe_div" id="community" aria-labelledby="community">
-			<iframe src="community_board_list.do" width='100%' height="750px"></iframe>
+			<iframe src="community_board_list.do" width='100%' height="780px"></iframe>
 		</div>
 
 		<div role="tabpanel" class="tab-pane fade" id="qna" aria-labelledby="qna">
-			<iframe src="community_qna_list.do" width='100%' height="750px"></iframe>
+			<iframe src="community_qna_list.do" width='100%' height="780px"></iframe>
 		</div>
 
 		<div role="tabpanel" class="tab-pane fade" id="review" aria-labelledby="review">
-			<iframe src="community_review_list.do" width='100%' height="750px"></iframe>
+			<iframe src="community_review_list.do" width='100%' height="780px"></iframe>
 		</div>
 	</div>
 
