@@ -33,18 +33,6 @@
 			padding : 7px;
 		}
 			
-		.table {
-			text-align: center;
-			border-color: green;
-		}
-		
-		td {
-			margin-top: 20px;
-		}
-		
-		body {
-			background-color: white;
-		}
 		
 		.usermod {
 			margin-top: 27px;
@@ -153,7 +141,7 @@
 		<div class="user_mod_form_div">
 		
 	<form action="myinfo_mod_user2.do" method="POST" id="frm" name="frm">
-		<table class="">
+		<table>
 
 			<tr>
 				<th align="right">아이디</th>
