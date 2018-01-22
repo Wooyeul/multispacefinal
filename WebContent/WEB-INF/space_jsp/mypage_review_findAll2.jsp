@@ -12,14 +12,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="common.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Myclub.css">
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".space_no").on("click",function(){
-			var temp = $(this).attr("abc");
-			window.parent.location.href="space_detail.do?space_no="+temp;
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".space_no").on("click",function(){
+				var temp = $(this).attr("abc");
+				window.parent.location.href="space_detail.do?space_no="+temp;
+			});
 		});
-	});
-</script>
+	</script>
 </head>
 <body>
 	<form name="frm">
