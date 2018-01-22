@@ -197,24 +197,39 @@
     <bean class="multi.admin.dao.Admin_ReviewDAO_MysqlImpl" id="admin_ReviewDAO" />
 	<!-- 이양재 -->
 
-	<!-- 안수진 -->
-	<bean class="multi.home.login.controller.CtrlLogin" />
-	<bean class="multi.home.login.dao.UserDAO_MybatisImpl" id="home_login_UserDAO" />
-	<bean class="multi.mypage.booking.controller.CtrlBooking" />
-	<bean class="multi.mypage.booking.dao.UserDAO_MybatisImpl" id="mypage_booking_UserDAO" />
-	<bean class="multi.mypage.booking.dao.BookingDAO_MybatisImpl" id="mypage_booking_BookingDAO" />
-	<bean class="multi.mypage.qna.controller.CtrlQnA" />
-	<bean class="multi.mypage.qna.dao.UserDAO_MybatisImpl" id="mypage_qna_UserDAO" />
-	<bean class="multi.mypage.qna.dao.Space_qnaDAO_MybatisImpl" id="mypage_qna_Space_qnaDAO" />
-	<bean class="multi.mypage.qna.dao.Space_qna_repleDAO_MybatisImpl"
-		id="mypage_qna_Space_qna_repleDAO" />
-	<bean class="multi.mypage.message.controller.CtrlMessage" />
-	<bean class="multi.mypage.message.dao.UserDAO_MybatisImpl" id="mypage_message_UserDAO" />
-	<bean class="multi.mypage.message.dao.MessageDAO_MybatisImpl" id="mypage_message_MessageDAO" />
-	<bean class="multi.mypage.message.dao.User_clubDAO_MybatisImpl"
-		id="mypage_message_User_clubDAO" />
-	<bean id="mypage_myinfo_UserDAO" class="multi.mypage.myinfo.dao.UserDAO_MybatisImpl"></bean>
-	<!-- 안수진 -->
+	  <!-- 안수진 -->
+<!--
+   <bean class="multi.home.login.dao.UserDAO_MybatisImpl" id="home_login_UserDAO" /> 
+   <bean class="multi.mypage.booking.dao.UserDAO_MybatisImpl" id="mypage_booking_UserDAO" />
+   <bean class="multi.mypage.booking.dao.BookingDAO_MybatisImpl" id="mypage_booking_BookingDAO" />
+   <bean class="multi.mypage.qna.dao.UserDAO_MybatisImpl" id="mypage_qna_UserDAO" />   
+   <bean class="multi.mypage.qna.dao.Space_qnaDAO_MybatisImpl" id="mypage_qna_Space_qnaDAO" />   
+   <bean class="multi.mypage.qna.dao.Space_qna_repleDAO_MybatisImpl" id="mypage_qna_Space_qna_repleDAO" />
+   <bean class="multi.mypage.message.dao.UserDAO_MybatisImpl" id="mypage_message_UserDAO" />
+   <bean class="multi.mypage.message.dao.MessageDAO_MybatisImpl" id="mypage_message_MessageDAO" />   
+   <bean class="multi.mypage.message.dao.User_clubDAO_MybatisImpl"
+      id="mypage_message_User_clubDAO" />
+   <bean id="mypage_myinfo_UserDAO" class="multi.mypage.myinfo.dao.UserDAO_MybatisImpl"></bean>
+   
+-->
+   
+   
+   <bean class="multi.home.login.controller.CtrlLogin" />
+   <bean class="multi.home.login.dao.UserDAO_MybatisProcImpl" id="home_login_UserDAO" />
+   <bean class="multi.mypage.booking.controller.CtrlBooking" />
+   <bean class="multi.mypage.booking.dao.UserDAO_MybatisProcImpl" id="mypage_booking_UserDAO" />
+   <bean class="multi.mypage.booking.dao.BookingDAO_MybatisProcImpl" id="mypage_booking_BookingDAO" />
+   <bean class="multi.mypage.qna.controller.CtrlQnA" />
+   <bean class="multi.mypage.qna.dao.UserDAO_MybatisProcImpl" id="mypage_qna_UserDAO" />   
+   <bean class="multi.mypage.qna.dao.Space_qnaDAO_MybatisProcImpl" id="mypage_qna_Space_qnaDAO" />
+   <bean class="multi.mypage.qna.dao.Space_qna_repleDAO_MybatisProcImpl" id="mypage_qna_Space_qna_repleDAO" />
+   <bean class="multi.mypage.message.controller.CtrlMessage" />
+   <bean class="multi.mypage.message.dao.UserDAO_MybatisProcImpl" id="mypage_message_UserDAO" />
+   <bean class="multi.mypage.message.dao.MessageDAO_MybatisProcImpl" id="mypage_message_MessageDAO" />
+      <bean class="multi.mypage.message.dao.User_clubDAO_MybatisProcImpl"
+      id="mypage_message_User_clubDAO" />
+   <bean id="mypage_myinfo_UserDAO" class="multi.mypage.myinfo.dao.UserDAO_MybatisProcImpl"></bean>
+   <!-- 안수진 -->
 	
 	<!-- 배승현 -->
 	<!-- event 컨트롤러-->
