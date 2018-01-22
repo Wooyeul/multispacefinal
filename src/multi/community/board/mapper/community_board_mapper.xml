@@ -51,10 +51,10 @@ CREATE TABLE Community_Board_RecomtT
 
 <resultMap type="main.vo.Community_boardVO" id="RM_Community_board">
 <result property="com_board_no" column="com_board_no" jdbcType="INTEGER"/>
+<result property="user_id" column="user_id" jdbcType="VARCHAR"/>
 <result property="com_board_title" column="com_board_title" jdbcType="VARCHAR"/>
 <result property="com_board_content" column="com_board_content" jdbcType="VARCHAR"/>
 <result property="the_time" column="the_time" jdbcType="VARCHAR"/>
-<result property="user_id" column="user_id" jdbcType="VARCHAR"/>
 <result property="view_count" column="view_count" jdbcType="INTEGER"/>
 <result property="recom_count" column="recom_count" jdbcType="INTEGER"/>
 </resultMap>
@@ -69,34 +69,27 @@ CREATE TABLE Community_Board_RecomtT
 DROP PROCEDURE IF EXISTS p_comm_boardAdd;
 	DELIMITER $$
 	CREATE PROCEDURE p_comm_boardAdd(
-		IN v_com_board_no INT(11),
-		IN v_com_board_title VARCHAR(45),
-		IN v_com_board_content TEXT,
 		IN v_user_id  VARCHAR(20),
-		IN v_view_count INT,
-		IN v_recom_count INT
+		IN v_com_board_title VARCHAR(45),
+		IN v_com_board_content TEXT
 
 	)
 	BEGIN
-		INSERT INTO Community_BoardT VALUES(default,
-			v_com_board_title,v_com_board_content,NOW(),v_user_id,0,0);
+		INSERT INTO Community_BoardT VALUES(default,v_user_id,
+			v_com_board_title,v_com_board_content,NOW(),0,0);
 	END$$
 	DELIMITER ;
 
-
 -->
- 		<parameterMap id="PM_p_comm_boardAdd" type="main.vo.Community_boardVO">
-		<parameter property="com_board_no"   mode="IN" jdbcType="INTEGER"/>
+ 	<parameterMap id="PM_p_comm_boardAdd" type="main.vo.Community_boardVO">
+		<parameter property="user_id"  mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="com_board_title" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="com_board_content" mode="IN" jdbcType="VARCHAR"/>
-		<parameter property="user_id"  mode="IN" jdbcType="VARCHAR"/>
-		<parameter property="view_count"  mode="IN" jdbcType="INTEGER"/>
-		<parameter property="recom_count"  mode="IN" jdbcType="INTEGER"/>
 	</parameterMap>
 	
 	<insert id="p_comm_boardAdd" statementType="CALLABLE" 
 		parameterMap="PM_p_comm_boardAdd">
-		{call p_comm_boardAdd(?,?,?,?,?,?)}
+		{call p_comm_boardAdd(?,?,?)}
 	</insert>
 
 
@@ -276,15 +269,12 @@ DROP PROCEDURE IF EXISTS p_comm_boardDelByPK;
 	DROP PROCEDURE IF EXISTS p_comm_boardrepleAdd;
 	DELIMITER $$
 	CREATE PROCEDURE p_comm_boardrepleAdd(
-	
-		IN v_com_board_reple_content TEXT,
+		IN v_user_id  VARCHAR(20),
 		IN v_com_board_no INT,
-		IN v_user_id  VARCHAR(20)
-
+		IN v_com_board_reple_content TEXT
 	)
 	BEGIN
-		INSERT INTO Community_Board_RepleT VALUES(default,
-			v_com_board_reple_content,NOW(),v_com_board_no,v_user_id);
+		INSERT INTO Community_Board_RepleT VALUES(default,v_user_id,v_com_board_no,v_com_board_reple_content,NOW());
 	END$$
 	DELIMITER ;
 
@@ -292,10 +282,9 @@ DROP PROCEDURE IF EXISTS p_comm_boardDelByPK;
  -->
  
  	<parameterMap id="PM_p_comm_boardrepleAdd" type="main.vo.Community_board_repleVO">
-
-		<parameter property="com_board_reple_content" mode="IN" jdbcType="VARCHAR"/>
+ 		<parameter property="user_id"  mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="com_board_no" mode="IN" jdbcType="INTEGER"/>
-		<parameter property="user_id"  mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="com_board_reple_content" mode="IN" jdbcType="VARCHAR"/>
 	</parameterMap>
 	
 	<insert id="p_comm_boardrepleAdd" statementType="CALLABLE" 
@@ -304,7 +293,7 @@ DROP PROCEDURE IF EXISTS p_comm_boardDelByPK;
 	</insert>
  
  <!-- 프로시져   p_comm_boardrepleMod
-	 DROP PROCEDURE IF EXISTS p_comm_boardrepleMod;
+	DROP PROCEDURE IF EXISTS p_comm_boardrepleMod;
 	DELIMITER $$
 	CREATE PROCEDURE p_comm_boardrepleMod(
 	
@@ -320,7 +309,6 @@ DROP PROCEDURE IF EXISTS p_comm_boardDelByPK;
    <parameterMap id="PM_p_comm_boardrepleMod" type="main.vo.Community_board_repleVO">
 		<parameter property="com_board_reple_no" mode="IN" jdbcType="INTEGER"/>
 		<parameter property="com_board_reple_content" mode="IN" jdbcType="VARCHAR"/>
-		
 	</parameterMap>
 
 	<update id="p_comm_boradrepleMod" statementType="CALLABLE"
@@ -372,10 +360,10 @@ DROP PROCEDURE IF EXISTS p_comm_boardDelByPK;
 
 <resultMap type="main.vo.Community_board_repleVO" id="RM_Community_repleboard">
 <result property="com_board_reple_no" column="com_board_reple_no" jdbcType="INTEGER"/>
+<result property="user_id" column="user_id" jdbcType="VARCHAR"/>
+<result property="com_board_no" column="com_board_no" jdbcType="INTEGER"/>
 <result property="com_board_reple_content" column="com_board_reple_content" jdbcType="VARCHAR"/>
 <result property="the_time" column="the_time" jdbcType="VARCHAR"/>
-<result property="com_board_no" column="com_board_no" jdbcType="INTEGER"/>
-<result property="user_id" column="user_id" jdbcType="VARCHAR"/>
 </resultMap>
 
 <parameterMap id="PM_p_comm_boradrepleFindAllTexts" type="main.vo.Community_board_repleVO">

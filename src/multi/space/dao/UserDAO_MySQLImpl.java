@@ -14,7 +14,7 @@ public class UserDAO_MySQLImpl implements UserDAO{
 	@Override
 	public UserVO find_user_by_user_id(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("user.find_user_by_user_id",user_id);
+		return sqlSession.selectOne("user_proc.find_user_by_user_id",user_id);
 	}
 	
 }

@@ -143,7 +143,6 @@ public class SpaceDAO_MySQLImpl implements SpaceDAO {
 	@Override
 	public ZipcodeVO find_space_addr(String zipcode) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println(zipcode);
 		return sqlSession.selectOne("space.find_space_addr",zipcode);
 	}
 

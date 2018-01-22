@@ -55,7 +55,6 @@ public class CtrlUserJoin {
 		uvo.setEmail(e);
 		String phone = num + phone_cen + phone_end;
 		uvo.setPhone(phone);
-		System.out.println(uvo.getZipcode());
 		
 		userJoinDAO.addUser(uvo);
 		return "redirect:/home_complete.do?user_id=" + uvo.getUser_id();
@@ -90,9 +89,6 @@ public class CtrlUserJoin {
 		for(ZipcodeVO vo : rl){
 			flag++;
 			sb.append("{");
-			sb.append("'zipcode_no'");
-			sb.append(":");
-			sb.append("'"+vo.getZipcode_no()+"',");
 			sb.append("'zipcode'");
 			sb.append(":");
 			sb.append("'"+vo.getZipcode()+"',");

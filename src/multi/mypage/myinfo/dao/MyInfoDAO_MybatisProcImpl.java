@@ -36,14 +36,9 @@ public class MyInfoDAO_MybatisProcImpl implements MyInfoDAO{
 		return sqlSession.delete("myinfo.p_mypage_del_user",user_id);
 	}
 
-	//zipcode Å½»ö
-	@Override
-	public ZipcodeVO find_zipcode(String user_id) throws Exception {
-		return sqlSession.selectOne("myinfo.p_user_zipcode_find",user_id);
-	}
 
 	@Override
-	public ZipcodeVO find_zipcode1(String zipcode) throws Exception {
+	public ZipcodeVO find_zipcode(String zipcode) throws Exception {
 		return sqlSession.selectOne("myinfo.zipcode_find",zipcode);
 	}
 }

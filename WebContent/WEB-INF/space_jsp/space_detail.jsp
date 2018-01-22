@@ -134,12 +134,6 @@
 																			+ ")");
 															var html = "<table class='table table-condensed'>";
 															html += "<tr>";
-															html += "<th>제목</th>";
-															html += "<th>"
-																	+ qna_reple.qna_reple_title
-																	+ "</th>";
-															html += "</tr>";
-															html += "<tr>";
 															html += "<td>내용</td>";
 															html += "<td>"
 																	+ qna_reple.qna_reple_content

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Welcome to Multi Space</title>
 
 <meta charset="utf-8">
 <meta name="viewport"
@@ -28,59 +27,52 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
-<style type="text/css">
-
-
-</style>
 
 
 <script>
-	$(document).ready(function(){
-		
+	$(document).ready(function() {
+
 		//ctrlLogin에서 chkcode 받아와서 조건에 맞으면 모달 show
-		   
-		
+
 		var chkcode = ${chkcode};
-		if(chkcode=="10001"){
-		$("#loginModal").modal('show');   
+		if (chkcode == "10001") {
+			$("#loginModal").modal('show');
 		}
-		
 	});
-	
-	
-	</script>
+</script>
 </head>
 <body>
 
 	<section class="hero_page">
-	<header>
-	<div class="wrapper">
+		<header>
+			<div class="wrapper">
 
-		<a href="#" class="logo sh_a" alt="" titl="">Multi Space</a>
-			<nav class="navbar navbar-default">
+				<a href="#" class="logo sh_a" alt="" titl="">Multi Space</a>
+				<nav class="navbar navbar-default">
 
-		<div id="navbar">
+					<div id="navbar">
 
-			<ul class="top_nav">
-				<li><a href="space_home.do">공간</a></li>
-				<li><a href="club_home.do">모임</a></li>
-				<li><a href="community_list.do">커뮤니티</a></li>
-				<li><a href="event_user_list.do">이벤트</a></li>
-				<li><a href="notice_list.do">공지사항</a></li>
-				<li><a href="faq_list.do">FAQ</a></li>
-				<li><a href="admin_main.do">관리자</a></li>
-			</ul>
-
-
-			<ul id="non_login_nav" class="nav navbar-right">
-				<li><a href="home_moveLoginPage.do">로그인</a></li>
-			</ul>
+						<ul class="top_nav">
+							<li><a href="space_home.do">공간</a></li>
+							<li><a href="club_home.do">모임</a></li>
+							<li><a href="community_list.do">커뮤니티</a></li>
+							<li><a href="event_user_list.do">이벤트</a></li>
+							<li><a href="notice_list.do">공지사항</a></li>
+							<li><a href="faq_list.do">FAQ</a></li>
+							<li><a href="admin_main.do">관리자</a></li>
+						</ul>
 
 
-		</div>
-		</nav>
-	</div>
-	</header><!--  end header section  --> 
+						<ul id="non_login_nav" class="nav navbar-right">
+							<li><a href="home_moveLoginPage.do">로그인</a></li>
+						</ul>
+
+
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!--  end header section  -->
 	</section>
 
 
@@ -110,20 +102,15 @@
 
 				<div class="loginform2_body_join">
 					<a id="sub-btn" class="btn btn-lg btn-blue sub-btn"
-						href="home_user_join.do" role="button">회원가입
-					</a>
+						href="home_user_join.do" role="button">회원가입 </a>
 				</div>
 				<div class="loginform2_body_findId">
-					<a id="sub-btn"
-						class="btn btn-lg btn-blue sub-btn" href="home_moveFindIdPage.do"
-						role="button">ID 찾기
-					</a>
+					<a id="sub-btn" class="btn btn-lg btn-blue sub-btn"
+						href="home_moveFindIdPage.do" role="button">ID 찾기 </a>
 				</div>
 				<div class="loginform2_body_findPasswd">
-					<a id="sub-btn"
-						class="btn btn-lg btn-blue sub-btn" href="home_moveFindPasswdPage.do"
-						role="button">Passward 찾기
-					</a>
+					<a id="sub-btn" class="btn btn-lg btn-blue sub-btn"
+						href="home_moveFindPasswdPage.do" role="button">Passward 찾기 </a>
 				</div>
 			</div>
 		</div>

@@ -61,6 +61,19 @@ $(document).ready(function(){
 				$("#user_name").text(rt+"님");
 			}
 		});	
+		
+	$("#reflag1").on("click",function(){
+		$("#flag1").attr("src","community_board_list.do");
+	});
+	
+	$("#reflag2").on("click",function(){
+		$("#flag2").attr("src","community_qna_list.do");
+	});
+	
+	$("#reflag3").on("click",function(){
+		$("#flag3").attr("src","community_review_list.do");
+	});
+		
 });
 </script>
 </head>
@@ -73,25 +86,25 @@ $(document).ready(function(){
 	<div class="head" id="header">
 	
 		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist">
-			<li class="active"><a href="#community"  data-toggle="tab"><h2>FREE BOARD</h2></a></li>
+			<li class="active" id="reflag1"><a href="#community"  data-toggle="tab"><h2>FREE BOARD</h2></a></li>
 
-			<li><a href="#qna" data-toggle="tab" ><h2>QnA BOARD</h2></a></li>
+			<li id="reflag2"><a href="#qna" data-toggle="tab" ><h2>QnA BOARD</h2></a></li>
 
-			<li><a href="#review" data-toggle="tab"><h2>REVIEW BOARD</h2></a></li>
+			<li id="reflag3"><a href="#review" data-toggle="tab"><h2>REVIEW BOARD</h2></a></li>
 		</ul>
 	</div>
 
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane fade active in iframe_div" id="community" aria-labelledby="community">
-			<iframe src="community_board_list.do" width='100%' height="780px"></iframe>
+			<iframe src="community_board_list.do" width='100%' height="780px" id="flag1"></iframe>
 		</div>
 
 		<div role="tabpanel" class="tab-pane fade" id="qna" aria-labelledby="qna">
-			<iframe src="community_qna_list.do" width='100%' height="780px"></iframe>
+			<iframe src="community_qna_list.do" width='100%' height="780px" id="flag2"></iframe>
 		</div>
 
 		<div role="tabpanel" class="tab-pane fade" id="review" aria-labelledby="review">
-			<iframe src="community_review_list.do" width='100%' height="780px"></iframe>
+			<iframe src="community_review_list.do" width='100%' height="780px" id="flag3"></iframe>
 		</div>
 	</div>
 

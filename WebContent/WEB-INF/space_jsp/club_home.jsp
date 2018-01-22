@@ -21,33 +21,33 @@
 <script type="text/javascript" src="./common.js"></script>
 
 <style type="text/css">
-	 .select_div3 {
+	.club_home_selectdiv1{
+		vertical-align : middle;
+		width: 800px;
+		float: left;
+	}
+	.club_home_select_div0 {
+		width: 600px;
+		margin:0 auto;
+		margin-top: 5px;
+	}	
+	.club_home_select_div1{
+		float: left;
+	}
+	.club_home_select_div2{
+		width: 150px;
+		float: left;
+	}
+	.club_home_select_div3 {
 	 	width: 400px;
 		float: left;
 		margin-right: 5px;
 		margin-left: 5px;
 	}
-	.selectdiv1{
-		vertical-align : middle;
-		width: 800px;
-		float: left;
-	}
-	.select_div2{
-		width: 150px;
-		float: left;
-	}
-	.select_div1{
-		float: left;
-	}
-	.select_div4 {
+	.club_home_select_div4 {
 	 	width: 100px;
 		float: left;
 	}
-	.select_div0 {
-		width: 600px;
-		margin:0 auto;
-		margin-top: 5px;
-	}	
 	input[type="radio"] { 
 		display: none; 
 	} 
@@ -148,9 +148,9 @@
 							</jl:forEach>
 						</div>
 				</div><br/>
-				<div class="select_div0">
-					<div class="selectdiv1">
-						<div class="select_div2">
+				<div class="club_home_select_div0">
+					<div class="club_home_selectdiv1">
+						<div class="club_home_select_div2">
 							<select name="search_option" class="form-control">
 								<option value="0">검색조건</option>
 								<option value="5">클럽 이름</option>
@@ -160,10 +160,10 @@
 								<option value="4">작성자 ID</option>
 							</select>
 						</div>
-						<div class="select_div3">
+						<div class="club_home_select_div3">
 							<input type="text" name="search_content" class="form-control selectdiv3"/>
 						</div>
-						<div class="select_div4">
+						<div class="club_home_select_div4">
 							<input type="button" id="submitBtn" value="검색" class="btn">
 						</div>
 					</div>

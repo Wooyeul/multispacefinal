@@ -37,68 +37,45 @@
 	<link href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 	<style type="text/css">
-.content {
-	height: 100px;
-}
 
 .paginationdiv {
 	text-align: right;
 }
 
-.select1 {
-	float: left;
-	padding: 15px;
-}
-
-.select2 {
-	float: left;
-}
-
-.select3 {
-	float: left;
-	padding: 8px;
-}
-
-.row {
+.comm_qna_read {
 	margin-left: 10px;
 	margin-right: 10px;
 }
 
-.replecontent {
+.replecontent_qna {
 	width:98%;
 	margin-left: 20px;
 	float: left;
 }
 
-.repsumbtn {
+.replecontent_qna .repsumbtn {
 	width: 100px;
 	float: left;
 }
 
-.replesumtext {
+.replecontent_qna .replesumtext {
 	float: left;
 	width: 800px;
 }
 
 
 
-.btnclass_mod {
+.replecontent_qna .btnclass_mod {
 	width: 300px;
 	float: right;
 }
 
-.btnclass_mod .btnclass1, .btnclass_mod .btnclass2, .btnclass_mod .btnclass3
+.replecontent_qna .btnclass1, .replecontent_qna .btnclass2, .replecontent_qna .btnclass3
 	{
 	width: 100px;
 	float: left;
 }
 
-/* .table_qna_read>tbody>tr>td {
-	padding: 0px;
-	line-height: 1.42857143;
-	vertical-align: middle;
-	border-top: 1px solid #ddd;
-} */
 </style>
 	
 	<script>
@@ -231,7 +208,7 @@
 </head>
 <body>
 	
-	<div class="row">
+	<div class="row comm_qna_read">
 		<div class="col-lg-12">
 		<hr style="border: solid 0.5px black;">
 			<!-- 테이블 -->
@@ -306,7 +283,7 @@
 		<!-- /.col-lg-12 -->
 	</div>
 	</br>
-	<div class="replecontent">
+	<div class="replecontent_qna">
 		<form action="community_qna_reple_add.do" method="post" id="reple_submit">
 			<jl:if test="${user_id ne ''}">
 				<div class="replesumtext">

@@ -33,20 +33,8 @@
 			padding : 7px;
 		}
 		
-		.table {
-			text-align: center;
-			border-color: green;
-		}
 		
-		td {
-			margin-top: 20px;
-		}
-		
-		body {
-			background-color: white;
-		}
-		
-		.faqB {
+		.user_jo {
 			margin-top: 27px;
 			margin-bottom: 27px;
 			text-align: center;
@@ -242,7 +230,7 @@
 
 
 
-	<div class="faqB">
+	<div class="user_jo">
 		<h2>회원가입</h2>
 	</div>
 	<div class="container">

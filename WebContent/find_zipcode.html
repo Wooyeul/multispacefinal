@@ -32,31 +32,31 @@
 							fullAddr = fullAddr.replace(" ",",");
 							var zonecode = ziplist.data[z].zipcode;
 							html += "<tr>"
-							html += "<td>" + ziplist.data[z].zipcode_no +"</td>";
 							html += "<td>" + ziplist.data[z].zipcode +"</td>";
 							html += "<td>" + ziplist.data[z].sido +"</td>";
 							html += "<td>" + ziplist.data[z].gugun +"</td>";
-							html += "<td><a href='#void' onclick='useZipcode()' addr ="+fullAddr+" zonecode ="+zonecode+" id='zz'>" + ziplist.data[z].dong +"<a></td>";
+							html += "<td><a href='#'  addr ="+fullAddr+" zonecode ="+zonecode+" id='zz' class='qwe'>" + ziplist.data[z].dong +"<a></td>";
 							html += "<td>" + ziplist.data[z].bunji +"</td>";
 							html += "</tr>";
 						}
 						html += "</table>";
 						$("#dv").html(html);
+						
+						$(".qwe").on("click",function(){
+							var addr = $(this).attr("addr");
+							var zonecode = $(this).attr("zonecode");
+							var parent = opener.window.document.frm;
+							parent.addr1.value = addr;
+							parent.zipcode.value = zonecode;
+							self.close();
+						});
+						
 					});
 				}
 			});
+			
 		});
 		
-		
-		
-		function useZipcode(){
-			var addr = $("#zz").attr("addr");
-			var zonecode = $("#zz").attr("zonecode");
-			var parent = opener.window.document.frm;
-			parent.addr1.value = addr;
-			parent.zipcode.value = zonecode;
-			self.close();
-		}
 	</script>
 </head>
 <body>

@@ -1,5 +1,6 @@
- ################################################################ 
-	DROP PROCEDURE IF EXISTS p_admin_event_add;
+################################################################
+################################################################
+DROP PROCEDURE IF EXISTS p_admin_event_add;
      DELIMITER $$
      CREATE PROCEDURE p_admin_event_add(
            IN v_eve_title VARCHAR(45),
@@ -11,7 +12,9 @@
            INSERT INTO EventT VALUES (default, v_eve_title,v_eve_content,NOW(),v_eve_thumb_img);
      END$$
     DELIMITER ;
-################################################################
+	
+	
+	
 	DROP PROCEDURE IF EXISTS p_admin_event_findAll;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_event_findAll()
@@ -19,16 +22,20 @@
 		SELECT * FROM EventT ORDER BY eve_no DESC;
 	END$$
 	DELIMITER ;
-################################################################
-	 	 DROP PROCEDURE IF EXISTS p_admin_event_getByPK;
-  		DELIMITER $$
-  		CREATE PROCEDURE p_admin_event_getByPK(
-			IN v_eve_no INT )
-  		BEGIN
+	
+	
+	
+	DROP PROCEDURE IF EXISTS p_admin_event_getByPK;
+  	DELIMITER $$
+  	CREATE PROCEDURE p_admin_event_getByPK(			
+		IN v_eve_no INT )
+  	BEGIN
 		SELECT * FROM EventT WHERE eve_no = v_eve_no;
-  		END$$
-  		DELIMITER ;
-################################################################
+  	END$$
+	DELIMITER ;
+	
+	
+	
 	DROP PROCEDURE IF EXISTS p_admin_event_mod;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_event_mod(
@@ -42,7 +49,9 @@
 			WHERE eve_no = v_eve_no;
 	END$$
 	DELIMITER ;
-################################################################
+	
+	
+	
 	DROP PROCEDURE IF EXISTS p_admin_event_delByPK;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_event_delByPK(
@@ -52,4 +61,7 @@
 		DELETE FROM EventT WHERE eve_no = v_eve_no;
 	END$$
 	DELIMITER ;
-			
+	
+	
+	
+	

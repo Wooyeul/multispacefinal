@@ -22,22 +22,6 @@
 <script type="text/javascript" src="./common.js"></script>
 
 <style type="text/css">
-.button {        
-    display: inline-block;
-    white-space: nowrap;
-    background-color: #ccc;
-    background-image: linear-gradient(top, #eee, #ccc);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
-    border: 1px solid #777;
-    padding: 0 1.5em;
-    margin: 0.5em;
-    font: bold 1em/2em Arial, Helvetica;
-    text-decoration: none;
-    color: #333;
-    text-shadow: 0 1px 0 rgba(255,255,255,.8);
-    border-radius: .2em;
-    box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
-}
 </style>
 </head>
 <body>
@@ -59,7 +43,11 @@
 					<div align="center"><h1 style="color: #026fac;">${vo.club_name}</h1></div><br/><br/> 
 					<div align="right">
 							<jl:if test="${userVO!=null}">
-									<p style="font: bold;font-size: large;"><span class="glyphicon glyphicon-user"></span>&nbsp${master}(모임장)</p>
+									<p style="font: bold;font-size: large;"><span class="glyphicon glyphicon-user"></span>&nbsp${master}(모임장)
+									<jl:if test="${user_id != vo.user_id }">
+										<span user_id="${vo.user_id}" class="user_name glyphicon glyphicon-envelope"></span>
+									</jl:if>
+									</p>
 									<br/>
 									<jl:forEach items="${userVO}" var="uvo">
 										<p>
@@ -69,7 +57,9 @@
 													<span class="glyphicon glyphicon-remove"></span>
 												</a>
 											</jl:if>
-											<span user_id="${uvo.user_id}" class="user_name glyphicon glyphicon-envelope"></span>
+											<jl:if test="${uvo.user_id!=user_id }">
+												<span user_id="${uvo.user_id}" class="user_name glyphicon glyphicon-envelope"></span>
+											</jl:if>
 											<br />
 										</p>
 									</jl:forEach>
@@ -387,6 +377,32 @@
 		</div>
 	</div>
 	<!-- 유저 신청 거절 modal창 끝 -->
+	<!-- 유저 쪽지 모달창 시작 -->
+	<form id="message_frm" action="club_add_message.do" method="post">
+		<div id="message_modal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-head" align="center">
+						<h4>쪽지 보내기</h4>
+					</div>
+					<div class="modal-body" align="center">
+						<h4 id="modalbody">
+							<textarea name="msg_content" id="msg_content"
+								class='form-control' rows="7" placeholder="쪽지를 입력하세요"></textarea>
+						</h4>
+					</div>
+					<div id="ft" class="modal-footer">
+						<button type='button' class='btn btn-default' id='message_modal_yes'>보내기</button>
+						<button type='button' class='btn btn-primary' id='message_modal_no'>취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" name="send_user_id" value="${user_id}"/>
+		<input type="hidden" id="receive_user_id" name="receive_user_id"/>
+		<input name="club_no" type="hidden" value="${vo.club_no}" />
+	</form>
+	<!-- 유저 쪽지 모달창 끝 -->
 
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -607,11 +623,41 @@
 			}
 			
 			// 이름 클릭하면 쪽지 보낼 팝업창 띄우기
-			$(".user_name").on("click",function(e){
-				e.preventDefault();  
-	            var url = "club_message_popup.do?receive_user_id="+$(this).attr("user_id")+"&send_user_id=admin";
-	            window.open(url, "popup","width=300,height=400,toolbar=no,location=no,direcories=no,status=no,menubar=no,resizable=no,scrollbars=no,copyhistory=no");
+			$(".user_name").on("click",function(){
+				$("#receive_user_id").attr("value",$(this).attr("user_id"));
+				$("#message_modal").modal("show");
 			});
+			$("#message_modal_yes").on("click",function(){
+				send_message();
+			});
+			$("#message_modal_no").on("click",function(){
+				$("#message_modal").modal("hide");
+			});
+			var send_message = function(){
+				var formData = $("#message_frm").serialize();
+				$.ajax({
+					type : "POST",
+					url : "club_add_message.do",
+					data : formData,
+					success	: function(rt) {
+						if(rt=="ok"){
+							$("#message_modal").modal("hide");
+							$("#basic_mobody").html("<h4>쪽지를 보냈습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+							});
+						}else{
+							$("#message_modal").modal("hide");
+							$("#basic_mobody").html("<h4>쪽지 전송 처리가 실패 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+							});
+						}
+				    }
+				});
+			}
 			
 			/* 뒤로가기 버튼 클릭 시 club_home.do로 이동*/
 			$("#prev").on("click",function(){

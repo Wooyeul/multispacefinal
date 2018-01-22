@@ -33,7 +33,7 @@
 	<!-- *********************  header - end  ************************ -->
 	
 	<section class="listings">
-<!-- 		<div class="container"> -->
+	<!--<div class="container"> -->
 			<div class="wrapper">
 				<div align="center">
 					<h1 style="font: bold; color: #026fac;">
@@ -116,6 +116,7 @@
 						<input name="club_no" type="hidden" value="${vo.club_no}" />
 					</form>
 				</div>
+				
 				<!-- 기본 modal창 시작 -->
 				<div id="basic_modal" class="modal fade" role="dialog">
 					<div class="modal-dialog">

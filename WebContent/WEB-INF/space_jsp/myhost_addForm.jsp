@@ -1,37 +1,141 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style type="text/css">
+
+.box{
+border-top :3px solid #00A65A;
+
+}
+
+.box2{
+border-bottom: 1px solid #EEEEEE;
+}
+
+.zip{
+float: left;
+padding-right: 5px;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="common.js" type="text/javascript"></script>
+<!-- Bootstrap Core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="./Resouces_admin/vendor/metisMenu/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link
+	href="./Resouces_admin/vendor/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="./Resouces_admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="./Resouces_admin/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+	<script type="text/javascript">
+	function zipSearch(){
+		window.open("find_zipcode.html", "zip", "width=600,height=450");
+	}
+	</script>
 </head>
 <body>
-	${user_id}
-	<h3>∆«∏≈¿⁄ µÓ∑œ form</h3>
-	<form action="myhost_addhost.do" method="POST">
-		<input type="hidden" name="user_id" value="${user_id}"/>
-		<table border="1">
-			<tr>
-				<td>¥Î«•∏Ì</td>
-				<td><input type="text" name="host_name"/></td>
-			</tr>
-			<tr>
-				<td>ªÁæ˜¿⁄π¯»£</td>
-				<td><input type="text" name="crn"/></td>
-			</tr>
-			<tr>
-				<td>»∏ªÁ¡÷º“</td>
-				<td><input type="text" name="zipcode"/></td>
-			</tr>
-			<tr>
-				<td>¿‘±›∞Ë¡¬</td>
-				<td><input type="text" name="host_account"/></td>
-			</tr>
-		</table>
-		<input type="submit" value="µÓ∑œ«œ±‚"/>
-		<input type="reset" value="√Îº“«œ±‚"/>
-	</form>
+<br/>
+     <!-- Horizontal Form -->
+          <div class="box">
+            <div class="box2">
+            <br/>
+            <p class="fa fa-pencil">  <label> ÌåêÎß§Ïûê Îì±Î°ù </label></p>
+           
+              <br/>
+                 <br/>
+            </div>
+         
+            <!-- /.box-header -->
+            <!-- form start -->
+            
+	               <form action="myhost_addhost.do" method="POST" name="frm" class="form-horizontal" >
+              <div class="box-body">
+                <div class="form-group">
+	                  <label for="name" class="col-sm-1">ÎåÄÌëúÎ™Ö</label>
 	
+	                  <div class="col-sm-4">
+	                   <input type="text" name="host_name" class="form-control" />
+	                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="password" class="col-sm-1">ÏÇ¨ÏóÖÏûêÎ≤àÌò∏</label>
+
+                  <div class="col-sm-6">
+                  <input type="text" name="crn"  class="form-control" />
+                  </div>
+                </div>
+                
+                
+                   <div class="form-group">
+                  <label for="postnumber" class="col-sm-1">Ïö∞Ìé∏Î≤àÌò∏</label>
+
+                  <div class="col-sm-4">
+                 <input type="text" name="zipcode"  id="zipcode" class="form-control" />
+                 </div>
+                 <div class="zip">
+					<input type="button" name="findzip" value="Ï∞æÍ∏∞"
+					class="btnzip btn btn-primary" onclick="zipSearch()" />
+                  </div>
+                </div>
+                
+                
+                  <div class="form-group">
+                  <label for="zipcode" class="col-sm-1">Ï£ºÏÜå</label>
+
+                  <div class="col-sm-6">
+                 <input type="text" size="40" name="addr1"  class="form-control" />
+                  </div>
+                </div>
+                
+           
+                  <div class="form-group">
+                  <label for="zipcode" class="col-sm-1">ÏûÖÍ∏àÍ≥ÑÏ¢å</label>
+
+                  <div class="col-sm-6">
+                <input type="text" name="host_account"  class="form-control" />
+                  </div>
+                </div>
+                
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+              
+				<input type="reset" value="Ï∑®ÏÜåÌïòÍ∏∞" class="btn btn-default"/>
+                <button type="submit" class="btn btn-info ">Îì±Î°ùÌïòÍ∏∞</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+            
+            
+            
+
+
 </body>
 </html>

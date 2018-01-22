@@ -22,11 +22,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
-	.button{
+	.event_user_list .button{
 		text-align: center;
 		margin-bottom: 40px;
 	}
-	.table{
+	.event_user_list .table{
 		text-align: center;
 	}
 	</style>
@@ -71,7 +71,7 @@
 	<!-- *********************  header - end  ************************ -->
 	
 	
-	<div class="container">
+	<div class="container event_user_list">
 		<table class="table table-hover">
 			<tr><td><h3>EVENT #${text.eve_no}  ${text.eve_title}</h3></td></tr>
 			<tr><td><h4>${text.eve_content}</h4></td></tr>

@@ -15,34 +15,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 	<style>
-		.img_ul {
+		.club_img_ul {
 		  list-style-type: none;
 		  width: 980px;
 		}
 		 
-		h3 {
+		.club_img_ul li h3 {
 		  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
 		  margin-top: 0px;
 		}
 		 
-		li img {
+		.img_ul {
 			width: 110px;
 			height: 110px;
 			float: left;
 			margin: 0 15px 0 0;
 		}
 		 
-		li p {
+		.li_p {
 		  font: 200 14px/1.5 Georgia, Times New Roman, serif;
 		  margin-bottom: 13px;
 		}
 		 
-		li {
+		.club_img_ul li {
 		  padding: 10px;
 		  overflow: auto;
 		}
 		 
-		li:hover {
+		.club_img_ul li:hover {
 		  background: #eee;
 		  cursor: pointer;
 		}
@@ -57,12 +57,12 @@
 </head>
 <body>
 	<div style="width: 1000px; margin: 20px;">
-		<ul class="img_ul">
+		<ul class="club_img_ul">
 			<jl:forEach  var="pvo" items="${map.vo}" varStatus="vs">
 				<li onclick="parent.location.href='club_detail.do?club_no=${pvo.club_no}'">
-					<img src="club_img/${pvo.club_thumb_img }">
+					<img src="club_img/${pvo.club_thumb_img }" class="img_ul">
 					<h3>${pvo.club_name}</h3>
-					<p>${pvo.club_title}</p>
+					<p class="li_p">${pvo.club_title}</p>
 					<button class="btn btn-default category" disabled="disabled">#${pvo.l_category_name}</button>
 					<button class="btn btn-default category" disabled="disabled">#${pvo.c_category_name }</button>
 					<button class="btn btn-default category" disabled="disabled">#${pvo.user_count}/${pvo.max_member}명</button>

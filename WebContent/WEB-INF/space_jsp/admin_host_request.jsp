@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +64,7 @@ text-align: center;
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            íŒë§¤ìž ì‹ ì²­ ë¦¬ìŠ¤íŠ¸
+                            ÆÇ¸ÅÀÚ ½ÅÃ» ¸®½ºÆ®
                             
 					<form id="form_search" action="admin_host_request.do" >
 						<input type="hidden" name="pg" value="" id="pg"> 
@@ -72,16 +72,16 @@ text-align: center;
 						<input type="hidden" name="search_option" value="${search.search_option}">
 					</form>
 				
-					<form id="textsearch" action="admin_host_request.do">
+					<form id="textsearch" action="admin_host_request.do" method="post">
 				<div class="select1">
 						<select name="search_option" class="form-control"style="width:200px;" >
-							<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-							<option value="1">ì‚¬ì—…ìž ë²ˆí˜¸</option>
-							<option value="2">ìœ ì € ID</option>
-							<option value="3">í˜¸ìŠ¤íŠ¸ ì´ë¦„</option>
-							<option value="4">í˜¸ìŠ¤íŠ¸ ê³„ì¢Œ ë²ˆí˜¸</option>
-							<option value="5">í˜¸ìŠ¤íŠ¸ ìš°íŽ¸ ë²ˆí˜¸</option>
-							<option value="6">ì°¸ê³ ì‚¬í•­(ê±°ì ˆ ì‚¬í•­)</option>
+							<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+							<option value="1">»ç¾÷ÀÚ ¹øÈ£</option>
+							<option value="2">À¯Àú ID</option>
+							<option value="3">È£½ºÆ® ÀÌ¸§</option>
+							<option value="4">È£½ºÆ® °èÁÂ ¹øÈ£</option>
+							<option value="5">È£½ºÆ® ¿ìÆí ¹øÈ£</option>
+							<option value="6">Âü°í»çÇ×(°ÅÀý »çÇ×)</option>
 						</select> 
 				</div>
 						<div class="select2">	
@@ -89,7 +89,7 @@ text-align: center;
 						</div>
 						
 					
-					   <input class="btn" type="submit" value="ê²€ìƒ‰">
+					   <input class="btn" type="submit" value="°Ë»ö">
 					
 					</form>
 					
@@ -100,10 +100,10 @@ text-align: center;
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                    <th>ìœ ì € ID</th>
-									<th>í˜¸ìŠ¤íŠ¸ ì´ë¦„</th>
-									<th>ì‹ ì²­ ì •ë³´ í™•ì¸í•˜ê¸°</th>
-									<th>ì°¸ê³ ì‚¬í•­(ê±°ì ˆ ì‚¬í•­)</th>
+                                    <th>À¯Àú ID</th>
+									<th>È£½ºÆ® ÀÌ¸§</th>
+									<th>½ÅÃ» Á¤º¸ È®ÀÎÇÏ±â</th>
+									<th>Âü°í»çÇ×(°ÅÀý »çÇ×)</th>
 									</tr>
 								 </thead>
 								 
@@ -111,7 +111,7 @@ text-align: center;
 									<tr>
 										<td><a href="admin_host_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 										<td>${vo.host_name}</td>
-										<td><a href="admin_host_request_view.do?crn=${vo.crn}">ì •ë³´ í™•ì¸ í•˜ê¸°</a></td>
+										<td><a href="admin_host_request_view.do?crn=${vo.crn}">Á¤º¸ È®ÀÎ ÇÏ±â</a></td>
 										<td>${vo.etc}</td>
 									</tr>
 								</jl:forEach> 
@@ -136,18 +136,18 @@ text-align: center;
 
 <form id="textsearch" action="admin_host_request.do">
 	<select name="search_option">
-		<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-		<option value="1">ì œëª©</option>
-		<option value="2">ë‚´ìš©</option>
-		<option value="3">ì œëª© + ë‚´ìš©</option>
-		<option value="4">ìž‘ì„±ìž</option>
+		<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+		<option value="1">Á¦¸ñ</option>
+		<option value="2">³»¿ë</option>
+		<option value="3">Á¦¸ñ + ³»¿ë</option>
+		<option value="4">ÀÛ¼ºÀÚ</option>
 	</select>
-	ê²€ìƒ‰ : <input type="text" name="search_content">
-	<input type="submit" value="ê²€ìƒ‰">
+	°Ë»ö : <input type="text" name="search_content">
+	<input type="submit" value="°Ë»ö">
 </form> --%>
 
 
-<!-- íŽ˜ì´ì§• -->
+<!-- ÆäÀÌÂ¡ -->
 <div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
@@ -174,6 +174,6 @@ text-align: center;
 			</jl:if>
 		</ul>
 </div>	
-<!-- íŽ˜ì´ì§• -->		
+<!-- ÆäÀÌÂ¡ -->		
 </body>
 </html>

@@ -25,7 +25,7 @@
 </head>
 <body>
 	<form action="myhost_addForm.do" method="POST">
-		<input type="submit" value="공간추가등록"/>
+		<input type="submit" value="공간추가등록" class="btn"/>
 		<input type="hidden" name="user_id" value="${user_id}"/>
 	</form>
 

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -65,32 +65,39 @@
     <![endif]-->
 <script>
 $(document).ready(function(){
-	// íŒë§¤ì ë“±ë¡ì‹œ ëª¨ë‹¬
+	// ÆÇ¸ÅÀÚ µî·Ï½Ã ¸ğ´Ş
 	$(".host_join").on("click",function(){
 		$("#text_modal").modal("show");
 	});
 	$("#text_modal_yes").on("click",function(){
-		var crn = $("#crn").val();
+		var crn = $("#crn").val() ;
 		var user_id = $("#user_id").val();
 		var host_name = $("#host_name").val();
 		var host_account = $("#host_account").val();
 		var zipcode = $("#zipcode").val();
-		var etc = $("#etc").val();
-		location.href = "admin_host_user_accept.do?crn=" + crn 
+		var etc = $("#etc").val() ;
+		
+		var url = "admin_host_user_accept.do?crn=" + crn 
+				+ "&user_id=" + user_id + "&host_name=" + host_name + "&host_account=" + host_account
+				+ "&zipcode=" +zipcode+ "&etc="+etc;
+		ajaxGet(url,function(rt){ });
+		/* location.href = "admin_host_user_accept.do?crn=" + crn 
 			+ "&user_id=" + user_id + "&host_name=" + host_name + "&host_account=" + host_account
-			+ "&zipcode=" +zipcode+ "&etc="+etc;
-		$("#text_modal_modal").modal("hide");
+			+ "&zipcode=" +zipcode+ "&etc="+etc; */
+		location.href = "admin_host_request.do";
+		/* $("#text_modal_modal").modal("hide"); */
 	});
 	$("#text_modal_no").on("click",function(){
 		$("#text_modal").modal('hide');
 	});
 	
-	// íŒë§¤ì ìš”ì²­ ì‚­ì œì‹œ ëª¨ë‹¬
+	// ÆÇ¸ÅÀÚ ¿äÃ» »èÁ¦½Ã ¸ğ´Ş
 	$(".host_request_refuse").on("click",function(){
 		$("#text_modal2").modal("show");
 	});
 	$("#text_modal_yes2").on("click",function(){
 		var host_apply_no = $("#host_apply_no").val();
+		alert( encodeURIComponent(host_apply_no) );
 		location.href = "admin_host_user_remove_request.do?host_apply_no=" + host_apply_no;
 		$("#text_modal_modal").modal("hide");
 	});
@@ -102,11 +109,11 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
+	${vo.host_apply_no}
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">íŒë§¤ìì‹ ì²­ì •ë³´</div>
+				<div class="panel-heading">ÆÇ¸ÅÀÚ½ÅÃ»Á¤º¸</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					
@@ -115,12 +122,12 @@ $(document).ready(function(){
 						id="dataTables-example">
 						<thead>
 							<tr>
-								<td>ì‚¬ì—…ì ë²ˆí˜¸</td>
-								<td>ìœ ì € ID</td>
-								<td>íŒë§¤ì ì´ë¦„</td>
-								<td>íŒë§¤ì ê³„ì¢Œ</td>
-								<td>ì£¼ì†Œ</td>
-								<td>ì°¸ê³ ì‚¬í•­(ê±°ì ˆ ì‚¬í•­)</td>
+								<td>»ç¾÷ÀÚ ¹øÈ£</td>
+								<td>À¯Àú ID</td>
+								<td>ÆÇ¸ÅÀÚ ÀÌ¸§</td>
+								<td>ÆÇ¸ÅÀÚ °èÁÂ</td>
+								<td>ÁÖ¼Ò</td>
+								<td>Âü°í»çÇ×(°ÅÀı »çÇ×)</td>
 							</tr>
 						</thead>
 						<tr>
@@ -134,34 +141,34 @@ $(document).ready(function(){
 					</table>
 
 					<div class="select">
-						<form method="post" action="admin_host_user_accept.do">
-							<input type="hidden" name="crn" value="${vo.crn}"></input> 
-							<input type="hidden" name="user_id" value="${vo.user_id}"></input> 
-							<input type="hidden" name="host_name" value="${vo.host_name}"></input>
-							<input type="hidden" name="host_account" value="${vo.host_account}"></input> 
-							<input type="hidden" name="zipcode" value="${vo.zipcode}"></input>
-							<input type="button" class="host_join" value="íŒë§¤ì ë“±ë¡ í•˜ê¸°" />
+						<form action="admin_host_user_accept.do" method="post">
+							<input type="hidden" id="crn" name="crn" value="${vo.crn}"></input> 
+							<input type="hidden" id="zipcode" name="zipcode" value="${vo.zipcode}"></input>
+							<input type="hidden" id="user_id" name="user_id" value="${vo.user_id}"></input> 
+							<input type="hidden" id="host_name" name="host_name" value="${vo.host_name}"></input>
+							<input type="hidden" id="host_account" name="host_account" value="${vo.host_account}"></input> 
+							<input type="button" class="host_join btn" value="ÆÇ¸ÅÀÚ µî·Ï ÇÏ±â" />&nbsp;&nbsp;&nbsp;&nbsp;
 						</form>
 					</div>
-			
+					
 					<div class="select2">
-						<form method="post" action="admin_host_user_refuse_write.do">
-							<input type="hidden" name="host_apply_no" value="${vo.host_apply_no}"></input> 
-							<input type="hidden" name="etc" value="${vo.etc}"></input>
-							<button class="btn" type="submit">ì°¸ê³  ì‚¬í•­(ê±°ì ˆ ì‚¬í•­) ì‘ì„± í•˜ê¸°</button>
+						<form action="admin_host_user_refuse_write.do" method="post">
+							<input type="hidden" id="host_apply_no" name="host_apply_no" value="${vo.host_apply_no}"></input> 
+							<input type="hidden" id="etc" name="etc" value="${vo.etc}"></input>
+							<button class="btn" type="submit">Âü°í »çÇ×(°ÅÀı »çÇ×) ÀÛ¼º ÇÏ±â</button>&nbsp;&nbsp;&nbsp;&nbsp;
 						</form>
 					</div>
-	
+					
 					<div class="select3">
-						<form method="post" action="admin_host_user_remove_request.do">
+						<form action="admin_host_user_remove_request.do" method="post">
 							<input type="hidden" name="host_apply_no" value="${vo.host_apply_no}"></input>
-							<input type="button" class="host_request_refuse" value="íŒë§¤ì ì‹ ì²­ ì‚¬í•­ ì‚­ì œ" />
+							<input type="button" class="host_request_refuse btn" value="ÆÇ¸ÅÀÚ ½ÅÃ» »çÇ× »èÁ¦" />&nbsp;&nbsp;&nbsp;&nbsp;
 						</form>
 					</div>
-			
+					
 				<div class="select4">
 						<form method="post" action="admin_host_request.do">
-							<button class="btn" type="submit">ì·¨ì†Œ í•˜ê¸°</button>
+							<button class="btn" type="submit">Ãë¼Ò ÇÏ±â</button>
 						</form>
 				</div>	
 					<!-- /.table-responsive -->
@@ -174,33 +181,33 @@ $(document).ready(function(){
 	</div>
 
 
-<!-- íŒë§¤ì ë“±ë¡ì‹œ ëª¨ë‹¬ -->
+<!-- ÆÇ¸ÅÀÚ µî·Ï½Ã ¸ğ´Ş -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div id="text_mohead" class="modal-header"align="center"><h4>íŒë§¤ì ë“±ë¡</h4></div>
+			<div id="text_mohead" class="modal-header"align="center"><h4>ÆÇ¸ÅÀÚ µî·Ï</h4></div>
 			<div id="text_mobody" class="modal-body" align="center">
-				<h4>íŒë§¤ì ë“±ë¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+				<h4>ÆÇ¸ÅÀÚ µî·Ï ÇÏ½Ã°Ú½À´Ï±î?</h4>
 			</div>
 			<div id="text_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>í™•ì¸</button>
-				<button type='button' class='btn btn-primary' id='text_modal_no'>ì·¨ì†Œ</button>
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>È®ÀÎ</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>Ãë¼Ò</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- íŒë§¤ì ì‹ ì²­ ì‚¬í•­ ì‚­ì œì‹œ ëª¨ë‹¬ -->
+<!-- ÆÇ¸ÅÀÚ ½ÅÃ» »çÇ× »èÁ¦½Ã ¸ğ´Ş -->
 <div id="text_modal2" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div id="text_mohead2" class="modal-header"align="center"><h4>íŒë§¤ì ì‹ ì²­ ì‚¬í•­ ì‚­ì œ</h4></div>
+			<div id="text_mohead2" class="modal-header"align="center"><h4>ÆÇ¸ÅÀÚ ½ÅÃ» »çÇ× »èÁ¦</h4></div>
 			<div id="text_mobody2" class="modal-body" align="center">
-				<h4>íŒë§¤ì ì‹ ì²­ ì‚¬í•­ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+				<h4>ÆÇ¸ÅÀÚ ½ÅÃ» »çÇ× »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 			</div>
 			<div id="text_ft2" class="modal-footer">
-				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes2'>í™•ì¸</button>
-				<button type='button' class='btn btn-primary' id='text_modal_no2'>ì·¨ì†Œ</button>
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes2'>È®ÀÎ</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no2'>Ãë¼Ò</button>
 			</div>
 		</div>
 	</div>

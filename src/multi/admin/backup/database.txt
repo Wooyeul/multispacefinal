@@ -125,7 +125,7 @@ CREATE TABLE Community_QnA_RepleT
 CREATE TABLE Community_QnA_Reple_RecomT
 (
     `user_id`       VARCHAR(20)    NOT NULL, 
-    `com_qna_reple_no`  INT        NOT NULL
+    `com_qna_reple_no`  INT        NOT NULL, 
 );
 
 #오후 2:39 2018-01-04 컬럼 명 변경

@@ -8,11 +8,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
-.p{
+.community_qna_add_p{
 text-align: center;
 }
 		
-.write{
+.community_qna_add_write{
 float: left;
 	padding-right: 5px;
 }	
@@ -85,24 +85,24 @@ $(document).ready(function() {
 </head>
 <body>
 <br/>
-		<p class="p"><label>QnA</label></p>
+		<p class="community_qna_add_p"><label>QnA</label></p>
 	<hr style="border: solid 0.5px black;">
-		<div class="col-lg-12">
+	<div class="col-lg-12">
 		<div class="container">
-	<form action="community_qna_add2.do" method="POST" id="qna_submit">
-		<input type="hidden" name="user_id" value="${user_id}"/>
-		<label>제목</label><input  class="form-control" type="text" name="com_qna_title"/><br/>
-		<label>내용</label><textarea  id="summernote"  name="com_qna_content" ></textarea>
-		<br/>
-		<div class="write">
-		<input type="button" value="QnA작성" class="btn btn-info btn-sm" data-toggle="modal"  id="ee"/>
+			<form action="community_qna_add2.do" method="POST" id="qna_submit">
+				<input type="hidden" name="user_id" value="${user_id}"/>
+				<label>제목</label><input  class="form-control" type="text" name="com_qna_title"/><br/>
+				<label>내용</label><textarea  id="summernote"  name="com_qna_content" ></textarea>
+				<br/>
+				<div class="community_qna_add_write">
+				<input type="button" value="QnA작성" class="btn btn-info btn-sm" data-toggle="modal"  id="ee"/>
+				</div>
+			</form>
+			
+			<form action="community_qna_list.do" method="POST">
+				<input type="submit" value="취소" class="btn btn-info btn-sm"/>
+			</form>
 		</div>
-	</form>
-	
-	<form action="community_qna_list.do" method="POST">
-		<input type="submit" value="취소" class="btn btn-info btn-sm"/>
-	</form>
-	</div>
 	</div>
 	<!-- 기본 modal창 시작 -->
 	<div id="basic_modal" class="modal fade" role="dialog">

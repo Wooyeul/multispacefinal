@@ -101,7 +101,49 @@ li a:hover {
 			}
 		});
 		
-
+		
+		
+		$("#reflag1").on("click",function(){
+			$("#flag1").attr("src","myinfo_ckpass.do");
+		});
+		
+		$("#reflag2").on("click",function(){
+			$("#flag2").attr("src","mypage_moveMypageBookingPage.do");
+		});
+		
+		$("#reflag3").on("click",function(){
+			$("#flag3").attr("src","bookmark_findAll.do");
+		});
+		
+		$("#reflag4").on("click",function(){
+			$("#flag4").attr("src","mypage_moveMypageQnAPage.do");
+		});
+		
+		$("#reflag5").on("click",function(){
+			$("#flag5").attr("src","myclub_findAll.do");
+		});
+		$("#reflag6").on("click",function(){
+			$("#flag6").attr("src","mypage_review_findAll.do");
+		});
+		
+		$("#reflag7").on("click",function(){
+			$("#flag7").attr("src","mypage_moveMypageReceiveMessagePage.do");
+		});
+		$("#receiveMessageBox").on("click",function(){
+			$("#flag7").attr("src","mypage_moveMypageReceiveMessagePage.do");
+		});
+		
+		$("#sendMessageBox").on("click",function(){
+			$("#flag8").attr("src","mypage_moveMypageSendMessagePage.do");
+		});
+		
+		$("#reflag10").on("click",function(){
+			$("#flag10").attr("src","myhost_findAll.do");
+		});
+		$("#reflag11").on("click",function(){
+			$("#flag10").attr("src","myhost_findAll.do");
+		});
+		
 		
 	});
 
@@ -161,14 +203,14 @@ li a:hover {
 	<div class="row">
 			<div class="col-sm-2">
 				<ul class="nav">
-					<li class="active"><a data-toggle="tab" href="#myInfo">[내
+					<li class="active"><a data-toggle="tab" href="#myInfo"id="reflag1">[내
 							정보]</a></li>
-					<li><a data-toggle="tab" href="#myBooking">구매 정보</a></li>
-					<li><a data-toggle="tab" href="#myBookmark">즐겨찾기</a></li>
-					<li><a data-toggle="tab" href="#myQna">Q&A</a></li>
-					<li><a data-toggle="tab" href="#myClub">내 모임</a></li>
-					<li><a data-toggle="tab" href="#myReview">내 후기</a></li>
-					<li><a data-toggle="tab" id="message_nav" href="#myReceiveMessageBox">쪽지 함</a></li>
+					<li id="reflag2"><a data-toggle="tab" href="#myBooking">구매 정보</a></li>
+					<li id="reflag3"><a data-toggle="tab" href="#myBookmark">즐겨찾기</a></li>
+					<li id="reflag4"><a data-toggle="tab" href="#myQna">Q&A</a></li>
+					<li id="reflag5"><a data-toggle="tab" href="#myClub">내 모임</a></li>
+					<li id="reflag6"><a data-toggle="tab" href="#myReview">내 후기</a></li>
+					<li id="reflag7"><a data-toggle="tab" id="message_nav" href="#myReceiveMessageBox">쪽지 함</a></li>
 						
 					<ul class="sub_message_nav">
 						<li id="receiveMessageBox" class="active"><a
@@ -177,8 +219,8 @@ li a:hover {
 						<li id="sendMessage"><a data-toggle="tab" href="#mySendMessage">쪽지 보내기</a></li>
 					</ul>
 
-					<li><a data-toggle="tab" href="#sellerWrite">[판매자]</a></li>
-					<li><a data-toggle="tab" href="#sellerWrite">내 글</a></li>
+					<li id="reflag10"><a data-toggle="tab" href="#sellerWrite">[판매자]</a></li>
+					<li id="reflag11"><a data-toggle="tab" href="#sellerWrite">내 글</a></li>
 					<li><a data-toggle="tab" href="#sellerAllChart">전체 통계</a></li>
 
 				</ul>
@@ -187,37 +229,37 @@ li a:hover {
 
 	<div class="tab-content col-sm-10" >
 		<div id="myInfo"  class="tab-pane active fade in">	
-			<iframe src="myinfo_ckpass.do"  align="center" ></iframe>
+			<iframe src="myinfo_ckpass.do"  align="center" id="flag1"></iframe>
 		</div>
 		<div id="myBooking" class="tab-pane fade">
-			<iframe src="mypage_moveMypageBookingPage.do"  align="center"></iframe>
+			<iframe src="mypage_moveMypageBookingPage.do"  align="center" id="flag2"></iframe>
 		</div>
 		<div id="myBookmark"   class="tab-pane fade">
-			<iframe src="bookmark_findAll.do"  align="center"></iframe>
+			<iframe src="bookmark_findAll.do"  align="center" id="flag3"></iframe>
 		</div>
 		<div id="myQna"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageQnAPage.do"  align="center"></iframe>
+			<iframe src="mypage_moveMypageQnAPage.do"  align="center" id="flag4"></iframe>
 		</div>
 		<div id="myClub"   class="tab-pane fade">
-			<iframe src="myclub_findAll.do"  align="center" ></iframe>
+			<iframe src="myclub_findAll.do"  align="center" id="flag5"></iframe>
 		</div>
 		<div id="myReview"   class="tab-pane fade">
-			<iframe src="mypage_review_findAll.do"  align="center" onload=""></iframe>
+			<iframe src="mypage_review_findAll.do"  align="center" id="flag6"></iframe>
 		</div>
 		<div id="myReceiveMessageBox"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageReceiveMessagePage.do"  align="center"></iframe>
+			<iframe src="mypage_moveMypageReceiveMessagePage.do"  align="center" id="flag7"></iframe>
 		</div>
 		<div id="mySendMessageBox"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageSendMessagePage.do"  align="center"></iframe>
+			<iframe src="mypage_moveMypageSendMessagePage.do"  align="center" id="flag8"></iframe>
 		</div>
 		<div id="mySendMessage"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageWriteMessagePage.do"  align="center"></iframe>
+			<iframe src="mypage_moveMypageWriteMessagePage.do"  align="center" id="flag9"></iframe>
 		</div>
 		
 		<!-- **************** 마이페이지-판매자 *************** -->
 		
 		<div id="sellerWrite"   class="tab-pane fade">
-			<iframe src="myhost_findAll.do"  align="center"></iframe>
+			<iframe src="myhost_findAll.do"  align="center" id="flag10"></iframe>
 		</div>
 		
 		<div id="sellerAllChart"   class="tab-pane fade">

@@ -68,7 +68,7 @@
 	 -->
 	 
 	 <!-- 
-	 	 DROP PROCEDURE IF EXISTS p_admin_event_getByPK;
+	 	DROP PROCEDURE IF EXISTS p_admin_event_getByPK;
   		DELIMITER $$
   		CREATE PROCEDURE p_admin_event_getByPK(
 			IN v_eve_no INT )

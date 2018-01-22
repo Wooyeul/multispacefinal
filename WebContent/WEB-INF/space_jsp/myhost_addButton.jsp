@@ -12,9 +12,6 @@
 	<script type="text/javascript" src="common.js"></script>
 <style type="text/css">
 
-.p{
-text-align: center;
-}
 </style>
 	<!-- Bootstrap Core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

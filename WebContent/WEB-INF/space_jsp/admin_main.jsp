@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="">
@@ -63,7 +64,8 @@
          language: "kr"
 
      });
-
+     
+     
  });
 
  </script>
@@ -238,7 +240,13 @@
     <!-- Custom Theme JavaScript -->
     <script src="./Resouces_admin//dist/js/sb-admin-2.js"></script>
 
-
+	
+	
+	<!-- Google Analytics -->
+	<script>
+	
+	</script>
+<!-- End Google Analytics -->
 
 
 </body>

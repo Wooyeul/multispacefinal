@@ -7,7 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
-.paginationdiv {
+
+.ad_com_bor_list_paginationdiv {
 	text-align: center;
 }
 
@@ -27,7 +28,7 @@
 	text-align:  center;
 }
 
-td,th{
+.ad_com_bor_table td, .ad_com_bor_table th{
 text-align:  center;
 }
 
@@ -116,7 +117,7 @@ text-align:  center;
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 				  <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover ad_com_bor_table">
 					<!-- <table width="100%"
 						class="table table-striped table-bordered table-hover"
 						id="dataTables-example"> -->
@@ -161,7 +162,7 @@ text-align:  center;
 	</div>
 
 
-	<div class="paginationdiv">
+	<div class="ad_com_bor_list_paginationdiv">
 		<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
 				<li><a class="page"

@@ -12,14 +12,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="common.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Myclub.css">
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".space_no").on("click",function(){
-			var temp = $(this).attr("abc");
-			window.parent.location.href="space_detail.do?space_no="+temp;
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".space_no").on("click",function(){
+				var temp = $(this).attr("abc");
+				window.parent.location.href="space_detail.do?space_no="+temp;
+			});
 		});
-	});
-</script>
+	</script>
 </head>
 <body>
 	<form name="frm">
@@ -36,7 +36,7 @@
 			<tr>
 				<td>
 				<a href="space_detail.do?space_no=${rl.space_no}">
-				<img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
+				<img src="space_img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
 				<td>${rl.review_title}</td>
 				<td>${rl.review_content}</td>
 				<td>${rl.review_score}</td>

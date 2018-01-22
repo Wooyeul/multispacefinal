@@ -29,7 +29,7 @@ public class Space_QnADAO_MySQLImpl implements Space_QnADAO{
 	@Override
 	public Integer delete_spaceQnA_by_spane_qna_no(Space_qnaVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("space_qna.delete_spaceQnA_by_spane_qna_no",vo);
+		return sqlSession.delete("space_qna.delete_spaceQnA_by_space_qna_no",vo);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class Space_QnADAO_MySQLImpl implements Space_QnADAO{
 	@Override
 	public Integer mod_spaceQnA_by_spane_qna_no(Space_qnaVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update("space_qna.mod_spaceQnA_by_spane_qna_no",vo);
+		return sqlSession.update("space_qna.mod_spaceQnA_by_space_qna_no",vo);
 	}
 	
 }

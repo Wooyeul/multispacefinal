@@ -1,7 +1,6 @@
 package main.vo;
 
 public class ZipcodeVO {
-	private Integer zipcode_no;
 	private String zipcode;
 	private String sido;
 	private String gugun;
@@ -12,22 +11,13 @@ public class ZipcodeVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ZipcodeVO(Integer zipcode_no, String zipcode, String sido, String gugun, String dong, String bunji) {
+	public ZipcodeVO(String zipcode, String sido, String gugun, String dong, String bunji) {
 		super();
-		this.zipcode_no = zipcode_no;
 		this.zipcode = zipcode;
 		this.sido = sido;
 		this.gugun = gugun;
 		this.dong = dong;
 		this.bunji = bunji;
-	}
-
-	public Integer getZipcode_no() {
-		return zipcode_no;
-	}
-
-	public void setZipcode_no(Integer zipcode_no) {
-		this.zipcode_no = zipcode_no;
 	}
 
 	public String getZipcode() {
