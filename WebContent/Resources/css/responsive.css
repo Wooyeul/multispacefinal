@@ -1744,3 +1744,658 @@ footer .copyrights a.ph_link{
         border-bottom: 1px solid #82abd4;
     }
 }
+
+
+
+
+
+/*  *********************** ÀÓ½Â¹ü css **********************   */
+
+
+
+/*myinfo_mod_form*/
+	.user_mod_form {
+			width: 100%;
+			text-align: center;
+		}
+		
+		.user_mod_form_div {
+			display: inline-block;
+		}
+		
+		.user_mod_form_div table th {
+			padding :7px 0;
+		}
+		.user_mod_form_div table td {
+			padding-left : 22px;
+			padding : 7px;
+		}
+			
+		
+		.usermod {
+			margin-top: 27px;
+			margin-bottom: 27px;
+			text-align: center;
+			font-size: 2em;
+			font-family: "lato-regular", Helvetica, Arial, sans-serif;
+		}
+		
+		.panel-title {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+
+
+
+/*home_user_join*/
+.user_join_form {
+			width: 100%;
+			text-align: center;
+		}
+		
+		.user_join_form_div {
+			display: inline-block;
+		}
+		
+		.user_join_form_div table th {
+			padding :7px 0;
+		}
+		
+		.user_join_form_div table td {
+			padding-left : 22px;
+			padding : 7px;
+		}
+		
+		
+		.user_jo {
+			margin-top: 27px;
+			margin-bottom: 27px;
+			text-align: center;
+			font-size: 2em;
+			font-family: "lato-regular", Helvetica, Arial, sans-serif;
+		}
+		
+		.panel-title {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+
+
+/*bookmark_findAll2*/
+
+.bookmark_chkbox {
+	width: 160px;
+	margin : 10px;
+	padding : 0px;
+}
+
+.bookmark_img {
+	width: 160px;
+	margin : 10px;
+	
+}
+
+.totaldiv {
+	margin-left: 0px;
+}
+
+.bookmark_div {
+	width: 300px;
+	float: left;
+	margin-left: 40px;
+	margin-top: 20px;
+}
+
+.mybookmarkdiv {
+	margin: 0 auto;
+	overflow: auto;
+}
+
+
+
+
+/*myhost_addForm*/
+
+box{
+border-top :3px solid #00A65A;
+
+}
+
+.box2{
+border-bottom: 1px solid #EEEEEE;
+}
+
+.zip{
+float: left;
+padding-right: 5px;
+}
+
+
+
+
+/*  *********************** ±è¼¼È¯ css **********************   */
+
+/*space_reservation*/
+#booking_people {
+	height: 35px;
+	border-radius: 3px;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default,
+	.ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover,
+	html .ui-button.ui-state-disabled:active {
+	height: 75px;
+}
+
+.ui-datepicker {
+	width: 100%;
+}
+
+.ui-widget-header {
+	background-color: #D9EDF7;
+}
+
+.btn-time {
+	padding-left: 10%;
+}
+
+.space-label {
+	margin-bottom: 10px;
+}
+/*space_home*/
+.iframe-design {
+	overflow-x: hidden;
+	overflow-y: hidden;
+	width: 100%;
+}
+
+.listings1 {
+	padding-top: 20px !important;
+}
+
+.sh_a {
+	color: black;
+}
+
+.form-wrapper {
+	text-align: center;
+} /*space_home_iframe*/
+.listings2 {
+	padding-top: 10px !important;
+}
+
+.listings ul.properties_list li img.property_img {
+	height: 185px !important;
+}
+
+.space_list_iframe {
+	margin: 0px;
+} /*space_detail*/
+.nothing {
+	font-size: 30px;
+	color: gray;
+}
+
+.btn-reserve {
+	width: 33%;
+	border-radius: 0px;
+	margin-top: 15px;
+}
+
+.sh_list {
+	list-style: none;
+}
+
+.space_title {
+	margin-top: 0px;
+	font-size: 25px;
+}
+
+.a {
+	color: black;
+}
+
+#space_title {
+	font-size: 40px;
+	color: black;
+}
+
+#space_content {
+	font-size: 20px;
+	color: graytext;
+}
+
+.nav-img {
+	height: 20%;
+	width: 20%;
+}
+
+.category {
+	border-radius: 15px;
+}
+
+.sub_img {
+	width: 15%;
+	height: 80px;
+}
+
+.reserve {
+	margin-top: 0px;
+	color: black;
+	font-size: 35px;
+	padding-bottom: 10px;
+}
+/*space_add*/
+.essential {
+	display: none;
+	color: red;
+}
+
+.btn-time {
+	padding-left: 10%;
+}
+
+.space-label {
+	margin-bottom: 10px;
+}
+
+/*  *********************** ÇãºûÂù»ù css **********************   */
+
+/* club_add_community_board.jsp, club_add_community_notice, club_add_page.jsp, club_mod_board_detail.jsp, club_mod_club.jsp, club_mod_notice_detail*/
+.h1_design {
+	color: #026fac;
+}
+
+.label_design {
+	margin-bottom: 5px;
+}
+
+/*club_board_detail.jsp, club_notice_detail.jsp*/
+.textarea_h {
+	padding: 10px;
+	padding-top: 50px;
+}
+
+.label_reple {
+	padding-bottom: 18px;
+}
+
+.repleId {
+	font-size: 120%;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.repleContent {
+	font-size: 100%;
+	margin-bottom: 5px;
+}
+
+.repletime {
+	font-size: 100%;
+	color: gray;
+}
+
+/*club_detail.jsp*/
+.bold_degisn {
+	font: bold;
+}
+
+/*club_home.jsp*/
+.club_home_selectdiv1 {
+	vertical-align: middle;
+	width: 800px;
+	float: left;
+}
+
+.club_home_select_div0 {
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 5px;
+}
+
+.club_home_select_div1 {
+	float: left;
+}
+
+.club_home_select_div2 {
+	width: 150px;
+	float: left;
+}
+
+.club_home_select_div3 {
+	width: 400px;
+	float: left;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.club_home_select_div4 {
+	width: 100px;
+	float: left;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"]+label {
+	font-weight: 400;
+	font-size: 14px;
+}
+
+input[type="radio"]+label span {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin: -2px 10px 0 0;
+	vertical-align: middle;
+	cursor: pointer;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	border: 3px solid #ffffff;
+}
+
+input[type="radio"]+label span {
+	background-color: #fff;
+}
+
+input[type="radio"]:checked+label {
+	color: #333;
+	font-weight: 700;
+}
+
+input[type="radio"]:checked+label span {
+	background-color: #95badf;
+	border: 2px solid #ffffff;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
+}
+
+input[type="radio"]+label span, input[type="radio"]:checked+label span {
+	-webkit-transition: background-color 0.24s linear;
+	-o-transition: background-color 0.24s linear;
+	-moz-transition: background-color 0.24s linear;
+	transition: background-color 0.24s linear;
+}
+
+.c_div {
+	margin: 0 auto;
+}
+
+.l_cate {
+	text-align: center;
+	line-height: 30px;
+}
+
+.form_back {
+	align: center;
+	background-color: #bfd9f2;
+	height: 300px;
+}
+
+.form-wrapper {
+	text-align: center;
+}
+
+.iframe-design {
+	overflow-x: hidden;
+	overflow-y: hidden;
+	width: 100%;
+}
+
+.iframe-design2 {
+	width: 100%;
+	height: 220%;
+}
+
+.category_label {
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+
+/* club_list.jsp*/
+.club_img_ul {
+	list-style-type: none;
+	width: 980px;
+}
+
+.club_img_ul li h3 {
+	font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+	margin-top: 0px;
+}
+
+.img_ul {
+	width: 110px;
+	height: 110px;
+	float: left;
+	margin: 0 15px 0 0;
+}
+
+.li_p {
+	font: 200 14px/1.5 Georgia, Times New Roman, serif;
+	margin-bottom: 13px;
+}
+
+.club_img_ul li {
+	padding: 10px;
+	overflow: auto;
+}
+
+.club_img_ul li:hover {
+	background: #eee;
+	cursor: pointer;
+}
+
+.category {
+	border-radius: 15px;
+}
+
+.page_r {
+	width: 300px;
+	margin: 0 auto;
+}
+
+/*  *********************** Á¶¿ì¿­ css **********************   */
+
+/*notice_list*/
+.noticeB {
+	margin-top: 27px;
+	margin-bottom: 27px;
+	text-align: center;
+	font-size: 2em;
+	font-family: "lato-regular", Helvetica, Arial, sans-serif;
+}
+
+.notice_list .panel-group {
+	margin-bottom: 40px;
+}
+
+.notice_list .panel-title {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/*event_user_read*/
+.event_user_list .button {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.event_user_list .table {
+	text-align: center;
+}
+
+/*event_user_list*/
+.event_user_list h1 {
+	text-align: center;
+}
+
+.event_user_list select {
+	float: left;
+}
+
+.event_user_list .eveb {
+	margin-top: 27px;
+	margin-bottom: 27px;
+	text-align: center;
+	font-size: 2em;
+	font-family: "lato-regular", Helvetica, Arial, sans-serif;
+}
+
+.event_user_list .selectdiv1 {
+	vertical-align: middle;
+	width: 800px;
+	float: left;
+}
+
+.event_user_list .selectdiv2 {
+	margin-top: 5px;
+	width: 150px;
+	float: left;
+}
+
+.event_user_list .selectdiv3 {
+	width: 400px;
+	padding: 5px;
+	float: left;
+}
+
+.event_user_list .selectdiv4 {
+	width: 100px;
+	padding: 5px;
+	float: left;
+}
+
+.event_user_list .selecdiv0 {
+	width: 600px;
+	margin: 0 auto;
+}
+
+/*community_review_list*/
+.comm_review_table th, .comm_review_table td, .comm_review_table tr {
+	text-align: center;
+}
+
+.comm_review_con .container {
+	text-align: center;
+}
+
+/*community_qna_read*/
+.paginationdiv {
+	text-align: right;
+}
+
+.comm_qna_read {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.replecontent_qna {
+	width: 98%;
+	margin-left: 20px;
+	float: left;
+}
+
+.replecontent_qna .repsumbtn {
+	width: 100px;
+	float: left;
+}
+
+.replecontent_qna .replesumtext {
+	float: left;
+	width: 800px;
+}
+
+.replecontent_qna .btnclass_mod {
+	width: 300px;
+	float: right;
+}
+
+.replecontent_qna .btnclass1, .replecontent_qna .btnclass2,
+	.replecontent_qna .btnclass3 {
+	width: 100px;
+	float: left;
+}
+
+/*community_qna_mod*/
+.comm_qna_mod {
+	text-align: center;
+}
+
+/*community_qna_list*/
+.comm_qna_list_wrapper .commask {
+	margin-top: 5px;
+	text-align: center;
+	float: left;
+}
+
+.comm_qna_list_table th, .comm_qna_list_table td {
+	text-align: center;
+}
+
+.comm_qna_list_wrapper .selectdiv1 {
+	vertical-align: middle;
+	width: 1000px;
+	float: left;
+}
+
+.comm_qna_list_wrapper .selectdiv2 {
+	margin-top: 5px;
+	width: 150px;
+	float: left;
+}
+
+.comm_qna_list_wrapper .selectdiv3 {
+	width: 400px;
+	padding: 5px;
+	float: left;
+}
+
+.comm_qna_list_wrapper .selectdiv4 {
+	padding: 5px;
+	float: left;
+}
+
+.comm_qna_list_wrapper .selectdiv5 {
+	width: 300px;
+	margin-top: 5px;
+	float: left;
+}
+
+.comm_qna_list_wrapper .selecdiv0 {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.comm_qna_list_con {
+	text-align: center;
+}
+
+/*community_qna_add*/
+.community_qna_add_p {
+	text-align: center;
+}
+
+.community_qna_add_write {
+	float: left;
+	padding-right: 5px;
+}
+
+/*community_list*/
+.commu_nav-tabs {
+	border: 0 !important;
+	font-size: 100% !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
