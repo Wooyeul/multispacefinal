@@ -296,10 +296,18 @@ public class CtrlClub {
 	}
 	//쪽지 보내기 팝업 실행
 	@RequestMapping("/club_add_message.do")
-	public ModelAndView club_add_message(@ModelAttribute MessageVO pvo) throws Exception {
-		clubDAO.club_add_message(pvo);
-		ModelAndView mnv = new ModelAndView("club_message_success");
-		return mnv;
+	@ResponseBody
+	public String club_add_message(HttpServletRequest request) throws Exception {
+		MessageVO pvo = new MessageVO();
+		pvo.setMsg_content(request.getParameter("msg_content"));
+		pvo.setReceive_user_id(request.getParameter("receive_user_id"));
+		pvo.setSend_user_id(request.getParameter("send_user_id"));
+		try{
+			clubDAO.club_add_message(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	//모임 회원 방출
 	@RequestMapping("/club_user_release.do")
