@@ -6,7 +6,7 @@
 <body>
 	<section class="hero">
 	<header>
-	<div class="container-flude">
+	<div class="container-fluid">
 	<div class="wrapper header_wrapper">
 
 		<a href="main.html" class="logo" alt="" titl="">Multi Space</a>
