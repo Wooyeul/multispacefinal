@@ -11,6 +11,8 @@ INSERT INTO UserT Values('imseller', '405-240', '881001', '8888888', '1234', 'ÀÌ
 
 INSERT INTO UserT Values('admin', '405-240', '881001', '8888888', '1234', 'ÀÌ¾çÀç', 'M', '01055246469',
 'coolGuy',  'remd@naver.com' , 3 ,'test');
+
+################################################################
 ################################################################
 	DROP PROCEDURE IF EXISTS p_admin_user_findAll;
 	DELIMITER $$
@@ -19,8 +21,7 @@ INSERT INTO UserT Values('admin', '405-240', '881001', '8888888', '1234', 'ÀÌ¾çÀ
 		SELECT * FROM UserT WHERE grade = 1;
 	END$$
 	DELIMITER ;
-	CALL p_admin_user_findAll();
-
+	
 ################################################################
 
 	DROP PROCEDURE IF EXISTS p_admin_user_findUser;
@@ -32,9 +33,9 @@ INSERT INTO UserT Values('admin', '405-240', '881001', '8888888', '1234', 'ÀÌ¾çÀ
 		SELECT * FROM UserT WHERE user_id = v_user_id;
 	END$$
 	DELIMITER ;
-
-################################################################
-
+	
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_user_DelUser;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_user_DelUser(
@@ -77,8 +78,9 @@ INSERT INTO UserT Values('admin', '405-240', '881001', '8888888', '1234', 'ÀÌ¾çÀ
 		COMMIT;
 	END$$
 	DELIMITER ;
-
-################################################################
+	
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_user_modifyUser;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_user_modifyUser(
@@ -96,7 +98,8 @@ INSERT INTO UserT Values('admin', '405-240', '881001', '8888888', '1234', 'ÀÌ¾çÀ
 	END$$
 	DELIMITER ;
 	
-################################################################
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_list_removed_users;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_list_removed_users()
@@ -104,4 +107,7 @@ INSERT INTO UserT Values('admin', '405-240', '881001', '8888888', '1234', 'ÀÌ¾çÀ
 		SELECT * FROM User_Del_EmailT ORDER BY writing_no DESC;
 	END$$
 	DELIMITER ;
-################################################################
+	
+	
+	
+	

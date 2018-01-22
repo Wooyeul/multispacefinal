@@ -1,4 +1,3 @@
-################################################################ 
 	DROP PROCEDURE IF EXISTS p_admin_message_write;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_message_write(
@@ -11,7 +10,9 @@
 			v_msg_content, NOW(), 0 );
 	END$$
 	DELIMITER ;
+	
 ################################################################
+
 	DROP PROCEDURE IF EXISTS p_admin_get_Allmessage;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_get_Allmessage()
@@ -19,7 +20,9 @@
 		SELECT * FROM MessageT WHERE receive_user_id = 'admin' GROUP BY the_time DESC;
 	END$$
 	DELIMITER ;
-################################################################
+	
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_to_Allmessage;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_to_Allmessage()
@@ -27,3 +30,7 @@
 		SELECT * FROM MessageT WHERE send_user_id = 'admin' GROUP BY the_time DESC;
 	END$$
 	DELIMITER ;
+	
+	
+	
+	

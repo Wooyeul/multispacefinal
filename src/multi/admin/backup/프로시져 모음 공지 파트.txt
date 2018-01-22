@@ -9,7 +9,7 @@ INSERT INTO NoticeT VALUES ( default, '첫번째 공지', '공지사항은 이렇이렇습니다.
 		SELECT * FROM NoticeT ORDER BY notice_no DESC;
 	END$$
 	DELIMITER ;
-
+	
 ################################################################
 
 	DROP PROCEDURE IF EXISTS p_admin_notice_FindText;
@@ -21,9 +21,9 @@ INSERT INTO NoticeT VALUES ( default, '첫번째 공지', '공지사항은 이렇이렇습니다.
 		SELECT * FROM NoticeT WHERE notice_no = v_notice_no;
 	END$$
 	DELIMITER ;
-
-################################################################
-
+	
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_notice_AddText;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_notice_AddText(
@@ -35,9 +35,9 @@ INSERT INTO NoticeT VALUES ( default, '첫번째 공지', '공지사항은 이렇이렇습니다.
 			v_notice_title,v_notice_content,NOW());
 	END$$
 	DELIMITER ;
-
-################################################################
-
+	
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_notice_modText;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_notice_modText(
@@ -51,8 +51,8 @@ INSERT INTO NoticeT VALUES ( default, '첫번째 공지', '공지사항은 이렇이렇습니다.
 	END$$
 	DELIMITER ;
 	
-################################################################
-
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_notice_DelByPK;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_notice_DelByPK(
@@ -63,5 +63,6 @@ INSERT INTO NoticeT VALUES ( default, '첫번째 공지', '공지사항은 이렇이렇습니다.
 	END$$
 	DELIMITER ;
 	
-################################################################
-
+	
+	
+	

@@ -1,4 +1,6 @@
 ################################################################
+################################################################
+
 	DROP PROCEDURE IF EXISTS p_admin_club_FindAllClubs;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_club_FindAllClubs()
@@ -6,9 +8,9 @@
 		SELECT * FROM ClubT ORDER BY create_time DESC;
 	END$$
 	DELIMITER ;
-
-################################################################
-
+	
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_club_Remove;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_club_Remove(
@@ -29,8 +31,9 @@
 		COMMIT;
 	END$$
 	DELIMITER ;
-
+	
 ################################################################
+
 	DROP PROCEDURE IF EXISTS p_admin_club_FindSpecificClub;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_club_FindSpecificClub(
@@ -40,7 +43,9 @@
 		SELECT * FROM ClubT WHERE club_no = v_club_no;
 	END$$
 	DELIMITER ;
-################################################################
+	
+################################################################	
+	
 	DROP PROCEDURE IF EXISTS p_admin_club_FindjoinedUsers;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_club_FindjoinedUsers(
@@ -50,5 +55,3 @@
 		SELECT * FROM User_ClubT WHERE club_no = v_club_no;
 	END$$
 	DELIMITER ;
-################################################################	
-	

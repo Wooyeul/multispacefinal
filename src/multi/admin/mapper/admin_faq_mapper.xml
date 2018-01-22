@@ -32,7 +32,7 @@
 	BEGIN
 		SELECT * FROM FaqT WHERE faq_no = v_faq_no;
 	END$$
-	DELIMITER ;	
+	DELIMITER ;
 	CALL p_admin_faq_readFaq(1);
 	-->
 	<parameterMap id="PM_p_admin_faq_readFaq" type="main.vo.FaqVO" >
@@ -107,7 +107,7 @@
 	BEGIN
 		INSERT INTO FaqT VALUES(default,v_faq_title, v_faq_content );
 	END$$
-	DELIMITER ;	
+	DELIMITER ;
 	CALL p_admin_faq_addFaq ( 'test2', 'nice' );
 	-->
 	<parameterMap id="PM_p_admin_faq_addFaq" type="main.vo.FaqVO" >
