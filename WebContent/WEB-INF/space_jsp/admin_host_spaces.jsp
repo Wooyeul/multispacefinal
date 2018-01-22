@@ -135,7 +135,7 @@
 							<td>${vo.space_title}</td>
 							<td>${vo.space_content}</td>
 							<td><a href="space_detail.do?space_no=${vo.space_no}"><img
-									src="thumbnail/${vo.space_thumb_img}"
+									src="space_img/${vo.space_thumb_img}"
 									style="width: 128px; height: 128px;"></img></a></td>
 							<td>${vo.open_time}</td>
 							<td>${vo.close_time}</td>
