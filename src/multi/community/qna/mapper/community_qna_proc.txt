@@ -119,8 +119,8 @@
 	DELIMITER $$
 
    CREATE PROCEDURE p_comm_qnaincRecom(
-      IN v_com_qna_reple_no INT,
       IN v_user_id  VARCHAR(20),
+      IN v_com_qna_reple_no INT,
       OUT v_recom INT
    )
    BEGIN
