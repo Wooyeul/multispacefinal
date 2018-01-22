@@ -6755,3 +6755,62 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+
+
+/* ********  ÀÌ¾çÀç css *******  */
+
+
+
+
+.paginationdiv {
+	text-align: center;
+}
+
+.select {
+	float: left;
+padding-right: 5px;
+}
+
+.select1 {
+	float: left;
+padding : 15px;
+}
+
+.select2 {
+	float: left;
+}
+
+.select3 {
+	float: left;
+padding : 8px;
+}
+
+.select4 {
+	float: left;
+}
+.tabletitle{
+	width: 500px;
+	text-align:  center;
+}
+
+td,th{
+text-align:  center;
+}
+p{
+text-align: center;
+}
+.commask {
+	float: left;
+	text-align: center;
+	padding-left: 10px;
+
+}
+.tabletitle{
+	width: 500px;
+	text-align:  center;
+}
+
+
+
