@@ -15,11 +15,25 @@ public class BookingVO {
 	public String booking_phone;
 	public String booking_email;
 	public String booking_message;
+	public Integer club_list;
 	
+	public Integer getClub_list() {
+		return club_list;
+	}
+
+
+
+	public void setClub_list(Integer club_list) {
+		this.club_list = club_list;
+	}
+
+
+
 	public BookingVO(Integer booking_no, Integer space_no, String user_id, String du_time, String booking_date,
 			String start_time, String end_time, Integer booking_people, Integer booking_price, Integer club_no,
-			String booking_user_name, String booking_phone, String booking_email, String booking_message) {
+			String booking_user_name, String booking_phone, String booking_email, String booking_message,Integer club_list) {
 		super();
+		this.club_list = club_list;
 		this.booking_no = booking_no;
 		this.space_no = space_no;
 		this.user_id = user_id;

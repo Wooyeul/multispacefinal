@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.BookingVO;
+import multi.space.vo.Booking_clubVO;
 
 public class BookingDAO_MySQLImpl implements BookingDAO{
 
@@ -15,7 +16,7 @@ public class BookingDAO_MySQLImpl implements BookingDAO{
 
 	@Override
 	public Integer add_booking(BookingVO vo) throws Exception {
-		// TODO Auto-generated method stub
+		System.out.println(vo.getClub_list());
 		return sqlSession.insert("booking.add_booking",vo);
 	}
 
@@ -24,5 +25,6 @@ public class BookingDAO_MySQLImpl implements BookingDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("booking.find_booking_by_space_no_and_booking_date",booking);
 	}
+
 	
 }

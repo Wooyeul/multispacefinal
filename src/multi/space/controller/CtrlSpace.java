@@ -44,6 +44,7 @@ import multi.space.dao.SpaceDAO;
 import multi.space.dao.Space_QnADAO;
 import multi.space.dao.Space_QnA_RepleDAO;
 import multi.space.dao.UserDAO;
+import multi.space.vo.Booking_clubVO;
 import multi.space.vo.ImageVO;
 import multi.space.vo.Review_searchVO;
 import multi.space.vo.Space2VO;
@@ -105,7 +106,10 @@ public class CtrlSpace {
 			sb.append("'"+space.getCount()+"',");
 			sb.append("'space_img'");
 			sb.append(":");
-			sb.append("'"+space.getSpace_thumb_img()+"'");
+			sb.append("'"+space.getSpace_thumb_img()+"',");
+			sb.append("'space_no'");
+			sb.append(":");
+			sb.append("'"+space.getSpace_no()+"'");
 			sb.append("}");
 			if(flag==list.size()){
 				
@@ -139,7 +143,10 @@ public class CtrlSpace {
 				sb.append("'"+space.getCount()+"',");
 				sb.append("'space_img'");
 				sb.append(":");
-				sb.append("'"+space.getSpace_thumb_img()+"'");
+				sb.append("'"+space.getSpace_thumb_img()+"',");
+				sb.append("'space_no'");
+				sb.append(":");
+				sb.append("'"+space.getSpace_no()+"'");
 				sb.append("}");
 				if(flag==list.size()){
 					
@@ -483,6 +490,10 @@ public class CtrlSpace {
 
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		List<ClubVO> club_list = spaceDAO.find_user_club(user_id);
+		for(ClubVO A : club_list ) {
+			System.out.println(A.getClub_name());
+			System.out.println(A.getClub_no());
+		}
 		mnv.addObject("club_list", club_list);			
 		mnv.addObject("space", space);
 		mnv.addObject("user_id", user_id);
@@ -492,17 +503,20 @@ public class CtrlSpace {
 	
 	//공간 결제 페이지
 	@RequestMapping("/space_payment.do")
-	public ModelAndView space_payment(@ModelAttribute BookingVO bookingVO,@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id) throws Exception{
+	public ModelAndView space_payment(@RequestParam("club_list") Integer club_list,@ModelAttribute BookingVO bookingVO,@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id) throws Exception{
 		if(user_id==null || user_id.length()<=1 ){
 			ModelAndView mnv = new ModelAndView("redirect:/home_moveLoginPage.do");
 			return mnv;
 		}
+
+		System.out.println(club_list);
 		ModelAndView mnv = new ModelAndView("space_payment");
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
 		HostVO host = spaceDAO.find_host_by_space_no(spaceVO);
 		mnv.addObject("host", host);
 		mnv.addObject("space", space);
 		mnv.addObject("booking", bookingVO);
+		mnv.addObject("club_list", club_list);
 		return mnv;
 	}
 	
@@ -510,9 +524,12 @@ public class CtrlSpace {
 	@RequestMapping("/space_payment_clear.do")
 	public ModelAndView space_payment_clear(@ModelAttribute SpaceVO spaceVO,@ModelAttribute BookingVO bookingVO,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("space_payment_clear");
+		
+		System.out.println(bookingVO.getClub_list());
 		HostVO host = spaceDAO.find_host_by_space_no(spaceVO);
 		bookingDAO.add_booking(bookingVO);
 		SpaceVO space = spaceDAO.find_space_by_pk(spaceVO);
+
 		mnv.addObject("booking", bookingVO);
 		mnv.addObject("user_id", user_id);
 		mnv.addObject("space", space);
@@ -579,7 +596,7 @@ public class CtrlSpace {
 		Space_qna_repleVO space_qna_reple = space_QnA_RepleDAO.find_space_QnA_Reple(space_QnA_RepleVO);
 		try{
 		String qna_reple = 
-				" { 'qna_reple_content' :'"+ space_qna_reple.getSpace_qna_reple_content()+"}";
+				" { 'qna_reple_content' :'"+ space_qna_reple.getSpace_qna_reple_content()+"'}";
 			return qna_reple;
 		} catch( Exception e ) {return null;}	
 	}

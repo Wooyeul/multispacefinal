@@ -158,6 +158,7 @@
 			<input type="hidden" value="${booking.booking_message }"
 				name="booking_message"> <input type="submit" value="예약하기"
 				class="btn btn-info btn-lg">
+			<input type="hidden" value="${club_list }" name="club_list">
 		</form>
 		<br/>
 		<br/>

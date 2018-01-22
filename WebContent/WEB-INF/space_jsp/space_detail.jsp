@@ -132,9 +132,8 @@
 																	.eval("("
 																			+ rt
 																			+ ")");
-															var html = "<table class='table table-condensed'>";
+															var html = "<table>";
 															html += "<tr>";
-															html += "<td>내용</td>";
 															html += "<td>"
 																	+ qna_reple.qna_reple_content
 																	+ "</td>";

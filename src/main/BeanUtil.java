@@ -117,7 +117,11 @@ public class BeanUtil
 			pn.equals("search_content") ||
 			pn.equals("zipdetail") ||
 			pn.equals("subject") || 
-			pn.equals("mail_content") ); 
+			pn.equals("mail_content")||
+			pn.equals("booking_email")||
+			pn.equals("booking_phone")||
+			pn.equals("booking_user_name")||
+			pn.equals("booking_message")); 
 	}
 	
 	//	String l2 = BeanUtil.toPropName( l );
