@@ -762,8 +762,7 @@
 														class="btn btn-info btn-reserve">예약하기</button></a>
 												<a><button class="btn btn-info btn-reserve" id="btn_bookmark"
 													add="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"
-													del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">
-													북마크등록</button></a>
+													del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">북마크등록</button></a>
 											</div>
 										</div>
 									</div></li>

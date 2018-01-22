@@ -26,14 +26,14 @@
 	var titleTimeFlag = 0;
 	var titleCheckFlag = 0;
 	function titleCheckLoop() {
-		var title = $("#space_title").val();
+		var title = $("#space_title2").val();
 		if (title == "") {
-			$("#essential_space_title").html("필수 입력사항입니다.");
-			$("#essential_space_title").css("color", "red");
+			$("#essential_space_title2").html("필수 입력사항입니다.");
+			$("#essential_space_title2").css("color", "red");
 			titleCheckFlag = 0;
 		} else {
-			$("#essential_space_title").text("사용 가능한 제목입니다");
-			$("#essential_space_title").css("color", "green");
+			$("#essential_space_title2").text("사용 가능한 제목입니다");
+			$("#essential_space_title2").css("color", "green");
 			titleCheckFlag = 1;
 		}
 		if (titleTimeFlag == 1) {
@@ -46,14 +46,14 @@
 	var contentTimeFlag = 0;
 	var contentCheckFlag = 0;
 	function contentCheckLoop() {
-		var content = $("#space_content").val();
+		var content = $("#space_content2").val();
 		if (content == "") {
-			$("#essential_space_content").html("필수 입력사항입니다.");
-			$("#essential_space_content").css("color", "red");
+			$("#essential_space_content2").html("필수 입력사항입니다.");
+			$("#essential_space_content2").css("color", "red");
 			contentCheckFlag = 0;
 		} else {
-			$("#essential_space_content").text("확인되었습니다.");
-			$("#essential_space_content").css("color", "green");
+			$("#essential_space_content2").text("확인되었습니다.");
+			$("#essential_space_content2").css("color", "green");
 			contentCheckFlag = 1;
 		}
 		if (contentTimeFlag == 1) {
@@ -195,23 +195,23 @@
 			}
 		});
 		//유효성 검사
-		$("#space_title").on("focusin", function() {
-			$("#essential_space_title").show();
+		$("#space_title2").on("focusin", function() {
+			$("#essential_space_title2").show();
 			titleTimeFlag = 1;
 			titleCheckLoop();
 		});
 
-		$("#space_title").on("focusout", function() {
+		$("#space_title2").on("focusout", function() {
 			titleTimeFlag = 0;
 		});
 
-		$("#space_content").on("focusin", function() {
-			$("#essential_space_content").show();
+		$("#space_content2").on("focusin", function() {
+			$("#essential_space_content2").show();
 			contentTimeFlag = 1;
 			contentCheckLoop();
 		});
 
-		$("#space_content").on("focusout", function() {
+		$("#space_content2").on("focusout", function() {
 			contentTimeFlag = 0;
 		});
 
@@ -255,6 +255,9 @@
 	.space-label{
  	 		margin-bottom: 10px;
  	 	}
+ 	 .space_add_radio{
+ 	 	display: inline;
+ 	 }
 </style>
 </head>
 <body>
@@ -274,14 +277,14 @@
 			</div>
 
 			<div class="form-group">
-				<label for="space_title" class="space-label">공간 이름</label> <input type="text"
-					id="space_title" name="space_title" class="form-control" />
-				<div class="essential" id="essential_space_title">필수 입력 사항입니다</div>
+				<label for="space_title2" class="space-label">공간 이름</label> <input type="text"
+					id="space_title2" name="space_title2" class="form-control" />
+				<div class="essential" id="essential_space_title2">필수 입력 사항입니다</div>
 			</div>
 			<div class="form-group">
-				<label for="space_title" class="space-label">공간 소개</label> <input type="text"
-					id="space_content" name="space_content" class="form-control" />
-				<div class="essential" id="essential_space_content">필수 입력
+				<label for="space_title2" class="space-label">공간 소개</label> <input type="text"
+					id="space_content2" name="space_content2" class="form-control" />
+				<div class="essential" id="essential_space_content2">필수 입력
 					사항입니다</div>
 			</div>
 			<div class="form-group">
@@ -394,7 +397,7 @@
 				<label for="s_category_no" class="space-label">카테고리</label>
 				<jl:forEach var="category" items="${category_list }">
 					<label class="radio-inline"><input checked="checked" type="radio"
-						name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
+						name="s_category_no" class="space_add_radio" value="${category.s_category_no }">${category.s_category_name }</label>
 				</jl:forEach>
 			</div>
 			<input type="button" id="sub" class="btn btn-default" value="등록"/>

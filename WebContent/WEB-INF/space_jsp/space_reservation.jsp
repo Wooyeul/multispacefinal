@@ -37,7 +37,6 @@
  	 		var time_click_flag = "a";
  	 		var first_click_time = 0;
  	 		var second_click_time = 0;
- 	 		
  	 		 $(".cb_time").on("click",function(){
 			
  	 			if(time_click_flag=="a"){
@@ -47,7 +46,7 @@
  	 			} else if(time_click_flag=="b"){
  	 				second_click_time=$(this).attr("time");
  	 				if(parseInt(first_click_time) > parseInt(second_click_time)){
- 	 					for(var a = parseInt(second_click_time) ; a < parseInt(first_click_time) ; a ++ ) {
+ 	 					for(var a = parseInt(second_click_time) ; a <= parseInt(first_click_time) ; a ++ ) {
  	 						if($("#btn_time"+[a]).html()=="X"){
  	 							alert("불가능해");
  	 							$(".cb_time").removeClass("active");
@@ -67,7 +66,7 @@
  	 						
  	 					}
  	 				} else if(parseInt(first_click_time) < parseInt(second_click_time)){
- 	 					for(var b = parseInt(first_click_time) ; b < parseInt(second_click_time) ; b++ ) {
+ 	 					for(var b = parseInt(first_click_time) ; b <= parseInt(second_click_time) ; b++ ) {
  	 						if($("#btn_time"+[b]).html()=="X"){
  	 							alert("불가능해");
  	 							$(".cb_time").removeClass("active");
@@ -137,10 +136,24 @@
  	 		});
  	 		
  	 		$("#pay").on("click",function(){
+ 	 			if($("#booking_date").val()==""){
+ 	 				alert("날짜를 선택해주세요.");
+ 	 			}else if($("#booking_price").val()==""){
+ 	 				alert("시간을 선택해주세요.");
+ 	 			}else if($("#booking_email")){
+ 	 				alert("이메일을 입력해주세요.");
+ 	 			}else if($("#booking_phone")){
+ 	 				alert("연락처를 입력해주세요.");
+ 	 			}else if($("#booking_user_name")){
+ 	 				alert("예약자 성함을 입력해주세요.");
+ 	 			}
+ 	 			
+ 	 			else {
  	 			$("#booking_date").removeAttr("disabled");
  	 			$("#booking_people").removeAttr("disabled");
  	 			$("#booking_price").removeAttr("disabled");
  	 			$("#pay").attr("type","submit");
+ 	 			}
  	 		});
  	 		
  	 		$("#booking_date").datepicker({
@@ -149,16 +162,25 @@
  	 		$("#date2").datepicker({
  	 			dateFormat:"yy-mm-dd"
 			});
-		
+ 	 		var open_imsi = "${space.open_time}";
+ 	 		var open = Number(open_imsi)
+
+	 		
+ 	 		var close_time = "${space.close_time}";
+ 	 		var close = Number(close_time)
+ 	 		
  	 		$("#date2").on("change",function(){
  	 			var currentDate = $( "#date2" ).datepicker("getDate","dateFormat" );
  	 			$("#booking_date").datepicker("setDate",currentDate);
+ 	 			
 				var dat = $("#booking_date").val();
  	 			$("#reserve_day").html(dat);
+ 	 			
  	 			ajaxGet("reserve_change_day.do?booking_date="+dat+"&space_no=${space.space_no}",function(rt){	
  			 	 	 var booking_list = eval("("+rt+")");
  			 	 	 $(".cb_time").removeClass("active");
- 			 	 	 for(var z = 1 ; z <=24 ; z++ ) {
+ 			 	 	
+ 			 	 	 for(var z = open ; z <=close ; z++ ) {
  			 	 		$("#btn_time"+[z]).css("background","#5BC0DE");
  	 	 				$("#btn_time"+[z]).html(z);
  			 	 	 }
@@ -313,7 +335,7 @@
 				<div class="form-group">
 					<label for="club_list" class="space-label">모임 목록</label>
 					<select name="club_list" id="club_list" class="form-control">
-						<option value="null">개인 회원</option>
+						<option value="null" selected="selected">개인 회원</option>
 						<jl:forEach var="club" items="${club_list }">
 							<option value="${club.club_no }">${club.club_name }</option>
 						</jl:forEach>
@@ -328,15 +350,15 @@
 					<H1>예약자 정보</H1>
 						<div class="form-group">
 							<label class="space-label">예약자</label>
-							<input type="text" name="booking_user_name"  class="form-control">
+							<input type="text" name="booking_user_name" id="booking_user_name"  class="form-control">
 						</div>
 						<div class="form-group">
 							<label class="space-label">연락처</label>
-							<input type="text" name="booking_phone"  class="form-control">
+							<input type="text" name="booking_phone" id="booking_phone"  class="form-control">
 						</div>
 						<div class="form-group">
 							<label class="space-label">이메일</label>
-							<input type="text" name="booking_email" class="form-control">
+							<input type="text" name="booking_email" id="booking_email" class="form-control">
 						</div>
 						<div class="form-group">
 							<label class="space-label">요청사항</label>
