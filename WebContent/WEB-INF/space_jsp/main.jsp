@@ -185,8 +185,9 @@ ga('send', 'pageview');
          <%@include file="./jsp/header_main.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
 
-
-	
+	<jl:if test="${ckAdmin eq 3}">
+		<a href="admin_main.do">관리자 페이지 이동</a>
+	</jl:if>
 
 
 	<section class="listings">

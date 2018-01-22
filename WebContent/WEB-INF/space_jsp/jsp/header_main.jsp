@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <body>
@@ -22,7 +21,6 @@
 				<li><a href="home_logout.do">로그아웃</a></li>
 			</ul>
 
-
 			<ul class="top_nav navbar-right">
 				<li><a href="space_home.do">공간</a></li>
 				<li><a href="club_home.do">모임</a></li>
@@ -30,7 +28,6 @@
 				<li><a href="event_user_list.do">이벤트</a></li>
 				<li><a href="notice_list.do">공지사항</a></li>
 				<li><a href="faq_list.do">FAQ</a></li>
-				<li><a href="admin_main.do">관리자</a></li>
 			</ul>
 		</div>
 		</nav>

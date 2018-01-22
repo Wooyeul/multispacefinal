@@ -62,12 +62,13 @@ public class CtrlLogin {
 	public Object main(@CookieValue("user_id") String user_id) throws Exception {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		
+		int ckAdmin = userInfo.getGrade();
 		if (user_id != null) {
 			ModelAndView mnv = new ModelAndView("main");
 			mnv.addObject("userInfo", userInfo);
 			mnv.addObject("user_name", userInfo.getUser_name());
 			mnv.addObject("top_nav_code", "20000");
+			mnv.addObject("ckAdmin", ckAdmin);
 			return mnv;
 		}else {
 			return "redirect:/main.html";

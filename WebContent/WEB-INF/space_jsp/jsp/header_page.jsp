@@ -30,7 +30,6 @@
 				<li><a href="event_user_list.do">이벤트</a></li>
 				<li><a href="notice_list.do">공지사항</a></li>
 				<li><a href="faq_list.do">FAQ</a></li>
-				<li><a href="admin_main.do">관리자</a></li>
 			</ul>
 
 		</div>
