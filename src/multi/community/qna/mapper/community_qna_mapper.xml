@@ -7,9 +7,9 @@
 	<resultMap id="RM_qnaText" type="multi.community.qna.vo.Community_qnaVO">
 		<result property="com_qna_no" column="com_qna_no" jdbcType="INTEGER"/>
 		<result property="user_id" column="user_id" jdbcType="VARCHAR"/>
-		<result property="the_time" column="the_time" jdbcType="VARCHAR"/>
-		<result property="com_qna_content" column="com_qna_content" jdbcType="VARCHAR"/>
 		<result property="com_qna_title" column="com_qna_title" jdbcType="VARCHAR"/>
+		<result property="com_qna_content" column="com_qna_content" jdbcType="VARCHAR"/>
+		<result property="the_time" column="the_time" jdbcType="VARCHAR"/>
 		<result property="view_count" column="view_count" jdbcType="INTEGER"/>
 	</resultMap>
 
@@ -52,20 +52,20 @@
 	DELIMITER $$
 	CREATE PROCEDURE p_comm_qnaAddText(
 		IN v_user_id VARCHAR(45),
-		IN v_com_qna_content TEXT,
-		IN v_com_qna_title VARCHAR(45)
+		IN v_com_qna_title VARCHAR(45),
+		IN v_com_qna_content TEXT
 	)
 	BEGIN
-		INSERT INTO Community_QnAT VALUES(default,v_user_id,NOW(),
-			v_com_qna_content, v_com_qna_title,0);
+		INSERT INTO Community_QnAT VALUES(default,v_user_id,
+		v_com_qna_title,v_com_qna_content,NOW(),0);
 	END$$
 	DELIMITER ;
 	-->
 	
 	<parameterMap id="PM_p_comm_qnaAddText" type="multi.community.qna.vo.Community_qnaVO">
 		<parameter property="user_id"   mode="IN" jdbcType="VARCHAR"/>
-		<parameter property="com_qna_content" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="com_qna_title"   mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="com_qna_content" mode="IN" jdbcType="VARCHAR"/>
 	</parameterMap>
 	
 	<insert id="p_comm_qnaAddText" statementType="CALLABLE" 
@@ -148,20 +148,20 @@
 	DROP PROCEDURE IF EXISTS p_comm_qnaAddReple;
 	DELIMITER $$
 	CREATE PROCEDURE p_comm_qnaAddReple(
-		IN v_user_id VARCHAR(20),
 		IN v_com_qna_no INT,
+		IN v_user_id VARCHAR(20),
 		IN v_com_qna_reple_content TEXT
 	)
 	BEGIN
-		INSERT INTO Community_QnA_RepleT VALUES(default,v_user_id,v_com_qna_no,
+		INSERT INTO Community_QnA_RepleT VALUES(default,v_com_qna_no,v_user_id,
 			v_com_qna_reple_content, NOW(),0);
 	END$$
 	DELIMITER ;
 	-->
 	
 	<parameterMap id="PM_p_comm_qnaAddReple" type="multi.community.qna.vo.Community_qna_repleVO">
-		<parameter property="user_id"   mode="IN" jdbcType="VARCHAR"/>
-		<parameter property="com_qna_no"   mode="IN" jdbcType="INTEGER"/>
+		<parameter property="com_qna_no" mode="IN" jdbcType="INTEGER"/>
+		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="com_qna_reple_content" mode="IN" jdbcType="VARCHAR"/>
 	</parameterMap>
 	
@@ -184,8 +184,8 @@
 	
 	<resultMap id="RM_qnaReple" type="multi.community.qna.vo.Community_qna_repleVO">
 		<result property="com_qna_reple_no" column="com_qna_reple_no" jdbcType="INTEGER"/>
-		<result property="user_id" column="user_id" jdbcType="VARCHAR"/>
 		<result property="com_qna_no" column="com_qna_no" jdbcType="INTEGER"/>
+		<result property="user_id" column="user_id" jdbcType="VARCHAR"/>
 		<result property="com_qna_reple_content" column="com_qna_reple_content" jdbcType="VARCHAR"/>
 		<result property="the_time" column="the_time" jdbcType="VARCHAR"/>
 		<result property="recom_count" column="recom_count" jdbcType="INTEGER"/>
@@ -323,8 +323,8 @@
    -->
    
    <parameterMap id="PM_p_comm_qnaincRecom" type="multi.community.qna.vo.Community_qna_repleVO">
-      <parameter property="com_qna_reple_no" mode="IN" jdbcType="INTEGER"/>
       <parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
+      <parameter property="com_qna_reple_no" mode="IN" jdbcType="INTEGER"/>
       <parameter property="recom_count" mode="OUT" jdbcType="INTEGER"/>
    </parameterMap>
    

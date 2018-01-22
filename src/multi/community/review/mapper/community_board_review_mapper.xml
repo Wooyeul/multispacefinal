@@ -36,8 +36,8 @@ CREATE TABLE ReviewT
  -->
 <resultMap type="main.vo.ReviewVO" id="RM_Review">
 <result property="review_no" column="review_no" jdbcType="INTEGER"/>
-<result property="space_no" column="space_no" jdbcType="INTEGER"/>
 <result property="user_id" column="user_id" jdbcType="VARCHAR"/>
+<result property="space_no" column="space_no" jdbcType="INTEGER"/>
 <result property="review_title" column="review_title" jdbcType="VARCHAR"/>
 <result property="review_content" column="review_content" jdbcType="VARCHAR"/>
 <result property="the_time" column="the_time" jdbcType="VARCHAR"/>
