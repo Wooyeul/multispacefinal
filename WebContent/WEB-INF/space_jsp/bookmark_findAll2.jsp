@@ -112,7 +112,7 @@
 		    <input type="checkbox" class="space_no" name="check" value="${ab.space_no}" abc="${ab.space_no}"/>
 		    </div>
 		    <div class="bookmark_img">
-		    <a href="space_detail.do?space_no=${ab.space_no}" target="_parent"><img src="img/${ab.space_thumb_img}" width="140px" height="140px"></a>
+		    <a href="space_detail.do?space_no=${ab.space_no}" target="_parent"><img src="space_img/${ab.space_thumb_img}" width="140px" height="140px"></a>
 		    </div>
 		    
 		    </li>

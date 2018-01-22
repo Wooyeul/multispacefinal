@@ -1,37 +1,54 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+	<script type="text/javascript" src="common.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+	function zipSearch(){
+		window.open("find_zipcode.html", "zip", "width=600,height=450");
+	}
+	</script>
 </head>
 <body>
-	${user_id}
-	<h3>ÆÇ¸ÅÀÚ µî·Ï form</h3>
-	<form action="myhost_addhost.do" method="POST">
-		<input type="hidden" name="user_id" value="${user_id}"/>
+	<h3>íŒë§¤ì ë“±ë¡ form</h3>
+	<form action="myhost_addhost.do" method="POST" name="frm">
+		<input type="hidden" name="user_id" value="${user_id}" />
 		<table border="1">
 			<tr>
-				<td>´ëÇ¥¸í</td>
-				<td><input type="text" name="host_name"/></td>
+				<td>ëŒ€í‘œëª…</td>
+				<td><input type="text" name="host_name" /></td>
 			</tr>
 			<tr>
-				<td>»ç¾÷ÀÚ¹øÈ£</td>
-				<td><input type="text" name="crn"/></td>
+				<td>ì‚¬ì—…ìë²ˆí˜¸</td>
+				<td><input type="text" name="crn" /></td>
 			</tr>
 			<tr>
-				<td>È¸»çÁÖ¼Ò</td>
-				<td><input type="text" name="zipcode"/></td>
+				<th>ìš°í¸ë²ˆí˜¸</th>
+				<td><input type="text" name="zipcode" size="8" id="zipcode" />
+					<input type="button" name="findzip" value="ì°¾ê¸°"
+					class="btnzip btn btn-primary" onclick="zipSearch()" /></td>
+			</tr>
+
+			<tr>
+				<th align="right">ì£¼ì†Œ</th>
+				<td><input type="text" size="40" name="addr1" /></td>
 			</tr>
 			<tr>
-				<td>ÀÔ±İ°èÁÂ</td>
-				<td><input type="text" name="host_account"/></td>
+				<td>ì…ê¸ˆê³„ì¢Œ</td>
+				<td><input type="text" name="host_account" /></td>
 			</tr>
 		</table>
-		<input type="submit" value="µî·ÏÇÏ±â"/>
-		<input type="reset" value="Ãë¼ÒÇÏ±â"/>
+		<input type="submit" value="ë“±ë¡í•˜ê¸°" class="btn btn-primary"/> <input type="reset" value="ì·¨ì†Œí•˜ê¸°" class="btn btn-primary"/>
 	</form>
-	
+
 </body>
 </html>
