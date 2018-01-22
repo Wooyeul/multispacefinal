@@ -368,7 +368,7 @@ $(document).ready(function() {
 			</form>
 		</div>
 		<div class="btnclass2">
-			<form action="community_board_del.do.do" method="POST" id="textDelform">
+			<form action="community_board_del.do" method="POST" id="textDelform">
 				<input type="hidden" name="com_board_no" value="${vo.com_board_no}" />
 				<jl:if test="${vo.user_id eq user_id}">
 					<input type="button" class="btn btn-danger" value="글삭제" id="btnDel"/>
@@ -484,8 +484,8 @@ $(document).ready(function() {
 				</div>
 				<div class="modal-body">글을 정말로 정말로 삭제하시겠습니깡?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
-					<button type="button" class="btn btn-primary" id="delsuccess">취소</button>
+					<button type="button" class="btn btn-default" id="delsuccess">확인</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>

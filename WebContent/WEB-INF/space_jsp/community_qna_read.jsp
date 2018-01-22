@@ -326,7 +326,7 @@
 				</form>
 			</div>
 			<div class="btnclass2">
-				<form action="community_qna_del.do." method="POST" id="Qna_delete">
+				<form action="community_qna_del.do" method="POST" id="Qna_delete">
 					<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}" />
 					<jl:if test="${vo.user_id eq user_id}">
 						<input type="button" class="btn btn-danger" value="QnA삭제"
