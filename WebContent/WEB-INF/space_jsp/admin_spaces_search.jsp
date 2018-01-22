@@ -93,8 +93,9 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">공간상세검색결과<br></div><!-- /.panel-heading -->
-			
+				<div class="panel-heading" style="text-align:center;"><b>공간상세검색결과</b><br></div><!-- /.panel-heading -->			
+		
+		
 		<form id="textsearch" action="admin_spaces_search.do" method="post">
 			<div class="col-lg-6">
 					<br>
@@ -158,7 +159,7 @@ $(document).ready(function(){
 							<th>사업자 등록 번호</th>
 							<th>공간 이름</th>
 							<th>공간 내용</th>
-							<th>공간 썸브네일 이미지</th>
+							<th>썸네일 이미지</th>
 							<th>오픈 시간</th>
 							<th>클로즈 시간</th>
 							<th>가격</th>
@@ -187,8 +188,82 @@ $(document).ready(function(){
 							<td>${vo.min_people}</td>
 							<td>${vo.space_call}</td>
 							<td>${vo.zipcode}</td>
-							<td>${vo.s_category_no}</td>
-							<td>${vo.l_category_no}</td>
+							<jl:choose>
+									<jl:when test="${vo.s_category_no == 1}">
+										<td>공부</td>
+									</jl:when>
+									<jl:when test="${vo.s_category_no == 2}">
+										<td>회의</td>
+									</jl:when>
+									<jl:when test="${vo.s_category_no == 3}">
+										<td>파티</td>
+									</jl:when>
+									<jl:when test="${vo.s_category_no == 4}">
+										<td>레저</td>
+									</jl:when>
+									<jl:when test="${vo.s_category_no == 5}">
+										<td>스포츠</td>
+									</jl:when>
+									<jl:when test="${vo.s_category_no == 6}">
+										<td>기타</td>
+									</jl:when>
+							</jl:choose>
+							<jl:choose>
+									<jl:when test="${vo.l_category_no == 1}">
+										<td>서울</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 2}">
+										<td>경기</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 3}">
+										<td>인천</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 4}">
+										<td>강원</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 5}">
+										<td>대전</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 6}">
+										<td>세종</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 7}">
+										<td>충남</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 8}">
+										<td>충북</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 9}">
+										<td>부산</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 10}">
+										<td>울산</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 11}">
+										<td>경남</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 12}">
+										<td>경북</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 13}">
+										<td>대구</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 14}">
+										<td>광주</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 15}">
+										<td>전남</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 16}">
+										<td>전북</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 17}">
+										<td>제주</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 18}">
+										<td>전국</td>
+									</jl:when>
+							</jl:choose>
 							<td>${vo.the_time}</td>
 							<td><button class="remove_space" space_no="${vo.space_no}" >삭제</button></td>
 						</tr>

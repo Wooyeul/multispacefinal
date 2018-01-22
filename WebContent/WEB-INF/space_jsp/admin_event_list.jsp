@@ -18,7 +18,8 @@
 
 .select2 {
 	float: left;
-
+	padding-left : 5px;
+	padding-right : 5px;
 }
 
 .select3 {
@@ -86,7 +87,7 @@ text-align: center;
 			
 			<form id="textsearch" action="admin_event_list.do" method="post">
 				<div class="select2">
-					<select name="search_option">
+					<select name="search_option" class="form-control">
 						<option value="0">선택해주세요</option>
 						<option value="1">제목</option>
 						<option value="2">내용</option>

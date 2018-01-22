@@ -18,7 +18,8 @@
 
 .select2 {
 	float: left;
-
+	padding-left : 5px;
+	padding-right : 5px;
 }
 
 .select3 {
@@ -79,28 +80,29 @@ text-align: center;
 		<div class="panel panel-default">
 			<div class="panel-heading">
 					공지사항
-			<form id="form_search" action="admin_notice_list.do">
+			<form id="form_search" action="admin_notice_list.do" method="post">
 				<input type="hidden" name="pg" value="" id="pg">
 				<input type="hidden" name="search_content" value="${search.search_content}">
 				<input type="hidden" name="search_option" value="${search.search_option}">
 			</form>
 			
-			<form id="textsearch" action="admin_notice_list.do">
-				<div class="select2">
-					<select name="search_option">
-						<option value="0">선택해주세요</option>
-						<option value="1">제목</option>
-						<option value="2">내용</option>
-						<option value="3">제목 + 내용</option>
-					</select>
-				</div>
+			<form id="textsearch" action="admin_notice_list.do" method="post">
 					<div class="select2">
-					<input type="text" name="search_content" class="form-control" style="width: 300px;">
-						</div>
+						<select name="search_option" class="form-control">
+							<option value="0">선택해주세요</option>
+							<option value="1">제목</option>
+							<option value="2">내용</option>
+							<option value="3">제목 + 내용</option>
+						</select>
+					</div>
+					
+					<div class="select2">
+						<input type="text" name="search_content" class="form-control" style="width: 300px;">
+					</div>
 						
 						<div class="select2">
 						<input class="btn" type="submit" value="검색">
-						</div>						
+						</div>				
 				</form>
 				&nbsp;&nbsp;
 				<a href="admin_notice_add.do"> 
