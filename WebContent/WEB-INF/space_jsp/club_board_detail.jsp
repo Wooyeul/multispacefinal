@@ -28,6 +28,20 @@
 	.label_reple{
 		padding-bottom: 18px;
 	}
+	.repleId{
+		font-size: 120%; 
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
+	.repleContent{
+		font-size: 100%;
+		margin-bottom: 5px;
+	}
+	.repletime{
+		font-size: 100%; 
+		color: gray;
+	}
+	
 </style>
 </head>
 <body>
@@ -182,6 +196,7 @@
 			});
 			
 			
+			
 			// 글 수정 버튼 클릭 시 이벤트 발생
 			$("#textMod").on("click",function(){
 				$("#text_mod_modal").modal("show");
@@ -195,30 +210,35 @@
 			
 			// 댓글 등록 버튼 클릭 시 이벤트 발생
 			$("#add_reple_btn").on("click",function(){
-				var formData = $("#add_reple_frm").serialize();
-				$.ajax({
-					type : "POST",
-					url : "club_add_board_reple.do",
-					data : formData,
-					success	: function(rt) {
-						if(rt=="ok"){
-							$("#basic_mobody").text("댓글이 등록 되었습니다.");
-							$("#basic_modal").modal("show");
-							$("#basic_modal").on("hidden.bs.modal",function(){
-								$("#basic_modal").modal("hide");
-								$("#c_board_reple_content").val("");
-								find_reple();
-							});
-						}else if(rt=="no"){
-							$("#basic_mobody").text("댓글 처리가 실패 되었습니다.");
-							$("#basic_modal").modal("show");
-							$("#basic_modal").on("hidden.bs.modal",function(){
-								$("#basic_modal").modal("hide");
-								find_reple();
-							});
-						}
-				    }
-				});
+				if($("#c_board_reple_content").val()==''){
+					$("#basic_mobody").text("댓글을 입력해주세요.");
+					$("#basic_modal").modal("show");
+				}else{
+					var formData = $("#add_reple_frm").serialize();
+					$.ajax({
+						type : "POST",
+						url : "club_add_board_reple.do",
+						data : formData,
+						success	: function(rt) {
+							if(rt=="ok"){
+								$("#basic_mobody").text("댓글이 등록 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal").on("hidden.bs.modal",function(){
+									$("#basic_modal").modal("hide");
+									$("#c_board_reple_content").val("");
+									find_reple();
+								});
+							}else if(rt=="no"){
+								$("#basic_mobody").text("댓글 처리가 실패 되었습니다.");
+								$("#basic_modal").modal("show");
+								$("#basic_modal").on("hidden.bs.modal",function(){
+									$("#basic_modal").modal("hide");
+									find_reple();
+								});
+							}
+					    }
+					});
+				}
 			});
 			// 댓글 삭제 버튼 눌렀을 때 이벤트 발생
 			$(document).on("click",".delRe",function(){ 
@@ -258,31 +278,36 @@
 				$("#c_board_reple_no").attr("value",reNo)
 				$("#mod_modal").modal("show");
 				$("#mod_modal_Yes").on("click",function(){
-					var formData = $("#mod_frm").serialize();
-					$.ajax({
-						type : "POST",
-						url : "club_mod_board_reple.do",
-						data : formData,
-						success	: function(rt) {
-							if(rt=="ok"){
-								$("#mod_modal").modal("hide");
-								$("#basic_mobody").text("댓글이 수정 되었습니다.");
-								$("#basic_modal").modal("show");
-								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
-									find_reple();
-								});
-							}else{
-								$("#mod_modal").modal("hide");
-								$("#basic_mobody").text("댓글 수정 처리가 실패 되었습니다.");
-								$("#basic_modal").modal("show");
-								$("#basic_modal").on("hidden.bs.modal",function(){
-									$("#basic_modal").modal("hide");
-									find_reple();
-								}); 
-							}
-					    }
-					});
+					if($("#reple_content").val()==''){
+						$("#basic_mobody").text("댓글을 입력해주세요.");
+						$("#basic_modal").modal("show");
+					}else{
+						var formData = $("#mod_frm").serialize();
+						$.ajax({
+							type : "POST",
+							url : "club_mod_board_reple.do",
+							data : formData,
+							success	: function(rt) {
+								if(rt=="ok"){
+									$("#mod_modal").modal("hide");
+									$("#basic_mobody").text("댓글이 수정 되었습니다.");
+									$("#basic_modal").modal("show");
+									$("#basic_modal").on("hidden.bs.modal",function(){
+										$("#basic_modal").modal("hide");
+										find_reple();
+									});
+								}else{
+									$("#mod_modal").modal("hide");
+									$("#basic_mobody").text("댓글 수정 처리가 실패 되었습니다.");
+									$("#basic_modal").modal("show");
+									$("#basic_modal").on("hidden.bs.modal",function(){
+										$("#basic_modal").modal("hide");
+										find_reple();
+									}); 
+								}
+						    }
+						});
+					}
 				});
 				$("#mod_modal_No").on("click",function(){
 					$("#mod_modal").modal("hide");
@@ -327,9 +352,9 @@
 				 	var list = window.eval("("+rt+")");
 				 	var html = "";
 				 	for( var i = 0 ; i < list.data.length ; i++ ){
-				 		html += "<label id='repleId' class='l' style='font-size: 120%; font-weight: bold;'><span class='glyphicon glyphicon-user'></span>"+list.data[i].user_id +"</label><br/>";
-				 		html += "<label id='repleContent' class='l' style='font-size: 100%;'>"+list.data[i].c_board_reple_content +"</label><br/>";
-						html += "<label id='repletime' class='l' style='font-size: 100%; color: gray;'>"+list.data[i].the_time;
+				 		html += "<label id='repleId' class='repleId'><span class='glyphicon glyphicon-user'></span>"+list.data[i].user_id +"</label><br/>";
+				 		html += "<label id='repleContent' class='repleContent'>"+list.data[i].c_board_reple_content +"</label><br/>";
+						html += "<label id='repletime' class='repletime'>"+list.data[i].the_time;
 						if(list.data[i].user_id=='${user_id}'){
 							html += " <a class='delRe' reNo='"+list.data[i].c_board_reple_no+"' boardNo='"+list.data[i].c_board_no+"'user_id='"+list.data[i].user_id+ 
 							"'href='#'><span class='glyphicon glyphicon-remove'></span></a>"+
