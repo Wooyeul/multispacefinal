@@ -1,45 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+<title>Welcome to Multi Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+
+<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+<link rel="stylesheet" href="./mypage_css/Myclub.css">
+	
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
+
+<style type="text/css">
 
 iframe {
 	display: block;
 	border: none;
 	width: 100%;
-	height: 1000px;
+	height: 919px;
 	align:center;
 }
 
 
-ul {
-	display: inline;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+
+.mypage_main {
 	height: 100%;
 	
 }
 
-li a {
-	font-weight: bold;
-	display: block;
-	color: green;
-	padding: 8px 16px;
-	text-decoration: none;
+
+.mypage_main ul {
+	display: inline;
+	list-style-type: none;
+	margin: 10px;
+	padding: 10px;
+	height: 100%;
+	
 }
 
 
-li a:hover {
-	background-color: green;
-	color: green;
+.mypage_main li a {
+	color: black;
+    position: relative;
+    display: block;
+    padding: 20px 15px;
 }
+
 
 
 
@@ -51,9 +67,9 @@ li a:hover {
 	<script>
 	$(document).ready(function(){
 		
-	/* ************************** top_nav - »ó´Ü°íÁ¤ ************************** */	
+	/* ************************** top_nav - ìƒë‹¨ê³ ì • ************************** */	
 		
-		var scOffset = $('.navbar-Menu').offset(); //top_navÀÇ ÇöÀç ÁÂÇ¥ ±¸ÇÔ.
+		var scOffset = $('.navbar-Menu').offset(); //top_navì˜ í˜„ì¬ ì¢Œí‘œ êµ¬í•¨.
 		
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > scOffset.top+50) {
@@ -63,26 +79,26 @@ li a:hover {
 			}
 		});
 
-	/* ************************** top_nav - ·Î±×ÀÎ ************************** */	
+	/* ************************** top_nav - ë¡œê·¸ì¸ ************************** */	
 		var url = "chk_login.do";
  		ajaxGet(url,function(rt){
  			
- 				// ·Î±×ÀÎ ½ÇÆĞ½Ã : rt°ª -> ("/main_html.do")¿¡¼­ 10002 return
+ 				// ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ : rtê°’ -> ("/main_html.do")ì—ì„œ 10002 return
  				if(rt =="10002"){ 
 					$("#login_nav").hide();
 					$("#non_login_nav").show();
 				}
  					
- 				// ·Î±×ÀÎ ½Ã : rt°ª -> user_name
+ 				// ë¡œê·¸ì¸ ì‹œ : rtê°’ -> user_name
 				else if(rt!=""){ 
 					$("#login_nav").show();
 					$("#non_login_nav").hide();
-					$("#user_name").text(rt+"´ÔÀÌ ·Î±×ÀÎÇÏ¼Ì½À´Ï´Ù.");
+					$("#user_name").text(rt+"ë‹˜");
 				}
  			});	
 		
  		
- 	/* ************************** ÂÊÁöÇÔ ************************** */	
+ 	/* ************************** ìª½ì§€í•¨ ************************** */	
  		
  		
 		$("#receiveMessageBox").hide();
@@ -153,75 +169,37 @@ li a:hover {
 	</script>
 </head>
 <body>
-
-
-<div class="jbTitle">
-      <h1>Site Title</h1>
-</div>
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default">
-
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="main.html">multi space</a>
-			</div>
-			
-			<div id="navbar" class="navbar-collapse collapse navbar-Menu ">
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_mypage.jsp"%>  
+	<!-- *********************  header - end  ************************ -->
 	
-				<ul class="nav navbar-nav ">
-					<li><a href="space_home.do">°ø°£</a></li>
-					<li><a href="club_home.do">¸ğÀÓ</a></li>
-					<li><a href="community_list.do">Ä¿¹Â´ÏÆ¼</a></li>
-					<li><a href="event_user_list.do">ÀÌº¥Æ®</a></li>	
-					<li><a href="notice_list.do">°øÁö»çÇ×</a></li>
-					<li><a href="faq_list.do">FAQ</a></li>			
-					<li><a href="admin_main.do">°ü¸®ÀÚ</a></li>			
-				</ul>
-				
-				<ul id="login_nav" class="nav navbar-nav navbar-right">
-					<li><a href="#" id="user_name"></a></li>
-					<li><a href="mypage_moveMypageMainPage.do">¸¶ÀÌÆäÀÌÁö</a></li>
-					<li><a href="home_logout.do">·Î±×¾Æ¿ô</a></li>					
-				</ul>
-				
-				<ul id="non_login_nav" class="nav navbar-nav navbar-right">
-					<li><a href="home_moveLoginPage.do">·Î±×ÀÎ</a></li>				
-				</ul>
-
-				
-			</div>
-		</div>
-	</nav>
-	<!--/.nav-collapse -->
-
-
 
 
 <div class="container-fluid">
 
 	
 	<div class="row">
-			<div class="col-sm-2">
+			<div class="col-sm-2 mypage_main">
 				<ul class="nav">
-					<li class="active"><a data-toggle="tab" href="#myInfo"id="reflag1">[³»
-							Á¤º¸]</a></li>
-					<li id="reflag2"><a data-toggle="tab" href="#myBooking">±¸¸Å Á¤º¸</a></li>
-					<li id="reflag3"><a data-toggle="tab" href="#myBookmark">Áñ°ÜÃ£±â</a></li>
+					<li class="active"><a data-toggle="tab" href="#myInfo"id="reflag1">[ë‚´
+							ì •ë³´]</a></li>
+					<li id="reflag2"><a data-toggle="tab" href="#myBooking">êµ¬ë§¤ ì •ë³´</a></li>
+					<li id="reflag3"><a data-toggle="tab" href="#myBookmark">ì¦ê²¨ì°¾ê¸°</a></li>
 					<li id="reflag4"><a data-toggle="tab" href="#myQna">Q&A</a></li>
-					<li id="reflag5"><a data-toggle="tab" href="#myClub">³» ¸ğÀÓ</a></li>
-					<li id="reflag6"><a data-toggle="tab" href="#myReview">³» ÈÄ±â</a></li>
-					<li id="reflag7"><a data-toggle="tab" id="message_nav" href="#myReceiveMessageBox">ÂÊÁö ÇÔ</a></li>
+					<li id="reflag5"><a data-toggle="tab" href="#myClub">ë‚´ ëª¨ì„</a></li>
+					<li id="reflag6"><a data-toggle="tab" href="#myReview">ë‚´ í›„ê¸°</a></li>
+					<li id="reflag7"><a data-toggle="tab" id="message_nav" href="#myReceiveMessageBox">ìª½ì§€ í•¨</a></li>
 						
 					<ul class="sub_message_nav">
 						<li id="receiveMessageBox" class="active"><a
-							data-toggle="tab" href="#myReceiveMessageBox">¹ŞÀº ÂÊÁöÇÔ</a></li>
-						<li id="sendMessageBox"><a data-toggle="tab" href="#mySendMessageBox">º¸³½ ÂÊÁöÇÔ</a></li>
-						<li id="sendMessage"><a data-toggle="tab" href="#mySendMessage">ÂÊÁö º¸³»±â</a></li>
+							data-toggle="tab" href="#myReceiveMessageBox">ë°›ì€ ìª½ì§€í•¨</a></li>
+						<li id="sendMessageBox"><a data-toggle="tab" href="#mySendMessageBox">ë³´ë‚¸ ìª½ì§€í•¨</a></li>
+						<li id="sendMessage"><a data-toggle="tab" href="#mySendMessage">ìª½ì§€ ë³´ë‚´ê¸°</a></li>
 					</ul>
 
-					<li id="reflag10"><a data-toggle="tab" href="#sellerWrite">[ÆÇ¸ÅÀÚ]</a></li>
-					<li id="reflag11"><a data-toggle="tab" href="#sellerWrite">³» ±Û</a></li>
-					<li><a data-toggle="tab" href="#sellerAllChart">ÀüÃ¼ Åë°è</a></li>
+					<li id="reflag10"><a data-toggle="tab" href="#sellerWrite">[íŒë§¤ì]</a></li>
+					<li id="reflag11"><a data-toggle="tab" href="#sellerWrite">ë‚´ ê¸€</a></li>
+					<li><a data-toggle="tab" href="#sellerAllChart">ì „ì²´ í†µê³„</a></li>
 
 				</ul>
 			</div>
@@ -229,34 +207,34 @@ li a:hover {
 
 	<div class="tab-content col-sm-10" >
 		<div id="myInfo"  class="tab-pane active fade in">	
-			<iframe src="myinfo_ckpass.do"  align="center" id="flag1"></iframe>
+			<iframe class="mypage_iframe" src="myinfo_ckpass.do"  align="center" id="flag1"></iframe>
 		</div>
 		<div id="myBooking" class="tab-pane fade">
-			<iframe src="mypage_moveMypageBookingPage.do"  align="center" id="flag2"></iframe>
+			<iframe class="mypage_iframe" src="mypage_moveMypageBookingPage.do"  align="center" id="flag2"></iframe>
 		</div>
 		<div id="myBookmark"   class="tab-pane fade">
-			<iframe src="bookmark_findAll.do"  align="center" id="flag3"></iframe>
+			<iframe class="mypage_iframe" src="bookmark_findAll.do"  align="center" id="flag3"></iframe>
 		</div>
 		<div id="myQna"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageQnAPage.do"  align="center" id="flag4"></iframe>
+			<iframe class="mypage_iframe" src="mypage_moveMypageQnAPage.do"  align="center" id="flag4"></iframe>
 		</div>
 		<div id="myClub"   class="tab-pane fade">
-			<iframe src="myclub_findAll.do"  align="center" id="flag5"></iframe>
+			<iframe class="mypage_iframe" src="myclub_findAll.do"  align="center" id="flag5"></iframe>
 		</div>
 		<div id="myReview"   class="tab-pane fade">
-			<iframe src="mypage_review_findAll.do"  align="center" id="flag6"></iframe>
+			<iframe class="mypage_iframe"  src="mypage_review_findAll.do"  align="center" id="flag6"></iframe>
 		</div>
 		<div id="myReceiveMessageBox"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageReceiveMessagePage.do"  align="center" id="flag7"></iframe>
+			<iframe class="mypage_iframe" src="mypage_moveMypageReceiveMessagePage.do"  align="center" id="flag7"></iframe>
 		</div>
 		<div id="mySendMessageBox"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageSendMessagePage.do"  align="center" id="flag8"></iframe>
+			<iframe class="mypage_iframe" src="mypage_moveMypageSendMessagePage.do"  align="center" id="flag8"></iframe>
 		</div>
 		<div id="mySendMessage"   class="tab-pane fade">
-			<iframe src="mypage_moveMypageWriteMessagePage.do"  align="center" id="flag9"></iframe>
+			<iframe class="mypage_iframe" src="mypage_moveMypageWriteMessagePage.do"  align="center" id="flag9"></iframe>
 		</div>
 		
-		<!-- **************** ¸¶ÀÌÆäÀÌÁö-ÆÇ¸ÅÀÚ *************** -->
+		<!-- **************** ë§ˆì´í˜ì´ì§€-íŒë§¤ì *************** -->
 		
 		<div id="sellerWrite"   class="tab-pane fade">
 			<iframe src="myhost_findAll.do"  align="center" id="flag10"></iframe>

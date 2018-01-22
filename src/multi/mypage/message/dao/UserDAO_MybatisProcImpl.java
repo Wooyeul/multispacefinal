@@ -16,7 +16,10 @@ public class UserDAO_MybatisProcImpl implements UserDAO{
 
 	@Override
 	public UserVO find_userInfo(String user_id) throws Exception {
-		return sqlSession.selectOne("mypage_message_proc.mypage_myinfoFindUserInfo",user_id);
+		return sqlSession.selectOne("mypage_myinfo_sujin_proc.mypage_myinfoFindUserInfo",user_id);
 	}
+	
+	
+	
 
 }
