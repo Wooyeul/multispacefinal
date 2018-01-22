@@ -173,13 +173,9 @@ ga('send', 'pageview');
 					 html4 += "</div>";			 
 					 html4 += "</div>";
 					 html4 += "</div>";
-					 
 				 }
 				 $("#main_community_list").html(html4);
-				 
 			});
-				
-
 		});
 	</script>
 </head>

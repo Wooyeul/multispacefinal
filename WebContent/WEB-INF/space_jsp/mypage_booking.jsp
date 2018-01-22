@@ -25,10 +25,10 @@
 <body>
 	<table>
 		<tr>
-			<th width="40">space_no</th>
-			<th width="100">du_time</th>
-			<th width="100">booking_date</th>
-			<th width="100">booking_message</th>
+			<th width="20%">글번 호</th>
+			<th width="30%">예약시간</th>
+			<th width="30%">예약한 날짜</th>
+			<th width="20%">비고</th>
 		</tr>
 		<jl:forEach var="bkInfo" items="${bookingInfo}">
 			<tr>
