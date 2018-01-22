@@ -33,7 +33,7 @@
 				var temp = $(this).attr("abc");
 				
 				document.frm.method="POST";
-				document.frm.action="space_detail.do?space_no="+temp;
+				document.frm.action="space_detail_no_header.do?space_no="+temp;
 				document.frm.submit();
 			});
 		});
@@ -65,7 +65,7 @@
 			<td><h4>${rl.space_no}</h4></td>
 			<td><h4>${rl.review_title}</h4></td>
 			<td><h4>${rl.review_content}</h4></td>
-			<td><a href="space_detail.do_no_header.do?space_no=${rl.space_no}"><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
+			<td><a href="space_detail_no_header.do?space_no=${rl.space_no}"><img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
 			<td><h4>${rl.user_id}</h4></td>
 			<td><h4>${rl.the_time}</h4></td>
 			<td><h4>${rl.review_score}</h4></td>
