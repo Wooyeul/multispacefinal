@@ -207,11 +207,14 @@ $(document).ready(function() {
 			var dc = "?dc=" + new Date().getTime();
 			ajaxGet("community_board_recom.do" + dc	+ "&user_id="+user_id+"&com_board_no=${vo.com_board_no}", 
 					function(rt) {
-				if (rt == -1) {
-					$("#modalrecom").modal("show");
+				if (rt != -1) {
+					e("recomCount").innerHTML = 
+						"<button type="+"'button'"+"id='btnrecom'"+ "class='"+"btn btn-default btn-circle'"+"><i class='"+"fa fa-heart'"+"></i></button>&emsp;"+rt;
+					
 				} 
-				else 
-				{e("recomCount").innerHTML = "<button type="+"'button'"+"id='btnrecom'"+ "class='"+"btn btn-default btn-circle'"+"><i class='"+"fa fa-heart'"+"></i></button>&emsp;"+rt;}
+				else {
+					$("#modalrecom").modal("show");
+				}
 			});
 		});
 		//추천끝
