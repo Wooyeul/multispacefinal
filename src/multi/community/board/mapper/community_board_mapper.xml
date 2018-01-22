@@ -228,8 +228,8 @@ DROP PROCEDURE IF EXISTS p_comm_boardDelByPK;
 	
 	-->
 	<parameterMap id="PM_p_comm_boardIncRecomLogic" type="main.vo.Community_boardVO">
-		<parameter property="com_board_no" mode="IN" jdbcType="INTEGER"/>
 		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="com_board_no" mode="IN" jdbcType="INTEGER"/>
 		<parameter property="recom_count" mode="OUT" jdbcType="INTEGER"/>
 	</parameterMap>
 	
