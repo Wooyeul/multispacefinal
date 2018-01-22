@@ -170,7 +170,9 @@
 						</div>
 						<!-- 글쓰기 버튼-->
 						<div class="commask">
-							<input class="btn btn-warning" type="button" value="글쓰기" id="write" xyz="${user_id}" />
+							<jl:if test="${user_id ne ''}">
+								<input class="btn btn-warning" type="button" value="글쓰기" id="write" xyz="${user_id}" />
+							</jl:if>
 						</div>
 					</div>
 				</div>

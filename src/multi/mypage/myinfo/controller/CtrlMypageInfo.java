@@ -70,7 +70,7 @@ public class CtrlMypageInfo {
 			String phone_cen = rvo.getPhone().substring(3, 7);
 			String phone_end = rvo.getPhone().substring(7);
 			String email = rvo.getEmail().substring(0, rvo.getEmail().indexOf("@"));
-			ZipcodeVO zvo = myInfoDAO.find_zipcode1(rvo.getZipcode());
+			ZipcodeVO zvo = myInfoDAO.find_zipcode(rvo.getZipcode());
 			mnv.addObject("phone_cen", phone_cen);
 			mnv.addObject("phone_end", phone_end);
 			mnv.addObject("email", email);

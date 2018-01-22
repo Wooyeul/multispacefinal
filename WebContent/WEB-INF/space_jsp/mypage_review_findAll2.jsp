@@ -36,7 +36,7 @@
 			<tr>
 				<td>
 				<a href="space_detail.do?space_no=${rl.space_no}">
-				<img src="img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
+				<img src="space_img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
 				<td>${rl.review_title}</td>
 				<td>${rl.review_content}</td>
 				<td>${rl.review_score}</td>

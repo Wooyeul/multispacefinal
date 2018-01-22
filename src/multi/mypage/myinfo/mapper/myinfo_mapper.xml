@@ -58,18 +58,8 @@
 		{call p_mypage_del_user(#{user_id})}
 	</delete>
 	
-	<resultMap type="main.vo.ZipcodeVO" id="RM_p_user_zipcode_find">
-		<result property="user_id" column="user_id"/>
-		<result property="zonecode" column="zonecode"/>
-		<result property="address" column="address"/>
-		<result property="jibunAddress" column="jibunAddress"/>
-		<result property="detail" column="detail"/>
-	</resultMap>
 	
 	<!-- zipcode 가져오기 -->
-	<select id="p_user_zipcode_find" resultMap="RM_p_user_zipcode_find" parameterType="java.lang.String" statementType="CALLABLE">
-		{call p_user_zipcode_find(#{user_id})}
-	</select>
 	
  	<resultMap type="main.vo.ZipcodeVO" id="RM_zipcode_find">
 		<result property="sido" column="sido"/>
@@ -79,7 +69,7 @@
 	</resultMap>
 	
 	<select id="zipcode_find" resultMap="RM_zipcode_find" parameterType="java.lang.String">
-		select sido,gugun,dong,bunji from zipcodet where zipcode = #{zipcode}
+		{call p_user_zipcode_find(#{zipcode})}
 	</select>  
 	
 	
