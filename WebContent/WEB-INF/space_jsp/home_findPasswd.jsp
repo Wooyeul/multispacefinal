@@ -141,7 +141,7 @@ text-align: center;
 			<tr>
 				<td width="15"></td>
 				<td width="12"></td>
-				<td width="95" height="35" class="g_13" align="left">아0이디</td>
+				<td width="95" height="35" class="g_13" align="left">아이디</td>
 				<td width="300" class="g_13" align="left">
 					<input name="user_id" class="textareabg" size="15" maxlength="20"  placeholder="Id" />
 				</td>
@@ -152,8 +152,8 @@ text-align: center;
 				<td width="12"></td>
 				<td width="95" height="35" class="g_13" align="left">주민번호</td>
 				<td width="300" class="g_13" align="left">
-					<input name="ssn1" class="textareabg" size="15" maxlength="20" /> - 
-					<input name="ssn2" class="textareabg" size="15" maxlength="20" />
+					<input name="ssn1" class="textareabg" size="15" maxlength="6" /> - 
+					<input type="password" name="ssn2" class="textareabg" size="15" maxlength="7" />
 				</td>
 			</tr>
 			
