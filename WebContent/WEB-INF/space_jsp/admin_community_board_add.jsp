@@ -70,7 +70,7 @@ text-align: right;
 		<textarea name="com_board_content" rows="10" cols="60"  class="form-control"></textarea>
 		<br> 
 		<input class="btn" type="submit" value="등록" />
-		<input type="button"class="btn" id="cancel" value="취소"/>
+		<input type="button" class="btn" id="cancel" value="취소"/>
 	</form>
 	
 
