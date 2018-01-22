@@ -18,6 +18,5 @@
 </head>
 <body>
 <img src="stastic_images/visit_statstic_example.png" />
-
 </body>
 </html>

@@ -123,7 +123,7 @@ ga('send', 'pageview');
                                     <a id="admin_users.do" target="iframe1" href="admin_users.do">일반 회원 관리</a>
                                 </li>
                                 <li>
-                                    <a target="iframe1" href="admin_user_stastic.do">방문자 통계</a>
+                                	<a href="https://analytics.google.com/analytics/web/#embed/report-home/a112826214w168079406p168230732/">방문자 통계</a>
                                 </li>
                             </ul>
                         </li>
@@ -253,13 +253,6 @@ ga('send', 'pageview');
     <!-- Custom Theme JavaScript -->
     <script src="./Resouces_admin//dist/js/sb-admin-2.js"></script>
 
-	
-	
-	<!-- Google Analytics -->
-	<script>
-	
-	</script>
-<!-- End Google Analytics -->
 
 
 </body>
