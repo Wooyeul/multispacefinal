@@ -59,7 +59,7 @@ BEGIN
 			SELECT * FROM ClubT WHERE l_category_no=v_l_category_no	AND club_title LIKE "%v_searchContent%"
 			OR club_content LIKE"%v_searchContent%";
 		ELSEIF v_searchOption=3 THEN
-			SELECT * FROM ClubT WHERE l_category_no=v_l_category_no	AND user_id LIKE "%user_id%"
+			SELECT * FROM ClubT WHERE l_category_no=v_l_category_no	AND user_id LIKE "%user_id%";
 		END IF;
 	END IF;
 

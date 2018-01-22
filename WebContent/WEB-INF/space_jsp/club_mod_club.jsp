@@ -199,31 +199,31 @@
 				location.href="club_detail.do?club_no="+${vo.club_no};
 			});
 			
+			/* 네비 바 부분 */
 			var scOffset = $( '.navbar-Menu' ).offset();
 			$( window ).scroll( function() {
-				if ( $( document ).scrollTop() > scOffset.top ) {
+				if ( $( document ).scrollTop() > scOffset.top+50 ) {
 					$( '.navbar' ).addClass( 'navbar-fixed-top' );
-				}else {
+				}
+				else {
 					$( '.navbar' ).removeClass( 'navbar-fixed-top' );
 				}
 			});
-			
-			
 			var url = "chk_login.do";
 		 	ajaxGet(url,function(rt){
-			 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
-			 if(rt =="10002"){ 
-				$("#login_nav").hide();				
+			// 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+			if(rt =="10002"){ 
+				$("#login_nav").hide();
 				$("#non_login_nav").show();
-			 }
-			 					
-			 // 로그인 시 : rt값 -> user_name
-			 else if(rt!=""){ 
-				 $("#login_nav").show();
-				 $("#non_login_nav").hide(); 
-				 $("#user_name").text(rt+"님이 로그인하셨습니다.");
-			 }
-			});	
+			}
+			// 로그인 시 : rt값 -> user_name
+			else if(rt!=""){ 
+			$("#login_nav").show();
+			$("#non_login_nav").hide(); 
+			$("#user_name").text(rt+"님");
+				}
+			});
+		 	/* 네비 바 부분 */
 		});
 	</script>
 </body>
