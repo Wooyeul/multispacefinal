@@ -35,8 +35,8 @@
 		<label><span class="glyphicon glyphicon-user"></span>
 			${qnaInfo.user_id}</label>
 	</div>
-	<div class="textarea_h">
-		<textarea rows="15" cols="30" disabled="disabled" class="form-control">${qnaInfo.space_qna_content}</textarea>
+	<div class="textarea_h" >
+		<textarea rows="15" cols="30" disabled="disabled" class="form-control" style="cursor:default">${qnaInfo.space_qna_content}</textarea>
 		<br />
 	</div>
 
@@ -45,10 +45,10 @@
 			<label id="reple" class="l" style="width: 100px; font-size: 100%">답변</label>
 		</div>
 		<div class="form-group" align="left">
-			<div class="input-group">
+			<div class="input-group" >
 				<label id="c_board_reple_content" name="c_board_reple_content"
-					style="height: 80px;" class="form-control">
-					${Space_qna_repleVO.space_qna_reple_content } </label> 
+					style="height: 80px; " class="form-control">
+					${Space_qna_repleVO.space_qna_reple_content} </label> 
 					<span class="input-group-addon" style="background-color: #00C73C;"></span>
 			</div>
 		</div>

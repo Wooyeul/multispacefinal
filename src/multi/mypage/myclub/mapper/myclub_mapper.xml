@@ -27,9 +27,9 @@
 	
 	<!-- 클럽찾기 페이징 -->
 	<select id="mypage_search_club" parameterType="multi.mypage.vo.Mypage_searchVO" resultType="main.vo.ClubVO">
-		SELECT c.club_no, c.user_id, c.club_name, c.club_title,c.club_content,c.club_thumb_img,c.max_member,c.l_category_no, c.c_category_no
+		SELECT distinct(c.club_no), c.user_id, c.club_name, c.club_title,c.club_content,c.club_thumb_img,c.max_member,c.l_category_no, c.c_category_no
 		FROM clubt c, user_clubt u
-		WHERE c.club_no = u.club_no AND u.user_id = #{user_id} AND 0=0
+		WHERE (c.club_no = u.club_no AND u.user_id = #{user_id} AND 0=0) OR c.user_id = #{user_id}
 		<if test="start_no !=null">
 			ORDER BY user_id ASC LIMIT #{start_no},10
 		</if>

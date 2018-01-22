@@ -51,7 +51,7 @@
 			보낸 사람 : ${receiveMessageRead.send_user_id}</label>
 	</div>
 	<div class="textarea_h">
-		<textarea rows="15" cols="30" disabled="disabled" class="form-control">${receiveMessageRead.msg_content}</textarea>
+		<textarea rows="15" cols="30" disabled="disabled" class="form-control" style="cursor:default">${receiveMessageRead.msg_content}</textarea>
 		<br />
 	</div>
 	<form action="del_msg.do" method="POST" id="frm">
