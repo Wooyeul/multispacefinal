@@ -84,46 +84,151 @@
  	.form-wrapper{
 		text-align : center;
 	}
+	
+	
+	/* 여기부터 수진이한테 보내지마 내가 보낼게 */
+	.form_back{
+		align :center;
+		background-color: #bfd9f2;
+		height : 300px;
+	}
+	input[type="radio"] { 
+		display: none; 
+	} 
+	input[type="radio"] + label { 
+		font-weight: 400; font-size: 14px; 
+	} 
+	input[type="radio"] + label span { 
+		display: inline-block; 
+		width: 18px; height: 18px;
+		margin: -2px 10px 0 0; 
+		vertical-align: middle; 
+		cursor: pointer; 
+		-moz-border-radius: 50%; 
+		border-radius: 50%; 
+		border: 3px solid #ffffff; 
+	} 
+	input[type="radio"] + label span { 
+		background-color: #fff; 
+	} 
+	input[type="radio"]:checked + label { 
+		color: #333; font-weight: 700; 
+	} 
+	input[type="radio"]:checked + label span { 
+		background-color: #95badf; 
+		border: 2px solid #ffffff;
+		box-shadow: 2px 2px 2px rgba(0,0,0,.1); 
+	} input[type="radio"] + label span, input[type="radio"]:checked + label span { 
+		-webkit-transition: background-color 0.24s linear; 
+		-o-transition: background-color 0.24s linear; 
+		-moz-transition: background-color 0.24s linear;
+		 transition: background-color 0.24s linear; 
+	}
+	
+	.c_div{
+		margin: 0 auto;
+	}
+	 .select_div3 {
+	 	width: 400px;
+		float: left;
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	.selectdiv1{
+		vertical-align : middle;
+		width: 800px;
+		float: left;
+	}
+	.select_div2{
+		width: 150px;
+		float: left;
+	}
+	.select_div1{
+		float: left;
+	}
+	.select_div4 {
+	 	width: 100px;
+		float: left;
+	}
+	.select_div0 {
+		width: 600px;
+		margin:0 auto;
+		margin-top: 5px;
+	}	
+	
  </style>
 </head>
 <body>
 	<!-- *********************  header  ************************ -->
     <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
-	<div class="container">
-		<section class="listings">
-			<div class="wrapper">
-				<div class="properties_list">
-					<div class="form-wrapper">
-						<form target="boy" action="space_home_iframe.do">
-							<div class="form-group">
-								<label for="s_category_no">카테고리</label>
-								<jl:forEach var="category" items="${category_list }">
-									<label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
-								</jl:forEach>
-							</div>
-							<div class="form-group">
-								<label for="l_category_no">지역</label>
-								<jl:forEach var="local" items="${local_list }">
-									<label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
-								</jl:forEach>
-							</div>
-							<select name="search_option">
+	
+	
+	<div class="form_back" >
+		<div class="form-wrapper">
+			<form target="boy" action="space_home_iframe.do">
+				<br/><h3>지역별 선택</h3>
+					<div class="c_div" >
+						<jl:forEach var="local" items="${local_list}" varStatus="i">
+							<%-- <label class="radio-inline"><input type="radio" name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label> --%>
+							<input id="l_${i.count}" name="l_category_no" value="${local.l_category_no}" type="radio"> 
+							<label for="l_${i.count}" class="category_label"><span></span>
+								${local.l_category_name}
+							</label>
+						</jl:forEach>
+					</div>
+				<br/>
+				<br/><h3>분야별 선택</h3>
+				<div class="c_div">
+					<jl:forEach var="category" items="${category_list }" varStatus="i">
+						<%-- <label class="radio-inline"><input type="radio" name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label> --%>
+						<input id="s_${i.count}" name="s_category_no" value="${category.s_category_no}" type="radio"> 
+						<label for="s_${i.count}" style="margin-right: 20px;"><span></span>
+							${category.s_category_name}
+						</label>
+					</jl:forEach>
+				</div><br/>
+				<div class="select_div0">
+					<div class="selectdiv1">
+						<div class="select_div2">
+							<select name="search_option" class="form-control">
 								<option value="0"></option>
 								<option value="1">제목</option>
 								<option value="2">내용</option>
 								<option value="3">제목+내용</option>
 							</select>
-							<input type="text" name="search_content"/>
-							<input type="submit" value="제출">
-						</form>
+						</div>
+						<div class="select_div3">
+							<input type="text" name="search_content" class="form-control selectdiv3"/>
+						</div>
+						<div class="select_div4">
+							<input type="submit" id="submitBtn" value="검색" class="btn">
+						</div>
 					</div>
-				<hr/>
-				<iframe name="boy" src="space_home_iframe.do" class="iframe-design" scrolling="no" height="1400px" frameborder="0"></iframe>
-				<div class="text-right">
-					<a href="space_add.do" class="sh_a" id="add_space" style="display: none;"><button class="btn_square">공간 등록</button></a>
 				</div>
-			</div>
+			<!-- 	
+				<select name="search_option">
+					<option value="0"></option>
+					<option value="1">제목</option>
+					<option value="2">내용</option>
+					<option value="3">제목+내용</option>
+				</select>
+				<input type="text" name="search_content"/>
+				<input type="submit" value="제출"> -->
+			</form>
+		</div>
+	</div>
+	
+	<div class="container">
+		<section class="listings">
+			<div class="wrapper">
+				<div class="properties_list">
+					<hr/>
+					<iframe name="boy" src="space_home_iframe.do" class="iframe-design" scrolling="no" height="1400px" frameborder="0"></iframe>
+					<div class="text-right">
+						<a href="space_add.do" class="sh_a" id="add_space" style="display: none;"><button class="btn_square">공간 등록</button></a>
+					</div>
+				</div>
 				<!-- 상태 모달 -->
 				<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -145,8 +250,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	</div>
 		
 		
 		<!-- ******************************* footer ******************************* -->
