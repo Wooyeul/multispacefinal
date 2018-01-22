@@ -75,8 +75,8 @@ $("document").ready(function(){
 	<input type="hidden" name="eve_no" value="${text.eve_no}">
 	<label>썸네일 업로드</label><br/><br/>
 	<input type="file" name="eve_thumb_img" /> <br/>
-		<input type="button" class="mod_complete" value="수정 완료 하기"/> &nbsp;&nbsp;
-		<input type="button" value="취소 하기" onclick="window.history.back()"/>
+		<input type="button" class="mod_complete btn" value="수정 완료 하기"/> &nbsp;&nbsp;
+		<input type="button" class="btn" value="취소 하기" onclick="window.history.back()"/>
 	</form>
 	
 <!-- 이벤트 수정 완료시 모달 -->
