@@ -579,8 +579,7 @@ public class CtrlSpace {
 		Space_qna_repleVO space_qna_reple = space_QnA_RepleDAO.find_space_QnA_Reple(space_QnA_RepleVO);
 		try{
 		String qna_reple = 
-				" { 'qna_reple_content' :'"+ space_qna_reple.getSpace_qna_reple_content()+"',"
-				+ "'qna_reple_title' :'"+space_qna_reple.getSpace_qna_reple_title()+"'}";
+				" { 'qna_reple_content' :'"+ space_qna_reple.getSpace_qna_reple_content()+"}";
 			return qna_reple;
 		} catch( Exception e ) {return null;}	
 	}

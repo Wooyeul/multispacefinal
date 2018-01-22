@@ -48,10 +48,10 @@
 	<bean id="space_space_QnADAO" class="multi.space.dao.Space_QnADAO_MybatisProcImpl" />
 
 	<!--space_Qna_RepleDAO -->
-	<bean id="space_space_QnA_RepleDAO" class="multi.space.dao.Space_QnA_RepleDAO_MySQLImpl" />
+	<bean id="space_space_QnA_RepleDAO" class="multi.space.dao.Space_QnA_RepleDAO_MybatisProcImpl" />
 	
 	<!--userDAO -->
-	<bean id="space_userDAO" class="multi.space.dao.UserDAO_MySQLImpl" />
+	<bean id="space_userDAO" class="multi.space.dao.UserDAO_MybatisProcImpl" />
 	
 	<!--hostDAO -->
 	<bean id="space_hostDAO" class="multi.space.dao.HostDAO_MybatisProcImpl" />

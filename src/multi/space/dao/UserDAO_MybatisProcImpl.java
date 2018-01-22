@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import main.vo.UserVO;
 
-public class UserDAO_MySQLImpl implements UserDAO{
+public class UserDAO_MybatisProcImpl implements UserDAO{
 	
 	@Autowired @Qualifier("sqlSession")
 	SqlSession sqlSession = null;
