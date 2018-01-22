@@ -10,16 +10,19 @@
 		/> </mappers> -->
 
 	<mappers>
-		<mapper resource="multi/space/mapper/space_mapper.xml" />
 		<mapper resource="multi/space/mapper/space_procedure_mapper.xml" />
 		
 		<mapper resource="multi/space/mapper/booking_mapper.xml" />
-		<mapper resource="multi/space/mapper/space_QnA_mapper.xml" />
+		<mapper resource="multi/space/mapper/space_QnA_procedure_mapper.xml" />
+		
 		<mapper resource="multi/space/mapper/space_QnA_Reple_mapper.xml" />
-		<mapper resource="multi/space/mapper/review_mapper.xml" />
+		<mapper resource="multi/space/mapper/review_procedure_mapper.xml" />
+		
 		<mapper resource="multi/space/mapper/user_mapper.xml"/>
-		<mapper resource="multi/space/mapper/host_mapper.xml"/>
-		<mapper resource="multi/space/mapper/bookmark_mapper.xml"/>
+		
+		<mapper resource="multi/space/mapper/host_procedure_mapper.xml"/>
+		
+		<mapper resource="multi/space/mapper/bookmark_procedure_mapper.xml"/>
 		
 		<mapper resource="multi/home/userjoin/mapper/userjoin_mapper.xml" />
 		<mapper resource="multi/mypage/myinfo/mapper/myinfo_mapper.xml" />

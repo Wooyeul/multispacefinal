@@ -45,7 +45,7 @@
 	<bean id="space_bookingDAO" class="multi.space.dao.BookingDAO_MySQLImpl" />
 
 	<!--space_QnADAO -->
-	<bean id="space_space_QnADAO" class="multi.space.dao.Space_QnADAO_MySQLImpl" />
+	<bean id="space_space_QnADAO" class="multi.space.dao.Space_QnADAO_MybatisProcImpl" />
 
 	<!--space_Qna_RepleDAO -->
 	<bean id="space_space_QnA_RepleDAO" class="multi.space.dao.Space_QnA_RepleDAO_MySQLImpl" />
@@ -54,13 +54,13 @@
 	<bean id="space_userDAO" class="multi.space.dao.UserDAO_MySQLImpl" />
 	
 	<!--hostDAO -->
-	<bean id="space_hostDAO" class="multi.space.dao.HostDAO_MySQLImpl" />
+	<bean id="space_hostDAO" class="multi.space.dao.HostDAO_MybatisProcImpl" />
 	
 	<!--bookmarkDAO -->
-	<bean id="space_bookmarkDAO" class="multi.space.dao.BookmarkDAO_MySQLImpl"/>
+	<bean id="space_bookmarkDAO" class="multi.space.dao.BookmarkDAO_MybatisProcImpl"/>
 	
 	<!--reviewDAO -->
-	<bean id="space_reviewDAO" class="multi.space.dao.ReviewDAO_MySQLImpl" />
+	<bean id="space_reviewDAO" class="multi.space.dao.ReviewDAO_MybatisProcImpl" />
 
 	
 	<bean class="multi.home.userjoin.controller.CtrlUserJoin" />
