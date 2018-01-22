@@ -39,7 +39,7 @@
 	<bean class="multi.space.controller.CtrlSpace" />
 
 	<!--space DAO -->
-	<bean id="space_spaceDAO" class="multi.space.dao.SpaceDAO_MySQLImpl" />
+	<bean id="space_spaceDAO" class="multi.space.dao.SpaceDAO_MybatisProcImpl" />
 
 	<!--booking DAO -->
 	<bean id="space_bookingDAO" class="multi.space.dao.BookingDAO_MySQLImpl" />

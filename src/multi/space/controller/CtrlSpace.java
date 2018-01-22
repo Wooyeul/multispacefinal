@@ -122,7 +122,6 @@ public class CtrlSpace {
 		@ResponseBody
 		public String find_best_space2() throws Exception{
 			List<Space2VO> list = spaceDAO.find_best_space2();
-			
 			StringBuffer sb = new StringBuffer();
 			sb.append("{ 'data' :[ ");
 			int flag=0;

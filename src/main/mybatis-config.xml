@@ -11,6 +11,8 @@
 
 	<mappers>
 		<mapper resource="multi/space/mapper/space_mapper.xml" />
+		<mapper resource="multi/space/mapper/space_procedure_mapper.xml" />
+		
 		<mapper resource="multi/space/mapper/booking_mapper.xml" />
 		<mapper resource="multi/space/mapper/space_QnA_mapper.xml" />
 		<mapper resource="multi/space/mapper/space_QnA_Reple_mapper.xml" />
