@@ -56,9 +56,8 @@
 	
 	<form action="del_space_qna.do" method="POST">
 		<input type="hidden" value="${space_qna_no}" name="space_qna_no"/>
-		<input type="submit" value="삭제"/>
+		<input type="submit" value="삭제" class="btn"/>
 	</form>
-	
 	
 	<br />
 	<hr />
