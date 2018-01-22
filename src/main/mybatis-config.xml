@@ -61,11 +61,11 @@
 		<!-- 이양재 -->
 
 		<!-- 안수진 -->
-		<mapper resource="multi/home/login/mapper/mapper.xml" />
-		<mapper resource="multi/mypage/booking/mapper/mapper.xml" />
-		<mapper resource="multi/mypage/qna/mapper/mapper.xml" />
-		<mapper resource="multi/mypage/message/mapper/mapper.xml" />
-		<mapper resource="multi/mypage/myinfo/mapper/mapper.xml" />
+		<mapper resource="multi/home/login/mapper/home_login_mapper.xml" />
+		<mapper resource="multi/mypage/booking/mapper/mypage_booking_mapper.xml" />
+		<mapper resource="multi/mypage/qna/mapper/mypage_qna_mapper.xml" />
+		<mapper resource="multi/mypage/message/mapper/mypage_message_mapper.xml" />
+		<mapper resource="multi/mypage/myinfo/mapper/mypage_myinfo_sujin_mapper.xml" />
 		<!-- 안수진 -->
 		
 		<!-- 배승현 -->
