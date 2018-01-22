@@ -119,7 +119,7 @@
 						</form>
 					</div>
 				<hr/>
-				<iframe name="boy" src="space_home_iframe.do" class="iframe-design" scrolling="no" frameborder="0"></iframe>
+				<iframe name="boy" src="space_home_iframe.do" class="iframe-design" scrolling="no" height="1400px" frameborder="0"></iframe>
 				<div class="text-right">
 					<a href="space_add.do" class="sh_a" id="add_space" style="display: none;"><button class="btn_square">공간 등록</button></a>
 				</div>

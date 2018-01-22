@@ -242,7 +242,6 @@ public class CtrlSpace {
 		String close_time= mpr.getParameter("close_time");
 		
 		String price_str = mpr.getParameter("price");
-		System.out.println(price_str);
 		Integer price = StringToInteger(price_str);
 		
 		String min_people_str = mpr.getParameter("min_people");
@@ -258,6 +257,17 @@ public class CtrlSpace {
 		
 		String l_category_no_str = mpr.getParameter("l_category_no");
 		Integer l_category_no = StringToInteger(l_category_no_str);
+		
+		if(min_people==null){
+			min_people=0;
+		}
+		if(max_people == null){
+			max_people=0;
+		}
+		if(space_call == null){
+			//나중에 자기 연락처로 지정되게 바꿔야함
+			space_call="01029927762";
+		}
 		
 		vo.setCrn(crn); vo.setSpace_title(space_title); vo.setSpace_content(space_content); vo.setSpace_thumb_img(space_thumb_img); vo.setOpen_time(open_time);
 		vo.setClose_time(close_time); vo.setPrice(price); vo.setMin_people(min_people); vo.setMax_people(max_people); vo.setSpace_call(space_call);

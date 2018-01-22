@@ -242,13 +242,19 @@
 	});
 </script>
 <style>
-.essential {
-	display: none;
-	color: red;
-}
-.active{
-	 		background: #95BADF !important;
-	 	}
+	.essential {
+		display: none;
+		color: red;
+	}
+	.active{
+ 		background: #95BADF !important;
+		 	}
+	.btn-time{
+		padding-left: 10%;
+	}
+	.space-label{
+ 	 		margin-bottom: 10px;
+ 	 	}
 </style>
 </head>
 <body>
@@ -260,7 +266,7 @@
 		<form method="POST" action="space_add2.do"
 			enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="crn">사업자번호</label> <select name="crn" id="crn" class="form-control">
+				<label for="crn" class="space-label">사업자번호</label> <select name="crn" id="crn" class="form-control">
 					<jl:forEach var="vo" items="${host }">
 						<option value="${vo.crn }">${vo.crn }</option>
 					</jl:forEach>
@@ -268,18 +274,18 @@
 			</div>
 
 			<div class="form-group">
-				<label for="space_title">공간 이름</label> <input type="text"
+				<label for="space_title" class="space-label">공간 이름</label> <input type="text"
 					id="space_title" name="space_title" class="form-control" />
 				<div class="essential" id="essential_space_title">필수 입력 사항입니다</div>
 			</div>
 			<div class="form-group">
-				<label for="space_title">공간 소개</label> <input type="text"
+				<label for="space_title" class="space-label">공간 소개</label> <input type="text"
 					id="space_content" name="space_content" class="form-control" />
 				<div class="essential" id="essential_space_content">필수 입력
 					사항입니다</div>
 			</div>
 			<div class="form-group">
-				<label for="space_thumb_img">썸네일 이미지</label> <input type="file"
+				<label for="space_thumb_img" class="space-label">썸네일 이미지</label> <input type="file"
 					id="space_thumb_img" name="space_thumb_img" class="form-control" />
 			</div>
 
@@ -325,8 +331,8 @@
 					</div>
 				</div>
 			</div>
-			<label>운영 시간</label><br/>
-			<div class="btn-group btn-group-toggle btn-lg" data-toggle="buttons">
+			<label class="space-label">운영 시간</label><br/>
+			<div class="btn-group btn-group-toggle btn-lg btn-time" data-toggle="buttons">
 				<jl:forEach begin="0" end="24" varStatus="time">
 					  <label class="btn btn-secondary btn-info cb_time"  time="${time.index }" id="btn_time${time.index }">
 					    <input type="checkbox" autocomplete="off" id="input_time${time.index }"> ${time.index }
@@ -346,48 +352,48 @@
 
 
 			<div class="form-group">
-				<label for="price">시간당 가격</label> <input id="price" type="number"
+				<label for="price" class="space-label">시간당 가격</label> <input id="price" type="number"
 					name="price" class="form-control" />
 				<div class="essential" id="essential_price">필수 입력 사항입니다</div>
 			</div>
 
 			<div class="form-group">
-				<label for="min_people">최소 인원</label> <input id="min_people"
+				<label for="min_people" class="space-label">최소 인원</label> <input id="min_people"
 					type="number" name="min_people" class="form-control" placeholder="미입력시 최소인원 0명입니다."/>
 			</div>
 
 			<div class="form-group">
-				<label for="max_people">최대 인원</label> <input id="max_people"
+				<label for="max_people" class="space-label">최대 인원</label> <input id="max_people"
 					type="number" name="max_people" class="form-control" placeholder="미입력시 최대인원 1000명입니다."/>
 			</div>
 
 			<div class="form-group">
-				<label for="space_call">연락 받을 전화번호</label> <input id="space_call"
+				<label for="space_call" class="space-label">연락 받을 전화번호</label> <input id="space_call"
 					type="tel" name="space_call" class="form-control" placeholder="미입력시 회원정보의 연락처로 등록됩니다."/>
 			</div>
 				
 			
 			<div class="form-group">
-				<label>우편번호</label>
+				<label class="space-label">우편번호</label>
 				<input type="text" name="zipcode" size="8" id="zipcode" class="form-control"  disabled="disabled"/>
 				<input type="button" name="findzip" value="찾기" class="btnzip btn btn-primary" onclick="zipSearch()"/>
 			</div>
 
 			<div class="from-group">
-				<label>주소</label>
+				<label class="space-label">주소</label>
 				<input type="text" size="40" name="addr1" class="form-control" id="addr1" disabled="disabled"/>
 			</div>
 			<div class="form-group">
-				<label for="l_category_no">지역</label>
+				<label for="l_category_no" class="space-label">지역</label>
 				<jl:forEach var="local" items="${local_list }">
-					<label class="radio-inline"><input type="radio"
+					<label class="radio-inline"><input checked="checked" type="radio"
 						name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
 				</jl:forEach>
 			</div>
 			<div class="form-group">
-				<label for="s_category_no">카테고리</label>
+				<label for="s_category_no" class="space-label">카테고리</label>
 				<jl:forEach var="category" items="${category_list }">
-					<label class="radio-inline"><input type="radio"
+					<label class="radio-inline"><input checked="checked" type="radio"
 						name="s_category_no" value="${category.s_category_no }">${category.s_category_name }</label>
 				</jl:forEach>
 			</div>
