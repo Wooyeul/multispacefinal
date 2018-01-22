@@ -34,17 +34,32 @@
 		</tr>
 		<jl:forEach items="${rl}" var="rl">
 			<tr>
-				<td>
-				<a href="space_detail.do?space_no=${rl.space_no}">
+				<jl:choose>
+				
+				<jl:when test="${rl.review_img eq ''}">
+					<td><a href="space_detail.do?space_no=${rl.space_no}">
 				<img src="space_img/${rl.review_img}" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
+				</jl:when>
+				
+				<jl:otherwise>
+					<td><a href="space_detail.do?space_no=${rl.space_no}">
+					<img src="img/no_img.jpg" width="100px" class="space_no" abc="${rl.space_no}"/></a></td>
+				</jl:otherwise>
+			</jl:choose>
+			
 				<td>${rl.review_title}</td>
 				<td>${rl.review_content}</td>
 				<td>${rl.review_score}</td>
 				<td>${rl.the_time}</td>
 			</tr>
+			
+			
+			
+			
 		</jl:forEach>
 	</table>
 	</form>
+	
 	
 		<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
