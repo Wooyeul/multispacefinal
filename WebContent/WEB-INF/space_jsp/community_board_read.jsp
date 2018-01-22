@@ -380,7 +380,7 @@ $(document).ready(function() {
 				<input type="hidden" name="com_board_no" value="${vo.com_board_no}"/>
 				<input type="hidden" name="com_board_title" value="${vo.com_board_title}"/>
 				<input type="hidden" name="user_id" value="${vo.user_id}"/> 
-				<input type="hidden" name="com_board_content" value="${vo.com_board_content}"/>
+				<input type="hidden" name="com_board_content" value='${vo.com_board_content}'>
 				<jl:if test="${vo.user_id eq user_id}"> 
 					<input type="submit" class="btn btn-info" id="mod" value="글수정" />
 				</jl:if>
