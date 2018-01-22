@@ -101,7 +101,10 @@ CREATE PROCEDURE p_club_addClub(
 	IN v_c_category_no INT
 )
 BEGIN
+	DECLARE p_club_no INT;
 	INSERT INTO ClubT VALUES(default, v_user_id, v_l_category_no, v_c_category_no, v_club_name, v_club_title, v_club_content, v_club_thumb_img, v_max_member, now());
+	SELECT MAX(club_no) INTO p_club_no FROM ClubT;
+	INSERT INTO User_ClubT VALUES(p_club_no, v_user_id);
 END$$
 DELIMITER ;
 ######################p_club_addClub 프로시저 끝######################

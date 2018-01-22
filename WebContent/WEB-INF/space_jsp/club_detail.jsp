@@ -45,7 +45,7 @@
 					<br />
 				</div>
 				<div align="right">
-					<h4 class="bold_degisn"><label>#현재 인원${vo.user_count+1}</label></h4>
+					<h4 class="bold_degisn"><label>#현재 인원${vo.user_count}</label></h4>
 				</div>
 				<br /> <h2 class="bold_degisn"><label>소개</label></h2>
 				<textarea rows="5" cols="30" disabled="disabled"
