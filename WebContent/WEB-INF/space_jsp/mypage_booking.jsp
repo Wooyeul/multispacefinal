@@ -16,7 +16,6 @@
 			//해당 space_no 클릭시 
 			$("#i_space_no").attr("value",$(this).attr("s_spaceNo")); 
 			space_no = $("#i_space_no").val();
-			
 			window.parent.location.href="space_detail.do?space_no="+space_no;
 		})
 	});
