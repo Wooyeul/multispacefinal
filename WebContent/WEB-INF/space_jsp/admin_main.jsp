@@ -101,6 +101,7 @@ ga('send', 'pageview');
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" target="iframe1"  href="admin_main.html"> <!-- <i class="fa fa-heart"></i>  --> 관리자 페이지 </a>
+               	&nbsp;<a style="text-align: right; color:blue;" class="navbar-brand"  href="main.do">홈으로 전환</a>
                 
                 
             </div>
