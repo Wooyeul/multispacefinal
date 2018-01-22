@@ -10,6 +10,7 @@
 	
 	<parameterMap type="main.vo.UserVO" id="PM_userJoin">
 		<parameter property="user_id" mode="IN"/>
+		<parameter property="zipcode" mode="IN"/>
 		<parameter property="ssn1" mode="IN"/>
 		<parameter property="ssn2" mode="IN"/>
 		<parameter property="passwd" mode="IN"/>
@@ -17,7 +18,6 @@
 		<parameter property="gender" mode="IN"/>
 		<parameter property="phone" mode="IN"/>
 		<parameter property="nickname" mode="IN"/>
-		<parameter property="zipcode" mode="IN"/>
 		<parameter property="email" mode="IN"/>
 		<parameter property="grade" mode="IN"/>
 		<parameter property="zipdetail" mode="IN"/>
