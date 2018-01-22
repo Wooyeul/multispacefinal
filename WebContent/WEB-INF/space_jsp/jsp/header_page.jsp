@@ -23,7 +23,6 @@
 				<li><a href="home_logout.do">로그아웃</a></li>
 			</ul>
 
-
 			<ul class="top_nav navbar-right">
 				<li><a href="space_home.do">공간</a></li>
 				<li><a href="club_home.do">모임</a></li>

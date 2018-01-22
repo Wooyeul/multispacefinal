@@ -8,7 +8,7 @@
 	<header>
 	<div class="container-flude">
 		<nav class="navbar navbar-default"> 
-		<a href="#" class="logo" alt="" titl="">Multi Space</a>
+		<a href="main.html" class="logo" alt="" titl="">Multi Space</a>
 
 		<div id="navbar">
 
@@ -32,11 +32,6 @@
 				<li><a href="faq_list.do">FAQ</a></li>
 				<li><a href="admin_main.do">관리자</a></li>
 			</ul>
-
-
-
-
-
 		</div>
 		</nav>
 	</div>

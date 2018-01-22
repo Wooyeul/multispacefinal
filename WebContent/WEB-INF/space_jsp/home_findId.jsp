@@ -93,7 +93,7 @@ margin-right: 8px;
 		<header>
 			<div class="wrapper">
 
-				<a href="#" class="logo sh_a" alt="" titl="">Multi Space</a>
+				<a href="main.html" class="logo sh_a" alt="" titl="">Multi Space</a>
 				<nav class="navbar navbar-default">
 
 					<div id="navbar">
