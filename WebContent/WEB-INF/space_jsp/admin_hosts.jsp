@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
@@ -82,23 +82,23 @@ text-align: center;
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          판매자 리스트
+                          �Ǹ��� ����Ʈ
                            <form id="textsearch" action="admin_hosts.do" method="post">
                             <div class="select">
 								<select name="search_option"  class="form-control" style="width: 200px;">
-									<option value="0">선택해주세요</option>
-									<option value="1">사업자 번호</option>
-									<option value="2">유저 ID</option>
-									<option value="3">호스트 이름</option>
-									<option value="4">호스트 계좌 번호</option>
-									<option value="5">호스트 우편 번호</option>
+									<option value="0">�������ּ���</option>
+									<option value="1">����� ��ȣ</option>
+									<option value="2">���� ID</option>
+									<option value="3">ȣ��Ʈ �̸�</option>
+									<option value="4">ȣ��Ʈ ���� ��ȣ</option>
+									<option value="5">ȣ��Ʈ ���� ��ȣ</option>
 								</select>
 						
 								</div>
 								<div class="select">
 									<input type="text" name="search_content" class="form-control" style="width: 300px;" >
 								</div>
-								<input type="submit" class="btn" value="검색" >
+								<input type="submit" class="btn" value="�˻�" >
 							</form>
                         </div>
                         <!-- /.panel-heading -->
@@ -106,14 +106,14 @@ text-align: center;
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>사업자 번호</th>
-										<th>유저 ID</th>
-										<th>호스트 이름</th>
-										<th>호스트 계좌 번호</th>
-										<th>우편 번호</th>
-										<th>판매자 공간</th>
-										<th>사용자로 강등</th>
-										<th>탈퇴 시키기</th>
+                                        <th>����� ��ȣ</th>
+										<th>���� ID</th>
+										<th>ȣ��Ʈ �̸�</th>
+										<th>ȣ��Ʈ ���� ��ȣ</th>
+										<th>���� ��ȣ</th>
+										<th>�Ǹ��� ����</th>
+										<th>����ڷ� ����</th>
+										<th>Ż�� ��Ű��</th>
                                     </tr>
                                 </thead>
 								
@@ -124,9 +124,9 @@ text-align: center;
 											<td>${vo.host_name}</td>
 											<td>${vo.host_account}</td>
 											<td>${vo.zipcode}</td>
-											<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">판매자 공간 확인 하기</a></td>
-											<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">강등시키기</a></td>
-											<td><a href="admin_user_del_write.do?crn=${vo.crn}&user_id=${vo.user_id}">탈퇴시키기</a></td>
+											<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">�Ǹ��� ���� Ȯ�� �ϱ�</a></td>
+											<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">�����Ű��</a></td>
+											<td><a href="admin_user_del_write.do?crn=${vo.crn}&user_id=${vo.user_id}">Ż���Ű��</a></td>
 										</tr>
 								</jl:forEach>
 							
@@ -141,7 +141,7 @@ text-align: center;
                 <!-- /.col-lg-12 -->
             </div>
 
-<!-- 페이징 -->
+<!-- ����¡ -->
 <br>
 <br>
 <form id="form_search" action="admin_hosts.do">
@@ -174,6 +174,6 @@ text-align: center;
 			</jl:if>
 		</ul>
 </div>
-<!-- 페이징 -->
+<!-- ����¡ -->
 </body>
 </html>

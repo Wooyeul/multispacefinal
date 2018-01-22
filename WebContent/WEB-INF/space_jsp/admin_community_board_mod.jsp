@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -58,8 +70,8 @@
     <![endif]-->
 <script>
 $(document).ready(function(){
-	// ì»¤ë®¤ë‹ˆí‹° ê¸€ ìˆ˜ì • ì™„ë£Œ ëª¨ë‹¬ ë¶€ë¶„
-	$("#basic_mobody").html("<h4>ìˆ˜ì •ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.<h4>");
+	// Ä¿¹Â´ÏÆ¼ ±Û ¼öÁ¤ ¿Ï·á ¸ğ´Ş ºÎºĞ
+	$("#basic_mobody").html("<h4>¼öÁ¤ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.<h4>");
 	$(".mod_complete").on("click",function(){
 		$("#basic_modal").modal("show");
 	});
@@ -79,16 +91,16 @@ $(document).ready(function(){
 
 							<div class="form-group">
 							<br/>
-								<label> ${mvo.user_id} ë‹˜ ê¸€ ìˆ˜ì •  <p class="fa fa-pencil"> </p></label> <br/><br/>
+								<label> ${mvo.user_id} ´Ô ±Û ¼öÁ¤  <p class="fa fa-pencil"> </p></label> <br/><br/>
 								
-								 <label>ì œëª©</label> 
+								 <label>Á¦¸ñ</label> 
 								 <input	type="text" size="30" class="form-control" name="com_board_title" value="${mvo.com_board_title}" />
 									<input type="hidden" size="30" name="user_id" value="${mvo.user_id}" /><br/>
-									 <label>ë‚´ìš©</label> 
+									 <label>³»¿ë</label> 
 								<textarea name="com_board_content" rows="25" 
 									class="form-control">${mvo.com_board_content}</textarea>
 								<input type="hidden" name="com_board_no" value="${mvo.com_board_no}" /> <br /> 
-								<input class="btn mod_complete" type="button" value="ìˆ˜ì •" />
+								<input class="btn mod_complete" type="button" value="¼öÁ¤" />
 							</div>
 						</form>
 
@@ -100,14 +112,14 @@ $(document).ready(function(){
 		</div>
 		<!-- /.col-lg-12 -->
 		
-<!-- ì»¤ë®¤ë‹ˆí‹° ê¸€ ìˆ˜ì • ì™„ë£Œ ëª¨ë‹¬ ë¶€ë¶„	 -->	
+<!-- Ä¿¹Â´ÏÆ¼ ±Û ¼öÁ¤ ¿Ï·á ¸ğ´Ş ºÎºĞ	 -->	
 	<div id="basic_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_yes'>ë‹«ê¸°</button>
+					<button type='button' class='btn btn-default' id='basic_modal_yes'>´İ±â</button>
 				</div>
 			</div>
 		</div>

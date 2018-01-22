@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -54,8 +66,8 @@
     <![endif]-->
 <script>
 $(document).ready(function(){
-	// ìœ ì € ì •ë³´ ìˆ˜ì • ì™„ë£Œì‹œ ëª¨ë‹¬
-	$("#basic_mobody").html("<h4>ìˆ˜ì •ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.<h4>");
+	// À¯Àú Á¤º¸ ¼öÁ¤ ¿Ï·á½Ã ¸ğ´Ş
+	$("#basic_mobody").html("<h4>¼öÁ¤ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.<h4>");
 	$(".mod_complete").on("click",function(){
 		$("#basic_modal").modal("show");
 	});
@@ -74,7 +86,7 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">ê°œë³„ìœ ì €ìƒì„¸ì •ë³´</div>
+				<div class="panel-heading">°³º°À¯Àú»ó¼¼Á¤º¸</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 		
@@ -83,13 +95,13 @@ $(document).ready(function(){
 							id="dataTables-example">
 							<thead>
 								<tr>
-									<td>ì´ë¦„</td>
-									<td>ìœ ì € ID</td>
-									<td>ì „í™”ë²ˆí˜¸</td>
-									<td>ë‹‰ë„¤ì„</td>
-									<td>ìš°í¸ ë²ˆí˜¸</td>
-									<td>ìƒì„¸ ì£¼ì†Œ</td>
-									<td>ì´ë©”ì¼</td>
+									<td>ÀÌ¸§</td>
+									<td>À¯Àú ID</td>
+									<td>ÀüÈ­¹øÈ£</td>
+									<td>´Ğ³×ÀÓ</td>
+									<td>¿ìÆí ¹øÈ£</td>
+									<td>»ó¼¼ ÁÖ¼Ò</td>
+									<td>ÀÌ¸ŞÀÏ</td>
 								</tr>
 								</thead>
 								<tr>
@@ -104,7 +116,7 @@ $(document).ready(function(){
 						</table>
 						<br /> <br />
 					
-						 <p class="fa fa-pencil"> ìˆ˜ì •í•˜ê¸° </p>
+						 <p class="fa fa-pencil"> ¼öÁ¤ÇÏ±â </p>
 						
 						 <br /><br />
 					
@@ -112,21 +124,21 @@ $(document).ready(function(){
                                         <div class="form-group">
                                         	<input type="hidden" name="user_id" value="${vo.user_id}" /> 
                                         	
-                                            <label>ì´ë¦„</label>
+                                            <label>ÀÌ¸§</label>
                                             <input class="form-control" value="${vo.user_name}" name="user_name" >
-                                            <label>ì „í™”ë²ˆí˜¸</label>
+                                            <label>ÀüÈ­¹øÈ£</label>
                                             <input class="form-control" value="${vo.phone}" name="phone" >
-                                            <label>ë‹‰ë„¤ì„</label>
+                                            <label>´Ğ³×ÀÓ</label>
                                             <input class="form-control" value="${vo.nickname}" name="nickname" >
-                                            <label>ìš°í¸ ë²ˆí˜¸</label>
+                                            <label>¿ìÆí ¹øÈ£</label>
                                             <input class="form-control" value="${vo.zipcode}" name="zipcode" >
-                                            <label>ìƒì„¸ ì£¼ì†Œ</label>
+                                            <label>»ó¼¼ ÁÖ¼Ò</label>
                                             <input class="form-control" value="${vo.zipdetail}" name="zipdetail" >
-                                            <label>ì´ë©”ì¼</label>
+                                            <label>ÀÌ¸ŞÀÏ</label>
                                             <input class="form-control" value="${vo.email}" name="email" >
                                             <br>
-                                            <input type="button" class="btn mod_complete" value="ìˆ˜ì • ì™„ë£Œ í•˜ê¸°"/>
-                                         	<a href="admin_users.do"> <button type="button" class="btn" >ì·¨ì†Œ</button></a> 
+                                            <input type="button" class="btn mod_complete" value="¼öÁ¤ ¿Ï·á ÇÏ±â"/>
+                                         	<a href="admin_users.do"> <button type="button" class="btn" >Ãë¼Ò</button></a> 
                                         </div>
                                         </form>
                             <!-- /.table-responsive -->
@@ -150,14 +162,14 @@ $(document).ready(function(){
     <!-- Custom Theme JavaScript -->
     <script src="./Resouces_admin/dist/js/sb-admin-2.js"></script>
 
-<!-- ìœ ì € ì •ë³´ ìˆ˜ì • ì™„ë£Œì‹œ ëª¨ë‹¬ -->
+<!-- À¯Àú Á¤º¸ ¼öÁ¤ ¿Ï·á½Ã ¸ğ´Ş -->
 <div id="basic_modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div id="basic_mobody" class="modal-body" align="center">
 			</div>
 			<div id="basic_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' id='basic_modal_yes'>ë‹«ê¸°</button>
+				<button type='button' class='btn btn-default' id='basic_modal_yes'>´İ±â</button>
 			</div>
 		</div>
 	</div>

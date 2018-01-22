@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -64,12 +76,12 @@
 	<div class="form-group" >
 	<input type="hidden" name="host_apply_no" value="${vo.host_apply_no}"></input>
 
-	<p class="fa fa-frown-o"> <label> ì°¸ê³  ì‚¬í•­(ê±°ì ˆ ì‚¬í•­) ìž‘ì„± </label> </p>
+	<p class="fa fa-frown-o"> <label> Âü°í »çÇ×(°ÅÀý »çÇ×) ÀÛ¼º </label> </p>
 	<br><br>
 	    <textarea class="form-control" name="etc" rows="20">${vo.etc}</textarea>
 	<br>
-	<button class="btn" type="submit">ì „ì†¡ í•˜ê¸°</button> &nbsp;&nbsp;&nbsp;
-	<button class="btn" id="can" type="submit">ì·¨ì†Œ í•˜ê¸°</button>
+	<button class="btn" type="submit">Àü¼Û ÇÏ±â</button> &nbsp;&nbsp;&nbsp;
+	<button class="btn" id="can" type="submit">Ãë¼Ò ÇÏ±â</button>
 	</div>
 </form>
 

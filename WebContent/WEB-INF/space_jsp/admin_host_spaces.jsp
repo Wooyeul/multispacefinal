@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -67,7 +79,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">ê³µê°„ë¦¬ìŠ¤íŠ¸<br></div><!-- /.panel-heading -->
+				<div class="panel-heading">°ø°£¸®½ºÆ®<br></div><!-- /.panel-heading -->
 
 			<div class="col-lg-6">
 					<br>
@@ -75,20 +87,20 @@
 						<form id="textsearch" action="admin_spaces_search.do">
 							<div class="select1">
 								<select name="search_option" class="form-control">
-									<option value="0">ì„ íƒ</option>
-									<option value="1">ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸</option>
-									<option value="2">ê³µê°„ ì´ë¦„</option>
-									<option value="3">ê³µê°„ ë‚´ìš©</option>
-									<option value="4">ì˜¤í”ˆ ì‹œê°„</option>
-									<option value="5">í´ë¡œì¦ˆ ì‹œê°„</option>
-									<option value="6">ê°€ê²©</option>
-									<option value="7">ìµœëŒ€ ì¸ì›</option>
-									<option value="8">ìµœì†Œ ì¸ì›</option>
-									<option value="9">ê³µê°„ ì „í™” ë²ˆí˜¸</option>
-									<option value="10">ì£¼ì†Œ</option>
-									<option value="11">ê³µê°„ ì¹´í…Œê³ ë¦¬</option>
-									<option value="12">ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</option>
-									<option value="13">ìƒì„±ì¼</option>
+									<option value="0">¼±ÅÃ</option>
+									<option value="1">»ç¾÷ÀÚ µî·Ï¹øÈ£</option>
+									<option value="2">°ø°£ ÀÌ¸§</option>
+									<option value="3">°ø°£ ³»¿ë</option>
+									<option value="4">¿ÀÇÂ ½Ã°£</option>
+									<option value="5">Å¬·ÎÁî ½Ã°£</option>
+									<option value="6">°¡°Ý</option>
+									<option value="7">ÃÖ´ë ÀÎ¿ø</option>
+									<option value="8">ÃÖ¼Ò ÀÎ¿ø</option>
+									<option value="9">°ø°£ ÀüÈ­ ¹øÈ£</option>
+									<option value="10">ÁÖ¼Ò</option>
+									<option value="11">°ø°£ Ä«Å×°í¸®</option>
+									<option value="12">Àå¼Ò Ä«Å×°í¸®</option>
+									<option value="13">»ý¼ºÀÏ</option>
 								</select>
 							</div>
 
@@ -97,7 +109,7 @@
 							</div>
 
 							<div class="select3">
-								<input class="btn" type="submit" value="ê²€ìƒ‰">
+								<input class="btn" type="submit" value="°Ë»ö">
 							</div>
 						</form>
 
@@ -112,21 +124,21 @@
 					id="dataTables-example">
 					<thead>
 						<tr>
-							<th>ì‚¬ì—…ìž ë“±ë¡ ë²ˆí˜¸</th>
-							<th>ê³µê°„ ì´ë¦„</th>
-							<th>ê³µê°„ ë‚´ìš©</th>
-							<th>ê³µê°„ ì¸ë¸Œë„¤ì¼ ì´ë¯¸ì§€</th>
-							<th>ì˜¤í”ˆ ì‹œê°„</th>
-							<th>í´ë¡œì¦ˆ ì‹œê°„</th>
-							<th>ê°€ê²©</th>
-							<th>ìµœëŒ€ ì¸ì›</th>
-							<th>ìµœì†Œ ì¸ì›</th>
-							<th>ê³µê°„ ë²ˆí˜¸</th>
-							<th>ì£¼ì†Œ</th>
-							<th>ê³µê°„ ì¹´í…Œê³ ë¦¬</th>
-							<th>ìž¥ì†Œ ì¹´í…Œê³ ë¦¬</th>
-							<th>ìƒì„±ì¼</th>
-							<th>ì‚­ì œí•˜ê¸°</th>
+							<th>»ç¾÷ÀÚ µî·Ï ¹øÈ£</th>
+							<th>°ø°£ ÀÌ¸§</th>
+							<th>°ø°£ ³»¿ë</th>
+							<th>°ø°£ ½æºê³×ÀÏ ÀÌ¹ÌÁö</th>
+							<th>¿ÀÇÂ ½Ã°£</th>
+							<th>Å¬·ÎÁî ½Ã°£</th>
+							<th>°¡°Ý</th>
+							<th>ÃÖ´ë ÀÎ¿ø</th>
+							<th>ÃÖ¼Ò ÀÎ¿ø</th>
+							<th>°ø°£ ¹øÈ£</th>
+							<th>ÁÖ¼Ò</th>
+							<th>°ø°£ Ä«Å×°í¸®</th>
+							<th>Àå¼Ò Ä«Å×°í¸®</th>
+							<th>»ý¼ºÀÏ</th>
+							<th>»èÁ¦ÇÏ±â</th>
 						</tr>
 					</thead>
 					<jl:forEach var="vo" items="${ls}">
@@ -147,7 +159,7 @@
 							<td>${vo.s_category_no}</td>
 							<td>${vo.l_category_no}</td>
 							<td>${vo.the_time}</td>
-							<td><a href="admin_space_remove.do?space_no=${vo.space_no}">ì‚­ì œ</a></td>
+							<td><a href="admin_space_remove.do?space_no=${vo.space_no}">»èÁ¦</a></td>
 						</tr>
 					</jl:forEach>
 				</table>

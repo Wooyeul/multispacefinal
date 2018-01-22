@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -58,7 +70,7 @@ text-align: center;
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">íŒë§¤ì ë¦¬ìŠ¤íŠ¸</div>
+				<div class="panel-heading">ÆÇ¸ÅÀÚ ¸®½ºÆ®</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 				<form method="POST" action="admin_user_mod.do">
@@ -67,16 +79,16 @@ text-align: center;
 						id="dataTables-example">
 						<thead>
 							<tr>
-								<td>ì´ë¦„</td>
-								<td>ìœ ì € ID</td>
-								<td>ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ ì•ìë¦¬</td>
-								<td>ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ ë’·ìë¦¬</td>
-								<td>ì„±ë³„</td>
-								<td>ì „í™”ë²ˆí˜¸</td>
-								<td>ë‹‰ë„¤ì„</td>
-								<td>ìš°í¸ ë²ˆí˜¸</td>
-								<td>ìƒì„¸ ì£¼ì†Œ</td>
-								<td>ì´ë©”ì¼</td>
+								<td>ÀÌ¸§</td>
+								<td>À¯Àú ID</td>
+								<td>ÁÖ¹Îµî·Ï¹øÈ£ ¾ÕÀÚ¸®</td>
+								<td>ÁÖ¹Îµî·Ï¹øÈ£ µŞÀÚ¸®</td>
+								<td>¼ºº°</td>
+								<td>ÀüÈ­¹øÈ£</td>
+								<td>´Ğ³×ÀÓ</td>
+								<td>¿ìÆí ¹øÈ£</td>
+								<td>»ó¼¼ ÁÖ¼Ò</td>
+								<td>ÀÌ¸ŞÀÏ</td>
 							</tr>
 						</thead>	
 							<tr>
@@ -86,10 +98,10 @@ text-align: center;
 								<td>${vo.ssn2}</td>
 								<jl:choose>
 									<jl:when test="${vo.gender == 'M'}">
-										<td>ë‚¨ì</td>
+										<td>³²ÀÚ</td>
 									</jl:when>
 									<jl:when test="${vo.gender == 'F'}">
-										<td>ì—¬ì</td>
+										<td>¿©ÀÚ</td>
 									</jl:when>
 								</jl:choose>
 								<td>${vo.phone}</td>
@@ -103,8 +115,8 @@ text-align: center;
 				
 				
 						<input type="hidden" name="user_id" value="${vo.user_id}" />
-						<button  class="btn" type="submit">ìˆ˜ì • í•˜ê¸°</button>
-						<a href="admin_hosts.do"><input class="btn" type="button" value="ì·¨ì†Œ í•˜ê¸°"></a>
+						<button  class="btn" type="submit">¼öÁ¤ ÇÏ±â</button>
+						<a href="admin_hosts.do"><input class="btn" type="button" value="Ãë¼Ò ÇÏ±â"></a>
 					</form>
 					
 					

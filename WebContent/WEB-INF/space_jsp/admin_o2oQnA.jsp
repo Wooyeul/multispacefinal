@@ -1,9 +1,21 @@
 <%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -53,25 +65,25 @@ text-align: center;
 </head>
 <body>
 <br/>
-<p><label>ì¼ëŒ€ì¼ ë¬¸ì˜</label></p>
+<p><label>ÀÏ´ëÀÏ ¹®ÀÇ</label></p>
 	<hr style="border: solid 0.5px black;">
 	<form action="admin_o2oQnA_add.do" class="form-group" method="POST" name="frm">
-		<label>ì œëª© : </label> 
+		<label>Á¦¸ñ : </label> 
 		 <input type="text" name="o2o_title" size="30"  class="form-control"/> <br />
-		<label>ì´ë©”ì¼ : </label> <input type="text" name="o2o_email" size="30" class="form-control" /> <br />
-			<label>í•¸ë“œí°ë²ˆí˜¸ : </label>  <input type="text" name="o2o_phone" size="30" class="form-control" /><br/>
-			<label>ì„œë¹„ìŠ¤ë¶„ë¥˜ :  </label> 
+		<label>ÀÌ¸ŞÀÏ : </label> <input type="text" name="o2o_email" size="30" class="form-control" /> <br />
+			<label>ÇÚµåÆù¹øÈ£ : </label>  <input type="text" name="o2o_phone" size="30" class="form-control" /><br/>
+			<label>¼­ºñ½ººĞ·ù :  </label> 
 			<select name="o2o_type" class="form-control">
-			<option value="íšŒì›">íšŒì›</option>
-			<option value="ì˜ˆì•½ ë° ê²°ì œ">ì˜ˆì•½ ë° ê²°ì œ</option>
-			<option value="ì·¨ì†Œ ë° í™˜ë¶ˆ">ì·¨ì†Œ ë° í™˜ë¶ˆ</option>
-			<option value="ê¸°íƒ€">ê¸°íƒ€</option>
+			<option value="È¸¿ø">È¸¿ø</option>
+			<option value="¿¹¾à ¹× °áÁ¦">¿¹¾à ¹× °áÁ¦</option>
+			<option value="Ãë¼Ò ¹× È¯ºÒ">Ãë¼Ò ¹× È¯ºÒ</option>
+			<option value="±âÅ¸">±âÅ¸</option>
 		</select> <br/> 
 		
-		<label>ë¬¸ì˜ ë‚´ìš© : </label> <br/>
+		<label>¹®ÀÇ ³»¿ë : </label> <br/>
 		<textarea name="o2o_content" rows="20" class="form-control"></textarea>
-		<br/> <input class="btn" type="submit" value="ë¬¸ì˜í•˜ê¸°" />
-		<input type="button"class="btn" id="cancel" value="ì·¨ì†Œí•˜ê¸°"/>
+		<br/> <input class="btn" type="submit" value="¹®ÀÇÇÏ±â" />
+		<input type="button"class="btn" id="cancel" value="Ãë¼ÒÇÏ±â"/>
 	</form>
 
 </body>

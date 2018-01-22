@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -78,7 +90,7 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				ì¼ëŒ€ì¼ ë¯¸ ë‹µë³€ ë¦¬ìŠ¤íŠ¸
+				ÀÏ´ëÀÏ ¹Ì ´äº¯ ¸®½ºÆ®
 				<form id="form_search" action="admin_o2oQnA_list.do">
 					<input type="hidden" name="pg" value="" id="pg"> <input
 						type="hidden" name="search_content"
@@ -89,20 +101,20 @@
 				<form id="textsearch" action="admin_o2oQnA_list.do">
 					<div class="select">
 						<select name="search_option" class="form-control">
-							<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-							<option value="1">ì œëª©</option>
-							<option value="2">ë‚´ìš©</option>
-							<option value="3">ì œëª© + ë‚´ìš©</option>
-							<option value="4">ê³ ê°ë‹˜ ì´ë©”ì¼</option>
-							<option value="5">ë¬¸ì˜ íƒ€ì…</option>
-							<option value="6">ì „í™” ë²ˆí˜¸</option>
-							<option value="7">ë¬¸ì˜ ì‹œê°„</option>
+							<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+							<option value="1">Á¦¸ñ</option>
+							<option value="2">³»¿ë</option>
+							<option value="3">Á¦¸ñ + ³»¿ë</option>
+							<option value="4">°í°´´Ô ÀÌ¸ŞÀÏ</option>
+							<option value="5">¹®ÀÇ Å¸ÀÔ</option>
+							<option value="6">ÀüÈ­ ¹øÈ£</option>
+							<option value="7">¹®ÀÇ ½Ã°£</option>
 						</select>
 					</div>
 					<div class="select">
 				<input type="text" name="search_content" class="form-control" style="width:300px;"> 
 			</div>
-					<input type="submit" class="btn" value="ê²€ìƒ‰">
+					<input type="submit" class="btn" value="°Ë»ö">
 				
 				</form>
 
@@ -114,11 +126,11 @@
 
 						<thead>
 							<tr>
-								<td>ì œëª©</td>
-								<td>ê³ ê°ë‹˜ ì´ë©”ì¼</td>
-								<td>ë¬¸ì˜ íƒ€ì…</td>
-								<td>ë¬¸ì˜ ì‹œê°„</td>
-								<td>ë‹µë³€ ë‚´ìš©</td>
+								<td>Á¦¸ñ</td>
+								<td>°í°´´Ô ÀÌ¸ŞÀÏ</td>
+								<td>¹®ÀÇ Å¸ÀÔ</td>
+								<td>¹®ÀÇ ½Ã°£</td>
+								<td>´äº¯ ³»¿ë</td>
 							</tr>
 							<jl:forEach var="vo" items="${ls}">
 								<tr>
@@ -126,7 +138,7 @@
 									<td>${vo.o2o_email}</td>
 									<td>${vo.o2o_type}</td>
 									<td>${vo.the_time}</td>
-									<td>ì—†ìŒ</td>
+									<td>¾øÀ½</td>
 								</tr>
 							</jl:forEach>
 					</table>
@@ -143,7 +155,7 @@
 
 
 
-	<!-- í˜ì´ì§• -->
+	<!-- ÆäÀÌÂ¡ -->
 	<div class="paginationdiv">
 		<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
@@ -177,6 +189,6 @@
 			</jl:if>
 		</ul>
 	</div>
-	<!-- í˜ì´ì§• -->
+	<!-- ÆäÀÌÂ¡ -->
 </body>
 </html>

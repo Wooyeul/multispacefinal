@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -61,7 +73,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">ëª¨ì„ìƒì„¸ì •ë³´</div>
+				<div class="panel-heading">¸ğÀÓ»ó¼¼Á¤º¸</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<table width="100%"
@@ -69,16 +81,16 @@
 						id="dataTables-example">
 						<thead>
 							<tr>
-								<td>ëª¨ì„ ë²ˆí˜¸</td>
-								<td>ëª¨ì„ ì´ë¦„</td>
-								<td>ëª¨ì„ì¥ ìœ ì € ID</td>
-								<td>ëª¨ì„ ì œëª©</td>
-								<td>ëª¨ì„ ë‚´ìš©</td>
-								<td>ëª¨ì„ ì´ë¯¸ì§€</td>
-								<td>ëª¨ì„ ìµœëŒ€ ì¸ì›</td>
-								<td>ëª¨ì„ ìƒì„±ì¼</td>
-								<td>ë¶„ì•¼</td>
-								<td>ì§€ì—­</td>
+								<td>¸ğÀÓ ¹øÈ£</td>
+								<td>¸ğÀÓ ÀÌ¸§</td>
+								<td>¸ğÀÓÀå À¯Àú ID</td>
+								<td>¸ğÀÓ Á¦¸ñ</td>
+								<td>¸ğÀÓ ³»¿ë</td>
+								<td>¸ğÀÓ ÀÌ¹ÌÁö</td>
+								<td>¸ğÀÓ ÃÖ´ë ÀÎ¿ø</td>
+								<td>¸ğÀÓ »ı¼ºÀÏ</td>
+								<td>ºĞ¾ß</td>
+								<td>Áö¿ª</td>
 							</tr>
 						</thead>
 						<tr>
@@ -93,97 +105,97 @@
 							<td>${vo.create_time}</td>
 							<jl:choose>
 									<jl:when test="${vo.c_category_no == 1}">
-										<td>ê³µë¶€</td>
+										<td>°øºÎ</td>
 									</jl:when>
 									<jl:when test="${vo.c_category_no == 2}">
-										<td>íšŒì˜</td>
+										<td>È¸ÀÇ</td>
 									</jl:when>
 									<jl:when test="${vo.c_category_no == 3}">
-										<td>íŒŒí‹°</td>
+										<td>ÆÄÆ¼</td>
 									</jl:when>
 									<jl:when test="${vo.c_category_no == 4}">
-										<td>ë ˆì €</td>
+										<td>·¹Àú</td>
 									</jl:when>
 									<jl:when test="${vo.c_category_no == 5}">
-										<td>ìŠ¤í¬ì¸ </td>
+										<td>½ºÆ÷Ã÷</td>
 									</jl:when>
 									<jl:when test="${vo.c_category_no == 6}">
-										<td>ê¸°íƒ€</td>
+										<td>±âÅ¸</td>
 									</jl:when>
 							</jl:choose>
 							<jl:choose>
 									<jl:when test="${vo.l_category_no == 1}">
-										<td>ì„œìš¸</td>
+										<td>¼­¿ï</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 2}">
-										<td>ê²½ê¸°</td>
+										<td>°æ±â</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 3}">
-										<td>ì¸ì²œ</td>
+										<td>ÀÎÃµ</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 4}">
-										<td>ê°•ì›</td>
+										<td>°­¿ø</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 5}">
-										<td>ëŒ€ì „</td>
+										<td>´ëÀü</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 6}">
-										<td>ì„¸ì¢…</td>
+										<td>¼¼Á¾</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 7}">
-										<td>ì¶©ë‚¨</td>
+										<td>Ãæ³²</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 8}">
-										<td>ì¶©ë¶</td>
+										<td>ÃæºÏ</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 9}">
-										<td>ë¶€ì‚°</td>
+										<td>ºÎ»ê</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 10}">
-										<td>ìš¸ì‚°</td>
+										<td>¿ï»ê</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 11}">
-										<td>ê²½ë‚¨</td>
+										<td>°æ³²</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 12}">
-										<td>ê²½ë¶</td>
+										<td>°æºÏ</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 13}">
-										<td>ëŒ€êµ¬</td>
+										<td>´ë±¸</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 14}">
-										<td>ê´‘ì£¼</td>
+										<td>±¤ÁÖ</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 15}">
-										<td>ì „ë‚¨</td>
+										<td>Àü³²</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 16}">
-										<td>ì „ë¶</td>
+										<td>ÀüºÏ</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 17}">
-										<td>ì œì£¼</td>
+										<td>Á¦ÁÖ</td>
 									</jl:when>
 									<jl:when test="${vo.l_category_no == 18}">
-										<td>ì „êµ­</td>
+										<td>Àü±¹</td>
 									</jl:when>
 							</jl:choose>
 						</tr>
 					</table>
 					<br /> 
-					<a href="club_detail.do?club_no=${vo.club_no}">í•´ë‹¹ ëª¨ì„ìœ¼ë¡œ ê°€ê¸°</a> <br /> <br />
+					<a href="club_detail.do?club_no=${vo.club_no}">ÇØ´ç ¸ğÀÓÀ¸·Î °¡±â</a> <br /> <br />
 					
 						<table width="100%"
 						class="table table-striped table-bordered table-hover"
 						id="dataTables-example">
 						<thead>
 						<tr>
-							<td>ëª¨ì„ íšŒì› ëª©ë¡ë“¤</td>
+							<td>¸ğÀÓ È¸¿ø ¸ñ·Ïµé</td>
 						</tr>
 						</thead>
 						<jl:forEach var="ls" items="${ls}">
 							<tr>
 								<td>${ls.user_id}&nbsp;
-								<a href="admin_host_user_check.do?user_id=${ls.user_id}">ìœ ì € ì •ë³´ í™•ì¸í•˜ê¸°</a></td>
+								<a href="admin_host_user_check.do?user_id=${ls.user_id}">À¯Àú Á¤º¸ È®ÀÎÇÏ±â</a></td>
 							</tr>
 						</jl:forEach>
 					</table>

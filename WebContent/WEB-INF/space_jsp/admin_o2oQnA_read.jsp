@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -61,31 +73,31 @@ p {
 <body>
 	<br />
 	<p>
-		<label> ì¼ëŒ€ì¼ë¬¸ì˜ë‚´ìš©</label>
+		<label> ÀÏ´ëÀÏ¹®ÀÇ³»¿ë</label>
 	</p>
 	<hr style="border: solid 0.5px black;">
 
 
-	<label> ë¬¸ì˜ ì œëª© : ${vo.o2o_title}</label>
+	<label> ¹®ÀÇ Á¦¸ñ : ${vo.o2o_title}</label>
 	<br />
 
-	<label> ë¬¸ì˜ íƒ€ì… : ${vo.o2o_type} </label>
-	<br />
-
-
-	<label>ë¬¸ì˜ ì‘ì„± ì‹œê°„ : ${vo.the_time} </label>
+	<label> ¹®ÀÇ Å¸ÀÔ : ${vo.o2o_type} </label>
 	<br />
 
 
-	<label> ì´ë©”ì¼ ì£¼ì†Œ : ${vo.o2o_email} </label>
+	<label>¹®ÀÇ ÀÛ¼º ½Ã°£ : ${vo.the_time} </label>
+	<br />
+
+
+	<label> ÀÌ¸ŞÀÏ ÁÖ¼Ò : ${vo.o2o_email} </label>
 	<br />
 
 
 
-	<label> ê³ ê° ì „í™” ë²ˆí˜¸ : ${vo.o2o_phone} </label>
+	<label> °í°´ ÀüÈ­ ¹øÈ£ : ${vo.o2o_phone} </label>
 	<br />
 
-	<label> ë¬¸ì˜ ë‚´ìš© : ${vo.o2o_content}</label>
+	<label> ¹®ÀÇ ³»¿ë : ${vo.o2o_content}</label>
 	<br />
 
 	<br />
@@ -99,12 +111,12 @@ p {
 			type="hidden" name="o2o_phone" value="${vo.o2o_phone}"> <input
 			type="hidden" name="o2o_content" value="${vo.o2o_content}">
 
-		<label> ê³ ê°ë‹˜ì—ê²Œ ë¬¸ì˜ ë‹µë³€í•˜ê¸° : </label> <br />
+		<label> °í°´´Ô¿¡°Ô ¹®ÀÇ ´äº¯ÇÏ±â : </label> <br />
 
 		<textarea name="re_o2o_content" rows="20" class="form-control"></textarea>
 		<br /> <br />
-		<button type="submit" class="btn">ë‹µë³€ ë³´ë‚´ê¸°</button>
-		<button id="cancel" type="submit" class="btn">ì·¨ì†Œí•˜ê¸°</button>
+		<button type="submit" class="btn">´äº¯ º¸³»±â</button>
+		<button id="cancel" type="submit" class="btn">Ãë¼ÒÇÏ±â</button>
 	</form>
 </body>
 </html>

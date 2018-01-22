@@ -1,7 +1,19 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -54,23 +66,23 @@ text-align: right;
 </head>
 <body>
 	<br>
-	<label>ê¸€ì“°ê¸° </label> <br>
+	<label>±Û¾²±â </label> <br>
 	<form action="admin_community_board_add2.do" class="form-group" method="POST" name="frm">
-		ì œëª© : <input type="text"  class="form-control" name="com_board_title" size="30" /> <br>
-		ë§ë¨¸ë¦¬ : <select name="com_board_type"  class="form-control">
-			<option value="ì„ íƒ">ì„ íƒí•˜ì„¸ìš”</option>
-			<option value="ìœ ë¨¸">ìœ ë¨¸</option>
-			<option value="ë§›ì§‘">ë§›ì§‘</option>
-			<option value="ì·¨ë¯¸">ì·¨ë¯¸</option>
-			<option value="ê°ì„±">ê°ì„±ê¸€</option>
-			<option value="ê³µìœ ">ê³µìœ </option>
+		Á¦¸ñ : <input type="text"  class="form-control" name="com_board_title" size="30" /> <br>
+		¸»¸Ó¸® : <select name="com_board_type"  class="form-control">
+			<option value="¼±ÅÃ">¼±ÅÃÇÏ¼¼¿ä</option>
+			<option value="À¯¸Ó">À¯¸Ó</option>
+			<option value="¸ÀÁı">¸ÀÁı</option>
+			<option value="Ãë¹Ì">Ãë¹Ì</option>
+			<option value="°¨¼º">°¨¼º±Û</option>
+			<option value="°øÀ¯">°øÀ¯</option>
 		</select> <br>
 		
-		ë‚´ìš© :
+		³»¿ë :
 		<textarea name="com_board_content" rows="10" cols="60"  class="form-control"></textarea>
 		<br> 
-		<input class="btn" type="submit" value="ë“±ë¡" />
-		<input type="button" class="btn" id="cancel" value="ì·¨ì†Œ"/>
+		<input class="btn" type="submit" value="µî·Ï" />
+		<input type="button" class="btn" id="cancel" value="Ãë¼Ò"/>
 	</form>
 	
 

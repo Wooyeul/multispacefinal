@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -72,7 +84,7 @@ text-align: center;
 
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading"> ì¼ëŒ€ì¼ ë‹µë³€ ë¦¬ìŠ¤íŠ¸
+			<div class="panel-heading"> ÀÏ´ëÀÏ ´äº¯ ¸®½ºÆ®
 			
 			<form id="form_search" action="admin_o2oQnA_list_reply.do">
 		<input type="hidden" name="pg" value="" id="pg"> <input
@@ -83,21 +95,21 @@ text-align: center;
 	<form id="textsearch" action="admin_o2oQnA_list_reply.do">
 		<div class="select">
 		<select name="search_option" class="form-control" style="width: 200px;">
-			<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-			<option value="1">ì œëª©</option>
-			<option value="2">ë‚´ìš©</option>
-			<option value="3">ì œëª© + ë‚´ìš©</option>
-			<option value="4">ê³ ê°ë‹˜ ì´ë©”ì¼</option>
-			<option value="5">ë¬¸ì˜ íƒ€ì…</option>
-			<option value="6">ì „í™” ë²ˆí˜¸</option>
-			<option value="7">ë¬¸ì˜ ì‹œê°„</option>
-			<option value="8">ë‹µë³€ ë‚´ìš©</option>
+			<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+			<option value="1">Á¦¸ñ</option>
+			<option value="2">³»¿ë</option>
+			<option value="3">Á¦¸ñ + ³»¿ë</option>
+			<option value="4">°í°´´Ô ÀÌ¸ŞÀÏ</option>
+			<option value="5">¹®ÀÇ Å¸ÀÔ</option>
+			<option value="6">ÀüÈ­ ¹øÈ£</option>
+			<option value="7">¹®ÀÇ ½Ã°£</option>
+			<option value="8">´äº¯ ³»¿ë</option>
 		</select>
 		</div>
 		<div class="select">
 		 <input type="text" name="search_content" class="form-control" style="width: 300px;"> 
 		 </div>
-		 <input	type="submit" class="btn" value="ê²€ìƒ‰">
+		 <input	type="submit" class="btn" value="°Ë»ö">
 	</form>
 			</div>
 		
@@ -105,12 +117,12 @@ text-align: center;
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 					<thead>
 						<tr>
-							<td>ë¬¸ì˜ ì œëª©</td>
-							<td>ê³ ê° ì´ë©”ì¼</td>
-							<td>ê³ ê° ì „í™”ë²ˆí˜¸</td>
-							<td>ê³ ê° ë¬¸ì˜ íƒ€ì…</td>
-							<td>ê³ ê° ë¬¸ì˜ ì‹œê°„</td>
-							<td>ìš´ì˜ì§„ ë‹µë³€ ë‚´ìš©</td>
+							<td>¹®ÀÇ Á¦¸ñ</td>
+							<td>°í°´ ÀÌ¸ŞÀÏ</td>
+							<td>°í°´ ÀüÈ­¹øÈ£</td>
+							<td>°í°´ ¹®ÀÇ Å¸ÀÔ</td>
+							<td>°í°´ ¹®ÀÇ ½Ã°£</td>
+							<td>¿î¿µÁø ´äº¯ ³»¿ë</td>
 						</tr>
 					</thead>
 					<jl:forEach var="vo" items="${ls}">
@@ -133,7 +145,7 @@ text-align: center;
 	<br>
 	<br>
 	
-<!-- í˜ì´ì§• -->	
+<!-- ÆäÀÌÂ¡ -->	
 	<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 		<jl:if test="${pz.hasPrevPagination }">
@@ -167,6 +179,6 @@ text-align: center;
 		</jl:if>
 	</ul>
 	</div>
-<!-- í˜ì´ì§• -->		
+<!-- ÆäÀÌÂ¡ -->		
 </body>
 </html>

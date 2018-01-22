@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -74,7 +86,7 @@ p {
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				ì¼ëŒ€ì¼ìª½ì§€í•¨
+				ÀÏ´ëÀÏÂÊÁöÇÔ
 
 
 
@@ -87,16 +99,16 @@ p {
 				<form id="textsearch" action="admin_message_read_to.do">
 				<div class="select">
 					<select name="search_option" class="form-control" style="width: 200px;">
-						<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-						<option value="1">ë°›ì€ ìœ ì € ID</option>
-						<option value="2">ìª½ì§€ ë‚´ìš©</option>
-						<option value="3">ì‘ì„± ì‹œê°„</option>
+						<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+						<option value="1">¹ŞÀº À¯Àú ID</option>
+						<option value="2">ÂÊÁö ³»¿ë</option>
+						<option value="3">ÀÛ¼º ½Ã°£</option>
 					</select> 
 					</div>
 						<div class="select2">
 					<input type="text" name="search_content" class="form-control" style="width: 300px;"> 
 						</div>
-					<input class="btn" type="submit" value="ê²€ìƒ‰">
+					<input class="btn" type="submit" value="°Ë»ö">
 						
 				</form>
 
@@ -111,10 +123,10 @@ p {
 					<thead>
 
 						<tr>
-							<th>ë°›ì€ ìœ ì € ID</th>
-							<th>ìª½ì§€ ë‚´ìš©</th>
-							<th>ì‘ì„± ì‹œê°„</th>
-							<th>ìˆ˜ì‹  í™•ì¸</th>
+							<th>¹ŞÀº À¯Àú ID</th>
+							<th>ÂÊÁö ³»¿ë</th>
+							<th>ÀÛ¼º ½Ã°£</th>
+							<th>¼ö½Å È®ÀÎ</th>
 						</tr>
 						<jl:forEach var="vo" items="${ls}">
 							<tr>
@@ -123,10 +135,10 @@ p {
 								<td>${vo.the_time }</td>
 								<jl:choose>
 									<jl:when test="${vo.view_count == 0}">
-										<td>ì½ì§€ ì•ŠìŒ</td>
+										<td>ÀĞÁö ¾ÊÀ½</td>
 									</jl:when>
 									<jl:when test="${vo.view_count >= 1}">
-										<td>ì½ìŒ</td>
+										<td>ÀĞÀ½</td>
 									</jl:when>
 								</jl:choose>
 							</tr>
@@ -143,7 +155,7 @@ p {
 
 
 
-	<!-- í˜ì´ì§• -->
+	<!-- ÆäÀÌÂ¡ -->
 	<div class="paginationdiv">
 		<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
@@ -177,6 +189,6 @@ p {
 			</jl:if>
 		</ul>
 	</div>
-	<!-- í˜ì´ì§• -->
+	<!-- ÆäÀÌÂ¡ -->
 </body>
 </html>

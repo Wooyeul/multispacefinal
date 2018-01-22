@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -74,19 +86,19 @@
     <![endif]-->
 <script>
 $(document).ready(function(){
-	// í´ëŸ½ ì‚­ì œ ëª¨ë‹¬ ë¶€ë¶„
+	// Å¬·´ »èÁ¦ ¸ğ´Ş ºÎºĞ
    $(".remove_club").on("click",function(){
       $("#club_No").val( $(this).attr("club_no") );
       $("#text_modal").modal("show");
    });
-   //yesë²„íŠ¼ í´ë¦­ í–ˆì„ ë•Œ ì‹¤í–‰í•  function
+   //yes¹öÆ° Å¬¸¯ ÇßÀ» ¶§ ½ÇÇàÇÒ function
    $("#text_modal_yes").on("click",function(){
       var del_club_no = $("#club_No").val();
          location.href = "admin_club_remove.do?club_no=" + 
          del_club_no;
       $("#text_modal_modal").modal("hide");
    });
-   //noë²„íŠ¼ í´ë¦­ í–ˆì„ ë•Œ ì‹¤í–‰í•  function
+   //no¹öÆ° Å¬¸¯ ÇßÀ» ¶§ ½ÇÇàÇÒ function
    $("#text_modal_no").on("click",function(){
       $("#text_modal").modal('hide');
    });
@@ -100,21 +112,21 @@ $(document).ready(function(){
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					ëª¨ì„ë¦¬ìŠ¤íŠ¸
+					¸ğÀÓ¸®½ºÆ®
 					<form id="textsearch" action="admin_clubs.do" method="post">
 					<div class="select"> 
 						<select name="search_option" class="form-control" style="width: 200px;">
-							<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-							<option value="1">ëª¨ì„ ì´ë¦„</option>
-							<option value="2">ëª¨ì„ì¥ ìœ ì € ID</option>
-							<option value="3">ëª¨ì„ ìµœëŒ€ ì¸ì›</option>
-							<option value="4">ëª¨ì„ ìƒì„± ë‚ ì§œ ì‹œê°„</option>
+							<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+							<option value="1">¸ğÀÓ ÀÌ¸§</option>
+							<option value="2">¸ğÀÓÀå À¯Àú ID</option>
+							<option value="3">¸ğÀÓ ÃÖ´ë ÀÎ¿ø</option>
+							<option value="4">¸ğÀÓ »ı¼º ³¯Â¥ ½Ã°£</option>
 						</select> 
 						</div>
 						<div class="select"> 
 						<input type="text" name="search_content" class="form-control" style="width: 300px;" >
 					</div>
-						<input type="submit" class="btn" value="ê²€ìƒ‰" >
+						<input type="submit" class="btn" value="°Ë»ö" >
 					</form>
 
 				</div>
@@ -125,12 +137,12 @@ $(document).ready(function(){
 						id="dataTables-example">
 						<thead>
 						<tr>
-							<td>ëª¨ì„ ì´ë¦„</td>
-							<td>ëª¨ì„ì¥ ìœ ì € ID</td>
-							<td>ëª¨ì„ ì´ë¯¸ì§€</td>
-							<td>ëª¨ì„ ìµœëŒ€ ì¸ì›</td>
-							<td>ëª¨ì„ ìƒì„± ë‚ ì§œ/ì‹œê°„</td>
-							<td>ëª¨ì„ ì‚­ì œ í•˜ê¸°</td>
+							<td>¸ğÀÓ ÀÌ¸§</td>
+							<td>¸ğÀÓÀå À¯Àú ID</td>
+							<td>¸ğÀÓ ÀÌ¹ÌÁö</td>
+							<td>¸ğÀÓ ÃÖ´ë ÀÎ¿ø</td>
+							<td>¸ğÀÓ »ı¼º ³¯Â¥/½Ã°£</td>
+							<td>¸ğÀÓ »èÁ¦ ÇÏ±â</td>
 							</tr>
 						</thead>
 						<jl:forEach var="vo" items="${ls}">
@@ -142,7 +154,7 @@ $(document).ready(function(){
 								<td>${vo.max_member}</td>
 								<td>${vo.create_time}</td>
 						
-								<td><button class="remove_club" club_no="${vo.club_no}" >ì‚­ì œí•˜ê¸°</button></td>
+								<td><button class="remove_club" club_no="${vo.club_no}" >»èÁ¦ÇÏ±â</button></td>
 							</tr>
 						</jl:forEach>
 					</table>
@@ -191,19 +203,19 @@ $(document).ready(function(){
 		</ul>
 	</div>
 		
-<!-- í´ëŸ½ ì‚­ì œ ëª¨ë‹¬ í¼ -->
+<!-- Å¬·´ »èÁ¦ ¸ğ´Ş Æû -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="club_No" value="0"/>
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div id="text_mohead" class="modal-header"align="center"><h4>ê¸€ ì‚­ì œ</h4></div>
+			<div id="text_mohead" class="modal-header"align="center"><h4>±Û »èÁ¦</h4></div>
 			<div id="text_mobody" class="modal-body" align="center">
-				<h4>ê¸€ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+				<h4>±ÛÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 			</div>
 			<div id="text_ft" class="modal-footer">
 				<button type='button' class='btn btn-default' 
-					to-delete="delete_${vs.count}"  id='text_modal_yes'>í™•ì¸</button>
-				<button type='button' class='btn btn-primary' id='text_modal_no'>ì·¨ì†Œ</button>
+					to-delete="delete_${vs.count}"  id='text_modal_yes'>È®ÀÎ</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>Ãë¼Ò</button>
 			</div>
 		</div>
 	</div>

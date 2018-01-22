@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -61,7 +73,7 @@ $(document).ready(function(){
 		document.frm.submit();
 	});
 	
-	// ID ì¤‘ë³µ ì²´í¬. ID ì¡´ì¬ ì‹œ ì „ì†¡ ì‹œë„
+	// ID Áßº¹ Ã¼Å©. ID Á¸Àç ½Ã Àü¼Û ½Ãµµ
 	var flag = 0;
 	var user_id;
 	$("#primary_id").on("click",function(){
@@ -69,20 +81,20 @@ $(document).ready(function(){
 		var url ="overlap.do?user_id="+user_id;
 		ajaxGet(url,function(rt){
 			if(rt==1){
-				$("#lblContent").text("IDê°€ ì¡´ì¬í•©ë‹ˆë‹¤. ìª½ì§€ë³´ë‚´ê¸°ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+				$("#lblContent").text("ID°¡ Á¸ÀçÇÕ´Ï´Ù. ÂÊÁöº¸³»±â°¡ °¡´ÉÇÕ´Ï´Ù.");
 				$("#repleModal").modal("show");
 				flag = 1;
 			} else if(user_id==""){
-				$("#lblContent").text("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+				$("#lblContent").text("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
 				$("#repleModal").modal("show");
 			} else if( rt == 0){
-				$("#lblContent").text("IDê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ìª½ì§€ ë³´ë‚´ê¸°ê°€ ë¶ˆê°€ëŠ¥ í•©ë‹ˆë‹¤.");
+				$("#lblContent").text("ID°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÂÊÁö º¸³»±â°¡ ºÒ°¡´É ÇÕ´Ï´Ù.");
 				$("#repleModal").modal("show");
 				$("#user_id").val("");
 			} 
 		});
 	});
-	$("#basic_mobody").html("<h4>ë©”ì„¸ì§€ ì „ì†¡ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.<h4>");
+	$("#basic_mobody").html("<h4>¸Ş¼¼Áö Àü¼ÛÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.<h4>");
 	$("#m_submit").on("click",function(){
 		$("#text_modal").modal("show");
 		$("#text_modal_yes").on("click",function(){
@@ -91,10 +103,10 @@ $(document).ready(function(){
 			var send_user_id = $("#send_user_id").val();
 			var msg_content = $("#msg_content").val();			
 			if(user_id_check==""){
-				$("#lblContent").text("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ê³  ì¤‘ë³µê²€ì‚¬ í•´ì£¼ì„¸ìš”.");
+				$("#lblContent").text("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ°í Áßº¹°Ë»ç ÇØÁÖ¼¼¿ä.");
 				$("#repleModal").modal("show");
 			} else if(flag==0){
-				$("#lblContent").text("ì•„ì´ë”” ì²´í¬ í•´ì£¼ì„¸ìš”.");
+				$("#lblContent").text("¾ÆÀÌµğ Ã¼Å© ÇØÁÖ¼¼¿ä.");
 				$("#repleModal").modal("show");
 			} else {
 				var wrting_url = "admin_writing_message.do?send_user_id="+send_user_id 
@@ -123,29 +135,29 @@ $(document).ready(function(){
 	<br />
 
 	<p>
-		<label> ê´€ë¦¬ì ì¼ëŒ€ì¼ ìª½ì§€ë³´ë‚´ê¸° </label>
+		<label> °ü¸®ÀÚ ÀÏ´ëÀÏ ÂÊÁöº¸³»±â </label>
 	</p>
 	<hr style="border: solid 0.5px black;">
 	<br />
 	<form action="admin_writing_message.do" class="form-group"
 		method="POST" name="frm">
 		<input type="hidden" id="send_user_id" name="send_user_id" value="admin" /> 
-		<label>ë°›ëŠ”ì‚¬ëŒ</label>
+		<label>¹Ş´Â»ç¶÷</label>
 		<br />
 		<div class="select">
 			<input type="text" class="form-control" id="receive_user_id"
 				name="receive_user_id" style="width: 300px;" />
 		</div>
 
-		<input type="button" class="btn" id="primary_id" value="ID ì¡´ì¬ ì—¬ë¶€ í™•ì¸" />
+		<input type="button" class="btn" id="primary_id" value="ID Á¸Àç ¿©ºÎ È®ÀÎ" />
 
 
-		<br /> <label>ìª½ì§€ë‚´ìš©</label>
+		<br /> <label>ÂÊÁö³»¿ë</label>
 		<textarea id="msg_content" name="msg_content" rows="15"
 			class="form-control"> </textarea>
 		<br> <input id="m_submit" class="btn" type="button"
-			value="ë©”ì‹œì§€ ë³´ë‚´ê¸°" /> <input type="button" class="btn" id="cancel"
-			value="ì·¨ì†Œí•˜ê¸°" />
+			value="¸Ş½ÃÁö º¸³»±â" /> <input type="button" class="btn" id="cancel"
+			value="Ãë¼ÒÇÏ±â" />
 	</form>
 
 	<form id="ck_total">
@@ -155,39 +167,39 @@ $(document).ready(function(){
 					<div class="modal-body">
 						<label id="lblContent"></label><br />
 						<button type="button" class="btn btn-primary btn-sm" id="btnClose"
-							data-dismiss="modal">ë‹«ê¸°</button>
+							data-dismiss="modal">´İ±â</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
 
-	<!-- ë©”ì„¸ì§€ ì „ì†¡ ë¶€ë¶„ ëª¨ë‹¬ -->
+	<!-- ¸Ş¼¼Áö Àü¼Û ºÎºĞ ¸ğ´Ş -->
 	<div id="text_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="text_mohead" class="modal-header" align="center">
-					<h4>ë©”ì„¸ì§€ ë³´ë‚´ê¸°</h4>
+					<h4>¸Ş¼¼Áö º¸³»±â</h4>
 				</div>
 				<div id="text_mobody" class="modal-body" align="center">
-					<h4>ë©”ì„¸ì§€ë¥¼ ë³´ë‚´ê² ìŠµë‹ˆê¹Œ?</h4>
+					<h4>¸Ş¼¼Áö¸¦ º¸³»°Ú½À´Ï±î?</h4>
 				</div>
 				<div id="text_ft" class="modal-footer">
 					<button type='button' class='btn btn-default'
-						to-delete="delete_${vs.count}" id='text_modal_yes'>í™•ì¸</button>
-					<button type='button' class='btn btn-primary' id='text_modal_no'>ì·¨ì†Œ</button>
+						to-delete="delete_${vs.count}" id='text_modal_yes'>È®ÀÎ</button>
+					<button type='button' class='btn btn-primary' id='text_modal_no'>Ãë¼Ò</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- ë©”ì„¸ì§€ ì „ì†¡ ì™„ë£Œ ë¶€ë¶„ ëª¨ë‹¬-->
+	<!-- ¸Ş¼¼Áö Àü¼Û ¿Ï·á ºÎºĞ ¸ğ´Ş-->
 	<div id="basic_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="basic_mobody" class="modal-body" align="center"></div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_yes'>ë‹«ê¸°</button>
+					<button type='button' class='btn btn-default' id='basic_modal_yes'>´İ±â</button>
 				</div>
 			</div>
 		</div>

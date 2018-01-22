@@ -1,8 +1,20 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -55,7 +67,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading"><span class="glyphicon glyphicon-user">	<label> ${vo.host_name}íŒë§¤ìë‹˜ì˜ ìƒì„¸ì •ë³´</label> </span></div>
+				<div class="panel-heading"><span class="glyphicon glyphicon-user">	<label> ${vo.host_name}ÆÇ¸ÅÀÚ´ÔÀÇ »ó¼¼Á¤º¸</label> </span></div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<table width="100%"
@@ -63,11 +75,11 @@
 						id="dataTables-example">
 						<thead>
 							<tr>
-								<td>ì‚¬ì—…ì ë“±ë¡ ë²ˆí˜¸</td>
-								<td>í˜¸ìŠ¤íŠ¸ ìœ ì € ID</td>
-								<td>í˜¸ìŠ¤íŠ¸ ì´ë¦„</td>
-								<td>í˜¸ìŠ¤íŠ¸ ê³„ì¢Œ ë²ˆí˜¸</td>
-								<td>ì£¼ì†Œ</td>
+								<td>»ç¾÷ÀÚ µî·Ï ¹øÈ£</td>
+								<td>È£½ºÆ® À¯Àú ID</td>
+								<td>È£½ºÆ® ÀÌ¸§</td>
+								<td>È£½ºÆ® °èÁÂ ¹øÈ£</td>
+								<td>ÁÖ¼Ò</td>
 							</tr>
 						</thead>
 						<tr>
