@@ -22,7 +22,7 @@
 		.comm_review_table th,.comm_review_table td,.comm_review_table tr {
 			text-align: center;
 		}
-		.comm_review_con .container {
+		.comm_review_con {
 			text-align:center;
 		}
 	</style>
