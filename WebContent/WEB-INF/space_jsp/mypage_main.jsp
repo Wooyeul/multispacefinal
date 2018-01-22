@@ -48,6 +48,15 @@ iframe {
 	
 }
 
+.mypage_main li:hover {
+    background: rgba(28, 54, 85, .2) !important;
+	
+}
+
+.mypage_main .active {
+    background: rgba(28, 54, 85, .2) !important;
+	
+}
 
 .mypage_main li a {
 	color: black;
@@ -56,8 +65,14 @@ iframe {
     padding: 20px 15px;
 }
 
+.mypage_content_row{
+	margin-top : 50px !important;
+}
 
-
+.li_bold{
+	font-weight : bold !important;
+	 background: rgba(28, 54, 85, .2) !important;
+}
 
 </style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -178,10 +193,10 @@ iframe {
 <div class="container-fluid">
 
 	
-	<div class="row">
-			<div class="col-sm-2 mypage_main">
+	<div class="row mypage_main">
+			<div class="col-sm-2 ">
 				<ul class="nav">
-					<li class="active"><a data-toggle="tab" href="#myInfo"id="reflag1">[내
+					<li class="active li_bold"><a data-toggle="tab" href="#myInfo"id="reflag1">[내
 							정보]</a></li>
 					<li id="reflag2"><a data-toggle="tab" href="#myBooking">구매 정보</a></li>
 					<li id="reflag3"><a data-toggle="tab" href="#myBookmark">즐겨찾기</a></li>
@@ -197,7 +212,7 @@ iframe {
 						<li id="sendMessage"><a data-toggle="tab" href="#mySendMessage">쪽지 보내기</a></li>
 					</ul>
 
-					<li id="reflag10"><a data-toggle="tab" href="#sellerWrite">[판매자]</a></li>
+					<li id="reflag10" class="li_bold"><a data-toggle="tab" href="#sellerWrite">[판매자]</a></li>
 					<li id="reflag11"><a data-toggle="tab" href="#sellerWrite">내 글</a></li>
 					<li><a data-toggle="tab" href="#sellerAllChart">전체 통계</a></li>
 
@@ -205,7 +220,7 @@ iframe {
 			</div>
 
 
-	<div class="tab-content col-sm-10" >
+	<div class="tab-content col-sm-10 mypage_content_row" >
 		<div id="myInfo"  class="tab-pane active fade in">	
 			<iframe class="mypage_iframe" src="myinfo_ckpass.do"  align="center" id="flag1"></iframe>
 		</div>
