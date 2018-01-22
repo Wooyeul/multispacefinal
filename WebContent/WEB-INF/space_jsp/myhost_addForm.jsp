@@ -8,19 +8,6 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 
-.box{
-border-top :3px solid #00A65A;
-
-}
-
-.box2{
-border-bottom: 1px solid #EEEEEE;
-}
-
-.zip{
-float: left;
-padding-right: 5px;
-}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

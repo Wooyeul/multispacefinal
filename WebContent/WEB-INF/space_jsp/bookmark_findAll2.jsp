@@ -8,38 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	
-	
 	<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-.bookmark_chkbox {
-	width: 160px;
-	margin : 10px;
-	padding : 0px;
-}
-
-.bookmark_img {
-	width: 160px;
-	margin : 10px;
-	
-}
-
-.totaldiv {
-	margin-left: 0px;
-}
-
-.bookmark_div {
-	width: 300px;
-	float: left;
-	margin-left: 40px;
-	margin-top: 20px;
-}
-
-.mybookmarkdiv {
-	margin: 0 auto;
-	overflow: auto;
-}
-</style>
+		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="http://70.12.113.229:8088/msspace_01/mypage_css/Mybookmark.css">

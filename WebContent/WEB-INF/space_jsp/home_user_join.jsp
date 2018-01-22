@@ -15,40 +15,7 @@
 	<style type="text/css">
 		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 		
-		.user_join_form {
-			width: 100%;
-			text-align: center;
-		}
-		
-		.user_join_form_div {
-			display: inline-block;
-		}
-		
-		.user_join_form_div table th {
-			padding :7px 0;
-		}
-		
-		.user_join_form_div table td {
-			padding-left : 22px;
-			padding : 7px;
-		}
-		
-		
-		.user_jo {
-			margin-top: 27px;
-			margin-bottom: 27px;
-			text-align: center;
-			font-size: 2em;
-			font-family: "lato-regular", Helvetica, Arial, sans-serif;
-		}
-		
-		.panel-title {
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
 	</style>
-	
-	
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
