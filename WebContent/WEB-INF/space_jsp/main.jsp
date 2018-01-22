@@ -52,15 +52,18 @@ ga('send', 'pageview');
 				}
  			});	
 		
-		var scOffset = $('.navbar-Menu').offset();
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > scOffset.top) {
-					$('.navbar').addClass('navbar-fixed-top');
-				} else {
-					$('.navbar').removeClass('navbar-fixed-top');
-				}
-			});
-			
+	 		var scOffset = $('.navbar').offset();
+	 		$(window).scroll(function() {
+	 			if ($(document).scrollTop() > scOffset.top + 500) {
+	 				$('.navbar').addClass('navbar-fixed-top');
+	 				$('.navbar').addClass('navbar-color');
+	 			} else {
+	 				$('.navbar').removeClass('navbar-fixed-top');
+	 				$('.navbar').removeClass('navbar-color');
+	 			}
+	 		});
+	 		
+	 		
 			
 
 			ajaxGet("best_space.do",function(rt){
