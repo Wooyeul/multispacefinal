@@ -19,10 +19,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
-		th,td,tr {
+		.comm_review_table th,.comm_review_table td,.comm_review_table tr {
 			text-align: center;
 		}
-		.container {
+		.comm_review_con .container {
 			text-align:center;
 		}
 	</style>
@@ -44,11 +44,11 @@
 	</script> 
 <body>
 </br>
-<div class="container">
+<div class="container comm_review_con">
 	<label><h3>공간 사진을 클릭하면 해당 공간 페이지로 이동됩니다. 공간의 상세 내용 및 후기를 확인해보세요!</h3></label>
 </div>
 <hr style="border: solid 0.5px black;">
-	<table class="table table-hover">
+	<table class="table table-hover comm_review_table">
 		<tr>
 			<th width="80"><h3>방번호</h3></th>
 			<th width="300"><h3>제목</h3></th>

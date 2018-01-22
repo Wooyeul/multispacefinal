@@ -24,48 +24,43 @@
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
 	
-	h1 {
+	.event_user_list h1 {
 		text-align: center;
 	}
-	select {
+	.event_user_list select {
 		float: left;
 	}
-	.eveb {
+	.event_user_list .eveb {
 		margin-top: 27px;
 		margin-bottom: 27px;
 		text-align: center;
 		font-size: 2em;
 		font-family: "lato-regular", Helvetica, Arial, sans-serif;
 	}
-	body {
-		background-color: white;
-	}
-	.property_details {
-		background-color: white;
-	}
-	.selectdiv1{
+
+	.event_user_list .selectdiv1{
 		vertical-align : middle;
 		width: 800px;
 		float: left;
 	}
 	
-	.selectdiv2{
+	.event_user_list .selectdiv2{
 		margin-top:5px;
 		width: 150px;
 		float: left;
 	}
 	
-	 .selectdiv3 {
+	 .event_user_list .selectdiv3 {
 	 	width: 400px;
 		padding : 5px;
 		float: left;
 	}
-	 .selectdiv4 {
+	.event_user_list .selectdiv4 {
 	 	width: 100px;
 		padding : 5px;
 		float: left;
 	}
-	.selecdiv0 {
+	.event_user_list .selecdiv0 {
 		width: 600px;
 		margin:0 auto;
 	}
@@ -115,7 +110,7 @@
 	
 
 
-<div class="container">
+<div class="container event_user_list">
 	<div class="eveb"><h2>EVENT BOARD</h2></div>
 	
 		<div class="wrapper">

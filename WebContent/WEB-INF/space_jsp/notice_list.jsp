@@ -23,9 +23,6 @@
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
 	
-	body {
-		background-color: white;
-	}
 	
 	.noticeB {
 		margin-top: 27px;
@@ -34,10 +31,10 @@
 		font-size: 2em;
 		font-family: "lato-regular", Helvetica, Arial, sans-serif;
 	}
-	.panel-group {
+	.notice_list .panel-group {
 		margin-bottom: 40px;
 	}
-	.panel-title {
+	.notice_list .panel-title {
 			margin-top: 15px;
 			margin-bottom: 15px;
 		}
@@ -81,7 +78,7 @@
          <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ -->
 	
-	<div class="container">
+	<div class="container notice_list">
 		<div class="noticeB"><h2>NOTICE BOARD</h2></div>
 		
 		<div class="panel-group" id="accordion" role="tablist"

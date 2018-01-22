@@ -28,7 +28,7 @@
 	
 	
 	<style type="text/css">
-	.p{
+	.comm_qna_mod{
 	text-align: center;
 	}
 	
@@ -82,7 +82,7 @@ $(document).ready(function() {
 <body>
 	
 <br/>
-		<p class="p"><label>QnA</label></p>
+		<p class="comm_qna_mod"><label>QnA</label></p>
 	<hr style="border: solid 0.5px black;">
 		<div class="col-lg-12">
 		<div class="container">

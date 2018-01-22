@@ -1,7 +1,5 @@
 package multi.event.controller;
 
-import java.awt.Event;
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
