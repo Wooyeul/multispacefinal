@@ -100,8 +100,7 @@ $(document).ready(function(){
 <body>
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-					FAQ
+			<div class="panel-heading" style="text-align:center;"><b>FAQ</b><br></div><!-- /.panel-heading -->
 			<form id="form_search" action="admin_faq.do" method="post">
 				<input type="hidden" name="pg" value="" id="pg">
 				<input type="hidden" name="search_content" value="${search.search_content}">
@@ -163,7 +162,7 @@ $(document).ready(function(){
 			<!-- /.panel -->
 		</div>
 		<!-- /.col-lg-12 -->
-	</div>
+
 	
 <br>
 <br>

@@ -31,6 +31,9 @@ text-align: center;
 .select4 {
 	float: left;
 }
+.table_text_align{
+	text-align: center;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -105,8 +108,8 @@ $(document).ready(function(){
 							<div class="select1">
 								<select name="option" class="form-control">
 									<option value="crn">사업자 등록번호</option>
-									<option value="space_title">공간 이름</option>
-									<option value="space_content">공간 내용</option>
+									<option value="space_title">이름</option>
+									<option value="space_content">내용</option>
 									<option value="open_time">오픈 시간</option>
 									<option value="close_time">클로즈 시간</option>
 									<option value="price">가격</option>
@@ -114,8 +117,8 @@ $(document).ready(function(){
 									<option value="min_people">최소 인원</option>
 									<option value="space_call">공간 전화 번호</option>
 									<option value="zipcode">우편번호</option>
-									<option value="s_category_no">공간 카테고리</option>
-									<option value="l_category_no">장소 카테고리</option>
+									<option value="s_category_no">분야</option>
+									<option value="l_category_no">지역</option>
 									<option value="the_time">생성일</option>
 								</select>
 							</div>
@@ -149,23 +152,23 @@ $(document).ready(function(){
 			<div class="panel-body">
 				<br> <br> <br>
 				<table width="100%"
-					class="table table-striped table-bordered table-hover"
+					class="table table-striped table-bordered table-hover table_text_align"
 					id="dataTables-example">
 					<thead>
 						<tr>
 							<th>사업자 등록 번호</th>
-							<th>공간 이름</th>
-							<th>공간 내용</th>
+							<th>이름</th>
+							<th>내용</th>
 							<th>썸네일 이미지</th>
 							<th>오픈 시간</th>
 							<th>클로즈 시간</th>
 							<th>가격</th>
 							<th>최대 인원</th>
 							<th>최소 인원</th>
-							<th>공간 전화 번호</th>
+							<th>전화 번호</th>
 							<th>주소</th>
-							<th>분야별 카테고리</th>
-							<th>지역별 카테고리</th>
+							<th>분야</th>
+							<th>지역</th>
 							<th>생성일</th>
 							<th>삭제하기</th>
 						</tr>

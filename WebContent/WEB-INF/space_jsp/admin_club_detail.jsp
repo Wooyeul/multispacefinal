@@ -11,6 +11,9 @@
 .check {
 	text-align: center;
 }
+.table_text_align{
+	text-align: center;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -62,7 +65,7 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<table width="100%"
-						class="table table-striped table-bordered table-hover"
+						class="table table-striped table-bordered table-hover table_text_align"
 						id="dataTables-example">
 						<thead>
 							<tr>
@@ -74,8 +77,8 @@
 								<td>모임 이미지</td>
 								<td>모임 최대 인원</td>
 								<td>모임 생성일</td>
-								<td>로컬 카테고리</td>
-								<td>클럽 카테고리</td>
+								<td>분야</td>
+								<td>지역</td>
 							</tr>
 						</thead>
 						<tr>
@@ -84,12 +87,86 @@
 							<td>${vo.user_id}</td>
 							<td>${vo.club_title}</td>
 							<td>${vo.club_content}</td>
-							<td><img src="club_thumb_images/${vo.club_thumb_img}"
+							<td><img src="club_img/${vo.club_thumb_img}"
 								style="width: 128px; height: 128px;" /></td>
 							<td>${vo.max_member}</td>
 							<td>${vo.create_time}</td>
-							<td>${vo.l_category_no}</td>
-							<td>${vo.c_category_no}</td>
+							<jl:choose>
+									<jl:when test="${vo.c_category_no == 1}">
+										<td>공부</td>
+									</jl:when>
+									<jl:when test="${vo.c_category_no == 2}">
+										<td>회의</td>
+									</jl:when>
+									<jl:when test="${vo.c_category_no == 3}">
+										<td>파티</td>
+									</jl:when>
+									<jl:when test="${vo.c_category_no == 4}">
+										<td>레저</td>
+									</jl:when>
+									<jl:when test="${vo.c_category_no == 5}">
+										<td>스포츠</td>
+									</jl:when>
+									<jl:when test="${vo.c_category_no == 6}">
+										<td>기타</td>
+									</jl:when>
+							</jl:choose>
+							<jl:choose>
+									<jl:when test="${vo.l_category_no == 1}">
+										<td>서울</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 2}">
+										<td>경기</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 3}">
+										<td>인천</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 4}">
+										<td>강원</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 5}">
+										<td>대전</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 6}">
+										<td>세종</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 7}">
+										<td>충남</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 8}">
+										<td>충북</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 9}">
+										<td>부산</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 10}">
+										<td>울산</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 11}">
+										<td>경남</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 12}">
+										<td>경북</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 13}">
+										<td>대구</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 14}">
+										<td>광주</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 15}">
+										<td>전남</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 16}">
+										<td>전북</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 17}">
+										<td>제주</td>
+									</jl:when>
+									<jl:when test="${vo.l_category_no == 18}">
+										<td>전국</td>
+									</jl:when>
+							</jl:choose>
 						</tr>
 					</table>
 					<br /> 

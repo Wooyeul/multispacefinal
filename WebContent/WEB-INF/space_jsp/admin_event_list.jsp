@@ -77,8 +77,8 @@ text-align: center;
 <body>
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-					이벤트
+			<div class="panel-heading" style="text-align:center;"><b>이벤트</b><br></div><!-- /.panel-heading -->
+			
 			<form id="form_search" action="admin_event_list.do" method="post">
 				<input type="hidden" name="pg" value="" id="pg">
 				<input type="hidden" name="search_content" value="${search.search_content}">
@@ -128,7 +128,7 @@ text-align: center;
 			<!-- /.panel -->
 		</div>
 		<!-- /.col-lg-12 -->
-	</div>
+
 	<br/>
 	
 	<br>

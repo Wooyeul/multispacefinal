@@ -31,6 +31,9 @@
 .select4 {
 	float: left;
 }
+.table_text_align{
+	text-align: center;
+}
 
 </style>
 <script
@@ -118,7 +121,7 @@ $(document).ready(function(){
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<table width="100%"
-						class="table table-striped table-bordered table-hover"
+						class="table table-striped table-bordered table-hover table_text_align"
 						id="dataTables-example">
 						<thead>
 						<tr>
