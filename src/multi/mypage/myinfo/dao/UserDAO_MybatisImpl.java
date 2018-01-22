@@ -16,7 +16,7 @@ public class UserDAO_MybatisImpl implements UserDAO{
 
 	@Override
 	public UserVO find_userInfo(String user_id) throws Exception {
-		return sqlSession.selectOne("apple.mypage_myinfoFindUserInfo",user_id);
+		return sqlSession.selectOne("mypage_myinfo_sujin.mypage_myinfoFindUserInfo",user_id);
 	}
 	
 	

@@ -9,49 +9,49 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.vo.MessageVO;
 import multi.mypage.vo.Mypage_searchVO;
 
-public class MessageDAO_MybatisImpl implements MessageDAO{
+public class MessageDAO_MybatisProcImpl implements MessageDAO{
 
 	@Autowired @Qualifier("sqlSession")
 	private SqlSession sqlSession = null;
 	
 	@Override
 	public List<MessageVO> find_receiveMessage(String user_id) {
-		return sqlSession.selectList("mypage_message.mypage_message_findReceiveMessage",user_id);
+		return sqlSession.selectList("mypage_message_proc.mypage_message_findReceiveMessage",user_id);
 	}
 
 	@Override
 	public MessageVO read_receiveMessage(MessageVO mvo) {
-		return sqlSession.selectOne("mypage_message.mypage_message_readReceiveMessage",mvo);
+		return sqlSession.selectOne("mypage_message_proc.mypage_message_readReceiveMessage",mvo);
 	}
 
 	@Override
 	public List<MessageVO> find_sendMessage(String user_id) {
-		return sqlSession.selectList("mypage_message.mypage_message_findSendMessage",user_id);
+		return sqlSession.selectList("mypage_message_proc.mypage_message_findSendMessage",user_id);
 	}
 
 	@Override
 	public MessageVO read_sendMessage(MessageVO mvo) {
-		return sqlSession.selectOne("mypage_message.mypage_message_readSendMessage",mvo);
+		return sqlSession.selectOne("mypage_message_proc.mypage_message_readSendMessage",mvo);
 	}
 
 	@Override
 	public int send_Message(MessageVO pvo) {
-		return sqlSession.insert("mypage_message.mypage_message_SendMessage",pvo);
+		return sqlSession.insert("mypage_message_proc.mypage_message_SendMessage",pvo);
 	}
 
 	@Override
 	public List<MessageVO> search_receivemsg(Mypage_searchVO search) throws Exception {
-		return sqlSession.selectList("mypage_message.mypage_search_receive_msg",search);
+		return sqlSession.selectList("mypage_message_proc.mypage_search_receive_msg",search);
 	}
 
 	@Override
 	public List<MessageVO> search_sendmsg(Mypage_searchVO search) throws Exception {
-		return sqlSession.selectList("mypage_message.mypage_search_send_msg",search);
+		return sqlSession.selectList("mypage_message_proc.mypage_search_send_msg",search);
 	}
 
 	@Override
 	public int del_msg(String msg_no) throws Exception {
-		return sqlSession.delete("mypage_message.mypage_del_msg",msg_no);
+		return sqlSession.delete("mypage_message_proc.mypage_del_msg",msg_no);
 	}
 	
 

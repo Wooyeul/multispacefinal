@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mypage_mybooking">
+<mapper namespace="mypage_mybooking_proc">
 
 
 	
@@ -25,8 +25,9 @@
 	  <result property="booking_message" column="booking_message" jdbcType="VARCHAR"/>
    </resultMap>
 
+
 	 <select id="mypage_bookingInfo" resultMap="RM_mybookinginfo">
-		SELECT * from bookingT where user_id = #{user_id};
+		{CALL p_mypage_booking_info(#{user_id})}
 	</select>
 
 	<resultMap id="RM_booking_userinfo" type="main.vo.UserVO">
@@ -42,11 +43,12 @@
       <result property="email" column="email" jdbcType="VARCHAR"/>     
       <result property="grade" column="grade" jdbcType="INTEGER"/>          
    </resultMap>
-
-   
-   <select id="mypage_bookingFindUserInfo" resultMap="RM_booking_userinfo">
-		SELECT * from userT where user_id = #{user_id};
+	
+	<select id="mypage_bookingFindUserInfo" resultMap="RM_booking_userinfo">
+		{CALL p_mypage_booking_find_user_info(#{user_id})}
 	</select>
+	
+	
 	
 	<select id="mypage_search_booking" parameterType="multi.mypage.vo.Mypage_searchVO" resultMap="RM_mybookinginfo">
 		SELECT * FROM bookingT WHERE user_id = #{user_id}

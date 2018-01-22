@@ -15,19 +15,19 @@ public class UserDAO_MybatisImpl implements UserDAO{
 
 	@Override
 	public UserVO find_user(UserVO uvo) throws Exception {
-		return sqlSession.selectOne("apple.home_login",uvo);
+		return sqlSession.selectOne("home_login.home_login",uvo);
 	}
 	@Override
 	public UserVO find_userInfo(String user_id) throws Exception {
-		return sqlSession.selectOne("apple.home_loginFindUserInfo",user_id);
+		return sqlSession.selectOne("home_login.home_loginFindUserInfo",user_id);
 	}
 	@Override
 	public UserVO find_userId(UserVO uvo) throws Exception {
-		return sqlSession.selectOne("apple.home_loginFind_userId",uvo);
+		return sqlSession.selectOne("home_login.home_loginFind_userId",uvo);
 	}
 	@Override
 	public UserVO find_userPasswd(UserVO uvo) throws Exception {
-		return sqlSession.selectOne("apple.home_loginFind_userPasswd",uvo);
+		return sqlSession.selectOne("home_login.home_loginFind_userPasswd",uvo);
 	}
 
 }

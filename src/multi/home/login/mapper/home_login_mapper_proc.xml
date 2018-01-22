@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="home_login">
+<mapper namespace="home_login_proc">
 
 	<select id="sysdate" resultType="java.lang.String">
 		SELECT NOW()
@@ -25,20 +25,26 @@
    </resultMap>
 
 	
-	<select id="home_login" resultMap="RM_login">
-		SELECT * from userT where user_id = #{user_id} AND passwd =#{passwd};
+	<select id="home_login" statementType="CALLABLE" resultMap="RM_login">
+		{CALL p_home_login(#{user_id},#{passwd})}
 	</select>
 
+
+	
 	<select id="home_loginFindUserInfo" resultMap="RM_login">
-		SELECT * from userT where user_id = #{user_id};
+		{CALL p_home_login_find_user_info(#{user_id})}
 	</select>
 	
+
 	<select id="home_loginFind_userId" resultMap="RM_login">
-		SELECT * from userT where user_name = #{user_name} AND ssn1 = #{ssn1} AND ssn2 = #{ssn2};
+		{CALL p_home_login_find_user_id(#{user_name}, #{ssn1} ,#{ssn2})}
 	</select>
+		
 	<select id="home_loginFind_userPasswd" resultMap="RM_login">
-		SELECT * from userT where user_name = #{user_name} AND ssn1 = #{ssn1} AND ssn2 = #{ssn2} AND user_id = #{user_id};
+		{CALL p_home_login_find_passwd(#{user_name}, #{ssn1} ,#{ssn2},#{user_id})}
 	</select>
+	
+
 
 </mapper>
 <!--

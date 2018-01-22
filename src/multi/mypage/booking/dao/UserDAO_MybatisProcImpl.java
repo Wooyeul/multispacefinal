@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import main.vo.UserVO;
 
 
-public class UserDAO_MybatisImpl implements UserDAO{
+public class UserDAO_MybatisProcImpl implements UserDAO{
 
 	@Autowired @Qualifier("sqlSession")
 	private SqlSession sqlSession = null;
@@ -16,7 +16,7 @@ public class UserDAO_MybatisImpl implements UserDAO{
 
 	@Override
 	public UserVO find_userInfo(String user_id) throws Exception {
-		return sqlSession.selectOne("mypage_mybooking.mypage_bookingFindUserInfo",user_id);
+		return sqlSession.selectOne("mypage_mybooking_proc.mypage_bookingFindUserInfo",user_id);
 	}
 
 }

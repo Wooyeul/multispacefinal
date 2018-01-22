@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mypage_qna">
+<mapper namespace="mypage_qna_proc">
 
 
 <!-- **************** multi.mypage.qna **************** -->
@@ -21,10 +21,10 @@
       <result property="grade" column="grade" jdbcType="INTEGER"/>          
    </resultMap>
 
-   
-   <select id="mypage_qnaFindUserInfo" resultMap="RM_qna_userinfo">
-		SELECT * from userT where user_id = #{user_id};
+	<select id="mypage_qnaFindUserInfo" resultMap="RM_qna_userinfo">
+		{CALL p_mypage_qna_find_user_info(#{user_id})}
 	</select>
+	
 	
 	
    <resultMap id="RM_qna_qnainfo" type="main.vo.Space_qnaVO">
@@ -35,10 +35,14 @@
       <result property="space_qna_title" column="space_qna_title" jdbcType="VARCHAR"/>
       <result property="the_time" column="the_time" jdbcType="VARCHAR"/>            
    </resultMap>
-	
+   
+   
 	<select id="mypage_qna_qnaInfo" resultMap="RM_qna_qnainfo">
-		SELECT * from space_qnaT where user_id = #{user_id};
+		{CALL p_mypage_qna_qna_info(#{user_id})}
 	</select>
+	
+	
+	
 	
    <resultMap id="RM_qna_qna_repleinfo" type="main.vo.Space_qna_repleVO">
       <result property="space_qna_reple_no" column="space_qna_reple_no" jdbcType="INTEGER"/>  
@@ -51,12 +55,13 @@
    </resultMap>
 	
 	<select id="mypage_qna_qna_repleInfo" resultMap="RM_qna_qna_repleinfo">
-		SELECT * from space_qna_repleT where space_qna_no = #{space_qna_no};
+		{CALL p_mypage_qna_qna_reple_info(#{space_qna_no})}
+	</select>
+
+	<select id="mypage_qna_byqnano" resultMap="RM_qna_qnainfo">
+		{CALL p_mypage_qna_qna_info_byqnano(#{space_qna_no})}
 	</select>
 	
-	<select id="mypage_qna_byqnano" resultMap="RM_qna_qnainfo">
-		select * from space_qnaT where space_qna_no = #{space_qna_no};
-	</select>
 
    <select id="mypage_search_QnA" parameterType="multi.mypage.vo.Mypage_searchVO" resultType="main.vo.Space_qnaVO">
    		SELECT * FROM space_qnaT where user_id = #{user_id} AND 0=0
@@ -65,9 +70,10 @@
    		</if>
    </select>
    
-   <delete id="del_space_qna" parameterType="java.lang.String">
-   		delete from space_qnat where space_qna_no = #{space_qna_no};
-   </delete>
+		
+	<delete id="del_space_qna" parameterType="java.lang.String">
+		{CALL p_mypage_qna_del_space_qna(#{space_qna_no})}
+	</delete>
    
    
 </mapper>
