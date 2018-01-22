@@ -73,6 +73,7 @@
 		{call p_admin_to_Allmessage()}
 	</select>
 	
+	
 	<select id="admin_search_All" parameterType="multi.admin.vo.Admin_searchVO"
 		resultType="main.vo.MessageVO">
 

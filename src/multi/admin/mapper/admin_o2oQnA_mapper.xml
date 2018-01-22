@@ -19,8 +19,8 @@
 		IN v_o2o_phone TEXT
 	)
 	BEGIN
-		INSERT INTO o2oQnAT (o2o_title, o2o_content, o2o_email, o2o_type, o2o_phone, the_time ) VALUES( v_o2o_title, v_o2o_content, v_o2o_email,
- 	v_o2o_type, v_o2o_phone, NOW() );
+		INSERT INTO o2oQnAT (o2o_title, o2o_content, o2o_email, o2o_type, o2o_phone, the_time, re_o2o_content ) VALUES( v_o2o_title, v_o2o_content, v_o2o_email,
+ 	v_o2o_type, v_o2o_phone, NOW(), '' );
 	END$$
 	DELIMITER ;
 	-->
@@ -42,7 +42,7 @@
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_o2oQnA_findAll_noRe()
 	BEGIN
-		SELECT * FROM o2oQnAT WHERE re_o2o_content IS NULL ORDER BY o2o_no DESC;
+		SELECT * FROM o2oQnAT WHERE re_o2o_content = '' ORDER BY o2o_no DESC;
 	END$$
 	DELIMITER ;
 	-->
@@ -67,7 +67,7 @@
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_o2oQnA_findAll_Re()
 	BEGIN
-		SELECT * FROM o2oQnAT WHERE re_o2o_content IS NOT NULL ORDER BY o2o_no DESC;
+		SELECT * FROM o2oQnAT WHERE re_o2o_content = '' ORDER BY o2o_no DESC;
 	END$$
 	DELIMITER ;
 	-->
@@ -141,7 +141,7 @@
 	<select id="admin_search_All" parameterType="multi.admin.vo.Admin_searchVO"
 		resultType="main.vo.O2OQnAVO">
 
-	SELECT * FROM O2Oqnat WHERE re_o2o_content IS NULL
+	SELECT * FROM O2Oqnat WHERE re_o2o_content = ''
 	<if test="search_option == 1">
 	AND o2o_title like '%${search_content}%'
 	</if>
@@ -173,7 +173,7 @@
 	<select id="admin_search_All2" parameterType="multi.admin.vo.Admin_searchVO"
 		resultType="main.vo.O2OQnAVO">
 
-	SELECT * FROM O2Oqnat WHERE re_o2o_content IS NOT NULL
+	SELECT * FROM O2Oqnat WHERE re_o2o_content != ''
 	<if test="search_option == 1">
 	AND o2o_title like '%${search_content}%'
 	</if>

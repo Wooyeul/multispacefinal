@@ -13,8 +13,8 @@ INSERT INTO o2oQnAT ( o2o_title, o2o_content, o2o_email, o2o_type, o2o_phone, th
 		IN v_o2o_phone TEXT
 	)
 	BEGIN
-		INSERT INTO o2oQnAT (o2o_title, o2o_content, o2o_email, o2o_type, o2o_phone, the_time ) VALUES( v_o2o_title, v_o2o_content, v_o2o_email,
- 	v_o2o_type, v_o2o_phone, NOW() );
+		INSERT INTO o2oQnAT (o2o_title, o2o_content, o2o_email, o2o_type, o2o_phone, the_time, re_o2o_content ) VALUES( v_o2o_title, v_o2o_content, v_o2o_email,
+ 	v_o2o_type, v_o2o_phone, NOW(), '' );
 	END$$
 	DELIMITER ;
 ################################################################

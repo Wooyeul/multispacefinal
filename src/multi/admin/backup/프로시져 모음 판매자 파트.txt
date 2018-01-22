@@ -1,9 +1,9 @@
  DELETE FROM HostT;
 SELECT * FROM HostT;
-INSERT INTO HostT Values('111-11-11111', 'seller', '이양재', 'Korean bank', '442-470');
-INSERT INTO HostT Values('222-22-22222', 'imseller', '이양재', 'Korean bank', '442-470');
-INSERT INTO HostApplyT Values(default,'333-33-33333', 'seller_request', '이양재', 'Korean bank', '442-470','ing');
-INSERT INTO HostApplyT Values(default,'444-44-44444', 'user', '이양재', 'Korean bank', '442-470','ing');
+INSERT INTO HostT Values('111-11-11111', '405-240', 'seller', '이양재', 'Korean bank' );
+INSERT INTO HostT Values('222-22-22222', '405-240', 'imseller', '이양재', 'Korean bank' );
+INSERT INTO HostApplyT Values(default,'seller_request', '405-240','333-33-33333', '이양재', 'Korean bank', 'ing');
+INSERT INTO HostApplyT Values(default,'user', '405-240', '444-44-44444',  '이양재', 'Korean bank', 'ing');
 ################################################################
 	DROP PROCEDURE IF EXISTS p_admin_host_findAll;
 	DELIMITER $$
@@ -39,10 +39,10 @@ INSERT INTO HostApplyT Values(default,'444-44-44444', 'user', '이양재', 'Korean 
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_host_user_accept(
 		IN v_crn VARCHAR(50),
+		IN v_zipcode VARCHAR(7),
 		IN v_user_id VARCHAR(50),
 		IN v_host_name VARCHAR(50),
-		IN v_host_account VARCHAR(50),
-		IN v_zipcode VARCHAR(50)
+		IN v_host_account VARCHAR(50)
 	)
 	BEGIN
 		DECLARE exit handler FOR SQLEXCEPTION
@@ -52,7 +52,7 @@ INSERT INTO HostApplyT Values(default,'444-44-44444', 'user', '이양재', 'Korean 
 		END;
 		START TRANSACTION;
 			DELETE FROM HostApplyT WHERE user_id = v_user_id;
-			INSERT INTO HostT VALUES ( v_crn, v_user_id, v_host_name, v_host_account, v_zipcode );
+			INSERT INTO HostT VALUES ( v_crn, v_zipcode, v_user_id,  v_host_name, v_host_account );
 			UPDATE UserT SET grade='2' WHERE user_id = v_user_id;
 		COMMIT;
 	END$$

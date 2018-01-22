@@ -1,54 +1,3 @@
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 01', 'club_name 01', 'club_title 01', 'club_content 01', 'club_thumb_img 01', 01, NOW(), 01, 01);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 02', 'club_name 02', 'club_title 02', 'club_content 02', 'club_thumb_img 02', 02, NOW(), 02, 02);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 03', 'club_name 03', 'club_title 03', 'club_content 03', 'club_thumb_img 03', 03, NOW(), 03, 03);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 04', 'club_name 04', 'club_title 04', 'club_content 04', 'club_thumb_img 04', 04, NOW(), 04, 04);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 05', 'club_name 05', 'club_title 05', 'club_content 05', 'club_thumb_img 05', 05, NOW(), 05, 05);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 06', 'club_name 06', 'club_title 06', 'club_content 06', 'club_thumb_img 06', 06, NOW(), 06, 06);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 07', 'club_name 07', 'club_title 07', 'club_content 07', 'club_thumb_img 07', 07, NOW(), 07, 07);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 08', 'club_name 08', 'club_title 08', 'club_content 08', 'club_thumb_img 08', 08, NOW(), 08, 08);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 09', 'club_name 09', 'club_title 09', 'club_content 09', 'club_thumb_img 09', 09, NOW(), 09, 09);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 10', 'club_name 10', 'club_title 10', 'club_content 10', 'club_thumb_img 10', 10, NOW(), 10, 10);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 11', 'club_name 11', 'club_title 11', 'club_content 11', 'club_thumb_img 11', 11, NOW(), 11, 11);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 12', 'club_name 12', 'club_title 12', 'club_content 12', 'club_thumb_img 12', 12, NOW(), 12, 12);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 13', 'club_name 13', 'club_title 13', 'club_content 13', 'club_thumb_img 13', 13, NOW(), 13, 13);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 14', 'club_name 14', 'club_title 14', 'club_content 14', 'club_thumb_img 14', 14, NOW(), 14, 14);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 15', 'club_name 15', 'club_title 15', 'club_content 15', 'club_thumb_img 15', 15, NOW(), 15, 15);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 16', 'club_name 16', 'club_title 16', 'club_content 16', 'club_thumb_img 16', 16, NOW(), 16, 16);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 17', 'club_name 17', 'club_title 17', 'club_content 17', 'club_thumb_img 17', 17, NOW(), 17, 17);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 18', 'club_name 18', 'club_title 18', 'club_content 18', 'club_thumb_img 18', 18, NOW(), 18, 18);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 19', 'club_name 19', 'club_title 19', 'club_content 19', 'club_thumb_img 19', 19, NOW(), 19, 19);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 20', 'club_name 20', 'club_title 20', 'club_content 20', 'club_thumb_img 20', 20, NOW(), 20, 20);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 21', 'club_name 21', 'club_title 21', 'club_content 21', 'club_thumb_img 21', 21, NOW(), 21, 21);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 22', 'club_name 22', 'club_title 22', 'club_content 22', 'club_thumb_img 22', 22, NOW(), 22, 22);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 23', 'club_name 23', 'club_title 23', 'club_content 23', 'club_thumb_img 23', 23, NOW(), 23, 23);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 24', 'club_name 24', 'club_title 24', 'club_content 24', 'club_thumb_img 24', 24, NOW(), 24, 24);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 25', 'club_name 25', 'club_title 25', 'club_content 25', 'club_thumb_img 25', 25, NOW(), 25, 25);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 26', 'club_name 26', 'club_title 26', 'club_content 26', 'club_thumb_img 26', 26, NOW(), 26, 26);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 27', 'club_name 27', 'club_title 27', 'club_content 27', 'club_thumb_img 27', 27, NOW(), 27, 27);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 28', 'club_name 28', 'club_title 28', 'club_content 28', 'club_thumb_img 28', 28, NOW(), 28, 28);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 29', 'club_name 29', 'club_title 29', 'club_content 29', 'club_thumb_img 29', 29, NOW(), 29, 29);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 30', 'club_name 30', 'club_title 30', 'club_content 30', 'club_thumb_img 30', 30, NOW(), 30, 30);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 31', 'club_name 31', 'club_title 31', 'club_content 31', 'club_thumb_img 31', 31, NOW(), 31, 31);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 32', 'club_name 32', 'club_title 32', 'club_content 32', 'club_thumb_img 32', 32, NOW(), 32, 32);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 33', 'club_name 33', 'club_title 33', 'club_content 33', 'club_thumb_img 33', 33, NOW(), 33, 33);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 34', 'club_name 34', 'club_title 34', 'club_content 34', 'club_thumb_img 34', 34, NOW(), 34, 34);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 35', 'club_name 35', 'club_title 35', 'club_content 35', 'club_thumb_img 35', 35, NOW(), 35, 35);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 36', 'club_name 36', 'club_title 36', 'club_content 36', 'club_thumb_img 36', 36, NOW(), 36, 36);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 37', 'club_name 37', 'club_title 37', 'club_content 37', 'club_thumb_img 37', 37, NOW(), 37, 37);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 38', 'club_name 38', 'club_title 38', 'club_content 38', 'club_thumb_img 38', 38, NOW(), 38, 38);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 39', 'club_name 39', 'club_title 39', 'club_content 39', 'club_thumb_img 39', 39, NOW(), 39, 39);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 40', 'club_name 40', 'club_title 40', 'club_content 40', 'club_thumb_img 40', 40, NOW(), 40, 40);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 41', 'club_name 41', 'club_title 41', 'club_content 41', 'club_thumb_img 41', 41, NOW(), 41, 41);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 42', 'club_name 42', 'club_title 42', 'club_content 42', 'club_thumb_img 42', 42, NOW(), 42, 42);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 43', 'club_name 43', 'club_title 43', 'club_content 43', 'club_thumb_img 43', 43, NOW(), 43, 43);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 44', 'club_name 44', 'club_title 44', 'club_content 44', 'club_thumb_img 44', 44, NOW(), 44, 44);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 45', 'club_name 45', 'club_title 45', 'club_content 45', 'club_thumb_img 45', 45, NOW(), 45, 45);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 46', 'club_name 46', 'club_title 46', 'club_content 46', 'club_thumb_img 46', 46, NOW(), 46, 46);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 47', 'club_name 47', 'club_title 47', 'club_content 47', 'club_thumb_img 47', 47, NOW(), 47, 47);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 48', 'club_name 48', 'club_title 48', 'club_content 48', 'club_thumb_img 48', 48, NOW(), 48, 48);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 49', 'club_name 49', 'club_title 49', 'club_content 49', 'club_thumb_img 49', 49, NOW(), 49, 49);
-INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img, max_member, create_time, l_category_no, c_category_no) VALUES ('user_id 50', 'club_name 50', 'club_title 50', 'club_content 50', 'club_thumb_img 50', 50, NOW(), 50, 50);
- 
 ################################################################
 	DROP PROCEDURE IF EXISTS p_admin_club_FindAllClubs;
 	DELIMITER $$
@@ -91,3 +40,15 @@ INSERT INTO ClubT (user_id, club_name, club_title, club_content, club_thumb_img,
 		SELECT * FROM ClubT WHERE club_no = v_club_no;
 	END$$
 	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_club_FindjoinedUsers;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_club_FindjoinedUsers(
+		IN v_club_no INT
+	)
+	BEGIN
+		SELECT * FROM User_ClubT WHERE club_no = v_club_no;
+	END$$
+	DELIMITER ;
+################################################################	
+	

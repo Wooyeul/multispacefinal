@@ -14,7 +14,6 @@ public class HostApplyVO {
 
 	public HostApplyVO(Integer host_apply_no, String crn, String user_id, String host_name, String host_account,
 			String zipcode, String etc) {
-		super();
 		this.host_apply_no = host_apply_no;
 		this.crn = crn;
 		this.user_id = user_id;

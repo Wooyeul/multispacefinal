@@ -14,3 +14,161 @@ INSERT INTO SpaceT Values(default, '222-22-22222', '두번째  공간', '적당하고 아�
 		SELECT * FROM SpaceT WHERE crn = v_crn;
 	END$$
 	DELIMITER ;
+################################################################	
+	DROP PROCEDURE IF EXISTS p_admin_host_findAll;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_findAll()
+	BEGIN
+		SELECT * FROM HostT WHERE user_id IN ( SELECT user_id FROM UserT WHERE grade='2');
+	END$$
+	DELIMITER ;
+	CALL p_admin_host_findAll();
+################################################################	
+	DROP PROCEDURE IF EXISTS p_admin_host_request_findAll;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_request_findAll()
+	BEGIN
+		SELECT * FROM HostApplyT;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_host_one_person_check;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_one_person_check(
+		IN v_crn VARCHAR(50)
+	)
+	BEGIN
+		SELECT * FROM HostApplyT WHERE crn = v_crn;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_host_user_accept;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_user_accept(
+		IN v_crn VARCHAR(50),
+		IN v_zipcode VARCHAR(7),
+		IN v_user_id VARCHAR(50),
+		IN v_host_name VARCHAR(50),
+		IN v_host_account VARCHAR(50)
+	)
+	BEGIN
+		DECLARE exit handler FOR SQLEXCEPTION
+		BEGIN
+			ROLLBACK;
+			SIGNAL SQLSTATE '45000';
+		END;
+		START TRANSACTION;
+			DELETE FROM HostApplyT WHERE user_id = v_user_id;
+			INSERT INTO HostT VALUES ( v_crn, v_zipcode, v_user_id, v_host_name, v_host_account );
+			UPDATE UserT SET grade='2' WHERE user_id = v_user_id;
+		COMMIT;
+	END$$
+	DELIMITER ;
+################################################################
+DROP PROCEDURE IF EXISTS p_admin_host_user_refuse;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_user_refuse(
+		IN v_host_apply_no INT,
+		IN v_etc VARCHAR(50)
+	)
+	BEGIN
+		UPDATE HostApplyT SET etc = v_etc WHERE host_apply_no = v_host_apply_no;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_host_user_remove_request;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_user_remove_request(
+		IN v_host_apply_no VARCHAR(50)
+	)
+	BEGIN	
+		DELETE FROM HostApplyT WHERE host_apply_no = v_host_apply_no;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_host_user_downgrade;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_user_downgrade(
+		IN v_crn VARCHAR(50),
+		IN v_user_id VARCHAR(50),
+		IN v_send_user_id VARCHAR(50),
+		IN v_receive_user_id VARCHAR(50),
+		IN v_msg_content TEXT
+	)
+	BEGIN	
+		DECLARE exit handler FOR SQLEXCEPTION
+		BEGIN
+			ROLLBACK;
+			SIGNAL SQLSTATE '45000';
+		END;
+		START TRANSACTION;
+			DELETE FROM HostT WHERE crn = v_crn;
+			UPDATE UserT SET grade=1 WHERE user_id = v_user_id;
+			INSERT INTO MessageT VALUES ( default, v_send_user_id, v_receive_user_id, v_msg_content, NOW(), 0 );
+		COMMIT;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_host_user_remove;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_user_remove(
+		IN v_crn VARCHAR(50),
+		IN v_user_id VARCHAR(50)
+	)
+	BEGIN	
+		DECLARE exit handler FOR SQLEXCEPTION
+		BEGIN
+			ROLLBACK;
+			SIGNAL SQLSTATE '45000';
+		END;
+		START TRANSACTION;
+			DELETE FROM HostT WHERE crn = v_crn;
+			DELETE FROM UserT WHERE user_id = v_user_id;
+		COMMIT;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_host_user_findUserInfo;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_host_user_findUserInfo(
+		IN v_user_id VARCHAR(50)
+	)
+	BEGIN
+		SELECT * FROM UserT WHERE user_id = v_user_id;
+	END$$
+	DELIMITER ;
+	CALL p_admin_host_user_findUserInfo('seller');	
+################################################################	
+	DROP PROCEDURE IF EXISTS p_admin_remove_Space;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_remove_Space(
+		IN v_space_no INT
+	)
+	BEGIN
+		DECLARE exit handler FOR SQLEXCEPTION
+		BEGIN
+			ROLLBACK;
+			SIGNAL SQLSTATE '45000';
+		END;
+		START TRANSACTION;
+			DELETE FROM BookingT WHERE space_no = v_space_no;
+			DELETE FROM Space_QnAT WHERE space_no = v_space_no;
+			DELETE FROM Space_QnA_RepleT WHERE space_no = v_space_no;
+			DELETE FROM ImageT WHERE space_no = v_space_no;
+			DELETE FROM ReviewT WHERE space_no = v_space_no;
+			DELETE FROM BookmarkT WHERE space_no = v_space_no;
+			DELETE FROM BookingT WHERE space_no = v_space_no;
+			DELETE FROM SpaceT WHERE space_no = v_space_no;
+		COMMIT;
+	END$$
+	DELIMITER ;
+################################################################
+	DROP PROCEDURE IF EXISTS p_admin_space_crn_check;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_space_crn_check(
+		IN v_crn VARCHAR(50)
+	)
+	BEGIN
+		SELECT * FROM HostT WHERE crn = v_crn;
+	END$$
+	DELIMITER ;

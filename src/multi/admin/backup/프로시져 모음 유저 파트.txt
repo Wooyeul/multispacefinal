@@ -1,37 +1,37 @@
 DELETE FROM UserT; 
 SELECT * FROM UserT;
-INSERT INTO UserT Values('user', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
-'coolGuy', '442-470', 'remd@naver.com' , 1,'test' );
-INSERT INTO UserT Values('seller_request', '881001', '8888888', '1234', '삼양재', 'M', '01055246469',
-'coolGuy', '442-470', 'remd@naver.com' , 1,'test' );
-INSERT INTO UserT Values('seller', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
-'coolGuy', '442-470', 'remd@naver.com' , 2,'test' );
-INSERT INTO UserT Values('imseller', '881001', '8888888', '1234', '사양재', 'M', '01055246469',
-'coolGuy', '442-470', 'remd@naver.com' , 2,'test' );
-INSERT INTO UserT Values('admin', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
-'coolGuy', '442-470', 'remd@naver.com' , 3 ,'test');
+INSERT INTO UserT Values('user', '405-240', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
+'coolGuy', 'remd@naver.com' , 1,'test' );
+INSERT INTO UserT Values('seller_request', '405-240', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
+'coolGuy', 'remd@naver.com' , 1,'test' );
+INSERT INTO UserT Values('seller', '405-240', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
+'coolGuy', 'remd@naver.com' , 2,'test' );
+INSERT INTO UserT Values('imseller', '405-240', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
+'coolGuy', 'remd@naver.com' , 2,'test' );
+
+INSERT INTO UserT Values('admin', '405-240', '881001', '8888888', '1234', '이양재', 'M', '01055246469',
+'coolGuy',  'remd@naver.com' , 3 ,'test');
 ################################################################
-DROP PROCEDURE IF EXISTS p_admin_user_findAll;
-DELIMITER $$
-
-CREATE PROCEDURE p_admin_user_findAll()
-BEGIN
-	SELECT * FROM UserT WHERE grade = 1;
-END$$
-DELIMITER ;
+	DROP PROCEDURE IF EXISTS p_admin_user_findAll;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_user_findAll()
+	BEGIN
+		SELECT * FROM UserT WHERE grade = 1;
+	END$$
+	DELIMITER ;
+	CALL p_admin_user_findAll();
 
 ################################################################
 
-DROP PROCEDURE IF EXISTS p_admin_user_findUser;
-DELIMITER $$
-
-CREATE PROCEDURE p_admin_user_findUser(
-	IN v_user_id VARCHAR(50)
-)
-BEGIN
-	SELECT * FROM UserT WHERE user_id = v_user_id;
-END$$
-DELIMITER ;
+	DROP PROCEDURE IF EXISTS p_admin_user_findUser;
+	DELIMITER $$
+	CREATE PROCEDURE p_admin_user_findUser(
+		IN v_user_id VARCHAR(50)
+	)
+	BEGIN
+		SELECT * FROM UserT WHERE user_id = v_user_id;
+	END$$
+	DELIMITER ;
 
 ################################################################
 
@@ -87,11 +87,12 @@ DELIMITER ;
 		IN v_phone VARCHAR(50),
 		IN v_nickname VARCHAR(50),
 		IN v_zipcode VARCHAR(50),
+		IN v_zipdetail VARCHAR(50),
 		IN v_email VARCHAR(50)
 	)
 	BEGIN
 		UPDATE UserT SET user_name = v_user_name, phone=v_phone, 
-		nickname=v_nickname, zipcode = v_zipcode, email = v_email WHERE user_id = v_user_id;
+		nickname=v_nickname, zipcode = v_zipcode, zipdetail = v_zipdetail, email = v_email WHERE user_id = v_user_id;
 	END$$
 	DELIMITER ;
 	

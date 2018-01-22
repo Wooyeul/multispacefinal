@@ -85,10 +85,10 @@
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_host_user_accept(
 		IN v_crn VARCHAR(50),
+		IN v_zipcode VARCHAR(7),
 		IN v_user_id VARCHAR(50),
 		IN v_host_name VARCHAR(50),
-		IN v_host_account VARCHAR(50),
-		IN v_zipcode VARCHAR(50)
+		IN v_host_account VARCHAR(50)
 	)
 	BEGIN
 		DECLARE exit handler FOR SQLEXCEPTION
@@ -98,7 +98,7 @@
 		END;
 		START TRANSACTION;
 			DELETE FROM HostApplyT WHERE user_id = v_user_id;
-			INSERT INTO HostT VALUES ( v_crn, v_user_id, v_host_name, v_host_account, v_zipcode );
+			INSERT INTO HostT VALUES ( v_crn, v_zipcode, v_user_id, v_host_name, v_host_account );
 			UPDATE UserT SET grade='2' WHERE user_id = v_user_id;
 		COMMIT;
 	END$$
@@ -106,10 +106,10 @@
 	-->
 	<parameterMap id="PM_p_admin_host_user_accept" type="main.vo.HostApplyVO" >
 		<parameter property="crn" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="zipcode" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="host_name" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="host_account" mode="IN" jdbcType="VARCHAR"/>
-		<parameter property="zipcode" mode="IN" jdbcType="VARCHAR"/>
 	</parameterMap>
 	<update id="p_admin_host_user_accept" statementType="CALLABLE"
 		parameterType = "main.vo.HostApplyVO"
@@ -267,7 +267,7 @@
 	<select id="p_admin_host_user_findUserInfo" statementType="CALLABLE" 
 		resultMap="RM_p_admin_host_user_findUserInfo"
 		parameterMap="PM_p_admin_host_user_findUserInfo">
-		{call p_admin_user_findUser(?)}
+		{call p_admin_host_user_findUserInfo(?)}
 	</select>
 	
 	<select id="admin_search_host_user" parameterType="multi.admin.vo.Admin_searchVO" 
