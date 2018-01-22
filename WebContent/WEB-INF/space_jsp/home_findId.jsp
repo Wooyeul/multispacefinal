@@ -1,16 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"> 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <script src="common.js" type="text/javascript"></script>
 
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+<link rel="stylesheet" type="text/css"
+	href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css"
+	href="./Resources/css/responsive.css">
+<link rel="stylesheet" type="text/css"
+	href="./Resources/css/event_hover.css">
+
+
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
 	  
+<style type="text/css">
+
+.findid_head{
+text-align: center;
+}
+
+
+.name{
+float: left;
+margin-top : 10px;
+margin-right: 8px;
+text-align: center;
+
+}
+.name2{
+float: left;
+margin-right: 8px;
+
+}
+
+
+.find_id_div{
+    margin: auto;
+    width: 800px;
+    height: 600px;
+    padding-top: 3%;
+    padding-bottom: 8%;
+}
+
+
+</style>	  
  <script>
  $(document).ready(function(){
 	 
@@ -41,14 +89,56 @@
 	
 </head>
 <body>
-	<form method="POST" class="form-signin">
-		<table width="422" align="left">
+	<section class="hero_page">
+		<header>
+			<div class="wrapper">
+
+				<a href="#" class="logo sh_a" alt="" titl="">Multi Space</a>
+				<nav class="navbar navbar-default">
+
+					<div id="navbar">
+
+						<ul class="top_nav">
+							<li><a href="space_home.do">공간</a></li>
+							<li><a href="club_home.do">모임</a></li>
+							<li><a href="community_list.do">커뮤니티</a></li>
+							<li><a href="event_user_list.do">이벤트</a></li>
+							<li><a href="notice_list.do">공지사항</a></li>
+							<li><a href="faq_list.do">FAQ</a></li>
+							<li><a href="admin_main.do">관리자</a></li>
+						</ul>
+
+
+						<ul id="non_login_nav" class="nav navbar-right">
+							<li><a href="home_moveLoginPage.do">로그인</a></li>
+						</ul>
+
+
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!--  end header section  -->
+	</section>
+	
+	<div class="find_id_div">
+	<div class="login_div">
+		<div class="wrapper">
+
+
+		<form method="POST" class="form-signin">
+			<div class="findid_head">
+			 <h2 class="form-signin-heading">아이디 찾기</h2>
+
+			</div>
+
+	      <table width="600" align="left">
 			<tr>
 				<td width="15"></td>
 				<td width="12"></td>
-				<td width="95" height="35" class="g_13" align="left">이름</td>
+				<td width="95" height="35" class="g_13" align="left">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</td>
 				<td width="300" align="left">
-					<input name="user_name"	id="user_name" type="text" class="textareabg" size="15" />
+					<input name="user_name"	id="user_name" type="text" class="textareabg" class="form-control" size="15"  placeholder="이름" />
 				</td>
 			</tr>
 
@@ -57,8 +147,72 @@
 				<td width="12"></td>
 				<td width="95" height="35" class="g_13" align="left">주민번호</td>
 				<td width="300" class="g_13" align="left">
-					<input name="ssn1" id="ssn1" class="textareabg" size="15" maxlength="20" /> - 
-					<input name="ssn2" id="ssn2" class="textareabg" size="15" maxlength="20" />
+					<input name="ssn1" id="ssn1" class="textareabg" class="form-control" size="15" maxlength="20" /> - 
+					<input name="ssn2" id="ssn2" class="textareabg"  class="form-control" size="15" maxlength="20" />
+				</td>
+			</tr>
+			<tr>
+				<td width="15"></td>
+				<td width="12"></td>
+				<td width="95" height="25"></td>
+				<td width="15"></td>
+			</tr>
+
+			<tr>
+				<td width="15"></td>
+				<td width="12" height="15"></td>
+				<td width="95" height="15"></td>
+				<td width="285" height="15"></td>
+				<td width="15"></td>
+			</tr>
+			<tr>
+				<td colspan="5" align="center" class="btn_wrap_align_top">
+				<button id="sub-btn" class="btn btn-lg btn-blue" type="button" >
+				아이디 찾기
+				</button>
+				</td>
+			</tr>
+			<tr>
+				<td width="15"></td>
+				<td width="12" height="15"></td>
+				<td width="95" height="15"></td>
+				<td width="285" height="15"></td>
+				<td width="15"></td>
+			</tr>
+		</table>
+		</form>
+
+	
+	</div>
+</div>
+
+</div>
+
+	
+	
+	
+	
+	
+	
+	
+
+	<!-- 	<table width="600" align="left">
+			<tr>
+				<td width="15"></td>
+				<td width="12"></td>
+				<td width="95" height="35" class="g_13" align="left">이름</td>
+				<td width="300" align="left">
+					<input name="user_name"	id="user_name" type="text" class="form-control" size="15" />
+				</td>
+			</tr>
+
+			<tr>
+				<td width="15"></td>
+				<td width="12"></td>
+				<td width="95" height="35" class="g_13" align="left">주민번호</td>
+				<td width="300" class="g_13" align="left">
+					<input name="ssn1" id="ssn1" class="form-control" size="15" maxlength="20" /> - 
+					<input name="ssn2" id="ssn2" class="form-control" size="15" maxlength="20" />
 				</td>
 			</tr>
 			<tr>
@@ -89,8 +243,8 @@
 				<td width="285" height="15"></td>
 				<td width="15"></td>
 			</tr>
-		</table>
-	</form>
+		</table>  -->
+
 
 
 <!-- **************************************** id_modal **************************************** -->

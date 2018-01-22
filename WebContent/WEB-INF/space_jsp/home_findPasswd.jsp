@@ -1,10 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
 <html>
 <head>
-<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
-<link rel="stylesheet" href="css/style.css">
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+<link rel="stylesheet" type="text/css"
+	href="./Resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+<link rel="stylesheet" type="text/css"
+	href="./Resources/css/responsive.css">
+<link rel="stylesheet" type="text/css"
+	href="./Resources/css/event_hover.css">
+
+
+<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+<script type="text/javascript" src="./Resources/js/main.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./common.js"></script>
 <style>
 .form-text {
 	float: left; 
@@ -14,13 +36,20 @@
 	float: left; 
 	padding:10px;
 }
+
+.find_id_div{
+    margin: auto;
+    width: 800px;
+    height: 600px;
+    padding-top: 3%;
+    padding-bottom: 8%;
+}
+    
+.findpw_head{
+text-align: center;
+}    
 </style>	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> -->
-	<script type="text/javascript" src="common.js"></script>
-	
+
 	<script>
   $(document).ready(function(){
  		
@@ -59,23 +88,62 @@
 	</script>
 </head>
 <body>
+
+<section class="hero_page">
+		<header>
+			<div class="wrapper">
+
+				<a href="#" class="logo sh_a" alt="" titl="">Multi Space</a>
+				<nav class="navbar navbar-default">
+
+					<div id="navbar">
+
+						<ul class="top_nav">
+							<li><a href="space_home.do">공간</a></li>
+							<li><a href="club_home.do">모임</a></li>
+							<li><a href="community_list.do">커뮤니티</a></li>
+							<li><a href="event_user_list.do">이벤트</a></li>
+							<li><a href="notice_list.do">공지사항</a></li>
+							<li><a href="faq_list.do">FAQ</a></li>
+							<li><a href="admin_main.do">관리자</a></li>
+						</ul>
+
+
+						<ul id="non_login_nav" class="nav navbar-right">
+							<li><a href="home_moveLoginPage.do">로그인</a></li>
+						</ul>
+
+
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!--  end header section  -->
+	</section>
+<div class="find_id_div">
+		<div class="wrapper">
 	<form id="formFindPasswd">
-		<table width="422" align="left">
+	<div class="findpw_head">
+		<h2 class="form-signin-heading">비밀번호 찾기</h2>
+
+	</div>
+	
+		<table width="600" align="left">
 			<tr>
 				<td width="15"></td>
 				<td width="12"></td>
-				<td width="95" height="35" class="g_13" align="left">이름</td>
+				<td width="95" height="35" class="g_13" align="left">이&nbsp;&nbsp;&nbsp;&nbsp;름</td>
 				<td width="300" align="left">
-					<input name="user_name"	type="text" class="textareabg" size="15" />
+					<input  name="user_name"class="textareabg" type="text" class="textareabg" size="15"  placeholder="이름"  />
 				</td>
 			</tr>
 			
 			<tr>
 				<td width="15"></td>
 				<td width="12"></td>
-				<td width="95" height="35" class="g_13" align="left">아이디</td>
+				<td width="95" height="35" class="g_13" align="left">아0이디</td>
 				<td width="300" class="g_13" align="left">
-					<input name="user_id" class="textareabg" size="15" maxlength="20" />
+					<input name="user_id" class="textareabg" size="15" maxlength="20"  placeholder="Id" />
 				</td>
 			</tr>
 			
@@ -106,9 +174,12 @@
 				<td width="15"></td>
 			</tr>
 			<tr>
-				<td colspan="5" align="center" class="btn_wrap_align_top">
-				<button id="sub-btn" class="btn btn-lg btn-success" type="button" >
-				비밀번호 찾기
+				<td width="15"></td>
+				<td width="12" height="15"></td>
+				<td width="95" height="15"></td>
+				<td colspan="2" align="center" class="btn_wrap_align_top">
+				<button id="sub-btn" class="btn btn-lg btn-blue" type="button" >
+				비밀번호찾기
 				</button>
 				</td>
 			</tr>
@@ -122,7 +193,8 @@
 		</table>
 	</form>
 	<!-- 이메일 주소로찾기 폼 끝-->
-
+</div>
+</div>
 
 
 	<!-- **************************************** passwdModal *************************************** -->
