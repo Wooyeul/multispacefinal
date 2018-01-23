@@ -290,6 +290,7 @@
 							</tr>
 						</jl:forEach>
 				</table>
+				<br><br>
 			</div>
 			<!-- /.table-responsive -->
 			

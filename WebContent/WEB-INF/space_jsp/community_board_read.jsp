@@ -359,10 +359,12 @@ $(document).ready(function() {
 				<div id="reple_tr" style=" height: auto; min-height: 5px; overflow: auto;">
 			
 				</div>
+				<br><br>
 			</div>
 			<!-- /.table-responsive -->
 		</div>
 		<!-- /.col-lg-12 -->
+		
 			<div class="replecontent">
 		<form id="add_reple_frm">
 			<jl:if test="${user_id ne ''}">
