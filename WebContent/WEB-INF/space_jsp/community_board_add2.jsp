@@ -89,8 +89,8 @@ text-align: center;
 				<label>내용</label>
 				<textarea id="summernote" name="com_board_content" ></textarea>
 				<br> 
-				<input id="myAlert" class="btn" type="button" value="등록" />
-				<input type="button" class="btn" id="cancel" value="취소"/>
+				<input id="myAlert" class="btn btn-info" type="button" value="등록" />
+				<input type="button" class="btn btn-info" id="cancel" value="취소"/>
 				</form>
 			</div>
 		</div>

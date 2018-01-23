@@ -1,35 +1,39 @@
-<%@ page language="java" contentType="text/html;charset=utf-8"
-    pageEncoding="euc-kr"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
-.community_qna_add_p{
-text-align: center;
-}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
 		
-.community_qna_add_write{
-float: left;
-	padding-right: 5px;
-}	
-	</style>
-	<script src="common.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-<!-- ¿¡µğÅÍ 3ÁÙ -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
-	
+	<script type="text/javascript" src="./common.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+	<style type="text/css">
+		.community_qna_add_p{
+		text-align: center;
+		}
+				
+		.community_qna_add_write{
+		float: left;
+			padding-right: 5px;
+		}	
+	</style>
+
 	<script>
 	
 	$(document).ready(function() {
-	/* ±âº» ¸ğ´Ş Ã¢ ´İ±â ¹öÆ° ´­·¶À» ¶§ ÀÌº¥Æ® ¹ß»ı */
+	/* ê¸°ë³¸ ëª¨ë‹¬ ì°½ ë‹«ê¸° ë²„íŠ¼ ëˆŒë €ì„ ë•Œ ì´ë²¤íŠ¸ ë°œìƒ */
 	$("#basic_modal_Yes").on("click",function(){
 		$("#basic_modal").modal("hide");
 	});
@@ -40,7 +44,7 @@ float: left;
 		$("#text_add_modal").modal("show");
 		$("#text_add_modal_Yes").on("click",function(){
 			$("#text_add_modal").modal("hide");
-			$("#basic_mobody").html("<h4>QnA°¡ µî·ÏµÇ¾ú½À´Ï´Ù.</h4>");
+			$("#basic_mobody").html("<h4>QnAê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.</h4>");
 			$("#basic_modal").modal("show");
 			$("#basic_modal").on("hidden.bs.modal",function(){
 				$("#qna_submit").submit();
@@ -71,7 +75,7 @@ float: left;
 	
 
 	</script>
-<!--¿¡µğÅÍ -->	
+<!--ì—ë””í„° -->	
 	<script>
 $(document).ready(function() {
 	$("#summernote").summernote({
@@ -86,58 +90,67 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ --> 
 <br/>
-		<p class="community_qna_add_p"><label>QnA</label></p>
+	<p class="community_qna_add_p"><label>QnAì“°ê¸°</label></p>
 	<hr style="border: solid 0.5px black;">
-	<div class="col-lg-12">
-		<div class="container">
+	<div class="container">
+		<div class="col-lg-12">
 			<form action="community_qna_add2.do" method="POST" id="qna_submit">
 				<input type="hidden" name="user_id" value="${user_id}"/>
-				<label>Á¦¸ñ</label><input  class="form-control" type="text" name="com_qna_title"/><br/>
-				<label>³»¿ë</label><textarea  id="summernote"  name="com_qna_content" ></textarea>
+				<label>ì œëª©</label><input  class="form-control" type="text" name="com_qna_title"/><br/>
+				<label>ë‚´ìš©</label><textarea  id="summernote"  name="com_qna_content" ></textarea>
 				<br/>
 				<div class="community_qna_add_write">
-				<input type="button" value="QnAÀÛ¼º" class="btn btn-info btn-sm" data-toggle="modal"  id="ee"/>
+				<input type="button" value="QnAì‘ì„±" class="btn btn-info" data-toggle="modal"  id="ee"/>
 				</div>
 			</form>
 			
 			<form action="community_qna_list.do" method="POST">
-				<input type="submit" value="Ãë¼Ò" class="btn btn-info btn-sm"/>
+				<input type="submit" value="ì·¨ì†Œ" class="btn btn-info"/>
 			</form>
 		</div>
 	</div>
-	<!-- ±âº» modalÃ¢ ½ÃÀÛ -->
+	
+		<br>
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
+	
+	<!-- ê¸°ë³¸ modalì°½ ì‹œì‘ -->
 	<div id="basic_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>´İ±â</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>ë‹«ê¸°</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ±âº» modalÃ¢ ³¡ -->
-	<!-- ±Û ¼öÁ¤ modalÃ¢ ½ÃÀÛ -->
+	<!-- ê¸°ë³¸ modalì°½ ë -->
+	<!-- ê¸€ ìˆ˜ì • modalì°½ ì‹œì‘ -->
 	<div id="text_add_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header" align="center"><h4>±Û µî·Ï</h4></div>
+				<div id="mohead" class="modal-header" align="center"><h4>ê¸€ ë“±ë¡</h4></div>
 				<div id="mobody" class="modal-body" align="center">
-				<h4>QnA¸¦ µî·Ï ÇÏ½Ã°Ú½À´Ï±î?</h4>
+				<h4>QnAë¥¼ ë“±ë¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
 				</div>
 				<div id="ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='text_add_modal_Yes'>µî·Ï</button>
-					<button type='button' class='btn btn-primary' id='text_add_modal_No'>Ãë¼Ò</button>
+					<button type='button' class='btn btn-default' id='text_add_modal_Yes'>ë“±ë¡</button>
+					<button type='button' class='btn btn-primary' id='text_add_modal_No'>ì·¨ì†Œ</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ±Û ¼öÁ¤ modalÃ¢ ³¡ -->	
+	<!-- ê¸€ ìˆ˜ì • modalì°½ ë -->	
 	
 	
-	<!-- ¼öÁ¤ Àü ÄÚµå -->
+	<!-- ìˆ˜ì • ì „ ì½”ë“œ -->
 	<!-- 		<div class="modal fade" id="QnaModal" role="dialog">
 		    <div class="modal-dialog">
 		      Modal content
@@ -146,11 +159,11 @@ $(document).ready(function() {
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		        <div class="modal-body">
-		          <p>QnA¸¦ ÀÛ¼º ÇÏ½Ã°Ú½À´Ï±î?</p>
+		          <p>QnAë¥¼ ì‘ì„± í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</p>
 		        </div>
 		        <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnClose" value="´İ±â">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnQnASub" value="ÀÛ¼º">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnClose" value="ë‹«ê¸°">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="btnQnASub" value="ì‘ì„±">
 		        </div>
 		      </div>
 		    </div>
@@ -163,10 +176,10 @@ $(document).ready(function() {
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		        <div class="modal-body">
-		          <p>QnA ÀÛ¼º ¿Ï·á!</p>
+		          <p>QnA ì‘ì„± ì™„ë£Œ!</p>
 		        </div>
 		         <div class="modal-footer">
-		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="È®ÀÎ">
+		        <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" value="í™•ì¸">
 		        </div>
 		      </div>
 		    </div>
