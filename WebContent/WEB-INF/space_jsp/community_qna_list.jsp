@@ -185,13 +185,13 @@
 							<input type="submit" class="btn btn-primary" value="검색"/>				
 						</div>
 						<div class="selectdiv5">
-							<jl:if test="${user_id ne ''}">
+							<jl:if test="${rpl.user_id eq user_id}"> 
 								<a href="community_qna_mytext.do"> <input type="button" class="btn btn-info" value="My QnA보기" /></a>
 							</jl:if>
 						</div>
 						<!-- 글쓰기 버튼-->
 						<div class="commask">
-							<jl:if test="${user_id ne ''}">
+							<jl:if test="${rpl.user_id eq user_id}"> 
 								<input class="btn btn-warning" type="button" value="글쓰기" id="write" xyz="${user_id}" />
 							</jl:if>
 						</div>

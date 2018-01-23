@@ -187,16 +187,22 @@ public class CtrlQna {
 		//return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
 		return pvo.getRecom_count().toString();
     }
-	
+
 	// QNA 내가쓴글보기
 	 @RequestMapping("/community_qna_mytext.do")
-	   public ModelAndView community_board_mytext(@CookieValue("user_id") String user_id) throws Exception{
+	   public ModelAndView community_board_mytext(@CookieValue("user_id") String user_id,
+			   @ModelAttribute Community_qna_searchVO pvo, @RequestParam("cur_page") String cur_page) throws Exception{
 		 ModelAndView mnv = new ModelAndView("community_qna_mytext");
+		 pvo.setStart(null);
 		 List<Community_qnaVO> mrl = community_qna_mytextDAO.findAll(user_id);
-	      mnv.addObject("user_id", user_id);
-	      mnv.addObject("mrl", mrl);
-	      System.out.println(user_id);
-	      return mnv;
+		 PaginationDTO board_pz = new PaginationDTO().init(cur_page, mrl.size());
+		 pvo.setStart(board_pz.getSkip());
+		 mrl=community_qna_mytextDAO.findAll(user_id);
+	     mnv.addObject("user_id", user_id);
+	     mnv.addObject("mrl", mrl);
+	     mnv.addObject("board_pz", board_pz);
+	     System.out.println(user_id);
+	     return mnv;
 	 }
 	 // QNA 글 찾기
 	 @RequestMapping("/community_qna_serch.do")
