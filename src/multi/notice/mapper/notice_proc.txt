@@ -2,7 +2,7 @@
 	DELIMITER $$
 	CREATE PROCEDURE p_notice_FindAllTexts()
 	BEGIN
-		SELECT * FROM NoticeT ORDER BY notice_no DESC;
+		SELECT * FROM noticet ORDER BY notice_no DESC;
 	END$$
 	DELIMITER ;
 	
@@ -13,6 +13,6 @@
 		IN v_notice_no INT
 	)
 	BEGIN
-		SELECT * FROM NoticeT WHERE notice_no = v_notice_no;
+		SELECT * FROM noticet WHERE notice_no = v_notice_no;
 	END$$
 	DELIMITER ;
