@@ -72,7 +72,7 @@
 			} else if(flag == 0){
 				$("#lblContent").text("중복검사해주세요.");
 			} else{
-				$("#host_join").attr('type','submit');
+				$("#addhost").attr('type','submit');
 			}
 			$("#repelModal").modal("show");
 		});
