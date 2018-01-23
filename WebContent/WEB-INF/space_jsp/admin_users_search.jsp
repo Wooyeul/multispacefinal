@@ -73,7 +73,7 @@ text-align: center;
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             유저 리스트
-                            <form id="textsearch" action="admin_users_search.do" method="post">
+                            <form id="textsearch" action="admin_users.do" method="post">
                             <div class="select">
                             
 								<select name="search_option"  class="form-control" style="width: 200px;">
@@ -139,7 +139,7 @@ text-align: center;
 <!-- 페이징 -->
 <br>
 <br>
-<!-- <form id="textsearch" action="admin_users_search.do" method="post">
+<!-- <form id="textsearch" action="admin_users.do" method="post">
 	<select name="search_option">
 		<option value="0">선택해주세요</option>
 		<option value="1">이름</option>
@@ -156,26 +156,26 @@ text-align: center;
 <div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 			<jl:if test="${pz.hasPrevPagination }">
-				<li><a class="page" href="admin_users_search.do?pg=${pz.paginationStart-1}">&lt;</a></li>
+				<li><a class="page" href="admin_users.do?pg=${pz.paginationStart-1}">&lt;</a></li>
 			</jl:if>
 				<jl:if test="${pz.hasPrevPage }">
-					<li><a class="page" href="admin_users_search.do?pg=${pz.curPagination-1 }">&lt;</a></li>
+					<li><a class="page" href="admin_users.do?pg=${pz.curPagination-1 }">&lt;</a></li>
 				</jl:if>
 				<jl:forEach begin="${pz.paginationStart }" end="${pz.paginationEnd }" step="1" varStatus="vs">
 					<jl:choose>
 						<jl:when test="${vs.index!=pz.curPagination }">
-							<li><a class="page" href="admin_users_search.do?pg=${vs.index }">${vs.index }</a></li>
+							<li><a class="page" href="admin_users.do?pg=${vs.index }">${vs.index }</a></li>
 						</jl:when>
 						<jl:otherwise>
-							<li class="active"><a class="page" href="admin_users_search.do?pg=${vs.index }">${vs.index }</a></li>
+							<li class="active"><a class="page" href="admin_users.do?pg=${vs.index }">${vs.index }</a></li>
 						</jl:otherwise>
 					</jl:choose>
 				</jl:forEach>
 				<jl:if test="${pz.hasNextPage }">
-					<li><a class="page" href="admin_users_search.do?pg=${pz.curPagination+1}">&gt;</a></li>
+					<li><a class="page" href="admin_users.do?pg=${pz.curPagination+1}">&gt;</a></li>
 				</jl:if>
 			<jl:if test="${pz.hasNextPagination }">
-				<li><a class="page" href="admin_users_search.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
+				<li><a class="page" href="admin_users.do?pg=${pz.paginationEnd+1 }">&gt;&gt;</a></li>
 			</jl:if>
 		</ul>
 	</div>

@@ -134,6 +134,12 @@
 		<if test="search_option == 4">
 		AND create_time like '%${search_content}%'
 		</if>
+		<if test="search_option == 5">
+		AND c_category_no like '%${search_content}%'
+		</if>
+		<if test="search_option == 6">
+		AND l_category_no like '%${search_content}%'
+		</if>
 		<if test="start_no != null">
 			ORDER BY club_no DESC LIMIT #{start_no}, 10
 		</if>

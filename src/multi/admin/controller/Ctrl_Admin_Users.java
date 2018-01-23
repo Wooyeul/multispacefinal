@@ -68,6 +68,33 @@ public class Ctrl_Admin_Users {
 		
 		return mnv;
 	}
+	@RequestMapping("/admin_users_search.do")
+	public ModelAndView admin_users_search(  @ModelAttribute Admin_searchVO search, @RequestParam("pg") String pg ) throws Exception {
+		ModelAndView mnv = new ModelAndView("admin_users_search");
+/*		List<UserVO> ls = admin_UserDAO.user_findAll();*/
+		String field = search.getSearch_option(); 
+		String keyword = search.getSearch_content();
+		if( field.equals("4") ){
+			if(keyword.equals("남자")){
+				keyword = "M";
+			} else if( keyword.equals("여자") ){
+				keyword = "F";
+			} 
+		}
+		System.out.println(field);
+		System.out.println(keyword);
+		search.setSearch_content(keyword);
+		
+		List<UserVO> ls = admin_UserDAO.search_users(search);
+		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
+		search.setStart_no(pz.getSkip());
+		ls = admin_UserDAO.search_users(search);
+		mnv.addObject("ls", ls);
+		mnv.addObject("pz", pz);
+		mnv.addObject("search", search);
+		
+		return mnv;
+	}
 	// 특정 유저 클릭시 확인 페이지
 	@RequestMapping("/admin_user_check.do")
 	public ModelAndView admin_user_check( @ModelAttribute UserVO uvo ) throws Exception {

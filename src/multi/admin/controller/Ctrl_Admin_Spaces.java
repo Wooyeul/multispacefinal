@@ -81,6 +81,62 @@ public class Ctrl_Admin_Spaces {
 		HttpSession session ) throws Exception 
 	{
 		ModelAndView mnv = new ModelAndView("admin_spaces_search");
+		if( field.equals("s_category_no") ){
+			if(keyword.equals("공부")){
+				keyword = "1";
+			} else if( keyword.equals("회의") ){
+				keyword = "2";
+			} else if( keyword.equals("파티") ){
+				keyword = "3";
+			} else if( keyword.equals("레저") ){
+				keyword = "4";
+			} else if( keyword.equals("스포츠") ){
+				keyword = "5";
+			} else if( keyword.equals("기타") ){
+				keyword = "6";
+			}
+		}
+		
+		if( field.equals("l_category_no") ){
+			if(keyword.equals("서울")){
+				keyword = "1";
+			} else if( keyword.equals("경기") ){
+				keyword = "2";
+			} else if( keyword.equals("인천") ){
+				keyword = "3";
+			} else if( keyword.equals("강원") ){
+				keyword = "4";
+			} else if( keyword.equals("대전") ){
+				keyword = "5";
+			} else if( keyword.equals("세종") ){
+				keyword = "6";
+			} else if( keyword.equals("충남") ){
+				keyword = "7";
+			} else if( keyword.equals("충북") ){
+				keyword = "8";
+			} else if( keyword.equals("부산") ){
+				keyword = "9";
+			} else if( keyword.equals("울산") ){
+				keyword = "10";
+			} else if( keyword.equals("경남") ){
+				keyword = "11";
+			}  else if( keyword.equals("경북") ){
+				keyword = "12";
+			} else if( keyword.equals("대구") ){
+				keyword = "13";
+			} else if( keyword.equals("광주") ){
+				keyword = "14";
+			} else if( keyword.equals("전남") ){
+				keyword = "15";
+			} else if( keyword.equals("전북") ){
+				keyword = "16";
+			} else if( keyword.equals("제주") ){
+				keyword = "17";
+			} else if( keyword.equals("전국") ){
+				keyword = "18";
+			}
+		}
+		
 		System.out.println("RE ==> " + re);
 		//		STEP 1. 만일 검색후 재검색이 아니면 세션에 혹시 있을 수 있는 검색내역을 제거한다.
 		if( re == null || !re.equals("Y") ) {
@@ -122,6 +178,7 @@ public class Ctrl_Admin_Spaces {
 		ModelAndView mnv = new ModelAndView("admin_host_spaces");
 		/*List<SpaceVO> ls = admin_SpaceDAO.findHostPlaces(svo);
 		mnv.addObject("ls", ls);*/
+		
 		List<SpaceVO> ls = admin_SpaceDAO.search_All_specific_host(search);
 		PaginationDTO pz = new PaginationDTO().init(pg, ls.size()) ;
 		search.setStart_no(pz.getSkip());

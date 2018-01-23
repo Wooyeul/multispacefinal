@@ -3,17 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Google Analytics -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-112826214-1', 'auto');
-ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +29,9 @@ text-align: center;
 
 .select4 {
 	float: left;
+}
+.table_text_align{
+	text-align: center;
 }
 </style>
 <script
@@ -105,7 +97,7 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading" style="text-align:center;"><b>공간상세검색결과</b><br></div><!-- /.panel-heading -->			
+				<div class="panel-heading" style="text-align:center;"><b>공간 검색</b><br></div><!-- /.panel-heading -->			
 		
 		
 		<form id="textsearch" action="admin_spaces_search.do" method="post">
@@ -124,8 +116,8 @@ $(document).ready(function(){
 									<option value="min_people">최소 인원</option>
 									<option value="space_call">공간 전화 번호</option>
 									<option value="zipcode">우편 번호</option>
-									<option value="s_category_no">분야</option>
-									<option value="l_category_no">지역</option>
+									<option value="s_category_name">분야</option>
+									<option value="l_category_name">지역</option>
 									<option value="the_time">생성일</option>
 								</select>
 							</div>
@@ -164,25 +156,25 @@ $(document).ready(function(){
 			<div class="panel-body">
 				<br> <br> <br>
 				<table width="100%"
-					class="table table-striped table-bordered table-hover"
+					class="table table-striped table-bordered table-hover table_text_align"
 					id="dataTables-example">
-					<thead>
+					<thead class="table_text_align">
 						<tr>
-							<th>사업자 등록 번호</th>
-							<th>이름</th>
-							<th>내용</th>
-							<th>썸네일 이미지</th>
-							<th>오픈 시간</th>
-							<th>클로즈 시간</th>
-							<th>가격</th>
-							<th>최대 인원</th>
-							<th>최소 인원</th>
-							<th>전화 번호</th>
-							<th>우편 번호</th>
-							<th>분야</th>
-							<th>지역</th>
-							<th>생성일</th>
-							<th>삭제하기</th>
+							<th class="table_text_align">사업자 등록 번호</th>
+							<th class="table_text_align">이름</th>
+							<th class="table_text_align">내용</th>
+							<th class="table_text_align">썸네일 이미지</th>
+							<th class="table_text_align">오픈 시간</th>
+							<th class="table_text_align">클로즈 시간</th>
+							<th class="table_text_align">가격</th>
+							<th class="table_text_align">최대 인원</th>
+							<th class="table_text_align">최소 인원</th>
+							<th class="table_text_align">전화 번호</th>
+							<th class="table_text_align">우편 번호</th>
+							<th class="table_text_align">분야</th>
+							<th class="table_text_align">지역</th>
+							<th class="table_text_align">생성일</th>
+							<th class="table_text_align">삭제하기</th>
 						</tr>
 					</thead>
 					<jl:forEach var="vo" items="${ls}">
@@ -277,7 +269,7 @@ $(document).ready(function(){
 									</jl:when>
 							</jl:choose>
 							<td>${vo.the_time}</td>
-							<td><button class="remove_space" space_no="${vo.space_no}" >삭제</button></td>
+							<td><button class="remove_space btn" space_no="${vo.space_no}" >삭제</button></td>
 						</tr>
 					</jl:forEach>
 				</table>

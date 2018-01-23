@@ -3,6 +3,7 @@ package multi.admin.vo;
 public class Admin_searchVO {
 	public Admin_searchVO(){}
 	private String search_option = null;
+	public Admin_searchVO(String search_option, String search_content, Integer start_no){}
 	public Admin_searchVO(String search_option, String search_content, String crn, String host_name, Integer start_no) {
 		super();
 		this.search_option = search_option;
