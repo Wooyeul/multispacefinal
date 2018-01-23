@@ -163,7 +163,7 @@ $(document).ready(function(){
 
 			<div class="panel-body">
 				<br> <br> <br>
-				<table width="100%"
+				<table width="200%"
 					class="table table-striped table-bordered table-hover table_text_align"
 					id="dataTables-example">
 					<thead>
@@ -178,7 +178,7 @@ $(document).ready(function(){
 							<th>최대 인원</th>
 							<th>최소 인원</th>
 							<th>전화 번호</th>
-							<th>주소</th>
+							<th>우편 번호</th>
 							<th>분야</th>
 							<th>지역</th>
 							<th>생성일</th>

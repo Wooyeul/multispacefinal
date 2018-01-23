@@ -1,19 +1,8 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="euc-kr"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Google Analytics -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-112826214-1', 'auto');
-ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,7 +63,7 @@ ga('send', 'pageview');
 </head>
 <script type="text/javascript">
 $(document).ready(function(){
-	// í•´ë‹¹ ê³µê°„ìœ¼ë¡œ ì´ë™
+	// ÇØ´ç °ø°£À¸·Î ÀÌµ¿
 	$(".space_no").on("click",function(){
 		var temp = $(this).attr("abc");
 		document.frm.method="POST";
@@ -82,7 +71,7 @@ $(document).ready(function(){
 		document.frm.submit();
 	});
 	
-	// ë¦¬ë·° ì‚­ì œì‹œì˜ ëª¨ë‹¬
+	// ¸®ºä »èÁ¦½ÃÀÇ ¸ğ´Ş
 	$(".remove_review").on("click",function(){
 		$("#review_No").val( $(this).attr("review_no") );
 		$("#space_No").val( $(this).attr("space_no") );
@@ -110,7 +99,7 @@ $(document).ready(function(){
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				í›„ê¸°ê²Œì‹œíŒ
+				ÈÄ±â°Ô½ÃÆÇ
 
 				<form id="form_search" action="admin_community_review_list.do">
 					<input type="hidden" name="pg" value="" id="pg"> <input
@@ -121,17 +110,17 @@ $(document).ready(function(){
 				<form id="textsearch" action="admin_community_review_list.do">
 				<div class="select">
 					<select name="search_option" class="form-control">
-						<option value="0">ì„ íƒí•´ì£¼ì„¸ìš”</option>
-						<option value="1">ì œëª©</option>
-						<option value="2">ë‚´ìš©</option>
-						<option value="3">ì œëª© + ë‚´ìš©</option>
-						<option value="4">ì‘ì„±ì</option>
+						<option value="0">¼±ÅÃÇØÁÖ¼¼¿ä</option>
+						<option value="1">Á¦¸ñ</option>
+						<option value="2">³»¿ë</option>
+						<option value="3">Á¦¸ñ + ³»¿ë</option>
+						<option value="4">ÀÛ¼ºÀÚ</option>
 					</select>
 					</div>
 								<div class="select2">
 					<input type="text" name="search_content" class="form-control">
 					</div> <input
-						class="btn" type="submit" value="ê²€ìƒ‰">
+						class="btn" type="submit" value="°Ë»ö">
 				</form>
 
 
@@ -142,15 +131,15 @@ $(document).ready(function(){
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>ë²ˆí˜¸</th>
-								<th>ë°©ë²ˆí˜¸</th>
-								<th>ì•„ì´ë””</th>
-								<th>ì œëª©</th>
-								<th>ë‚´ìš©</th>
-								<th>ì‹œê°„</th>
-								<th>ë³„ì </th>
-								<th>ì´ë¯¸ì§€</th>
-								<th>ì‚­ì œ</th>
+								<th>¹øÈ£</th>
+								<th>¹æ¹øÈ£</th>
+								<th>¾ÆÀÌµğ</th>
+								<th>Á¦¸ñ</th>
+								<th>³»¿ë</th>
+								<th>½Ã°£</th>
+								<th>º°Á¡</th>
+								<th>ÀÌ¹ÌÁö</th>
+								<th>»èÁ¦</th>
 							</tr>
 						</thead>
 						<jl:forEach items="${ls}" var="rl" varStatus="vs">
@@ -164,8 +153,8 @@ $(document).ready(function(){
 								<td>${rl.review_score}</td>
 								<td><img src="img/${rl.review_img}" width="100px"
 									class="space_no" abc="${rl.space_no}" /></td>
-								<%-- <td><a href="admin_community_review_remove.do?review_no=${rl.review_no}&space_no=${rl.space_no}">ì‚­ì œí•˜ê¸°</a></td> --%>
-								<td><button class="remove_review" review_no="${rl.review_no}" space_no="${rl.space_no}" >ì‚­ì œí•˜ê¸°</button></td>
+								<%-- <td><a href="admin_community_review_remove.do?review_no=${rl.review_no}&space_no=${rl.space_no}">»èÁ¦ÇÏ±â</a></td> --%>
+								<td><button class="remove_review" review_no="${rl.review_no}" space_no="${rl.space_no}" >»èÁ¦ÇÏ±â</button></td>
 							</tr>
 						</jl:forEach>
 					</table>
@@ -176,7 +165,7 @@ $(document).ready(function(){
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
-<!-- í˜ì´ì§• -->
+<!-- ÆäÀÌÂ¡ -->
 	<div class="paginationdiv">
 	<ul class="pagination pagination-sm">
 		<jl:if test="${pz.hasPrevPagination }">
@@ -211,22 +200,22 @@ $(document).ready(function(){
 	</ul>
 	</div>
 
-	<!-- í˜ì´ì§• -->
+	<!-- ÆäÀÌÂ¡ -->
 
-<!-- ë¦¬ë·° ì‚­ì œì‹œì˜ ëª¨ë‹¬ -->
+<!-- ¸®ºä »èÁ¦½ÃÀÇ ¸ğ´Ş -->
 <div id="text_modal" class="modal fade" role="dialog">
 	<input type="hidden" id="review_No" value="0"/>
 	<input type="hidden" id="space_No" value="0"/>
 	
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div id="text_mohead" class="modal-header"align="center"><h4>ê¸€ ì‚­ì œ</h4></div>
+			<div id="text_mohead" class="modal-header"align="center"><h4>±Û »èÁ¦</h4></div>
 			<div id="text_mobody" class="modal-body" align="center">
-				<h4>ê¸€ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+				<h4>±ÛÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?</h4>
 			</div>
 			<div id="text_ft" class="modal-footer">
-				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>í™•ì¸</button>
-				<button type='button' class='btn btn-primary' id='text_modal_no'>ì·¨ì†Œ</button>
+				<button type='button' class='btn btn-default' to-delete="delete_${vs.count}"  id='text_modal_yes'>È®ÀÎ</button>
+				<button type='button' class='btn btn-primary' id='text_modal_no'>Ãë¼Ò</button>
 			</div>
 		</div>
 	</div>
