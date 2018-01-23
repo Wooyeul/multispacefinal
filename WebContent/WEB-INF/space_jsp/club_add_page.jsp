@@ -21,16 +21,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 	
-	
-<style type="text/css">
-	.h1_design{
-		color: #026fac;
-	}
-	.label_design{
-		margin-bottom: 5px;
-	}
-
-</style>
 </head>
 
 <body>
@@ -205,7 +195,7 @@
 			 else if(rt!=""){ 
 				 $("#login_nav").show();
 				 $("#non_login_nav").hide(); 
-				 $("#user_name").text(rt+"님이 로그인하셨습니다.");
+				 $("#user_name").text(rt+"님");
 			 }
 			});	
 		});

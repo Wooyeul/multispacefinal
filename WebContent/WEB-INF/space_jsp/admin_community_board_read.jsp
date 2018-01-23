@@ -157,11 +157,13 @@ window.onload = function() {
 	e("btn").onclick = function() {
 		var dc = "?dc=" + new Date().getTime();
 		ajaxGet("admin_community_board_recom.do" + dc
-				+ "&user_id=aav&com_board_no=${vo.com_board_no}", function(rt) {
+				+ "&user_id=${user_id}&com_board_no=${vo.com_board_no}", function(rt) {
 			if (rt == -1) {
 				alert('이미 이 글을 추천하셨습니다');
+				location.reload();
 			} else {
-				e("recomCount").innerHTML = rt;
+				location.reload();
+				
 			}
 		});
 	};

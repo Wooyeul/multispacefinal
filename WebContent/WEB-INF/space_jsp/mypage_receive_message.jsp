@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,13 @@
 	<script>
 	$(document).ready(function(){
 		
+		var url = "";
+		ajaxGet(url,function(rt){
+			
+		});
+		
+		
+		
 		$(".s_msg_no").on("click",function(e){
 			$("#i_msg_no").attr("value",$(this).attr("i"));
 			msg_no = $("#i_msg_no").val();
@@ -27,9 +34,9 @@
 <body>
 	<table>
 		<tr>
-			<th width="100">º¸³½»ç¶÷</th>
-			<th width="200">³»¿ë</th>
-			<th width="200">³¯Â¥</th>
+			<th width="100">ë³´ë‚¸ì‚¬ëžŒ</th>
+			<th width="200">ë‚´ìš©</th>
+			<th width="200">ë‚ ì§œ</th>
 		</tr>
 		<jl:forEach var="ReceiveMessage" items="${receiveMessage}">
 			<tr>

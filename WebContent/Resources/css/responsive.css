@@ -2074,11 +2074,23 @@ padding-right: 5px;
 	width: 100px;
 	float: left;
 }
-/* 
-input[type="radio"] {
+.c_div input[type="radio"] {
 	display: none;
 }
- */
+
+.club_th_align {
+	text-align: center;
+}
+
+.account{
+float: left;
+
+}
+
+.labelname{
+text-align: center;
+}
+
 input[type="radio"]+label {
 	font-weight: 400;
 	font-size: 14px;

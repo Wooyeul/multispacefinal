@@ -39,4 +39,9 @@ public class MyHostDAO_MybatisProcImpl implements MyHostDAO {
 		return sqlSession.selectList("myhost.mypage_search_host",search);
 	}
 
+	@Override
+	public int ckcrn(String crn) throws Exception {
+		return sqlSession.selectOne("myhost.p_crn_overlap",crn);
+	}
+
 }

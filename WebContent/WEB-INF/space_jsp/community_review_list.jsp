@@ -28,6 +28,26 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			
+			
+			var url = "chk_login.do";
+		 	ajaxGet(url,function(rt){
+			 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+			 if(rt =="10002"){ 
+				$("#login_nav").hide();
+				$("#non_login_nav").show();
+			}
+			 					
+			 // 로그인 시 : rt값 -> user_name
+			else if(rt!=""){ 
+			$("#login_nav").show();
+			$("#non_login_nav").hide(); 
+			$("#user_name").text(rt+"님");
+				}
+			 });
+			
+			
 			$(".space_no").on("click",function(){
 				var temp = $(this).attr("abc");
 				

@@ -2,8 +2,11 @@ package multi.mypage.message.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.lang.UsesSunHttpServer;
 
 import main.Controller;
 import main.CookieValue;
@@ -176,8 +179,7 @@ public class CtrlMessage {
 		try{
 			UserVO userInfo = UserDAO.find_userInfo(user_id);
 			List<User_clubVO> user_club_MemberInfo = User_clubDAO.find_user_club_MemberInfo(ucvo);
-			System.out.println("user_club_MemberInfo : "+user_club_MemberInfo);
-			System.out.println("ucvo : "+ucvo);
+
 			
 			StringBuffer sb = null;
 	
@@ -206,12 +208,19 @@ public class CtrlMessage {
 	 */
 	@RequestMapping("/mypage_sendMessage.do")
 	@ResponseBody
-	public String sendMessage(@CookieValue("user_id") String user_id, @ModelAttribute MessageVO mvo) throws Exception {
+	public String sendMessage(@CookieValue("user_id") String user_id, HttpServletRequest request) throws Exception {
 
+		String msg_content = request.getParameter("msg_content");
+		String receive_user_id = request.getParameter("receive_user_id");
+		
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
+		MessageVO mvo = new MessageVO();
 
 		if (userInfo != null) {
 			mvo.setSend_user_id(user_id);
+			mvo.setMsg_content(msg_content);
+			mvo.setReceive_user_id(receive_user_id);
+			
 			MessageDAO.send_Message(mvo);
 			return "30003";
 		} else {

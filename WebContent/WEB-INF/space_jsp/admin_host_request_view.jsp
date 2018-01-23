@@ -98,7 +98,6 @@ $(document).ready(function(){
 	});
 	$("#text_modal_yes2").on("click",function(){
 		var host_apply_no = $("#host_apply_no").val();
-		alert( encodeURIComponent(host_apply_no) );
 		location.href = "admin_host_user_remove_request.do?host_apply_no=" + host_apply_no;
 		$("#text_modal_modal").modal("hide");
 	});

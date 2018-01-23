@@ -14,46 +14,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
-	<style>
-		.club_img_ul {
-		  list-style-type: none;
-		  width: 980px;
-		}
-		 
-		.club_img_ul li h3 {
-		  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
-		  margin-top: 0px;
-		}
-		 
-		.img_ul {
-			width: 110px;
-			height: 110px;
-			float: left;
-			margin: 0 15px 0 0;
-		}
-		 
-		.li_p {
-		  font: 200 14px/1.5 Georgia, Times New Roman, serif;
-		  margin-bottom: 13px;
-		}
-		 
-		.club_img_ul li {
-		  padding: 10px;
-		  overflow: auto;
-		}
-		 
-		.club_img_ul li:hover {
-		  background: #eee;
-		  cursor: pointer;
-		}
-		.category {
-			border-radius: 15px;
-		}
-		.page_r{
-		width : 300px;
-		margin : 0 auto;
-		}
-	</style>
 </head>
 <body>
 	<div style="width: 1000px; margin: 20px;">

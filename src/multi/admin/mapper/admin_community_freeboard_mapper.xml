@@ -203,7 +203,7 @@ DROP PROCEDURE IF EXISTS p_admin_comm_boardDelByPK;
 	END$$
 	DELIMITER ;
 
-	CALL p_admin_comm_boardIncRecomLogic('root',4,@R);
+	CALL p_admin_comm_boardIncRecomLogic('admin',17,@R);
 	SELECT @R;
 
 	CALL p_admin_comm_boardIncRecomLogic('root',4,@R);

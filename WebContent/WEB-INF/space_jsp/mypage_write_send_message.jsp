@@ -110,6 +110,11 @@
 			}
 		});// end function
 		
+		$("#btn_goSendMBox").on("click",function(){
+			location.href="mypage_moveMypageSendMessagePage.do";	
+		});
+		
+		
 	}); //end$(document)
 	
 	
@@ -118,7 +123,7 @@
 </head>
 <body>
 <br/>
-	<div class="col-lg-3 col-md-6">
+	<div class="col-lg-3 col-md-10">
 		<div class="panel panel-yellow">
 			<div class="panel-heading">
 				<div class="row">
@@ -176,6 +181,7 @@
 				<div id="text_mobody" class="modal-body" align="center">
 				<label id="lblCon"></label></div>
 				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" id="btn_goSendMBox">보낸쪽지함 가기</button>
 					<button class="btn btn-default" data-dismiss="modal" id="btnck">확인</button>
 				</div>
 			</div>

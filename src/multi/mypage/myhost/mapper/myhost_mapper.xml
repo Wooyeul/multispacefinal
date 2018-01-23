@@ -30,6 +30,7 @@
 	<resultMap type="main.vo.SpaceVO" id="RM_myspace_findall">
 		<result property="space_no" column="space_no"/>
 		<result property="space_title" column="space_title"/>
+		<result property="crn" column="crn"/>
 		<result property="space_thumb_img" column="space_thumb_img"/>
 	</resultMap>
 	
@@ -40,7 +41,7 @@
 	
 	<!-- 판매자가 갖고있는 공간찾기 페이징 -->
 	<select id="mypage_search_host"  parameterType="multi.mypage.vo.Mypage_searchVO" resultType="main.vo.SpaceVO">
-		SELECT distinct(s.space_no),s.space_title,s.space_thumb_img
+		SELECT distinct(s.space_no),s.space_title,s.space_thumb_img,s.crn
     	FROM spaceT s, hostT h
     	WHERE h.user_id = #{user_id} and h.crn = s.crn AND 0=0
 		<if test="start_no !=null">
@@ -48,7 +49,9 @@
 		</if>
 	</select>
 	
-	
+	<select id="p_crn_overlap" parameterType="java.lang.String" resultType="java.lang.Integer">
+		{call p_crn_overlap(#{crn})}
+	</select>
 
 </mapper>
 

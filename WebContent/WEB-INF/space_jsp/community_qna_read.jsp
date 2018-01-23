@@ -179,8 +179,8 @@
 					}
 				});
 			});
-			$("#modal-del-No").on("click",function(){
-				$("#modal").modal("hide");
+			$("#del_modal_No").on("click",function(){
+				$("#del_modal").modal("hide");
 			}); 
 			/* $("#del_com_qna_no").val( $(this).attr("del_com_qna_no") );
 			$("#del_com_qna_reple_no").val( $(this).attr("del_com_qna_reple_no") );
@@ -274,9 +274,9 @@
 			var url ="community_qna_reple_recom.do" + dc +"&com_qna_reple_no="+com_qna_reple_no+"&user_id="+user_id;
 			ajaxGet(url, function(rt) {
 				$("#recom_count"+com_qna_reple_no).html("<h5>"+rt+"</h5>");
+				find_reple();
 			});
 		});
-	
 	});
 	
 	/* 댓글 조회 비동기 처리 */
@@ -291,10 +291,16 @@
 			 		html += "<tr><td width="+"150"+"><h4>"+list.data[i].user_id+"</h4></td>";
 			 		html += "<td width="+"1000"+"><span id='rb_"+list.data[i].com_qna_reple_no+"'><h4>"+list.data[i].com_qna_reple_content+"</h4></span>";
 			 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5></td>";
-					if('${user_id}' == list.data[i].user_id){
+			 		html += "<td width="+"30"+"><span id='recom_count+"+list.data[i].com_qna_reple_no+"'><h5>"+list.data[i].recom_count+"</h5></span></td>";
+			 		html += " <td width="+"50"+"><input type='button' class='recom btn btn-warning btn-xs' value='추천' user_id='${user_id}' com_qna_reple_no='"+list.data[i].com_qna_reple_no+"' /></td>";
+			 		if('${user_id}' == list.data[i].user_id){
 			 			html += " <td width="+"50"+"><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_qna_reple_no+"' xyz='"+list.data[i].com_qna_reple_no+"' /></td>";
 				 		html += " <td width="+"50"+"><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_qna_reple_no+"' bb='"+list.data[i].com_qna_no+"'/></td>";	
 					}
+			 		else {
+			 			html += " <td width="+"50"+"></td>";
+			 			html += " <td width="+"50"+"></td>";
+			 		}
 					html +="</tr>";
 					html +="</table>";
 			 	}//end for
@@ -393,6 +399,9 @@
 							</tr>
 						</jl:forEach>
 				</table> --%>
+				<table>
+					<hr style="border: solid 0.5px black;">
+				</table>
 				<div id="reple_tr" style=" height: auto; min-height: 5px; overflow: auto;">
 			
 				</div>

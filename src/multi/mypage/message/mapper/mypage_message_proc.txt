@@ -84,10 +84,11 @@ DELIMITER ;
 
 
 
-#mypage_message_find_user_club_member_proc
-DROP PROCEDURE IF EXISTS p_mypage_message_find_user_club_member;
+#mypage_message_send_message_proc
+
+DROP PROCEDURE IF EXISTS p_mypage_send_message;
 DELIMITER $$
-CREATE PROCEDURE p_mypage_message_find_user_club_member(
+CREATE PROCEDURE p_mypage_send_message(
 	IN v_send_user_id VARCHAR(20),
 	IN v_receive_user_id VARCHAR(20),
 	IN v_msg_content TEXT

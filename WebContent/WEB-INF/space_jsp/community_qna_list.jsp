@@ -64,6 +64,26 @@
 	</style>
 	<script>
 	  $(document).ready(function(){
+		  
+			
+			var url = "chk_login.do";
+		 	ajaxGet(url,function(rt){
+			 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+			 if(rt =="10002"){ 
+				$("#login_nav").hide();
+				$("#non_login_nav").show();
+			}
+			 					
+			 // 로그인 시 : rt값 -> user_name
+			else if(rt!=""){ 
+			$("#login_nav").show();
+			$("#non_login_nav").hide(); 
+			$("#user_name").text(rt+"님");
+				}
+			 });
+		  
+		  
+		  
 	      $("#write").on("click",function(){
 	         var user_id = $(this).attr("xyz");
 	         if(user_id != ""){
@@ -185,13 +205,13 @@
 							<input type="submit" class="btn btn-primary" value="검색"/>				
 						</div>
 						<div class="selectdiv5">
-							<jl:if test="${user_id ne ''}">
+							<jl:if test="${user_id ne ''}"> 
 								<a href="community_qna_mytext.do"> <input type="button" class="btn btn-info" value="My QnA보기" /></a>
 							</jl:if>
 						</div>
 						<!-- 글쓰기 버튼-->
 						<div class="commask">
-							<jl:if test="${user_id ne ''}">
+							<jl:if test="${user_id ne ''}">  
 								<input class="btn btn-warning" type="button" value="글쓰기" id="write" xyz="${user_id}" />
 							</jl:if>
 						</div>
