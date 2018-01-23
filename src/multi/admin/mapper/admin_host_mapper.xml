@@ -97,7 +97,7 @@
 			SIGNAL SQLSTATE '45000';
 		END;
 		START TRANSACTION;
-			DELETE FROM HostApplyT WHERE user_id = v_user_id;
+			DELETE FROM HostApplyT WHERE user_id = v_user_id AND crn = v_crn;
 			INSERT INTO HostT VALUES ( v_crn, v_account_name, v_user_id, v_host_name, v_host_account );
 			UPDATE UserT SET grade='2' WHERE user_id = v_user_id;
 		COMMIT;

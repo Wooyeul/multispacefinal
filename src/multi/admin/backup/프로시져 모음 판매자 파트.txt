@@ -38,7 +38,7 @@ INSERT INTO HostApplyT Values(default,  'user', 'Korean bank', '444-44-44444', '
 	
 ################################################################	
 	
-DROP PROCEDURE IF EXISTS p_admin_host_user_accept;
+	DROP PROCEDURE IF EXISTS p_admin_host_user_accept;
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_host_user_accept(
 		IN v_crn VARCHAR(50),
@@ -54,7 +54,7 @@ DROP PROCEDURE IF EXISTS p_admin_host_user_accept;
 			SIGNAL SQLSTATE '45000';
 		END;
 		START TRANSACTION;
-			DELETE FROM HostApplyT WHERE user_id = v_user_id;
+			DELETE FROM HostApplyT WHERE user_id = v_user_id AND crn = v_crn;
 			INSERT INTO HostT VALUES ( v_crn, v_account_name, v_user_id, v_host_name, v_host_account );
 			UPDATE UserT SET grade='2' WHERE user_id = v_user_id;
 		COMMIT;
