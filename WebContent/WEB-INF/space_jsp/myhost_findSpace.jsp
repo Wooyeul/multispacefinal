@@ -36,7 +36,7 @@
 				<td>${ab.space_no}</td>
 				<td>
 				<a href="space_detail.do?space_no=${ab.space_no}" target="_parent">
-				<img src="space_img/${ab.space_thumb_img}" width="100px" class="space_no" abc="${ab.space_no}"/></a></td>
+				<img src="space_img/${ab.space_thumb_img}" width="100px" class="space_no" abc="${ab.space_no}"  onerror="this.src='defualt/defualt.jpg'"/></a></td>
 				<td>${ab.space_title}</td>
 			</tr>
 		</jl:forEach>
