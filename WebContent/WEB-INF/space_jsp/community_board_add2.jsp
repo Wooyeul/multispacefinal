@@ -78,7 +78,7 @@ text-align: center;
 	<!-- *********************  header - end  ************************ --> 
 	
 <br>
-	<p class="p"><label>글쓰기</label></p>
+	<p class="p"><label>자유게시판 글쓰기</label></p>
 		<hr style="border: solid 0.5px black;">
 		<div class="container">
 			<div class="col-lg-12">

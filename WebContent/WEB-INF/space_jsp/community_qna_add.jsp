@@ -94,7 +94,7 @@ $(document).ready(function() {
          <%@include file="./jsp/header_page.jsp"%>  
 	<!-- *********************  header - end  ************************ --> 
 <br/>
-	<p class="community_qna_add_p"><label>QnA쓰기</label></p>
+	<p class="community_qna_add_p"><label>QnA 글쓰기</label></p>
 	<hr style="border: solid 0.5px black;">
 	<div class="container">
 		<div class="col-lg-12">
@@ -104,7 +104,7 @@ $(document).ready(function() {
 				<label>내용</label><textarea  id="summernote"  name="com_qna_content" ></textarea>
 				<br/>
 				<div class="community_qna_add_write">
-				<input type="button" value="QnA작성" class="btn btn-info" data-toggle="modal"  id="ee"/>
+				<input type="button" value="등록" class="btn btn-info" data-toggle="modal"  id="ee"/>
 				</div>
 			</form>
 			
