@@ -64,7 +64,7 @@
 					<label>${vo.the_time}</label><label>조회수 : ${vo.view_count }</label>
 				</div>
 				<div class="textarea_h">
-					<textarea rows="15" cols="30" disabled="disabled" class="form-control">${vo.c_board_content}</textarea><br/>
+					<textarea rows="15" cols="30" disabled="disabled" class="form-control" style="cursor:default">${vo.c_board_content}</textarea><br/>
 				</div>
 				<div align="right">
 					<input id="textMod" type="button" value="수정하기" style="display: none" class="btn">&nbsp<input id="prev" type="button" value="뒤로가기" class="btn"/>

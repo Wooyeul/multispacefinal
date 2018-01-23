@@ -24,6 +24,9 @@
 	.bold_degisn{
 		font: bold;
 	}
+	.club_textarea{
+		font-size : large;
+	}
 </style>
 </head>
 <body>
@@ -49,7 +52,7 @@
 				</div>
 				<br /> <h2 class="bold_degisn"><label>소개</label></h2>
 				<textarea rows="5" cols="30" disabled="disabled"
-					class="form-control" style="font-size: large;">${vo.club_content}</textarea>
+					class="form-control club_textarea" style="cursor:default">${vo.club_content}</textarea>
 				<br />
 				<div align="right">
 					<input id="clubApply" type="button" value="신청하기" style="display: none" class="btn"> 

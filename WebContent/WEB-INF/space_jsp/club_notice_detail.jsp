@@ -4,6 +4,17 @@
 <!DOCTYPE>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
 <title>Welcome to Multi Space</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
@@ -61,7 +72,7 @@
 					<label>${vo.the_time}</label><label>조회수 : ${vo.view_count }</label>
 				</div>
 				<div class="textarea_h">
-					<textarea rows="15" cols="30" disabled="disabled" class="form-control">${vo.c_notice_content}</textarea><br/>
+					<textarea rows="15" cols="30" disabled="disabled" class="form-control" style="cursor:default">${vo.c_notice_content}</textarea><br/>
 				</div>
 				<div align="right">
 					<input id="textMod" type="button" value="수정하기" style="display: none" class="btn">&nbsp<input id="prev" type="button" value="뒤로가기" class="btn"/>
