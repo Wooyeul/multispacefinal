@@ -21,6 +21,18 @@
  	}
  	
  	$(document).ready(function(){
+ 		$("#btn_review_add").on('click',function(){
+ 			if($("#review_title").val()==""){
+				$("#status-modal-body").html("<h4>후기 제목을 입력해주세요.</h4>");
+				$("#status-modal").modal('show');
+			}
+			else if($("#review_content").val()==""){
+				$("#status-modal-body").html("<h4>후기 내용을 입력해주세요.</h4>");
+				$("#status-modal").modal('show');
+			}else{
+				$("#btn_review_add").attr("type","submit");
+			}
+ 		});
  		
  	});
  </script>
@@ -57,11 +69,26 @@
 			
 			<input type="hidden" name="user_id" value="${review.user_id }">
 			<input type="hidden" name="space_no" value="${review.space_no }">
-			<input type="submit" value="후기 작성" class="btn btn-default">
+			<input id="btn_review_add" type="button" value="후기 작성" class="btn btn-default">
 		</form>
 		<br/>
 		<br/>
 	</div>
+	<!-- 상태 모달 -->
+						<div class="modal fade" id="status-modal" tabindex="-1"
+							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-body">
+										<div id="status-modal-body" align="center">XX 완료</div>
+									</div>
+									<div class="modal-footer">
+										<button id="btn-status-close" type="button"
+											class="btn btn-primary" data-dismiss="modal">닫기</button>
+									</div>
+								</div>
+							</div>
+						</div>
 			<!-- ******************************* footer ******************************* -->
 		  <%@include file="./jsp/footer.jsp"%>  
 		<!--  end footer  -->

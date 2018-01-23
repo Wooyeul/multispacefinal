@@ -25,7 +25,16 @@
 <script>
 	$(document).ready(function() {
 						$("#btn_qna_submit").on("click",function(){
-							alert();
+							if($("#space_qna_title").val()==""){
+								$("#bookmark-modal-body").html("<h4>질문 제목을 입력해주세요.</h4>");
+								$("#bookmark-modal").modal('show');
+							}
+							else if($("#space_qna_content").val()==""){
+								$("#bookmark-modal-body").html("<h4>질문 내용을 입력해주세요.</h4>");
+								$("#bookmark-modal").modal('show');
+							}else{
+								$("#btn_qna_submit").attr("type","submit");
+							}
 						});
 						if ("${review_flag}" == 1) {
 							var review = $("#review").offset();
@@ -507,7 +516,7 @@
 								<textarea name="space_qna_content" id="space_qna_content"
 									class="form-control"></textarea>
 							</div>
-							<input id="btn_qna_submit" type="button" class="btn btn-default" value="질문전송">
+							<input id="btn_qna_submit" type="button" class="btn btn-default" value="질문하기">
 						</form>
 					</div>
 					<br/> <br/>

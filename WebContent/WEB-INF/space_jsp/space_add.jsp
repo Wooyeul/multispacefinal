@@ -392,7 +392,7 @@
 			<div class="form-group">
 				<label class="space-label">우편번호</label>
 				<input type="text" name="zipcode" size="8" id="zipcode" class="form-control"  disabled="disabled"/>
-				<input type="button" name="findzip" value="찾기" class="btnzip btn btn-primary" onclick="zipSearch()"/>
+				<input type="button" name="findzip" value="찾기" class="btnzip btn btn-info" onclick="zipSearch()"/>
 			</div>
 
 			<div class="from-group">
@@ -468,7 +468,9 @@
 			</script>
 			<input type="hidden" id="latitude" name="latitude">
 			<input type="hidden" id="longitude" name="longitude">
-			<input type="button" id="sub" class="btn btn-default" value="등록"/>
+			<div class="text-center">
+				<input type="button" id="sub" class="btn btn-info	 btn-lg" value="등록"/>
+			</div>
 		</form>
 		<br/>
 		<br/>
