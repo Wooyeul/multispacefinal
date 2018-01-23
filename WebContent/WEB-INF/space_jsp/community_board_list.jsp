@@ -109,7 +109,7 @@
 	<!-- *********************  header - end  ************************ --> 
 	<div class="head" id="header">
 	
-		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist">
+		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist"> 
 			<li ><a href="community_board_list.do" ><h3>FREE BOARD</h3></a></li>
 
 			<li ><a href="community_qna_list.do"  ><h3>QnA BOARD</h3></a></li>
