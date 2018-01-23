@@ -1,25 +1,6 @@
 package main.vo;
 
 public class SpaceVO {
-	public SpaceVO(Integer space_no, String crn, String space_title, String space_content, String space_thumb_img,
-			String open_time, String close_time, Integer price, Integer max_people, Integer min_people,
-			String space_call, String zipcode, Integer s_category_no, Integer l_category_no, String the_time) {
-		this.space_no = space_no;
-		this.crn = crn;
-		this.space_title = space_title;
-		this.space_content = space_content;
-		this.space_thumb_img = space_thumb_img;
-		this.open_time = open_time;
-		this.close_time = close_time;
-		this.price = price;
-		this.max_people = max_people;
-		this.min_people = min_people;
-		this.space_call = space_call;
-		this.zipcode = zipcode;
-		this.s_category_no = s_category_no;
-		this.l_category_no = l_category_no;
-		this.the_time = the_time;
-	}
 	public Integer getSpace_no() {
 		return space_no;
 	}
@@ -117,6 +98,43 @@ public class SpaceVO {
 	public String space_call;
 	public String zipcode;
 	public Integer s_category_no;
+	public Double latitude;
+	public Double longitude;
+	public SpaceVO(Integer space_no, String crn, String space_title, String space_content, String space_thumb_img,
+			String open_time, String close_time, Integer price, Integer max_people, Integer min_people,
+			String space_call, String zipcode, Integer s_category_no, Double latitude, Double longitude,
+			Integer l_category_no, String the_time) {
+		super();
+		this.space_no = space_no;
+		this.crn = crn;
+		this.space_title = space_title;
+		this.space_content = space_content;
+		this.space_thumb_img = space_thumb_img;
+		this.open_time = open_time;
+		this.close_time = close_time;
+		this.price = price;
+		this.max_people = max_people;
+		this.min_people = min_people;
+		this.space_call = space_call;
+		this.zipcode = zipcode;
+		this.s_category_no = s_category_no;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.l_category_no = l_category_no;
+		this.the_time = the_time;
+	}
+	public Double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+	public Double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
 	public Integer getS_category_no() {
 		return s_category_no;
 	}

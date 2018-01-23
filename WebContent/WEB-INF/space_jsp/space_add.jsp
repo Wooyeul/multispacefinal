@@ -403,6 +403,42 @@
 				</jl:forEach>
 			</select>
 			</div>
+			<label class="sh-map">장소</label>
+			<div id="map" style="width:100%;height:600px;"></div>
+			<p><em>지도를 클릭해주세요!</em></p> 
+			<p id="result"></p>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae"></script>
+			<script>
+				var container = document.getElementById('map');
+				var options = {
+					center: new daum.maps.LatLng(33.450701, 126.570667),
+					level: 3
+				};
+				 
+				var map = new daum.maps.Map(container, options);
+				var marker = new daum.maps.Marker({ 
+				    // 지도 중심좌표에 마커를 생성합니다 
+				    position: map.getCenter() 
+				}); 
+				// 지도에 마커를 표시합니다
+				marker.setMap(map);
+
+				// 클릭한 위도, 경도 정보를 가져옵니다 
+			daum.maps.event.addListener(map, 'click', function(mouseEvent) {  
+			    var latlng = mouseEvent.latLng;
+			    marker.setPosition(latlng);
+			    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+			    message += '경도는 ' + latlng.getLng() + ' 입니다';
+			    
+			    $("#latitude").val(latlng.getLat());
+			    $("#longitude").val(latlng.getLng());
+			    
+			    var resultDiv = document.getElementById('result'); 
+			    resultDiv.innerHTML = message;
+			});
+			</script>
+			<input type="hidden" id="latitude" name="latitude">
+			<input type="hidden" id="longitude" name="longitude">
 			<input type="button" id="sub" class="btn btn-default" value="등록"/>
 		</form>
 		<br/>

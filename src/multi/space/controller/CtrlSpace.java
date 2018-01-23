@@ -263,6 +263,12 @@ public class CtrlSpace {
 		String l_category_no_str = mpr.getParameter("l_category_no");
 		Integer l_category_no = StringToInteger(l_category_no_str);
 		
+		String latitude_str = mpr.getParameter("latitude");
+		Double latitude = Double.valueOf(latitude_str);
+		String longitude_str = mpr.getParameter("longitude");
+		Double longitude = Double.valueOf(longitude_str);
+		
+		
 		if(min_people==null){
 			min_people=0;
 		}
@@ -276,7 +282,7 @@ public class CtrlSpace {
 		
 		vo.setCrn(crn); vo.setSpace_title(space_title); vo.setSpace_content(space_content); vo.setSpace_thumb_img(space_thumb_img); vo.setOpen_time(open_time);
 		vo.setClose_time(close_time); vo.setPrice(price); vo.setMin_people(min_people); vo.setMax_people(max_people); vo.setSpace_call(space_call);
-		vo.setS_category_no(s_category_no); vo.setL_category_no(l_category_no);vo.setZipcode(zipcode);
+		vo.setS_category_no(s_category_no); vo.setL_category_no(l_category_no);vo.setZipcode(zipcode);vo.setLatitude(latitude);vo.setLongitude(longitude);
 		spaceDAO.add_space(vo);
 		
 		ImageVO image = new ImageVO();
@@ -384,23 +390,6 @@ public class CtrlSpace {
 		space_qna.setStart_no(pz_space_qna.getSkip());
 		list_space_qna = space_QnADAO.find_space_QnA_by_space_no(space_qna);
 		
-		//주소 뽑아오기
-		String zipcode = space.getZipcode();
-		ZipcodeVO addr = spaceDAO.find_space_addr(zipcode);
-		
-		StringBuffer juso = new StringBuffer();
-		//동 까지만 일단 검색..
-		try{
-		
-		String sido = addr.getSido();
-		String gugun = addr.getGugun();
-		String dong = addr.getDong();
-		juso.append(sido+" ");
-		juso.append(gugun+" ");
-		juso.append(dong);
-		} catch(Exception e) {
-			juso.append("서울시 강남구");
-		}
 		mnv.addObject("list_space_qna", list_space_qna);
 		mnv.addObject("pz_space_qna", pz_space_qna);
 		mnv.addObject("list_review", list_review);
@@ -417,7 +406,6 @@ public class CtrlSpace {
 		mnv.addObject("qna_flag", qna_flag);
 		mnv.addObject("review_flag_imsi", review_flag_imsi);
 		mnv.addObject("qna_flag_imsi", qna_flag_imsi);
-		mnv.addObject("juso", juso.toString());
 		return mnv;
 	}
 	
