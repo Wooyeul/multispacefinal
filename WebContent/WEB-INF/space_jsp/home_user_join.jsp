@@ -298,8 +298,10 @@
 						<tr>
 							<th align="right">성별</th>
 							<td>
-							<input type="radio" name="gender" value="M" checked="checked" /> 남 
-							<input type="radio" name="gender" value="F" /> 여 
+							<div class="ckgender">
+								<input type="radio" name="gender" value="M" checked="checked" /> 남 
+								<input type="radio" name="gender" value="F" /> 여 
+							</div>
 							<input type="hidden" name="grade" value="1" /></td>
 							<td></td>
 						</tr>
