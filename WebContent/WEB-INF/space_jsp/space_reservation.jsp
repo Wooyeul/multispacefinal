@@ -393,7 +393,7 @@
 									<span aria-hidden="true">&times;</span>
 									<span class="sr-only">Close</span>
 								</button>
-								<h4 class="modal-title text-center">진행상태</h4>
+								<h4 class="modal-title text-center">주의</h4>
 							</div>
 							<div class="modal-body">
 								<h2 id="status-modal-body" class="text-center">XX 완료</h2>

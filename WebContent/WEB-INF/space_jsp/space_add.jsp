@@ -102,15 +102,20 @@
 	$("document").ready(function() {
 		$("#sub").on("click", function() {
 			if(titleCheckFlag == 0 ) {
-				alert("제목을 입력해주세요.");
+				$("#status-modal-body").html("제목을 입력해주세요.");
+	 				$("#status-modal").modal("show");
 			}else if(contentCheckFlag == 0){
-				alert("내용을 입력해주세요.");
+				$("#status-modal-body").html("내용을 입력해주세요.");
+ 				$("#status-modal").modal("show");
 			}else if(priceCheckFlag == 0 ) {
-				alert("가격을 입력해주세요.");
+				$("#status-modal-body").html("가격을 입력해주세요.");
+ 				$("#status-modal").modal("show");
 			}else if($("#space_thumb_img").val().length == 0){
-				alert("썸네일 이미지를 등록해주세요.");
+				$("#status-modal-body").html("썸네일 이미지를 등록해주세요.");
+ 				$("#status-modal").modal("show");
 			}else if($("#zipcode").val().length == 0){
-				alert("주소를 등록해주세요.");
+				$("#status-modal-body").html("주소를 등록해주세요.");
+ 				$("#status-modal").modal("show");
 			}else {
 			$("#open_time").removeAttr("disabled");
 			$("#close_time").removeAttr("disabled");
@@ -406,6 +411,25 @@
 		<br/>
 		<br/>
 	</div>
+	<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title text-center">주의</h4>
+							</div>
+							<div class="modal-body">
+								<h2 id="status-modal-body" class="text-center">XX 완료</h2>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
 	<!-- ******************************* footer ******************************* -->
 	<%@include file="./jsp/footer.jsp"%>
 	<!--  end footer  -->
