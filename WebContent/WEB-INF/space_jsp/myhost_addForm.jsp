@@ -64,7 +64,7 @@
                 <div class="form-group">
 	                  <label for="name" class="col-sm-1">대표명</label>
 	
-	                  <div class="col-sm-4">
+	                  <div class="col-sm-2">
 	                   <input type="text" name="host_name" class="form-control" />
 	                  </div>
                 </div>
@@ -72,42 +72,31 @@
                 <div class="form-group">
                   <label for="password" class="col-sm-1">사업자번호</label>
 
-                  <div class="col-sm-6">
-                  <input type="text" name="crn"  class="form-control" />
+                  <div class="col-sm-2">
+                  <input type="text" name="crn"  class="form-control" maxlength="13"/>
                   </div>
-                </div>
-                
-                
-                   <div class="form-group">
-                  <label for="postnumber" class="col-sm-1">우편번호</label>
-
-                  <div class="col-sm-4">
-                 <input type="text" name="zipcode"  id="zipcode" class="form-control" />
-                 </div>
-                 <div class="zip">
-					<input type="button" name="findzip" value="찾기"
-					class="btnzip btn btn-primary" onclick="zipSearch()" />
+                  
+                    <div class="zip">
+					<input type="button" name="findzip" value="중복검사"
+					class="btnzip btn btn-primary" />
                   </div>
+                  
                 </div>
-                
-                
-                  <div class="form-group">
-                  <label for="zipcode" class="col-sm-1">주소</label>
-
-                  <div class="col-sm-6">
-                 <input type="text" size="40" name="addr1"  class="form-control" />
-                  </div>
-                </div>
-                
            
                   <div class="form-group">
+	                  <select class="form-control" style="width: 200px" id="acount_name">
+	                  	<option value="kakao">카카오뱅크</option>
+	                  	<option value="kb">국민은행</option>
+	                  	<option value="ibk">기업은행</option>
+	                  	<option value="nh">농협은행</option>
+	                  	<option value="shinhan">신한은행</option>
+	                  </select>
                   <label for="zipcode" class="col-sm-1">입금계좌</label>
 
-                  <div class="col-sm-6">
-                <input type="text" name="host_account"  class="form-control" />
+                  <div class="col-sm-2">
+                		<input type="text" name="host_account"  class="form-control" />
                   </div>
                 </div>
-                
                 
               </div>
               <!-- /.box-body -->
@@ -120,9 +109,6 @@
             </form>
           </div>
             
-            
-            
-
 
 </body>
 </html>

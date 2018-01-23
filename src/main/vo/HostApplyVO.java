@@ -6,20 +6,21 @@ public class HostApplyVO {
 	public String user_id;
 	public String host_name;
 	public String host_account;
-	public String zipcode;
+	public String account_name;
 	public String etc;
 
 	public HostApplyVO() {
 	}
 
 	public HostApplyVO(Integer host_apply_no, String crn, String user_id, String host_name, String host_account,
-			String zipcode, String etc) {
+			String account_name, String etc) {
+		super();
 		this.host_apply_no = host_apply_no;
 		this.crn = crn;
 		this.user_id = user_id;
 		this.host_name = host_name;
 		this.host_account = host_account;
-		this.zipcode = zipcode;
+		this.account_name = account_name;
 		this.etc = etc;
 	}
 
@@ -63,12 +64,12 @@ public class HostApplyVO {
 		this.host_account = host_account;
 	}
 
-	public String getZipcode() {
-		return zipcode;
+	public String getAccount_name() {
+		return account_name;
 	}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public void setAccount_name(String account_name) {
+		this.account_name = account_name;
 	}
 
 	public String getEtc() {
