@@ -8,7 +8,6 @@ BEGIN
 	SELECT * from userT where user_id = v_user_id;
 END$$
 DELIMITER ;
-DELIMITER ;
 	
 	
 	
@@ -21,7 +20,6 @@ CREATE PROCEDURE p_mypage_qna_qna_info(
 BEGIN
 	SELECT * from space_qnaT where user_id = v_user_id;
 END$$
-DELIMITER ;
 DELIMITER ;
 	
 	
@@ -36,7 +34,6 @@ BEGIN
 	SELECT * from space_qna_repleT where space_qna_no = v_space_qna_no;
 END$$
 DELIMITER ;
-DELIMITER ;
 
 
 	
@@ -50,7 +47,6 @@ BEGIN
 	select * from space_qnaT where space_qna_no = v_space_qna_no;
 END$$
 DELIMITER ;
-DELIMITER ;
 
 
 		
@@ -63,5 +59,4 @@ CREATE PROCEDURE p_mypage_qna_del_space_qna(
 BEGIN
 	delete from space_qnat where space_qna_no = v_space_qna_no;
 END$$
-DELIMITER ;
 DELIMITER ;
