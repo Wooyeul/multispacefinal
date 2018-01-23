@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +28,9 @@
 <body>
 	<table>
 		<tr>
-			<th width="100">¹Þ´Â»ç¶÷</th>
-			<th width="200">³»¿ë</th>
-			<th width="200">³¯Â¥</th>
+			<th width="100">ë°›ëŠ”ì‚¬ëžŒ</th>
+			<th width="200">ë‚´ìš©</th>
+			<th width="200">ë‚ ì§œ</th>
 		</tr>
 		<jl:forEach var="SendMessage" items="${sendMessage}">
 			<tr>

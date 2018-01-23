@@ -105,7 +105,6 @@ public class BeanUtil
 			pn.equals("c_board_content")||
 			pn.equals("c_board_reple_content")||
 			pn.equals("c_board_subject")||
-			pn.equals("msg_content")||
 			pn.equals("space_qna_title")||
 			pn.equals("space_qna_content")||
 			pn.equals("space_qna_reple_title")||
