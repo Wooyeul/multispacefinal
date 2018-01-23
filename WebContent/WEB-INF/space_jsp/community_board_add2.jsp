@@ -1,10 +1,27 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"%><%@
-taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome to Multi Space</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
+	<script type="text/javascript" src="./Resources/js/main.js"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+
+
+
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
@@ -13,32 +30,17 @@ text-align: center;
 }
 
 </style>
-	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
-	
-	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
-	<script type="text/javascript" src="./Resources/js/main.js"></script>
-		
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="common.js"></script>
-	
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#basic_modal_Yes").on("click",function(){
 			$("#basic_modal").modal("hide");
 		});
-		/* ±Û µî·Ï ¹öÆ° Å¬¸¯ ½Ã ÀÌº¥Æ® ¹ß»ı */
+		/* ê¸€ ë“±ë¡ ë²„íŠ¼ í´ë¦­ ì‹œ ì´ë²¤íŠ¸ ë°œìƒ */
 		$("#myAlert").on("click",function(){
 			$("#text_modal").modal("show");
 			$("#text_yes").on("click",function(){
 				$("#text_modal").modal("hide");
-				$("#basic_mobody").html("<h4>±ÛÀÌ µî·Ï µÇ¾ú½À´Ï´Ù.</h4>");
+				$("#basic_mobody").html("<h4>ê¸€ì´ ë“±ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤.</h4>");
 				$("#basic_modal").modal("show");
 				$("#basic_modal").on("hidden.bs.modal",function(){
 					$("#text_addform").submit();
@@ -47,6 +49,10 @@ text-align: center;
 			$("#text_no").on("click",function(){
 				$("#text_modal").modal("hide");
 			});
+		});
+		$("#cancel").on("click",function(){
+			location.href="community_board_list.do";
+			
 		});
 	})
 
@@ -67,65 +73,66 @@ text-align: center;
 
 </head>
 <body>
-
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ --> 
+	
 <br>
-	<p class="p"><label>±Û¾²±â</label></p>
+	<p class="p"><label>ê¸€ì“°ê¸°</label></p>
 		<hr style="border: solid 0.5px black;">
-		<div class="col-lg-12">
 		<div class="container">
-		<form action="community_board_add2.do" class="form-group" method="POST" name="frm" id="text_addform">
-		<label>Á¦¸ñ </label>	
-		<input type="text" name="com_board_title" class="form-control" /> <br>
-		
-		<label>³»¿ë</label>
-		<textarea id="summernote" name="com_board_content" ></textarea>
-		<br> 
-		<input id="myAlert" class="btn" type="button" value="µî·Ï" />
-		<input type="button" class="btn" id="cancel" value="Ãë¼Ò"/>
-	</form>
-	</div>
-	</div>
+			<div class="col-lg-12">
+				<form action="community_board_add2.do" class="form-group" method="POST" name="frm" id="text_addform">
+				<label>ì œëª© </label>	
+				<input type="text" name="com_board_title" class="form-control" /> <br>
+				
+				<label>ë‚´ìš©</label>
+				<textarea id="summernote" name="com_board_content" ></textarea>
+				<br> 
+				<input id="myAlert" class="btn" type="button" value="ë“±ë¡" />
+				<input type="button" class="btn" id="cancel" value="ì·¨ì†Œ"/>
+				</form>
+			</div>
+		</div>
 	
 
 
 	
+<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	<!--alert ¸ğ´ŞÆû  -->
-	<!-- ±Ûµî·Ï modalÃ¢ ½ÃÀÛ -->
+	<!--alert ëª¨ë‹¬í¼  -->
+	<!-- ê¸€ë“±ë¡ modalì°½ ì‹œì‘ -->
 	<div id="text_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div id="mohead" class="modal-header"align="center"><h4>±Û µî·Ï</h4></div>
-				<div id="mobody" class="modal-body" align="center"><h4>±ÛÀ» µî·Ï ÇÏ½Ã°Ú½À´Ï±î?</h4></div>
+				<div id="mohead" class="modal-header"align="center"><h4>ê¸€ ë“±ë¡</h4></div>
+				<div id="mobody" class="modal-body" align="center"><h4>ê¸€ì„ ë“±ë¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4></div>
 				<div id="ft" class="modal-footer">
-					<button type="button" class="btn btn-default" id="text_yes">È®ÀÎ</button>
-					<button type='button' class='btn btn-primary' id='text_no'>Ãë¼Ò</button>
+					<button type="button" class="btn btn-default" id="text_yes">í™•ì¸</button>
+					<button type='button' class='btn btn-primary' id='text_no'>ì·¨ì†Œ</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ±Ûµî·Ï modalÃ¢ ³¡ -->
+	<!-- ê¸€ë“±ë¡ modalì°½ ë -->
 
-	<!-- ±âº» modalÃ¢ ½ÃÀÛ -->
+	<!-- ê¸°ë³¸ modalì°½ ì‹œì‘ -->
 	<div id="basic_modal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="basic_mobody" class="modal-body" align="center">
 				</div>
 				<div id="basic_ft" class="modal-footer">
-					<button type='button' class='btn btn-default' id='basic_modal_Yes'>´İ±â</button>
+					<button type='button' class='btn btn-default' id='basic_modal_Yes'>ë‹«ê¸°</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ±âº» modalÃ¢ ³¡ -->
+	<!-- ê¸°ë³¸ modalì°½ ë -->
+	
+	
 </body>
 </html>

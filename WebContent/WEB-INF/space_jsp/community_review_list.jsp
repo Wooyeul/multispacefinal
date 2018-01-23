@@ -10,7 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
-	
 		
 	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
 	<script type="text/javascript" src="./Resources/js/main.js"></script>
