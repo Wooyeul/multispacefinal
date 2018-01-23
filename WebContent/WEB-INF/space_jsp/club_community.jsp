@@ -21,8 +21,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 
-<style type="text/css">
-</style>
 </head>
 <body>
 	<!-- *********************  header  ************************ -->
@@ -51,7 +49,7 @@
 									<br/>
 									<jl:forEach items="${userVO}" var="uvo">
 										<p>
-											<jl:if test="${uvo.user_id!=user_id }">
+											<jl:if test="${uvo.user_id!=vo.user_id }">
 												<span class="glyphicon glyphicon-user"></span>&nbsp${uvo.user_name}
 												<span user_id="${uvo.user_id}" class="user_name glyphicon glyphicon-envelope"></span>
 												<jl:if test="${vo.user_id eq user_id }">
@@ -80,17 +78,17 @@
 									<jl:if test="${i.count==1 }">
 										<thead>
 											<tr>
-												<th style="text-align: center;">글 번호</th>
-												<th style="text-align: center;">제목</th>
-												<th style="text-align: center;">작성자</th>
-												<th style="text-align: center;">작성시간</th>
+												<th class="club_th_align">글 번호</th>
+												<th class="club_th_align">제목</th>
+												<th class="club_th_align">작성자</th>
+												<th class="club_th_align">작성시간</th>
 											</tr>
 										</thead>
 									</jl:if>
 									<tbody>
 										<tr>
 											<td align="center">${i.count}</td>
-											<td><a href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}" style="color: black;">${nvo.c_notice_title}</a></td>
+											<td><a href="club_notice_detail.do?c_notice_no=${nvo.c_notice_no}">${nvo.c_notice_title}</a></td>
 											<td  align="center">${nvo.user_name}</td>
 											<td  align="center">${nvo.the_time}</td>
 										</tr>
@@ -157,19 +155,19 @@
 									</colgroup>
 									<jl:if test="${i.count==1 }">
 										<tr>
-											<th style="text-align: center">글 번호</th>
-											<th style="text-align: center">말머리</th>
-											<th style="text-align: center">제목</th>
-											<th style="text-align: center">작성자</th>
-											<th style="text-align: center">작성시간</th>
+											<th class="club_th_align">글 번호</th>
+											<th class="club_th_align">말머리</th>
+											<th class="club_th_align">제목</th>
+											<th class="club_th_align">작성자</th>
+											<th class="club_th_align">작성시간</th>
 										</tr>
 									</jl:if>
 									<tr>
-										<td style="text-align: center">${i.count}</td>
-										<td style="text-align: center">${bvo.c_board_subject }</td>
-										<td><a href="club_board_detail.do?c_board_no=${bvo.c_board_no}" style="color: black;">${bvo.c_board_title}</a></td>
-										<td style="text-align: center">${bvo.user_name }</td>
-										<td style="text-align: center">${bvo.the_time }</td>
+										<td class="club_th_align">${i.count}</td>
+										<td class="club_th_align">${bvo.c_board_subject }</td>
+										<td><a href="club_board_detail.do?c_board_no=${bvo.c_board_no}">${bvo.c_board_title}</a></td>
+										<td class="club_th_align">${bvo.user_name }</td>
+										<td class="club_th_align">${bvo.the_time }</td>
 									</tr>
 								</jl:forEach>
 							</table>
@@ -226,19 +224,23 @@
 						<jl:choose>
 							<jl:when test="${applyVO ne '[]'}">
 								<table class="table">
+									<colgroup>
+										<col width="20%"/>
+										<col width="55%"/>
+										<col width="25%"/>
+									</colgroup>
 									<tr>
-										<td>이름</td>
-										<td>신청내용</td>
-										<td>신청승인</td>
+										<th class="club_th_align">이름</td>
+										<th class="club_th_align">신청내용</td>
+										<th class="club_th_align">신청승인</td>
 									</tr>
 									<jl:forEach items="${applyVO}" var="avo">
 										<tr>
-											<td>${avo.user_name}</td>
+											<td class="club_th_align">${avo.user_name}</td>
 											<td>${avo.apply_content}</td>
-											<td><span class="agree" club_name="${vo.club_name }"
-												club_no="${vo.club_no}" user_id="${avo.user_id}"">수락</span> <span
-												class="disagree" club_name="${vo.club_name }"
-												club_no="${vo.club_no}" user_id="${avo.user_id}">거절</span></td>
+											<td class="club_th_align"><input club_name="${vo.club_name }"
+												club_no="${vo.club_no}" user_id="${avo.user_id}"" type="button" class="agree btn" value="수락">
+												<input type="button" class="btn disagree" club_name="${vo.club_name }"	club_no="${vo.club_no}" user_id="${avo.user_id}" value="거절"></td>
 										</tr>
 									</jl:forEach>
 								</table>
@@ -633,6 +635,12 @@
 			$("#message_modal_no").on("click",function(){
 				$("#message_modal").modal("hide");
 			});
+			
+			/* msg_content modal창이 사라지면 무조건 content 내용 초기화 */
+			$("#message_modal").on("hidden.bs.modal",function(){
+				$("#msg_content").val("");
+			});
+			
 			var send_message = function(){
 				var formData = $("#message_frm").serialize();
 				$.ajax({

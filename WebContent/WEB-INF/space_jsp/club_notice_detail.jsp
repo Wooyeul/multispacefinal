@@ -4,17 +4,6 @@
 <!DOCTYPE>
 <html>
 <head>
-<!-- Google Analytics -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-112826214-1', 'auto');
-ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
 <title>Welcome to Multi Space</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
@@ -31,28 +20,6 @@ ga('send', 'pageview');
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 
-<style type="text/css">
-	.textarea_h{
-		padding: 10px;
-		padding-top: 50px;
-	}
-	.label_reple{
-		padding-bottom: 18px;
-	}
-	.repleId{
-		font-size: 120%; 
-		font-weight: bold;
-		margin-bottom: 5px;
-	}
-	.repleContent{
-		font-size: 100%;
-		margin-bottom: 5px;
-	}
-	.repletime{
-		font-size: 100%; 
-		color: gray;
-	}
-</style>
 </head>
 <body>
 

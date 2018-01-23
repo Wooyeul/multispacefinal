@@ -4,6 +4,17 @@
 <!DOCTYPE>
 <html>
 <head>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-112826214-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
 <title>Welcome to Multi Space</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
@@ -20,100 +31,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 
-<style type="text/css">
-	.club_home_selectdiv1{
-		vertical-align : middle;
-		width: 800px;
-		float: left;
-	}
-	.club_home_select_div0 {
-		width: 600px;
-		margin:0 auto;
-		margin-top: 5px;
-	}	
-	.club_home_select_div1{
-		float: left;
-	}
-	.club_home_select_div2{
-		width: 150px;
-		float: left;
-	}
-	.club_home_select_div3 {
-	 	width: 400px;
-		float: left;
-		margin-right: 5px;
-		margin-left: 5px;
-	}
-	.club_home_select_div4 {
-	 	width: 100px;
-		float: left;
-	}
-	input[type="radio"] { 
-		display: none; 
-	} 
-	input[type="radio"] + label { 
-		font-weight: 400; font-size: 14px; 
-	} 
-	input[type="radio"] + label span { 
-		display: inline-block; 
-		width: 18px; height: 18px;
-		margin: -2px 10px 0 0; 
-		vertical-align: middle; 
-		cursor: pointer; 
-		-moz-border-radius: 50%; 
-		border-radius: 50%; 
-		border: 3px solid #ffffff; 
-	} 
-	input[type="radio"] + label span { 
-		background-color: #fff; 
-	} 
-	input[type="radio"]:checked + label { 
-		color: #333; font-weight: 700; 
-	} 
-	input[type="radio"]:checked + label span { 
-		background-color: #95badf; 
-		border: 2px solid #ffffff;
-		box-shadow: 2px 2px 2px rgba(0,0,0,.1); 
-	} input[type="radio"] + label span, input[type="radio"]:checked + label span { 
-		-webkit-transition: background-color 0.24s linear; 
-		-o-transition: background-color 0.24s linear; 
-		-moz-transition: background-color 0.24s linear;
-		 transition: background-color 0.24s linear; 
-	}
-	
-	.c_div{
-		margin: 0 auto;
-	}
-	
-	.l_cate{
-		text-align : center;
-		line-height: 30px;
-	}
-	.form_back{
-		align :center;
-		background-color: #bfd9f2;
-		height : 300px;
-	}
-	
-		
-	.form-wrapper{
-		text-align : center;
-	}
-	
-	.iframe-design{
-		overflow-x:hidden; 
-		overflow-y:hidden;
-		width: 100%;
-	}
-	.iframe-design2{
-		width :100%; 
-		height :220%;
-	}
-	.category_label{
-		margin-right: 20px;
-		margin-bottom: 10px;
-	}
-</style>
 </head>
 <body>
 

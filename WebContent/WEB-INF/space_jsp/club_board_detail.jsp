@@ -20,29 +20,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./common.js"></script>
 
-<style type="text/css">
-	.textarea_h{
-		padding: 10px;
-		padding-top: 50px;
-	}
-	.label_reple{
-		padding-bottom: 18px;
-	}
-	.repleId{
-		font-size: 120%; 
-		font-weight: bold;
-		margin-bottom: 5px;
-	}
-	.repleContent{
-		font-size: 100%;
-		margin-bottom: 5px;
-	}
-	.repletime{
-		font-size: 100%; 
-		color: gray;
-	}
-	
-</style>
 </head>
 <body>
 
