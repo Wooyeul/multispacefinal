@@ -369,7 +369,7 @@ $(document).ready(function() {
 		<form id="add_reple_frm">
 			<jl:if test="${user_id ne ''}">
 				<div class="replesumtext">
-					<input class="form-control" type="text" name="com_board_reple_content" placeholder="댓글을 입력하세요."/>
+					<input class="form-control" type="text" id="com_board_reple_content"  name="com_board_reple_content" placeholder="댓글을 입력하세요."/>
 					<input type="hidden" name="user_id" value="${user_id}"/>
 					<input type="hidden" name="com_board_no" value="${vo.com_board_no}"/>
 				</div>
