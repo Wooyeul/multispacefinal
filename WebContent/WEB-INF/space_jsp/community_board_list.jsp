@@ -19,7 +19,47 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
-	
+	.comm_qna_list_wrapper .commask{
+			margin-top:5px;
+			text-align: center;
+			float:left;
+		}
+		.comm_qna_list_table th, .comm_qna_list_table td {
+			text-align: center;
+		}
+		.comm_qna_list_wrapper .selectdiv1{
+			vertical-align : middle;
+			width: 1000px;
+			float: left;
+		}
+		
+		.comm_qna_list_wrapper .selectdiv2{
+			margin-top:5px;
+			width: 150px;
+			float: left;
+		}
+		
+		.comm_qna_list_wrapper .selectdiv3 {
+		 	width: 400px;
+			padding : 5px;
+			float: left;
+		}
+		.comm_qna_list_wrapper .selectdiv4 {
+			padding : 5px;
+			float: left;
+		}
+		.comm_qna_list_wrapper .selectdiv5 {
+			width: 300px;
+			margin-top:5px;
+			float: left;
+		}
+		.comm_qna_list_wrapper .selecdiv0 {
+			width: 600px;
+			margin:0 auto;
+		}
+		.comm_qna_list_con {
+			text-align:center;
+		}
 		
 	</style>
 
@@ -78,11 +118,11 @@
 		</ul>
 	</div>
 	<br/>
-	<div class="container">
+	<div class="container comm_qna_list_con">
 		<label><h3>자유롭게 글을 작성 할 수 있는 자유게시판입니다. 자유롭게 글을 써보세요!</h3></label>
 	</div>
 	<hr style="border: solid 0.5px black;">
-	<table class="table table-hover">
+	<table class="table table-hover comm_qna_list_table">
 		<tr>
 			<th width="40"></th>
 			<th width="1000"><h3>제&nbsp;목</h3></th>
@@ -137,7 +177,7 @@
 	</div>
 	<!-- 페이징 -->	
 
-	<div class="wrapper">
+	<div class="wrapper comm_qna_list_wrapper">
 			<form action="community_board_list.do" id="paging_frm">
 				<div class="selecdiv0">
 					<div class="selectdiv1">
