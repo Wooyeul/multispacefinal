@@ -19,63 +19,29 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	<style type="text/css">
-		.container {
-			text-align: center;
-		}
-		th, td {
-			text-align: center;
-		}
-		.commask {
-			margin-top:5px;
-			text-align: center;
-			float:left;
-		}
 	
-		.selectdiv1{
-			vertical-align : middle;
-			width: 1000px;
-			float: left;
-		}
-		
-		.selectdiv2{
-			margin-top:5px;
-			width: 150px;
-			float: left;
-		}
-		
-		 .selectdiv3 {
-		 	width: 400px;
-			padding : 5px;
-			float: left;
-		}
-		 .selectdiv4 {
-			padding : 5px;
-			float: left;
-		}
-		.selectdiv5 {
-			width: 300px;
-			margin-top:5px;
-			float: left;
-		}
-		.selecdiv0 {
-			width: 600px;
-			margin:0 auto;
-		}
-		.cb_table>tbody>tr>th{
-			padding: 8px;
-			line-height: 1.42857143;
-			vertical-align: top;
-			border-top: 0px !important;
-		}
-
-		.cb_table{
-	border-spacing: 0px !important;
-}
 		
 	</style>
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		var url = "chk_login.do";
+	 	ajaxGet(url,function(rt){
+		 // 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+		 if(rt =="10002"){ 
+			$("#login_nav").hide();
+			$("#non_login_nav").show();
+		}
+		 					
+		 // 로그인 시 : rt값 -> user_name
+		else if(rt!=""){ 
+		$("#login_nav").show();
+		$("#non_login_nav").hide(); 
+		$("#user_name").text(rt+"님");
+			}
+		 });
+		
 		$("#write").on("click",function(){
 			var user_id = $(this).attr("xyz");
 			if(user_id != ""){
