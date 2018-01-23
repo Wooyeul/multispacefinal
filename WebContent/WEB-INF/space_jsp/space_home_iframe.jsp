@@ -26,12 +26,6 @@
 		});
 	});
  </script>
- <style>
- .sh-details{
- 	height: 150px !important;
- }
- </style>
-
 </head>
 <body>
 		<form id="form_search" action="hi">
@@ -74,8 +68,7 @@
 		
 				</ul>
 			</div>
-		</section>	
-		<div class="text-center">
+			<div class="text-center">
 			<ul class="pagination pagination-sm">
 				<jl:if test="${pz.hasPrevPagination }">
 					<li><a class="page" hrefd="space_home_iframe.do" pg="${pz.paginationStart-1}">&lt;</a></li>
@@ -101,5 +94,7 @@
 				</jl:if>
 			</ul>
 		</div>
+		</section>	
+		
 </body>
 </html>

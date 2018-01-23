@@ -189,7 +189,7 @@
 			<div class="col-xs-6">
 				<div class="panel">
 					<img src="space_img/${space.space_thumb_img }" width="100%"
-						height="100%" />
+						height="100%" onerror="this.src='defualt/defualt.jpg'" />
 				</div>
 				<p style="font-size: 40px; color: black;">${space.space_content }</p>
 				<br/>

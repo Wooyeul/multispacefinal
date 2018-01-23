@@ -102,13 +102,13 @@
 	$("document").ready(function() {
 		$("#sub").on("click", function() {
 			if(titleCheckFlag == 0 ) {
-				$("#status-modal-body").html("제목을 입력해주세요.");
+				$("#status-modal-body").html("제목을 확인해주세요.");
 	 				$("#status-modal").modal("show");
 			}else if(contentCheckFlag == 0){
-				$("#status-modal-body").html("내용을 입력해주세요.");
+				$("#status-modal-body").html("내용을 확인해주세요.");
  				$("#status-modal").modal("show");
 			}else if(priceCheckFlag == 0 ) {
-				$("#status-modal-body").html("가격을 입력해주세요.");
+				$("#status-modal-body").html("가격을 확인해주세요.");
  				$("#status-modal").modal("show");
 			}else if($("#space_thumb_img").val().length == 0){
 				$("#status-modal-body").html("썸네일 이미지를 등록해주세요.");
@@ -392,18 +392,16 @@
 				<input type="text" size="40" name="addr1" class="form-control" id="addr1" disabled="disabled"/>
 			</div>
 			<div class="form-group">
-				<label for="l_category_no" class="space-label">지역</label>
-				<jl:forEach var="local" items="${local_list }">
-					<label class="radio-inline"><input checked="checked" type="radio"
-						name="l_category_no" value="${local.l_category_no }">${local.l_category_name }</label>
+			<select id="l_category_no" name="l_category_no" class="input-sm">
+				<jl:forEach items="${local_list}" var="local">
+					<option value="${local.l_category_no}">${local.l_category_name}</option>
 				</jl:forEach>
-			</div>
-			<div class="form-group">
-				<label for="s_category_no" class="space-label">카테고리</label>
-				<jl:forEach var="category" items="${category_list }">
-					<label class="radio-inline"><input checked="checked" type="radio"
-						name="s_category_no" class="space_add_radio" value="${category.s_category_no }">${category.s_category_name }</label>
+			</select>
+			<select id="s_category_no" name="s_category_no" class="input-sm">
+				<jl:forEach items="${category_list}" var="category">
+					<option value="${category.s_category_no}">${category.s_category_name}</option>
 				</jl:forEach>
+			</select>
 			</div>
 			<input type="button" id="sub" class="btn btn-default" value="등록"/>
 		</form>
