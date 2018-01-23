@@ -43,6 +43,19 @@
 		}
 	</script> 
 <body>
+<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ --> 
+	<div class="head" id="header">
+	
+		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist">
+			<li ><a href="community_board_list.do" ><h3>FREE BOARD</h3></a></li>
+
+			<li ><a href="community_qna_list.do"  ><h3>QnA BOARD</h3></a></li>
+
+			<li ><a href="community_review_list.do" ><h3>REVIEW BOARD</h3></a></li>
+		</ul>
+	</div>
 </br>
 <div class="container comm_review_con">
 	<label><h3>공간 사진을 클릭하면 해당 공간 페이지로 이동됩니다. 공간의 상세 내용 및 후기를 확인해보세요!</h3></label>
@@ -110,5 +123,9 @@
 <form id="paging_frm" action="community_review_list.do" method="post">
 	<input type="hidden" name="cur_page" id="cur_page" value=""/>
 </form>
+
+<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 </body>
 </html>

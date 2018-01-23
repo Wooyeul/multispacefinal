@@ -98,7 +98,20 @@
 </script>
 </head>
 <body>
-</br>
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ --> 
+	<div class="head" id="header">
+	
+		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist">
+			<li ><a href="community_board_list.do" ><h3>FREE BOARD</h3></a></li>
+
+			<li ><a href="community_qna_list.do"  ><h3>QnA BOARD</h3></a></li>
+
+			<li ><a href="community_review_list.do" ><h3>REVIEW BOARD</h3></a></li>
+		</ul>
+	</div>
+	<br/>
 	<div class="container">
 		<label><h3>자유롭게 글을 작성 할 수 있는 자유게시판입니다. 자유롭게 글을 써보세요!</h3></label>
 	</div>
@@ -222,5 +235,11 @@
 		
 	</form>
 	<!-- paging 이용할 form -->
+	
+	
+			
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 </body>
 </html>

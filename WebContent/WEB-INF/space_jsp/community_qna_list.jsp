@@ -82,9 +82,31 @@
 		  $("#cur_page").attr("value",page);
 		  $("#paging_frm").submit();
 	  }
+	  
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-112826214-1', 'auto');
+		  ga('send', 'pageview');
+
 	</script>
 </head>
 <body>
+<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ --> 
+	<div class="head" id="header">
+	
+		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist">
+			<li ><a href="community_board_list.do" ><h3>FREE BOARD</h3></a></li>
+
+			<li ><a href="community_qna_list.do"  ><h3>QnA BOARD</h3></a></li>
+
+			<li ><a href="community_review_list.do" ><h3>REVIEW BOARD</h3></a></li>
+		</ul>
+	</div>
 </br>
 <div class="container comm_qna_list_con">
 	<label><h3>질문을 주고 받을 수 있는 질문 답변 게시판입니다. 궁금하신 점들을 물어보세요!</h3></label>
@@ -198,7 +220,9 @@
          </div>
       </div>
    </div>
-
+<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 </body>
 
 </html>

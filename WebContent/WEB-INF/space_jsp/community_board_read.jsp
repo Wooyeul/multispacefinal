@@ -296,6 +296,20 @@ $(document).ready(function() {
 </head>
 <body>
 	
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ --> 
+	<div class="head" id="header">
+	
+		<ul id="Navtab" class="nav nav-tabs commu_nav-tabs" role="tablist">
+			<li ><a href="community_board_list.do" ><h3>FREE BOARD</h3></a></li>
+
+			<li ><a href="community_qna_list.do"  ><h3>QnA BOARD</h3></a></li>
+
+			<li ><a href="community_review_list.do" ><h3>REVIEW BOARD</h3></a></li>
+		</ul>
+	</div>
+	
 	<div class="row">
 		<div class="col-lg-12">
 		<hr style="border: solid 0.5px black;">
@@ -517,7 +531,9 @@ $(document).ready(function() {
 	
 <!-- 글삭제 모달 확인 폼끝 -->
 
-
+<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 
 </body>
 </html>
