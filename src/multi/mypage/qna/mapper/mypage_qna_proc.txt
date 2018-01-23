@@ -33,7 +33,7 @@ CREATE PROCEDURE p_mypage_qna_qna_reple_info(
 	IN v_space_qna_no INT(11)
 )
 BEGIN
-	SELECT * from space_qnaT where space_qna_no = v_space_qna_no;
+	SELECT * from space_qna_repleT where space_qna_no = v_space_qna_no;
 END$$
 DELIMITER ;
 DELIMITER ;

@@ -16,6 +16,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	
+	
+	
+	
 	<style type="text/css">
 		.textarea_h{
 			padding: 10px;
@@ -42,14 +45,17 @@
 
 	<form id="add_reple_frm">
 		<div class="label_reple">
-			<label id="reple" class="l" style="width: 100px; font-size: 100%">답변</label>
+			<label id="reple" class="l" style="width: 100px; font-size: 100%">답변</label><hr>
 		</div>
 		<div class="form-group" align="left">
 			<div class="input-group" >
-				<label id="c_board_reple_content" name="c_board_reple_content"
-					style="height: 80px; " class="form-control">
-					${Space_qna_repleVO.space_qna_reple_content} </label> 
-					<span class="input-group-addon" style="background-color: #00C73C;"></span>
+
+
+				<label id="reple" style="height: 80px;" style="cursor: default"
+					id="c_board_reple_content" class="l" >${Space_qna_repleVO.space_qna_reple_content}</label>
+
+
+
 			</div>
 		</div>
 	</form>
