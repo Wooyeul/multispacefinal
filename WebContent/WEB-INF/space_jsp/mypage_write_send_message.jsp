@@ -50,7 +50,7 @@
 	$(document).ready(function(){
 		
 		
-		/* ************************** select_club의 기본값 ************************** */	
+		/* ******************	******** select_club의 기본값 ************************** */	
 		
 		var club_no_1 = $("#select_club").val();
 		$('#select_club_member').empty();	

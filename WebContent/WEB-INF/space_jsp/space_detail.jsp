@@ -268,7 +268,7 @@
 				<script>
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				    mapOption = {
-				        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+				        center: new daum.maps.LatLng("${space.latitude}", "${space.longitude}"), // 지도의 중심좌표
 				        level: 3 // 지도의 확대 레벨
 				    };  
 		
@@ -277,28 +277,28 @@
 					// 주소-좌표 변환 객체를 생성합니다
 					var geocoder = new daum.maps.services.Geocoder();
 					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('${juso}', function(result, status) {
-					    // 정상적으로 검색이 완료됐으면 
-					     if (status === daum.maps.services.Status.OK) {
-							
-					        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-		
-					        // 결과값으로 받은 위치를 마커로 표시합니다
-					        var marker = new daum.maps.Marker({
-					            map: map,
-					            position: coords
-					        });
-		
-					        // 인포윈도우로 장소에 대한 설명을 표시합니다
-					        var infowindow = new daum.maps.InfoWindow({
-					            content: '<div style="width:150px;text-align:center;padding:6px 0;">${space.space_title}</div>'
-					        });
-					        infowindow.open(map, marker);
-		
-					        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-					        map.setCenter(coords);
-					    } 
-					});    
+					// 마커가 표시될 위치입니다 
+					var markerPosition  = new daum.maps.LatLng("${space.latitude}", "${space.longitude}"); 
+					
+					// 마커를 생성합니다
+					var marker = new daum.maps.Marker({
+					    position: markerPosition
+					});
+					
+					// 마커가 지도 위에 표시되도록 설정합니다
+					marker.setMap(map);
+					
+					var iwContent = '<div style="padding:5px;">${space.space_title} <br><a href="http://map.daum.net/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+					    iwPosition = new daum.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+					
+					// 인포윈도우를 생성합니다
+					var infowindow = new daum.maps.InfoWindow({
+					    position : iwPosition, 
+					    content : iwContent 
+					});
+					  
+					// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+					infowindow.open(map, marker); 
 				</script>
 				
 				<!-- 지도 끝 -->
@@ -439,13 +439,8 @@
 															type="hidden" name="space_no"
 															value="${space_qna.space_no }"> <input
 															type="hidden" name="user_id" value="${user_id }">
-						
 															<div class="form-group">
-																<label for="space_qna_reple_title">제목</label>
-																<input type="text" name="space_qna_reple_title" id="space_qna_reple_title"  class="form-control">
-															</div>
-															<div class="form-group">
-																<label for="space_qna_reple_content">내용</label>
+																<label for="space_qna_reple_content">답글 달기</label>
 																<textarea row="5" col="30" name="space_qna_reple_content" id="space_qna_reple_content"  class="form-control"></textarea>
 															</div>
 

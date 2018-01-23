@@ -116,7 +116,11 @@
 			}else if($("#zipcode").val().length == 0){
 				$("#status-modal-body").html("주소를 등록해주세요.");
  				$("#status-modal").modal("show");
-			}else {
+			}else if($("#latitude").val()==""){
+				$("#status-modal-body").html("정확한 위치를 선택해주세요.");
+ 				$("#status-modal").modal("show");
+			}
+			else {
 			$("#open_time").removeAttr("disabled");
 			$("#close_time").removeAttr("disabled");
 			$("#addr1").removeAttr("disabled");
@@ -406,7 +410,6 @@
 			<label class="sh-map">장소</label>
 			<div id="map" style="width:100%;height:600px;"></div>
 			<p><em>지도를 클릭해주세요!</em></p> 
-			<p id="result"></p>
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae"></script>
 			<script>
 				var container = document.getElementById('map');
@@ -427,14 +430,10 @@
 			daum.maps.event.addListener(map, 'click', function(mouseEvent) {  
 			    var latlng = mouseEvent.latLng;
 			    marker.setPosition(latlng);
-			    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-			    message += '경도는 ' + latlng.getLng() + ' 입니다';
 			    
 			    $("#latitude").val(latlng.getLat());
 			    $("#longitude").val(latlng.getLng());
 			    
-			    var resultDiv = document.getElementById('result'); 
-			    resultDiv.innerHTML = message;
 			});
 			</script>
 			<input type="hidden" id="latitude" name="latitude">
