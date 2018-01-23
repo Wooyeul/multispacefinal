@@ -229,8 +229,8 @@ public class CtrlSpace {
 	@RequestMapping("/space_add2.do")
 	public ModelAndView space_add2(HttpServletRequest request,@CookieValue("user_id") String user_id) throws Exception{
 		ModelAndView mnv = new ModelAndView("redirect:/space_add_clear.jsp");
-		//String savePath = request.getServletContext().getRealPath("images");
-		String thumbnailSavePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\space_img";
+		String thumbnailSavePath = request.getServletContext().getRealPath("space_img");
+		//String thumbnailSavePath = "C:\\Users\\student\\git\\msspace_01\\WebContent\\space_img";
 		int sizeLimit = 1024*1024*15;
 		MultipartRequest mpr = new MultipartRequest(request, thumbnailSavePath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
 		
