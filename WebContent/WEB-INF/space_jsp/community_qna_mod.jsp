@@ -1,30 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome to Multi Space</title>
-	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-	
+
 	<link rel="stylesheet" type="text/css" href="./Resources/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./Resources/css/responsive.css">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
 	
-		
 	<script type="text/javascript" src="./Resources/js/jquery.js"></script>
 	<script type="text/javascript" src="./Resources/js/main.js"></script>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
-	<!-- 에디터 3줄 -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
 	
 	
 	<style type="text/css">
@@ -81,26 +75,31 @@ $(document).ready(function() {
 	
 </head>
 <body>
-	
+	<!-- *********************  header  ************************ -->
+         <%@include file="./jsp/header_page.jsp"%>  
+	<!-- *********************  header - end  ************************ --> 
 <br/>
-		<p class="comm_qna_mod"><label>QnA</label></p>
+		<p class="comm_qna_mod"><label>QnA 수정</label></p>
 	<hr style="border: solid 0.5px black;">
+	<div class="container">
 		<div class="col-lg-12">
-		<div class="container">
-		<form action="community_qna_mod2.do" method="POST" id="qna_mod">
-			<label>제목</label>
-				<input class="form-control" class="form-control"  type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
-			<label>제목</label>
-				<textarea  id="summernote"   class="form-control" name="com_qna_content" rows="10" cols="100">${vo.com_qna_content}</textarea>
-			<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
-			<div class="modbtn">
-				<input type="button" value="수정" class="btn btn-info btn-lg" data-toggle="modal" data-target="#text_mod_modal"/>
-			</div>
-		</form>
-	</div>
+			<form action="community_qna_mod2.do" method="POST" id="qna_mod">
+				<label>제목</label>
+					<input class="form-control" class="form-control"  type="text" name="com_qna_title" value="${vo.com_qna_title}"/><br/>
+				<label>제목</label>
+					<textarea  id="summernote"   class="form-control" name="com_qna_content" rows="10" cols="100">${vo.com_qna_content}</textarea>
+				<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
+				<div class="modbtn">
+					<input type="button" value="수정" class="btn btn-default" data-toggle="modal" data-target="#text_mod_modal"/>
+				</div>
+			</form>
+		</div>
 	</div>
 	
-	
+	<br>
+	<!-- ******************************* footer ******************************* -->
+		  <%@include file="./jsp/footer.jsp"%>  
+	<!--  end footer  -->
 	
 	<!-- 모달 창 부분 -->
 	

@@ -24,7 +24,9 @@
 
 <script>
 	$(document).ready(function() {
-						
+						$("#btn_qna_submit").on("click",function(){
+							alert();
+						});
 						if ("${review_flag}" == 1) {
 							var review = $("#review").offset();
 							$('html, body').animate({
@@ -68,7 +70,7 @@
 						});
 
 						if ("${bookmark}" != "") {
-							$("#btn_bookmark").html("북마크해제");
+							$("#btn_bookmark").html("즐겨찾기해제");
 						}
 						if ("${space_code }" == "20002") {
 							$("#status-modal-body").html("<h4>후기 삭제 성공</h4>");
@@ -99,15 +101,19 @@
 										});
 
 						$("#btn_bookmark").on("click", function() {
-							if ($(this).html() == "북마크등록") {
+							if ($(this).html() == "즐겨찾기등록") {
 								var url = $(this).attr("add");
 								ajaxGet(url, function(rt) {
-									$("#btn_bookmark").html("북마크해제");
+									$("#btn_bookmark").html("즐겨찾기해제");
+									$("#bookmark-modal-body").html("<h4>즐겨찾기가 등록되었습니다.</h4>");
+									$("#bookmark-modal").modal('show');
 								});
 							} else {
 								var url = $(this).attr("del");
 								ajaxGet(url, function(rt) {
-									$("#btn_bookmark").html("북마크등록");
+									$("#btn_bookmark").html("즐겨찾기등록");
+									$("#bookmark-modal-body").html("<h4>즐겨찾기가 해제되었습니다.</h4>");
+									$("#bookmark-modal").modal('show');
 								});
 							}
 
@@ -501,7 +507,7 @@
 								<textarea name="space_qna_content" id="space_qna_content"
 									class="form-control"></textarea>
 							</div>
-							<input type="submit" class="btn btn-default" value="질문전송">
+							<input id="btn_qna_submit" type="button" class="btn btn-default" value="질문전송">
 						</form>
 					</div>
 					<br/> <br/>
@@ -669,6 +675,21 @@
 								</div>
 							</div>
 						</div>
+						<!-- 즐겨찾기 모달 -->
+						<div class="modal fade" id="bookmark-modal" tabindex="-1"
+							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-body">
+										<div id="bookmark-modal-body" align="center">XX 완료</div>
+									</div>
+									<div class="modal-footer">
+										<button id="btn-status-close" type="button"
+											class="btn btn-primary" data-dismiss="modal">닫기</button>
+									</div>
+								</div>
+							</div>
+						</div>
 
 					</div>
 				</div>
@@ -707,7 +728,7 @@
 														class="btn btn-info btn-reserve">예약하기</button></a>
 												<a><button class="btn btn-info btn-reserve" id="btn_bookmark"
 													add="add_bookmark.do?space_no=${space.space_no }&user_id=${user_id}"
-													del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">북마크등록</button></a>
+													del="del_bookmark.do?space_no=${space.space_no }&user_id=${user_id}">즐겨찾기등록</button></a>
 											</div>
 										</div>
 									</div></li>

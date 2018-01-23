@@ -17,7 +17,7 @@
 	
 	
 	<insert id="add_space" parameterType="main.vo.SpaceVO" statementType="CALLABLE">
-		{call p_add_space(${l_category_no},${crn},${s_category_no},'${space_title}','${space_content}','${space_thumb_img}',
+		{call p_add_space(#{l_category_no},#{crn},#{s_category_no},'${space_title}','${space_content}','${space_thumb_img}',
 		'${open_time}','${close_time}',${price},${max_people},${min_people},'${space_call}','${zipcode}')}
 	</insert>
 	

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%><%@taglib prefix="jl"
+	pageEncoding="EUC-KR"%><%@taglib prefix="jl"
 	uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -28,11 +28,11 @@
 	function titleCheckLoop() {
 		var title = $("#space_title2").val();
 		if (title == "") {
-			$("#essential_space_title2").html("필수 입력사항입니다.");
+			$("#essential_space_title2").html("�ʼ� �Է»����Դϴ�.");
 			$("#essential_space_title2").css("color", "red");
 			titleCheckFlag = 0;
 		} else {
-			$("#essential_space_title2").text("사용 가능한 제목입니다");
+			$("#essential_space_title2").text("��� ������ �����Դϴ�");
 			$("#essential_space_title2").css("color", "green");
 			titleCheckFlag = 1;
 		}
@@ -48,11 +48,11 @@
 	function contentCheckLoop() {
 		var content = $("#space_content2").val();
 		if (content == "") {
-			$("#essential_space_content2").html("필수 입력사항입니다.");
+			$("#essential_space_content2").html("�ʼ� �Է»����Դϴ�.");
 			$("#essential_space_content2").css("color", "red");
 			contentCheckFlag = 0;
 		} else {
-			$("#essential_space_content2").text("확인되었습니다.");
+			$("#essential_space_content2").text("Ȯ�εǾ����ϴ�.");
 			$("#essential_space_content2").css("color", "green");
 			contentCheckFlag = 1;
 		}
@@ -68,11 +68,11 @@
 	function priceCheckLoop() {
 		var price = $("#price").val();
 		if (price == "") {
-			$("#essential_price").html("필수 입력사항입니다.");
+			$("#essential_price").html("�ʼ� �Է»����Դϴ�.");
 			$("#essential_price").css("color", "red");
 			priceCheckFlag = 0;
 		} else {
-			$("#essential_price").text("확인되었습니다.");
+			$("#essential_price").text("Ȯ�εǾ����ϴ�.");
 			$("#essential_price").css("color", "green");
 			priceCheckFlag = 1;
 		}
@@ -102,22 +102,22 @@
 	$("document").ready(function() {
 		$("#sub").on("click", function() {
 			if(titleCheckFlag == 0 ) {
-				$("#status-modal-body").html("제목을 확인해주세요.");
+				$("#status-modal-body").html("������ Ȯ�����ּ���.");
 	 				$("#status-modal").modal("show");
 			}else if(contentCheckFlag == 0){
-				$("#status-modal-body").html("내용을 확인해주세요.");
+				$("#status-modal-body").html("������ Ȯ�����ּ���.");
  				$("#status-modal").modal("show");
 			}else if(priceCheckFlag == 0 ) {
-				$("#status-modal-body").html("가격을 확인해주세요.");
+				$("#status-modal-body").html("������ Ȯ�����ּ���.");
  				$("#status-modal").modal("show");
 			}else if($("#space_thumb_img").val().length == 0){
-				$("#status-modal-body").html("썸네일 이미지를 등록해주세요.");
+				$("#status-modal-body").html("����� �̹����� ������ּ���.");
  				$("#status-modal").modal("show");
 			}else if($("#zipcode").val().length == 0){
-				$("#status-modal-body").html("주소를 등록해주세요.");
+				$("#status-modal-body").html("�ּҸ� ������ּ���.");
  				$("#status-modal").modal("show");
 			}else if($("#latitude").val()==""){
-				$("#status-modal-body").html("정확한 위치를 선택해주세요.");
+				$("#status-modal-body").html("��Ȯ�� ��ġ�� �������ּ���.");
  				$("#status-modal").modal("show");
 			}
 			else {
@@ -132,7 +132,7 @@
 	});
 
 	$("document").ready(function() {
-		//시간 설정 기능
+		//�ð� ���� ���
 	 		var time_click_flag = "a";
 	 		var first_click_time = 0;
 	 		var second_click_time = 0;
@@ -176,10 +176,8 @@
 	 				time_click_flag="a";
 	 			} 
 	 		 });
-	 		 //시간 설정 끝
-		$("#test").on("click", function() {
-			alert($("#image_one").val());
-		});
+	 		 //�ð� ���� ��
+		
 		var scOffset = $('.navbar-Menu').offset();
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > scOffset.top) {
@@ -190,20 +188,20 @@
 		});
 		var url = "chk_login.do";
 		ajaxGet(url, function(rt) {
-			// 로그인 실패시 : rt값 -> ("/main_html.do")에서 10002 return
+			// �α��� ���н� : rt�� -> ("/main_html.do")���� 10002 return
 			if (rt == "10002") {
 				$("#login_nav").hide();
 				$("#non_login_nav").show();
 			}
 
-			// 로그인 시 : rt값 -> user_name
+			// �α��� �� : rt�� -> user_name
 			else if (rt != "") {
 				$("#login_nav").show();
 				$("#non_login_nav").hide();
-				$("#user_name").text(rt + "님.");
+				$("#user_name").text(rt + "��.");
 			}
 		});
-		//유효성 검사
+		//��ȿ�� �˻�
 		$("#space_title2").on("focusin", function() {
 			$("#essential_space_title2").show();
 			titleTimeFlag = 1;
@@ -233,16 +231,14 @@
 		$("#price").on("focusout", function() {
 			priceTimeFlag = 0;
 		});
-		
-		$("#")
 
 		$("#btn_add_image").on("click", function() {
 
 			imageAddFlag++;
 			if (imageAddFlag > 7) {
-				alert("사진은 최대 7장까지만 가능합니다");
+				$("#status-modal-body").html("������ �ִ� 7����� ��� �����մϴ�.");
+ 				$("#status-modal").modal("show");
 			} else {
-				alert(imageAddFlag);
 				$("#image_" + [ imageAddFlag ]).show();
 			}
 		});
@@ -274,11 +270,11 @@
 	<%@include file="./jsp/header_page.jsp"%>
 	<!-- *********************  header - end  ************************ -->
 	<div class="container">
-		<h1>공간 추가</h1>
+		<h1>���� �߰�</h1>
 		<form method="POST" action="space_add2.do"
 			enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="crn" class="space-label">사업자번호</label> <select name="crn" id="crn" class="form-control">
+				<label for="crn" class="space-label">����ڹ�ȣ</label> <select name="crn" id="crn" class="form-control">
 					<jl:forEach var="vo" items="${host }">
 						<option value="${vo.crn }">${vo.crn }</option>
 					</jl:forEach>
@@ -286,18 +282,18 @@
 			</div>
 
 			<div class="form-group">
-				<label for="space_title2" class="space-label">공간 이름</label> <input type="text"
+				<label for="space_title2" class="space-label">���� �̸�</label> <input type="text"
 					id="space_title2" name="space_title" class="form-control" />
-				<div class="essential" id="essential_space_title2">필수 입력 사항입니다</div>
+				<div class="essential" id="essential_space_title2">�ʼ� �Է� �����Դϴ�</div>
 			</div>
 			<div class="form-group">
-				<label for="space_title2" class="space-label">공간 소개</label> <input type="text"
+				<label for="space_title2" class="space-label">���� �Ұ�</label> <input type="text"
 					id="space_content2" name="space_content" class="form-control" />
-				<div class="essential" id="essential_space_content2">필수 입력
-					사항입니다</div>
+				<div class="essential" id="essential_space_content2">�ʼ� �Է�
+					�����Դϴ�</div>
 			</div>
 			<div class="form-group">
-				<label for="space_thumb_img" class="space-label">썸네일 이미지</label> <input type="file"
+				<label for="space_thumb_img" class="space-label">����� �̹���</label> <input type="file"
 					id="space_thumb_img" name="space_thumb_img" class="form-control" />
 			</div>
 
@@ -305,8 +301,8 @@
 
 
 			<div class="form-group">
-				<a href="#image-modal" data-toggle="modal"><button class="btn btn-default">사진
-						첨부</button></a>
+				<a href="#image-modal" data-toggle="modal"><button class="btn btn-default">����
+						÷��</button></a>
 			</div>
 			<div class="modal fade" id="image-modal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
@@ -316,34 +312,34 @@
 							<button type="button" class="close" data-dismiss="modal">
 								<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
 							</button>
-							<h4 class="modal-title">사진 첨부</h4>
+							<h4 class="modal-title">���� ÷��</h4>
 						</div>
 						<div class="modal-body">
 							<input type="file" name="image_one" class="form-control"
 								id="image_1" /> <input type="file" name="image_two"
-								class="form-control-file" id="image_2" style="display: none;" /> <input
-								type="file" name="image_three" class="form-control-file" id="image_3"
+								class="form-control" id="image_2" style="display: none;" /> <input
+								type="file" name="image_three" class="form-control" id="image_3"
 								style="display: none;" /> <input type="file" name="image_four"
-								class="form-control-file" id="image_4" style="display: none;" /> <input
-								type="file" name="image_five" class="form-control-file" id="image_5"
+								class="form-control" id="image_4" style="display: none;" /> <input
+								type="file" name="image_five" class="form-control" id="image_5"
 								style="display: none;" /> <input type="file" name="image_six"
-								class="form-control-file" id="image_6" style="display: none;" /> <input
-								type="file" name="image_seven" class="form-control-file" id="image_7"
+								class="form-control" id="image_6" style="display: none;" /> <input
+								type="file" name="image_seven" class="form-control" id="image_7"
 								style="display: none;" />
-							<button type="button" class="btn btn-default" id="btn_add_image">사진
-								추가</button>
+							<button type="button" class="btn btn-default" id="btn_add_image">����
+								�߰�</button>
 						</div>
 						<div class="modal-footer">
 
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">확인</button>
+								data-dismiss="modal">Ȯ��</button>
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
+								data-dismiss="modal">�ݱ�</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			<label class="space-label">운영 시간</label><br/>
+			<label class="space-label">� �ð�</label><br/>
 			<div class="btn-group btn-group-toggle btn-lg btn-time" data-toggle="buttons">
 				<jl:forEach begin="0" end="24" varStatus="time">
 					  <label class="btn btn-secondary btn-info cb_time"  time="${time.index }" id="btn_time${time.index }">
@@ -353,7 +349,7 @@
 			</div>
 			<div class="alert alert-success">
 				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				지정하지 않을 시 기본 운영시간은 0시부터 24시까지 입니다.
+				�������� ���� �� �⺻ ��ð��� 0�ú��� 24�ñ��� �Դϴ�.
 			</div>
 			
 			<input id="open_time"	name="open_time" type="hidden" min="0" max="24" value="0"
@@ -364,35 +360,35 @@
 
 
 			<div class="form-group">
-				<label for="price" class="space-label">시간당 가격</label> <input id="price" type="number"
+				<label for="price" class="space-label">�ð��� ����</label> <input id="price" type="number"
 					name="price" class="form-control" />
-				<div class="essential" id="essential_price">필수 입력 사항입니다</div>
+				<div class="essential" id="essential_price">�ʼ� �Է� �����Դϴ�</div>
 			</div>
 
 			<div class="form-group">
-				<label for="min_people" class="space-label">최소 인원</label> <input id="min_people"
-					type="number" name="min_people" class="form-control" placeholder="미입력시 최소인원 0명입니다."/>
+				<label for="min_people" class="space-label">�ּ� �ο�</label> <input id="min_people"
+					type="number" name="min_people" class="form-control" placeholder="���Է½� �ּ��ο� 0���Դϴ�."/>
 			</div>
 
 			<div class="form-group">
-				<label for="max_people" class="space-label">최대 인원</label> <input id="max_people"
-					type="number" name="max_people" class="form-control" placeholder="미입력시 최대인원 1000명입니다."/>
+				<label for="max_people" class="space-label">�ִ� �ο�</label> <input id="max_people"
+					type="number" name="max_people" class="form-control" placeholder="���Է½� �ִ��ο� 1000���Դϴ�."/>
 			</div>
 
 			<div class="form-group">
-				<label for="space_call" class="space-label">연락 받을 전화번호</label> <input id="space_call"
-					type="tel" name="space_call" class="form-control" placeholder="미입력시 회원정보의 연락처로 등록됩니다."/>
+				<label for="space_call" class="space-label">���� ���� ��ȭ��ȣ</label> <input id="space_call"
+					type="tel" name="space_call" class="form-control" placeholder="���Է½� ȸ�������� ����ó�� ��ϵ˴ϴ�."/>
 			</div>
 				
 			
 			<div class="form-group">
-				<label class="space-label">우편번호</label>
+				<label class="space-label">������ȣ</label>
 				<input type="text" name="zipcode" size="8" id="zipcode" class="form-control"  disabled="disabled"/>
-				<input type="button" name="findzip" value="찾기" class="btnzip btn btn-primary" onclick="zipSearch()"/>
+				<input type="button" name="findzip" value="ã��" class="btnzip btn btn-primary" onclick="zipSearch()"/>
 			</div>
 
 			<div class="from-group">
-				<label class="space-label">주소</label>
+				<label class="space-label">�ּ�</label>
 				<input type="text" size="40" name="addr1" class="form-control" id="addr1" disabled="disabled"/>
 			</div>
 			<div class="form-group">
@@ -407,9 +403,9 @@
 				</jl:forEach>
 			</select>
 			</div>
-			<label class="sh-map">장소</label>
+			<label class="sh-map">���</label>
 			<div id="map" style="width:100%;height:600px;"></div>
-			<p><em>지도를 클릭해주세요!</em></p> 
+			<p>������ Ŭ���Ͽ� ��Ȯ�� ��ġ�� ǥ�����ּ���.</p> 
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae"></script>
 			<script>
 				var container = document.getElementById('map');
@@ -420,13 +416,13 @@
 				 
 				var map = new daum.maps.Map(container, options);
 				var marker = new daum.maps.Marker({ 
-				    // 지도 중심좌표에 마커를 생성합니다 
+				    // ���� �߽���ǥ�� ��Ŀ�� �����մϴ� 
 				    position: map.getCenter() 
 				}); 
-				// 지도에 마커를 표시합니다
+				// ������ ��Ŀ�� ǥ���մϴ�
 				marker.setMap(map);
 
-				// 클릭한 위도, 경도 정보를 가져옵니다 
+				// Ŭ���� ����, �浵 ������ �����ɴϴ� 
 			daum.maps.event.addListener(map, 'click', function(mouseEvent) {  
 			    var latlng = mouseEvent.latLng;
 			    marker.setPosition(latlng);
@@ -438,7 +434,7 @@
 			</script>
 			<input type="hidden" id="latitude" name="latitude">
 			<input type="hidden" id="longitude" name="longitude">
-			<input type="button" id="sub" class="btn btn-default" value="등록"/>
+			<input type="button" id="sub" class="btn btn-default" value="���"/>
 		</form>
 		<br/>
 		<br/>
@@ -452,13 +448,13 @@
 									<span aria-hidden="true">&times;</span>
 									<span class="sr-only">Close</span>
 								</button>
-								<h4 class="modal-title text-center">주의</h4>
+								<h4 class="modal-title text-center">����</h4>
 							</div>
 							<div class="modal-body">
-								<h2 id="status-modal-body" class="text-center">XX 완료</h2>
+								<h2 id="status-modal-body" class="text-center">XX �Ϸ�</h2>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">�ݱ�</button>
 							</div>
 						</div>
 					</div>
