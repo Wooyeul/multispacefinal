@@ -20,7 +20,7 @@
 		<result property="user_id" column="user_id" jdbcType="VARCHAR" />
 		<result property="host_name" column="host_name" jdbcType="VARCHAR" />
 		<result property="host_account" column="host_account" jdbcType="VARCHAR" />
-		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="account_name" column="account_name" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="p_admin_host_findAll" statementType="CALLABLE" resultMap="RM_p_admin_host_findAll">
 		{call p_admin_host_findAll()}
@@ -42,7 +42,7 @@
 		<result property="user_id" column="user_id" jdbcType="VARCHAR" />
 		<result property="host_name" column="host_name" jdbcType="VARCHAR" />
 		<result property="host_account" column="host_account" jdbcType="VARCHAR" />
-		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="account_name" column="account_name" jdbcType="VARCHAR" />
 		<result property="etc" column="etc" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="p_admin_host_request_findAll" statementType="CALLABLE" resultMap="RM_p_admin_host_request_findAll">
@@ -71,7 +71,7 @@
 		<result property="user_id" column="user_id" jdbcType="VARCHAR" />
 		<result property="host_name" column="host_name" jdbcType="VARCHAR" />
 		<result property="host_account" column="host_account" jdbcType="VARCHAR" />
-		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="account_name" column="account_name" jdbcType="VARCHAR" />
 		<result property="etc" column="etc" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="p_admin_host_one_person_check" statementType="CALLABLE" 
@@ -85,7 +85,7 @@
 	DELIMITER $$
 	CREATE PROCEDURE p_admin_host_user_accept(
 		IN v_crn VARCHAR(50),
-		IN v_zipcode VARCHAR(7),
+		IN v_account_name VARCHAR(7),
 		IN v_user_id VARCHAR(50),
 		IN v_host_name VARCHAR(50),
 		IN v_host_account VARCHAR(50)
@@ -98,7 +98,7 @@
 		END;
 		START TRANSACTION;
 			DELETE FROM HostApplyT WHERE user_id = v_user_id;
-			INSERT INTO HostT VALUES ( v_crn, v_zipcode, v_user_id, v_host_name, v_host_account );
+			INSERT INTO HostT VALUES ( v_crn, v_account_name, v_user_id, v_host_name, v_host_account );
 			UPDATE UserT SET grade='2' WHERE user_id = v_user_id;
 		COMMIT;
 	END$$
@@ -106,7 +106,7 @@
 	-->
 	<parameterMap id="PM_p_admin_host_user_accept" type="main.vo.HostApplyVO" >
 		<parameter property="crn" mode="IN" jdbcType="VARCHAR"/>
-		<parameter property="zipcode" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="account_name" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="user_id" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="host_name" mode="IN" jdbcType="VARCHAR"/>
 		<parameter property="host_account" mode="IN" jdbcType="VARCHAR"/>
@@ -260,7 +260,7 @@
 		<result property="gender" column="gender" jdbcType="VARCHAR" />
 		<result property="phone" column="phone" jdbcType="VARCHAR" />
 		<result property="nickname" column="nickname" jdbcType="VARCHAR" />
-		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="account_name" column="account_name" jdbcType="VARCHAR" />
 		<result property="email" column="email" jdbcType="VARCHAR" />
 		<result property="grade" column="grade" jdbcType="INTEGER" />
 	</resultMap>
@@ -286,7 +286,7 @@
 		AND host_account like '%${search_content}%'
 		</if>
 		<if test="search_option == 5">
-		AND zipcode like '%${search_content}%'
+		AND account_name like '%${search_content}%'
 		</if>
 		<if test="start_no != null">
 			ORDER BY crn DESC LIMIT #{start_no},10
@@ -309,7 +309,7 @@
 		AND host_account like '%${search_content}%'
 		</if>
 		<if test="search_option == 5">
-		AND zipcode like '%${search_content}%'
+		AND account_name like '%${search_content}%'
 		</if>
 		<if test="search_option == 6">
 		AND etc like '%${search_content}%'
