@@ -77,7 +77,7 @@ public class CtrlMypageMyHost {
 	public ModelAndView addHost2(@CookieValue("user_id") String user_id,@ModelAttribute HostVO hvo)throws Exception{
 		
 		ModelAndView mnv = new ModelAndView("myhost_addCom");
-		System.out.println(hvo.getAccount_name());
+		hvo.setUser_id(user_id);
 		myhostDAO.addhost(hvo);
 		
 		return mnv;
@@ -85,7 +85,7 @@ public class CtrlMypageMyHost {
 	
 	@RequestMapping("/crn_overlap.do")
 	@ResponseBody
-	public String crn_overlap(@RequestParam("crn") String crn) throws Exception{
+	public String crn_overlap( @RequestParam("crn") String crn) throws Exception{
 		
 		Integer r = myhostDAO.ckcrn(crn);
 		
