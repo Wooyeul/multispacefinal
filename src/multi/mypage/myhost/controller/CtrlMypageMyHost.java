@@ -64,17 +64,19 @@ public class CtrlMypageMyHost {
 	
 	//판매자 추가
 	@RequestMapping("/myhost_addForm.do")
-	public ModelAndView addHost(@ModelAttribute HostVO hvo)throws Exception{
+	public ModelAndView addHost(@CookieValue("user_id") String user_id,@ModelAttribute HostVO hvo)throws Exception{
 		
 		ModelAndView mnv = new ModelAndView("myhost_addForm");
-		mnv.addObject("user_id",hvo.user_id);
+		mnv.addObject("user_id",user_id);
 		
 		return mnv;
 	}
+	
 	@RequestMapping("/myhost_addhost.do")
-	public ModelAndView addHost2(@ModelAttribute HostVO hvo)throws Exception{
+	public ModelAndView addHost2(@CookieValue("user_id") String user_id,@ModelAttribute HostVO hvo)throws Exception{
 		
 		ModelAndView mnv = new ModelAndView("myhost_addCom");
+		hvo.setUser_id(user_id);
 		myhostDAO.addhost(hvo);
 		
 		return mnv;
