@@ -91,12 +91,39 @@
 		$("#reple_submit_btn").on("click", function() {
 			$("#add_reple_modal").modal("show");
 			$("#add_reple_modal_Yes").on("click",function(){
-				$("#add_reple_modal").modal("hide");
+				var formData = $("#reple_submit").serialize();
+				$.ajax({
+					type : "POST",
+					url : "community_qna_reple_add.do",
+					data : formData,
+					success	: function(rt) {
+						alert(rt);
+						$("#add_reple_modal").modal("hide");
+						if(rt=="ok"){
+							$("#basic_mobody").text("댓글이 등록 되었습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								$("#com_board_reple_content").val("");
+								find_reple();
+							});
+						}else if(rt=="no"){
+							$("#basic_mobody").text("댓글 처리가 실패 되었습니다.");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								$("#basic_modal").modal("hide");
+								find_reple();
+							});
+						}
+				    }
+				});
+				
+				/* $("#add_reple_modal").modal("hide");
 				$("#basic_mobody").html("<h4>댓글이 등록 되었습니다.</h4>");
 				$("#basic_modal").modal("show");
 				$("#basic_modal").on("hidden.bs.modal",function(){
 					$("#reple_submit").submit();
-				});
+				}); */
 			});
 			$("#add_reple_modal_No").on("click",function(){
 				$("#add_reple_modal").modal("hide");
@@ -120,9 +147,9 @@
 			$("#replewritecompleteModal").modal("show");
 		});
 		
-		$("#replewritecompleteModal").on("hidden.bs.modal",function(){
+		/* $("#replewritecompleteModal").on("hidden.bs.modal",function(){
 			$("#reple_submit").submit();
-		});
+		}); */
 		
 		/* 댓글 삭제 이벤트 */
 		$(".showDelModal").on("click",function()
@@ -202,6 +229,33 @@
 		});
 	
 	});
+	
+	/* 댓글 조회 비동기 처리 */
+	function find_reple(){
+			var url = "community_board_read_reple.do?com_board_no="+${vo.com_board_no};
+		 	ajaxGet(url,function(rt){
+			 	if(rt!=''){
+				 	var list = window.eval("("+rt+")");
+				 	var html = "";
+				 	for( var i = 0 ; i < list.data.length ; i++ ){
+				 		html +="<table class='"+"table-hover'"+">";
+				 		html += "<tr><td width="+"150"+"><h4>"+list.data[i].user_id+"</h4></td>";
+				 		html += "<td width="+"1000"+"><span id='rb_"+list.data[i].com_board_reple_no+"'><h4>"+list.data[i].com_board_reple_content+"</h4></span>";
+				 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5></td>";
+						if('${user_id}' == list.data[i].user_id){
+				 			html += " <td width="+"50"+"><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_board_reple_no+"' xyz='"+list.data[i].com_board_reple_no+"' /></td>";
+					 		html += " <td width="+"50"+"><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/></td>";	
+						}
+						html +="</tr>";
+						html +="</table>";
+				 	}//end for
+	                $('#reple_tr').html(html);
+			 	}else{
+			 		$('#reple_tr').html("");
+			 	}
+		 	});
+		}
+	/* 댓글 조회 비동기 처리 */
 
 </script>
 	
@@ -297,7 +351,7 @@
 		</div>
 		<!-- /.col-lg-12 -->
 		<div class="replecontent_qna">
-		<form action="community_qna_reple_add.do" method="post" id="reple_submit">
+		<form id="reple_submit">
 			<jl:if test="${user_id ne ''}">
 				<div class="replesumtext">
 					<input class="form-control" type="text" name="com_qna_reple_content" placeholder="댓글을 입력하세요."/>
@@ -417,8 +471,8 @@
 		<div id="repleModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="mohead" class="modal-header" align="center"><h4>댓글수정</h4></div>
-					<div id="mobody" class="modal-body" align="center">
+					<div id="reple_head" class="modal-header" align="center"><h4>댓글수정</h4></div>
+					<div id="reple_body" class="modal-body" align="center">
 						<textarea id="content" name='com_qna_reple_content'class='form-control' rows='7'></textarea>
 					</div>
 					<div id="ft" class="modal-footer">

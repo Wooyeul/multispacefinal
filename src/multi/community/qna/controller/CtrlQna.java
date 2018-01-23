@@ -2,9 +2,14 @@ package multi.community.qna.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.mysql.jdbc.jdbc2.optional.SuspendableXAConnection;
+
+import main.BeanUtil;
 import main.Controller;
 import main.CookieValue;
 import main.ModelAndView;
@@ -107,10 +112,19 @@ public class CtrlQna {
 	
 	//QNA 리플 쓰기
 	@RequestMapping("/community_qna_reple_add.do")
-	public String community_qna_reple_add(@CookieValue("user_id") String user_id,@ModelAttribute Community_qna_repleVO pvo) throws Exception{
-			pvo.setUser_id(user_id);	
+	@ResponseBody
+	public String community_qna_reple_add(@CookieValue("user_id") String user_id, HttpServletRequest request) throws Exception{
+		try{
+			Community_qna_repleVO pvo = new Community_qna_repleVO();
+			pvo.setCom_qna_no(BeanUtil.pInt(request.getParameter("com_qna_no")));
+			pvo.setCom_qna_reple_content(request.getParameter("com_qna_reple_content"));
+			pvo.setUser_id(user_id);
 			community_qna_repleDAO.addReple(pvo);
-			return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
+			
 	}
 	//QNA 리플 삭제
 	@RequestMapping("/community_qna_reple_del.do")
