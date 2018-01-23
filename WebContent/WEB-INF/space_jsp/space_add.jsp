@@ -283,12 +283,12 @@
 
 			<div class="form-group">
 				<label for="space_title2" class="space-label">공간 이름</label> <input type="text"
-					id="space_title2" name="space_title2" class="form-control" />
+					id="space_title2" name="space_title" class="form-control" />
 				<div class="essential" id="essential_space_title2">필수 입력 사항입니다</div>
 			</div>
 			<div class="form-group">
 				<label for="space_title2" class="space-label">공간 소개</label> <input type="text"
-					id="space_content2" name="space_content2" class="form-control" />
+					id="space_content2" name="space_content" class="form-control" />
 				<div class="essential" id="essential_space_content2">필수 입력
 					사항입니다</div>
 			</div>
