@@ -238,6 +238,7 @@ public class CtrlSpace {
 		SpaceVO vo = new SpaceVO();
 		
 		String crn = mpr.getParameter("crn");
+		System.out.println(crn);
 		String space_title = mpr.getParameter("space_title");
 		String space_content = mpr.getParameter("space_content");
 		String space_thumb_img = mpr.getFilesystemName("space_thumb_img");
