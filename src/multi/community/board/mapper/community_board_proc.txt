@@ -162,7 +162,7 @@
 	)
 	BEGIN
 		SELECT * FROM Community_Board_RepleT where com_board_no =  v_com_board_no
-		ORDER BY com_board_reple_no DESC;
+		ORDER BY com_board_reple_no;
 	END$$
 	DELIMITER ;
 	
