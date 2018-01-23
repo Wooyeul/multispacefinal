@@ -297,6 +297,10 @@
 			 			html += " <td width="+"50"+"><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_qna_reple_no+"' xyz='"+list.data[i].com_qna_reple_no+"' /></td>";
 				 		html += " <td width="+"50"+"><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_qna_reple_no+"' bb='"+list.data[i].com_qna_no+"'/></td>";	
 					}
+			 		else {
+			 			html += " <td width="+"50"+"></td>";
+			 			html += " <td width="+"50"+"></td>";
+			 		}
 					html +="</tr>";
 					html +="</table>";
 			 	}//end for
