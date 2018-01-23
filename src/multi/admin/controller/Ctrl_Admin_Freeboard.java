@@ -110,8 +110,9 @@ public class Ctrl_Admin_Freeboard {
 	@RequestMapping("/admin_community_board_recom.do")
 	@ResponseBody
 	 public String admin_community_board_recom(@ModelAttribute Community_boardVO pvo)throws Exception {
-		 admin_FreeboardDAO.incRecomLogic(pvo);
-		 return pvo.getRecom_count().toString();
+		
+		admin_FreeboardDAO.incRecomLogic(pvo);
+		return pvo.getRecom_count().toString();
 	 
 	 }
 	 
