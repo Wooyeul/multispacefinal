@@ -292,8 +292,8 @@
 			 		html += "<td width="+"1000"+"><span id='rb_"+list.data[i].com_qna_reple_no+"'><h4>"+list.data[i].com_qna_reple_content+"</h4></span>";
 			 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5></td>";
 			 		html += "<td width="+"50"+"><span id='recom_count+"+list.data[i].com_qna_reple_no+"'><h5>"+list.data[i].recom_count+"</h5></span></td>";
-					if('${user_id}' == list.data[i].user_id){
-						html += " <td width="+"50"+"><input type='button' class='recom btn btn-warning btn-xs' value='추천' user_id='${user_id}' com_qna_reple_no='"+list.data[i].com_qna_reple_no+"' /></td>";
+			 		html += " <td width="+"50"+"><input type='button' class='recom btn btn-warning btn-xs' value='추천' user_id='${user_id}' com_qna_reple_no='"+list.data[i].com_qna_reple_no+"' /></td>";
+			 		if('${user_id}' == list.data[i].user_id){
 			 			html += " <td width="+"50"+"><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_qna_reple_no+"' xyz='"+list.data[i].com_qna_reple_no+"' /></td>";
 				 		html += " <td width="+"50"+"><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_qna_reple_no+"' bb='"+list.data[i].com_qna_no+"'/></td>";	
 					}
