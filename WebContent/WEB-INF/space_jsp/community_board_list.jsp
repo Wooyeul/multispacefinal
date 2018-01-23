@@ -198,13 +198,13 @@
 							<input type="submit" class="btn btn-primary" value="검색"/>				
 						</div>
 						<div class="selectdiv5">
-							<jl:if test="${user_id eq user_id}"> 
+							<jl:if test="${user_id ne ''}"> 
 								<a href="community_board_mytext.do"> <input type="button" class="btn btn-info" value="My 글보기" /></a>
 							</jl:if>
 						</div>
 						<!-- 글쓰기 버튼-->
 						<div class="commask">
-							<jl:if test="${user_id eq user_id}"> 
+							<jl:if test="${user_id ne ''}"> 
 								<input class="btn btn-warning" type="button" value="글쓰기" id="write" xyz="${user_id}" />
 							</jl:if>
 						</div>
