@@ -224,8 +224,6 @@ iframe {
 
 					<li id="reflag10" class="li_bold"><a data-toggle="tab" href="#sellerWrite">[판매자]</a></li>
 					<li id="reflag11"><a data-toggle="tab" href="#sellerWrite">내 글</a></li>
-					<li><a data-toggle="tab" href="#sellerAllChart">전체 통계</a></li>
-
 				</ul>
 			</div>
 
@@ -265,9 +263,6 @@ iframe {
 			<iframe src="myhost_findAll.do"  align="center" id="flag10"></iframe>
 		</div>
 		
-		<div id="sellerAllChart"   class="tab-pane fade">
-			<iframe src=""  align="center"></iframe>
-		</div>
 	</div>
 	
 	</div>
