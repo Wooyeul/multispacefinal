@@ -130,7 +130,7 @@
 			<th><h3>작성일</h3></th>
 			<th><h3>조회</h3></th>
 			<th><h3>추천</h3></th>
-			<jl:forEach var="vo" items="${mrl}">
+			<jl:forEach var="vo" items="${board_list}">
 				<tr>
 					<td><h4>${vo.com_board_no}</h4></td>
 					<td><a href="community_board_read.do?com_board_no=${vo.com_board_no}"><h4>${vo.com_board_title}</h4></a></td>
