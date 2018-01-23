@@ -78,6 +78,7 @@ public class CtrlMypageMyHost {
 		
 		ModelAndView mnv = new ModelAndView("myhost_addCom");
 		hvo.setUser_id(user_id);
+		mnv.addObject("user_id", user_id);
 		myhostDAO.addhost(hvo);
 		
 		return mnv;
