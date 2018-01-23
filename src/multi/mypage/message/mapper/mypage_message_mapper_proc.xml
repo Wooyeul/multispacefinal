@@ -71,7 +71,7 @@
 
 	
 	<insert id="mypage_message_SendMessage" parameterType="main.vo.MessageVO">
-		{CALL p_mypage_message_find_user_club_member(default,#{send_user_id},#{receive_user_id},
+		{CALL p_mypage_send_message(default,#{send_user_id},#{receive_user_id},
 			#{msg_content},now(),0)}
 	</insert>
    
