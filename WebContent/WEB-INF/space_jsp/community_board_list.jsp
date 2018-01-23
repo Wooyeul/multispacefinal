@@ -81,6 +81,7 @@
 		$("#user_name").text(rt+"님");
 			}
 		 });
+	 	
 		
 		$("#write").on("click",function(){
 			var user_id = $(this).attr("xyz");

@@ -62,6 +62,9 @@ $(document).ready(function(){
 			}
 		});	
 		
+		
+		
+		
 	$("#reflag1").on("click",function(){
 		$("#flag1").attr("src","community_board_list.do");
 	});
