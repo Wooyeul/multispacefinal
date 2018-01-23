@@ -461,10 +461,11 @@ public class CtrlSpace {
 	//공간 예약
 	@RequestMapping("/space_reservation.do")
 	public ModelAndView space_reseravtion_find_by_pk(@ModelAttribute SpaceVO spaceVO,@CookieValue("user_id") String user_id,@ModelAttribute BookingVO bookingVO) throws Exception{
-		if(user_id==null || user_id.length()<=1){
+	/*	if(user_id==null || user_id.length()<=1){
 			ModelAndView mnv = new ModelAndView("redirect:/home_moveLoginPage.do");
 			return mnv;
-		}
+		
+		}*/
 		
 		ModelAndView mnv = new ModelAndView("space_reservation");
 		
