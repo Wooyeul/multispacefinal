@@ -71,8 +71,8 @@
 
 	
 	<insert id="mypage_message_SendMessage" parameterType="main.vo.MessageVO">
-		{CALL p_mypage_send_message(default,#{send_user_id},#{receive_user_id},
-			#{msg_content},now(),0)}
+		{CALL p_mypage_send_message(#{send_user_id},#{receive_user_id},
+			#{msg_content})}
 	</insert>
    
    <select id="mypage_search_receive_msg" parameterType="multi.mypage.vo.Mypage_searchVO" resultType="main.vo.MessageVO">
