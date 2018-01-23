@@ -228,7 +228,7 @@
 			</form>
 		</div>
 	
-	
+	<br><br><br><br>
 	
 	<!-- paging 이용할 form -->
 	<form id="paging_frm" action="community_board_list.do" method="post">

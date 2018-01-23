@@ -164,7 +164,6 @@
 		</ul>
 	</div>
 	<!-- 페이징 -->		
-	<br><br>
 	<div class="wrapper comm_qna_list_wrapper">
 			<form action="community_qna_list.do" id="paging_frm" >
 				<div class="selecdiv0">
@@ -200,7 +199,7 @@
 				</div>
 			</form>
 		</div>
-		
+	<br><br><br><br>
 	<!-- 모달폼 -->
     <div class="modal fade" id="addwrite" tabindex="-1" role="dialog"
       aria-labelledby="myModalLabel" aria-hidden="true">

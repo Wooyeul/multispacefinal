@@ -363,9 +363,7 @@ $(document).ready(function() {
 			<!-- /.table-responsive -->
 		</div>
 		<!-- /.col-lg-12 -->
-	</div>
-	</br>
-	<div class="replecontent">
+			<div class="replecontent">
 		<form id="add_reple_frm">
 			<jl:if test="${user_id ne ''}">
 				<div class="replesumtext">
@@ -405,6 +403,9 @@ $(document).ready(function() {
 		</div>	
 		</div>
 	</div>
+	</div>
+	</br>
+
 	
 <!-- 모달부분 -->
 

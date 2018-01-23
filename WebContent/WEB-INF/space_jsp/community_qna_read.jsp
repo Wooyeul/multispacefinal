@@ -295,9 +295,7 @@
 			
 		</div>
 		<!-- /.col-lg-12 -->
-	</div>
-	</br>
-	<div class="replecontent_qna">
+		<div class="replecontent_qna">
 		<form action="community_qna_reple_add.do" method="post" id="reple_submit">
 			<jl:if test="${user_id ne ''}">
 				<div class="replesumtext">
@@ -337,6 +335,9 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	</br>
+	
 	
 	<div class="modal fade" id="repledeletecompleteModal" role="dialog">
 		    <div class="modal-dialog">
