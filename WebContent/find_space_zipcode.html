@@ -30,12 +30,13 @@
 						for(var z = 0 ; z <ziplist.data.length ; z++ ){
 							var fullAddr = ziplist.data[z].sido +"," + ziplist.data[z].gugun + "," + ziplist.data[z].dong + "," + ziplist.data[z].bunji;
 							fullAddr = fullAddr.replace(" ",",");
+							var dongAddr = ziplist.data[z].sido+" "+ziplist.data[z].gugun;
 							var zonecode = ziplist.data[z].zipcode;
 							html += "<tr>"
 							html += "<td>" + ziplist.data[z].zipcode +"</td>";
 							html += "<td>" + ziplist.data[z].sido +"</td>";
 							html += "<td>" + ziplist.data[z].gugun +"</td>";
-							html += "<td><a href='#'  addr ="+fullAddr+" zonecode ="+zonecode+" id='zz' class='qwe'>" + ziplist.data[z].dong +"<a></td>";
+							html += "<td><a href='#'  dongaddr='"+ dongAddr +"' addr ="+fullAddr+" zonecode ="+zonecode+" id='zz' class='qwe'>" + ziplist.data[z].dong +"<a></td>";
 							html += "<td>" + ziplist.data[z].bunji +"</td>";
 							html += "</tr>";
 						}
@@ -45,7 +46,10 @@
 						$(".qwe").on("click",function(){
 							var addr = $(this).attr("addr");
 							var zonecode = $(this).attr("zonecode");
+							var dong = $(this).attr("dongaddr");
 							var parent = opener.window;
+							parent.dongAddr=dong;
+							opener.parent.moveMap();
 							parent.addr1.value = addr;
 							parent.zipcode.value = zonecode;
 							self.close();
@@ -58,15 +62,6 @@
 		
 		
 		
-		function useZipcode(){
-			var addr = $("#zz").attr("addr");
-			var zonecode = $("#zz").attr("zonecode");
-			var parent = opener.window;
-			alert(addr);
-			parent.addr1.value = addr;
-			parent.zipcode.value = zonecode;
-			self.close();
-		}
 	</script>
 </head>
 <body>

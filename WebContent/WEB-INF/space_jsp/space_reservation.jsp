@@ -48,7 +48,8 @@
  	 				if(parseInt(first_click_time) > parseInt(second_click_time)){
  	 					for(var a = parseInt(second_click_time) ; a <= parseInt(first_click_time) ; a ++ ) {
  	 						if($("#btn_time"+[a]).html()=="X"){
- 	 							alert("불가능해");
+ 	 							$("#status-modal-body").html("이미 예약된 시간입니다.");
+ 	 		 	 				$("#status-modal").modal("show");
  	 							$(".cb_time").removeClass("active");
  	 							break;
  	 						} else {
@@ -68,7 +69,8 @@
  	 				} else if(parseInt(first_click_time) < parseInt(second_click_time)){
  	 					for(var b = parseInt(first_click_time) ; b <= parseInt(second_click_time) ; b++ ) {
  	 						if($("#btn_time"+[b]).html()=="X"){
- 	 							alert("불가능해");
+ 	 							$("#status-modal-body").html("이미 예약된 시간입니다.");
+ 	 		 	 				$("#status-modal").modal("show");
  	 							$(".cb_time").removeClass("active");
  	 							break;
  	 						} else {

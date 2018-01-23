@@ -86,6 +86,8 @@
 	function zipSearch(){
 		window.open("find_space_zipcode.html", "zip", "width=600,height=450");
 	}
+
+
 	
 	function openTimeChange() {
 		var x = document.getElementById("open_time_range");
@@ -98,8 +100,14 @@
 		var b = document.getElementById("close_time");
 		b.value = a.value;
 	}
+	
+	
 
+
+	
+	
 	$("document").ready(function() {
+		
 		$("#sub").on("click", function() {
 			if(titleCheckFlag == 0 ) {
 				$("#status-modal-body").html("제목을 확인해주세요.");
@@ -404,9 +412,9 @@
 			</select>
 			</div>
 			<label class="sh-map">장소</label>
-			<div id="map" style="width:100%;height:600px;"></div>
 			<p>지도를 클릭하여 정확한 위치를 표시해주세요.</p> 
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae"></script>
+			<div id="map" style="width:100%;height:600px;"></div>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ec027f4a7a75f9cd6ba56c97e88f31ae&libraries=services,clusterer,drawing"></script>
 			<script>
 				var container = document.getElementById('map');
 				var options = {
@@ -431,6 +439,32 @@
 			    $("#longitude").val(latlng.getLng());
 			    
 			});
+				
+			function panTo() {
+			    // 이동할 위도 경도 위치를 생성합니다 
+			    var moveLatLon = new daum.maps.LatLng(33.450580, 126.574942);
+			    
+			    // 지도 중심을 부드럽게 이동시킵니다
+			    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+			    map.panTo(moveLatLon);            
+			}       
+			var dongAddr = null;
+			
+			var geocoder = new daum.maps.services.Geocoder();
+			
+			function moveMap(){
+				geocoder.addressSearch(dongAddr, function(result, status) {
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === daum.maps.services.Status.OK) {
+				        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+				        var marker = new daum.maps.Marker({
+				            map: map,
+				            position: coords
+				        });
+				        map.setCenter(coords);
+				     } 
+				});
+			}
 			</script>
 			<input type="hidden" id="latitude" name="latitude">
 			<input type="hidden" id="longitude" name="longitude">
