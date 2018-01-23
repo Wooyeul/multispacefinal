@@ -53,18 +53,15 @@
 		/* ************************** select_club의 기본값 ************************** */	
 		
 		var club_no_1 = $("#select_club").val();
-		if(club_no_1=="1"){
-			$('#select_club_member').empty();	
-			 url = "mypage_moveMypageWriteMessageFindUserClubMemberPage.do?club_no="+club_no_1;
-			 ajaxGet(url,function(rt){
-				 var user_club_member = window.eval("("+rt+")");
-				 for( var i = 0 ; i < user_club_member.data.length ; i++ ){
-					    var option = $("<option value="+user_club_member.data[i]+">"+user_club_member.data[i]+"</option>");
-		                $('#select_club_member').append(option);
-				 } 
-			 });
-		}
-		
+		$('#select_club_member').empty();	
+		 url = "mypage_moveMypageWriteMessageFindUserClubMemberPage.do?club_no="+club_no_1;
+		 ajaxGet(url,function(rt){
+			 var user_club_member = window.eval("("+rt+")");
+			 for( var i = 0 ; i < user_club_member.data.length ; i++ ){
+				    var option = $("<option value="+user_club_member.data[i]+">"+user_club_member.data[i]+"</option>");
+	                $('#select_club_member').append(option);
+			 } 
+		 });
 		/* ************************** select_club의 선택값 ************************** */	
 		$("#select_club").change(function(){
 			 club_no = $(this).val();	
@@ -140,16 +137,23 @@
 
 
 		<form id="form_sendMessage">
-			<label> 모임 </label> <select name="club_list" id="select_club"
-				class="form-control">
+			<label> 모임 </label> <select name="club_list" id="select_club"	class="form-control">
 				<jl:forEach var="User_clubInfo" items="${user_clubInfo}">
 					<a class="aclass" clubno="${User_clubInfo.club_no}">sujin</a>
 					<option value="${User_clubInfo.club_no}">${User_clubInfo.club_name}</option>
 				</jl:forEach>
-			</select> <br /> <label> 받는사람 </label> <select name="club_member_list"
-				id="select_club_member" class="form-control">
-
-			</select> <br /> <label>쪽지 내용</label>
+			</select> <br /> <label> 받는사람 </label> 
+			
+			
+			
+			<select name="club_member_list"	id="select_club_member" class="form-control">
+				
+			</select> 
+			
+			
+			
+			
+			<br /> <label>쪽지 내용</label>
 			<!-- 	<input type="text" name="msg_content" id="i_msg_content"/> -->
 			<textarea class="form-control" name="msg_content" id="i_msg_content" style="height: 350px;"> </textarea>
 			<input type="hidden" name="receive_user_id" id="i_receive_user_id" />

@@ -64,7 +64,7 @@
 	</select>
 	
 	<select id="mypage_message_findUserClubMember" resultMap="RM_userclub">
-		{CALL p_mypage_message_find_user_club_member(#{user_id})}
+		{CALL p_mypage_message_find_user_club_member(#{club_no})}
 	</select>
 
 

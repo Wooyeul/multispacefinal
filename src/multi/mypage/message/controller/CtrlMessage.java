@@ -152,7 +152,6 @@ public class CtrlMessage {
 
 		UserVO userInfo = UserDAO.find_userInfo(user_id);
 		List<User_clubVO> user_clubInfo = User_clubDAO.find_user_clubInfo(user_id);
-
 		if (userInfo != null) {
 			ModelAndView mnv = new ModelAndView("mypage_write_send_message");
 			mnv.addObject("userInfo", userInfo);
@@ -174,25 +173,30 @@ public class CtrlMessage {
 	public String moveMypageWriteMessageFindUserClubMemberPage(@CookieValue("user_id") String user_id,
 			@ModelAttribute User_clubVO ucvo) throws Exception {
 
-		UserVO userInfo = UserDAO.find_userInfo(user_id);
-		List<User_clubVO> user_club_MemberInfo = User_clubDAO.find_user_club_MemberInfo(ucvo);
-
-		StringBuffer sb = null;
-
-		for (User_clubVO vo : user_club_MemberInfo) {
-
-			if (sb == null) {
-				sb = new StringBuffer();
-				sb.append("{data:[");
-			} else {
-				sb.append(",");
+		try{
+			UserVO userInfo = UserDAO.find_userInfo(user_id);
+			List<User_clubVO> user_club_MemberInfo = User_clubDAO.find_user_club_MemberInfo(ucvo);
+			System.out.println("user_club_MemberInfo : "+user_club_MemberInfo);
+			System.out.println("ucvo : "+ucvo);
+			
+			StringBuffer sb = null;
+	
+			for (User_clubVO vo : user_club_MemberInfo) {
+	
+				if (sb == null) {
+					sb = new StringBuffer();
+					sb.append("{data:[");
+				} else {
+					sb.append(",");
+				}
+				sb.append("'").append(vo.getUser_id()).append("'");
+	
 			}
-			sb.append("'").append(vo.getUser_id()).append("'");
-
+			sb.append("]}");
+			return sb.toString();
+		}catch(Exception e){
+			return null;
 		}
-		sb.append("]}");
-		return sb.toString();
-
 	}
 
 	

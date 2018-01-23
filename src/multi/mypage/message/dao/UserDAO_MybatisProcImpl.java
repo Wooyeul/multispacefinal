@@ -18,8 +18,5 @@ public class UserDAO_MybatisProcImpl implements UserDAO{
 	public UserVO find_userInfo(String user_id) throws Exception {
 		return sqlSession.selectOne("mypage_myinfo_sujin_proc.mypage_myinfoFindUserInfo",user_id);
 	}
-	
-	
-	
 
 }
