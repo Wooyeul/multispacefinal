@@ -18,7 +18,7 @@
 		<parameter property="crn" mode="IN"/>
 		<parameter property="host_name" mode="IN"/>
 		<parameter property="host_account" mode="IN"/>
-		<parameter property="zipcode" mode="IN"/>
+		<parameter property="account_name" mode="IN"/>
 	</parameterMap>
 	
 	
