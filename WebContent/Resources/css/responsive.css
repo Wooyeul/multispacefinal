@@ -2074,15 +2074,11 @@ padding-right: 5px;
 	width: 100px;
 	float: left;
 }
-
+/* 
 input[type="radio"] {
 	display: none;
 }
-
-.ckgender input[type="radio"] {
-	display: none;
-}
-
+ */
 input[type="radio"]+label {
 	font-weight: 400;
 	font-size: 14px;
