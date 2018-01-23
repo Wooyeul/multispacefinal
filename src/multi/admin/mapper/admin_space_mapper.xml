@@ -97,7 +97,7 @@
 		<result property="user_id" column="user_id" jdbcType="VARCHAR" />
 		<result property="host_name" column="host_name" jdbcType="VARCHAR" />
 		<result property="host_account" column="host_account" jdbcType="VARCHAR" />
-		<result property="zipcode" column="zipcode" jdbcType="VARCHAR" />
+		<result property="account_name" column="account_name" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="p_admin_space_crn_check" statementType="CALLABLE" 
 		resultMap="RM_p_admin_space_crn_check"

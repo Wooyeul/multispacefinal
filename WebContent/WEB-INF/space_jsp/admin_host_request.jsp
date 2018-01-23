@@ -81,7 +81,7 @@ text-align: center;
 							<option value="2">유저 ID</option>
 							<option value="3">호스트 이름</option>
 							<option value="4">호스트 계좌 번호</option>
-							<option value="5">호스트 우편 번호</option>
+							<option value="5">호스트 계좌 이름</option>
 							<option value="6">참고사항(거절 사항)</option>
 						</select> 
 				</div>

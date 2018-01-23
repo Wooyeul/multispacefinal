@@ -201,9 +201,9 @@ public class Ctrl_Admin_Spaces {
 		return mnv;
 	}
 	
-	// 특정 사업자 번호에 관한 정보를 확인 하는 페이지
+	// 특정 사업자 번호에 관한 정보를 확인 하는 페이지 @ModelAttribute HostVO hvo
 	@RequestMapping("/admin_space_crn_check.do")
-	public ModelAndView admin_host_space_rooms( @ModelAttribute SpaceVO svo, @ModelAttribute HostVO hvo  ) throws Exception {
+	public ModelAndView admin_host_space_rooms( @ModelAttribute SpaceVO svo  ) throws Exception {
 		ModelAndView mnv = new ModelAndView("admin_space_crn_check");
 		HostVO vo = admin_SpaceDAO.space_crn_check(svo);
 		mnv.addObject("vo", vo);

@@ -88,10 +88,10 @@ public class Ctrl_Admin_Hosts {
 		HostApplyVO hvo = new HostApplyVO();
 
 		hvo.setCrn(request.getParameter("crn"));
-		//hvo.setZipcode(request.getParameter("zipcode"));
 		hvo.setUser_id(request.getParameter("user_id"));
 		hvo.setHost_name(request.getParameter("host_name"));
 		hvo.setHost_account(request.getParameter("host_account"));
+		hvo.setAccount_name( request.getParameter("account_name") );
 		
 		admin_HostDAO.host_user_accept(hvo);
 		/*mnv.setViewName("redirect:/admin_host_request.do");*/

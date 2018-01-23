@@ -75,16 +75,16 @@ $(document).ready(function(){
 		var user_id = $("#user_id").val();
 		var host_name = $("#host_name").val();
 		var host_account = $("#host_account").val();
-		var zipcode = $("#zipcode").val();
+		var account_name = $("#account_name").val();
 		var etc = $("#etc").val() ;
 		
 		var url = "admin_host_user_accept.do?crn=" + crn 
 				+ "&user_id=" + user_id + "&host_name=" + host_name + "&host_account=" + host_account
-				+ "&zipcode=" +zipcode+ "&etc="+etc;
+				+ "&account_name=" +account_name+ "&etc="+etc;
 		ajaxGet(url,function(rt){ });
 		/* location.href = "admin_host_user_accept.do?crn=" + crn 
 			+ "&user_id=" + user_id + "&host_name=" + host_name + "&host_account=" + host_account
-			+ "&zipcode=" +zipcode+ "&etc="+etc; */
+			+ "&account_name=" +account_name+ "&etc="+etc; */
 		location.href = "admin_host_request.do";
 		/* $("#text_modal_modal").modal("hide"); */
 	});
@@ -126,8 +126,8 @@ $(document).ready(function(){
 								<td>사업자 번호</td>
 								<td>유저 ID</td>
 								<td>판매자 이름</td>
-								<td>판매자 계좌</td>
-								<td>주소</td>
+								<td>판매자 계좌 번호</td>
+								<td>판매자 계좌 이름</td>
 								<td>참고사항(거절 사항)</td>
 							</tr>
 						</thead>
@@ -136,7 +136,7 @@ $(document).ready(function(){
 							<td>${vo.user_id}</td>
 							<td>${vo.host_name}</td>
 							<td>${vo.host_account}</td>
-							<td>${vo.zipcode}</td>
+							<td>${vo.account_name}</td>
 							<td>${vo.etc}</td>
 						</tr>
 					</table>
@@ -144,10 +144,10 @@ $(document).ready(function(){
 					<div class="select">
 						<form action="admin_host_user_accept.do" method="post">
 							<input type="hidden" id="crn" name="crn" value="${vo.crn}"></input> 
-							<input type="hidden" id="zipcode" name="zipcode" value="${vo.zipcode}"></input>
 							<input type="hidden" id="user_id" name="user_id" value="${vo.user_id}"></input> 
 							<input type="hidden" id="host_name" name="host_name" value="${vo.host_name}"></input>
 							<input type="hidden" id="host_account" name="host_account" value="${vo.host_account}"></input> 
+							<input type="hidden" id="account_name" name="account_name" value="${vo.account_name}"></input>
 							<input type="button" class="host_join btn" value="판매자 등록 하기" />&nbsp;&nbsp;&nbsp;&nbsp;
 						</form>
 					</div>

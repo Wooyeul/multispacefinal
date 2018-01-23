@@ -68,7 +68,7 @@
 								<td>호스트 유저 ID</td>
 								<td>호스트 이름</td>
 								<td>호스트 계좌 번호</td>
-								<td>주소</td>
+								<td>호스트 계좌 이름</td>
 							</tr>
 						</thead>
 						<tr>
@@ -76,7 +76,7 @@
 							<td><a href="admin_host_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 							<td>${vo.host_name}</td>
 							<td>${vo.host_account}</td>
-							<td>${vo.zipcode}</td>
+							<td>${vo.account_name}</td>
 						</tr>
 		          </table>
                             <!-- /.table-responsive -->

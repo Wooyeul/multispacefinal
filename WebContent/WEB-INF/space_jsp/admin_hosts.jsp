@@ -79,7 +79,7 @@ text-align: center;
 									<option value="2">유저 ID</option>
 									<option value="3">호스트 이름</option>
 									<option value="4">호스트 계좌 번호</option>
-									<option value="5">호스트 우편 번호</option>
+									<option value="5">호스트 계좌 이름</option>
 								</select>
 						
 								</div>
@@ -98,7 +98,7 @@ text-align: center;
 										<th>유저 ID</th>
 										<th>호스트 이름</th>
 										<th>호스트 계좌 번호</th>
-										<th>우편 번호</th>
+										<th>호스트 계좌 이름</th>
 										<th>판매자 공간</th>
 										<th>사용자로 강등</th>
 										<th>탈퇴 시키기</th>
@@ -111,7 +111,7 @@ text-align: center;
 											<td><a href="admin_host_user_check.do?user_id=${vo.user_id}">${vo.user_id}</a></td>
 											<td>${vo.host_name}</td>
 											<td>${vo.host_account}</td>
-											<td>${vo.zipcode}</td>
+											<td>${vo.account_name}</td>
 											<td><a href="admin_host_spaces.do?crn=${vo.crn}&host_name=${vo.host_name}">판매자 공간 확인 하기</a></td>
 											<td><a href="admin_host_user_downgrade_write.do?crn=${vo.crn}&user_id=${vo.user_id}">강등시키기</a></td>
 											<td><a href="admin_user_del_write.do?crn=${vo.crn}&user_id=${vo.user_id}">탈퇴시키기</a></td>
