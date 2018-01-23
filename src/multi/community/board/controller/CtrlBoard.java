@@ -87,11 +87,12 @@ public class CtrlBoard {
 	 
 	 @RequestMapping("/community_board_read.do")
 	 public ModelAndView community_board_read(@CookieValue("user_id") String user_id, @ModelAttribute Community_boardVO pvo, @ModelAttribute Community_board_repleVO rvo) throws Exception{
+		 community_boardDAO.incViewLogic(pvo);
 		 Community_boardVO bvo = community_boardDAO.findByPK(pvo);
 		 ModelAndView mnv = new ModelAndView("community_board_read");
 		 mnv.addObject("vo", bvo);
 		 
-		 community_boardDAO.incViewLogic(pvo);
+		
 		 pvo.setUser_id(user_id);
 		 List<Community_board_repleVO> rl = community_boardrepleDAO.findAllreple(rvo);
 	     mnv.addObject("user_id", user_id);
