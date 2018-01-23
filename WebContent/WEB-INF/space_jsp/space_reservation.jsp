@@ -144,13 +144,13 @@
  	 			}else if($("#booking_price").val()==""){
  	 				$("#status-modal-body").html("시간을 선택해주세요");
  	 				$("#status-modal").modal("show");
- 	 			}else if($("#booking_email")){
+ 	 			}else if($("#booking_email").val()==""){
  	 				$("#status-modal-body").html("이메일을 입력해주세요");
  	 				$("#status-modal").modal("show");
- 	 			}else if($("#booking_phone")){
+ 	 			}else if($("#booking_phone").val()==""){
  	 				$("#status-modal-body").html("연락처를 입력해주세요");
  	 				$("#status-modal").modal("show");
- 	 			}else if($("#booking_user_name")){
+ 	 			}else if($("#booking_user_name").val()==""){
  	 				$("#status-modal-body").html("예약자 성함을 입력해주세요");
  	 				$("#status-modal").modal("show");
  	 			}
@@ -342,7 +342,7 @@
 				<div class="form-group">
 					<label for="club_list" class="space-label">모임 목록</label>
 					<select name="club_list" id="club_list" class="form-control">
-						<option value="null" selected="selected">개인 회원</option>
+						<option value="0" selected="selected">개인 회원</option>
 						<jl:forEach var="club" items="${club_list }">
 							<option value="${club.club_no }">${club.club_name }</option>
 						</jl:forEach>
