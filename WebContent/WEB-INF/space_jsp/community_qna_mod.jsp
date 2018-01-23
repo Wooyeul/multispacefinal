@@ -20,14 +20,6 @@
 	<script type="text/javascript" src="./common.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
 	
-	
-	<style type="text/css">
-	.comm_qna_mod{
-	text-align: center;
-	}
-	
-	
-	</style>
 	<script>
 	$(document).ready(function() {
 		

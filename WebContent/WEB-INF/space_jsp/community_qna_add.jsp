@@ -19,16 +19,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./common.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
-	<style type="text/css">
-		.community_qna_add_p{
-		text-align: center;
-		}
-				
-		.community_qna_add_write{
-		float: left;
-			padding-right: 5px;
-		}	
-	</style>
 
 	<script>
 	
