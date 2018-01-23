@@ -48,7 +48,9 @@
 		</if>
 	</select>
 	
-	
+	<select id="p_crn_overlap" parameterType="java.lang.String" resultType="java.lang.Integer">
+		{call p_crn_overlap(#{crn})}
+	</select>
 
 </mapper>
 

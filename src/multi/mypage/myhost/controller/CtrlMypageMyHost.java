@@ -12,6 +12,7 @@ import main.ModelAttribute;
 import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
+import main.ResponseBody;
 import main.vo.HostVO;
 import main.vo.SpaceVO;
 import multi.mypage.myhost.dao.MyHostDAO;
@@ -76,10 +77,18 @@ public class CtrlMypageMyHost {
 	public ModelAndView addHost2(@CookieValue("user_id") String user_id,@ModelAttribute HostVO hvo)throws Exception{
 		
 		ModelAndView mnv = new ModelAndView("myhost_addCom");
-		hvo.setUser_id(user_id);
+		System.out.println(hvo.getAccount_name());
 		myhostDAO.addhost(hvo);
 		
 		return mnv;
 	}
 	
+	@RequestMapping("/crn_overlap.do")
+	@ResponseBody
+	public String crn_overlap(@RequestParam("crn") String crn) throws Exception{
+		
+		Integer r = myhostDAO.ckcrn(crn);
+		
+		return r.toString();
+	}
 }

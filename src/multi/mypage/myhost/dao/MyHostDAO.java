@@ -14,4 +14,5 @@ public interface MyHostDAO {
 	
 	public List<SpaceVO> searchSpace(Mypage_searchVO search) throws Exception;
 	
+	public int ckcrn(String crn) throws Exception;
 }
