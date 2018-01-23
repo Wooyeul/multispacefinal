@@ -9,8 +9,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${rl}
-	${rl.etc}
-	호스트 지원 성공 
+	<div class="complete">
+		<div class="complete1">
+			<table class="table">
+			<tr>
+				<th>${user_id}님 환영합니다.</th>
+			</tr>
+			<tr>
+				<td><a href="main.do" target="_parent"> 호스트 지원 성공 </a></td>
+			</tr>
+			<tr>
+				<td>관리자 승인 중...</td>
+			</tr>
+			
+			</table>
+		</div>
+	</div>
 </body>
 </html>

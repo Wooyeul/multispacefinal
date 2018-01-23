@@ -288,8 +288,8 @@
 						<tr>
 							<th align="right">주민번호</th>
 							<td>
-							<input type="text" name="ssn1" id="ssn1" size="6" maxlength="6" /> - 
-							<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7" /> 
+							<input type="text" name="ssn1" id="ssn1" size="6" maxlength="6" placeholder="123333"/> - 
+							<input type="password" name="ssn2" id="ssn2" size="7" maxlength="7" placeholder="1222321"/> 
 							<input type="button" value="확인" class="btn_ssn btn btn-primary" />
 								<div id="dv"></div></td>
 							<td></td>
