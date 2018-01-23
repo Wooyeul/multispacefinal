@@ -55,3 +55,4 @@
 		SELECT * FROM User_ClubT WHERE club_no = v_club_no;
 	END$$
 	DELIMITER ;
+	

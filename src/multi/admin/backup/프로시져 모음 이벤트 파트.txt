@@ -13,7 +13,7 @@ DROP PROCEDURE IF EXISTS p_admin_event_add;
      END$$
     DELIMITER ;
 	
-	
+################################################################	
 	
 	DROP PROCEDURE IF EXISTS p_admin_event_findAll;
 	DELIMITER $$
@@ -23,7 +23,7 @@ DROP PROCEDURE IF EXISTS p_admin_event_add;
 	END$$
 	DELIMITER ;
 	
-	
+################################################################	
 	
 	DROP PROCEDURE IF EXISTS p_admin_event_getByPK;
   	DELIMITER $$
@@ -34,7 +34,7 @@ DROP PROCEDURE IF EXISTS p_admin_event_add;
   	END$$
 	DELIMITER ;
 	
-	
+################################################################	
 	
 	DROP PROCEDURE IF EXISTS p_admin_event_mod;
 	DELIMITER $$
@@ -50,7 +50,7 @@ DROP PROCEDURE IF EXISTS p_admin_event_add;
 	END$$
 	DELIMITER ;
 	
-	
+################################################################	
 	
 	DROP PROCEDURE IF EXISTS p_admin_event_delByPK;
 	DELIMITER $$

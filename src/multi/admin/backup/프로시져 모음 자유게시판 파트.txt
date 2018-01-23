@@ -170,3 +170,4 @@
 		SELECT * FROM Community_Board_RepleT where com_board_no =  v_com_board_no;
 	END$$
 	DELIMITER ;
+	
