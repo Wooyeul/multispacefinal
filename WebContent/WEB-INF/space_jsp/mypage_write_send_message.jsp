@@ -123,7 +123,7 @@
 </head>
 <body>
 <br/>
-	<div class="col-lg-3 col-md-6">
+	<div class="col-lg-3 col-md-10">
 		<div class="panel panel-yellow">
 			<div class="panel-heading">
 				<div class="row">
