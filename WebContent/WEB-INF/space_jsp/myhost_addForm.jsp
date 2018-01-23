@@ -143,7 +143,7 @@
               <div class="box-footer">
               
 				<input type="reset" value="취소하기" class="btn btn-default"/>
-                <input type="button" class="btn btn-info" id="addhost">등록하기</input>
+                <input type="button" class="btn btn-info" id="addhost" value="등록하기"/>
               </div>
               <!-- /.box-footer -->
             </form>
