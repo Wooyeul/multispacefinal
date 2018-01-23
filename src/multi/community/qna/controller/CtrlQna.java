@@ -18,6 +18,7 @@ import main.PaginationDTO;
 import main.RequestMapping;
 import main.RequestParam;
 import main.ResponseBody;
+import main.vo.Community_board_repleVO;
 import multi.community.qna.dao.Community_qnaDAO;
 import multi.community.qna.dao.Community_qna_mytextDAO;
 import multi.community.qna.dao.Community_qna_repleDAO;
@@ -128,19 +129,56 @@ public class CtrlQna {
 	}
 	//QNA 리플 삭제
 	@RequestMapping("/community_qna_reple_del.do")
+	@ResponseBody
 	public String community_qna_reple_del(@ModelAttribute Community_qna_repleVO pvo) throws Exception
 	{
-		community_qna_repleDAO.delReple(pvo);
-		return "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
+		try{
+			community_qna_repleDAO.delReple(pvo);
+			return "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
 	//QNA 리플 수정
 	@RequestMapping("/community_qna_reple_mod.do")
-	public String community_board_replemod(@ModelAttribute Community_qna_repleVO pvo) throws Exception {
-			System.out.println("getCom_qna_reple_content() : "+pvo.getCom_qna_reple_content());
-			System.out.println(pvo.getCom_qna_reple_no());
+	@ResponseBody
+	public String community_board_replemod(HttpServletRequest request) throws Exception {
+		try{
+			Community_qna_repleVO pvo = new Community_qna_repleVO();
+			pvo.setCom_qna_reple_no(BeanUtil.pInt(request.getParameter("com_qna_reple_no")));
+			pvo.setCom_qna_reple_content(request.getParameter("com_qna_reple_content"));
 			community_qna_repleDAO.modReple(pvo);
-			return  "redirect:/community_qna_read.do?com_qna_no="+pvo.getCom_qna_no();
+			return  "ok";
+		}catch(Exception e){
+			return "no";
+		}
 	}
+	 /* 리플 조회 */
+	 @RequestMapping("/community_qna_read_reple.do")
+	 @ResponseBody
+	 public String community_qna_read_reple(@ModelAttribute Community_qna_repleVO pvo) throws Exception{
+			List<Community_qna_repleVO> rl = community_qna_repleDAO.findAllReple(pvo);
+			StringBuffer sb = null;
+			try{
+				for (Community_qna_repleVO vo : rl) {
+					if (sb == null) {
+						sb = new StringBuffer();
+						sb.append("{data:[");
+					} else {
+						sb.append(",");
+					}
+					sb.append("{'com_qna_reple_no' :'").append(vo.getCom_qna_reple_no()).append("', 'com_qna_reple_content' : '").append(vo.getCom_qna_reple_content())
+					.append("', 'user_id' : '").append(vo.getUser_id()).append("', 'com_qna_no' : '").append(vo.getCom_qna_no()).append("', 'the_time' : '").append(vo.getThe_time())
+					.append("', 'recom_count' : '").append(vo.getRecom_count()).append("'}");
+					
+				}
+				sb.append("]}");
+				return sb.toString();
+			}catch(Exception e){
+				return null;
+			}
+	 }
+	
 	//QNA 리플 추천
 	@RequestMapping("/community_qna_reple_recom.do")
 	@ResponseBody

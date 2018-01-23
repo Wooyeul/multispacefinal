@@ -10,4 +10,5 @@ public interface Community_qna_repleDAO {
 	public int delReple(Community_qna_repleVO pvo) throws Exception;
 	public int modReple(Community_qna_repleVO pvo) throws Exception;
 	public int incRecom(Community_qna_repleVO pvo) throws Exception;
+	
 }

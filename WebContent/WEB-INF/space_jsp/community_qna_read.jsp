@@ -82,6 +82,9 @@
 
 	$(document).ready(function() {
 		
+		/* 시작했을 때 find_reple() 이벤트 실행 */
+		find_reple();
+		
 		/* 기본 모달 창 닫기 버튼 눌렀을 때 이벤트 발생 */
 		$("#basic_modal_Yes").on("click",function(){
 			$("#basic_modal").modal("hide");
@@ -97,14 +100,13 @@
 					url : "community_qna_reple_add.do",
 					data : formData,
 					success	: function(rt) {
-						alert(rt);
 						$("#add_reple_modal").modal("hide");
 						if(rt=="ok"){
 							$("#basic_mobody").text("댓글이 등록 되었습니다.");
 							$("#basic_modal").modal("show");
 							$("#basic_modal").on("hidden.bs.modal",function(){
 								$("#basic_modal").modal("hide");
-								$("#com_board_reple_content").val("");
+								$("#com_qna_reple_content").val("");
 								find_reple();
 							});
 						}else if(rt=="no"){
@@ -139,9 +141,9 @@
 			$("#repleModal").modal("hide");
 		});
 		
-		$("#btnModRep").on("click", function() {
+		/* $("#btnModRep").on("click", function() {
 			$("#reple_mod").submit();
-		});
+		}); */
 		
 		$("#btnSub").on("click", function() {
 			$("#replewritecompleteModal").modal("show");
@@ -152,9 +154,35 @@
 		}); */
 		
 		/* 댓글 삭제 이벤트 */
-		$(".showDelModal").on("click",function()
-		{
-			$("#del_com_qna_no").val( $(this).attr("del_com_qna_no") );
+		$(document).on("click",".delRe",function(){
+			var com_qna_reple_no = $(this).attr("aa");
+			var com_qna_no = $(this).attr("bb");
+			$("#del_modal").modal("show");
+			$("#del_modal_Yes").on("click",function(){
+				var url = "community_qna_reple_del.do?com_qna_no="+com_qna_no + "&com_qna_reple_no=" + com_qna_reple_no;
+				ajaxGet(url,function(rt){
+					$("#del_modal").modal("hide");
+					if(rt=="ok"){
+						$("#basic_mobody").html("<h4>댓글이 삭제 되었습니다.</h4>");
+						$("#basic_modal").modal("show");
+						$("#basic_modal").on("hidden.bs.modal",function(){
+							$("#basic_modal").modal("hide");
+							find_reple();
+						});
+					}else if(rt=="no"){
+						$("#basic_mobody").html("<h4>댓글 삭제 처리가 실패 되었습니다.</h4>");
+						$("#basic_modal").modal("show");
+						$("#basic_modal").on("hidden.bs.modal",function(){
+							$("#basic_modal").modal("hide");
+							find_reple();
+						});
+					}
+				});
+			});
+			$("#modal-del-No").on("click",function(){
+				$("#modal").modal("hide");
+			}); 
+			/* $("#del_com_qna_no").val( $(this).attr("del_com_qna_no") );
 			$("#del_com_qna_reple_no").val( $(this).attr("del_com_qna_reple_no") );
 			$('#del_modal').modal('show');
 			$("#del_modal_Yes").on("click",function(){
@@ -166,11 +194,12 @@
 				$("#basic_modal").on("hidden.bs.modal",function(){
 					location.href = "community_qna_reple_del.do?com_qna_no=" + 
 					del_com_qna_no + "&com_qna_reple_no=" + del_com_qna_reple_no;
+					find_reple();
 				});
 			});
 			$("#del_modal_No").on("click",function(){
 				$("#del_modal").modal("hide");
-			});
+			}); */
 		});
 		/* 댓글 삭제 이벤트 */
 		
@@ -200,17 +229,37 @@
 		
 		
 		/* 댓글 수정 이벤트 */
-		$(".modReple").on("click", function() {
+		$(document).on("click",".modReple",function() {
 			$("#com_qna_reple_no").val($(this).attr("xyz"));
 			$("#content").val($("#" + $(this).attr("abcd")).text());	
 			$("#repleModal").modal("show");
 			$("#btnMod").on("click",function(){
-				$("#repleModal").modal("hide");
-				$("#basic_mobody").html("<h4>댓글이 수정 되었습니다.</h4>");
-				$("#basic_modal").modal("show");
-				$("#basic_modal").on("hidden.bs.modal",function(){
-					$("#reple_form").submit();
-				});
+				var formData = $("#reple_form").serialize();
+				$.ajax({
+					type : "POST",
+					url : "community_qna_reple_mod.do",
+					data : formData,
+					success	: function(rt) {
+						$("#repleModal").modal("hide");
+						if(rt=="ok"){
+							$("#repleModal").modal("hide");
+							$("#basic_mobody").html("<h4>댓글이 수정 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								find_reple();
+							});
+						}else if(rt=="no"){
+							$("#repleModal").modal("hide");
+							$("#basic_mobody").html("<h4>댓글 수정 처리가 실패 되었습니다.</h4>");
+							$("#basic_modal").modal("show");
+							$("#basic_modal").on("hidden.bs.modal",function(){
+								find_reple();
+							});
+						}
+				    }
+				});	
+				
+				
 			});
 			$("#btn_mod_Close").on("click",function(){
 				$("#repleModal").modal("hide");
@@ -218,7 +267,7 @@
 		});
 		/* 댓글 수정 이벤트 */
 		
-		$(".recom").on("click", function() {
+		$(document).on("click",".recom", function() {
 			var user_id=$(this).attr("user_id");
 			var com_qna_reple_no=$(this).attr("com_qna_reple_no");
 			var dc = "?dc=" + new Date().getTime();
@@ -232,28 +281,28 @@
 	
 	/* 댓글 조회 비동기 처리 */
 	function find_reple(){
-			var url = "community_board_read_reple.do?com_board_no="+${vo.com_board_no};
-		 	ajaxGet(url,function(rt){
-			 	if(rt!=''){
-				 	var list = window.eval("("+rt+")");
-				 	var html = "";
-				 	for( var i = 0 ; i < list.data.length ; i++ ){
-				 		html +="<table class='"+"table-hover'"+">";
-				 		html += "<tr><td width="+"150"+"><h4>"+list.data[i].user_id+"</h4></td>";
-				 		html += "<td width="+"1000"+"><span id='rb_"+list.data[i].com_board_reple_no+"'><h4>"+list.data[i].com_board_reple_content+"</h4></span>";
-				 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5></td>";
-						if('${user_id}' == list.data[i].user_id){
-				 			html += " <td width="+"50"+"><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_board_reple_no+"' xyz='"+list.data[i].com_board_reple_no+"' /></td>";
-					 		html += " <td width="+"50"+"><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_board_reple_no+"' bb='"+list.data[i].com_board_no+"'/></td>";	
-						}
-						html +="</tr>";
-						html +="</table>";
-				 	}//end for
-	                $('#reple_tr').html(html);
-			 	}else{
-			 		$('#reple_tr').html("");
-			 	}
-		 	});
+		var url = "community_qna_read_reple.do?com_qna_no="+${vo.com_qna_no};
+	 	ajaxGet(url,function(rt){
+	 		if(rt!=''){
+			 	var list = window.eval("("+rt+")");
+			 	var html = "";
+			 	for( var i = 0 ; i < list.data.length ; i++ ){
+			 		html +="<table class='"+"table-hover'"+">";
+			 		html += "<tr><td width="+"150"+"><h4>"+list.data[i].user_id+"</h4></td>";
+			 		html += "<td width="+"1000"+"><span id='rb_"+list.data[i].com_qna_reple_no+"'><h4>"+list.data[i].com_qna_reple_content+"</h4></span>";
+			 		html += "<td width="+"250"+"><h5>"+list.data[i].the_time+"</h5></td>";
+					if('${user_id}' == list.data[i].user_id){
+			 			html += " <td width="+"50"+"><input type='button' class='modReple btn btn-info btn-xs' value='수정' abcd='rb_"+list.data[i].com_qna_reple_no+"' xyz='"+list.data[i].com_qna_reple_no+"' /></td>";
+				 		html += " <td width="+"50"+"><input type='button' class='delRe btn btn-danger btn-xs' value='삭제' aa='"+list.data[i].com_qna_reple_no+"' bb='"+list.data[i].com_qna_no+"'/></td>";	
+					}
+					html +="</tr>";
+					html +="</table>";
+			 	}//end for
+                $('#reple_tr').html(html);
+		 	}else{
+		 		$('#reple_tr').html("");
+		 	}
+	 	});
 		}
 	/* 댓글 조회 비동기 처리 */
 
@@ -309,7 +358,7 @@
 							</td>
 						</tr>
 					</table>
-					<table class="table-hover table_qna_read" >
+					<%-- <table class="table-hover table_qna_read" >
 					<hr style="border: solid 0.5px black;">
 						<jl:forEach var="rpl" items="${rp}" varStatus="vs">
 							<tr>
@@ -343,7 +392,10 @@
 								</td>
 							</tr>
 						</jl:forEach>
-				</table>
+				</table> --%>
+				<div id="reple_tr" style=" height: auto; min-height: 5px; overflow: auto;">
+			
+				</div>
 				<br><br>
 			</div>
 			<!-- /.table-responsive -->
@@ -354,7 +406,7 @@
 		<form id="reple_submit">
 			<jl:if test="${user_id ne ''}">
 				<div class="replesumtext">
-					<input class="form-control" type="text" name="com_qna_reple_content" placeholder="댓글을 입력하세요."/>
+					<input class="form-control" type="text" name="com_qna_reple_content" id="com_qna_reple_content"placeholder="댓글을 입력하세요."/>
 					<input type="hidden" name="user_id" value="${user_id}"/>
 					<input type="hidden" name="com_qna_no" value="${vo.com_qna_no}"/>
 				</div>
@@ -467,7 +519,7 @@
 	<!-- 모달 부분 -->
 
 	<!-- 댓글 수정 modal창 시작 -->
-	<form method="POST" action="community_qna_reple_mod.do" id="reple_form">
+	<form id="reple_form">
 		<div id="repleModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
