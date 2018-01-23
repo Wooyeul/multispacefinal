@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="UTF-8"%><%@taglib prefix="jl" uri="http://java.sun.com/jsp/jstl/core" %><%@ taglib prefix="fn" 	uri="http://java.sun.com/jsp/jstl/functions"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,14 +27,8 @@
 	});
  </script>
  <style>
- .listings{
- 	padding-top: 10px;
- }
- .listings ul.properties_list li img.property_img{
- 	height: 185px !important;
- }
- .space_list_iframe{
- 	margin:0px;
+ .sh-details{
+ 	height: 150px !important;
  }
  </style>
 
@@ -58,8 +52,14 @@
 									class="property_img" onerror="this.src='defualt/defualt.jpg'">
 
 								</p>
-								<span class="price">지역</span>
-								<div class="property_details">
+								<span class="price">
+									<jl:forEach var="local" items="${local_list}">
+										<jl:if test="${vo.l_category_no == local.l_category_no}">
+											${ local.l_category_name}
+										</jl:if>
+									</jl:forEach>
+								</span>
+								<div class="property_details sh-details">
 									<h1 onclick="parent.location.href='space_detail.do?space_no=${vo.space_no }'">
 										${vo.space_title }
 									</h1>

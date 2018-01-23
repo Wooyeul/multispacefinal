@@ -158,56 +158,6 @@
 						});
 					});
 </script>
-<style>
-	html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video{
-		margin-bottom: 10px;
-	}
-	.nothing{
-		font-size: 30px;
-		color: gray;
-	}
-	.btn-reserve{
-		width: 33%;
-		border-radius:0px;
-		margin-top:15px;
-	}
-	.sh_list{
-		list-style: none;
-	}
-	.space_title{
-		margin-top: 0px;
-		 font-size: 25px;
-	}
-	.a {
-	color: black;
-}
-#space_title{
-	font-size: 40px;
-	 color: black;
-}
-#space_content{
-	font-size: 20px;
-	 color: graytext;
-}
-.nav-img{
-	height: 20%;
-	width: 20%;
-}
-
-.category {
-	border-radius: 15px;
-}
-.sub_img{
-	width:15%;
-	height: 80px;
-}
-.reserve{
-	margin-top: 0px;
-	 color: black;
-	  font-size: 35px; 
-	  padding-bottom: 10px;
-}
-</style>
 </head>
 <body>
 	<!-- *********************  header  ************************ -->

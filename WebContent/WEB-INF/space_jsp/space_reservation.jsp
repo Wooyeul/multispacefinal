@@ -23,7 +23,7 @@
 	
  	 	
  	 	$(document).ready(function(){
-
+		
  	 		<jl:forEach items="${booking_list }" var="booking">
  	 			var start = "${booking.start_time}";
  	 			var end = "${booking.end_time}";
@@ -99,7 +99,8 @@
  	 				people_no=people_no+1;
  	 				$("#booking_people").val(people_no);
  	 			}else{
- 	 				alert("최대 인원 입니다");
+ 	 				$("#status-modal-body").html("최대 인원 입니다.");
+ 	 				$("#status-modal").modal("show");
  	 			}
  	 		 });
  	 		 
@@ -110,7 +111,8 @@
  	 				people_no=people_no-1;
  	 				$("#booking_people").val(people_no);
  	 			}else{
- 	 				alert("최소 인원 입니다");
+ 	 				$("#status-modal-body").html("최소 인원 입니다.");
+ 	 				$("#status-modal").modal("show");
  	 			}
  	 		 });
  	 		
@@ -137,15 +139,20 @@
  	 		
  	 		$("#pay").on("click",function(){
  	 			if($("#booking_date").val()==""){
- 	 				alert("날짜를 선택해주세요.");
+ 	 				$("#status-modal-body").html("날짜를 선택해주세요");
+ 	 				$("#status-modal").modal("show");
  	 			}else if($("#booking_price").val()==""){
- 	 				alert("시간을 선택해주세요.");
+ 	 				$("#status-modal-body").html("시간을 선택해주세요");
+ 	 				$("#status-modal").modal("show");
  	 			}else if($("#booking_email")){
- 	 				alert("이메일을 입력해주세요.");
+ 	 				$("#status-modal-body").html("이메일을 입력해주세요");
+ 	 				$("#status-modal").modal("show");
  	 			}else if($("#booking_phone")){
- 	 				alert("연락처를 입력해주세요.");
+ 	 				$("#status-modal-body").html("연락처를 입력해주세요");
+ 	 				$("#status-modal").modal("show");
  	 			}else if($("#booking_user_name")){
- 	 				alert("예약자 성함을 입력해주세요.");
+ 	 				$("#status-modal-body").html("예약자 성함을 입력해주세요");
+ 	 				$("#status-modal").modal("show");
  	 			}
  	 			
  	 			else {
@@ -377,25 +384,26 @@
 		</form>
 	</div>
 	<!-- 모달 -->
-	<div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times;</span>
-							<span class="sr-only">Close</span>
-						</button>
-						<h4 class="modal-title">주의</h4>
-					</div>
-					<div class="modal-body">
-						<p id="time_warning"></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	
+		<div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span>
+									<span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title text-center">진행상태</h4>
+							</div>
+							<div class="modal-body">
+								<h2 id="status-modal-body" class="text-center">XX 완료</h2>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
 		
 		
 	<!-- ******************************* footer ******************************* -->

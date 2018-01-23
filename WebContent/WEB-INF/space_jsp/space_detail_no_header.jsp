@@ -191,7 +191,9 @@
 </script>
 </head>
 <body>
-
+	<!-- *********************  header  ************************ -->
+	<%@include file="./jsp/header_page.jsp"%>
+	<!-- *********************  header - end  ************************ -->
 	<!-- 제목 부분 -->
 	<div class="container-fluid">
 	
@@ -775,5 +777,8 @@
 				value="${space.l_category_no }" name="l_category_no">
 		</form>
 	</div>
+		<!-- ******************************* footer ******************************* -->
+	<%@include file="./jsp/footer.jsp"%>
+	<!--  end footer  -->
 </body>
 </html>

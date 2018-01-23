@@ -188,14 +188,13 @@ public class CtrlSpace {
 		 */
 		search.setStart_no(pz.getSkip());
 		list2 = spaceDAO.search_space(search);
-		System.out.println(search.getStart_no());
-		
-		
+		List<Map<Integer,String>> local_list = spaceDAO.find_l_category();
 		
 		
 		mnv.addObject("list2", list2);
 		mnv.addObject("pz", pz); // 페이지네이션을 심어줍니다!
 		mnv.addObject("search", search);
+		mnv.addObject("local_list", local_list);
 		return mnv;
 	}
 	
