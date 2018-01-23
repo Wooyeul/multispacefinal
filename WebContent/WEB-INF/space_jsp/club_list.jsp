@@ -60,7 +60,7 @@
 		<ul class="club_img_ul">
 			<jl:forEach  var="pvo" items="${map.vo}" varStatus="vs">
 				<li onclick="parent.location.href='club_detail.do?club_no=${pvo.club_no}'">
-					<img src="club_img/${pvo.club_thumb_img }" class="img_ul">
+					<img src="club_img/${pvo.club_thumb_img }" class="img_ul" onerror="this.src='img/no_img.jpg'">
 					<h3>${pvo.club_name}</h3>
 					<p class="li_p">${pvo.club_title}</p>
 					<button class="btn btn-default category" disabled="disabled">#${pvo.l_category_name}</button>

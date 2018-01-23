@@ -82,7 +82,7 @@
 					</jl:if>
 					<jl:forEach items="${sVO}" var="svo">
 						<a href="space_detail.do?space_no=${svo.space_no}"> 
-						<img src="thumbnail/${svo.space_thumb_img}" alt="공간 사진 없음" /></a>
+						<img src="thumbnail/${svo.space_thumb_img}" onerror="this.src='img/no_img.jpg'"/></a>
 					</jl:forEach>
 				</div>
 
