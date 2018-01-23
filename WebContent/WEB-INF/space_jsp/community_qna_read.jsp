@@ -274,9 +274,9 @@
 			var url ="community_qna_reple_recom.do" + dc +"&com_qna_reple_no="+com_qna_reple_no+"&user_id="+user_id;
 			ajaxGet(url, function(rt) {
 				$("#recom_count"+com_qna_reple_no).html("<h5>"+rt+"</h5>");
+				find_reple();
 			});
 		});
-	
 	});
 	
 	/* 댓글 조회 비동기 처리 */
