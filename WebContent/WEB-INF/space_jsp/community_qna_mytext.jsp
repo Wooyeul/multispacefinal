@@ -113,7 +113,7 @@
 			<th><h3>작성일</h3></th>
 			<th><h3>조회</h3></th>
 		</tr>
-		<jl:forEach var="vo" items="${qna_list}">
+		<jl:forEach var="vo" items="${mrl}">
 			<tr>
 				<td><h4>${vo.com_qna_no}</h4></td>
 				<td><a href="community_qna_read.do?com_qna_no=${vo.com_qna_no}"><h4>${vo.com_qna_title}</h4></a></td>
