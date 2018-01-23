@@ -441,7 +441,7 @@ $(document).ready(function() {
 					</button>
 					<h4 class="modal-title" id="myModalLabel">알림</h4>
 				</div>
-				<div class="modal-body">당신의 훌륭한 댓글이 수정되었습니다 !</div>
+				<div class="modal-body">댓글이 수정 되었습니다.</div>
 				<div class="modal-footer">
 					<button id="modalmodclose"type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				
@@ -476,7 +476,7 @@ $(document).ready(function() {
 					</button>
 					<h4 class="modal-title" id="myModalLabel">알림</h4>
 				</div>
-				<div class="modal-body">글을 이미 추천하셨습니다</div>
+				<div class="modal-body">이미 추천하셨습니다</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
@@ -500,7 +500,7 @@ $(document).ready(function() {
 					</button>
 					<h4 class="modal-title" id="myModalLabel">알림</h4>
 				</div>
-				<div class="modal-body">글을 정말로 정말로 삭제하시겠습니깡?</div>
+				<div class="modal-body">글을 삭제 하시겠습니까?</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" id="delsuccess">확인</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
@@ -522,7 +522,7 @@ $(document).ready(function() {
 					</button>
 					<h4 class="modal-title" id="myModalLabel">알림</h4>
 				</div>
-				<div class="modal-body">시원하게 삭제되었습니다</div>
+				<div class="modal-body">글 삭제 완료!</div>
 				<div class="modal-footer">
 					<button id="modalmodclose"type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
