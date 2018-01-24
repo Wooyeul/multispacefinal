@@ -1,0 +1,1321 @@
+	-- bookingt
+	CREATE TABLE bookingt (
+		booking_no        INT(11)      NOT NULL COMMENT 'booking_no', -- booking_no
+		space_no          INT(11)      NOT NULL COMMENT 'space_no', -- space_no
+		du_time           DATETIME     NOT NULL COMMENT 'du_time', -- du_time
+		booking_date      DATE         NOT NULL COMMENT 'booking_date', -- booking_date
+		start_time        VARCHAR(2)   NOT NULL COMMENT 'start_time', -- start_time
+		end_time          VARCHAR(2)   NOT NULL COMMENT 'end_time', -- end_time
+		booking_people    INT(11)      NOT NULL COMMENT 'booking_people', -- booking_people
+		booking_price     INT(11)      NOT NULL COMMENT 'booking_price', -- booking_price
+		booking_user_name VARCHAR(20)  NOT NULL COMMENT 'booking_user_name', -- booking_user_name
+		booking_phone     VARCHAR(11)  NOT NULL COMMENT 'booking_phone', -- booking_phone
+		booking_email     VARCHAR(50)  NOT NULL COMMENT 'booking_email', -- booking_email
+		booking_message   VARCHAR(500) NULL     COMMENT 'booking_message', -- booking_message
+		user_id 			VARCHAR(20)
+	)ENGINE=INNODB
+	COMMENT 'bookingt';
+
+	-- bookingt
+	ALTER TABLE bookingt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				booking_no -- booking_no
+			);
+
+	ALTER TABLE bookingt
+		MODIFY COLUMN booking_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'booking_no';
+
+	ALTER TABLE bookingt
+		AUTO_INCREMENT = 1;
+
+	-- bookmarkt
+	CREATE TABLE bookmarkt (
+		user_id  VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		space_no INT(11)     NOT NULL COMMENT 'space_no' -- space_no
+	)ENGINE=INNODB
+	COMMENT 'bookmarkt';
+
+	-- bookmarkt
+	ALTER TABLE bookmarkt
+		ADD CONSTRAINT PK_bookmarkt -- bookmarkt 기본키
+			PRIMARY KEY (
+				user_id,  -- user_id
+				space_no  -- space_no
+			);
+
+	-- clubt
+	CREATE TABLE clubt (
+		club_no        INT(11)      NOT NULL COMMENT 'club_no', -- club_no
+		user_id        VARCHAR(20)  NOT NULL COMMENT 'user_id', -- user_id
+		l_category_no  INT(11)      NOT NULL COMMENT 'l_category_no', -- l_category_no
+		c_category_no  INT(11)      NOT NULL COMMENT 'c_category_no', -- c_category_no
+		club_name      VARCHAR(50)  NOT NULL COMMENT 'club_name', -- club_name
+		club_title     VARCHAR(100) NOT NULL COMMENT 'club_title', -- club_title
+		club_content   TEXT         NOT NULL COMMENT 'club_content', -- club_content
+		club_thumb_img VARCHAR(100) NULL     COMMENT 'club_thumb_img', -- club_thumb_img
+		max_member     INT(11)      NOT NULL COMMENT 'max_member', -- max_member
+		create_time    DATETIME     NOT NULL COMMENT 'create_time' -- create_time
+	)ENGINE=INNODB
+	COMMENT 'clubt';
+
+	-- clubt
+	ALTER TABLE clubt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				club_no -- club_no
+			);
+
+	ALTER TABLE clubt
+		MODIFY COLUMN club_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'club_no';
+
+	ALTER TABLE clubt
+		AUTO_INCREMENT = 1;
+
+	-- club_applyt
+	CREATE TABLE club_applyt (
+		apply_no      INT(11)     NOT NULL COMMENT 'apply_no', -- apply_no
+		user_id       VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		club_no       INT(11)     NOT NULL COMMENT 'club_no', -- club_no
+		apply_content TEXT        NOT NULL COMMENT 'apply_content' -- apply_content
+	)ENGINE=INNODB
+	COMMENT 'club_applyt';
+
+	-- club_applyt
+	ALTER TABLE club_applyt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				apply_no -- apply_no
+			);
+
+	ALTER TABLE club_applyt
+		MODIFY COLUMN apply_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'apply_no';
+
+	ALTER TABLE club_applyt
+		AUTO_INCREMENT = 1;
+
+	-- club_boardt
+	CREATE TABLE club_boardt (
+		c_board_no      INT(11)      NOT NULL COMMENT 'c_board_no', -- c_board_no
+		user_id         VARCHAR(20)  NOT NULL COMMENT 'user_id', -- user_id
+		club_no         INT(11)      NOT NULL COMMENT 'club_no', -- club_no
+		c_board_title   VARCHAR(200) NOT NULL COMMENT 'c_board_title', -- c_board_title
+		c_board_content TEXT         NULL     COMMENT 'c_board_content', -- c_board_content
+		c_board_subject VARCHAR(15)  NULL     COMMENT 'c_board_subject', -- c_board_subject
+		the_time        DATETIME     NOT NULL COMMENT 'the_time', -- the_time
+		view_count      INT(11)      NOT NULL COMMENT 'view_count' -- view_count
+	)ENGINE=INNODB
+	COMMENT 'club_boardt';
+
+	-- club_boardt
+	ALTER TABLE club_boardt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				c_board_no -- c_board_no
+			);
+
+	ALTER TABLE club_boardt
+		MODIFY COLUMN c_board_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'c_board_no';
+
+	ALTER TABLE club_boardt
+		AUTO_INCREMENT = 1;
+
+	-- club_board_replet
+	CREATE TABLE club_board_replet (
+		c_board_reple_no      INT(11)     NOT NULL COMMENT 'c_board_reple_no', -- c_board_reple_no
+		user_id               VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		c_board_no            INT(11)     NOT NULL COMMENT 'c_board_no', -- c_board_no
+		c_board_reple_content TEXT        NOT NULL COMMENT 'c_board_reple_content', -- c_board_reple_content
+		the_time              DATETIME    NOT NULL COMMENT 'the_time' -- the_time
+	)ENGINE=INNODB
+	COMMENT 'club_board_replet';
+
+	-- club_board_replet
+	ALTER TABLE club_board_replet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				c_board_reple_no -- c_board_reple_no
+			);
+
+	ALTER TABLE club_board_replet
+		MODIFY COLUMN c_board_reple_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'c_board_reple_no';
+
+	ALTER TABLE club_board_replet
+		AUTO_INCREMENT = 1;
+
+	-- club_noticet
+	CREATE TABLE club_noticet (
+		c_notice_no      INT(11)      NOT NULL COMMENT 'c_notice_no', -- c_notice_no
+		club_no          INT(11)      NOT NULL COMMENT 'club_no', -- club_no
+		user_id          VARCHAR(20)  NOT NULL COMMENT 'user_id', -- user_id
+		c_notice_title   VARCHAR(200) NOT NULL COMMENT 'c_notice_title', -- c_notice_title
+		c_notice_content TEXT         NULL     COMMENT 'c_notice_content', -- c_notice_content
+		the_time         DATETIME     NOT NULL COMMENT 'the_time', -- the_time
+		view_count       INT(11)      NOT NULL COMMENT 'view_count' -- view_count
+	)ENGINE=INNODB
+	COMMENT 'club_noticet';
+
+	-- club_noticet
+	ALTER TABLE club_noticet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				c_notice_no -- c_notice_no
+			);
+
+	ALTER TABLE club_noticet
+		MODIFY COLUMN c_notice_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'c_notice_no';
+
+	ALTER TABLE club_noticet
+		AUTO_INCREMENT = 1;
+
+	-- club_notice_replet
+	CREATE TABLE club_notice_replet (
+		c_notice_reple_no      INT(11)     NOT NULL COMMENT 'c_notice_reple_no', -- c_notice_reple_no
+		user_id                VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		c_notice_no            INT(11)     NOT NULL COMMENT 'c_notice_no', -- c_notice_no
+		c_notice_reple_content TEXT        NOT NULL COMMENT 'c_notice_reple_content', -- c_notice_reple_content
+		the_time               DATETIME    NOT NULL COMMENT 'the_time' -- the_time
+	)ENGINE=INNODB
+	COMMENT 'club_notice_replet';
+
+	-- club_notice_replet
+	ALTER TABLE club_notice_replet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				c_notice_reple_no -- c_notice_reple_no
+			);
+
+	ALTER TABLE club_notice_replet
+		MODIFY COLUMN c_notice_reple_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'c_notice_reple_no';
+
+	ALTER TABLE club_notice_replet
+		AUTO_INCREMENT = 1;
+
+	-- community_boardt
+	CREATE TABLE community_boardt (
+		com_board_no      INT(11)     NOT NULL COMMENT 'com_board_no', -- com_board_no
+		user_id           VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		com_board_title   TEXT        NOT NULL COMMENT 'com_board_title', -- com_board_title
+		com_board_content TEXT        NOT NULL COMMENT 'com_board_content', -- com_board_content
+		the_time          VARCHAR(45) NOT NULL COMMENT 'the_time', -- the_time
+		view_count        INT(11)     NOT NULL COMMENT 'view_count', -- view_count
+		recom_count       INT(11)     NOT NULL COMMENT 'recom_count' -- recom_count
+	)ENGINE=INNODB
+	COMMENT 'community_boardt';
+
+	-- community_boardt
+	ALTER TABLE community_boardt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				com_board_no -- com_board_no
+			);
+
+	ALTER TABLE community_boardt
+		MODIFY COLUMN com_board_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'com_board_no';
+
+	ALTER TABLE community_boardt
+		AUTO_INCREMENT = 1;
+
+	-- community_board_recomtt
+	CREATE TABLE community_board_recomtt (
+		user_id      VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		com_board_no INT(11)     NOT NULL COMMENT 'com_board_no' -- com_board_no
+	)ENGINE=INNODB
+	COMMENT 'community_board_recomtt';
+
+	-- community_board_recomtt
+	ALTER TABLE community_board_recomtt
+		ADD CONSTRAINT PK_community_board_recomtt -- community_board_recomtt 기본키
+			PRIMARY KEY (
+				user_id,      -- user_id
+				com_board_no  -- com_board_no
+			);
+
+	-- community_board_replet
+	CREATE TABLE community_board_replet (
+		com_board_reple_no      INT(11)     NOT NULL COMMENT 'com_board_reple_no', -- com_board_reple_no
+		user_id                 VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		com_board_no            INT(11)     NOT NULL COMMENT 'com_board_no', -- com_board_no
+		com_board_reple_content TEXT        NOT NULL COMMENT 'com_board_reple_content', -- com_board_reple_content
+		the_time                VARCHAR(45) NOT NULL COMMENT 'the_time' -- the_time
+	)ENGINE=INNODB
+	COMMENT 'community_board_replet';
+
+	-- community_board_replet
+	ALTER TABLE community_board_replet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				com_board_reple_no -- com_board_reple_no
+			);
+
+	ALTER TABLE community_board_replet
+		MODIFY COLUMN com_board_reple_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'com_board_reple_no';
+
+	ALTER TABLE community_board_replet
+		AUTO_INCREMENT = 1;
+
+	-- community_qnat
+	CREATE TABLE community_qnat (
+		com_qna_no      INT(11)     NOT NULL COMMENT 'com_qna_no', -- com_qna_no
+		user_id         VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		com_qna_title   VARCHAR(50) NOT NULL COMMENT 'com_qna_title', -- com_qna_title
+		com_qna_content TEXT        NOT NULL COMMENT 'com_qna_content', -- com_qna_content
+		the_time        VARCHAR(45) NOT NULL COMMENT 'the_time', -- the_time
+		view_count      INT(11)     NOT NULL COMMENT 'view_count' -- view_count
+	)ENGINE=INNODB
+	COMMENT 'community_qnat';
+
+	-- community_qnat
+	ALTER TABLE community_qnat
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				com_qna_no -- com_qna_no
+			);
+
+	ALTER TABLE community_qnat
+		MODIFY COLUMN com_qna_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'com_qna_no';
+
+	ALTER TABLE community_qnat
+		AUTO_INCREMENT = 1;
+
+	-- community_qna_replet
+	CREATE TABLE community_qna_replet (
+		com_qna_reple_no      INT(11)     NOT NULL COMMENT 'com_qna_reple_no', -- com_qna_reple_no
+		com_qna_no            INT(11)     NOT NULL COMMENT 'com_qna_no', -- com_qna_no
+		user_id               VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		com_qna_reple_content TEXT        NOT NULL COMMENT 'com_qna_reple_content', -- com_qna_reple_content
+		the_time              VARCHAR(45) NOT NULL COMMENT 'the_time', -- the_time
+		recom_count           INT(11)     NOT NULL COMMENT 'recom_count' -- recom_count
+	)ENGINE=INNODB
+	COMMENT 'community_qna_replet';
+
+	-- community_qna_replet
+	ALTER TABLE community_qna_replet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				com_qna_reple_no -- com_qna_reple_no
+			);
+
+	ALTER TABLE community_qna_replet
+		MODIFY COLUMN com_qna_reple_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'com_qna_reple_no';
+
+	ALTER TABLE community_qna_replet
+		AUTO_INCREMENT = 1;
+
+	-- community_qna_reple_recomt
+	CREATE TABLE community_qna_reple_recomt (
+		user_id          VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		com_qna_reple_no INT(11)     NOT NULL COMMENT 'com_qna_reple_no' -- com_qna_reple_no
+	)ENGINE=INNODB
+	COMMENT 'community_qna_reple_recomt';
+
+	-- community_qna_reple_recomt
+	ALTER TABLE community_qna_reple_recomt
+		ADD CONSTRAINT PK_community_qna_reple_recomt -- community_qna_reple_recomt 기본키
+			PRIMARY KEY (
+				user_id,          -- user_id
+				com_qna_reple_no  -- com_qna_reple_no
+			);
+
+	-- c_categoryt
+	CREATE TABLE c_categoryt (
+		c_category_no   INT(11)     NOT NULL COMMENT 'c_category_no', -- c_category_no
+		c_category_name VARCHAR(45) NOT NULL COMMENT 'c_category_name' -- c_category_name
+	)ENGINE=INNODB
+	COMMENT 'c_categoryt';
+
+	-- c_categoryt
+	ALTER TABLE c_categoryt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				c_category_no -- c_category_no
+			);
+
+	ALTER TABLE c_categoryt
+		MODIFY COLUMN c_category_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'c_category_no';
+
+	ALTER TABLE c_categoryt
+		AUTO_INCREMENT = 1;
+
+	-- eventt
+	CREATE TABLE eventt (
+		eve_no        INT(11)     NOT NULL COMMENT 'eve_no', -- eve_no
+		eve_title     VARCHAR(45) NOT NULL COMMENT 'eve_title', -- eve_title
+		eve_content   TEXT        NOT NULL COMMENT 'eve_content', -- eve_content
+		the_time      VARCHAR(45) NOT NULL COMMENT 'the_time', -- the_time
+		eve_thumb_img VARCHAR(45) NOT NULL COMMENT 'eve_thumb_img' -- eve_thumb_img
+	)ENGINE=INNODB
+	COMMENT 'eventt';
+
+	-- eventt
+	ALTER TABLE eventt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				eve_no -- eve_no
+			);
+
+	ALTER TABLE eventt
+		MODIFY COLUMN eve_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'eve_no';
+
+	ALTER TABLE eventt
+		AUTO_INCREMENT = 1;
+
+	-- faqt
+	CREATE TABLE faqt (
+		faq_no      INT(11)     NOT NULL COMMENT 'faq_no', -- faq_no
+		faq_title   VARCHAR(45) NOT NULL COMMENT 'faq_title', -- faq_title
+		faq_content TEXT        NOT NULL COMMENT 'faq_content' -- faq_content
+	)ENGINE=INNODB
+	COMMENT 'faqt';
+
+	-- faqt
+	ALTER TABLE faqt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				faq_no -- faq_no
+			);
+
+	ALTER TABLE faqt
+		MODIFY COLUMN faq_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'faq_no';
+
+	ALTER TABLE faqt
+		AUTO_INCREMENT = 1;
+
+	-- hostapplyt
+	CREATE TABLE hostapplyt (
+		host_apply_no INT(11)     NOT NULL COMMENT 'host_apply_no', -- host_apply_no
+		user_id       VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		account_name  VARCHAR(20)     NOT NULL COMMENT 'account_name', -- account_name
+		crn           VARCHAR(13) NOT NULL COMMENT 'crn', -- crn
+		host_name     VARCHAR(20) NOT NULL COMMENT 'host_name', -- host_name
+		host_account  VARCHAR(20) NOT NULL COMMENT 'host_account', -- host_account
+		etc           VARCHAR(30) NULL     COMMENT 'etc' -- etc
+	)ENGINE=INNODB
+	COMMENT 'hostapplyt';
+
+	-- hostapplyt
+	ALTER TABLE hostapplyt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				host_apply_no -- host_apply_no
+			);
+
+	ALTER TABLE hostapplyt
+		MODIFY COLUMN host_apply_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'host_apply_no';
+
+	ALTER TABLE hostapplyt
+		AUTO_INCREMENT = 1;
+
+	-- hostt
+	CREATE TABLE hostt (
+		crn          VARCHAR(13) NOT NULL COMMENT 'crn', -- crn
+		account_name VARCHAR(20) NOT NULL COMMENT 'account_name', -- account_name
+		user_id      VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		host_name    VARCHAR(20) NOT NULL COMMENT 'host_name', -- host_name
+		host_account VARCHAR(20) NOT NULL COMMENT 'host_account' -- host_account
+	)ENGINE=INNODB
+	COMMENT 'hostt';
+
+	-- hostt
+	ALTER TABLE hostt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				crn -- crn
+			);
+
+	-- imaget
+	CREATE TABLE imaget (
+		image_no   INT(11)     NOT NULL COMMENT 'image_no', -- image_no
+		space_no   INT(11)     NOT NULL COMMENT 'space_no', -- space_no
+		image_one VARCHAR(45),
+		image_two VARCHAR(45),
+		image_three VARCHAR(45),
+		image_four VARCHAR(45),
+		image_five VARCHAR(45),
+		image_six VARCHAR(45),
+		image_seven VARCHAR(45)
+	)ENGINE=INNODB
+	COMMENT 'imaget';
+
+	-- imaget
+	ALTER TABLE imaget
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				image_no -- image_no
+			);
+
+	ALTER TABLE imaget
+		MODIFY COLUMN image_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'image_no';
+
+	ALTER TABLE imaget
+		AUTO_INCREMENT = 1;
+
+	-- l_categoryt
+	CREATE TABLE l_categoryt (
+		l_category_no   INT(11)     NOT NULL COMMENT 'l_category_no', -- l_category_no
+		l_category_name VARCHAR(45) NOT NULL COMMENT 'l_category_name' -- l_category_name
+	)ENGINE=INNODB
+	COMMENT 'l_categoryt';
+
+	-- l_categoryt
+	ALTER TABLE l_categoryt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				l_category_no -- l_category_no
+			);
+
+	ALTER TABLE l_categoryt
+		MODIFY COLUMN l_category_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'l_category_no';
+
+	ALTER TABLE l_categoryt
+		AUTO_INCREMENT = 1;
+
+	-- messaget
+	CREATE TABLE messaget (
+		msg_no          INT(11)     NOT NULL COMMENT 'msg_no', -- msg_no
+		send_user_id    VARCHAR(20) NOT NULL COMMENT 'send_user_id', -- send_user_id
+		receive_user_id VARCHAR(20) NOT NULL COMMENT 'receive_user_id', -- receive_user_id
+		msg_content     TEXT        NULL     COMMENT 'msg_content', -- msg_content
+		the_time        DATETIME    NOT NULL COMMENT 'the_time', -- the_time
+		view_count      INT(11)     NOT NULL COMMENT 'view_count' -- view_count
+	)ENGINE=INNODB
+	COMMENT 'messaget';
+
+	-- messaget
+	ALTER TABLE messaget
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				msg_no -- msg_no
+			);
+
+	ALTER TABLE messaget
+		MODIFY COLUMN msg_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'msg_no';
+
+	ALTER TABLE messaget
+		AUTO_INCREMENT = 1;
+
+	-- noticet
+	CREATE TABLE noticet (
+		notice_no      INT(11)     NOT NULL COMMENT 'notice_no', -- notice_no
+		notice_title   VARCHAR(45) NOT NULL COMMENT 'notice_title', -- notice_title
+		notice_content TEXT        NOT NULL COMMENT 'notice_content', -- notice_content
+		the_time       DATETIME    NOT NULL COMMENT 'the_time' -- the_time
+	)ENGINE=INNODB
+	COMMENT 'noticet';
+
+	-- noticet
+	ALTER TABLE noticet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				notice_no -- notice_no
+			);
+
+	ALTER TABLE noticet
+		MODIFY COLUMN notice_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'notice_no';
+
+	ALTER TABLE noticet
+		AUTO_INCREMENT = 1;
+
+	-- o2oqnat
+	CREATE TABLE o2oqnat (
+		o2o_no         INT(11)     NOT NULL COMMENT 'o2o_no', -- o2o_no
+		o2o_title      VARCHAR(45) NOT NULL COMMENT 'o2o_title', -- o2o_title
+		o2o_content    TEXT        NOT NULL COMMENT 'o2o_content', -- o2o_content
+		o2o_email      VARCHAR(50) NOT NULL COMMENT 'o2o_email', -- o2o_email
+		o2o_type       VARCHAR(45) NOT NULL COMMENT 'o2o_type', -- o2o_type
+		o2o_phone      VARCHAR(11) NOT NULL COMMENT 'o2o_phone', -- o2o_phone
+		the_time       DATETIME    NOT NULL COMMENT 'the_time', -- the_time
+		re_o2o_content TEXT        NOT NULL COMMENT 're_o2o_content' -- re_o2o_content
+	)ENGINE=INNODB
+	COMMENT 'o2oqnat';
+
+	-- o2oqnat
+	ALTER TABLE o2oqnat
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				o2o_no -- o2o_no
+			);
+
+	ALTER TABLE o2oqnat
+		MODIFY COLUMN o2o_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'o2o_no';
+
+	ALTER TABLE o2oqnat
+		AUTO_INCREMENT = 1;
+
+	-- reviewt
+	CREATE TABLE reviewt (
+		review_no      INT(11)      NOT NULL COMMENT 'review_no', -- review_no
+		user_id        VARCHAR(20)  NOT NULL COMMENT 'user_id', -- user_id
+		space_no       INT(11)      NOT NULL COMMENT 'space_no', -- space_no
+		review_title   VARCHAR(45)  NOT NULL COMMENT 'review_title', -- review_title
+		review_content TEXT         NOT NULL COMMENT 'review_content', -- review_content
+		the_time       DATETIME     NOT NULL COMMENT 'the_time', -- the_time
+		review_score   DOUBLE       NOT NULL COMMENT 'review_score', -- review_score
+		review_img     VARCHAR(100) NULL     COMMENT 'review_img' -- review_img
+	)ENGINE=INNODB
+	COMMENT 'reviewt';
+
+	-- reviewt
+	ALTER TABLE reviewt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				review_no -- review_no
+			);
+
+	ALTER TABLE reviewt
+		MODIFY COLUMN review_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'review_no';
+
+	ALTER TABLE reviewt
+		AUTO_INCREMENT = 1;
+
+	-- review_replet
+	CREATE TABLE review_replet (
+		review_reple_no      INT(11)     NOT NULL COMMENT 'review_reple_no', -- review_reple_no
+		review_no            INT(11)     NOT NULL COMMENT 'review_no', -- review_no
+		review_reple_content TEXT        NOT NULL COMMENT 'review_reple_content', -- review_reple_content
+		the_time             DATETIME    NOT NULL COMMENT 'the_time', -- the_time
+		user_id              VARCHAR(20) NOT NULL COMMENT 'user_id' -- user_id
+	)ENGINE=INNODB
+	COMMENT 'review_replet';
+
+	-- review_replet
+	ALTER TABLE review_replet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				review_reple_no -- review_reple_no
+			);
+
+	ALTER TABLE review_replet
+		MODIFY COLUMN review_reple_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'review_reple_no';
+
+	ALTER TABLE review_replet
+		AUTO_INCREMENT = 1;
+
+	-- spacet
+	CREATE TABLE spacet (
+		space_no        INT(11)      NOT NULL COMMENT 'space_no', -- space_no
+		l_category_no   INT(11)      NOT NULL COMMENT 'l_category_no', -- l_category_no
+		crn             VARCHAR(13)  NOT NULL COMMENT 'crn', -- crn
+		s_category_no   INT(11)      NOT NULL COMMENT 's_category_no', -- s_category_no
+		space_title     VARCHAR(50)  NOT NULL COMMENT 'space_title', -- space_title
+		space_content   TEXT         NOT NULL COMMENT 'space_content', -- space_content
+		space_thumb_img VARCHAR(100) NOT NULL COMMENT 'space_thumb_img', -- space_thumb_img
+		open_time       CHAR(2)      NOT NULL COMMENT 'open_time', -- open_time
+		close_time      CHAR(2)      NOT NULL COMMENT 'close_time', -- close_time
+		price           INT(11)      NOT NULL COMMENT 'price', -- price
+		max_people      INT(11)      NOT NULL COMMENT 'max_people', -- max_people
+		min_people      INT(11)      NOT NULL COMMENT 'min_people', -- min_people
+		space_call      VARCHAR(20)  NOT NULL COMMENT 'space_call', -- space_call
+		the_time        DATETIME     NOT NULL COMMENT 'the_time', -- the_time,
+		zipcode CHAR(7),
+		latitude DOUBLE,
+		longitude DOUBLE
+		
+	)ENGINE=INNODB
+	COMMENT 'spacet';
+
+	-- spacet
+	ALTER TABLE spacet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				space_no -- space_no
+			);
+
+	ALTER TABLE spacet
+		MODIFY COLUMN space_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'space_no';
+
+	ALTER TABLE spacet
+		AUTO_INCREMENT = 1;
+
+	-- space_qnat
+	CREATE TABLE space_qnat (
+		space_qna_no      INT(11)     NOT NULL COMMENT 'space_qna_no', -- space_qna_no
+		user_id           VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		space_no          INT(11)     NOT NULL COMMENT 'space_no', -- space_no
+		space_qna_content TEXT        NOT NULL COMMENT 'space_qna_content', -- space_qna_content
+		space_qna_title   VARCHAR(45) NOT NULL COMMENT 'space_qna_title', -- space_qna_title
+		the_time          DATETIME    NOT NULL COMMENT 'the_time' -- the_time
+	)ENGINE=INNODB
+	COMMENT 'space_qnat';
+
+	-- space_qnat
+	ALTER TABLE space_qnat
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				space_qna_no -- space_qna_no
+			);
+
+	ALTER TABLE space_qnat
+		MODIFY COLUMN space_qna_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'space_qna_no';
+
+	ALTER TABLE space_qnat
+		AUTO_INCREMENT = 1;
+
+	-- space_qna_replet
+	CREATE TABLE space_qna_replet (
+		space_qna_reple_no      INT(11)  NOT NULL COMMENT 'space_qna_reple_no', -- space_qna_reple_no
+		space_qna_no            INT(11)  NOT NULL COMMENT 'space_qna_no', -- space_qna_no
+		space_qna_reple_content TEXT     NOT NULL COMMENT 'space_qna_reple_content', -- space_qna_reple_content
+		the_time                DATETIME NOT NULL COMMENT 'the_time', -- the_time
+		space_no INT,
+		user_id VARCHAR(20)
+	)ENGINE=INNODB
+	COMMENT 'space_qna_replet';
+
+	-- space_qna_replet
+	ALTER TABLE space_qna_replet
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				space_qna_reple_no -- space_qna_reple_no
+			);
+
+	ALTER TABLE space_qna_replet
+		MODIFY COLUMN space_qna_reple_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'space_qna_reple_no';
+
+	ALTER TABLE space_qna_replet
+		AUTO_INCREMENT = 1;
+
+	-- s_categoryt
+	CREATE TABLE s_categoryt (
+		s_category_no   INT(11)     NOT NULL COMMENT 's_category_no', -- s_category_no
+		s_category_name VARCHAR(45) NOT NULL COMMENT 's_category_name' -- s_category_name
+	)ENGINE=INNODB
+	COMMENT 's_categoryt';
+
+	-- s_categoryt
+	ALTER TABLE s_categoryt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				s_category_no -- s_category_no
+			);
+
+	ALTER TABLE s_categoryt
+		MODIFY COLUMN s_category_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 's_category_no';
+
+	ALTER TABLE s_categoryt
+		AUTO_INCREMENT = 1;
+
+	-- usert
+	CREATE TABLE usert (
+		user_id   VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		zipcode   CHAR(7)     NOT NULL COMMENT 'zipcode', -- zipcode
+		ssn1      CHAR(6)     NOT NULL COMMENT 'ssn1', -- ssn1
+		ssn2      CHAR(7)     NOT NULL COMMENT 'ssn2', -- ssn2
+		passwd    VARCHAR(20) NOT NULL COMMENT 'passwd', -- passwd
+		user_name VARCHAR(10) NOT NULL COMMENT 'user_name', -- user_name
+		gender    CHAR(1)     NOT NULL COMMENT 'gender', -- gender
+		phone     VARCHAR(11) NOT NULL COMMENT 'phone', -- phone
+		nickname  VARCHAR(20) NOT NULL COMMENT 'nickname', -- nickname
+		email     VARCHAR(50) NOT NULL COMMENT 'email', -- email
+		grade     INT(11)     NOT NULL COMMENT 'grade', -- grade
+		zipdetail VARCHAR(20) NOT NULL COMMENT 'zipdetail' -- zipdetail
+	)ENGINE=INNODB
+	COMMENT 'usert';
+
+	-- usert
+	ALTER TABLE usert
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				user_id -- user_id
+			);
+
+	-- user_clubt
+	CREATE TABLE user_clubt (
+		club_no INT(11)     NOT NULL COMMENT 'club_no', -- club_no
+		user_id VARCHAR(20) NOT NULL COMMENT 'user_id' -- user_id
+	)ENGINE=INNODB
+	COMMENT 'user_clubt';
+
+	-- user_clubt
+	ALTER TABLE user_clubt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				club_no, -- club_no
+				user_id  -- user_id
+			);
+
+	-- user_del_emailt
+	CREATE TABLE user_del_emailt (
+		writing_no   INT(11)     NOT NULL COMMENT 'writing_no', -- writing_no
+		user_id      VARCHAR(20) NOT NULL COMMENT 'user_id', -- user_id
+		user_name    VARCHAR(10) NULL     COMMENT 'user_name', -- user_name
+		email        VARCHAR(50) NOT NULL COMMENT 'email', -- email
+		subject      TEXT        NOT NULL COMMENT 'subject', -- subject
+		mail_content TEXT        NOT NULL COMMENT 'mail_content', -- mail_content
+		the_time     DATETIME    NOT NULL COMMENT 'the_time' -- the_time
+	)ENGINE=INNODB
+	COMMENT 'user_del_emailt';
+
+	-- user_del_emailt
+	ALTER TABLE user_del_emailt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				writing_no -- writing_no
+			);
+
+	ALTER TABLE user_del_emailt
+		MODIFY COLUMN writing_no INT(11) NOT NULL AUTO_INCREMENT COMMENT 'writing_no';
+
+	ALTER TABLE user_del_emailt
+		AUTO_INCREMENT = 1;
+
+	--	
+	CREATE TABLE zipcodet (
+		zipcode CHAR(7)     NOT NULL COMMENT 'zipcode', -- zipcode
+		sido    VARCHAR(4)  NOT NULL COMMENT 'sido', -- sido
+		gugun   VARCHAR(15) NOT NULL COMMENT 'gugun', -- gugun
+		dong    VARCHAR(52) NOT NULL COMMENT 'dong', -- dong
+		bunji   VARCHAR(17) NOT NULL COMMENT 'bunji' -- bunji
+	)ENGINE=INNODB
+	COMMENT 'zipcodet';
+	
+	-- booking_clubt
+	CREATE TABLE booking_clubt (
+		booking_no INT NOT NULL,
+		club_no INT NOT NULL COMMENT 'club_no' -- club_no
+	)ENGINE=INNODB
+	COMMENT 'booking_clubt';
+
+	
+
+	-- bookingt
+	ALTER TABLE bookingt
+		ADD CONSTRAINT FK_spacet_TO_bookingt -- spacet -> bookingt
+			FOREIGN KEY (
+				space_no -- space_no
+			)
+			REFERENCES spacet ( -- spacet
+				space_no -- space_no
+			)
+			on delete cascade
+			on update cascade;
+
+
+	-- bookmarkt
+	ALTER TABLE bookmarkt
+		ADD CONSTRAINT FK_usert_TO_bookmarkt -- usert -> bookmarkt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- bookmarkt
+	ALTER TABLE bookmarkt
+		ADD CONSTRAINT FK_spacet_TO_bookmarkt -- spacet -> bookmarkt
+			FOREIGN KEY (
+				space_no -- space_no
+			)
+			REFERENCES spacet ( -- spacet
+				space_no -- space_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- clubt
+	ALTER TABLE clubt
+		ADD CONSTRAINT FK_usert_TO_clubt -- usert -> clubt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- clubt
+	ALTER TABLE clubt
+		ADD CONSTRAINT FK_c_categoryt_TO_clubt -- c_categoryt -> clubt
+			FOREIGN KEY (
+				c_category_no -- c_category_no
+			)
+			REFERENCES c_categoryt ( -- c_categoryt
+				c_category_no -- c_category_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- clubt
+	ALTER TABLE clubt
+		ADD CONSTRAINT FK_l_categoryt_TO_clubt -- l_categoryt -> clubt
+			FOREIGN KEY (
+				l_category_no -- l_category_no
+			)
+			REFERENCES l_categoryt ( -- l_categoryt
+				l_category_no -- l_category_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_applyt
+	ALTER TABLE club_applyt
+		ADD CONSTRAINT FK_clubt_TO_club_applyt -- clubt -> club_applyt
+			FOREIGN KEY (
+				club_no -- club_no
+			)
+			REFERENCES clubt ( -- clubt
+				club_no -- club_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_applyt
+	ALTER TABLE club_applyt
+		ADD CONSTRAINT FK_usert_TO_club_applyt -- usert -> club_applyt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_boardt
+	ALTER TABLE club_boardt
+		ADD CONSTRAINT FK_clubt_TO_club_boardt -- clubt -> club_boardt
+			FOREIGN KEY (
+				club_no -- club_no
+			)
+			REFERENCES clubt ( -- clubt
+				club_no -- club_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_boardt
+	ALTER TABLE club_boardt
+		ADD CONSTRAINT FK_usert_TO_club_boardt -- usert -> club_boardt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_board_replet
+	ALTER TABLE club_board_replet
+		ADD CONSTRAINT FK_club_boardt_TO_club_board_replet -- club_boardt -> club_board_replet
+			FOREIGN KEY (
+				c_board_no -- c_board_no
+			)
+			REFERENCES club_boardt ( -- club_boardt
+				c_board_no -- c_board_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_board_replet
+	ALTER TABLE club_board_replet
+		ADD CONSTRAINT FK_usert_TO_club_board_replet -- usert -> club_board_replet
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_noticet
+	ALTER TABLE club_noticet
+		ADD CONSTRAINT FK_usert_TO_club_noticet -- usert -> club_noticet
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_noticet
+	ALTER TABLE club_noticet
+		ADD CONSTRAINT FK_clubt_TO_club_noticet -- clubt -> club_noticet
+			FOREIGN KEY (
+				club_no -- club_no
+			)
+			REFERENCES clubt ( -- clubt
+				club_no -- club_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_notice_replet
+	ALTER TABLE club_notice_replet
+		ADD CONSTRAINT FK_club_noticet_TO_club_notice_replet -- club_noticet -> club_notice_replet
+			FOREIGN KEY (
+				c_notice_no -- c_notice_no
+			)
+			REFERENCES club_noticet ( -- club_noticet
+				c_notice_no -- c_notice_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- club_notice_replet
+	ALTER TABLE club_notice_replet
+		ADD CONSTRAINT FK_usert_TO_club_notice_replet -- usert -> club_notice_replet
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_boardt
+	ALTER TABLE community_boardt
+		ADD CONSTRAINT FK_usert_TO_community_boardt -- usert -> community_boardt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_board_recomtt
+	ALTER TABLE community_board_recomtt
+		ADD CONSTRAINT FK_usert_TO_community_board_recomtt -- usert -> community_board_recomtt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_board_recomtt
+	ALTER TABLE community_board_recomtt
+		ADD CONSTRAINT FK_community_boardt_TO_community_board_recomtt -- community_boardt -> community_board_recomtt
+			FOREIGN KEY (
+				com_board_no -- com_board_no
+			)
+			REFERENCES community_boardt ( -- community_boardt
+				com_board_no -- com_board_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_board_replet
+	ALTER TABLE community_board_replet
+		ADD CONSTRAINT FK_community_boardt_TO_community_board_replet -- community_boardt -> community_board_replet
+			FOREIGN KEY (
+				com_board_no -- com_board_no
+			)
+			REFERENCES community_boardt ( -- community_boardt
+				com_board_no -- com_board_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_board_replet
+	ALTER TABLE community_board_replet
+		ADD CONSTRAINT FK_usert_TO_community_board_replet 
+			FOREIGN KEY (
+				user_id 
+			)
+			REFERENCES usert ( 
+				user_id 
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_qnat
+	ALTER TABLE community_qnat
+		ADD CONSTRAINT FK_usert_TO_community_qnat -- usert -> community_qnat
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_qna_replet
+	ALTER TABLE community_qna_replet
+		ADD CONSTRAINT FK_usert_TO_community_qna_replet -- usert -> community_qna_replet
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_qna_replet
+	ALTER TABLE community_qna_replet
+		ADD CONSTRAINT FK_community_qnat_TO_community_qna_replet -- community_qnat -> community_qna_replet
+			FOREIGN KEY (
+				com_qna_no -- com_qna_no
+			)
+			REFERENCES community_qnat ( -- community_qnat
+				com_qna_no -- com_qna_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_qna_reple_recomt
+	ALTER TABLE community_qna_reple_recomt
+		ADD CONSTRAINT FK_usert_TO_community_qna_reple_recomt -- usert -> community_qna_reple_recomt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- community_qna_reple_recomt
+	ALTER TABLE community_qna_reple_recomt
+		ADD CONSTRAINT FK_community_qna_replet_TO_community_qna_reple_recomt -- community_qna_replet -> community_qna_reple_recomt
+			FOREIGN KEY (
+				com_qna_reple_no -- com_qna_reple_no
+			)
+			REFERENCES community_qna_replet ( -- community_qna_replet
+				com_qna_reple_no -- com_qna_reple_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- hostapplyt
+	ALTER TABLE hostapplyt
+		ADD CONSTRAINT FK_usert_TO_hostapplyt -- usert -> hostapplyt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- hostt
+	ALTER TABLE hostt
+		ADD CONSTRAINT FK_usert_TO_hostt -- usert -> hostt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+
+	-- imaget
+	ALTER TABLE imaget
+		ADD CONSTRAINT FK_spacet_TO_imaget -- spacet -> imaget
+			FOREIGN KEY (
+				space_no -- space_no
+			)
+			REFERENCES spacet ( -- spacet
+				space_no -- space_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- reviewt
+	ALTER TABLE reviewt
+		ADD CONSTRAINT FK_spacet_TO_reviewt -- spacet -> reviewt
+			FOREIGN KEY (
+				space_no -- space_no
+			)
+			REFERENCES spacet ( -- spacet
+				space_no -- space_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- reviewt
+	ALTER TABLE reviewt
+		ADD CONSTRAINT FK_usert_TO_reviewt -- usert -> reviewt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- review_replet
+	ALTER TABLE review_replet
+		ADD CONSTRAINT FK_reviewt_TO_review_replet -- reviewt -> review_replet
+			FOREIGN KEY (
+				review_no -- review_no
+			)
+			REFERENCES reviewt ( -- reviewt
+				review_no -- review_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- spacet
+	ALTER TABLE spacet
+		ADD CONSTRAINT FK_hostt_TO_spacet -- hostt -> spacet
+			FOREIGN KEY (
+				crn -- crn
+			)
+			REFERENCES hostt ( -- hostt
+				crn -- crn
+			)
+			on delete cascade
+			on update cascade;
+
+	-- spacet
+	ALTER TABLE spacet
+		ADD CONSTRAINT FK_s_categoryt_TO_spacet -- s_categoryt -> spacet
+			FOREIGN KEY (
+				s_category_no -- s_category_no
+			)
+			REFERENCES s_categoryt ( -- s_categoryt
+				s_category_no -- s_category_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- spacet
+	ALTER TABLE spacet
+		ADD CONSTRAINT FK_l_categoryt_TO_spacet -- l_categoryt -> spacet
+			FOREIGN KEY (
+				l_category_no -- l_category_no
+			)
+			REFERENCES l_categoryt ( -- l_categoryt
+				l_category_no -- l_category_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- space_qnat
+	ALTER TABLE space_qnat
+		ADD CONSTRAINT FK_spacet_TO_space_qnat -- spacet -> space_qnat
+			FOREIGN KEY (
+				space_no -- space_no
+			)
+			REFERENCES spacet ( -- spacet
+				space_no -- space_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- space_qnat
+	ALTER TABLE space_qnat
+		ADD CONSTRAINT FK_usert_TO_space_qnat -- usert -> space_qnat
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+	-- space_qna_replet
+	ALTER TABLE space_qna_replet
+		ADD CONSTRAINT FK_space_qnat_TO_space_qna_replet -- space_qnat -> space_qna_replet
+			FOREIGN KEY (
+				space_qna_no -- space_qna_no
+			)
+			REFERENCES space_qnat ( -- space_qnat
+				space_qna_no -- space_qna_no
+			)
+			on delete cascade
+			on update cascade;
+
+	
+
+	-- user_clubt
+	ALTER TABLE user_clubt
+		ADD CONSTRAINT FK_clubt_TO_user_clubt -- clubt -> user_clubt
+			FOREIGN KEY (
+				club_no -- club_no
+			)
+			REFERENCES clubt ( -- clubt
+				club_no -- club_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- user_clubt
+	ALTER TABLE user_clubt
+		ADD CONSTRAINT FK_usert_TO_user_clubt -- usert -> user_clubt
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+
+			ALTER TABLE bookingt MODIFY user_id varchar(20) not null;
+	-- user_clubt
+	ALTER TABLE bookingt
+		ADD CONSTRAINT FK_user_id_TO_user_id
+			FOREIGN KEY (
+				user_id -- user_id
+			)
+			REFERENCES usert ( -- usert
+				user_id -- user_id
+			)
+			on delete cascade
+			on update cascade;
+			
+	-- space_qna_replet
+	ALTER TABLE space_qna_replet
+		ADD CONSTRAINT FK_spacet_TO_space_qna_replet -- spacet -> space_qna_replet
+			FOREIGN KEY (
+				space_no -- space_no
+			)
+			REFERENCES spacet ( -- spacet
+				space_no -- space_no
+			)
+			on delete cascade
+			on update cascade;
+			
+	
+	-- booking_clubt
+	ALTER TABLE booking_clubt
+		ADD CONSTRAINT
+			PRIMARY KEY (
+				booking_no, -- booking_no
+				club_no  -- club_no
+			);
+			
+	-- booking_clubt
+	ALTER TABLE booking_clubt
+		ADD CONSTRAINT FK_clubt_TO_booking_clubt -- clubt -> booking_clubt
+			FOREIGN KEY (
+				club_no -- club_no
+			)
+			REFERENCES clubt ( -- clubt
+				club_no -- club_no
+			)
+			on delete cascade
+			on update cascade;
+
+	-- booking_clubt
+	ALTER TABLE booking_clubt
+		ADD CONSTRAINT FK_bookingt_TO_booking_clubt -- bookingt -> booking_clubt
+			FOREIGN KEY (
+				booking_no -- booking_no
+			)
+			REFERENCES bookingt ( -- bookingt
+				booking_no -- booking_no
+			)
+			on delete cascade
+			on update cascade;

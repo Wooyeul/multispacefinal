@@ -1,0 +1,6 @@
+INSERT INTO c_categoryt (c_category_name) VALUES ('공부');
+INSERT INTO c_categoryt (c_category_name) VALUES ('회의');
+INSERT INTO c_categoryt (c_category_name) VALUES ('파티');
+INSERT INTO c_categoryt (c_category_name) VALUES ('레저');
+INSERT INTO c_categoryt (c_category_name) VALUES ('스포츠');
+INSERT INTO c_categoryt (c_category_name) VALUES ('기타');
